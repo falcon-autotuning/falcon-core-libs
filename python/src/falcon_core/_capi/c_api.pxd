@@ -1,7 +1,7 @@
 from libc.stddef cimport size_t
 
 # Mirror the C struct so we can access raw/length
-ctypedef struct string:
+cdef struct string:
     char *raw
     size_t length
 
