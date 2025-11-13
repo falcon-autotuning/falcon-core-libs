@@ -1,11 +1,11 @@
 from libc.stddef cimport size_t
 
 # Mirror the C struct so we can access raw/length
-cdef struct string:
-    char* raw
+ctypedef struct string:
+    char *raw
     size_t length
 
-ctypedef struct string * StringHandle
+ctypedef struct string *StringHandle
 ctypedef void* ConnectionHandle
 
 cdef extern from "falcon_core/generic/String_c_api.h":
