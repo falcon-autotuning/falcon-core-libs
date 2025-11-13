@@ -2,8 +2,10 @@
 # Minimal Cython wrapper for Connection C API
 # This module exposes a thin, memory-safe cdef class that owns a ConnectionHandle.
 
-from cpython.bytes cimport PyBytes_FromString
+from cpython.bytes cimport PyBytes_FromStringAndSize
 cimport c_api
+from libc.stddef cimport size_t
+cdef extern from *: pass  # ensure cimports are processed
 
 cdef class Connection:
     cdef c_api.ConnectionHandle handle
@@ -20,7 +22,13 @@ cdef class Connection:
     @classmethod
     def new_barrier(cls, name):
         name_bytes = name.encode("utf-8")
-        h = c_api.Connection_create_barrier_gate(name_bytes)
+        cdef const char* raw = name_bytes
+        cdef size_t l = len(name_bytes)
+        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        try:
+            h = c_api.Connection_create_barrier_gate(s)
+        finally:
+            c_api.String_destroy(s)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
@@ -30,7 +38,13 @@ cdef class Connection:
     @classmethod
     def new_plunger(cls, name):
         name_bytes = name.encode("utf-8")
-        h = c_api.Connection_create_plunger_gate(name_bytes)
+        cdef const char* raw = name_bytes
+        cdef size_t l = len(name_bytes)
+        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        try:
+            h = c_api.Connection_create_plunger_gate(s)
+        finally:
+            c_api.String_destroy(s)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
@@ -40,7 +54,13 @@ cdef class Connection:
     @classmethod
     def new_reservoir(cls, name):
         name_bytes = name.encode("utf-8")
-        h = c_api.Connection_create_reservoir_gate(name_bytes)
+        cdef const char* raw = name_bytes
+        cdef size_t l = len(name_bytes)
+        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        try:
+            h = c_api.Connection_create_reservoir_gate(s)
+        finally:
+            c_api.String_destroy(s)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
@@ -50,7 +70,13 @@ cdef class Connection:
     @classmethod
     def new_screening(cls, name):
         name_bytes = name.encode("utf-8")
-        h = c_api.Connection_create_screening_gate(name_bytes)
+        cdef const char* raw = name_bytes
+        cdef size_t l = len(name_bytes)
+        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        try:
+            h = c_api.Connection_create_screening_gate(s)
+        finally:
+            c_api.String_destroy(s)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
@@ -60,7 +86,13 @@ cdef class Connection:
     @classmethod
     def new_ohmic(cls, name):
         name_bytes = name.encode("utf-8")
-        h = c_api.Connection_create_ohmic(name_bytes)
+        cdef const char* raw = name_bytes
+        cdef size_t l = len(name_bytes)
+        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        try:
+            h = c_api.Connection_create_ohmic(s)
+        finally:
+            c_api.String_destroy(s)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
@@ -70,7 +102,13 @@ cdef class Connection:
     @classmethod
     def from_json(cls, json_str):
         b = json_str.encode("utf-8")
-        h = c_api.Connection_from_json_string(b)
+        cdef const char* raw = b
+        cdef size_t l = len(b)
+        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        try:
+            h = c_api.Connection_from_json_string(s)
+        finally:
+            c_api.String_destroy(s)
         if h == <c_api.ConnectionHandle>0:
             raise ValueError("failed to parse Connection from json")
         cdef Connection c = <Connection>cls.__new__(cls)
@@ -85,29 +123,44 @@ cdef class Connection:
     def name(self):
         if self.handle == <c_api.ConnectionHandle>0:
             return ""
-        cdef const char* s = c_api.Connection_name(self.handle)
-        if s == <const char*>0:
+        cdef c_api.StringHandle s = c_api.Connection_name(self.handle)
+        if s == <c_api.StringHandle>0:
             return ""
-        b = PyBytes_FromString(s)
-        return b.decode("utf-8")
+        try:
+            cdef const char* raw = s.raw
+            cdef Py_ssize_t ln = s.length
+            b = PyBytes_FromStringAndSize(raw, ln)
+            return b.decode("utf-8")
+        finally:
+            c_api.String_destroy(s)
 
     def type(self):
         if self.handle == <c_api.ConnectionHandle>0:
             return ""
-        cdef const char* s = c_api.Connection_type(self.handle)
-        if s == <const char*>0:
+        cdef c_api.StringHandle s = c_api.Connection_type(self.handle)
+        if s == <c_api.StringHandle>0:
             return ""
-        b = PyBytes_FromString(s)
-        return b.decode("utf-8")
+        try:
+            cdef const char* raw = s.raw
+            cdef Py_ssize_t ln = s.length
+            b = PyBytes_FromStringAndSize(raw, ln)
+            return b.decode("utf-8")
+        finally:
+            c_api.String_destroy(s)
 
     def to_json(self):
         if self.handle == <c_api.ConnectionHandle>0:
             return ""
-        cdef const char* s = c_api.Connection_to_json_string(self.handle)
-        if s == <const char*>0:
+        cdef c_api.StringHandle s = c_api.Connection_to_json_string(self.handle)
+        if s == <c_api.StringHandle>0:
             return ""
-        b = PyBytes_FromString(s)
-        return b.decode("utf-8")
+        try:
+            cdef const char* raw = s.raw
+            cdef Py_ssize_t ln = s.length
+            b = PyBytes_FromStringAndSize(raw, ln)
+            return b.decode("utf-8")
+        finally:
+            c_api.String_destroy(s)
 
     def is_dot_gate(self):
         if self.handle == <c_api.ConnectionHandle>0:
