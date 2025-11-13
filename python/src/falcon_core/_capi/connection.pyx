@@ -23,7 +23,7 @@ cdef class Connection:
         h = c_api.Connection_create_barrier_gate(name_bytes)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
-        c = cls.__new__(cls)
+        cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
         return c
 
@@ -33,7 +33,7 @@ cdef class Connection:
         h = c_api.Connection_create_plunger_gate(name_bytes)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
-        c = cls.__new__(cls)
+        cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
         return c
 
@@ -43,7 +43,7 @@ cdef class Connection:
         h = c_api.Connection_create_reservoir_gate(name_bytes)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
-        c = cls.__new__(cls)
+        cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
         return c
 
@@ -53,7 +53,7 @@ cdef class Connection:
         h = c_api.Connection_create_screening_gate(name_bytes)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
-        c = cls.__new__(cls)
+        cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
         return c
 
@@ -63,7 +63,7 @@ cdef class Connection:
         h = c_api.Connection_create_ohmic(name_bytes)
         if h == <c_api.ConnectionHandle>0:
             raise MemoryError("failed to create Connection")
-        c = cls.__new__(cls)
+        cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
         return c
 
@@ -73,7 +73,7 @@ cdef class Connection:
         h = c_api.Connection_from_json_string(b)
         if h == <c_api.ConnectionHandle>0:
             raise ValueError("failed to parse Connection from json")
-        c = cls.__new__(cls)
+        cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
         return c
 
@@ -148,7 +148,8 @@ cdef class Connection:
         # op: 2 ==, 3 !=
         if not isinstance(other, Connection):
             return NotImplemented
-        if self.handle == <c_api.ConnectionHandle>0 or other.handle == <c_api.ConnectionHandle>0:
+        cdef Connection o = <Connection>other
+        if self.handle == <c_api.ConnectionHandle>0 or o.handle == <c_api.ConnectionHandle>0:
             if op == 2:
                 return False
             elif op == 3:
@@ -156,7 +157,7 @@ cdef class Connection:
             else:
                 return NotImplemented
         if op == 2:
-            return bool(c_api.Connection_equal(self.handle, other.handle))
+            return bool(c_api.Connection_equal(self.handle, o.handle))
         elif op == 3:
-            return bool(c_api.Connection_not_equal(self.handle, other.handle))
+            return bool(c_api.Connection_not_equal(self.handle, o.handle))
         return NotImplemented
