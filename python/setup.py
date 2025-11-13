@@ -2,7 +2,9 @@ from setuptools import setup, Extension, find_packages
 import os
 from Cython.Build import cythonize
 
-INCLUDE_DIR = os.environ.get("FALCON_CORE_INCLUDE", "/usr/local/include/falcon-core-c-api")
+INCLUDE_DIR = os.environ.get(
+    "FALCON_CORE_INCLUDE", "/usr/local/include/falcon-core-c-api"
+)
 LIB_DIR = os.environ.get("FALCON_CORE_LIB", "/usr/local/lib")
 LIBS = ["falcon_core_c_api"]
 
