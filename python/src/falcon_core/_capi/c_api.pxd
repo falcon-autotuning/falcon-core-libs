@@ -1,21 +1,23 @@
 from libc.stddef cimport size_t
 
-# Mirror the C struct so we can access raw/length
-# This defines a Cython type named `string`.
-ctypedef struct string:
-    char *raw
-    size_t length
-
-# These create pointer-type aliases from the types defined above.
-ctypedef string * StringHandle
-ctypedef void * ConnectionHandle
-
+# Define types and functions from the String C API header.
+# Placing the struct definition inside this block tells Cython
+# that it's the same struct defined in the C header.
 cdef extern from "falcon_core/generic/String_c_api.h":
+    ctypedef struct string:
+        char *raw
+        size_t length
+
+    ctypedef string * StringHandle
+
     StringHandle String_create(const char* raw, size_t length)
     StringHandle String_wrap(const char* raw)
     void String_destroy(StringHandle handle)
 
+# Define types and functions from the Connection C API header.
 cdef extern from "falcon_core/physics/device_structures/Connection_c_api.h":
+    ctypedef void * ConnectionHandle
+
     ConnectionHandle Connection_create_barrier_gate(StringHandle name)
     ConnectionHandle Connection_create_plunger_gate(StringHandle name)
     ConnectionHandle Connection_create_reservoir_gate(StringHandle name)
