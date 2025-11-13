@@ -126,9 +126,9 @@ cdef class Connection:
         cdef c_api.StringHandle s = c_api.Connection_name(self.handle)
         if s == <c_api.StringHandle>0:
             return ""
+        cdef const char* raw = s.raw
+        cdef size_t ln = s.length
         try:
-            cdef const char* raw = s.raw
-            cdef Py_ssize_t ln = s.length
             b = PyBytes_FromStringAndSize(raw, ln)
             return b.decode("utf-8")
         finally:
@@ -140,9 +140,9 @@ cdef class Connection:
         cdef c_api.StringHandle s = c_api.Connection_type(self.handle)
         if s == <c_api.StringHandle>0:
             return ""
+        cdef const char* raw = s.raw
+        cdef size_t ln = s.length
         try:
-            cdef const char* raw = s.raw
-            cdef Py_ssize_t ln = s.length
             b = PyBytes_FromStringAndSize(raw, ln)
             return b.decode("utf-8")
         finally:
@@ -154,9 +154,9 @@ cdef class Connection:
         cdef c_api.StringHandle s = c_api.Connection_to_json_string(self.handle)
         if s == <c_api.StringHandle>0:
             return ""
+        cdef const char* raw = s.raw
+        cdef size_t ln = s.length
         try:
-            cdef const char* raw = s.raw
-            cdef Py_ssize_t ln = s.length
             b = PyBytes_FromStringAndSize(raw, ln)
             return b.decode("utf-8")
         finally:
