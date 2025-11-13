@@ -5,8 +5,8 @@ cdef struct string:
     char *raw
     size_t length
 
-ctypedef struct string *StringHandle
-ctypedef void* ConnectionHandle
+ctypedef struct string * StringHandle
+ctypedef void * ConnectionHandle
 
 cdef extern from "falcon_core/generic/String_c_api.h":
     StringHandle String_create(const char* raw, size_t length)
