@@ -79,8 +79,6 @@ class List(collections.abc.MutableSequence):
         raise NotImplementedError("Inserting items by index is not supported.")
 
     def append(self, value):
-        if not hasattr(self._c, "push_back"):
-            raise AttributeError("append is not supported by the underlying object")
         self._c.push_back(value)
 
     def __eq__(self, other):

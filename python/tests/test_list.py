@@ -28,12 +28,20 @@ def test_list_unsupported_type():
 
 def test_list_direct_instantiation_fails():
     """Test that direct instantiation of List is prevented."""
+
     # A dummy object that looks like a C-wrapper
     class DummyCWrapper:
-        def at(self, index): return index
-        def size(self): return 1
+        def at(self, index):
+            return index
 
-    with pytest.raises(TypeError, match="Object must conform to the low-level list interface."):
+        def size(self):
+            return 1
+
+    _ = DummyCWrapper().at(0)
+
+    with pytest.raises(
+        TypeError, match="Object must conform to the low-level list interface."
+    ):
         # This should fail because the constructor is not meant for public use
         List(object())
 
