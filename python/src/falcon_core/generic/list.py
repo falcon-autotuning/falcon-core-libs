@@ -12,6 +12,7 @@ _C_LIST_REGISTRY = {
 
 class _ListFactory:
     """A helper class to act as a specialized constructor, e.g., List[int]."""
+
     def __init__(self, c_list_type):
         self._c_list_type = c_list_type
 
