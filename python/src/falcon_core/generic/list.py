@@ -53,7 +53,17 @@ class List(collections.abc.MutableSequence):
 
     def __getitem__(self, index):
         if isinstance(index, slice):
-            return [self._c.at(i) for i in range(*index.indices(len(self)))]
+            # By calling self[i], we reuse the integer index logic below.
+            return [self[i] for i in range(*index.indices(len(self)))]
+
+        list_len = len(self)
+        if index < 0:
+            index += list_len
+
+        # After converting negative indices, check if it's within bounds.
+        if not 0 <= index < list_len:
+            raise IndexError("list index out of range")
+
         return self._c.at(index)
 
     def __len__(self):

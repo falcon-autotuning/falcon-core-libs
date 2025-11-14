@@ -104,10 +104,12 @@ def test_list_equality():
 
     assert list1 == list2
     assert list1 != list3
+    assert list1 != list3
     assert list1 != list4
-    assert (list1 == [1, 2, 3]) is False  # Comparison with other types
-    with pytest.raises(TypeError):
-        _ = list1 == 123  # Should return NotImplemented, which pytest raises as TypeError in this context
+
+    # Comparing with other types should return False, not raise an error.
+    assert (list1 == [1, 2, 3]) is False
+    assert (list1 == 123) is False
 
 
 def test_list_repr():
