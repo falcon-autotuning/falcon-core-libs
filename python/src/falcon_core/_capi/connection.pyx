@@ -115,11 +115,6 @@ cdef class Connection:
         c.handle = h
         return c
 
-    def close(self):
-        if self.handle != <c_api.ConnectionHandle>0:
-            c_api.Connection_destroy(self.handle)
-            self.handle = <c_api.ConnectionHandle>0
-
     def name(self):
         if self.handle == <c_api.ConnectionHandle>0:
             return ""

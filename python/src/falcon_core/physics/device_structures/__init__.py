@@ -40,9 +40,6 @@ class Connection:
     def to_json(self) -> str:
         return self._c.to_json()
 
-    def close(self):
-        self._c.close()
-
     def is_plunger_gate(self) -> bool:
         return self._c.is_plunger_gate()
 
