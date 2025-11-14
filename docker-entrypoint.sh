@@ -103,9 +103,18 @@ ls -d /usr/local/include/falcon-core* 2>/dev/null || true
 # Install uv (user installer) for builduser if not present
 if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
   echo "Installing uv for builduser..."
-  # Run installer as builduser with HOME set so install goes to /home/builduser/.local
-  sudo -u builduser env HOME=/home/builduser bash -lc 'curl -LsSf https://astral.sh/uv/install.sh | sh'
-  # Ensure user-local bin is on PATH for login shells
+  # make sure user-local dirs exist and are owned
+  mkdir -p /home/builduser/.local/bin
+  chown -R builduser:builduser /home/builduser/.local || true
+
+  # Run installer as builduser and capture output
+  if ! sudo -u builduser env HOME=/home/builduser bash -lc 'curl -LsSf https://astral.sh/uv/install.sh 2>&1 | tee /tmp/uv-install.log | sh'; then
+    echo "uv installer failed; dumping /tmp/uv-install.log:"
+    sed -n '1,200p' /tmp/uv-install.log || true
+    exit 1
+  fi
+
+  # Ensure PATH available in login shells for the builduser
   cat > /etc/profile.d/uv.sh <<'EOF'
 # ensure user-local bin is available for builduser
 export PATH="/home/builduser/.local/bin:$PATH"
