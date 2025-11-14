@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"C"
 	"unsafe"
 )
 

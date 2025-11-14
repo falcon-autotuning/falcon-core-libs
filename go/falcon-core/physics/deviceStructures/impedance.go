@@ -30,7 +30,7 @@ func (i *Impedance) closeHandle() error {
 	i.mu.Lock()
 	defer i.mu.Unlock()
 	if !i.closed && i.handle != utils.NilHandle[impedanceHandle]() {
-		C.Impedance_destroy(C.ImpedanceHandle(c.handle))
+		C.Impedance_destroy(C.ImpedanceHandle(i.handle))
 		i.closed = true
 		i.handle = utils.NilHandle[impedanceHandle]()
 		return nil
@@ -60,50 +60,50 @@ func (i *Impedance) Close() {
 	i.closeHandle()
 }
 
-func (i *Impedance) Connection() *Connection {
+func (i *Impedance) Connection() (*Connection, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if !i.closed && i.handle != utils.NilHandle[impedanceHandle]() {
-		return nil
+		return nil, errors.New(`Impedance:Connection The impedance is closed`)
 	}
 	h := connectionHandle(C.Impedance_connection(C.ImpedanceHandle(i.handle)))
-	return newConnection(h)
+	return newConnection(h), nil
 }
 
-func (i *Impedance) Resistance() float64 {
+func (i *Impedance) Resistance() (float64, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if !i.closed && i.handle != utils.NilHandle[impedanceHandle]() {
-		return 0
+		return 0, errors.New(`Impedance:Resistance The impedance is closed`)
 	}
-	return float64(C.Impedance_resistance(C.ImpedanceHandle(i.handle)))
+	return float64(C.Impedance_resistance(C.ImpedanceHandle(i.handle))), nil
 }
 
-func (i *Impedance) Capacitance() float64 {
+func (i *Impedance) Capacitance() (float64, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if !i.closed && i.handle != utils.NilHandle[impedanceHandle]() {
-		return 0
+		return 0, errors.New(`Impedance:Capacitance The impedance is closed`)
 	}
-	return float64(C.Impedance_capacitance(C.ImpedanceHandle(i.handle)))
+	return float64(C.Impedance_capacitance(C.ImpedanceHandle(i.handle))), nil
 }
 
-func (i *Impedance) Equal(other *Impedance) bool {
+func (i *Impedance) Equal(other *Impedance) (bool, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if !i.closed && i.handle != utils.NilHandle[impedanceHandle]() {
-		return false
+		return false, errors.New(`Impedance:Equal The impedance is closed`)
 	}
-	return bool(C.Impedance_equal(C.ImpedanceHandle(i.handle), C.ImpedanceHandle(other.handle)))
+	return bool(C.Impedance_equal(C.ImpedanceHandle(i.handle), C.ImpedanceHandle(other.handle))), nil
 }
 
-func (i *Impedance) NotEqual(other *Impedance) bool {
+func (i *Impedance) NotEqual(other *Impedance) (bool, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if !i.closed && i.handle != utils.NilHandle[impedanceHandle]() {
-		return false
+		return false, errors.New(`Impedance:Equal The impedance is closed`)
 	}
-	return bool(C.Impedance_not_equal(C.ImpedanceHandle(i.handle), C.ImpedanceHandle(other.handle)))
+	return bool(C.Impedance_not_equal(C.ImpedanceHandle(i.handle), C.ImpedanceHandle(other.handle))), nil
 }
 
 func (i *Impedance) ToJSON() (string, error) {
@@ -114,7 +114,7 @@ func (i *Impedance) ToJSON() (string, error) {
 	}
 	sh := C.Impedance_to_json_string(C.ImpedanceHandle(i.handle))
 	defer C.String_destroy(sh)
-	return cStringToGoString(sh.raw, sh.length), nil
+	return utils.CStringToGoString(unsafe.Pointer(sh.raw), int(sh.length)), nil
 }
 
 func ImpedanceFromJSON(json string) *Impedance {

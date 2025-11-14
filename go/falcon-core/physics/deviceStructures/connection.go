@@ -113,7 +113,7 @@ func (c *Connection) Name() (string, error) {
 	}
 	sh := C.Connection_name(C.ConnectionHandle(c.handle))
 	defer C.String_destroy(sh)
-	return utils.CStringToGoString(sh.raw, sh.length), nil
+	return utils.CStringToGoString(unsafe.Pointer(sh.raw), int(sh.length)), nil
 }
 
 func (c *Connection) Type() (string, error) {
@@ -124,7 +124,7 @@ func (c *Connection) Type() (string, error) {
 	}
 	sh := C.Connection_type(C.ConnectionHandle(c.handle))
 	defer C.String_destroy(sh)
-	return utils.CStringToGoString(sh.raw, sh.length), nil
+	return utils.CStringToGoString(unsafe.Pointer(sh.raw), int(sh.length)), nil
 }
 
 func (c *Connection) IsDotGate() (bool, error) {
@@ -216,5 +216,5 @@ func (c *Connection) ToJSON() (string, error) {
 	}
 	sh := C.Connection_to_json_string(C.ConnectionHandle(c.handle))
 	defer C.String_destroy(sh)
-	return utils.CStringToGoString(sh.raw, sh.length), nil
+	return utils.CStringToGoString(unsafe.Pointer(sh.raw), int(sh.length)), nil
 }
