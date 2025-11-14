@@ -12,7 +12,7 @@ pacman -S --noconfirm --needed \
   base-devel git openssh sudo curl \
   python python-pip python-setuptools python-wheel cython \
   cereal hdf5 boost bzip2 expat nlohmann-json \
-  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip github-cli
+  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip github-cli openmpi
 
 # 2. Create the 'daniel' user with passwordless sudo
 if ! id -u daniel >/dev/null 2>&1; then
