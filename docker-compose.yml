@@ -1,4 +1,3 @@
-version: "3.8"
 
 services:
   dev:
@@ -12,13 +11,13 @@ services:
       - REPO=falcon-autotuning/falcon-core
       - RELEASE_TAG=v0.0.1
     volumes:
-      - .:/workdir:rw
+      - .:/workdir:rw,z
       - falcon-arch-ccache:/home/builduser/.ccache
-      - ${SSH_AUTH_SOCK}:/ssh-agent
-      - ~/.ssh:/home/builduser/.ssh:ro
-      - ./docker-entrypoint.sh:/docker-entrypoint.sh:ro
+      - ${SSH_AUTH_SOCK}:/ssh-agent:z
+      - ~/.ssh:/home/builduser/.ssh:ro,z
+      - ./docker-entrypoint.sh:/docker-entrypoint.sh:ro,z
     working_dir: /workdir
-    entrypoint: ["/bin/bash", "/docker-entrypoint.sh"]
+    entrypoint: ["/bin/bash", "-lc", "bash /docker-entrypoint.sh"]
 
 volumes:
   falcon-arch-ccache:
