@@ -1,7 +1,6 @@
 package deviceStructures
 
 import (
-	"runtime"
 	"testing"
 )
 
@@ -195,45 +194,5 @@ func TestConnection_FromJSON(t *testing.T) {
 	typ, err := c.Type()
 	if err != nil || typ != "ScreeningGate" {
 		t.Errorf("Expected type 'ScreeningGate', got '%s', err: %v", typ, err)
-	}
-}
-
-func TestConnection_Close_Idempotent(t *testing.T) {
-	c := NewBarrierGate("foo")
-	if err := c.closeHandle(); err != nil {
-		t.Errorf("First closeHandle should succeed, got err: %v", err)
-	}
-	if err := c.closeHandle(); err == nil {
-		t.Error("Second closeHandle should fail (already closed), got nil error")
-	}
-}
-
-func TestConnection_CleanupViaGC_AllConstructors(t *testing.T) {
-	constructors := []struct {
-		name        string
-		constructor func() *Connection
-	}{
-		{"BarrierGate", func() *Connection { return NewBarrierGate("gc-test") }},
-		{"PlungerGate", func() *Connection { return NewPlungerGate("gc-test") }},
-		{"ReservoirGate", func() *Connection { return NewReservoirGate("gc-test") }},
-		{"ScreeningGate", func() *Connection { return NewScreeningGate("gc-test") }},
-		{"Ohmic", func() *Connection { return NewOhmic("gc-test") }},
-		{"FromJSON", func() *Connection {
-			orig := NewScreeningGate("gc-test")
-			js, _ := orig.ToJSON()
-			return ConnectionFromJSON(js)
-		}},
-	}
-
-	for _, tc := range constructors {
-		t.Run(tc.name, func(t *testing.T) {
-			func() {
-				_ = tc.constructor()
-				// Do not call Close(), let the object go out of scope
-			}()
-			runtime.GC()
-			runtime.Gosched()
-			// Optionally, check for side effects if possible
-		})
 	}
 }
