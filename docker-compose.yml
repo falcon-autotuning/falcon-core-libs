@@ -10,6 +10,7 @@ services:
       - SSH_AUTH_SOCK=/ssh-agent
       - REPO=falcon-autotuning/falcon-core
       - RELEASE_TAG=v0.0.1
+      - GH_TOKEN=${GH_TOKEN}
     volumes:
       - .:/workdir:rw,z
       - falcon-arch-ccache:/home/builduser/.ccache
