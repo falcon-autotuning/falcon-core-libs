@@ -6,19 +6,24 @@ services:
     tty: true
     stdin_open: true
     environment:
-      # forwarded from host; compose will substitute ${SSH_AUTH_SOCK} at runtime
+      # Forward SSH agent for git operations inside the container.
       - SSH_AUTH_SOCK=/ssh-agent
-      - REPO=falcon-autotuning/falcon-core
-      - RELEASE_TAG=v0.0.1
+      # Pass GitHub token for downloading private release assets.
       - GH_TOKEN=${GH_TOKEN}
     volumes:
+      # Mount your project directory into /workdir.
       - .:/workdir:rw,z
-      - falcon-arch-ccache:/home/builduser/.ccache
+      # Persist ccache across container restarts to speed up builds.
+      - falcon-arch-ccache:/home/daniel/.ccache
+      # Mount the SSH agent socket.
       - ${SSH_AUTH_SOCK}:/ssh-agent:z
-      - ~/.ssh:/home/builduser/.ssh:ro,z
+      # Mount your SSH keys for read-only access.
+      - ~/.ssh:/home/daniel/.ssh:ro,z
+      # Mount the entrypoint script.
       - ./docker-entrypoint.sh:/docker-entrypoint.sh:ro,z
     working_dir: /workdir
-    entrypoint: ["/bin/bash", "-lc", "if ! getent passwd builduser >/dev/null 2>&1; then useradd -m builduser; fi; bash /docker-entrypoint.sh"]
+    # The entrypoint runs our setup script as root.
+    entrypoint: ["/bin/bash", "/docker-entrypoint.sh"]
 
 volumes:
   falcon-arch-ccache:

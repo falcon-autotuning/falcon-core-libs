@@ -1,159 +1,72 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# This entrypoint prepares an interactive Arch dev container similar to the CI job.
-# It installs required packages, downloads falcon-core release artifacts (using gh),
-# installs the shared libraries and headers to /usr/local, runs ldconfig, then drops
-# into an interactive shell as builduser.
-#
-# Note: For private releases, ensure the container has GH auth:
-# - Either export GITHUB_TOKEN when running docker-compose, or
-# - Use 'gh auth login' before running this script (interactive), or
-# - Make sure your host's gh auth config is mounted into the container.
-#
-# SSH agent forwarding is supported via mounting your host SSH_AUTH_SOCK into the container
-# (docker-compose.yml maps it to /ssh-agent and sets SSH_AUTH_SOCK accordingly).
+# This entrypoint script prepares an interactive Arch Linux development container.
+# It runs as root to set up the system, then drops into a shell as the 'daniel' user.
 
-REPO="${REPO:-falcon-autotuning/falcon-core}"
-RELEASE_TAG="${RELEASE_TAG:-v0.0.1}"
-TMPDIR="/tmp/falcon-core-release"
+echo "--- Preparing Arch Linux development environment ---"
 
-echo "Preparing arch dev container (REPO=${REPO}, RELEASE_TAG=${RELEASE_TAG})"
-
-# Update and install packages
+# 1. Update package database and install essential packages
 pacman -Syu --noconfirm
 pacman -S --noconfirm --needed \
-  base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json \
-  openssl python python-pip python-setuptools python-wheel cython \
-  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip sudo github-cli curl
+  base-devel git openssh sudo curl \
+  python python-pip python-setuptools python-wheel cython \
+  cereal hdf5 boost bzip2 expat nlohmann-json \
+  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip github-cli
 
-# Create builduser if missing and allow passwordless sudo
-if ! id -u builduser >/dev/null 2>&1; then
-  useradd -m builduser
+# 2. Create the 'daniel' user with passwordless sudo
+if ! id -u daniel >/dev/null 2>&1; then
+  echo "Creating user 'daniel'..."
+  # Create user with a home directory and add to 'wheel' group for sudo
+  useradd -m -G wheel daniel
 fi
-if [ ! -f /etc/sudoers.d/builduser ]; then
-  cat >/etc/sudoers.d/builduser <<'EOF'
-builduser ALL=(ALL) NOPASSWD: ALL
-EOF
-  chmod 0440 /etc/sudoers.d/builduser
-fi
+# Grant passwordless sudo to members of the 'wheel' group
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99-wheel-nopasswd
+chmod 0440 /etc/sudoers.d/99-wheel-nopasswd
 
-# Force clang as default for makepkg builds (persist)
-if grep -q '^CC=' /etc/makepkg.conf 2>/dev/null; then
-  sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || true
-else
-  echo 'CC=/usr/bin/clang' >>/etc/makepkg.conf
-fi
-if grep -q '^CXX=' /etc/makepkg.conf 2>/dev/null; then
-  sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || true
-else
-  echo 'CXX=/usr/bin/clang++' >>/etc/makepkg.conf
+# 3. Install 'uv' Python package manager for the 'daniel' user
+if ! sudo -u daniel -H bash -c 'command -v uv >/dev/null 2>&1'; then
+  echo "Installing 'uv' for user 'daniel'..."
+  # The installer script will place 'uv' in /home/daniel/.local/bin/uv
+  sudo -u daniel -H bash -c "curl -LsSf https://astral.sh/uv/install.sh | sh"
 fi
 
-# Prepare temporary download dir
+# 4. Download and install falcon-core libraries and headers
+REPO="falcon-autotuning/falcon-core"
+RELEASE_TAG="v0.0.1"
+TMPDIR="/tmp/falcon-core-release"
+
 rm -rf "${TMPDIR}"
 mkdir -p "${TMPDIR}"
-cd "${TMPDIR}"
 
-# Use gh to download release assets. Requires gh authentication for private repos.
-echo "Downloading release assets with gh..."
-gh release download "${RELEASE_TAG}" --repo "${REPO}" \
-  -p "libfalcon_core_cpp.so" \
+echo "Downloading release assets from ${REPO} (tag: ${RELEASE_TAG})..."
+gh release download "${RELEASE_TAG}" --repo "${REPO}" --dir "${TMPDIR}" \
   -p "libfalcon_core_c_api.so" \
-  -p "falcon-core-cpp-headers.zip" \
   -p "falcon-core-c-api-headers.zip" || {
-  echo "gh release download failed. Ensure gh is authenticated (GITHUB_TOKEN or gh auth login)."
+  echo "ERROR: Failed to download release assets. Ensure GH_TOKEN is valid." >&2
   exit 1
 }
 
-# Install shared libraries
-if [ -f libfalcon_core_cpp.so ]; then
-  install -Dm755 libfalcon_core_cpp.so /usr/local/lib/libfalcon_core_cpp.so
-fi
-if [ -f libfalcon_core_c_api.so ]; then
-  install -Dm755 libfalcon_core_c_api.so /usr/local/lib/libfalcon_core_c_api.so
-fi
+# Install shared library
+install -Dm755 "${TMPDIR}/libfalcon_core_c_api.so" /usr/local/lib/libfalcon_core_c_api.so
 
-# Extract and install headers
-if [ -f falcon-core-cpp-headers.zip ]; then
-  mkdir -p /tmp/cpp_headers
-  unzip -q -o falcon-core-cpp-headers.zip -d /tmp/cpp_headers
-  mkdir -p /usr/local/include/falcon-core-cpp
-  cp -r /tmp/cpp_headers/include/* /usr/local/include/falcon-core-cpp/ || true
-fi
+# Install headers
+unzip -q -o "${TMPDIR}/falcon-core-c-api-headers.zip" -d "${TMPDIR}/headers"
+install -d /usr/local/include/falcon-core-c-api
+cp -r "${TMPDIR}/headers/include/"* /usr/local/include/falcon-core-c-api/
 
-if [ -f falcon-core-c-api-headers.zip ]; then
-  mkdir -p /tmp/c_api_headers
-  unzip -q -o falcon-core-c-api-headers.zip -d /tmp/c_api_headers
-  mkdir -p /usr/local/include/falcon-core-c-api
-  cp -r /tmp/c_api_headers/include/* /usr/local/include/falcon-core-c-api/ || true
-fi
-
-# Update linker cache so installed .so files are discoverable
+# Update linker cache to make the new library available
 ldconfig
+echo "falcon-core C-API library and headers installed."
 
-# Ensure workdir exists and is owned by builduser (compose mounts repo at /workdir)
-if [ ! -d /workdir ]; then
-  mkdir -p /workdir
-fi
-chown -R builduser:builduser /workdir || true
+# 5. Set correct ownership for the work directory and user's home
+# The volume mount for .ssh is read-only, so chown would fail. We skip it.
+chown -R daniel:daniel /workdir
+chown -R daniel:daniel /home/daniel
 
-echo "Preparation complete. Installed libs:"
-ls -l /usr/local/lib/libfalcon_core* 2>/dev/null || true
-echo "Installed headers directories:"
-ls -d /usr/local/include/falcon-core* 2>/dev/null || true
+echo "--- Setup complete. Dropping into shell as user 'daniel' ---"
 
-# Ensure sudo and curl are available (some runs may have missed them)
-if ! command -v sudo >/dev/null 2>&1; then
-  pacman -S --noconfirm --needed sudo curl || true
-fi
-
-# Install uv (user installer) for builduser if not present
-if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
-  echo "Installing uv for builduser..."
-  # make sure user-local dirs exist and are owned
-  mkdir -p /home/builduser/.local/bin
-  chown -R builduser:builduser /home/builduser/.local || true
-
-  TMPINST=/tmp/uv-installer.sh
-  # Download installer as builduser (so any per-user receipts/config are written under HOME)
-  if ! sudo -u builduser env HOME=/home/builduser bash -lc "curl -sSf https://astral.sh/uv/install.sh -o ${TMPINST}"; then
-    echo "failed to download uv installer"
-    exit 1
-  fi
-
-  # Run installer as builduser and capture output
-  if ! sudo -u builduser env HOME=/home/builduser bash -lc "bash ${TMPINST} 2>&1 | tee /tmp/uv-install.log"; then
-    echo "uv installer failed; dumping /tmp/uv-install.log:"
-    sed -n '1,200p' /tmp/uv-install.log || true
-    exit 1
-  fi
-
-  # Copy any installed user-local binaries to /usr/local/bin so they are available system-wide
-  if [ -d /home/builduser/.local/bin ]; then
-    for f in /home/builduser/.local/bin/*; do
-      [ -f "$f" ] || continue
-      bn=$(basename "$f")
-      install -m755 "$f" "/usr/local/bin/$bn" || true
-      chown root:root "/usr/local/bin/$bn" || true
-    done
-  fi
-
-  # Ensure PATH available in login shells for the builduser
-  cat >/etc/profile.d/uv.sh <<'EOF'
-# ensure user-local bin is available for builduser
-export PATH="/home/builduser/.local/bin:/usr/local/bin:$PATH"
-EOF
-  chmod 644 /etc/profile.d/uv.sh
-fi
-
-# Drop to an interactive shell as builduser (preserve SSH agent socket via env)
-export SSH_AUTH_SOCK=/ssh-agent
-
-# Prefer sudo to preserve environment/TTY; fall back to su if sudo is unavailable.
-if command -v sudo >/dev/null 2>&1; then
-  exec /usr/bin/sudo -E -u builduser /bin/bash --login
-else
-  echo "sudo not found; falling back to su - builduser"
-  exec su - builduser -c "/bin/bash --login"
-fi
+# 6. Switch to the 'daniel' user and start a login shell
+# Using 'exec' replaces the current process with the new one.
+# 'su -l' ensures a clean login environment, including sourcing profile scripts.
+exec su -l daniel
