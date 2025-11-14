@@ -115,7 +115,7 @@ if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
   fi
 
   # Ensure PATH available in login shells for the builduser
-  cat > /etc/profile.d/uv.sh <<'EOF'
+  cat >/etc/profile.d/uv.sh <<'EOF'
 # ensure user-local bin is available for builduser
 export PATH="/home/builduser/.local/bin:$PATH"
 EOF
