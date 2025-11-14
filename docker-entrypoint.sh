@@ -23,28 +23,28 @@ echo "Preparing arch dev container (REPO=${REPO}, RELEASE_TAG=${RELEASE_TAG})"
 # Update and install packages
 pacman -Syu --noconfirm
 pacman -S --noconfirm --needed \
-    base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json \
-    openssl python python-pip python-setuptools python-wheel cython \
-    sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip sudo github-cli
+  base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json \
+  openssl python python-pip python-setuptools python-wheel cython \
+  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip sudo github-cli
 
 # Create builduser if missing and allow passwordless sudo
 if ! id -u builduser >/dev/null 2>&1; then
-    useradd -m builduser
+  useradd -m builduser
 fi
 if ! grep -q '^builduser ALL=(ALL) NOPASSWD: ALL' /etc/sudoers 2>/dev/null; then
-    echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+  echo "builduser ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 fi
 
 # Force clang as default for makepkg builds (persist)
 if grep -q '^CC=' /etc/makepkg.conf 2>/dev/null; then
-    sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || true
+  sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || true
 else
-    echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
+  echo 'CC=/usr/bin/clang' >>/etc/makepkg.conf
 fi
 if grep -q '^CXX=' /etc/makepkg.conf 2>/dev/null; then
-    sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || true
+  sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || true
 else
-    echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
+  echo 'CXX=/usr/bin/clang++' >>/etc/makepkg.conf
 fi
 
 # Prepare temporary download dir
@@ -55,35 +55,35 @@ cd "${TMPDIR}"
 # Use gh to download release assets. Requires gh authentication for private repos.
 echo "Downloading release assets with gh..."
 gh release download "${RELEASE_TAG}" --repo "${REPO}" \
-    -p "libfalcon_core_cpp.so" \
-    -p "libfalcon_core_c_api.so" \
-    -p "falcon-core-cpp-headers.zip" \
-    -p "falcon-core-c-api-headers.zip" || {
-      echo "gh release download failed. Ensure gh is authenticated (GITHUB_TOKEN or gh auth login)."
-      exit 1
-    }
+  -p "libfalcon_core_cpp.so" \
+  -p "libfalcon_core_c_api.so" \
+  -p "falcon-core-cpp-headers.zip" \
+  -p "falcon-core-c-api-headers.zip" || {
+  echo "gh release download failed. Ensure gh is authenticated (GITHUB_TOKEN or gh auth login)."
+  exit 1
+}
 
 # Install shared libraries
 if [ -f libfalcon_core_cpp.so ]; then
-    install -Dm755 libfalcon_core_cpp.so /usr/local/lib/libfalcon_core_cpp.so
+  install -Dm755 libfalcon_core_cpp.so /usr/local/lib/libfalcon_core_cpp.so
 fi
 if [ -f libfalcon_core_c_api.so ]; then
-    install -Dm755 libfalcon_core_c_api.so /usr/local/lib/libfalcon_core_c_api.so
+  install -Dm755 libfalcon_core_c_api.so /usr/local/lib/libfalcon_core_c_api.so
 fi
 
 # Extract and install headers
 if [ -f falcon-core-cpp-headers.zip ]; then
-    mkdir -p /tmp/cpp_headers
-    unzip -q -o falcon-core-cpp-headers.zip -d /tmp/cpp_headers
-    mkdir -p /usr/local/include/falcon-core-cpp
-    cp -r /tmp/cpp_headers/include/* /usr/local/include/falcon-core-cpp/ || true
+  mkdir -p /tmp/cpp_headers
+  unzip -q -o falcon-core-cpp-headers.zip -d /tmp/cpp_headers
+  mkdir -p /usr/local/include/falcon-core-cpp
+  cp -r /tmp/cpp_headers/include/* /usr/local/include/falcon-core-cpp/ || true
 fi
 
 if [ -f falcon-core-c-api-headers.zip ]; then
-    mkdir -p /tmp/c_api_headers
-    unzip -q -o falcon-core-c-api-headers.zip -d /tmp/c_api_headers
-    mkdir -p /usr/local/include/falcon-core-c-api
-    cp -r /tmp/c_api_headers/include/* /usr/local/include/falcon-core-c-api/ || true
+  mkdir -p /tmp/c_api_headers
+  unzip -q -o falcon-core-c-api-headers.zip -d /tmp/c_api_headers
+  mkdir -p /usr/local/include/falcon-core-c-api
+  cp -r /tmp/c_api_headers/include/* /usr/local/include/falcon-core-c-api/ || true
 fi
 
 # Update linker cache so installed .so files are discoverable
@@ -91,7 +91,7 @@ ldconfig
 
 # Ensure workdir exists and is owned by builduser (compose mounts repo at /workdir)
 if [ ! -d /workdir ]; then
-    mkdir -p /workdir
+  mkdir -p /workdir
 fi
 chown -R builduser:builduser /workdir || true
 
