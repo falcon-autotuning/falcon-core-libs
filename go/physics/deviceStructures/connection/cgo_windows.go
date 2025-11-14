@@ -1,12 +1,12 @@
-//go:build linux
-// +build linux
+//go:build windows
+// +build windows
 
-package devicestructures
+package connection
 
 /*
   #cgo CFLAGS: -I/usr/local/include/falcon-core-c-api
-  #include "falcon_core/physics/device_structures/Connection_c_api.h"
-	#include "falcon_core/generic/String_c_api.h"
+  #include <falcon_core/physics/device_structures/Connection_c_api.h>
+	#include <falcon_core/generic/String_c_api.h>
   #include <stdlib.h>
 */
 import "C"
@@ -14,10 +14,10 @@ import "unsafe"
 
 type connectionHandle C.ConnectionHandle
 
-func cStringToGoString(raw *C.char, length _Ctype_ulong) string {
-	b := unsafe.Slice((*byte)(unsafe.Pointer(raw)), int(length))
-	return string(b)
+func cStringToGoString(raw *C.char, length C.ulong) string {
+	return string(C.GoBytes(unsafe.Pointer(raw), C.int(length)))
 }
+
 func nilHandle() connectionHandle { return nil }
 
 func createBarrierGate(name string) connectionHandle {
@@ -60,7 +60,7 @@ func createOhmic(name string) connectionHandle {
 	return connectionHandle(C.Connection_create_ohmic(realName))
 }
 
-func connectionFromJSON(json string) connectionHandle {
+func fromJSON(json string) connectionHandle {
 	cjson := C.CString(json)
 	defer C.free(unsafe.Pointer(cjson))
 	realJSON := C.String_wrap(cjson)
@@ -68,11 +68,11 @@ func connectionFromJSON(json string) connectionHandle {
 	return connectionHandle(C.Connection_from_json_string(realJSON))
 }
 
-func destroyConnection(h connectionHandle) {
+func destroy(h connectionHandle) {
 	C.Connection_destroy(C.ConnectionHandle(h))
 }
 
-func connectionName(h connectionHandle) string {
+func name(h connectionHandle) string {
 	sh := C.Connection_name(C.ConnectionHandle(h))
 	defer C.String_destroy(sh)
 	return cStringToGoString(sh.raw, sh.length)
@@ -112,15 +112,15 @@ func isGate(h connectionHandle) bool {
 	return bool(C.Connection_is_gate(C.ConnectionHandle(h)))
 }
 
-func connectionEqual(a, b connectionHandle) bool {
+func equal(a, b connectionHandle) bool {
 	return bool(C.Connection_equal(C.ConnectionHandle(a), C.ConnectionHandle(b)))
 }
 
-func connectionNotEqual(a, b connectionHandle) bool {
+func notEqual(a, b connectionHandle) bool {
 	return bool(C.Connection_not_equal(C.ConnectionHandle(a), C.ConnectionHandle(b)))
 }
 
-func connectionToJSON(h connectionHandle) string {
+func toJSON(h connectionHandle) string {
 	sh := C.Connection_to_json_string(C.ConnectionHandle(h))
 	defer C.String_destroy(sh)
 	return cStringToGoString(sh.raw, sh.length)
