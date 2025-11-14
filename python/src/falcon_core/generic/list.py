@@ -83,9 +83,20 @@ class List(collections.abc.MutableSequence):
 
     def __delitem__(self, index):
         # This is an "in-place" operation, using the efficient C-API call.
-        if not hasattr(self._c, "erase_at"):
-            raise NotImplementedError("delete is not supported by the underlying object")
-        self._c.erase_at(index)
+        try:
+            # Handle negative indices before passing to the Cython layer.
+            list_len = len(self)
+            if index < 0:
+                index += list_len
+
+            if not 0 <= index < list_len:
+                raise IndexError("list index out of range")
+
+            self._c.erase_at(index)
+        except AttributeError:
+            raise NotImplementedError(
+                "delete is not supported by the underlying object"
+            )
 
     def insert(self, index, value):
         # This is an "out-of-place" operation.
