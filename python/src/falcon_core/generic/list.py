@@ -1,12 +1,13 @@
 import collections.abc
 from .._capi.list_int import ListInt as _CListInt
+from .._capi.list_connection import ListConnection as _CListConnection
+from ..physics.device_structures.connection import Connection
 
 # A registry mapping Python types to their low-level Cython wrappers.
 # This is the key to the generic factory.
 _C_LIST_REGISTRY = {
     int: _CListInt,
-    # When you create ListConnection, you'll add its entry here:
-    # Connection: _CListConnection,
+    Connection: _CListConnection,
 }
 
 

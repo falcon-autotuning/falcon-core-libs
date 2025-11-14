@@ -38,6 +38,15 @@ ext_modules = [
         runtime_library_dirs=[C_API_LIB_DIR],
         language="c++",
     ),
+    Extension(
+        "falcon_core._capi.list_connection",
+        sources=[os.path.join(CAPI_WRAPPER_DIR, "list_connection.pyx")],
+        include_dirs=[C_API_INCLUDE_DIR, CAPI_WRAPPER_DIR],
+        libraries=C_API_LIBS,
+        library_dirs=[C_API_LIB_DIR],
+        runtime_library_dirs=[C_API_LIB_DIR],
+        language="c++",
+    ),
 ]
 
 setup(

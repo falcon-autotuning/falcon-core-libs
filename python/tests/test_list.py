@@ -196,3 +196,25 @@ def test_list_modification_without_factory_fails():
         TypeError, match="Cannot modify a List that was not created with a factory."
     ):
         raw_list.insert(0, 100)
+
+
+def test_list_of_connections():
+    """Basic test to ensure List[Connection] works."""
+    p1 = Connection.new_plunger("P1")
+    b1 = Connection.new_barrier("B1")
+
+    # Test creation
+    conn_list = List[Connection]([p1, b1])
+    assert len(conn_list) == 2
+    assert conn_list[0] == p1
+    assert conn_list[1].name() == "B1"
+
+    # Test append
+    r1 = Connection.new_reservoir("R1")
+    conn_list.append(r1)
+    assert len(conn_list) == 3
+    assert conn_list[2] == r1
+
+    # Test equality
+    conn_list2 = List[Connection]([p1, b1, r1])
+    assert conn_list == conn_list2
