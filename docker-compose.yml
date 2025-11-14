@@ -18,7 +18,7 @@ services:
       - ~/.ssh:/home/builduser/.ssh:ro,z
       - ./docker-entrypoint.sh:/docker-entrypoint.sh:ro,z
     working_dir: /workdir
-    entrypoint: ["/bin/bash", "-lc", "bash /docker-entrypoint.sh"]
+    entrypoint: ["/bin/bash", "-lc", "if ! getent passwd builduser >/dev/null 2>&1; then useradd -m builduser; fi; bash /docker-entrypoint.sh"]
 
 volumes:
   falcon-arch-ccache:
