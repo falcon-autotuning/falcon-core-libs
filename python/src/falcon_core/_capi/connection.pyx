@@ -8,7 +8,6 @@ from libc.stddef cimport size_t
 cdef extern from *: pass  # ensure cimports are processed
 
 cdef class Connection:
-    cdef c_api.ConnectionHandle handle
 
     def __cinit__(self):
         # initialize handle to 0 (NULL)

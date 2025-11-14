@@ -50,13 +50,18 @@ cdef class ListConnection:
     def at(self, size_t index):
         if index >= self.size():
             raise IndexError("list index out of range")
-        # Get the raw ConnectionHandle from the C-API
-        cdef c_api.ConnectionHandle conn_handle = c_api.ListConnection_at(self.handle, index)
-        # We need to wrap it in a new Cython Connection object.
-        # The handle from at() is a new handle that we now own.
+
+        # Get a new, owned ConnectionHandle from the C-API.
+        cdef c_api.ConnectionHandle new_conn_handle = c_api.ListConnection_at(self.handle, index)
+        if new_conn_handle == <c_api.ConnectionHandle>0:
+            raise MemoryError("Failed to get Connection from list at index")
+
+        # Create a new Cython wrapper to own this handle.
         cdef _CConnection c_conn = _CConnection()
-        c_conn.handle = conn_handle
-        # Then wrap that in the final Python Connection object
+        c_conn.handle = new_conn_handle
+
+        # Wrap the Cython object in the final Python object.
+        # The __dealloc__ of c_conn will correctly destroy the handle later.
         return PyConnection(c_conn)
 
     def size(self):
