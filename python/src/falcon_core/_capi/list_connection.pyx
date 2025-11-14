@@ -60,8 +60,8 @@ cdef class ListConnection:
         cdef _CConnection c_conn = _CConnection()
         c_conn.handle = new_conn_handle
 
-        # Wrap the Cython object in the final Python object.
-        # The __dealloc__ of c_conn will correctly destroy the handle later.
+        # Wrap the Cython object in the final Python object. Its __dealloc__
+        # method will be responsible for destroying the new_conn_handle.
         return PyConnection(c_conn)
 
     def size(self):
