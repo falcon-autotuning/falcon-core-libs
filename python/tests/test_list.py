@@ -130,10 +130,14 @@ def test_list_repr():
 
 def test_list_mutable_methods():
     """Test the mutable methods of the List class."""
-    # Test __setitem__
+    # Test __setitem__ with an integer index
     int_list = List[int]([1, 2, 3])
     int_list[1] = 99
     assert list(int_list) == [1, 99, 3]
+
+    # Test __setitem__ with a slice
+    int_list[1:2] = [88, 77]
+    assert list(int_list) == [1, 88, 77, 3]
 
     # Test __delitem__
     del int_list[1]

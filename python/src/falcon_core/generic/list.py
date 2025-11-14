@@ -76,8 +76,9 @@ class List(collections.abc.MutableSequence):
         # It's less efficient but provides the expected interface.
         if self._c_list_type is None:
             raise TypeError("Cannot modify a List that was not created with a factory.")
+
         temp_list = list(self)  # Convert to Python list
-        temp_list[index] = value  # Modify in Python
+        temp_list[index] = value  # Modify in Python, works for both slices and ints
         new_c_obj = self._c_list_type.from_list(temp_list)  # Create new C++ list
         self._c = new_c_obj  # Replace internal object
 
