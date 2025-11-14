@@ -103,6 +103,11 @@ ls -l /usr/local/lib/libfalcon_core* 2>/dev/null || true
 echo "Installed headers directories:"
 ls -d /usr/local/include/falcon-core* 2>/dev/null || true
 
+# Ensure sudo and curl are available (some runs may have missed them)
+if ! command -v sudo >/dev/null 2>&1; then
+  pacman -S --noconfirm --needed sudo curl || true
+fi
+
 # Install uv (user installer) for builduser if not present
 if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
   echo "Installing uv for builduser..."
@@ -110,26 +115,27 @@ if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
   mkdir -p /home/builduser/.local/bin
   chown -R builduser:builduser /home/builduser/.local || true
 
+  TMPINST=/tmp/uv-installer.sh
+  # Download installer as builduser (so any per-user receipts/config are written under HOME)
+  if ! sudo -u builduser env HOME=/home/builduser bash -lc "curl -sSf https://astral.sh/uv/install.sh -o ${TMPINST}"; then
+    echo "failed to download uv installer"
+    exit 1
+  fi
+
   # Run installer as builduser and capture output
-  if ! sudo -u builduser env HOME=/home/builduser bash -lc 'curl -LsSf https://astral.sh/uv/install.sh 2>&1 | tee /tmp/uv-install.log | sh'; then
+  if ! sudo -u builduser env HOME=/home/builduser bash -lc "bash ${TMPINST} 2>&1 | tee /tmp/uv-install.log"; then
     echo "uv installer failed; dumping /tmp/uv-install.log:"
     sed -n '1,200p' /tmp/uv-install.log || true
     exit 1
   fi
 
-  # Copy installed uv and any user-local scripts to /usr/local/bin so they are available system-wide
-  if [ -f /home/builduser/.local/bin/uv ]; then
-    install -m755 /home/builduser/.local/bin/uv /usr/local/bin/uv
-    chown root:root /usr/local/bin/uv
-  fi
+  # Copy any installed user-local binaries to /usr/local/bin so they are available system-wide
   if [ -d /home/builduser/.local/bin ]; then
     for f in /home/builduser/.local/bin/*; do
       [ -f "$f" ] || continue
       bn=$(basename "$f")
-      # skip uv which we already handled
-      if [ "$bn" != "uv" ]; then
-        install -m755 "$f" "/usr/local/bin/$bn" || true
-      fi
+      install -m755 "$f" "/usr/local/bin/$bn" || true
+      chown root:root "/usr/local/bin/$bn" || true
     done
   fi
 
@@ -143,4 +149,11 @@ fi
 
 # Drop to an interactive shell as builduser (preserve SSH agent socket via env)
 export SSH_AUTH_SOCK=/ssh-agent
-exec /usr/bin/sudo -E -u builduser /bin/bash --login
+
+# Prefer sudo to preserve environment/TTY; fall back to su if sudo is unavailable.
+if command -v sudo >/dev/null 2>&1; then
+  exec /usr/bin/sudo -E -u builduser /bin/bash --login
+else
+  echo "sudo not found; falling back to su - builduser"
+  exec su - builduser -c "/bin/bash --login"
+fi
