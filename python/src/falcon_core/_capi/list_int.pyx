@@ -65,3 +65,11 @@ cdef class ListInt:
         elif op == 3:  # !=
             return not bool(c_api.ListInt_equal(self.handle, o.handle))
         return NotImplemented
+
+    def intersection(self, ListInt other):
+        cdef c_api.ListIntHandle new_handle = c_api.ListInt_intersection(self.handle, other.handle)
+        if new_handle == <c_api.ListIntHandle>0:
+            raise MemoryError("Failed to create intersection ListInt")
+        cdef ListInt new_obj = <ListInt>self.__class__.__new__(self.__class__)
+        new_obj.handle = new_handle
+        return new_obj

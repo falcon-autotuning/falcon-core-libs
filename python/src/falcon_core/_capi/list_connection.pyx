@@ -76,3 +76,11 @@ cdef class ListConnection:
         elif op == 3:  # !=
             return not bool(c_api.ListConnection_equal(self.handle, o.handle))
         return NotImplemented
+
+    def intersection(self, ListConnection other):
+        cdef c_api.ListConnectionHandle new_handle = c_api.ListConnection_intersection(self.handle, other.handle)
+        if new_handle == <c_api.ListConnectionHandle>0:
+            raise MemoryError("Failed to create intersection ListConnection")
+        cdef ListConnection new_obj = <ListConnection>self.__class__.__new__(self.__class__)
+        new_obj.handle = new_handle
+        return new_obj

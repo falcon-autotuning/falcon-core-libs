@@ -52,6 +52,7 @@ cdef extern from "falcon_core/generic/ListInt_c_api.h":
     size_t ListInt_size(ListIntHandle handle)
     int ListInt_at(ListIntHandle handle, size_t idx)
     int ListInt_equal(ListIntHandle a, ListIntHandle b)
+    ListIntHandle ListInt_intersection(ListIntHandle handle, ListIntHandle other)
     StringHandle ListInt_to_json_string(ListIntHandle handle)
     ListIntHandle ListInt_from_json_string(StringHandle json)
 
@@ -65,3 +66,4 @@ cdef extern from "falcon_core/generic/ListConnection_c_api.h":
     size_t ListConnection_size(ListConnectionHandle handle)
     ConnectionHandle ListConnection_at(ListConnectionHandle handle, size_t idx)
     int ListConnection_equal(ListConnectionHandle a, ListConnectionHandle b)
+    ListConnectionHandle ListConnection_intersection(ListConnectionHandle handle, ListConnectionHandle other)

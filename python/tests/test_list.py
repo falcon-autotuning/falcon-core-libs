@@ -214,3 +214,28 @@ def test_list_of_connections():
     # Test equality
     conn_list2 = List[Connection]([p1, b1, r1])
     assert conn_list == conn_list2
+
+
+def test_list_intersection():
+    """Test the custom intersection method."""
+    list1 = List[int]([1, 2, 3, 4])
+    list2 = List[int]([3, 4, 5, 6])
+    intersect = list1.intersection(list2)
+    assert isinstance(intersect, List)
+    assert sorted(list(intersect)) == [3, 4]
+
+    # Test with connections
+    p1 = Connection.new_plunger("P1")
+    b1 = Connection.new_barrier("B1")
+    r1 = Connection.new_reservoir("R1")
+    conn_list1 = List[Connection]([p1, b1])
+    conn_list2 = List[Connection]([b1, r1])
+    conn_intersect = conn_list1.intersection(conn_list2)
+    assert len(conn_intersect) == 1
+    assert conn_intersect[0] == b1
+
+    # Test error conditions
+    with pytest.raises(TypeError, match="Intersection is only defined between List objects"):
+        list1.intersection([3, 4])
+    with pytest.raises(TypeError, match="Cannot find intersection of Lists of different types"):
+        list1.intersection(conn_list1)

@@ -99,6 +99,16 @@ class List(collections.abc.MutableSequence):
     def append(self, value):
         self._c.push_back(value)
 
+    def intersection(self, other):
+        """Returns a new List containing elements common to both lists."""
+        if not isinstance(other, List):
+            raise TypeError("Intersection is only defined between List objects.")
+        if self._c_list_type != other._c_list_type:
+            raise TypeError("Cannot find intersection of Lists of different types.")
+
+        new_c_obj = self._c.intersection(other._c)
+        return List(new_c_obj, self._c_list_type)
+
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return NotImplemented
