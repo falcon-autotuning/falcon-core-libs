@@ -31,8 +31,11 @@ pacman -S --noconfirm --needed \
 if ! id -u builduser >/dev/null 2>&1; then
   useradd -m builduser
 fi
-if ! grep -q '^builduser ALL=(ALL) NOPASSWD: ALL' /etc/sudoers 2>/dev/null; then
-  echo "builduser ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
+if [ ! -f /etc/sudoers.d/builduser ]; then
+  cat >/etc/sudoers.d/builduser <<'EOF'
+builduser ALL=(ALL) NOPASSWD: ALL
+EOF
+  chmod 0440 /etc/sudoers.d/builduser
 fi
 
 # Force clang as default for makepkg builds (persist)
@@ -114,10 +117,26 @@ if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
     exit 1
   fi
 
+  # Copy installed uv and any user-local scripts to /usr/local/bin so they are available system-wide
+  if [ -f /home/builduser/.local/bin/uv ]; then
+    install -m755 /home/builduser/.local/bin/uv /usr/local/bin/uv
+    chown root:root /usr/local/bin/uv
+  fi
+  if [ -d /home/builduser/.local/bin ]; then
+    for f in /home/builduser/.local/bin/*; do
+      [ -f "$f" ] || continue
+      bn=$(basename "$f")
+      # skip uv which we already handled
+      if [ "$bn" != "uv" ]; then
+        install -m755 "$f" "/usr/local/bin/$bn" || true
+      fi
+    done
+  fi
+
   # Ensure PATH available in login shells for the builduser
   cat >/etc/profile.d/uv.sh <<'EOF'
 # ensure user-local bin is available for builduser
-export PATH="/home/builduser/.local/bin:$PATH"
+export PATH="/home/builduser/.local/bin:/usr/local/bin:$PATH"
 EOF
   chmod 644 /etc/profile.d/uv.sh
 fi
