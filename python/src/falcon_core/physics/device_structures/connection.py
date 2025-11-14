@@ -62,7 +62,7 @@ class Connection:
             )
         return self._c == other._c
 
-    def __neq__(self, other):
+    def __ne__(self, other):
         if not isinstance(other, Connection):
             raise TypeError(
                 f"Equality is not defined between Connection and {type(other)}"

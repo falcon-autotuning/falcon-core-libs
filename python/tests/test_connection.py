@@ -49,14 +49,21 @@ def test_constructors_and_accessors():
     assert reservoir.is_reservoir_gate()
 
 
-def test_throws_on_invalid_equality_type():
+def test__equality():
     screening = Connection.new_screening("S1")
     with pytest.raises(TypeError):
         screening == 4
+    plunger = Connection.new_plunger("P1")
+    other_plunger = Connection.new_plunger("P1")
+    assert plunger == other_plunger
+    assert plunger != screening
+    with pytest.raises(TypeError):
+        screening != 4
 
 
 def test_serialization_roundtrip():
     screening = Connection.new_screening("S1")
+
     screening_json_str = screening.to_json()
     rec_screening = Connection.from_json(screening_json_str)
     assert rec_screening.name() == "S1"

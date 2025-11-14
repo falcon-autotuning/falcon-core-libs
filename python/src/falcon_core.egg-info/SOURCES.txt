@@ -1,6 +1,9 @@
 pyproject.toml
 setup.py
 /workdir/python/src/falcon_core/_capi/connection.c
+/workdir/python/src/falcon_core/_capi/connection.cpp
+/workdir/python/src/falcon_core/_capi/list_int.c
+/workdir/python/src/falcon_core/_capi/list_int.cpp
 src/falcon_core/__init__.py
 src/falcon_core.egg-info/PKG-INFO
 src/falcon_core.egg-info/SOURCES.txt
@@ -9,6 +12,10 @@ src/falcon_core.egg-info/not-zip-safe
 src/falcon_core.egg-info/top_level.txt
 src/falcon_core/_capi/__init__.py
 src/falcon_core/_capi/connection.c
+src/falcon_core/generic/__init__.py
+src/falcon_core/generic/list.py
 src/falcon_core/physics/__init__.py
 src/falcon_core/physics/device_structures/__init__.py
+src/falcon_core/physics/device_structures/connection.py
 tests/test_connection.py
+tests/test_list.py

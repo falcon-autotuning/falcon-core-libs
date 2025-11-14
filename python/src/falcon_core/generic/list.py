@@ -22,7 +22,6 @@ class _ListFactory:
             c_obj = self._c_list_type.create_empty()
         else:
             c_obj = self._c_list_type.from_list(initial_data)
-        # Pass the factory's c_list_type to the List instance so it knows its type.
         return List(c_obj, self._c_list_type)
 
 
@@ -55,14 +54,12 @@ class List(collections.abc.MutableSequence):
 
     def __getitem__(self, index):
         if isinstance(index, slice):
-            # By calling self[i], we reuse the integer index logic below.
             return [self[i] for i in range(*index.indices(len(self)))]
 
         list_len = len(self)
         if index < 0:
             index += list_len
 
-        # After converting negative indices, check if it's within bounds.
         if not 0 <= index < list_len:
             raise IndexError("list index out of range")
 
@@ -72,35 +69,25 @@ class List(collections.abc.MutableSequence):
         return self._c.size()
 
     def __setitem__(self, index, value):
-        # This is an "out-of-place" operation.
-        # It's less efficient but provides the expected interface.
         if self._c_list_type is None:
             raise TypeError("Cannot modify a List that was not created with a factory.")
 
-        temp_list = list(self)  # Convert to Python list
-        temp_list[index] = value  # Modify in Python, works for both slices and ints
-        new_c_obj = self._c_list_type.from_list(temp_list)  # Create new C++ list
-        self._c = new_c_obj  # Replace internal object
+        temp_list = list(self)
+        temp_list[index] = value
+        new_c_obj = self._c_list_type.from_list(temp_list)
+        self._c = new_c_obj
 
     def __delitem__(self, index):
-        # This is an "in-place" operation, using the efficient C-API call.
-        try:
-            # Handle negative indices before passing to the Cython layer.
-            list_len = len(self)
-            if index < 0:
-                index += list_len
+        list_len = len(self)
+        if index < 0:
+            index += list_len
 
-            if not 0 <= index < list_len:
-                raise IndexError("list index out of range")
+        if not 0 <= index < list_len:
+            raise IndexError("list index out of range")
 
-            self._c.erase_at(index)
-        except AttributeError:
-            raise NotImplementedError(
-                "delete is not supported by the underlying object"
-            )
+        self._c.erase_at(index)
 
     def insert(self, index, value):
-        # This is an "out-of-place" operation.
         if self._c_list_type is None:
             raise TypeError("Cannot modify a List that was not created with a factory.")
         temp_list = list(self)
