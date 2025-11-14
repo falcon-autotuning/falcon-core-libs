@@ -1,5 +1,6 @@
 pyproject.toml
 setup.py
+/workdir/python/src/falcon_core/_capi/connection.c
 src/falcon_core/__init__.py
 src/falcon_core.egg-info/PKG-INFO
 src/falcon_core.egg-info/SOURCES.txt

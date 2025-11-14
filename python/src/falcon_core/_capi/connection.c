@@ -3,12 +3,10 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "depends": [
-            "/usr/local/include/falcon-core-c-api/falcon_core/generic/String_c_api.h",
-            "/usr/local/include/falcon-core-c-api/falcon_core/physics/device_structures/Connection_c_api.h"
-        ],
+        "depends": [],
         "include_dirs": [
-            "/usr/local/include/falcon-core-c-api"
+            "/usr/local/include/falcon-core-c-api",
+            "/workdir/python/src/falcon_core/_capi"
         ],
         "libraries": [
             "falcon_core_c_api"
@@ -17,8 +15,11 @@
             "/usr/local/lib"
         ],
         "name": "falcon_core._capi.connection",
+        "runtime_library_dirs": [
+            "/usr/local/lib"
+        ],
         "sources": [
-            "src/falcon_core/_capi/connection.pyx"
+            "/workdir/python/src/falcon_core/_capi/connection.pyx"
         ]
     },
     "module_name": "falcon_core._capi.connection"
@@ -2414,9 +2415,11 @@ static int __Pyx_State_RemoveModule(void*);
 
 /* Module declarations from "cpython.bytes" */
 
+/* Module declarations from "falcon_core._capi" */
+
 /* Module declarations from "libc.stddef" */
 
-/* Module declarations from "c_api" */
+/* Module declarations from "falcon_core._capi.c_api" */
 
 /* Module declarations from "falcon_core._capi.connection" */
 /* #### Code section: typeinfo ### */
