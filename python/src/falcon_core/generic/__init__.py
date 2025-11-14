@@ -1,3 +1,3 @@
-from .list_int import ListInt
+from .list import List
 
-__all__ = ["ListInt"]
+__all__ = ["List"]
