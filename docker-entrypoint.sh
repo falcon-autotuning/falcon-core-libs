@@ -25,7 +25,7 @@ pacman -Syu --noconfirm
 pacman -S --noconfirm --needed \
   base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json \
   openssl python python-pip python-setuptools python-wheel cython \
-  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip sudo github-cli
+  sqlite yaml-cpp zlib ninja llvm ccache clang gtest unzip sudo github-cli curl
 
 # Create builduser if missing and allow passwordless sudo
 if ! id -u builduser >/dev/null 2>&1; then
@@ -100,6 +100,19 @@ ls -l /usr/local/lib/libfalcon_core* 2>/dev/null || true
 echo "Installed headers directories:"
 ls -d /usr/local/include/falcon-core* 2>/dev/null || true
 
+# Install uv (user installer) for builduser if not present
+if ! sudo -u builduser -H bash -lc 'command -v uv >/dev/null 2>&1'; then
+  echo "Installing uv for builduser..."
+  # Run installer as builduser with HOME set so install goes to /home/builduser/.local
+  sudo -u builduser env HOME=/home/builduser bash -lc 'curl -LsSf https://astral.sh/uv/install.sh | sh'
+  # Ensure user-local bin is on PATH for login shells
+  cat > /etc/profile.d/uv.sh <<'EOF'
+# ensure user-local bin is available for builduser
+export PATH="/home/builduser/.local/bin:$PATH"
+EOF
+  chmod 644 /etc/profile.d/uv.sh
+fi
+
 # Drop to an interactive shell as builduser (preserve SSH agent socket via env)
 export SSH_AUTH_SOCK=/ssh-agent
-exec su - builduser -c "/bin/bash --login"
+exec /usr/bin/sudo -E -u builduser /bin/bash --login
