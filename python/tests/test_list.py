@@ -128,27 +128,50 @@ def test_list_repr():
     assert repr(empty_list) == "List([])"
 
 
-def test_list_mutable_methods():
-    """Test the mutable methods of the List class."""
-    # Test __setitem__ with an integer index
+def test_list_setitem():
+    """Test the __setitem__ method."""
+    # Test with an integer index
     int_list = List[int]([1, 2, 3])
     int_list[1] = 99
     assert list(int_list) == [1, 99, 3]
 
-    # Test __setitem__ with a slice
+    # Test with a slice
     int_list[1:2] = [88, 77]
     assert list(int_list) == [1, 88, 77, 3]
 
-    # Test __delitem__
-    del int_list[1]
-    assert list(int_list) == [1, 3]
-    assert len(int_list) == 2
 
-    # Test insert
-    int_list.insert(1, 55)
-    assert list(int_list) == [1, 55, 3]
+def test_list_delitem():
+    """Test the __delitem__ method."""
+    int_list = List[int]([1, 2, 3, 4])
+    del int_list[2]  # Delete '3'
+    assert list(int_list) == [1, 2, 4]
 
-    # Test clear (if available)
+    # Test deleting with a negative index
+    del int_list[-1]  # Delete '4'
+    assert list(int_list) == [1, 2]
+
+
+def test_list_delitem_out_of_bounds():
+    """Test that __delitem__ raises IndexError for out-of-bounds indices."""
+    int_list = List[int]([1, 2])
+    with pytest.raises(IndexError):
+        del int_list[2]
+    with pytest.raises(IndexError):
+        del int_list[-3]
+
+
+def test_list_insert():
+    """Test the insert method."""
+    int_list = List[int]([1, 4])
+    int_list.insert(1, 2)
+    int_list.insert(2, 3)
+    assert list(int_list) == [1, 2, 3, 4]
+
+
+def test_list_clear():
+    """Test the clear method."""
+    int_list = List[int]([1, 2, 3])
+    # The check for `clear` should be part of the test logic
     if hasattr(int_list._c, "clear"):
         int_list.clear()
         assert len(int_list) == 0
