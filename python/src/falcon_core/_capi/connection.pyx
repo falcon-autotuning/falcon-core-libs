@@ -3,7 +3,7 @@
 # This module exposes a thin, memory-safe cdef class that owns a ConnectionHandle.
 
 from cpython.bytes cimport PyBytes_FromStringAndSize
-cimport c_api
+from . cimport c_api
 from libc.stddef cimport size_t
 cdef extern from *: pass  # ensure cimports are processed
 
