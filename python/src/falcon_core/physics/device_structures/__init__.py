@@ -1,5 +1,6 @@
 from ..._capi.connection import Connection as _CConnection
 
+
 class Connection:
     """Lightweight Python wrapper around the Cython Connection class."""
 
@@ -42,13 +43,24 @@ class Connection:
     def close(self):
         self._c.close()
 
+    def is_plunger_gate(self) -> bool:
+        return self._c.is_plunger_gate()
+
     def is_barrier_gate(self) -> bool:
         return self._c.is_barrier_gate()
+
+    def is_screening_gate(self) -> bool:
+        return self._c.is_screening_gate()
+
+    def is_reservoir_gate(self) -> bool:
+        return self._c.is_reservoir_gate()
 
     def is_ohmic(self) -> bool:
         return self._c.is_ohmic()
 
     def __eq__(self, other):
         if not isinstance(other, Connection):
-            return NotImplemented
+            raise TypeError(
+                f"Equality is not defined between Connection and {type(other)}"
+            )
         return self._c == other._c
