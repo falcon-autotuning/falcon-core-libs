@@ -27,6 +27,7 @@ ext_modules = [
         libraries=C_API_LIBS,
         library_dirs=[C_API_LIB_DIR],
         runtime_library_dirs=[C_API_LIB_DIR],
+        language="c++",
     ),
     Extension(
         "falcon_core._capi.list_int",
@@ -35,6 +36,7 @@ ext_modules = [
         libraries=C_API_LIBS,
         library_dirs=[C_API_LIB_DIR],
         runtime_library_dirs=[C_API_LIB_DIR],
+        language="c++",
     ),
 ]
 
