@@ -47,6 +47,8 @@ cdef extern from "falcon_core/generic/ListInt_c_api.h":
     ListIntHandle ListInt_create(int* data, size_t count)
     void ListInt_destroy(ListIntHandle handle)
     void ListInt_push_back(ListIntHandle handle, int value)
+    void ListInt_erase_at(ListIntHandle handle, size_t idx)
+    void ListInt_clear(ListIntHandle handle)
     size_t ListInt_size(ListIntHandle handle)
     int ListInt_at(ListIntHandle handle, size_t idx)
     int ListInt_equal(ListIntHandle a, ListIntHandle b)

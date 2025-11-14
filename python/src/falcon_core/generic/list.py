@@ -22,7 +22,8 @@ class _ListFactory:
             c_obj = self._c_list_type.create_empty()
         else:
             c_obj = self._c_list_type.from_list(initial_data)
-        return List(c_obj)
+        # Pass the factory's c_list_type to the List instance so it knows its type.
+        return List(c_obj, self._c_list_type)
 
 
 class List(collections.abc.MutableSequence):
@@ -34,7 +35,7 @@ class List(collections.abc.MutableSequence):
         int_list = List[int]([1, 2, 3])
     """
 
-    def __init__(self, c_obj):
+    def __init__(self, c_obj, c_list_type=None):
         """
         Initializes the list with a low-level Cython wrapper object.
         Users should not call this directly. Use the List[type] factory syntax.
@@ -42,6 +43,7 @@ class List(collections.abc.MutableSequence):
         if not hasattr(c_obj, "at") or not hasattr(c_obj, "size"):
             raise TypeError("Object must conform to the low-level list interface.")
         self._c = c_obj
+        self._c_list_type = c_list_type
 
     @classmethod
     def __class_getitem__(cls, item_type):
@@ -70,13 +72,29 @@ class List(collections.abc.MutableSequence):
         return self._c.size()
 
     def __setitem__(self, index, value):
-        raise NotImplementedError("Setting items by index is not supported.")
+        # This is an "out-of-place" operation.
+        # It's less efficient but provides the expected interface.
+        if self._c_list_type is None:
+            raise TypeError("Cannot modify a List that was not created with a factory.")
+        temp_list = list(self)  # Convert to Python list
+        temp_list[index] = value  # Modify in Python
+        new_c_obj = self._c_list_type.from_list(temp_list)  # Create new C++ list
+        self._c = new_c_obj  # Replace internal object
 
     def __delitem__(self, index):
-        raise NotImplementedError("Deleting items by index is not supported.")
+        # This is an "in-place" operation, using the efficient C-API call.
+        if not hasattr(self._c, "erase_at"):
+            raise NotImplementedError("delete is not supported by the underlying object")
+        self._c.erase_at(index)
 
     def insert(self, index, value):
-        raise NotImplementedError("Inserting items by index is not supported.")
+        # This is an "out-of-place" operation.
+        if self._c_list_type is None:
+            raise TypeError("Cannot modify a List that was not created with a factory.")
+        temp_list = list(self)
+        temp_list.insert(index, value)
+        new_c_obj = self._c_list_type.from_list(temp_list)
+        self._c = new_c_obj
 
     def append(self, value):
         self._c.push_back(value)

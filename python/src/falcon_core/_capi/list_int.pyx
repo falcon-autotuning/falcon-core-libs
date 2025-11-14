@@ -40,6 +40,14 @@ cdef class ListInt:
     def push_back(self, int value):
         c_api.ListInt_push_back(self.handle, value)
 
+    def erase_at(self, size_t index):
+        if index >= self.size():
+            raise IndexError("list index out of range")
+        c_api.ListInt_erase_at(self.handle, index)
+
+    def clear(self):
+        c_api.ListInt_clear(self.handle)
+
     def at(self, size_t index):
         if index >= self.size():
             raise IndexError("list index out of range")

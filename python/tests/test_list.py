@@ -128,12 +128,24 @@ def test_list_repr():
     assert repr(empty_list) == "List([])"
 
 
-def test_list_mutable_methods_not_implemented():
-    """Ensure methods that would mutate in place are not implemented."""
+def test_list_mutable_methods():
+    """Test the mutable methods of the List class."""
+    # Test __setitem__
     int_list = List[int]([1, 2, 3])
-    with pytest.raises(NotImplementedError):
-        int_list[0] = 10
-    with pytest.raises(NotImplementedError):
-        del int_list[0]
-    with pytest.raises(NotImplementedError):
-        int_list.insert(0, 10)
+    int_list[1] = 99
+    assert list(int_list) == [1, 99, 3]
+
+    # Test __delitem__
+    del int_list[1]
+    assert list(int_list) == [1, 3]
+    assert len(int_list) == 2
+
+    # Test insert
+    int_list.insert(1, 55)
+    assert list(int_list) == [1, 55, 3]
+
+    # Test clear (if available)
+    if hasattr(int_list._c, "clear"):
+        int_list.clear()
+        assert len(int_list) == 0
+        assert list(int_list) == []
