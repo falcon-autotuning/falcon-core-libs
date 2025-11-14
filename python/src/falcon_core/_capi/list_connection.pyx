@@ -37,20 +37,24 @@ cdef class ListConnection:
         if new_obj.handle == <c_api.ListConnectionHandle>0:
             raise MemoryError("Failed to create ListConnection")
         for item in conn_list:
-            # Extract the underlying C object's handle to pass to the C-API
-            c_api.ListConnection_push_back(new_obj.handle, item._c.handle)
+            # Cast the Python object's internal _c attribute to the Cython type
+            # to access its cdef handle attribute.
+            c_conn = <_CConnection>item._c
+            c_api.ListConnection_push_back(new_obj.handle, c_conn.handle)
         return new_obj
 
-    def push_back(self, PyConnection value):
-        c_api.ListConnection_push_back(self.handle, value._c.handle)
+    def push_back(self, value: PyConnection):
+        c_conn = <_CConnection>value._c
+        c_api.ListConnection_push_back(self.handle, c_conn.handle)
 
     def at(self, size_t index):
         if index >= self.size():
             raise IndexError("list index out of range")
         # Get the raw ConnectionHandle from the C-API
         cdef c_api.ConnectionHandle conn_handle = c_api.ListConnection_at(self.handle, index)
-        # We need to wrap it in a new Cython Connection object
-        cdef _CConnection c_conn = _CConnection.__new__(_CConnection)
+        # We need to wrap it in a new Cython Connection object.
+        # The handle from at() is a new handle that we now own.
+        cdef _CConnection c_conn = _CConnection()
         c_conn.handle = conn_handle
         # Then wrap that in the final Python Connection object
         return PyConnection(c_conn)
