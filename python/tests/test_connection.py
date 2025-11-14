@@ -1,5 +1,5 @@
 import pytest
-from falcon_core.physics.device_structures import Connection
+from falcon_core.physics.device_structures.connection import Connection
 
 
 def test_constructors_and_accessors():
