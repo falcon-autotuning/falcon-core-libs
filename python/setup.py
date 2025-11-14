@@ -12,7 +12,10 @@ ext_modules = [
     Extension(
         "falcon_core._capi.connection",
         sources=["src/falcon_core/_capi/connection.pyx"],
-        include_dirs=[INCLUDE_DIR],
+        include_dirs=[
+            INCLUDE_DIR,
+            "src/falcon_core/_capi",  # Add directory containing pxd files
+        ],
         libraries=LIBS,
         library_dirs=[LIB_DIR],
     )
