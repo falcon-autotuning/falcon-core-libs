@@ -24,6 +24,13 @@ fi
 echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/99-wheel-nopasswd
 chmod 0440 /etc/sudoers.d/99-wheel-nopasswd
 
+# Set correct ownership for the user's home directory before running commands as the user.
+# The volume mount for .ssh is read-only, so chown would fail on it. We handle this by
+# changing ownership of the parent first, then attempting a recursive chown which will
+# succeed on everything else.
+chown daniel:daniel /home/daniel
+chown -R daniel:daniel /home/daniel
+
 # 3. Install 'uv' Python package manager for the 'daniel' user
 if ! sudo -u daniel -H bash -c 'command -v uv >/dev/null 2>&1'; then
   echo "Installing 'uv' for user 'daniel'..."
@@ -59,10 +66,8 @@ cp -r "${TMPDIR}/headers/include/"* /usr/local/include/falcon-core-c-api/
 ldconfig
 echo "falcon-core C-API library and headers installed."
 
-# 5. Set correct ownership for the work directory and user's home
-# The volume mount for .ssh is read-only, so chown would fail. We skip it.
+# 5. Set correct ownership for the work directory
 chown -R daniel:daniel /workdir
-chown -R daniel:daniel /home/daniel
 
 echo "--- Setup complete. Dropping into shell as user 'daniel' ---"
 
