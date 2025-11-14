@@ -23,18 +23,19 @@ ext_modules = [
     Extension(
         "falcon_core._capi.connection",
         sources=[os.path.join(CAPI_WRAPPER_DIR, "connection.pyx")],
-        # Directories to search for .h and .pxd files
-        include_dirs=[
-            C_API_INCLUDE_DIR,  # For falcon_core C headers
-            CAPI_WRAPPER_DIR,   # For c_api.pxd
-        ],
-        # Libraries to link
+        include_dirs=[C_API_INCLUDE_DIR, CAPI_WRAPPER_DIR],
         libraries=C_API_LIBS,
-        # Directories to search for .so/.a files
         library_dirs=[C_API_LIB_DIR],
-        # Pass runtime library path to the linker
         runtime_library_dirs=[C_API_LIB_DIR],
-    )
+    ),
+    Extension(
+        "falcon_core._capi.list_int",
+        sources=[os.path.join(CAPI_WRAPPER_DIR, "list_int.pyx")],
+        include_dirs=[C_API_INCLUDE_DIR, CAPI_WRAPPER_DIR],
+        libraries=C_API_LIBS,
+        library_dirs=[C_API_LIB_DIR],
+        runtime_library_dirs=[C_API_LIB_DIR],
+    ),
 ]
 
 setup(

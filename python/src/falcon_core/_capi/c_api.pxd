@@ -38,3 +38,17 @@ cdef extern from "falcon_core/physics/device_structures/Connection_c_api.h":
     int Connection_equal(ConnectionHandle a, ConnectionHandle b)
     int Connection_not_equal(ConnectionHandle a, ConnectionHandle b)
     StringHandle Connection_to_json_string(ConnectionHandle handle)
+
+# Define types and functions from the ListInt C API header.
+cdef extern from "falcon_core/generic/ListInt_c_api.h":
+    ctypedef void* ListIntHandle
+
+    ListIntHandle ListInt_create_empty()
+    ListIntHandle ListInt_create(int* data, size_t count)
+    void ListInt_destroy(ListIntHandle handle)
+    void ListInt_push_back(ListIntHandle handle, int value)
+    size_t ListInt_size(ListIntHandle handle)
+    int ListInt_at(ListIntHandle handle, size_t idx)
+    int ListInt_equal(ListIntHandle a, ListIntHandle b)
+    StringHandle ListInt_to_json_string(ListIntHandle handle)
+    ListIntHandle ListInt_from_json_string(StringHandle json)
