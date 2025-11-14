@@ -149,3 +149,23 @@ def test_list_mutable_methods():
         int_list.clear()
         assert len(int_list) == 0
         assert list(int_list) == []
+
+
+def test_list_modification_without_factory_fails():
+    """Test that modifying a list not made with a factory raises TypeError."""
+    from falcon_core._capi.list_int import ListInt as _CListInt
+
+    # Create a list by directly instantiating the wrapper, bypassing the factory.
+    # This simulates a scenario where _c_list_type would be None.
+    c_obj = _CListInt.from_list([1, 2, 3])
+    raw_list = List(c_obj)
+
+    with pytest.raises(
+        TypeError, match="Cannot modify a List that was not created with a factory."
+    ):
+        raw_list[0] = 100
+
+    with pytest.raises(
+        TypeError, match="Cannot modify a List that was not created with a factory."
+    ):
+        raw_list.insert(0, 100)
