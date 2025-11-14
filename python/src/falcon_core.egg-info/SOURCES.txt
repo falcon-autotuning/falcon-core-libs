@@ -2,6 +2,7 @@ pyproject.toml
 setup.py
 /workdir/python/src/falcon_core/_capi/connection.c
 /workdir/python/src/falcon_core/_capi/connection.cpp
+/workdir/python/src/falcon_core/_capi/list_connection.cpp
 /workdir/python/src/falcon_core/_capi/list_int.c
 /workdir/python/src/falcon_core/_capi/list_int.cpp
 src/falcon_core/__init__.py

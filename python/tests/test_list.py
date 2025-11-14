@@ -21,10 +21,6 @@ def test_list_unsupported_type():
     with pytest.raises(TypeError, match="List does not support type"):
         _ = List[str]
 
-    # This will fail until Connection is added to the registry
-    with pytest.raises(TypeError, match="List does not support type"):
-        _ = List[Connection]
-
 
 def test_list_direct_instantiation_fails():
     """Test that direct instantiation of List is prevented."""
