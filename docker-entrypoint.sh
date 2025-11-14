@@ -49,13 +49,15 @@ mkdir -p "${TMPDIR}"
 echo "Downloading release assets from ${REPO} (tag: ${RELEASE_TAG})..."
 gh release download "${RELEASE_TAG}" --repo "${REPO}" --dir "${TMPDIR}" \
   -p "libfalcon_core_c_api.so" \
+  -p "libfalcon_core_cpp.so" \
   -p "falcon-core-c-api-headers.zip" || {
   echo "ERROR: Failed to download release assets. Ensure GH_TOKEN is valid." >&2
   exit 1
 }
 
-# Install shared library
+# Install shared libraries
 install -Dm755 "${TMPDIR}/libfalcon_core_c_api.so" /usr/local/lib/libfalcon_core_c_api.so
+install -Dm755 "${TMPDIR}/libfalcon_core_cpp.so" /usr/local/lib/libfalcon_core_cpp.so
 
 # Install headers
 unzip -q -o "${TMPDIR}/falcon-core-c-api-headers.zip" -d "${TMPDIR}/headers"
