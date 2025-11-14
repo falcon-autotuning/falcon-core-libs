@@ -64,6 +64,9 @@ unzip -q -o "${TMPDIR}/falcon-core-c-api-headers.zip" -d "${TMPDIR}/headers"
 install -d /usr/local/include/falcon-core-c-api
 cp -r "${TMPDIR}/headers/include/"* /usr/local/include/falcon-core-c-api/
 
+# Ensure the linker knows about /usr/local/lib
+echo "/usr/local/lib" > /etc/ld.so.conf.d/99-local.conf
+
 # Update linker cache to make the new library available
 ldconfig
 echo "falcon-core C-API library and headers installed."
