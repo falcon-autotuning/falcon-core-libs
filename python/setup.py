@@ -2,22 +2,38 @@ from setuptools import setup, Extension, find_packages
 import os
 from Cython.Build import cythonize
 
-INCLUDE_DIR = os.environ.get(
+# Get the absolute path to the directory containing this setup.py file
+SETUP_DIR = os.path.abspath(os.path.dirname(__file__))
+
+# --- C API Dependencies ---
+# Header directory for the pre-built C API library
+C_API_INCLUDE_DIR = os.environ.get(
     "FALCON_CORE_INCLUDE", "/usr/local/include/falcon-core-c-api"
 )
-LIB_DIR = os.environ.get("FALCON_CORE_LIB", "/usr/local/lib")
-LIBS = ["falcon_core_c_api"]
+# Library directory for the pre-built C API library
+C_API_LIB_DIR = os.environ.get("FALCON_CORE_LIB", "/usr/local/lib")
+# Name of the C API library to link against
+C_API_LIBS = ["falcon_core_c_api"]
+
+# --- Cython Extension Module ---
+# Directory containing the .pyx and .pxd files
+CAPI_WRAPPER_DIR = os.path.join(SETUP_DIR, "src", "falcon_core", "_capi")
 
 ext_modules = [
     Extension(
         "falcon_core._capi.connection",
-        sources=["src/falcon_core/_capi/connection.pyx"],
+        sources=[os.path.join(CAPI_WRAPPER_DIR, "connection.pyx")],
+        # Directories to search for .h and .pxd files
         include_dirs=[
-            INCLUDE_DIR,
-            "src/falcon_core/_capi",  # Add directory containing pxd files
+            C_API_INCLUDE_DIR,  # For falcon_core C headers
+            CAPI_WRAPPER_DIR,   # For c_api.pxd
         ],
-        libraries=LIBS,
-        library_dirs=[LIB_DIR],
+        # Libraries to link
+        libraries=C_API_LIBS,
+        # Directories to search for .so/.a files
+        library_dirs=[C_API_LIB_DIR],
+        # Pass runtime library path to the linker
+        runtime_library_dirs=[C_API_LIB_DIR],
     )
 ]
 
