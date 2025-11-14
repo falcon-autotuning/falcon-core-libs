@@ -26,10 +26,10 @@ chmod 0440 /etc/sudoers.d/99-wheel-nopasswd
 
 # Set correct ownership for the user's home directory before running commands as the user.
 # The volume mount for .ssh is read-only, so chown would fail on it. We handle this by
-# changing ownership of the parent first, then attempting a recursive chown which will
-# succeed on everything else.
+# changing ownership of the parent first, then selectively chowning its contents to avoid
+# the read-only .ssh mount.
 chown daniel:daniel /home/daniel
-chown -R daniel:daniel /home/daniel
+find /home/daniel -mindepth 1 -maxdepth 1 ! -name .ssh -exec chown -R daniel:daniel {} +
 
 # 3. Install 'uv' Python package manager for the 'daniel' user
 if ! sudo -u daniel -H bash -c 'command -v uv >/dev/null 2>&1'; then
