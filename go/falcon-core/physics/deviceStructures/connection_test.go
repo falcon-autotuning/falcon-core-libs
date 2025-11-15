@@ -1,4 +1,4 @@
-package connection
+package deviceStructures
 
 import (
 	"runtime"
