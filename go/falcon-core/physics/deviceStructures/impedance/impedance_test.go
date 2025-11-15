@@ -1,12 +1,14 @@
-package deviceStructures
+package impedance
 
 import (
 	"testing"
+
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
 )
 
 func TestImpedance_LifecycleAndAccessors(t *testing.T) {
-	conn := NewBarrierGate("B1")
-	imp := NewImpedance(conn, 123.4, 56.7)
+	conn := connection.NewBarrierGate("B1")
+	imp := New(conn, 123.4, 56.7)
 	defer imp.Close()
 
 	t.Run("Connection", func(t *testing.T) {
@@ -75,8 +77,8 @@ func TestImpedance_LifecycleAndAccessors(t *testing.T) {
 }
 
 func TestImpedance_ClosedErrors(t *testing.T) {
-	conn := NewBarrierGate("B1")
-	imp := NewImpedance(conn, 1, 1)
+	conn := connection.NewBarrierGate("B1")
+	imp := New(conn, 1, 1)
 	imp.Close()
 
 	if _, err := imp.Connection(); err == nil {
@@ -91,12 +93,38 @@ func TestImpedance_ClosedErrors(t *testing.T) {
 	if _, err := imp.ToJSON(); err == nil {
 		t.Error("ToJSON() on closed impedance: expected error")
 	}
-	other := NewImpedance(conn, 2, 2)
+
+	if err := imp.Close(); err == nil {
+		t.Error("Close() on closed impedance: expected error")
+	}
+	other := New(conn, 2, 2)
 	defer other.Close()
 	if _, err := imp.Equal(other); err == nil {
 		t.Error("Equal() on closed impedance: expected error")
 	}
 	if _, err := imp.NotEqual(other); err == nil {
 		t.Error("NotEqual() on closed impedance: expected error")
+	}
+}
+
+func TestImpedance_FromCAPI_Error(t *testing.T) {
+	h, err := FromCAPI(nil)
+	if err == nil {
+		t.Error("FromCAPI(nil): expected error, got nil")
+	}
+	if h != nil {
+		t.Error("FromCAPI(nil): expected nil, got non-nil")
+	}
+}
+
+func TestImpedance_FromCAPI_Valid(t *testing.T) {
+	imp := New(connection.NewBarrierGate("foo"), 1, 1)
+	defer imp.Close()
+	h, err := FromCAPI(imp.CAPIHandle())
+	if err != nil {
+		t.Errorf("FromCAPI valid: unexpected error: %v", err)
+	}
+	if h == nil {
+		t.Fatal("FromCAPI valid: got nil")
 	}
 }

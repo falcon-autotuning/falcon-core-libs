@@ -5,10 +5,10 @@ export CXX=clang++
 
 all: build
 
-build:
-	go build ./...
+gen-lists:
+	go run genList.go
 
-build-dev:
+build:
 	go build ./...
 
 func-coverage:
@@ -26,3 +26,11 @@ debug:
 	cd $(TESTDIR) && \
 	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH go test -c -o testbin && \
 	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH gdb -ex "run -test.v -test.run $(TESTNAME)" ./testbin
+
+clean-gen-lists:
+	@if [ -f list_handles_manifest.txt ]; then \
+		while read -r file; do \
+			rm -f "$$file"; \
+		done < list_handles_manifest.txt; \
+		rm -f list_handles_manifest.txt; \
+	fi
