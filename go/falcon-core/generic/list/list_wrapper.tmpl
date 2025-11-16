@@ -11,7 +11,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
-{{.OptionalImport}}
+  {{.OptionalImport}}
 )
 /*
 #cgo pkg-config: falcon_core_c_api
@@ -285,7 +285,7 @@ func (h *Handle) Items() ([]{{.ElemType}}, error) {
 	out := make([]{{.ElemType}}, size)
 	for i := range cHandles {
     {{if not .PrimitiveType}}
-		goHandle, err := connection.FromCAPI(unsafe.Pointer(cHandles[i]))
+		goHandle, err := {{.CElemTypeConstructor}}(unsafe.Pointer(cHandles[i]))
 		if err != nil {
 			return nil, err
 		}

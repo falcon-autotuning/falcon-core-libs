@@ -11,7 +11,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
-"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
 )
 /*
 #cgo pkg-config: falcon_core_c_api

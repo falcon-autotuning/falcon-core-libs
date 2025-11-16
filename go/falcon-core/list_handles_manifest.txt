@@ -10,3 +10,5 @@ generic/listSizeT/listSizeT.go
 generic/listSizeT/listSizeT_test.go
 generic/listConnection/listConnection.go
 generic/listConnection/listConnection_test.go
+generic/listImpedance/listImpedance.go
+generic/listImpedance/listImpedance_test.go
