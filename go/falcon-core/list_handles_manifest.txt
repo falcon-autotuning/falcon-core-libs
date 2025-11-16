@@ -1,3 +1,6 @@
 generic/listInt/listInt.go
+generic/listInt/listInt_test.go
 generic/listFloat/listFloat.go
+generic/listFloat/listFloat_test.go
 generic/listDouble/listDouble.go
+generic/listDouble/listDouble_test.go
