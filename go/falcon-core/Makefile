@@ -34,3 +34,6 @@ clean-gen-lists:
 		done < list_handles_manifest.txt; \
 		rm -f list_handles_manifest.txt; \
 	fi
+
+test-traceback:
+	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH GOTRACEBACK=crash go test -v  ./...
