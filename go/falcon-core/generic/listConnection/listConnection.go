@@ -5,6 +5,9 @@ import (
 	"runtime"
 	"sync"
 	"unsafe"
+  
+  "strconv"
+  
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
@@ -24,20 +27,29 @@ type Handle struct {
 	closed       bool
 	errorHandler *errorHandling.Handle
 }
-func (s *Handle) CAPIHandle() unsafe.Pointer {
-	return unsafe.Pointer(s.chandle)
+
+func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.closed || s.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New(`CAPIHandle The list is closed`)
+	}
+	return unsafe.Pointer(s.chandle), nil
 }
+
 func new(h chandle) *Handle {
 	handle := &Handle{chandle: h, errorHandler: errorHandling.ErrorHandler}
 	runtime.AddCleanup(handle, func(_ any) { handle.Close() }, true)
 	return handle
 }
+
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	if p == nil {
 		return nil, errors.New(`FromCAPI The pointer is null`)
 	}
 	return new(chandle(p)), nil
 }
+
 func NewEmpty() (*Handle, error) {
 	h := chandle(C.ListConnection_create_empty())
 	err := errorHandling.ErrorHandler.CheckCapiError()
@@ -47,14 +59,24 @@ func NewEmpty() (*Handle, error) {
 	return new(h), nil
 }
 
+
+
 func NewFillValue(count int, value *connection.Handle) (*Handle, error) {
-	h := chandle(C.ListConnection_fill_value(C.size_t(count), C.ConnectionHandle(value.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+  
+  capi, err := value.CAPIHandle()
+  if err != nil {
+      return nil, errors.Join(errors.New(`failed to convert to the capi`), err)
+  }
+  obj := C.ConnectionHandle(capi)
+  
+	h := chandle(C.ListConnection_fill_value(C.size_t(count), obj))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
 	return new(h), nil
 }
+
 func New(data []*connection.Handle) (*Handle, error) {
 	var ptr *C.ConnectionHandle
 	if len(data) > 0 {
@@ -63,8 +85,15 @@ func New(data []*connection.Handle) (*Handle, error) {
 		cSlice := (*[1 << 30]C.ConnectionHandle)(cArray)[:len(data):len(data)]
 		for i, v := range data {
 			
-			cSlice[i] = C.ConnectionHandle(v.CAPIHandle())
+      if v == nil {
+          return nil, errors.New("New: data contains nil element at index " + strconv.Itoa(i))
+      }
+      obj, err := v.CAPIHandle()
+      if err != nil || obj == nil {
+          return nil, errors.Join(errors.New("New iteration failed on invalid pointer"), err)
+      }
 			
+			cSlice[i] = C.ConnectionHandle(obj)
 		}
 		ptr = (*C.ConnectionHandle)(cArray)
 		h := chandle(C.ListConnection_create(ptr, C.size_t(len(data))))
@@ -81,16 +110,22 @@ func New(data []*connection.Handle) (*Handle, error) {
 	}
 	return new(h), nil
 }
+
 func FromJSON(json string) (*Handle, error) {
 	realJSON := str.New(json)
 	defer realJSON.Close()
-	h := chandle(C.ListConnection_from_json_string(C.StringHandle(realJSON.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := realJSON.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
+	}
+	h := chandle(C.ListConnection_from_json_string(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
 	return new(h), nil
 }
+
 func (h *Handle) Close() error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -106,19 +141,27 @@ func (h *Handle) Close() error {
 	}
 	return errors.New("unable to close the Handle")
 }
+
 func (h *Handle) PushBack(value *connection.Handle) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return errors.New(`PushBack The list is closed`)
 	}
-	C.ListConnection_push_back(C.ListConnectionHandle(h.chandle), C.ConnectionHandle(value.CAPIHandle()))
-	err := h.errorHandler.CheckCapiError()
+  
+  obj, err := value.CAPIHandle()
+  if err != nil {
+      return errors.Join(errors.New(`unable to access capi for *connection.Handle`), err)
+  }
+  
+	C.ListConnection_push_back(C.ListConnectionHandle(h.chandle), C.ConnectionHandle(obj))
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return err
 	}
 	return nil
 }
+
 func (h *Handle) Size() (int, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -132,6 +175,7 @@ func (h *Handle) Size() (int, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) Empty() (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -145,6 +189,7 @@ func (h *Handle) Empty() (bool, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) EraseAt(idx int) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -158,6 +203,7 @@ func (h *Handle) EraseAt(idx int) error {
 	}
 	return nil
 }
+
 func (h *Handle) Clear() error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -171,6 +217,7 @@ func (h *Handle) Clear() error {
 	}
 	return nil
 }
+
 func (h *Handle) At(idx int) (*connection.Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -192,55 +239,89 @@ func (h *Handle) At(idx int) (*connection.Handle, error) {
 	return val, nil
 	
 }
+
 func (h *Handle) Items() ([]*connection.Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
-		return make([]*connection.Handle,0), errors.New(`Items The list is closed`)
+		return nil, errors.New(`Items The list is closed`)
 	}
 	size, err := h.Size()
 	if err != nil {
-		return make([]*connection.Handle,0), errors.New(`Could not measured the size`)
+		return nil, errors.New(`Could not measured the size`)
 	}
-	out := make([]*connection.Handle, size)
-	C.ListConnection_items(C.ListConnectionHandle(h.chandle), (*C.ConnectionHandle)(unsafe.Pointer(&out[0])), C.size_t(size))
+	cHandles := make([]C.ConnectionHandle, size)
+	C.ListConnection_items(C.ListConnectionHandle(h.chandle), &cHandles[0], C.size_t(size))
 	capiErr := h.errorHandler.CheckCapiError()
 	if capiErr != nil {
-		return make([]*connection.Handle,0), capiErr
+		return nil, errors.Join(errors.New(`could not access capi for list`), capiErr)
+	}
+	out := make([]*connection.Handle, size)
+	for i := range cHandles {
+    
+		goHandle, err := connection.FromCAPI(unsafe.Pointer(cHandles[i]))
+		if err != nil {
+			return nil, err
+		}
+		out[i] = goHandle
+    
 	}
 	return out, nil
 }
+
 func (h *Handle) Contains(value *connection.Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Contains The list is closed`)
 	}
-	val := bool(C.ListConnection_contains(C.ListConnectionHandle(h.chandle), C.ConnectionHandle(value.CAPIHandle())))
-	err := h.errorHandler.CheckCapiError()
+  
+  obj, err := value.CAPIHandle()
+  if err != nil {
+      return false, errors.Join(errors.New(`unable to access capi for *connection.Handle`), err)
+  }
+  
+	val := bool(C.ListConnection_contains(C.ListConnectionHandle(h.chandle), C.ConnectionHandle(obj)))
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return false, err
 	}
 	return val, nil
 }
+
 func (h *Handle) Index(value *connection.Handle) (int, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New(`Index The list is closed`)
 	}
-	val := int(C.ListConnection_index(C.ListConnectionHandle(h.chandle), C.ConnectionHandle(value.CAPIHandle())))
-	err := h.errorHandler.CheckCapiError()
+  
+  obj, err := value.CAPIHandle()
+  if err != nil {
+      return 0, errors.Join(errors.New(`unable to access capi for *connection.Handle`), err)
+  }
+  
+	val := int(C.ListConnection_index(C.ListConnectionHandle(h.chandle), C.ConnectionHandle(obj)))
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return 0, err
 	}
 	return val, nil
 }
+
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return nil, errors.New(`Intersection The list is closed`)
+	}
+  if other == nil {
+      return nil, errors.New(`Intersection The other list is null`)
+  }
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New(`Intersection The other list is closed`)
 	}
 	res := chandle(C.ListConnection_intersection(C.ListConnectionHandle(h.chandle), C.ListConnectionHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -249,11 +330,20 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	}
 	return new(res), nil
 }
+
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Equal The list is closed`)
+	}
+  if other == nil {
+      return false, errors.New(`Equal The other list is null`)
+  }
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New(`Equal The other list is closed`)
 	}
 	val := bool(C.ListConnection_equal(C.ListConnectionHandle(h.chandle), C.ListConnectionHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -262,11 +352,20 @@ func (h *Handle) Equal(other *Handle) (bool, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`NotEqual The list is closed`)
+	}
+  if other == nil {
+      return false, errors.New(`NotEqual The other list is null`)
+  }
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New(`NotEqual The other list is closed`)
 	}
 	val := bool(C.ListConnection_not_equal(C.ListConnectionHandle(h.chandle), C.ListConnectionHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -275,6 +374,7 @@ func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) ToJSON() (string, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()

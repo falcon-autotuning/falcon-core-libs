@@ -5,6 +5,7 @@ import (
 	"runtime"
 	"sync"
 	"unsafe"
+  
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
@@ -24,20 +25,29 @@ type Handle struct {
 	closed       bool
 	errorHandler *errorHandling.Handle
 }
-func (s *Handle) CAPIHandle() unsafe.Pointer {
-	return unsafe.Pointer(s.chandle)
+
+func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.closed || s.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New(`CAPIHandle The list is closed`)
+	}
+	return unsafe.Pointer(s.chandle), nil
 }
+
 func new(h chandle) *Handle {
 	handle := &Handle{chandle: h, errorHandler: errorHandling.ErrorHandler}
 	runtime.AddCleanup(handle, func(_ any) { handle.Close() }, true)
 	return handle
 }
+
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	if p == nil {
 		return nil, errors.New(`FromCAPI The pointer is null`)
 	}
 	return new(chandle(p)), nil
 }
+
 func NewEmpty() (*Handle, error) {
 	h := chandle(C.ListBool_create_empty())
 	err := errorHandling.ErrorHandler.CheckCapiError()
@@ -46,6 +56,7 @@ func NewEmpty() (*Handle, error) {
 	}
 	return new(h), nil
 }
+
 
 func NewAllocate(count int) (*Handle, error) {
 	h := chandle(C.ListBool_allocate(C.size_t(count)))
@@ -56,14 +67,20 @@ func NewAllocate(count int) (*Handle, error) {
 	return new(h), nil
 }
 
+
 func NewFillValue(count int, value bool) (*Handle, error) {
-	h := chandle(C.ListBool_fill_value(C.size_t(count), C.bool(value)))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+  
+  obj := C.bool(value)
+  var err error
+  
+	h := chandle(C.ListBool_fill_value(C.size_t(count), obj))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
 	return new(h), nil
 }
+
 func New(data []bool) (*Handle, error) {
 	var ptr *C.bool
 	if len(data) > 0 {
@@ -72,8 +89,9 @@ func New(data []bool) (*Handle, error) {
 		cSlice := (*[1 << 30]C.bool)(cArray)[:len(data):len(data)]
 		for i, v := range data {
 			
-			cSlice[i] = C.bool(v)
+      obj := v
 			
+			cSlice[i] = C.bool(obj)
 		}
 		ptr = (*C.bool)(cArray)
 		h := chandle(C.ListBool_create(ptr, C.size_t(len(data))))
@@ -90,16 +108,22 @@ func New(data []bool) (*Handle, error) {
 	}
 	return new(h), nil
 }
+
 func FromJSON(json string) (*Handle, error) {
 	realJSON := str.New(json)
 	defer realJSON.Close()
-	h := chandle(C.ListBool_from_json_string(C.StringHandle(realJSON.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := realJSON.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
+	}
+	h := chandle(C.ListBool_from_json_string(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
 	return new(h), nil
 }
+
 func (h *Handle) Close() error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -115,19 +139,25 @@ func (h *Handle) Close() error {
 	}
 	return errors.New("unable to close the Handle")
 }
+
 func (h *Handle) PushBack(value bool) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return errors.New(`PushBack The list is closed`)
 	}
-	C.ListBool_push_back(C.ListBoolHandle(h.chandle), C.bool(value))
-	err := h.errorHandler.CheckCapiError()
+  
+  obj := value
+  var err error
+  
+	C.ListBool_push_back(C.ListBoolHandle(h.chandle), C.bool(obj))
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return err
 	}
 	return nil
 }
+
 func (h *Handle) Size() (int, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -141,6 +171,7 @@ func (h *Handle) Size() (int, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) Empty() (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -154,6 +185,7 @@ func (h *Handle) Empty() (bool, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) EraseAt(idx int) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -167,6 +199,7 @@ func (h *Handle) EraseAt(idx int) error {
 	}
 	return nil
 }
+
 func (h *Handle) Clear() error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
@@ -180,6 +213,7 @@ func (h *Handle) Clear() error {
 	}
 	return nil
 }
+
 func (h *Handle) At(idx int) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
@@ -197,55 +231,81 @@ func (h *Handle) At(idx int) (bool, error) {
 	return val, nil
 	
 }
+
 func (h *Handle) Items() ([]bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
-		return make([]bool,0), errors.New(`Items The list is closed`)
+		return nil, errors.New(`Items The list is closed`)
 	}
 	size, err := h.Size()
 	if err != nil {
-		return make([]bool,0), errors.New(`Could not measured the size`)
+		return nil, errors.New(`Could not measured the size`)
 	}
-	out := make([]bool, size)
-	C.ListBool_items(C.ListBoolHandle(h.chandle), (*C.bool)(unsafe.Pointer(&out[0])), C.size_t(size))
+	cHandles := make([]C.bool, size)
+	C.ListBool_items(C.ListBoolHandle(h.chandle), &cHandles[0], C.size_t(size))
 	capiErr := h.errorHandler.CheckCapiError()
 	if capiErr != nil {
-		return make([]bool,0), capiErr
+		return nil, errors.Join(errors.New(`could not access capi for list`), capiErr)
+	}
+	out := make([]bool, size)
+	for i := range cHandles {
+    
+    out[i] = bool(cHandles[i])
+    
 	}
 	return out, nil
 }
+
 func (h *Handle) Contains(value bool) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Contains The list is closed`)
 	}
-	val := bool(C.ListBool_contains(C.ListBoolHandle(h.chandle), C.bool(value)))
-	err := h.errorHandler.CheckCapiError()
+  
+  obj := value
+  var err error
+  
+	val := bool(C.ListBool_contains(C.ListBoolHandle(h.chandle), C.bool(obj)))
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return false, err
 	}
 	return val, nil
 }
+
 func (h *Handle) Index(value bool) (int, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New(`Index The list is closed`)
 	}
-	val := int(C.ListBool_index(C.ListBoolHandle(h.chandle), C.bool(value)))
-	err := h.errorHandler.CheckCapiError()
+  
+  obj := value
+  var err error 
+  
+	val := int(C.ListBool_index(C.ListBoolHandle(h.chandle), C.bool(obj)))
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return 0, err
 	}
 	return val, nil
 }
+
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return nil, errors.New(`Intersection The list is closed`)
+	}
+  if other == nil {
+      return nil, errors.New(`Intersection The other list is null`)
+  }
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New(`Intersection The other list is closed`)
 	}
 	res := chandle(C.ListBool_intersection(C.ListBoolHandle(h.chandle), C.ListBoolHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -254,11 +314,20 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	}
 	return new(res), nil
 }
+
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Equal The list is closed`)
+	}
+  if other == nil {
+      return false, errors.New(`Equal The other list is null`)
+  }
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New(`Equal The other list is closed`)
 	}
 	val := bool(C.ListBool_equal(C.ListBoolHandle(h.chandle), C.ListBoolHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -267,11 +336,20 @@ func (h *Handle) Equal(other *Handle) (bool, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`NotEqual The list is closed`)
+	}
+  if other == nil {
+      return false, errors.New(`NotEqual The other list is null`)
+  }
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New(`NotEqual The other list is closed`)
 	}
 	val := bool(C.ListBool_not_equal(C.ListBoolHandle(h.chandle), C.ListBoolHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -280,6 +358,7 @@ func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	}
 	return val, nil
 }
+
 func (h *Handle) ToJSON() (string, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()

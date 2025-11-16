@@ -30,8 +30,13 @@ type Handle struct {
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the String
-func (s *Handle) CAPIHandle() unsafe.Pointer {
-	return unsafe.Pointer(s.chandle)
+func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.closed || s.chandle == utils.NilHandle[impedanceHandle]() {
+		return nil, errors.New(`CAPIHandle The impedance is closed`)
+	}
+	return unsafe.Pointer(s.chandle), nil
 }
 
 // new adds an auto cleanup whenever added to a constructor
@@ -53,12 +58,19 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 }
 
 func New(conn *connection.Handle, resistance, capacitance float64) (*Handle, error) {
+	if conn == nil {
+		return nil, errors.New(`New failed since connection is null`)
+	}
+	capi, err := conn.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New("New construction failed from illegal connection"), err)
+	}
 	h := impedanceHandle(C.Impedance_create(
-		C.ConnectionHandle(conn.CAPIHandle()),
+		C.ConnectionHandle(capi),
 		C.double(resistance),
 		C.double(capacitance),
 	))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -129,6 +141,14 @@ func (i *Handle) Equal(other *Handle) (bool, error) {
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
 		return false, errors.New(`Equal The impedance is closed`)
 	}
+	if other == nil {
+		return false, errors.New(`Equal The other impedance is null`)
+	}
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[impedanceHandle]() {
+		return false, errors.New(`Equal The other impedance is closed`)
+	}
 	val := bool(C.Impedance_equal(C.ImpedanceHandle(i.chandle), C.ImpedanceHandle(other.chandle)))
 	capiErr := i.errorHandler.CheckCapiError()
 	if capiErr != nil {
@@ -141,7 +161,15 @@ func (i *Handle) NotEqual(other *Handle) (bool, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
-		return false, errors.New(`Equal The impedance is closed`)
+		return false, errors.New(`NotEqual The impedance is closed`)
+	}
+	if other == nil {
+		return false, errors.New(`NotEqual The other impedance is null`)
+	}
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[impedanceHandle]() {
+		return false, errors.New(`NotEqual The other impedance is closed`)
 	}
 	val := bool(C.Impedance_not_equal(C.ImpedanceHandle(i.chandle), C.ImpedanceHandle(other.chandle)))
 	capiErr := i.errorHandler.CheckCapiError()
@@ -169,11 +197,15 @@ func (i *Handle) ToJSON() (string, error) {
 	return strHandle.ToGoString()
 }
 
-func ImpedanceFromJSON(json string) (*Handle, error) {
+func FromJSON(json string) (*Handle, error) {
 	realJSON := str.New(json)
 	defer realJSON.Close()
-	h := impedanceHandle(C.Impedance_from_json_string(C.StringHandle(realJSON.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := realJSON.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
+	}
+	h := impedanceHandle(C.Impedance_from_json_string(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}

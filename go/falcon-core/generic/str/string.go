@@ -25,8 +25,11 @@ type Handle struct {
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the String
-func (s *Handle) CAPIHandle() unsafe.Pointer {
-	return unsafe.Pointer(s.chandle)
+func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
+	if s.closed || s.chandle == utils.NilHandle[stringHandle]() {
+		return nil, errors.New("String:Close The string is already closed")
+	}
+	return unsafe.Pointer(s.chandle), nil
 }
 
 // newString adds an auto cleanup whenever added to a constructor

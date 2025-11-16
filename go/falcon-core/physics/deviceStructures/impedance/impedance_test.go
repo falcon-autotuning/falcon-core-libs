@@ -52,7 +52,7 @@ func TestImpedance_LifecycleAndAccessors(t *testing.T) {
 		if err != nil {
 			t.Fatalf("ToJSON() error: %v", err)
 		}
-		imp2, err := ImpedanceFromJSON(jsonStr)
+		imp2, err := FromJSON(jsonStr)
 		if err != nil {
 			t.Fatalf("ImpedanceFromJSON error: %v", err)
 		}
@@ -149,7 +149,11 @@ func TestImpedance_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("Impedance New error: %v", err)
 	}
 	defer imp.Close()
-	h, err := FromCAPI(imp.CAPIHandle())
+	capi, err := imp.CAPIHandle()
+	if err != nil {
+		t.Fatalf("Could not convert impedance to CAPI: %v", err)
+	}
+	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}

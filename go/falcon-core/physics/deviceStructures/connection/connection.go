@@ -31,8 +31,13 @@ type Handle struct {
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the String
-func (s *Handle) CAPIHandle() unsafe.Pointer {
-	return unsafe.Pointer(s.chandle)
+func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.closed || s.chandle == utils.NilHandle[connectionHandle]() {
+		return nil, errors.New(`Name The connection is closed`)
+	}
+	return unsafe.Pointer(s.chandle), nil
 }
 
 // new adds an auto cleanup whenever added to a constructor
@@ -56,8 +61,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 func NewBarrierGate(name string) (*Handle, error) {
 	str := str.New(name)
 	defer str.Close()
-	h := connectionHandle(C.Connection_create_barrier_gate(C.StringHandle(str.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := str.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to create name`), err)
+	}
+	h := connectionHandle(C.Connection_create_barrier_gate(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -67,8 +76,12 @@ func NewBarrierGate(name string) (*Handle, error) {
 func NewPlungerGate(name string) (*Handle, error) {
 	str := str.New(name)
 	defer str.Close()
-	h := connectionHandle(C.Connection_create_plunger_gate(C.StringHandle(str.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := str.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to create name`), err)
+	}
+	h := connectionHandle(C.Connection_create_plunger_gate(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -78,8 +91,12 @@ func NewPlungerGate(name string) (*Handle, error) {
 func NewReservoirGate(name string) (*Handle, error) {
 	str := str.New(name)
 	defer str.Close()
-	h := connectionHandle(C.Connection_create_reservoir_gate(C.StringHandle(str.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := str.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to create name`), err)
+	}
+	h := connectionHandle(C.Connection_create_reservoir_gate(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -89,8 +106,12 @@ func NewReservoirGate(name string) (*Handle, error) {
 func NewScreeningGate(name string) (*Handle, error) {
 	str := str.New(name)
 	defer str.Close()
-	h := connectionHandle(C.Connection_create_screening_gate(C.StringHandle(str.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := str.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to create name`), err)
+	}
+	h := connectionHandle(C.Connection_create_screening_gate(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -100,8 +121,12 @@ func NewScreeningGate(name string) (*Handle, error) {
 func NewOhmic(name string) (*Handle, error) {
 	str := str.New(name)
 	defer str.Close()
-	h := connectionHandle(C.Connection_create_ohmic(C.StringHandle(str.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := str.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to create name`), err)
+	}
+	h := connectionHandle(C.Connection_create_ohmic(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -111,8 +136,12 @@ func NewOhmic(name string) (*Handle, error) {
 func FromJSON(json string) (*Handle, error) {
 	realJSON := str.New(json)
 	defer realJSON.Close()
-	h := connectionHandle(C.Connection_from_json_string(C.StringHandle(realJSON.CAPIHandle())))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	capistr, err := realJSON.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
+	}
+	h := connectionHandle(C.Connection_from_json_string(C.StringHandle(capistr)))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -275,6 +304,14 @@ func (c *Handle) Equal(other *Handle) (bool, error) {
 	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
 		return false, errors.New(`Equal The connection is closed`)
 	}
+	if other == nil {
+		return false, errors.New(`Equal The other connection is null`)
+	}
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[connectionHandle]() {
+		return false, errors.New(`Equal The other connection is closed`)
+	}
 	val := bool(C.Connection_equal(C.ConnectionHandle(c.chandle), C.ConnectionHandle(other.chandle)))
 	capiErr := c.errorHandler.CheckCapiError()
 	if capiErr != nil {
@@ -288,6 +325,14 @@ func (c *Handle) NotEqual(other *Handle) (bool, error) {
 	defer c.mu.RUnlock()
 	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
 		return false, errors.New(`NotEqual The connection is closed`)
+	}
+	if other == nil {
+		return false, errors.New(`NotEqual The other connection is null`)
+	}
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[connectionHandle]() {
+		return false, errors.New(`NotEqual The other connection is closed`)
 	}
 	val := bool(C.Connection_not_equal(C.ConnectionHandle(c.chandle), C.ConnectionHandle(other.chandle)))
 	capiErr := c.errorHandler.CheckCapiError()

@@ -178,7 +178,11 @@ func TestConnection_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("unexpected error creating BarrierGate: %v", err)
 	}
 	defer c.Close()
-	h, err := FromCAPI(c.CAPIHandle())
+	capi, err := c.CAPIHandle()
+	if err != nil {
+		t.Fatalf("unexpected error converting Barriet Gate to CAPI: %v", err)
+	}
+	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}
