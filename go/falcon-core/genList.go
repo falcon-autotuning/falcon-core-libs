@@ -9,16 +9,20 @@ import (
 )
 
 type ListType struct {
-	Package             string
-	Header              string
-	Type                string
-	ElemType            string
-	CType               string
-	DefaultElemType     string
-	TestDefaultListData string // e.g. "1, 2, 3"
-	TestVal1            string // e.g. "42"
-	TestOtherListData   string // e.g. "99"
+	Package                string
+	Header                 string
+	OptionalImport         string
+	Type                   string
+	ElemType               string
+	CType                  string
+	PrimitiveType          bool
+	OptDefaultElemType     string
+	OptTestDefaultListData string // e.g. "{1, 2, 3}". S
+	OptTestVal1            string // e.g. "42"
+	OptTestOtherListData   string // e.g. "{99}"
 }
+
+// If PrimitiveType is selected then the OptTestDefaultListData, OptTestVal1, OptDefaultElemType and the OptTestDefaultListData do absolutely nothing and the user should implement these in a testdata.go file in teh folder of the tests that are not primitive
 
 func toPkgName(typeName string) string {
 	// Example: ListInt -> listInt, ListFloat -> listFloat
@@ -38,9 +42,12 @@ func toPkgName(typeName string) string {
 
 func main() {
 	types := []ListType{
-		{Type: "ListInt", ElemType: "int32", CType: "int", Header: "ListInt_c_api.h", DefaultElemType: "0", TestDefaultListData: "{0,1}", TestVal1: "4", TestOtherListData: "{3}"},
-		{Type: "ListFloat", ElemType: "float32", CType: "float", Header: "ListFloat_c_api.h", DefaultElemType: "0.0", TestDefaultListData: "{1.1,2.2}", TestVal1: "3.3", TestOtherListData: "{1.0}"},
-		{Type: "ListDouble", ElemType: "float64", CType: "double", Header: "ListDouble_c_api.h", DefaultElemType: "0.0", TestDefaultListData: "{1.1,2.2}", TestVal1: "3.3", TestOtherListData: "{1.0}"},
+		{Type: "ListInt", ElemType: "int32", CType: "int", Header: "ListInt_c_api.h", OptDefaultElemType: "0", OptTestDefaultListData: "{0,1}", OptTestVal1: "4", OptTestOtherListData: "{3}", PrimitiveType: true},
+		{Type: "ListFloat", ElemType: "float32", CType: "float", Header: "ListFloat_c_api.h", OptDefaultElemType: "0.0", OptTestDefaultListData: "{1.1,2.2}", OptTestVal1: "3.3", OptTestOtherListData: "{1.0}", PrimitiveType: true},
+		{Type: "ListDouble", ElemType: "float64", CType: "double", Header: "ListDouble_c_api.h", OptDefaultElemType: "0.0", OptTestDefaultListData: "{1.1,2.2}", OptTestVal1: "3.3", OptTestOtherListData: "{1.0}", PrimitiveType: true},
+		{Type: "ListBool", ElemType: "bool", CType: "bool", Header: "ListBool_c_api.h", OptDefaultElemType: "false", OptTestDefaultListData: "{true,false}", OptTestVal1: "true", OptTestOtherListData: "{true}", PrimitiveType: true},
+		{Type: "ListSizeT", ElemType: "uint64", CType: "size_t", Header: "ListSizeT_c_api.h", OptDefaultElemType: "0", OptTestDefaultListData: "{0,1}", OptTestVal1: "4", OptTestOtherListData: "{3}", PrimitiveType: true},
+		{Type: "ListConnection", ElemType: "*connection.Handle", CType: "ConnectionHandle", Header: "ListConnection_c_api.h", OptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`, PrimitiveType: false},
 		// Add more types here...
 	}
 

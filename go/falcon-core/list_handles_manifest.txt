@@ -4,3 +4,9 @@ generic/listFloat/listFloat.go
 generic/listFloat/listFloat_test.go
 generic/listDouble/listDouble.go
 generic/listDouble/listDouble_test.go
+generic/listBool/listBool.go
+generic/listBool/listBool_test.go
+generic/listSizeT/listSizeT.go
+generic/listSizeT/listSizeT_test.go
+generic/listConnection/listConnection.go
+generic/listConnection/listConnection_test.go

@@ -5,13 +5,18 @@ package listFloat
 import (
 	"reflect"
 	"testing"
+
+  
 )
+
 
 var (
 	defaultListData = []float32{1.1,2.2}
 	val1            = float32(3.3)
 	otherListData   = []float32{1.0}
+  defaultElemType = 0.0
 )
+
 
 func fixtureListData() []float32 {
 	return defaultListData
@@ -36,6 +41,7 @@ func TestListFloat_NewEmptyAndPushBack(t *testing.T) {
 	}
 }
 
+
 func TestListFloat_NewAllocateAndFillValue(t *testing.T) {
 	l2, err := NewAllocate(3)
 	if err != nil {
@@ -57,6 +63,7 @@ func TestListFloat_NewAllocateAndFillValue(t *testing.T) {
 		}
 	}
 }
+
 
 func TestListFloat_NewFromSliceAndItems(t *testing.T) {
 	data := fixtureListData()

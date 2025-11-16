@@ -12,6 +12,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
+  
 )
 
 /*
@@ -21,6 +22,10 @@ import (
 #include <stdlib.h>
 */
 import "C"
+
+
+var defaultElemType = 0
+
 
 type chandle C.ListIntHandle
 
@@ -64,6 +69,7 @@ func NewEmpty() (*Handle, error) {
 	return new(h), nil
 }
 
+
 func NewAllocate(count int) (*Handle, error) {
 	h := chandle(C.ListInt_allocate(C.size_t(count)))
 	err := errorHandling.ErrorHandler.CheckCapiError()
@@ -72,6 +78,7 @@ func NewAllocate(count int) (*Handle, error) {
 	}
 	return new(h), nil
 }
+
 
 func NewFillValue(count int, value int32) (*Handle, error) {
 	h := chandle(C.ListInt_fill_value(C.size_t(count), C.int(value)))
@@ -85,7 +92,7 @@ func NewFillValue(count int, value int32) (*Handle, error) {
 func New(data []int32) (*Handle, error) {
 	var ptr *C.int
 	if len(data) > 0 {
-		cArray := C.malloc(C.size_t(len(data)) * C.size_t(unsafe.Sizeof(C.int(0))))
+		cArray := C.malloc(C.size_t(len(data)) * C.size_t(unsafe.Sizeof(C.int(defaultElemType))))
 		defer C.free(cArray)
 		cSlice := (*[1 << 30]C.int)(cArray)[:len(data):len(data)]
 		for i, v := range data {
@@ -208,12 +215,18 @@ func (h *Handle) At(idx int) (int32, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
-		return 0, errors.New(`At The list is closed`)
+    
+		return int32(defaultElemType), errors.New(`At The list is closed`)
+    
 	}
+  
 	val := int32(C.ListInt_at(C.ListIntHandle(h.chandle), C.size_t(idx)))
 	err := h.errorHandler.CheckCapiError()
+  
 	if err != nil {
-		return 0, err
+    
+		return int32(defaultElemType), err
+    
 	}
 	return val, nil
 }

@@ -5,13 +5,18 @@ package listInt
 import (
 	"reflect"
 	"testing"
+
+  
 )
+
 
 var (
 	defaultListData = []int32{0,1}
 	val1            = int32(4)
 	otherListData   = []int32{3}
+  defaultElemType = 0
 )
+
 
 func fixtureListData() []int32 {
 	return defaultListData
@@ -36,6 +41,7 @@ func TestListInt_NewEmptyAndPushBack(t *testing.T) {
 	}
 }
 
+
 func TestListInt_NewAllocateAndFillValue(t *testing.T) {
 	l2, err := NewAllocate(3)
 	if err != nil {
@@ -57,6 +63,7 @@ func TestListInt_NewAllocateAndFillValue(t *testing.T) {
 		}
 	}
 }
+
 
 func TestListInt_NewFromSliceAndItems(t *testing.T) {
 	data := fixtureListData()

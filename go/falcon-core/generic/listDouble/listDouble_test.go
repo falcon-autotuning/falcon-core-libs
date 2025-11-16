@@ -5,13 +5,18 @@ package listDouble
 import (
 	"reflect"
 	"testing"
+
+  
 )
+
 
 var (
 	defaultListData = []float64{1.1,2.2}
 	val1            = float64(3.3)
 	otherListData   = []float64{1.0}
+  defaultElemType = 0.0
 )
+
 
 func fixtureListData() []float64 {
 	return defaultListData
@@ -36,6 +41,7 @@ func TestListDouble_NewEmptyAndPushBack(t *testing.T) {
 	}
 }
 
+
 func TestListDouble_NewAllocateAndFillValue(t *testing.T) {
 	l2, err := NewAllocate(3)
 	if err != nil {
@@ -57,6 +63,7 @@ func TestListDouble_NewAllocateAndFillValue(t *testing.T) {
 		}
 	}
 }
+
 
 func TestListDouble_NewFromSliceAndItems(t *testing.T) {
 	data := fixtureListData()
