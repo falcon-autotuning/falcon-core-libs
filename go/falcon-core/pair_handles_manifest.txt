@@ -1,0 +1,10 @@
+generic/pairFloatFloat/pairFloatFloat.go
+generic/pairFloatFloat/pairFloatFloat_test.go
+generic/pairDoubleDouble/pairDoubleDouble.go
+generic/pairDoubleDouble/pairDoubleDouble_test.go
+generic/pairIntFloat/pairIntFloat.go
+generic/pairIntFloat/pairIntFloat_test.go
+generic/pairIntInt/pairIntInt.go
+generic/pairIntInt/pairIntInt_test.go
+generic/pairSizeTSizeT/pairSizeTSizeT.go
+generic/pairSizeTSizeT/pairSizeTSizeT_test.go

@@ -6,7 +6,10 @@ export CXX=clang++
 all: build
 
 gen-lists:
-	go run genList.go
+	go run tools/genList/main.go
+
+gen-pairs:
+	go run tools/genPair/main.go
 
 build:
 	go build ./...
@@ -33,6 +36,14 @@ clean-gen-lists:
 			rm -f "$$file"; \
 		done < list_handles_manifest.txt; \
 		rm -f list_handles_manifest.txt; \
+	fi
+
+clean-gen-pairs:
+	@if [ -f pair_handles_manifest.txt ]; then \
+		while read -r file; do \
+			rm -f "$$file"; \
+		done < pair_handles_manifest.txt; \
+		rm -f pair_handles_manifest.txt; \
 	fi
 
 test-traceback:
