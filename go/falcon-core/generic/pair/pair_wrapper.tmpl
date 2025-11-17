@@ -59,23 +59,39 @@ func New(first {{.FirstGoType}}, second {{.SecondGoType}}) (*Handle, error) {
     cSecond C.{{.SecondCType}}
     h chandle
   )
-	{{if .FirstIsPrimitive}}
-	cFirst = C.{{.FirstCType}}(first)
-	{{else}}
-	capiFirst, err := first.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("failed to convert first to capi"), err)
-	}
-	cFirst = C.{{.FirstCType}}(capiFirst)
-	{{end}}
-	{{if .SecondIsPrimitive}}
-	cSecond = C.{{.SecondCType}}(second)
-	{{else}}
-	capiSecond, err := second.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("failed to convert second to capi"), err)
-	}
-	cSecond = C.{{.SecondCType}}(capiSecond)
+  {{if .FirstIsPrimitive}}
+    cFirst = C.{{.FirstCType}}(first)
+  {{else if .FirstIsString}}
+    strFirst := str.New(first)
+    defer strFirst.Close()
+    capiFirst, err := strFirst.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New("failed to convert first string to capi"), err)
+    }
+    cFirst = C.{{.FirstCType}}(capiFirst)
+  {{else}}
+    capiFirst, err := first.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New("failed to convert first to capi"), err)
+    }
+    cFirst = C.{{.FirstCType}}(capiFirst)
+  {{end}}
+  {{if .SecondIsPrimitive}}
+    cSecond = C.{{.SecondCType}}(second)
+  {{else if .SecondIsString}}
+    strSecond := str.New(second)
+    defer strSecond.Close()
+    capiSecond, err := strSecond.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New("failed to convert first string to capi"), err)
+    }
+    cSecond = C.{{.SecondCType}}(capiSecond)
+  {{else}}
+    capiSecond, err := second.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New("failed to convert first to capi"), err)
+    }
+    cSecond = C.{{.SecondCType}}(capiSecond)
 	{{end}}
 	h = chandle(C.{{.Type}}_create(cFirst, cSecond))
 	err = errorHandling.ErrorHandler.CheckCapiError()
@@ -102,18 +118,30 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() ({{.FirstGoType}}, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		{{if .FirstIsPrimitive}}
 		return {{.FirstZeroValue}}, errors.New("First The pair is closed")
+		{{else if .FirstIsString}}
+		return "", errors.New("First The pair is closed")
 		{{else}}
 		return nil, errors.New("First The pair is closed")
 		{{end}}
 	}
 	{{if .FirstIsPrimitive}}
 	val := {{.FirstGoType}}(C.{{.Type}}_first(C.{{.Type}}Handle(h.chandle)))
+	{{else if .FirstIsString}}
+	strHandle, err := str.FromCAPI(unsafe.Pointer(C.{{.Type}}_first(C.{{.Type}}Handle(h.chandle))))
+	if err != nil {
+		return "", err
+	}
+	defer strHandle.Close()
+	val, err := strHandle.ToGoString()
+  if err != nil {
+    return "", errors.Join(errors.New(`Could not create go string`), err)
+  }
 	{{else}}
 	cHandle := C.{{.Type}}_first(C.{{.Type}}Handle(h.chandle))
 	val, err := {{.FirstConstructor}}(unsafe.Pointer(cHandle))
@@ -125,30 +153,37 @@ func (h *Handle) First() ({{.FirstGoType}}, error) {
 	if err != nil {
 		{{if .FirstIsPrimitive}}
 		return {{.FirstZeroValue}}, err
+		{{else if .FirstIsString}}
+		return "", err
 		{{else}}
 		return nil, err
 		{{end}}
 	}
-	{{if .FirstIsPrimitive}}
 	return val, nil
-	{{else}}
-	return val, nil
-	{{end}}
 }
 
 func (h *Handle) Second() ({{.SecondGoType}}, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		{{if .SecondIsPrimitive}}
 		return {{.SecondZeroValue}}, errors.New("Second The pair is closed")
+		{{else if .SecondIsString}}
+		return "", errors.New("Second The pair is closed")
 		{{else}}
 		return nil, errors.New("Second The pair is closed")
 		{{end}}
 	}
 	{{if .SecondIsPrimitive}}
 	val := {{.SecondGoType}}(C.{{.Type}}_second(C.{{.Type}}Handle(h.chandle)))
+	{{else if .SecondIsString}}
+	strHandle, err := str.FromCAPI(unsafe.Pointer(C.{{.Type}}_second(C.{{.Type}}Handle(h.chandle))))
+	if err != nil {
+		return "", err
+	}
+	defer strHandle.Close()
+	val := strHandle.ToGoString()
 	{{else}}
 	cHandle := C.{{.Type}}_second(C.{{.Type}}Handle(h.chandle))
 	val, err := {{.SecondConstructor}}(unsafe.Pointer(cHandle))
@@ -160,15 +195,13 @@ func (h *Handle) Second() ({{.SecondGoType}}, error) {
 	if err != nil {
 		{{if .SecondIsPrimitive}}
 		return {{.SecondZeroValue}}, err
+		{{else if .SecondIsString}}
+		return "", err
 		{{else}}
 		return nil, err
 		{{end}}
 	}
-	{{if .SecondIsPrimitive}}
 	return val, nil
-	{{else}}
-	return val, nil
-	{{end}}
 }
 
 func (h *Handle) Equal(other *Handle) (bool, error) {

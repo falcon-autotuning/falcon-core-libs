@@ -59,12 +59,12 @@ func New(first int32, second float32) (*Handle, error) {
     cSecond C.float
     h chandle
   )
-	
-	cFirst = C.int(first)
-	
-	
-	cSecond = C.float(second)
-	
+  
+    cFirst = C.int(first)
+  
+  
+    cSecond = C.float(second)
+  
 	h = chandle(C.PairIntFloat_create(cFirst, cSecond))
 	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
@@ -90,7 +90,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() (int32, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -107,13 +107,11 @@ func (h *Handle) First() (int32, error) {
 		return 0, err
 		
 	}
-	
 	return val, nil
-	
 }
 
 func (h *Handle) Second() (float32, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -130,9 +128,7 @@ func (h *Handle) Second() (float32, error) {
 		return 0, err
 		
 	}
-	
 	return val, nil
-	
 }
 
 func (h *Handle) Equal(other *Handle) (bool, error) {

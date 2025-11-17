@@ -14,3 +14,5 @@ generic/pairConnectionConnection/pairConnectionConnection.go
 generic/pairConnectionConnection/pairConnectionConnection_test.go
 generic/pairConnectionDouble/pairConnectionDouble.go
 generic/pairConnectionDouble/pairConnectionDouble_test.go
+generic/pairStringBool/pairStringBool.go
+generic/pairStringBool/pairStringBool_test.go

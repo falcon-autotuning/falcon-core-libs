@@ -59,12 +59,12 @@ func New(first uint64, second uint64) (*Handle, error) {
     cSecond C.size_t
     h chandle
   )
-	
-	cFirst = C.size_t(first)
-	
-	
-	cSecond = C.size_t(second)
-	
+  
+    cFirst = C.size_t(first)
+  
+  
+    cSecond = C.size_t(second)
+  
 	h = chandle(C.PairSizeTSizeT_create(cFirst, cSecond))
 	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
@@ -90,7 +90,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() (uint64, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -107,13 +107,11 @@ func (h *Handle) First() (uint64, error) {
 		return 0, err
 		
 	}
-	
 	return val, nil
-	
 }
 
 func (h *Handle) Second() (uint64, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -130,9 +128,7 @@ func (h *Handle) Second() (uint64, error) {
 		return 0, err
 		
 	}
-	
 	return val, nil
-	
 }
 
 func (h *Handle) Equal(other *Handle) (bool, error) {

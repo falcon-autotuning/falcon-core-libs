@@ -15,16 +15,17 @@ type PairType struct {
 	FirstGoType          string
 	FirstCType           string
 	FirstIsPrimitive     bool
+	FirstIsString        bool
 	FirstZeroValue       string
 	FirstConstructor     string
 	FirstOptionalImport  string
 	SecondGoType         string
 	SecondCType          string
 	SecondIsPrimitive    bool
+	SecondIsString       bool
 	SecondZeroValue      string
 	SecondConstructor    string
 	SecondOptionalImport string
-
 	// Test variables for template
 	FirstTestDefault  string
 	SecondTestDefault string
@@ -44,6 +45,10 @@ func toPkgName(typeName string) string {
 		}
 	}
 	return strings.ToLower(string(runes[:i])) + string(runes[i:])
+}
+
+func isString(goType string) bool {
+	return goType == "string"
 }
 
 func main() {
@@ -200,13 +205,33 @@ func main() {
 			FirstTestOther:       "otherConnection",
 			SecondTestOther:      "float64(4.4)",
 		},
+		{
+			Type:                 "PairStringBool",
+			FirstGoType:          "string",
+			FirstCType:           "StringHandle",
+			FirstIsPrimitive:     false, // treat as non-primitive!
+			FirstZeroValue:       `""`,
+			FirstConstructor:     "str.FromGoString",
+			FirstOptionalImport:  "",
+			SecondGoType:         "bool",
+			SecondCType:          "bool",
+			SecondIsPrimitive:    true,
+			SecondZeroValue:      "false",
+			SecondConstructor:    "",
+			SecondOptionalImport: "",
+			FirstTestDefault:     `"hello"`,
+			SecondTestDefault:    "true",
+			FirstTestOther:       `"world"`,
+			SecondTestOther:      "false",
+		},
 	}
 	for i := range pairs {
 		pairs[i].Package = toPkgName(pairs[i].Type)
-	}
-	// Set Header automatically for each type
-	for i := range pairs {
+		// Set Header automatically for each type
 		pairs[i].Header = pairs[i].Type + "_c_api.h"
+		// Set IsString flags
+		pairs[i].FirstIsString = isString(pairs[i].FirstGoType)
+		pairs[i].SecondIsString = isString(pairs[i].SecondGoType)
 	}
 	wrapperTmpl := template.Must(template.ParseFiles("generic/pair/pair_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("generic/pair/pair_test_wrapper.tmpl"))

@@ -59,16 +59,16 @@ func New(first *connection.Handle, second float32) (*Handle, error) {
     cSecond C.float
     h chandle
   )
-	
-	capiFirst, err := first.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("failed to convert first to capi"), err)
-	}
-	cFirst = C.ConnectionHandle(capiFirst)
-	
-	
-	cSecond = C.float(second)
-	
+  
+    capiFirst, err := first.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New("failed to convert first to capi"), err)
+    }
+    cFirst = C.ConnectionHandle(capiFirst)
+  
+  
+    cSecond = C.float(second)
+  
 	h = chandle(C.PairConnectionFloat_create(cFirst, cSecond))
 	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
@@ -94,7 +94,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() (*connection.Handle, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -115,13 +115,11 @@ func (h *Handle) First() (*connection.Handle, error) {
 		return nil, err
 		
 	}
-	
 	return val, nil
-	
 }
 
 func (h *Handle) Second() (float32, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -138,9 +136,7 @@ func (h *Handle) Second() (float32, error) {
 		return 0, err
 		
 	}
-	
 	return val, nil
-	
 }
 
 func (h *Handle) Equal(other *Handle) (bool, error) {
