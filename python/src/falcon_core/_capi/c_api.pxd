@@ -67,3 +67,24 @@ cdef extern from "falcon_core/generic/ListConnection_c_api.h":
     ConnectionHandle ListConnection_at(ListConnectionHandle handle, size_t idx)
     int ListConnection_equal(ListConnectionHandle a, ListConnectionHandle b)
     ListConnectionHandle ListConnection_intersection(ListConnectionHandle handle, ListConnectionHandle other)
+
+# Define types and functions from the Impedance C API.
+cdef extern from "falcon_core/physics/device_structures/Impedance_c_api.h":
+    ctypedef void* ImpedanceHandle
+
+    # Constructors / destructor
+    ImpedanceHandle Impedance_create(ConnectionHandle connection,
+                                     double resistance,
+                                     double capacitance)
+    void Impedance_destroy(ImpedanceHandle handle)
+
+    # Methods
+    ConnectionHandle Impedance_connection(ImpedanceHandle handle)
+    double           Impedance_resistance(ImpedanceHandle handle)
+    double           Impedance_capacitance(ImpedanceHandle handle)
+    int              Impedance_equal(ImpedanceHandle a, ImpedanceHandle b)
+    int              Impedance_not_equal(ImpedanceHandle a, ImpedanceHandle b)
+
+    # Serialization
+    StringHandle     Impedance_to_json_string(ImpedanceHandle handle)
+    ImpedanceHandle  Impedance_from_json_string(StringHandle json)
