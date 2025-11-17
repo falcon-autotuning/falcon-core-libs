@@ -8,6 +8,8 @@ generic/listBool/listBool.go
 generic/listBool/listBool_test.go
 generic/listSizeT/listSizeT.go
 generic/listSizeT/listSizeT_test.go
+generic/listString/listString.go
+generic/listString/listString_test.go
 generic/listConnection/listConnection.go
 generic/listConnection/listConnection_test.go
 generic/listImpedance/listImpedance.go

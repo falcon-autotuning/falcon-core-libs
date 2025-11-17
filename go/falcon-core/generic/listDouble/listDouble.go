@@ -70,15 +70,15 @@ func NewAllocate(count int) (*Handle, error) {
 
 func NewFillValue(count int, value float64) (*Handle, error) {
   
-  obj := C.double(value)
-  var err error
+    obj := C.double(value)
+    var err error
   
-	h := chandle(C.ListDouble_fill_value(C.size_t(count), obj))
-	err = errorHandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+  h := chandle(C.ListDouble_fill_value(C.size_t(count), obj))
+  err = errorHandling.ErrorHandler.CheckCapiError()
+  if err != nil {
+    return nil, err
+  }
+  return new(h), nil
 }
 
 func New(data []float64) (*Handle, error) {
@@ -89,7 +89,7 @@ func New(data []float64) (*Handle, error) {
 		cSlice := (*[1 << 30]C.double)(cArray)[:len(data):len(data)]
 		for i, v := range data {
 			
-      obj := v
+				obj := v
 			
 			cSlice[i] = C.double(obj)
 		}
@@ -141,15 +141,15 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) PushBack(value float64) error {
+  var err error
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return errors.New(`PushBack The list is closed`)
 	}
-  
-  obj := value
-  var err error
-  
+	
+	obj := value
+	
 	C.ListDouble_push_back(C.ListDoubleHandle(h.chandle), C.double(obj))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -250,23 +250,23 @@ func (h *Handle) Items() ([]float64, error) {
 	}
 	out := make([]float64, size)
 	for i := range cHandles {
-    
-    out[i] = float64(cHandles[i])
-    
+		
+		out[i] = float64(cHandles[i])
+		
 	}
 	return out, nil
 }
 
 func (h *Handle) Contains(value float64) (bool, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Contains The list is closed`)
 	}
-  
-  obj := value
-  var err error
-  
+	
+	obj := value
+	
 	val := bool(C.ListDouble_contains(C.ListDoubleHandle(h.chandle), C.double(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -276,15 +276,15 @@ func (h *Handle) Contains(value float64) (bool, error) {
 }
 
 func (h *Handle) Index(value float64) (int, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New(`Index The list is closed`)
 	}
-  
-  obj := value
-  var err error 
-  
+	
+	obj := value
+	
 	val := int(C.ListDouble_index(C.ListDoubleHandle(h.chandle), C.double(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {

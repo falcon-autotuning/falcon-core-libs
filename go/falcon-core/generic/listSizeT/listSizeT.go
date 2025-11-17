@@ -70,15 +70,15 @@ func NewAllocate(count int) (*Handle, error) {
 
 func NewFillValue(count int, value uint64) (*Handle, error) {
   
-  obj := C.size_t(value)
-  var err error
+    obj := C.size_t(value)
+    var err error
   
-	h := chandle(C.ListSizeT_fill_value(C.size_t(count), obj))
-	err = errorHandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+  h := chandle(C.ListSizeT_fill_value(C.size_t(count), obj))
+  err = errorHandling.ErrorHandler.CheckCapiError()
+  if err != nil {
+    return nil, err
+  }
+  return new(h), nil
 }
 
 func New(data []uint64) (*Handle, error) {
@@ -89,7 +89,7 @@ func New(data []uint64) (*Handle, error) {
 		cSlice := (*[1 << 30]C.size_t)(cArray)[:len(data):len(data)]
 		for i, v := range data {
 			
-      obj := v
+				obj := v
 			
 			cSlice[i] = C.size_t(obj)
 		}
@@ -141,15 +141,15 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) PushBack(value uint64) error {
+  var err error
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return errors.New(`PushBack The list is closed`)
 	}
-  
-  obj := value
-  var err error
-  
+	
+	obj := value
+	
 	C.ListSizeT_push_back(C.ListSizeTHandle(h.chandle), C.size_t(obj))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -250,23 +250,23 @@ func (h *Handle) Items() ([]uint64, error) {
 	}
 	out := make([]uint64, size)
 	for i := range cHandles {
-    
-    out[i] = uint64(cHandles[i])
-    
+		
+		out[i] = uint64(cHandles[i])
+		
 	}
 	return out, nil
 }
 
 func (h *Handle) Contains(value uint64) (bool, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Contains The list is closed`)
 	}
-  
-  obj := value
-  var err error
-  
+	
+	obj := value
+	
 	val := bool(C.ListSizeT_contains(C.ListSizeTHandle(h.chandle), C.size_t(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -276,15 +276,15 @@ func (h *Handle) Contains(value uint64) (bool, error) {
 }
 
 func (h *Handle) Index(value uint64) (int, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New(`Index The list is closed`)
 	}
-  
-  obj := value
-  var err error 
-  
+	
+	obj := value
+	
 	val := int(C.ListSizeT_index(C.ListSizeTHandle(h.chandle), C.size_t(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {

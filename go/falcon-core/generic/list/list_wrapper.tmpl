@@ -5,9 +5,9 @@ import (
 	"runtime"
 	"sync"
 	"unsafe"
-  {{if not .PrimitiveType}}
+  {{if not .ElemIsPrimitive}}{{if not .ElemIsString}}
   "strconv"
-  {{end}}
+  {{end}}{{end}}
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
@@ -71,41 +71,57 @@ func NewAllocate(count int) (*Handle, error) {
 {{end}}
 
 func NewFillValue(count int, value {{.ElemType}}) (*Handle, error) {
-  {{if not .PrimitiveType}}
-  capi, err := value.CAPIHandle()
-  if err != nil {
-      return nil, errors.Join(errors.New(`failed to convert to the capi`), err)
-  }
-  obj := C.{{.CType}}(capi)
+  {{if .ElemIsPrimitive}}
+    obj := C.{{.CType}}(value)
+    var err error
+  {{else if .ElemIsString}}
+    strVal := str.New(value)
+    defer strVal.Close()
+    capi, err := strVal.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New(`failed to convert string to capi`), err)
+    }
+    obj := C.{{.CType}}(capi)
   {{else}}
-  obj := C.{{.CType}}(value)
-  var err error
+    capi, err := value.CAPIHandle()
+    if err != nil {
+      return nil, errors.Join(errors.New(`failed to convert to the capi`), err)
+    }
+    obj := C.{{.CType}}(capi)
   {{end}}
-	h := chandle(C.{{.Type}}_fill_value(C.size_t(count), obj))
-	err = errorHandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+  h := chandle(C.{{.Type}}_fill_value(C.size_t(count), obj))
+  err = errorHandling.ErrorHandler.CheckCapiError()
+  if err != nil {
+    return nil, err
+  }
+  return new(h), nil
 }
 
 func New(data []{{.ElemType}}) (*Handle, error) {
 	var ptr *C.{{.CType}}
 	if len(data) > 0 {
-		cArray := C.malloc(C.size_t(len(data)) * C.size_t(unsafe.Sizeof({{if .PrimitiveType}}C.{{.CType}}({{.OptDefaultElemType}}){{else}}uintptr(0){{end}})))
+		cArray := C.malloc(C.size_t(len(data)) * C.size_t(unsafe.Sizeof({{if .ElemIsPrimitive}}C.{{.CType}}({{.OptDefaultElemType}}){{else}}uintptr(0){{end}})))
 		defer C.free(cArray)
 		cSlice := (*[1 << 30]C.{{.CType}})(cArray)[:len(data):len(data)]
 		for i, v := range data {
-			{{if .PrimitiveType}}
-      obj := v
+			{{if .ElemIsPrimitive}}
+				obj := v
+			{{else if .ElemIsString}}
+				strVal := str.New(v)
+				defer strVal.Close()
+				capi, err := strVal.CAPIHandle()
+				if err != nil || capi == nil {
+					return nil, errors.Join(errors.New("New iteration failed on invalid string pointer"), err)
+				}
+				obj := capi
 			{{else}}
-      if v == nil {
-          return nil, errors.New("New: data contains nil element at index " + strconv.Itoa(i))
-      }
-      obj, err := v.CAPIHandle()
-      if err != nil || obj == nil {
-          return nil, errors.Join(errors.New("New iteration failed on invalid pointer"), err)
-      }
+				if v == nil {
+					return nil, errors.New("New: data contains nil element at index " + strconv.Itoa(i))
+				}
+				obj, err := v.CAPIHandle()
+				if err != nil || obj == nil {
+					return nil, errors.Join(errors.New("New iteration failed on invalid pointer"), err)
+				}
 			{{end}}
 			cSlice[i] = C.{{.CType}}(obj)
 		}
@@ -157,20 +173,28 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) PushBack(value {{.ElemType}}) error {
+  var err error
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return errors.New(`PushBack The list is closed`)
 	}
-  {{if not .PrimitiveType}}
-  obj, err := value.CAPIHandle()
-  if err != nil {
-      return errors.Join(errors.New(`unable to access capi for {{.ElemType}}`), err)
-  }
-  {{else}}
-  obj := value
-  var err error
-  {{end}}
+	{{if .ElemIsPrimitive}}
+	obj := value
+	{{else if .ElemIsString}}
+	strVal := str.New(value)
+	defer strVal.Close()
+	capi, err := strVal.CAPIHandle()
+	if err != nil {
+		return errors.Join(errors.New(`unable to access capi for string`), err)
+	}
+	obj := capi
+	{{else}}
+	obj, err := value.CAPIHandle()
+	if err != nil {
+		return errors.Join(errors.New(`unable to access capi for {{.ElemType}}`), err)
+	}
+	{{end}}
 	C.{{.Type}}_push_back(C.{{.Type}}Handle(h.chandle), C.{{.CType}}(obj))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -239,19 +263,32 @@ func (h *Handle) At(idx int) ({{.ElemType}}, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
-		{{if .PrimitiveType}}
+		{{if .ElemIsPrimitive}}
 		return {{.ElemType}}({{.OptDefaultElemType}}), errors.New(`At The list is closed`)
+		{{else if .ElemIsString}}
+		return "", errors.New(`At The list is closed`)
 		{{else}}
 		return nil, errors.New(`At The list is closed`)
 		{{end}}
 	}
-	{{if .PrimitiveType}}
+	{{if .ElemIsPrimitive}}
 	val := {{.ElemType}}(C.{{.Type}}_at(C.{{.Type}}Handle(h.chandle), C.size_t(idx)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
 		return {{.ElemType}}({{.OptDefaultElemType}}), err
 	}
 	return val, nil
+	{{else if .ElemIsString}}
+	strHandle, err := str.FromCAPI(unsafe.Pointer(C.{{.Type}}_at(C.{{.Type}}Handle(h.chandle), C.size_t(idx))))
+	if err != nil {
+		return "", err
+	}
+	defer strHandle.Close()
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return "", capiErr
+	}
+	return strHandle.ToGoString() 
 	{{else}}
 	cHandle := C.{{.Type}}_at(C.{{.Type}}Handle(h.chandle), C.size_t(idx))
 	val, err := {{.CElemTypeConstructor}}(unsafe.Pointer(cHandle))
@@ -284,34 +321,53 @@ func (h *Handle) Items() ([]{{.ElemType}}, error) {
 	}
 	out := make([]{{.ElemType}}, size)
 	for i := range cHandles {
-    {{if not .PrimitiveType}}
+		{{if .ElemIsPrimitive}}
+		out[i] = {{.ElemType}}(cHandles[i])
+		{{else if .ElemIsString}}
+		strHandle, err := str.FromCAPI(unsafe.Pointer(cHandles[i]))
+		if err != nil {
+			return nil, err
+		}
+    temp, err := strHandle.ToGoString()
+    if err != nil {
+      return nil, errors.Join(errors.New(`Could not convert to go string for items`), err)
+    }
+		out[i] = temp
+		strHandle.Close()
+		{{else}}
 		goHandle, err := {{.CElemTypeConstructor}}(unsafe.Pointer(cHandles[i]))
 		if err != nil {
 			return nil, err
 		}
 		out[i] = goHandle
-    {{else}}
-    out[i] = {{.ElemType}}(cHandles[i])
-    {{end}}
+		{{end}}
 	}
 	return out, nil
 }
 
 func (h *Handle) Contains(value {{.ElemType}}) (bool, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Contains The list is closed`)
 	}
-  {{if not .PrimitiveType}}
-  obj, err := value.CAPIHandle()
-  if err != nil {
-      return false, errors.Join(errors.New(`unable to access capi for {{.ElemType}}`), err)
-  }
-  {{else}}
-  obj := value
-  var err error
-  {{end}}
+	{{if .ElemIsPrimitive}}
+	obj := value
+	{{else if .ElemIsString}}
+	strVal := str.New(value)
+	defer strVal.Close()
+	capi, err := strVal.CAPIHandle()
+	if err != nil {
+		return false, errors.Join(errors.New(`unable to access capi for string`), err)
+	}
+	obj := capi
+	{{else}}
+	obj, err := value.CAPIHandle()
+	if err != nil {
+		return false, errors.Join(errors.New(`unable to access capi for {{.ElemType}}`), err)
+	}
+	{{end}}
 	val := bool(C.{{.Type}}_contains(C.{{.Type}}Handle(h.chandle), C.{{.CType}}(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -321,20 +377,28 @@ func (h *Handle) Contains(value {{.ElemType}}) (bool, error) {
 }
 
 func (h *Handle) Index(value {{.ElemType}}) (int, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New(`Index The list is closed`)
 	}
-  {{if not .PrimitiveType}}
-  obj, err := value.CAPIHandle()
-  if err != nil {
-      return 0, errors.Join(errors.New(`unable to access capi for {{.ElemType}}`), err)
-  }
-  {{else}}
-  obj := value
-  var err error 
-  {{end}}
+	{{if .ElemIsPrimitive}}
+	obj := value
+	{{else if .ElemIsString}}
+	strVal := str.New(value)
+	defer strVal.Close()
+	capi, err := strVal.CAPIHandle()
+	if err != nil {
+		return 0, errors.Join(errors.New(`unable to access capi for string`), err)
+	}
+	obj := capi
+	{{else}}
+	obj, err := value.CAPIHandle()
+	if err != nil {
+		return 0, errors.Join(errors.New(`unable to access capi for {{.ElemType}}`), err)
+	}
+	{{end}}
 	val := int(C.{{.Type}}_index(C.{{.Type}}Handle(h.chandle), C.{{.CType}}(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {

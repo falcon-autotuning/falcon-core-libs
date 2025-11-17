@@ -13,7 +13,9 @@ var (
 	val1            = uint64(4)
 	otherListData   = []uint64{3}
 )
-
+func eqSlice(a, b []uint64) bool {
+	return reflect.DeepEqual(a, b)
+}
 
 func fixtureListData() []uint64 {
 	return defaultListData
@@ -65,19 +67,17 @@ func TestListSizeT_NewFromSliceAndItems(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New from slice failed: %v", err)
 	}
-  if l4 == nil {
-      t.Fatalf("New is empty")
-  }
+	if l4 == nil {
+		t.Fatalf("New is empty")
+	}
 	defer l4.Close()
 	items, err := l4.Items()
 	if err != nil {
 		t.Fatalf("Items failed: %v", err)
 	}
-  
-    if !reflect.DeepEqual(items, data) {
-      t.Errorf("Expected %v, got %v", data, items)
-    }
-  
+	if !eqSlice(items, data) {
+		t.Errorf("Expected %v, got %v", data, items)
+	}
 }
 func TestListSizeT_EraseAtAndClear(t *testing.T) {
 	l5, err := New(fixtureListData())
@@ -92,32 +92,15 @@ func TestListSizeT_EraseAtAndClear(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Items after erase failed: %v", err)
 	}
-	data:= append(fixtureListData()[:1], fixtureListData()[2:]...)
-  
-    if !reflect.DeepEqual(items, data) {
-      t.Errorf("Expected %v, got %v", data, items)
-    }
-  
+	data := append(fixtureListData()[:1], fixtureListData()[2:]...)
+	if !eqSlice(items, data) {
+		t.Errorf("Expected %v, got %v", data, items)
+	}
 	if err := l5.Clear(); err != nil {
 		t.Fatalf("Clear failed: %v", err)
 	}
 	if empty, err := l5.Empty(); err != nil || !empty {
 		t.Errorf("Expected list to be empty after Clear, err: %v", err)
-	}
-}
-func TestListSizeT_ContainsAndIndex(t *testing.T) {
-	l6, err := New(fixtureListData())
-	if err != nil {
-		t.Fatalf("New for contains/index failed: %v", err)
-	}
-	defer l6.Close()
-	ok, err := l6.Contains(defaultListData[1])
-	if err != nil || !ok {
-		t.Errorf("Expected Contains(%v) true, got %v, err: %v", defaultListData[1], ok, err)
-	}
-	idx, err := l6.Index(defaultListData[1])
-	if err != nil || idx != 1 {
-		t.Errorf("Expected Index(%v) == 1, got %d, err: %v", defaultListData[1], idx, err)
 	}
 }
 func TestListSizeT_IntersectionEqualNotEqual(t *testing.T) {
@@ -140,12 +123,10 @@ func TestListSizeT_IntersectionEqualNotEqual(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Items after intersection failed: %v", err)
 	}
-  data := fixtureListData()
-  
-    if !reflect.DeepEqual(items, data) {
-      t.Errorf("Expected %v, got %v", data, items)
-    }
-  
+	data := fixtureListData()
+	if !eqSlice(items, data) {
+		t.Errorf("Expected %v, got %v", data, items)
+	}
 	eq, err := a.Equal(b)
 	if err != nil || !eq {
 		t.Errorf("Expected Equal true, got %v, err: %v", eq, err)
@@ -178,12 +159,25 @@ func TestListSizeT_ToJSONAndFromJSON(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Items failed: %v", err)
 	}
-  data := fixtureListData()
-  
-    if !reflect.DeepEqual(items, data) {
-      t.Errorf("Expected %v, got %v", data, items)
-    }
-  
+	data := fixtureListData()
+	if !eqSlice(items, data) {
+		t.Errorf("Expected %v, got %v", data, items)
+	}
+}
+func TestListSizeT_ContainsAndIndex(t *testing.T) {
+	l6, err := New(fixtureListData())
+	if err != nil {
+		t.Fatalf("New for contains/index failed: %v", err)
+	}
+	defer l6.Close()
+	ok, err := l6.Contains(defaultListData[1])
+	if err != nil || !ok {
+		t.Errorf("Expected Contains(%v) true, got %v, err: %v", defaultListData[1], ok, err)
+	}
+	idx, err := l6.Index(defaultListData[1])
+	if err != nil || idx != 1 {
+		t.Errorf("Expected Index(%v) == 1, got %d, err: %v", defaultListData[1], idx, err)
+	}
 }
 func TestListSizeT_CAPIHandle(t *testing.T) {
 	l, err := New(defaultListData)

@@ -63,18 +63,18 @@ func NewEmpty() (*Handle, error) {
 
 func NewFillValue(count int, value *impedance.Handle) (*Handle, error) {
   
-  capi, err := value.CAPIHandle()
-  if err != nil {
+    capi, err := value.CAPIHandle()
+    if err != nil {
       return nil, errors.Join(errors.New(`failed to convert to the capi`), err)
-  }
-  obj := C.ImpedanceHandle(capi)
+    }
+    obj := C.ImpedanceHandle(capi)
   
-	h := chandle(C.ListImpedance_fill_value(C.size_t(count), obj))
-	err = errorHandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+  h := chandle(C.ListImpedance_fill_value(C.size_t(count), obj))
+  err = errorHandling.ErrorHandler.CheckCapiError()
+  if err != nil {
+    return nil, err
+  }
+  return new(h), nil
 }
 
 func New(data []*impedance.Handle) (*Handle, error) {
@@ -85,13 +85,13 @@ func New(data []*impedance.Handle) (*Handle, error) {
 		cSlice := (*[1 << 30]C.ImpedanceHandle)(cArray)[:len(data):len(data)]
 		for i, v := range data {
 			
-      if v == nil {
-          return nil, errors.New("New: data contains nil element at index " + strconv.Itoa(i))
-      }
-      obj, err := v.CAPIHandle()
-      if err != nil || obj == nil {
-          return nil, errors.Join(errors.New("New iteration failed on invalid pointer"), err)
-      }
+				if v == nil {
+					return nil, errors.New("New: data contains nil element at index " + strconv.Itoa(i))
+				}
+				obj, err := v.CAPIHandle()
+				if err != nil || obj == nil {
+					return nil, errors.Join(errors.New("New iteration failed on invalid pointer"), err)
+				}
 			
 			cSlice[i] = C.ImpedanceHandle(obj)
 		}
@@ -143,17 +143,18 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) PushBack(value *impedance.Handle) error {
+  var err error
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return errors.New(`PushBack The list is closed`)
 	}
-  
-  obj, err := value.CAPIHandle()
-  if err != nil {
-      return errors.Join(errors.New(`unable to access capi for *impedance.Handle`), err)
-  }
-  
+	
+	obj, err := value.CAPIHandle()
+	if err != nil {
+		return errors.Join(errors.New(`unable to access capi for *impedance.Handle`), err)
+	}
+	
 	C.ListImpedance_push_back(C.ListImpedanceHandle(h.chandle), C.ImpedanceHandle(obj))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -258,29 +259,30 @@ func (h *Handle) Items() ([]*impedance.Handle, error) {
 	}
 	out := make([]*impedance.Handle, size)
 	for i := range cHandles {
-    
+		
 		goHandle, err := impedance.FromCAPI(unsafe.Pointer(cHandles[i]))
 		if err != nil {
 			return nil, err
 		}
 		out[i] = goHandle
-    
+		
 	}
 	return out, nil
 }
 
 func (h *Handle) Contains(value *impedance.Handle) (bool, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New(`Contains The list is closed`)
 	}
-  
-  obj, err := value.CAPIHandle()
-  if err != nil {
-      return false, errors.Join(errors.New(`unable to access capi for *impedance.Handle`), err)
-  }
-  
+	
+	obj, err := value.CAPIHandle()
+	if err != nil {
+		return false, errors.Join(errors.New(`unable to access capi for *impedance.Handle`), err)
+	}
+	
 	val := bool(C.ListImpedance_contains(C.ListImpedanceHandle(h.chandle), C.ImpedanceHandle(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -290,17 +292,18 @@ func (h *Handle) Contains(value *impedance.Handle) (bool, error) {
 }
 
 func (h *Handle) Index(value *impedance.Handle) (int, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New(`Index The list is closed`)
 	}
-  
-  obj, err := value.CAPIHandle()
-  if err != nil {
-      return 0, errors.Join(errors.New(`unable to access capi for *impedance.Handle`), err)
-  }
-  
+	
+	obj, err := value.CAPIHandle()
+	if err != nil {
+		return 0, errors.Join(errors.New(`unable to access capi for *impedance.Handle`), err)
+	}
+	
 	val := int(C.ListImpedance_index(C.ListImpedanceHandle(h.chandle), C.ImpedanceHandle(obj)))
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {

@@ -16,6 +16,8 @@ type ListType struct {
 	ElemType               string
 	CType                  string
 	PrimitiveType          bool
+	ElemIsPrimitive        bool // NEW
+	ElemIsString           bool // NEW
 	OptDefaultElemType     string
 	OptTestDefaultListData string // e.g. "{1, 2, 3}". S
 	OptTestVal1            string // e.g. "42"
@@ -37,25 +39,104 @@ func toPkgName(typeName string) string {
 	return strings.ToLower(string(runes[:i])) + string(runes[i:])
 }
 
+func isString(goType string) bool {
+	return goType == "string"
+}
+
+func isPrimitive(goType string) bool {
+	switch goType {
+	case "int", "int32", "int64", "uint", "uint32", "uint64", "float32", "float64", "bool":
+		return true
+	default:
+		return false
+	}
+}
+
 func main() {
-	// Edit the types to add more generated types to the system
 	types := []ListType{
-		{Type: "ListInt", ElemType: "int32", CType: "int", OptDefaultElemType: "0", OptTestDefaultListData: "{0,1}", OptTestVal1: "4", OptTestOtherListData: "{3}", PrimitiveType: true},
-		{Type: "ListFloat", ElemType: "float32", CType: "float", OptDefaultElemType: "0.0", OptTestDefaultListData: "{1.1,2.2}", OptTestVal1: "3.3", OptTestOtherListData: "{1.0}", PrimitiveType: true},
-		{Type: "ListDouble", ElemType: "float64", CType: "double", OptDefaultElemType: "0.0", OptTestDefaultListData: "{1.1,2.2}", OptTestVal1: "3.3", OptTestOtherListData: "{1.0}", PrimitiveType: true},
-		{Type: "ListBool", ElemType: "bool", CType: "bool", OptDefaultElemType: "false", OptTestDefaultListData: "{true,false}", OptTestVal1: "true", OptTestOtherListData: "{true}", PrimitiveType: true},
-		{Type: "ListSizeT", ElemType: "uint64", CType: "size_t", OptDefaultElemType: "0", OptTestDefaultListData: "{0,1}", OptTestVal1: "4", OptTestOtherListData: "{3}", PrimitiveType: true},
-		{Type: "ListConnection", ElemType: "*connection.Handle", CType: "ConnectionHandle", OptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`, PrimitiveType: false, CElemTypeConstructor: "connection.FromCAPI"},
-		{Type: "ListImpedance", ElemType: "*impedance.Handle", CType: "ImpedanceHandle", OptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/impedance"`, PrimitiveType: false, CElemTypeConstructor: "impedance.FromCAPI"},
+		{
+			Type:                   "ListInt",
+			ElemType:               "int32",
+			CType:                  "int",
+			OptDefaultElemType:     "0",
+			OptTestDefaultListData: "{0,1}",
+			OptTestVal1:            "4",
+			OptTestOtherListData:   "{3}",
+			PrimitiveType:          true,
+		},
+		{
+			Type:                   "ListFloat",
+			ElemType:               "float32",
+			CType:                  "float",
+			OptDefaultElemType:     "0.0",
+			OptTestDefaultListData: "{1.1,2.2}",
+			OptTestVal1:            "3.3",
+			OptTestOtherListData:   "{1.0}",
+			PrimitiveType:          true,
+		},
+		{
+			Type:                   "ListDouble",
+			ElemType:               "float64",
+			CType:                  "double",
+			OptDefaultElemType:     "0.0",
+			OptTestDefaultListData: "{1.1,2.2}",
+			OptTestVal1:            "3.3",
+			OptTestOtherListData:   "{1.0}",
+			PrimitiveType:          true,
+		},
+		{
+			Type:                   "ListBool",
+			ElemType:               "bool",
+			CType:                  "bool",
+			OptDefaultElemType:     "false",
+			OptTestDefaultListData: "{true,false}",
+			OptTestVal1:            "true",
+			OptTestOtherListData:   "{true}",
+			PrimitiveType:          true,
+		},
+		{
+			Type:                   "ListSizeT",
+			ElemType:               "uint64",
+			CType:                  "size_t",
+			OptDefaultElemType:     "0",
+			OptTestDefaultListData: "{0,1}",
+			OptTestVal1:            "4",
+			OptTestOtherListData:   "{3}",
+			PrimitiveType:          true,
+		},
+		{
+			Type:                   "ListString",
+			ElemType:               "string",
+			CType:                  "StringHandle",
+			OptDefaultElemType:     `""`,
+			OptTestDefaultListData: `{"foo","bar"}`,
+			OptTestVal1:            `"baz"`,
+			OptTestOtherListData:   `{"qux"}`,
+			PrimitiveType:          false,
+		},
+		{
+			Type:                 "ListConnection",
+			ElemType:             "*connection.Handle",
+			CType:                "ConnectionHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "connection.FromCAPI",
+		},
+		{
+			Type:                 "ListImpedance",
+			ElemType:             "*impedance.Handle",
+			CType:                "ImpedanceHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/impedance"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "impedance.FromCAPI",
+		},
 		// Add more types here...
 	}
-
-	// Set Header automatically for each type
 	for i := range types {
 		types[i].Header = types[i].Type + "_c_api.h"
+		types[i].ElemIsString = isString(types[i].ElemType)
+		types[i].ElemIsPrimitive = isPrimitive(types[i].ElemType)
 	}
-
-	// Parse as separate templates, no {{define ...}} in files
 	wrapperTmpl := template.Must(template.ParseFiles("generic/list/list_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("generic/list/list_test_wrapper.tmpl"))
 
@@ -71,7 +152,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		// Implementation file
 		implFile := filepath.Join(dir, pkg+".go")
 		f, err := os.Create(implFile)
 		if err != nil {
@@ -83,7 +163,6 @@ func main() {
 		f.Close()
 		fmt.Fprintln(manifest, implFile)
 
-		// Test file
 		testFile := filepath.Join(dir, pkg+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {
