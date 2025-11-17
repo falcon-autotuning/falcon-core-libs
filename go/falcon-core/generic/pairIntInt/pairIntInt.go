@@ -53,14 +53,20 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 }
 
 func New(first int32, second int32) (*Handle, error) {
+  var (
+    err error
+    cFirst C.int
+    cSecond C.int
+    h chandle
+  )
 	
-	cFirst := C.int(first)
+	cFirst = C.int(first)
 	
 	
-	cSecond := C.int(second)
+	cSecond = C.int(second)
 	
-	h := chandle(C.PairIntInt_create(cFirst, cSecond))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	h = chandle(C.PairIntInt_create(cFirst, cSecond))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +90,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() (int32, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -94,7 +101,7 @@ func (h *Handle) First() (int32, error) {
 	
 	val := int32(C.PairIntInt_first(C.PairIntIntHandle(h.chandle)))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err
@@ -106,6 +113,7 @@ func (h *Handle) First() (int32, error) {
 }
 
 func (h *Handle) Second() (int32, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -116,7 +124,7 @@ func (h *Handle) Second() (int32, error) {
 	
 	val := int32(C.PairIntInt_second(C.PairIntIntHandle(h.chandle)))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err

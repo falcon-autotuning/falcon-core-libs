@@ -53,26 +53,32 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 }
 
 func New(first {{.FirstGoType}}, second {{.SecondGoType}}) (*Handle, error) {
+  var (
+    err error
+    cFirst C.{{.FirstCType}}
+    cSecond C.{{.SecondCType}}
+    h chandle
+  )
 	{{if .FirstIsPrimitive}}
-	cFirst := C.{{.FirstCType}}(first)
+	cFirst = C.{{.FirstCType}}(first)
 	{{else}}
 	capiFirst, err := first.CAPIHandle()
 	if err != nil {
 		return nil, errors.Join(errors.New("failed to convert first to capi"), err)
 	}
-	cFirst := C.{{.FirstCType}}(capiFirst)
+	cFirst = C.{{.FirstCType}}(capiFirst)
 	{{end}}
 	{{if .SecondIsPrimitive}}
-	cSecond := C.{{.SecondCType}}(second)
+	cSecond = C.{{.SecondCType}}(second)
 	{{else}}
 	capiSecond, err := second.CAPIHandle()
 	if err != nil {
 		return nil, errors.Join(errors.New("failed to convert second to capi"), err)
 	}
-	cSecond := C.{{.SecondCType}}(capiSecond)
+	cSecond = C.{{.SecondCType}}(capiSecond)
 	{{end}}
-	h := chandle(C.{{.Type}}_create(cFirst, cSecond))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	h = chandle(C.{{.Type}}_create(cFirst, cSecond))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -96,6 +102,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() ({{.FirstGoType}}, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -114,7 +121,7 @@ func (h *Handle) First() ({{.FirstGoType}}, error) {
 		return nil, err
 	}
 	{{end}}
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		{{if .FirstIsPrimitive}}
 		return {{.FirstZeroValue}}, err
@@ -130,6 +137,7 @@ func (h *Handle) First() ({{.FirstGoType}}, error) {
 }
 
 func (h *Handle) Second() ({{.SecondGoType}}, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -148,7 +156,7 @@ func (h *Handle) Second() ({{.SecondGoType}}, error) {
 		return nil, err
 	}
 	{{end}}
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		{{if .SecondIsPrimitive}}
 		return {{.SecondZeroValue}}, err

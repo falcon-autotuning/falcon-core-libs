@@ -8,3 +8,9 @@ generic/pairIntInt/pairIntInt.go
 generic/pairIntInt/pairIntInt_test.go
 generic/pairSizeTSizeT/pairSizeTSizeT.go
 generic/pairSizeTSizeT/pairSizeTSizeT_test.go
+generic/pairConnectionFloat/pairConnectionFloat.go
+generic/pairConnectionFloat/pairConnectionFloat_test.go
+generic/pairConnectionConnection/pairConnectionConnection.go
+generic/pairConnectionConnection/pairConnectionConnection_test.go
+generic/pairConnectionDouble/pairConnectionDouble.go
+generic/pairConnectionDouble/pairConnectionDouble_test.go

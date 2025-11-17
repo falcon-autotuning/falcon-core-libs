@@ -53,14 +53,20 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 }
 
 func New(first float32, second float32) (*Handle, error) {
+  var (
+    err error
+    cFirst C.float
+    cSecond C.float
+    h chandle
+  )
 	
-	cFirst := C.float(first)
+	cFirst = C.float(first)
 	
 	
-	cSecond := C.float(second)
+	cSecond = C.float(second)
 	
-	h := chandle(C.PairFloatFloat_create(cFirst, cSecond))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	h = chandle(C.PairFloatFloat_create(cFirst, cSecond))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +90,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() (float32, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -94,7 +101,7 @@ func (h *Handle) First() (float32, error) {
 	
 	val := float32(C.PairFloatFloat_first(C.PairFloatFloatHandle(h.chandle)))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err
@@ -106,6 +113,7 @@ func (h *Handle) First() (float32, error) {
 }
 
 func (h *Handle) Second() (float32, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -116,7 +124,7 @@ func (h *Handle) Second() (float32, error) {
 	
 	val := float32(C.PairFloatFloat_second(C.PairFloatFloatHandle(h.chandle)))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err

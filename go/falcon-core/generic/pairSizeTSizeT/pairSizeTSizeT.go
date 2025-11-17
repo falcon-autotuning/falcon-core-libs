@@ -53,14 +53,20 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 }
 
 func New(first uint64, second uint64) (*Handle, error) {
+  var (
+    err error
+    cFirst C.size_t
+    cSecond C.size_t
+    h chandle
+  )
 	
-	cFirst := C.size_t(first)
+	cFirst = C.size_t(first)
 	
 	
-	cSecond := C.size_t(second)
+	cSecond = C.size_t(second)
 	
-	h := chandle(C.PairSizeTSizeT_create(cFirst, cSecond))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	h = chandle(C.PairSizeTSizeT_create(cFirst, cSecond))
+	err = errorHandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +90,7 @@ func (h *Handle) Close() error {
 }
 
 func (h *Handle) First() (uint64, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -94,7 +101,7 @@ func (h *Handle) First() (uint64, error) {
 	
 	val := uint64(C.PairSizeTSizeT_first(C.PairSizeTSizeTHandle(h.chandle)))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err
@@ -106,6 +113,7 @@ func (h *Handle) First() (uint64, error) {
 }
 
 func (h *Handle) Second() (uint64, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -116,7 +124,7 @@ func (h *Handle) Second() (uint64, error) {
 	
 	val := uint64(C.PairSizeTSizeT_second(C.PairSizeTSizeTHandle(h.chandle)))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err

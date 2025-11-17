@@ -50,7 +50,6 @@ func main() {
 	pairs := []PairType{
 		{
 			Type:                 "PairFloatFloat",
-			Header:               "PairFloatFloat_c_api.h",
 			FirstGoType:          "float32",
 			FirstCType:           "float",
 			FirstIsPrimitive:     true,
@@ -70,7 +69,6 @@ func main() {
 		},
 		{
 			Type:                 "PairDoubleDouble",
-			Header:               "PairDoubleDouble_c_api.h",
 			FirstGoType:          "float64",
 			FirstCType:           "double",
 			FirstIsPrimitive:     true,
@@ -90,7 +88,6 @@ func main() {
 		},
 		{
 			Type:                 "PairIntFloat",
-			Header:               "PairIntFloat_c_api.h",
 			FirstGoType:          "int32",
 			FirstCType:           "int",
 			FirstIsPrimitive:     true,
@@ -110,7 +107,6 @@ func main() {
 		},
 		{
 			Type:                 "PairIntInt",
-			Header:               "PairIntInt_c_api.h",
 			FirstGoType:          "int32",
 			FirstCType:           "int",
 			FirstIsPrimitive:     true,
@@ -130,7 +126,6 @@ func main() {
 		},
 		{
 			Type:                 "PairSizeTSizeT",
-			Header:               "PairSizeTSizeT_c_api.h",
 			FirstGoType:          "uint64",
 			FirstCType:           "size_t",
 			FirstIsPrimitive:     true,
@@ -148,9 +143,70 @@ func main() {
 			FirstTestOther:       "uint64(789)",
 			SecondTestOther:      "uint64(101112)",
 		},
+		{
+			Type:                 "PairConnectionFloat",
+			FirstGoType:          "*connection.Handle",
+			FirstCType:           "ConnectionHandle",
+			FirstIsPrimitive:     false,
+			FirstZeroValue:       "nil",
+			FirstConstructor:     "connection.FromCAPI",
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			SecondGoType:         "float32",
+			SecondCType:          "float",
+			SecondIsPrimitive:    true,
+			SecondZeroValue:      "0",
+			SecondConstructor:    "",
+			SecondOptionalImport: "",
+			FirstTestDefault:     "defaultConnection",
+			SecondTestDefault:    "float32(2.2)",
+			FirstTestOther:       "otherConnection",
+			SecondTestOther:      "float32(4.4)",
+		},
+		{
+			Type:                 "PairConnectionConnection",
+			FirstGoType:          "*connection.Handle",
+			FirstCType:           "ConnectionHandle",
+			FirstIsPrimitive:     false,
+			FirstZeroValue:       "nil",
+			FirstConstructor:     "connection.FromCAPI",
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			SecondGoType:         "*connection.Handle",
+			SecondCType:          "ConnectionHandle",
+			SecondIsPrimitive:    false,
+			SecondZeroValue:      "nil",
+			SecondConstructor:    "connection.FromCAPI",
+			SecondOptionalImport: "",
+			FirstTestDefault:     "defaultConnection",
+			SecondTestDefault:    "defaultConnection2",
+			FirstTestOther:       "otherConnection",
+			SecondTestOther:      "otherConnection2",
+		},
+		{
+			Type:                 "PairConnectionDouble",
+			FirstGoType:          "*connection.Handle",
+			FirstCType:           "ConnectionHandle",
+			FirstIsPrimitive:     false,
+			FirstZeroValue:       "nil",
+			FirstConstructor:     "connection.FromCAPI",
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			SecondGoType:         "float64",
+			SecondCType:          "double",
+			SecondIsPrimitive:    true,
+			SecondZeroValue:      "0.0",
+			SecondConstructor:    "",
+			SecondOptionalImport: "",
+			FirstTestDefault:     "defaultConnection",
+			SecondTestDefault:    "float64(2.2)",
+			FirstTestOther:       "otherConnection",
+			SecondTestOther:      "float64(4.4)",
+		},
 	}
 	for i := range pairs {
 		pairs[i].Package = toPkgName(pairs[i].Type)
+	}
+	// Set Header automatically for each type
+	for i := range pairs {
+		pairs[i].Header = pairs[i].Type + "_c_api.h"
 	}
 	wrapperTmpl := template.Must(template.ParseFiles("generic/pair/pair_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("generic/pair/pair_test_wrapper.tmpl"))
