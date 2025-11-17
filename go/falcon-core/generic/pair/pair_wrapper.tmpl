@@ -183,7 +183,10 @@ func (h *Handle) Second() ({{.SecondGoType}}, error) {
 		return "", err
 	}
 	defer strHandle.Close()
-	val := strHandle.ToGoString()
+	val, err := strHandle.ToGoString()
+  if err != nil {
+    return "", errors.Join(errors.New(`Could not create go string`), err)
+  }
 	{{else}}
 	cHandle := C.{{.Type}}_second(C.{{.Type}}Handle(h.chandle))
 	val, err := {{.SecondConstructor}}(unsafe.Pointer(cHandle))
