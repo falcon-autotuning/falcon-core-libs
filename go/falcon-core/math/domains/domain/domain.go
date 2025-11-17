@@ -14,7 +14,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
@@ -25,7 +25,7 @@ type Handle struct {
 	chandle      domainHandle
 	mu           sync.RWMutex
 	closed       bool
-	errorHandler *errorHandling.Handle
+	errorHandler *errorhandling.Handle
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the Domain
@@ -40,7 +40,7 @@ func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
 
 // new adds an auto cleanup whenever added to a constructor
 func new(i domainHandle) *Handle {
-	d := &Handle{chandle: i, errorHandler: errorHandling.ErrorHandler}
+	d := &Handle{chandle: i, errorHandler: errorhandling.ErrorHandler}
 	runtime.AddCleanup(d, func(_ any) { d.Close() }, true)
 	return d
 }
@@ -61,7 +61,7 @@ func New(minVal, maxVal float64, lesserBoundContained, greaterBoundContained boo
 		C.bool(lesserBoundContained),
 		C.bool(greaterBoundContained),
 	))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -382,7 +382,7 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
 	}
 	h := domainHandle(C.Domain_from_json_string(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}

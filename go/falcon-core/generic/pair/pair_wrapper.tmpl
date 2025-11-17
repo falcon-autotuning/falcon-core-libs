@@ -8,7 +8,7 @@ import (
 	"unsafe"
 	{{if .FirstOptionalImport}}{{.FirstOptionalImport}}{{end}}
 	{{if .SecondOptionalImport}}{{.SecondOptionalImport}}{{end}}
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
@@ -27,7 +27,7 @@ type Handle struct {
 	chandle      chandle
 	mu           sync.RWMutex
 	closed       bool
-	errorHandler *errorHandling.Handle
+	errorHandler *errorhandling.Handle
 }
 
 func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
@@ -40,7 +40,7 @@ func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
 }
 
 func new(h chandle) *Handle {
-	handle := &Handle{chandle: h, errorHandler: errorHandling.ErrorHandler}
+	handle := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
 	runtime.AddCleanup(handle, func(_ any) { handle.Close() }, true)
 	return handle
 }
@@ -94,7 +94,7 @@ func New(first {{.FirstGoType}}, second {{.SecondGoType}}) (*Handle, error) {
     cSecond = C.{{.SecondCType}}(capiSecond)
 	{{end}}
 	h = chandle(C.{{.Type}}_create(cFirst, cSecond))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -274,7 +274,7 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, errors.Join(errors.New("failed to access capi for json"), err)
 	}
 	h := chandle(C.{{.Type}}_from_json_string(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}

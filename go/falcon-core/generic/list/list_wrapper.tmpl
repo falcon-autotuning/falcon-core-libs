@@ -8,7 +8,7 @@ import (
   {{if not .ElemIsPrimitive}}{{if not .ElemIsString}}
   "strconv"
   {{end}}{{end}}
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
   {{.OptionalImport}}
@@ -25,7 +25,7 @@ type Handle struct {
 	chandle      chandle
 	mu           sync.RWMutex
 	closed       bool
-	errorHandler *errorHandling.Handle
+	errorHandler *errorhandling.Handle
 }
 
 func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
@@ -38,7 +38,7 @@ func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
 }
 
 func new(h chandle) *Handle {
-	handle := &Handle{chandle: h, errorHandler: errorHandling.ErrorHandler}
+	handle := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
 	runtime.AddCleanup(handle, func(_ any) { handle.Close() }, true)
 	return handle
 }
@@ -52,7 +52,7 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 
 func NewEmpty() (*Handle, error) {
 	h := chandle(C.{{.Type}}_create_empty())
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -62,7 +62,7 @@ func NewEmpty() (*Handle, error) {
 {{if .PrimitiveType}}
 func NewAllocate(count int) (*Handle, error) {
 	h := chandle(C.{{.Type}}_allocate(C.size_t(count)))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +90,7 @@ func NewFillValue(count int, value {{.ElemType}}) (*Handle, error) {
     obj := C.{{.CType}}(capi)
   {{end}}
   h := chandle(C.{{.Type}}_fill_value(C.size_t(count), obj))
-  err = errorHandling.ErrorHandler.CheckCapiError()
+  err = errorhandling.ErrorHandler.CheckCapiError()
   if err != nil {
     return nil, err
   }
@@ -127,14 +127,14 @@ func New(data []{{.ElemType}}) (*Handle, error) {
 		}
 		ptr = (*C.{{.CType}})(cArray)
 		h := chandle(C.{{.Type}}_create(ptr, C.size_t(len(data))))
-		err := errorHandling.ErrorHandler.CheckCapiError()
+		err := errorhandling.ErrorHandler.CheckCapiError()
 		if err != nil {
 			return nil, err
 		}
 		return new(h), nil
 	}
 	h := chandle(C.{{.Type}}_create(nil, 0))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -149,7 +149,7 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
 	}
 	h := chandle(C.{{.Type}}_from_json_string(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}

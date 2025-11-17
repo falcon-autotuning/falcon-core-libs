@@ -10,6 +10,7 @@ import (
 
 type PairType struct {
 	Package              string
+	File                 string
 	Header               string
 	Type                 string
 	FirstGoType          string
@@ -33,7 +34,7 @@ type PairType struct {
 	SecondTestOther   string
 }
 
-func toPkgName(typeName string) string {
+func toFileName(typeName string) string {
 	if typeName == "" {
 		return ""
 	}
@@ -45,6 +46,13 @@ func toPkgName(typeName string) string {
 		}
 	}
 	return strings.ToLower(string(runes[:i])) + string(runes[i:])
+}
+
+func toPkgName(typeName string) string {
+	if typeName == "" {
+		return ""
+	}
+	return strings.ToLower(typeName)
 }
 
 func isString(goType string) bool {
@@ -227,6 +235,7 @@ func main() {
 	}
 	for i := range pairs {
 		pairs[i].Package = toPkgName(pairs[i].Type)
+		pairs[i].File = toFileName(pairs[i].Type)
 		// Set Header automatically for each type
 		pairs[i].Header = pairs[i].Type + "_c_api.h"
 		// Set IsString flags
@@ -245,7 +254,7 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, p.Package+".go")
+		implFile := filepath.Join(dir, p.File+".go")
 		f, err := os.Create(implFile)
 		if err != nil {
 			panic(err)
@@ -255,7 +264,7 @@ func main() {
 		}
 		f.Close()
 		fmt.Fprintln(manifest, implFile)
-		testFile := filepath.Join(dir, p.Package+"_test.go")
+		testFile := filepath.Join(dir, p.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {
 			panic(err)

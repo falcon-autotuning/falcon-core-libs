@@ -14,7 +14,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
@@ -25,7 +25,7 @@ type Handle struct {
 	thandle      timeHandle
 	mu           sync.RWMutex
 	closed       bool
-	errorHandler *errorHandling.Handle
+	errorHandler *errorhandling.Handle
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the Time
@@ -40,7 +40,7 @@ func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
 
 // new adds an auto cleanup whenever added to a constructor
 func new(i timeHandle) *Handle {
-	t := &Handle{thandle: i, errorHandler: errorHandling.ErrorHandler}
+	t := &Handle{thandle: i, errorHandler: errorhandling.ErrorHandler}
 	runtime.AddCleanup(t, func(_ any) { t.Close() }, true)
 	return t
 }
@@ -56,7 +56,7 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 // NewNow creates a new Time representing the current time
 func NewNow() (*Handle, error) {
 	h := timeHandle(C.Time_create_now())
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -66,7 +66,7 @@ func NewNow() (*Handle, error) {
 // NewAt creates a new Time at the given microseconds since epoch
 func NewAt(microSecondsSinceEpoch int64) (*Handle, error) {
 	h := timeHandle(C.Time_create_at(C.longlong(microSecondsSinceEpoch)))
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -205,7 +205,7 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
 	}
 	h := timeHandle(C.Time_from_json_string(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}

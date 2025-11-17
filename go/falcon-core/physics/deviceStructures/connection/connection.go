@@ -14,7 +14,7 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
@@ -27,7 +27,7 @@ type Handle struct {
 	chandle      connectionHandle
 	mu           sync.RWMutex
 	closed       bool
-	errorHandler *errorHandling.Handle
+	errorHandler *errorhandling.Handle
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the String
@@ -42,7 +42,7 @@ func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
 
 // new adds an auto cleanup whenever added to a constructor
 func new(h connectionHandle) *Handle {
-	conn := &Handle{chandle: h, errorHandler: errorHandling.ErrorHandler}
+	conn := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
 	// NOTE: The following AddCleanup/finalizer is not covered by tests because
 	// Go's garbage collector does not guarantee finalizer execution during tests.
 	// This is a known limitation of Go's coverage tooling and is safe to ignore.
@@ -66,7 +66,7 @@ func NewBarrierGate(name string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to create name`), err)
 	}
 	h := connectionHandle(C.Connection_create_barrier_gate(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func NewPlungerGate(name string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to create name`), err)
 	}
 	h := connectionHandle(C.Connection_create_plunger_gate(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +96,7 @@ func NewReservoirGate(name string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to create name`), err)
 	}
 	h := connectionHandle(C.Connection_create_reservoir_gate(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -111,7 +111,7 @@ func NewScreeningGate(name string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to create name`), err)
 	}
 	h := connectionHandle(C.Connection_create_screening_gate(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -126,7 +126,7 @@ func NewOhmic(name string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to create name`), err)
 	}
 	h := connectionHandle(C.Connection_create_ohmic(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -141,7 +141,7 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
 	}
 	h := connectionHandle(C.Connection_from_json_string(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}

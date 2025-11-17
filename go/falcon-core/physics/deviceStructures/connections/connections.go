@@ -16,8 +16,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorHandling"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listConnection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
@@ -29,7 +29,7 @@ type Handle struct {
 	chandle      connectionsHandle
 	mu           sync.RWMutex
 	closed       bool
-	errorHandler *errorHandling.Handle
+	errorHandler *errorhandling.Handle
 }
 
 func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
@@ -42,7 +42,7 @@ func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
 }
 
 func new(handle connectionsHandle) *Handle {
-	obj := &Handle{chandle: handle, errorHandler: errorHandling.ErrorHandler}
+	obj := &Handle{chandle: handle, errorHandler: errorhandling.ErrorHandler}
 	runtime.AddCleanup(obj, func(_ any) { obj.Close() }, true)
 	return obj
 }
@@ -56,14 +56,14 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 
 func NewEmpty() (*Handle, error) {
 	h := connectionsHandle(C.Connections_create_empty())
-	err := errorHandling.ErrorHandler.CheckCapiError()
+	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
 	return new(h), nil
 }
 
-func CreateFromList(items *listConnection.Handle) (*Handle, error) {
+func CreateFromList(items *listconnection.Handle) (*Handle, error) {
 	if items == nil {
 		return nil, errors.New("New failed: items is nil")
 	}
@@ -72,7 +72,7 @@ func CreateFromList(items *listConnection.Handle) (*Handle, error) {
 		return nil, errors.Join(errors.New("New failed: could not get CAPI handle for items"), err)
 	}
 	h := connectionsHandle(C.Connections_create(C.ListConnectionHandle(capi)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +80,7 @@ func CreateFromList(items *listConnection.Handle) (*Handle, error) {
 }
 
 func New(items []*connection.Handle) (*Handle, error) {
-	list, err := listConnection.New(items)
+	list, err := listconnection.New(items)
 	if err != nil {
 		return nil, errors.Join(errors.New(`construction of list of connection failed`), err)
 	}
@@ -325,7 +325,7 @@ func (h *Handle) Items() ([]*connection.Handle, error) {
 	if capiErr != nil {
 		return nil, capiErr
 	}
-	listHandle, err := listConnection.FromCAPI(unsafe.Pointer(cList))
+	listHandle, err := listconnection.FromCAPI(unsafe.Pointer(cList))
 	if err != nil {
 		return nil, err
 	}
@@ -445,7 +445,7 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, errors.Join(errors.New("failed to access capi for json"), err)
 	}
 	h := connectionsHandle(C.Connections_from_json_string(C.StringHandle(capistr)))
-	err = errorHandling.ErrorHandler.CheckCapiError()
+	err = errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
