@@ -14,6 +14,12 @@ cdef extern from "falcon_core/generic/String_c_api.h":
     StringHandle String_wrap(const char* raw)
     void String_destroy(StringHandle handle)
 
+# Error-shim accessors (from C layer)
+cdef extern from "falcon_core/generic/ErrorHandling_c_api.h":
+    int get_last_error_code()
+    const char* get_last_error_msg()
+    void set_last_error(int code, const char* msg)
+
 # Define types and functions from the Connection C API header.
 cdef extern from "falcon_core/physics/device_structures/Connection_c_api.h":
     ctypedef void * ConnectionHandle
