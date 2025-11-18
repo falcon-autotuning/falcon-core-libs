@@ -65,7 +65,7 @@ func setupGateGeometryArray1D(t *testing.T) *testConfig {
 		t.Fatalf("connections.New(screening): %v", err)
 	}
 
-	gga, err := Create(linear, screening)
+	gga, err := New(linear, screening)
 	if err != nil {
 		t.Fatalf("Create(linear, screening): %v", err)
 	}

@@ -53,9 +53,17 @@ func new(handle gateGeometryArray1DHandle) *Handle {
 	return obj
 }
 
-func Create(lineararray, screeningGates *connections.Handle) (*Handle, error) {
+// FromCAPI provides a constructor directly from the CAPI
+func FromCAPI(p unsafe.Pointer) (*Handle, error) {
+	if p == nil {
+		return nil, errors.New(`FromCAPI The pointer is null`)
+	}
+	return new(gateGeometryArray1DHandle(p)), nil
+}
+
+func New(lineararray, screeningGates *connections.Handle) (*Handle, error) {
 	if lineararray == nil || screeningGates == nil {
-		return nil, errors.New("Create: input handles are nil")
+		return nil, errors.New("New: input handles are nil")
 	}
 	laC, err := lineararray.CAPIHandle()
 	if err != nil {
