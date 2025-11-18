@@ -17,14 +17,6 @@ func mustBarrierGate(name string) *connection.Handle {
 	return h
 }
 
-func mustPlungerGate(name string) *connection.Handle {
-	h, err := connection.NewPlungerGate(name)
-	if err != nil {
-		panic(fmt.Errorf("failed to create PlungerGate: %v", err))
-	}
-	return h
-}
-
 func mustInstrumentPort(name string, conn *connection.Handle, insttype string, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
 	h, err := instrumentport.NewKnob(name, conn, insttype, unit, desc)
 	if err != nil {
