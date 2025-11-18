@@ -9,7 +9,7 @@ from ..physics.device_structures.connection import Connection as PyConnection
 
 cdef class Impedance:
     """Thin Cython wrapper owning an ImpedanceHandle."""
-    cdef c_api.ImpedanceHandle handle
+    # 'handle' cdef attribute is declared in impedance.pxd; do not redeclare it here.
 
     def __cinit__(self):
         self.handle = <c_api.ImpedanceHandle>0
