@@ -62,6 +62,19 @@ cdef extern from "falcon_core/generic/ListInt_c_api.h":
     StringHandle ListInt_to_json_string(ListIntHandle handle)
     ListIntHandle ListInt_from_json_string(StringHandle json)
 
+# Define types and functions from the PairIntInt C API.
+cdef extern from "falcon_core/generic/PairIntInt_c_api.h":
+    ctypedef void* PairIntIntHandle
+
+    PairIntIntHandle PairIntInt_create(int first, int second)
+    void PairIntInt_destroy(PairIntIntHandle handle)
+    int PairIntInt_first(PairIntIntHandle handle)
+    int PairIntInt_second(PairIntIntHandle handle)
+    int PairIntInt_equal(PairIntIntHandle a, PairIntIntHandle b)
+    int PairIntInt_not_equal(PairIntIntHandle a, PairIntIntHandle b)
+    StringHandle PairIntInt_to_json_string(PairIntIntHandle handle)
+    PairIntIntHandle PairIntInt_from_json_string(StringHandle json)
+
 # Define types and functions from the ListConnection C API header.
 cdef extern from "falcon_core/generic/ListConnection_c_api.h":
     ctypedef void* ListConnectionHandle
