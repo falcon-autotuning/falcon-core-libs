@@ -5,6 +5,7 @@
 from . cimport c_api
 from .connection cimport Connection as _CConnection
 from libc.stddef cimport size_t
+from cpython.bytes cimport PyBytes_FromStringAndSize
 
 # Import the Python class to wrap the handles we get back
 from ..physics.device_structures.connection import Connection as PyConnection
@@ -51,17 +52,24 @@ cdef class ListConnection:
         if index >= self.size():
             raise IndexError("list index out of range")
 
-        # Get a new, owned ConnectionHandle from the C-API.
+        # Get a ConnectionHandle from the C-API.
         cdef c_api.ConnectionHandle new_conn_handle = c_api.ListConnection_at(self.handle, index)
         if new_conn_handle == <c_api.ConnectionHandle>0:
             raise MemoryError("Failed to get Connection from list at index")
 
-        # Create a new Cython wrapper to own this handle.
-        cdef _CConnection c_conn = _CConnection()
-        c_conn.handle = new_conn_handle
+        # Serialize the returned handle to JSON and reconstruct an owned Connection wrapper.
+        cdef c_api.StringHandle s = c_api.Connection_to_json_string(new_conn_handle)
+        if s == <c_api.StringHandle>0:
+            raise MemoryError("Failed to serialize Connection")
+        cdef const char* raw = s.raw
+        cdef size_t ln = s.length
+        try:
+            b = PyBytes_FromStringAndSize(raw, ln)
+            json_str = b.decode("utf-8")
+        finally:
+            c_api.String_destroy(s)
 
-        # Wrap the Cython object in the final Python object. Its __dealloc__
-        # method will be responsible for destroying the new_conn_handle.
+        cdef _CConnection c_conn = _CConnection.from_json(json_str)
         return PyConnection(c_conn)
 
     def size(self):
