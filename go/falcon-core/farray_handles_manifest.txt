@@ -1,0 +1,4 @@
+generic/farraydouble/fArrayDouble.go
+generic/farraydouble/fArrayDouble_test.go
+generic/farrayint/fArrayInt.go
+generic/farrayint/fArrayInt_test.go
