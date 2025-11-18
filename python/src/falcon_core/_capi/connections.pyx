@@ -13,7 +13,7 @@ from ..physics.device_structures.connection import Connection as PyConnection
 cdef class Connections:
     """Manages a ConnectionsHandle and exposes a list-like low-level interface."""
 
-    cdef c_api.ConnectionsHandle handle
+    # 'handle' cdef attribute is declared in connections.pxd; do not redeclare it here.
 
     def __cinit__(self):
         self.handle = <c_api.ConnectionsHandle>0
