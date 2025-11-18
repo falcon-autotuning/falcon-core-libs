@@ -218,3 +218,14 @@ cdef class Connection:
         elif op == 3:
             return bool(c_api.Connection_not_equal(self.handle, o.handle))
         return NotImplemented
+
+
+# Module-level C factory that creates a cdef Connection wrapper from a raw C handle.
+cdef Connection _connection_from_capi(c_api.ConnectionHandle h):
+    """
+    Create a cdef Connection wrapper directly from a raw C API handle.
+    This returns a cdef Connection instance (not the Python wrapper).
+    """
+    cdef Connection c = <Connection>Connection.__new__(Connection)
+    c.handle = h
+    return c

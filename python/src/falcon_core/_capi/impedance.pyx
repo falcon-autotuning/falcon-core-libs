@@ -2,6 +2,7 @@
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from . cimport c_api
 from .connection cimport Connection as _CConnection
+from .connection cimport _connection_from_capi
 from libc.stddef cimport size_t
 
 # Import the Python class to wrap returned/created Connection objects
@@ -58,7 +59,7 @@ cdef class Impedance:
         cdef c_api.ConnectionHandle h = c_api.Impedance_connection(self.handle)
         if h == <c_api.ConnectionHandle>0:
             return None
-        cdef _CConnection c_conn = _CConnection.from_capi(_CConnection, h)
+        cdef _CConnection c_conn = _connection_from_capi(h)
         return PyConnection(c_conn)
         # # Serialize the returned handle to JSON and rebuild an owned Connection wrapper.
         # cdef c_api.StringHandle s = c_api.Connection_to_json_string(h)

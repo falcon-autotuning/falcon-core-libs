@@ -3,6 +3,9 @@
 
 from . cimport c_api
 
+# Module-level factory to construct a cdef Connection from a raw C handle.
+cdef Connection _connection_from_capi(c_api.ConnectionHandle h)
+
 # By declaring the class here, we make it available for cimport
 # in other Cython modules.
 cdef class Connection:
