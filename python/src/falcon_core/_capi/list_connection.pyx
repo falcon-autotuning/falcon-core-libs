@@ -12,7 +12,7 @@ from ..physics.device_structures.connection import Connection as PyConnection
 
 cdef class ListConnection:
     """Manages a ListConnectionHandle and its lifecycle."""
-    cdef c_api.ListConnectionHandle handle
+    # 'handle' cdef attribute is declared in list_connection.pxd; do not redeclare it here.
 
     def __cinit__(self):
         self.handle = <c_api.ListConnectionHandle>0
