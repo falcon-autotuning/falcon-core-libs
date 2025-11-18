@@ -298,6 +298,30 @@ func main() {
 			PrimitiveType:        false,
 			CElemTypeConstructor: "quantity.FromCAPI",
 		},
+		{
+			Type:                 "ListListSizeT",
+			ElemType:             "*listsizet.Handle",
+			CType:                "ListSizeTHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listsizet"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "listsizet.FromCAPI",
+		},
+		{
+			Type:                 "ListInstrumentPort",
+			ElemType:             "*instrumentport.Handle",
+			CType:                "InstrumentPortHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "instrumentport.FromCAPI",
+		},
+		{
+			Type:                 "ListFArrayDouble",
+			ElemType:             "*farraydouble.Handle",
+			CType:                "FArrayDoubleHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "farraydouble.FromCAPI",
+		},
 		// Add more types here...
 	}
 	for i := range types {

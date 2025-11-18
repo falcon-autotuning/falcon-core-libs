@@ -605,16 +605,16 @@ func (h *Handle) MaxArraywise(other *Handle) (*Handle, error) {
 	return new(res), nil
 }
 
-func (h *Handle) Equality(other *Handle) (bool, error) {
+func (h *Handle) Equal(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if other == nil {
-		return false, errors.New("Equality: other is nil")
+		return false, errors.New("Equal: other is nil")
 	}
 	other.mu.RLock()
 	defer other.mu.RUnlock()
 	if other.closed || other.chandle == utils.NilHandle[chandle]() {
-		return false, errors.New("Equality: other is closed")
+		return false, errors.New("Equal: other is closed")
 	}
 	val := bool(C.FArrayDouble_equality(C.FArrayDoubleHandle(h.chandle), C.FArrayDoubleHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()
@@ -624,16 +624,16 @@ func (h *Handle) Equality(other *Handle) (bool, error) {
 	return val, nil
 }
 
-func (h *Handle) NotEquality(other *Handle) (bool, error) {
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if other == nil {
-		return false, errors.New("NotEquality: other is nil")
+		return false, errors.New("NotEqual: other is nil")
 	}
 	other.mu.RLock()
 	defer other.mu.RUnlock()
 	if other.closed || other.chandle == utils.NilHandle[chandle]() {
-		return false, errors.New("NotEquality: other is closed")
+		return false, errors.New("NotEqual: other is closed")
 	}
 	val := bool(C.FArrayDouble_notequality(C.FArrayDoubleHandle(h.chandle), C.FArrayDoubleHandle(other.chandle)))
 	err := h.errorHandler.CheckCapiError()

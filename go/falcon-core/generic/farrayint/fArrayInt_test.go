@@ -555,18 +555,18 @@ func TestFArrayInt_MinMax(t *testing.T) {
 	}
 }
 
-func TestFArrayInt_Equality(t *testing.T) {
+func TestFArrayInt_Equal(t *testing.T) {
 	a, _ := FromData(defaultData, defaultShape)
 	defer a.Close()
 	b, _ := FromData(defaultData, defaultShape)
 	defer b.Close()
-	ok, err := a.Equality(b)
+	ok, err := a.Equal(b)
 	if err != nil || !ok {
-		t.Errorf("Expected Equality true, got %v, err: %v", ok, err)
+		t.Errorf("Expected Equal true, got %v, err: %v", ok, err)
 	}
-	ok, err = a.NotEquality(b)
+	ok, err = a.NotEqual(b)
 	if err != nil || ok {
-		t.Errorf("Expected NotEquality false, got %v, err: %v", ok, err)
+		t.Errorf("Expected NotEqual false, got %v, err: %v", ok, err)
 	}
 }
 
@@ -707,13 +707,13 @@ func TestFArrayInt_ErrorBranches(t *testing.T) {
 	if err == nil {
 		t.Error("Expected error on MaxArraywise with nil")
 	}
-	_, err = a.Equality(nil)
+	_, err = a.Equal(nil)
 	if err == nil {
-		t.Error("Expected error on Equality with nil")
+		t.Error("Expected error on Equal with nil")
 	}
-	_, err = a.NotEquality(nil)
+	_, err = a.NotEqual(nil)
 	if err == nil {
-		t.Error("Expected error on NotEquality with nil")
+		t.Error("Expected error on NotEqual with nil")
 	}
 	_, err = a.GetSummedDiffArrayOfSquares(nil)
 	if err == nil {

@@ -54,3 +54,9 @@ generic/listpairstringstring/listPairStringString.go
 generic/listpairstringstring/listPairStringString_test.go
 generic/listquantity/listQuantity.go
 generic/listquantity/listQuantity_test.go
+generic/listlistsizet/listListSizeT.go
+generic/listlistsizet/listListSizeT_test.go
+generic/listinstrumentport/listInstrumentPort.go
+generic/listinstrumentport/listInstrumentPort_test.go
+generic/listfarraydouble/listFArrayDouble.go
+generic/listfarraydouble/listFArrayDouble_test.go
