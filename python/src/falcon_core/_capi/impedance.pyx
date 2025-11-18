@@ -58,7 +58,7 @@ cdef class Impedance:
         cdef c_api.ConnectionHandle h = c_api.Impedance_connection(self.handle)
         if h == <c_api.ConnectionHandle>0:
             return None
-        cdef _CConnection c_conn = _CConnection.from_capi(h)                                                               
+        cdef _CConnection c_conn = _CConnection.from_capi(_CConnection, h)
         return PyConnection(c_conn)
         # # Serialize the returned handle to JSON and rebuild an owned Connection wrapper.
         # cdef c_api.StringHandle s = c_api.Connection_to_json_string(h)
