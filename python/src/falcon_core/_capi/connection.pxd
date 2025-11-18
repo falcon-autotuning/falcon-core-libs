@@ -11,4 +11,5 @@ cdef Connection _connection_from_capi(c_api.ConnectionHandle h)
 cdef class Connection:
     # Only cdef attributes need to be declared here.
     cdef c_api.ConnectionHandle handle
+    cdef bint owned
     cdef Connection from_capi(Connection cls, c_api.ConnectionHandle h)

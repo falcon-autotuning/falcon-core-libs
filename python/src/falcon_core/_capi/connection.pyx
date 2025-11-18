@@ -12,11 +12,12 @@ cdef class Connection:
     def __cinit__(self):
         # initialize handle to 0 (NULL)
         self.handle = <c_api.ConnectionHandle>0
+        self.owned = True
 
     def __dealloc__(self):
-        if self.handle != <c_api.ConnectionHandle>0:
+        if self.handle != <c_api.ConnectionHandle>0 and self.owned:
             c_api.Connection_destroy(self.handle)
-            self.handle = <c_api.ConnectionHandle>0
+        self.handle = <c_api.ConnectionHandle>0
 
     cdef Connection from_capi(cls, c_api.ConnectionHandle h):
         """
@@ -26,6 +27,7 @@ cdef class Connection:
         """
         cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
+        c.owned = False
         return c
 
     @classmethod
@@ -42,6 +44,7 @@ cdef class Connection:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
+        c.owned = True
         return c
 
     @classmethod
@@ -58,6 +61,7 @@ cdef class Connection:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
+        c.owned = True
         return c
 
     @classmethod
@@ -74,6 +78,7 @@ cdef class Connection:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
+        c.owned = True
         return c
 
     @classmethod
@@ -90,6 +95,7 @@ cdef class Connection:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
+        c.owned = True
         return c
 
     @classmethod
@@ -106,6 +112,7 @@ cdef class Connection:
             raise MemoryError("failed to create Connection")
         cdef Connection c = <Connection>cls.__new__(cls)
         c.handle = h
+        c.owned = True
         return c
 
     @classmethod
