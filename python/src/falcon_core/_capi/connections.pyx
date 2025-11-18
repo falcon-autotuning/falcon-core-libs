@@ -34,8 +34,8 @@ cdef class Connections:
     @classmethod
     def from_list(cls, py_conn_list: list):
         """Create a Connections owning object from a Python list of Connection (Python-level) wrappers."""
-        # Build a low-level ListConnection first
-        c_list = _CListConnection.from_list(py_conn_list)
+        # Build a low-level ListConnection first (declare it as the cdef class so we can access cdef attrs)
+        cdef _CListConnection c_list = _CListConnection.from_list(py_conn_list)
         cdef Connections obj = <Connections>cls.__new__(cls)
         obj.handle = c_api.Connections_create(<void*>c_list.handle)
         if obj.handle == <c_api.ConnectionsHandle>0:
