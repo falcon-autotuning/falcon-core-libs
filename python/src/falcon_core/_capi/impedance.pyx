@@ -58,21 +58,22 @@ cdef class Impedance:
         cdef c_api.ConnectionHandle h = c_api.Impedance_connection(self.handle)
         if h == <c_api.ConnectionHandle>0:
             return None
-
-        # Serialize the returned handle to JSON and rebuild an owned Connection wrapper.
-        cdef c_api.StringHandle s = c_api.Connection_to_json_string(h)
-        if s == <c_api.StringHandle>0:
-            return None
-        cdef const char* raw = s.raw
-        cdef size_t ln = s.length
-        try:
-            b = PyBytes_FromStringAndSize(raw, ln)
-            json_str = b.decode("utf-8")
-        finally:
-            c_api.String_destroy(s)
-
-        cdef _CConnection new_c = _CConnection.from_json(json_str)
-        return PyConnection(new_c)
+        cdef _CConnection c_conn = _CConnection.from_capi(h)                                                               
+        return PyConnection(c_conn)
+        # # Serialize the returned handle to JSON and rebuild an owned Connection wrapper.
+        # cdef c_api.StringHandle s = c_api.Connection_to_json_string(h)
+        # if s == <c_api.StringHandle>0:
+        #     return None
+        # cdef const char* raw = s.raw
+        # cdef size_t ln = s.length
+        # try:
+        #     b = PyBytes_FromStringAndSize(raw, ln)
+        #     json_str = b.decode("utf-8")
+        # finally:
+        #     c_api.String_destroy(s)
+        #
+        # cdef _CConnection new_c = _CConnection.from_json(json_str)
+        # return PyConnection(new_c)
 
 
     def resistance(self):
