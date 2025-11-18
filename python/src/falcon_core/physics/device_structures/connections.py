@@ -65,25 +65,46 @@ class Connections:
 
     # convenience accessors delegating to low-level impl
     def is_gates(self):
-        return self._c.is_gates()
+        try:
+            return bool(self._c.is_gates())
+        except AttributeError:
+            return False
 
     def is_ohmics(self):
-        return self._c.is_ohmics()
+        try:
+            return bool(self._c.is_ohmics())
+        except AttributeError:
+            return False
 
     def is_dot_gates(self):
-        return self._c.is_dot_gates()
+        try:
+            return bool(self._c.is_dot_gates())
+        except AttributeError:
+            return False
 
     def is_plunger_gates(self):
-        return self._c.is_plunger_gates()
+        try:
+            return bool(self._c.is_plunger_gates())
+        except AttributeError:
+            return False
 
     def is_barrier_gates(self):
-        return self._c.is_barrier_gates()
+        try:
+            return bool(self._c.is_barrier_gates())
+        except AttributeError:
+            return False
 
     def is_reservoir_gates(self):
-        return self._c.is_reservoir_gates()
+        try:
+            return bool(self._c.is_reservoir_gates())
+        except AttributeError:
+            return False
 
     def is_screening_gates(self):
-        return self._c.is_screening_gates()
+        try:
+            return bool(self._c.is_screening_gates())
+        except AttributeError:
+            return False
 
     def __eq__(self, other):
         if not isinstance(other, Connections):
