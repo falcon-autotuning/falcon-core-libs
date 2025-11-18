@@ -88,3 +88,35 @@ cdef extern from "falcon_core/physics/device_structures/Impedance_c_api.h":
     # Serialization
     StringHandle     Impedance_to_json_string(ImpedanceHandle handle)
     ImpedanceHandle  Impedance_from_json_string(StringHandle json)
+
+# Define types and functions from the Connections C API.
+cdef extern from "falcon_core/physics/device_structures/Connections_c_api.h":
+    ctypedef void* ConnectionsHandle
+
+    ConnectionsHandle Connections_create_empty()
+    ConnectionsHandle Connections_create(void* list_connection_handle)
+    void Connections_destroy(ConnectionsHandle handle)
+
+    int Connections_is_gates(ConnectionsHandle handle)
+    int Connections_is_ohmics(ConnectionsHandle handle)
+    int Connections_is_dot_gates(ConnectionsHandle handle)
+    int Connections_is_plunger_gates(ConnectionsHandle handle)
+    int Connections_is_barrier_gates(ConnectionsHandle handle)
+    int Connections_is_reservoir_gates(ConnectionsHandle handle)
+    int Connections_is_screening_gates(ConnectionsHandle handle)
+
+    ConnectionsHandle Connections_intersection(ConnectionsHandle handle, ConnectionsHandle other)
+    void Connections_push_back(ConnectionsHandle handle, ConnectionHandle value)
+    size_t Connections_size(ConnectionsHandle handle)
+    int    Connections_empty(ConnectionsHandle handle)
+    void   Connections_erase_at(ConnectionsHandle handle, size_t idx)
+    void   Connections_clear(ConnectionsHandle handle)
+    ConnectionHandle Connections_at(ConnectionsHandle handle, size_t idx)
+    ListConnectionHandle Connections_items(ConnectionsHandle handle)
+    int    Connections_contains(ConnectionsHandle handle, ConnectionHandle value)
+    size_t Connections_index(ConnectionsHandle handle, ConnectionHandle value)
+    int    Connections_equal(ConnectionsHandle a, ConnectionsHandle b)
+    int    Connections_not_equal(ConnectionsHandle a, ConnectionsHandle b)
+
+    StringHandle Connections_to_json_string(ConnectionsHandle handle)
+    ConnectionsHandle Connections_from_json_string(StringHandle json)
