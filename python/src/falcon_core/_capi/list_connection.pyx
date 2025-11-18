@@ -96,3 +96,20 @@ cdef class ListConnection:
         new_obj.handle = new_handle
         new_obj.owned = True
         return new_obj
+
+    cdef ListConnection from_capi(cls, c_api.ListConnectionHandle h):
+        """
+        Create a cdef ListConnection wrapper directly from a raw C API handle.
+        Returned wrapper is non-owning.
+        """
+        cdef ListConnection c = <ListConnection>cls.__new__(cls)
+        c.handle = h
+        c.owned = False
+        return c
+
+# Module-level C factory for ListConnection
+cdef ListConnection _listconnection_from_capi(c_api.ListConnectionHandle h):
+    cdef ListConnection c = <ListConnection>ListConnection.__new__(ListConnection)
+    c.handle = h
+    c.owned = False
+    return c

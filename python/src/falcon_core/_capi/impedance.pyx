@@ -108,3 +108,20 @@ cdef class Impedance:
         elif op == 3:  # !=
             return bool(c_api.Impedance_not_equal(self.handle, o.handle))
         return NotImplemented
+
+    cdef Impedance from_capi(cls, c_api.ImpedanceHandle h):
+        """
+        Create a cdef Impedance wrapper directly from a raw C API handle.
+        Returned wrapper is non-owning.
+        """
+        cdef Impedance i = <Impedance>cls.__new__(cls)
+        i.handle = h
+        i.owned = False
+        return i
+
+# Module-level C factory for Impedance
+cdef Impedance _impedance_from_capi(c_api.ImpedanceHandle h):
+    cdef Impedance i = <Impedance>Impedance.__new__(Impedance)
+    i.handle = h
+    i.owned = False
+    return i

@@ -155,6 +155,23 @@ cdef class Connections:
         obj.owned = True
         return obj
 
+    cdef Connections from_capi(cls, c_api.ConnectionsHandle h):
+        """
+        Create a cdef Connections wrapper directly from a raw C API handle.
+        Returned wrapper is non-owning.
+        """
+        cdef Connections c = <Connections>cls.__new__(cls)
+        c.handle = h
+        c.owned = False
+        return c
+
+# Module-level C factory for Connections
+cdef Connections _connections_from_capi(c_api.ConnectionsHandle h):
+    cdef Connections c = <Connections>Connections.__new__(Connections)
+    c.handle = h
+    c.owned = False
+    return c
+
     def is_gates(self):
         return bool(c_api.Connections_is_gates(self.handle))
 

@@ -79,3 +79,20 @@ cdef class ListInt:
         new_obj.handle = new_handle
         new_obj.owned = True
         return new_obj
+
+    cdef ListInt from_capi(cls, c_api.ListIntHandle h):
+        """
+        Create a cdef ListInt wrapper directly from a raw C API handle.
+        Returned wrapper is non-owning (won't free the handle).
+        """
+        cdef ListInt c = <ListInt>cls.__new__(cls)
+        c.handle = h
+        c.owned = False
+        return c
+
+# Module-level C factory for ListInt
+cdef ListInt _listint_from_capi(c_api.ListIntHandle h):
+    cdef ListInt c = <ListInt>ListInt.__new__(ListInt)
+    c.handle = h
+    c.owned = False
+    return c
