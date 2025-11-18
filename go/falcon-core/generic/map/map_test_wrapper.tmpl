@@ -3,6 +3,9 @@ package {{.Package}}
 
 import (
 	"testing"
+	{{if .FirstIsPrimitive}}{{end}}
+	{{if .SecondIsPrimitive}}{{end}}
+	{{if .SecondOptionalImport}}{{.SecondOptionalImport}}{{end}}
 )
 
 var (

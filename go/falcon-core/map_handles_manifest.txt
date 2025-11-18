@@ -12,3 +12,11 @@ generic/mapconnectiondouble/mapConnectionDouble.go
 generic/mapconnectiondouble/mapConnectionDouble_test.go
 generic/mapconnectionfloat/mapConnectionFloat.go
 generic/mapconnectionfloat/mapConnectionFloat_test.go
+generic/mapchannelconnections/mapChannelConnections.go
+generic/mapchannelconnections/mapChannelConnections_test.go
+generic/mapconnectionquantity/mapConnectionQuantity.go
+generic/mapconnectionquantity/mapConnectionQuantity_test.go
+generic/mapgnamegroup/mapGnameGroup.go
+generic/mapgnamegroup/mapGnameGroup_test.go
+generic/mapinstrumentportporttransform/mapInstrumentPortPortTransform.go
+generic/mapinstrumentportporttransform/mapInstrumentPortPortTransform_test.go
