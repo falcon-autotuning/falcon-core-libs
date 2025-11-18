@@ -10,7 +10,7 @@ def test_constructors_and_accessors():
     # Accessors
     assert pytest.approx(imp.resistance(), rel=1e-12) == 1.5
     assert pytest.approx(imp.capacitance(), rel=1e-12) == 2.75
-
+    #
     # connection() should return a Connection wrapper with same semantics
     returned_conn = imp.connection()
     assert returned_conn is not None
@@ -48,9 +48,9 @@ def test_equality_and_type_errors():
 
     # Comparisons with unrelated types raise TypeError (per Python wrapper)
     with pytest.raises(TypeError):
-        _ = (imp1 == 123)
+        _ = imp1 == 123
     with pytest.raises(TypeError):
-        _ = (imp1 != "foo")
+        _ = imp1 != "foo"
 
 
 def test_serialization_roundtrip_and_invalid_json():
