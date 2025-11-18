@@ -9,9 +9,15 @@ import (
 )
 
 func TestConnection_ErrorOnClosed(t *testing.T) {
-	c := NewBarrierGate("foo")
+	c, err := NewBarrierGate("foo")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	c.Close()
-	c2 := NewBarrierGate("bar")
+	c2, err := NewBarrierGate("bar")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	defer c2.Close()
 	tests := []struct {
 		name string
@@ -41,11 +47,20 @@ func TestConnection_ErrorOnClosed(t *testing.T) {
 }
 
 func TestConnection_AccessorsReturnValues(t *testing.T) {
-	c := NewBarrierGate("foo")
+	c, err := NewBarrierGate("foo")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	defer c.Close()
-	c2 := NewBarrierGate("foo")
+	c2, err := NewBarrierGate("foo")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	defer c2.Close()
-	c3 := NewBarrierGate("bar")
+	c3, err := NewBarrierGate("bar")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	defer c3.Close()
 	tests := []struct {
 		name string
@@ -158,9 +173,16 @@ func TestConnection_FromCAPI_Error(t *testing.T) {
 }
 
 func TestConnection_FromCAPI_Valid(t *testing.T) {
-	c := NewBarrierGate("foo")
+	c, err := NewBarrierGate("foo")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	defer c.Close()
-	h, err := FromCAPI(c.CAPIHandle())
+	capi, err := c.CAPIHandle()
+	if err != nil {
+		t.Fatalf("unexpected error converting Barriet Gate to CAPI: %v", err)
+	}
+	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}
@@ -175,9 +197,12 @@ func TestConnection_Name_Type_FromCAPIError(t *testing.T) {
 		return nil, errors.New("simulated FromCAPI error")
 	}
 	defer func() { stringFromCAPI = oldFromCAPI }()
-	c := NewBarrierGate("foo") // Use a real connection
+	c, err := NewBarrierGate("foo")
+	if err != nil {
+		t.Fatalf("unexpected error creating BarrierGate: %v", err)
+	}
 	defer c.Close()
-	_, err := c.Name()
+	_, err = c.Name()
 	if err == nil || err.Error() != "Name:simulated FromCAPI error" {
 		t.Errorf("Name() FromCAPI error not handled, got: %v", err)
 	}
@@ -190,7 +215,7 @@ func TestConnection_Name_Type_FromCAPIError(t *testing.T) {
 func TestConnection_AllConstructors_Coverage(t *testing.T) {
 	gates := []struct {
 		name        string
-		constructor func(string) *Handle
+		constructor func(string) (*Handle, error)
 	}{
 		{"PlungerGate", NewPlungerGate},
 		{"ReservoirGate", NewReservoirGate},
@@ -199,23 +224,37 @@ func TestConnection_AllConstructors_Coverage(t *testing.T) {
 	}
 	for _, tc := range gates {
 		t.Run(tc.name, func(t *testing.T) {
-			c := tc.constructor("foo")
+			c, err := tc.constructor("foo")
+			if err != nil {
+				t.Fatalf("%s returned error: %v", tc.name, err)
+			}
 			if c == nil {
 				t.Fatalf("%s returned nil", tc.name)
 			}
 			defer c.Close()
-			// Optionally check Type() or Name() if you want
+			typ, err := c.Type()
+			if err != nil {
+				t.Errorf("%s.Type() error: %v", tc.name, err)
+			}
+			if typ == "" {
+				t.Errorf("%s.Type() returned empty string", tc.name)
+			}
 		})
 	}
-
 	t.Run("FromJSON", func(t *testing.T) {
-		orig := NewScreeningGate("foo")
+		orig, err := NewScreeningGate("foo")
+		if err != nil {
+			t.Fatalf("NewScreeningGate error: %v", err)
+		}
 		defer orig.Close()
 		js, err := orig.ToJSON()
 		if err != nil {
 			t.Fatalf("ToJSON error: %v", err)
 		}
-		c := FromJSON(js)
+		c, err := FromJSON(js)
+		if err != nil {
+			t.Fatalf("FromJSON error: %v", err)
+		}
 		if c == nil {
 			t.Fatal("FromJSON returned nil")
 		}

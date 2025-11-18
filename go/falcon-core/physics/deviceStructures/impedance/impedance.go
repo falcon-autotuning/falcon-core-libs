@@ -14,6 +14,7 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
@@ -22,19 +23,25 @@ import (
 type impedanceHandle C.ImpedanceHandle
 
 type Handle struct {
-	chandle impedanceHandle
-	mu      sync.RWMutex
-	closed  bool
+	chandle      impedanceHandle
+	mu           sync.RWMutex
+	closed       bool
+	errorHandler *errorhandling.Handle
 }
 
 // CAPIHandle provides access to the underlying CAPI handle for the String
-func (s *Handle) CAPIHandle() unsafe.Pointer {
-	return unsafe.Pointer(s.chandle)
+func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	if s.closed || s.chandle == utils.NilHandle[impedanceHandle]() {
+		return nil, errors.New(`CAPIHandle The impedance is closed`)
+	}
+	return unsafe.Pointer(s.chandle), nil
 }
 
 // new adds an auto cleanup whenever added to a constructor
 func new(i impedanceHandle) *Handle {
-	conn := &Handle{chandle: i}
+	conn := &Handle{chandle: i, errorHandler: errorhandling.ErrorHandler}
 	// NOTE: The following AddCleanup/finalizer is not covered by tests because
 	// Go's garbage collector does not guarantee finalizer execution during tests.
 	// This is a known limitation of Go's coverage tooling and is safe to ignore.
@@ -50,13 +57,24 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	return new(impedanceHandle(p)), nil
 }
 
-func New(conn *connection.Handle, resistance, capacitance float64) *Handle {
+func New(conn *connection.Handle, resistance, capacitance float64) (*Handle, error) {
+	if conn == nil {
+		return nil, errors.New(`New failed since connection is null`)
+	}
+	capi, err := conn.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New("New construction failed from illegal connection"), err)
+	}
 	h := impedanceHandle(C.Impedance_create(
-		C.ConnectionHandle(conn.CAPIHandle()),
+		C.ConnectionHandle(capi),
 		C.double(resistance),
 		C.double(capacitance),
 	))
-	return new(h)
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
+	return new(h), nil
 }
 
 func (h *Handle) Close() error {
@@ -64,6 +82,10 @@ func (h *Handle) Close() error {
 	defer h.mu.Unlock()
 	if !h.closed && h.chandle != utils.NilHandle[impedanceHandle]() {
 		C.Impedance_destroy(C.ImpedanceHandle(h.chandle))
+		err := h.errorHandler.CheckCapiError()
+		if err != nil {
+			return err
+		}
 		h.closed = true
 		h.chandle = utils.NilHandle[impedanceHandle]()
 		return nil
@@ -78,6 +100,10 @@ func (i *Handle) Connection() (*connection.Handle, error) {
 		return nil, errors.New(`Connection The impedance is closed`)
 	}
 	h := unsafe.Pointer(C.Impedance_connection(C.ImpedanceHandle(i.chandle)))
+	capiErr := i.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return nil, capiErr
+	}
 	return connection.FromCAPI(h)
 }
 
@@ -87,7 +113,12 @@ func (i *Handle) Resistance() (float64, error) {
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
 		return 0, errors.New(`Resistance The impedance is closed`)
 	}
-	return float64(C.Impedance_resistance(C.ImpedanceHandle(i.chandle))), nil
+	val := float64(C.Impedance_resistance(C.ImpedanceHandle(i.chandle)))
+	capiErr := i.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return 0, capiErr
+	}
+	return val, nil
 }
 
 func (i *Handle) Capacitance() (float64, error) {
@@ -96,7 +127,12 @@ func (i *Handle) Capacitance() (float64, error) {
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
 		return 0, errors.New(`Capacitance The impedance is closed`)
 	}
-	return float64(C.Impedance_capacitance(C.ImpedanceHandle(i.chandle))), nil
+	val := float64(C.Impedance_capacitance(C.ImpedanceHandle(i.chandle)))
+	capiErr := i.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return 0, capiErr
+	}
+	return val, nil
 }
 
 func (i *Handle) Equal(other *Handle) (bool, error) {
@@ -105,16 +141,42 @@ func (i *Handle) Equal(other *Handle) (bool, error) {
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
 		return false, errors.New(`Equal The impedance is closed`)
 	}
-	return bool(C.Impedance_equal(C.ImpedanceHandle(i.chandle), C.ImpedanceHandle(other.chandle))), nil
+	if other == nil {
+		return false, errors.New(`Equal The other impedance is null`)
+	}
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[impedanceHandle]() {
+		return false, errors.New(`Equal The other impedance is closed`)
+	}
+	val := bool(C.Impedance_equal(C.ImpedanceHandle(i.chandle), C.ImpedanceHandle(other.chandle)))
+	capiErr := i.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return false, capiErr
+	}
+	return val, nil
 }
 
 func (i *Handle) NotEqual(other *Handle) (bool, error) {
 	i.mu.RLock()
 	defer i.mu.RUnlock()
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
-		return false, errors.New(`Equal The impedance is closed`)
+		return false, errors.New(`NotEqual The impedance is closed`)
 	}
-	return bool(C.Impedance_not_equal(C.ImpedanceHandle(i.chandle), C.ImpedanceHandle(other.chandle))), nil
+	if other == nil {
+		return false, errors.New(`NotEqual The other impedance is null`)
+	}
+	other.mu.RLock()
+	defer other.mu.RUnlock()
+	if other.closed || other.chandle == utils.NilHandle[impedanceHandle]() {
+		return false, errors.New(`NotEqual The other impedance is closed`)
+	}
+	val := bool(C.Impedance_not_equal(C.ImpedanceHandle(i.chandle), C.ImpedanceHandle(other.chandle)))
+	capiErr := i.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return false, capiErr
+	}
+	return val, nil
 }
 
 func (i *Handle) ToJSON() (string, error) {
@@ -123,17 +185,29 @@ func (i *Handle) ToJSON() (string, error) {
 	if i.closed || i.chandle == utils.NilHandle[impedanceHandle]() {
 		return "", errors.New(`ToJSON The connection is closed`)
 	}
-	str, err := str.FromCAPI(unsafe.Pointer(C.Impedance_to_json_string(C.ImpedanceHandle(i.chandle))))
+	strHandle, err := str.FromCAPI(unsafe.Pointer(C.Impedance_to_json_string(C.ImpedanceHandle(i.chandle))))
 	if err != nil {
 		return "", errors.New(`ToJSON could not convert to a String. ` + err.Error())
 	}
-	defer str.Close()
-	return str.ToGoString()
+	capiErr := i.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return "", capiErr
+	}
+	defer strHandle.Close()
+	return strHandle.ToGoString()
 }
 
-func ImpedanceFromJSON(json string) *Handle {
+func FromJSON(json string) (*Handle, error) {
 	realJSON := str.New(json)
 	defer realJSON.Close()
-	h := impedanceHandle(C.Impedance_from_json_string(C.StringHandle(realJSON.CAPIHandle())))
-	return new(h)
+	capistr, err := realJSON.CAPIHandle()
+	if err != nil {
+		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
+	}
+	h := impedanceHandle(C.Impedance_from_json_string(C.StringHandle(capistr)))
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
+	return new(h), nil
 }

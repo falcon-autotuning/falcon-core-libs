@@ -7,8 +7,14 @@ import (
 )
 
 func TestImpedance_LifecycleAndAccessors(t *testing.T) {
-	conn := connection.NewBarrierGate("B1")
-	imp := New(conn, 123.4, 56.7)
+	conn, err := connection.NewBarrierGate("B1")
+	if err != nil {
+		t.Fatalf("NewBarrierGate error: %v", err)
+	}
+	imp, err := New(conn, 123.4, 56.7)
+	if err != nil {
+		t.Fatalf("Impedance New error: %v", err)
+	}
 	defer imp.Close()
 
 	t.Run("Connection", func(t *testing.T) {
@@ -46,10 +52,19 @@ func TestImpedance_LifecycleAndAccessors(t *testing.T) {
 		if err != nil {
 			t.Fatalf("ToJSON() error: %v", err)
 		}
-		imp2 := ImpedanceFromJSON(jsonStr)
+		imp2, err := FromJSON(jsonStr)
+		if err != nil {
+			t.Fatalf("ImpedanceFromJSON error: %v", err)
+		}
 		defer imp2.Close()
-		res2, _ := imp2.Resistance()
-		cap2, _ := imp2.Capacitance()
+		res2, err := imp2.Resistance()
+		if err != nil {
+			t.Fatalf("ImpedanceFromJSON Resistance error: %v", err)
+		}
+		cap2, err := imp2.Capacitance()
+		if err != nil {
+			t.Fatalf("ImpedanceFromJSON Capacitance error: %v", err)
+		}
 		if res2 != 123.4 || cap2 != 56.7 {
 			t.Errorf("ImpedanceFromJSON/ToJSON roundtrip failed: got (%v,%v), want (123.4,56.7)", res2, cap2)
 		}
@@ -77,10 +92,15 @@ func TestImpedance_LifecycleAndAccessors(t *testing.T) {
 }
 
 func TestImpedance_ClosedErrors(t *testing.T) {
-	conn := connection.NewBarrierGate("B1")
-	imp := New(conn, 1, 1)
+	conn, err := connection.NewBarrierGate("B1")
+	if err != nil {
+		t.Fatalf("NewBarrierGate error: %v", err)
+	}
+	imp, err := New(conn, 1, 1)
+	if err != nil {
+		t.Fatalf("Impedance New error: %v", err)
+	}
 	imp.Close()
-
 	if _, err := imp.Connection(); err == nil {
 		t.Error("Connection() on closed impedance: expected error")
 	}
@@ -93,11 +113,13 @@ func TestImpedance_ClosedErrors(t *testing.T) {
 	if _, err := imp.ToJSON(); err == nil {
 		t.Error("ToJSON() on closed impedance: expected error")
 	}
-
 	if err := imp.Close(); err == nil {
 		t.Error("Close() on closed impedance: expected error")
 	}
-	other := New(conn, 2, 2)
+	other, err := New(conn, 2, 2)
+	if err != nil {
+		t.Fatalf("Impedance New error: %v", err)
+	}
 	defer other.Close()
 	if _, err := imp.Equal(other); err == nil {
 		t.Error("Equal() on closed impedance: expected error")
@@ -118,9 +140,20 @@ func TestImpedance_FromCAPI_Error(t *testing.T) {
 }
 
 func TestImpedance_FromCAPI_Valid(t *testing.T) {
-	imp := New(connection.NewBarrierGate("foo"), 1, 1)
+	conn, err := connection.NewBarrierGate("foo")
+	if err != nil {
+		t.Fatalf("NewBarrierGate error: %v", err)
+	}
+	imp, err := New(conn, 1, 1)
+	if err != nil {
+		t.Fatalf("Impedance New error: %v", err)
+	}
 	defer imp.Close()
-	h, err := FromCAPI(imp.CAPIHandle())
+	capi, err := imp.CAPIHandle()
+	if err != nil {
+		t.Fatalf("Could not convert impedance to CAPI: %v", err)
+	}
+	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}

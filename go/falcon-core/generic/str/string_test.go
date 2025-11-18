@@ -51,7 +51,10 @@ func TestFromCAPI_ValidPointer(t *testing.T) {
 	orig := "abc"
 	s := New(orig)
 	defer s.Close()
-	ptr := s.CAPIHandle()
+	ptr, err := s.CAPIHandle()
+	if err != nil {
+		t.Errorf("CAPIHandle failed to expose capi: %v", err)
+	}
 	str, err := FromCAPI(ptr)
 	if err != nil {
 		t.Errorf("FromCAPI valid pointer: unexpected error: %v", err)
