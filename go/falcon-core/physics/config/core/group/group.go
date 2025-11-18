@@ -51,6 +51,14 @@ func new(handle groupHandle) *Handle {
 	return obj
 }
 
+// FromCAPI provides a constructor directly from the CAPI
+func FromCAPI(p unsafe.Pointer) (*Handle, error) {
+	if p == nil {
+		return nil, errors.New(`FromCAPI The pointer is null`)
+	}
+	return new(groupHandle(p)), nil
+}
+
 func New(
 	name *channel.Handle,
 	numDots int,
