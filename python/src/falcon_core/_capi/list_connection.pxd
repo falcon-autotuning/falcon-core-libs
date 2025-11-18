@@ -3,3 +3,4 @@ from . cimport c_api
 
 cdef class ListConnection:
     cdef c_api.ListConnectionHandle handle
+    cdef bint owned

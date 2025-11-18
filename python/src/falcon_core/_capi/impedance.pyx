@@ -14,11 +14,12 @@ cdef class Impedance:
 
     def __cinit__(self):
         self.handle = <c_api.ImpedanceHandle>0
+        self.owned = True
 
     def __dealloc__(self):
-        if self.handle != <c_api.ImpedanceHandle>0:
+        if self.handle != <c_api.ImpedanceHandle>0 and getattr(self, "owned", True):
             c_api.Impedance_destroy(self.handle)
-            self.handle = <c_api.ImpedanceHandle>0
+        self.handle = <c_api.ImpedanceHandle>0
 
     @classmethod
     def new(cls, conn, double resistance, double capacitance):
@@ -34,6 +35,7 @@ cdef class Impedance:
             raise MemoryError("failed to create Impedance")
         cdef Impedance i = <Impedance>cls.__new__(cls)
         i.handle = h
+        i.owned = True
         return i
 
     @classmethod

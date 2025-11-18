@@ -9,13 +9,16 @@ from cpython.bytes cimport PyBytes_FromStringAndSize
 cdef class ListInt:
     """Manages a ListIntHandle and its lifecycle."""
     cdef c_api.ListIntHandle handle
+    cdef bint owned
 
     def __cinit__(self):
         self.handle = <c_api.ListIntHandle>0
+        self.owned = True
 
     def __dealloc__(self):
-        if self.handle != <c_api.ListIntHandle>0:
+        if self.handle != <c_api.ListIntHandle>0 and self.owned:
             c_api.ListInt_destroy(self.handle)
+        self.handle = <c_api.ListIntHandle>0
 
     @classmethod
     def create_empty(cls):
@@ -24,6 +27,7 @@ cdef class ListInt:
         new_obj.handle = c_api.ListInt_create_empty()
         if new_obj.handle == <c_api.ListIntHandle>0:
             raise MemoryError("Failed to create ListInt")
+        new_obj.owned = True
         return new_obj
 
     @classmethod
@@ -35,6 +39,7 @@ cdef class ListInt:
             raise MemoryError("Failed to create ListInt")
         for item in int_list:
             c_api.ListInt_push_back(new_obj.handle, item)
+        new_obj.owned = True
         return new_obj
 
     def push_back(self, int value):
@@ -72,4 +77,5 @@ cdef class ListInt:
             raise MemoryError("Failed to create intersection ListInt")
         cdef ListInt new_obj = <ListInt>self.__class__.__new__(self.__class__)
         new_obj.handle = new_handle
+        new_obj.owned = True
         return new_obj

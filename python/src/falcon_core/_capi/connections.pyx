@@ -17,11 +17,12 @@ cdef class Connections:
 
     def __cinit__(self):
         self.handle = <c_api.ConnectionsHandle>0
+        self.owned = True
 
     def __dealloc__(self):
-        if self.handle != <c_api.ConnectionsHandle>0:
+        if self.handle != <c_api.ConnectionsHandle>0 and getattr(self, "owned", True):
             c_api.Connections_destroy(self.handle)
-            self.handle = <c_api.ConnectionsHandle>0
+        self.handle = <c_api.ConnectionsHandle>0
 
     @classmethod
     def create_empty(cls):
@@ -29,6 +30,7 @@ cdef class Connections:
         obj.handle = c_api.Connections_create_empty()
         if obj.handle == <c_api.ConnectionsHandle>0:
             raise MemoryError("Failed to create Connections")
+        obj.owned = True
         return obj
 
     @classmethod
@@ -40,6 +42,7 @@ cdef class Connections:
         obj.handle = c_api.Connections_create(<void*>c_list.handle)
         if obj.handle == <c_api.ConnectionsHandle>0:
             raise MemoryError("Failed to create Connections from list")
+        obj.owned = True
         return obj
 
     def push_back(self, value):
@@ -91,6 +94,7 @@ cdef class Connections:
             raise MemoryError("Failed to get items list")
         cdef _CListConnection l = _CListConnection.__new__(_CListConnection)
         l.handle = lh
+        l.owned = True
         return l
 
     def contains(self, value):
@@ -107,6 +111,7 @@ cdef class Connections:
             raise MemoryError("Failed to create intersection Connections")
         cdef Connections obj = <Connections>self.__class__.__new__(self.__class__)
         obj.handle = nh
+        obj.owned = True
         return obj
 
     def __richcmp__(self, other, int op):
@@ -147,6 +152,7 @@ cdef class Connections:
             raise ValueError("failed to parse Connections from json")
         cdef Connections obj = <Connections>cls.__new__(cls)
         obj.handle = h
+        obj.owned = True
         return obj
 
     def is_gates(self):

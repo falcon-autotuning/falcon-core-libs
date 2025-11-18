@@ -16,10 +16,12 @@ cdef class ListConnection:
 
     def __cinit__(self):
         self.handle = <c_api.ListConnectionHandle>0
+        self.owned = True
 
     def __dealloc__(self):
-        if self.handle != <c_api.ListConnectionHandle>0:
+        if self.handle != <c_api.ListConnectionHandle>0 and self.owned:
             c_api.ListConnection_destroy(self.handle)
+        self.handle = <c_api.ListConnectionHandle>0
 
     @classmethod
     def create_empty(cls):
@@ -28,6 +30,7 @@ cdef class ListConnection:
         new_obj.handle = c_api.ListConnection_create_empty()
         if new_obj.handle == <c_api.ListConnectionHandle>0:
             raise MemoryError("Failed to create ListConnection")
+        new_obj.owned = True
         return new_obj
 
     @classmethod
@@ -91,4 +94,5 @@ cdef class ListConnection:
             raise MemoryError("Failed to create intersection ListConnection")
         cdef ListConnection new_obj = <ListConnection>self.__class__.__new__(self.__class__)
         new_obj.handle = new_handle
+        new_obj.owned = True
         return new_obj
