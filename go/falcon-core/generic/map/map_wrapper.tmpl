@@ -112,8 +112,8 @@ func (h *Handle) InsertOrAssign(key {{.FirstGoType}}, value {{.SecondGoType}}) e
 	}
 	var cKey C.{{.FirstCType}}
 	var cValue C.{{.SecondCType}}
-	{{template "convert_key" .}}
-	{{template "convert_value" .}}
+  {{template "convert_key" (dict "FirstIsPrimitive" .FirstIsPrimitive "FirstIsString" .FirstIsString "FirstCType" .FirstCType "ReturnZeroOnError" "return err")}}
+  {{template "convert_value" (dict "SecondIsPrimitive" .SecondIsPrimitive "SecondIsString" .SecondIsString "SecondCType" .SecondCType "ReturnZeroOnError" "return err")}}
 	C.{{.Type}}_insert_or_assign(C.{{.Type}}Handle(h.chandle), cKey, cValue)
 	return h.errorHandler.CheckCapiError()
 }
@@ -126,13 +126,14 @@ func (h *Handle) Insert(key {{.FirstGoType}}, value {{.SecondGoType}}) error {
 	}
 	var cKey C.{{.FirstCType}}
 	var cValue C.{{.SecondCType}}
-	{{template "convert_key" .}}
-	{{template "convert_value" .}}
+  {{template "convert_key" (dict "FirstIsPrimitive" .FirstIsPrimitive "FirstIsString" .FirstIsString "FirstCType" .FirstCType "ReturnZeroOnError" "return err")}}
+  {{template "convert_value" (dict "SecondIsPrimitive" .SecondIsPrimitive "SecondIsString" .SecondIsString "SecondCType" .SecondCType "ReturnZeroOnError" "return err")}}
 	C.{{.Type}}_insert(C.{{.Type}}Handle(h.chandle), cKey, cValue)
 	return h.errorHandler.CheckCapiError()
 }
 
 func (h *Handle) At(key {{.FirstGoType}}) ({{.SecondGoType}}, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -145,7 +146,8 @@ func (h *Handle) At(key {{.FirstGoType}}) ({{.SecondGoType}}, error) {
 		{{end}}
 	}
 	var cKey C.{{.FirstCType}}
-	{{template "convert_key" .}}
+  {{- $zero := .SecondZeroValue -}}
+  {{template "convert_key" (dict "FirstIsPrimitive" .FirstIsPrimitive "FirstIsString" .FirstIsString "FirstCType" .FirstCType "ReturnZeroOnError" (printf "return %s, err" $zero))}}
 	{{if .SecondIsPrimitive}}
 	val := {{.SecondGoType}}(C.{{.Type}}_at(C.{{.Type}}Handle(h.chandle), cKey))
 	{{else if .SecondIsString}}
@@ -165,7 +167,7 @@ func (h *Handle) At(key {{.FirstGoType}}) ({{.SecondGoType}}, error) {
 		return nil, err
 	}
 	{{end}}
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		{{if .SecondIsPrimitive}}
 		return {{.SecondZeroValue}}, err
@@ -185,7 +187,7 @@ func (h *Handle) Erase(key {{.FirstGoType}}) error {
 		return errors.New("Erase: map is closed")
 	}
 	var cKey C.{{.FirstCType}}
-	{{template "convert_key" .}}
+  {{template "convert_key" (dict "FirstIsPrimitive" .FirstIsPrimitive "FirstIsString" .FirstIsString "FirstCType" .FirstCType "ReturnZeroOnError" "return err")}}
 	C.{{.Type}}_erase(C.{{.Type}}Handle(h.chandle), cKey)
 	return h.errorHandler.CheckCapiError()
 }
@@ -229,15 +231,16 @@ func (h *Handle) Clear() error {
 }
 
 func (h *Handle) Contains(key {{.FirstGoType}}) (bool, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New("Contains: map is closed")
 	}
 	var cKey C.{{.FirstCType}}
-	{{template "convert_key" .}}
+  {{template "convert_key" (dict "FirstIsPrimitive" .FirstIsPrimitive "FirstIsString" .FirstIsString "FirstCType" .FirstCType "ReturnZeroOnError" "return false, err")}}
 	val := bool(C.{{.Type}}_contains(C.{{.Type}}Handle(h.chandle), cKey))
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return false, err
 	}
@@ -371,13 +374,13 @@ strKey := str.New(key)
 defer strKey.Close()
 capiKey, err := strKey.CAPIHandle()
 if err != nil {
-	return err
+	{{.ReturnZeroOnError}}
 }
 cKey = C.{{.FirstCType}}(capiKey)
 {{else}}
 capiKey, err := key.CAPIHandle()
 if err != nil {
-	return err
+	{{.ReturnZeroOnError}}
 }
 cKey = C.{{.FirstCType}}(capiKey)
 {{end}}
@@ -391,13 +394,13 @@ strValue := str.New(value)
 defer strValue.Close()
 capiValue, err := strValue.CAPIHandle()
 if err != nil {
-	return err
+	{{.ReturnZeroOnError}}
 }
 cValue = C.{{.SecondCType}}(capiValue)
 {{else}}
 capiValue, err := value.CAPIHandle()
 if err != nil {
-	return err
+	{{.ReturnZeroOnError}}
 }
 cValue = C.{{.SecondCType}}(capiValue)
 {{end}}

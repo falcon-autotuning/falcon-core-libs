@@ -110,12 +110,12 @@ func (h *Handle) InsertOrAssign(key float32, value float32) error {
 	}
 	var cKey C.float
 	var cValue C.float
-	
+  
 
 cKey = C.float(key)
 
 
-	
+  
 
 cValue = C.float(value)
 
@@ -132,12 +132,12 @@ func (h *Handle) Insert(key float32, value float32) error {
 	}
 	var cKey C.float
 	var cValue C.float
-	
+  
 
 cKey = C.float(key)
 
 
-	
+  
 
 cValue = C.float(value)
 
@@ -147,6 +147,7 @@ cValue = C.float(value)
 }
 
 func (h *Handle) At(key float32) (float32, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
@@ -155,7 +156,6 @@ func (h *Handle) At(key float32) (float32, error) {
 		
 	}
 	var cKey C.float
-	
 
 cKey = C.float(key)
 
@@ -163,7 +163,7 @@ cKey = C.float(key)
 	
 	val := float32(C.MapFloatFloat_at(C.MapFloatFloatHandle(h.chandle), cKey))
 	
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		
 		return 0, err
@@ -179,7 +179,7 @@ func (h *Handle) Erase(key float32) error {
 		return errors.New("Erase: map is closed")
 	}
 	var cKey C.float
-	
+  
 
 cKey = C.float(key)
 
@@ -227,19 +227,20 @@ func (h *Handle) Clear() error {
 }
 
 func (h *Handle) Contains(key float32) (bool, error) {
+  var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New("Contains: map is closed")
 	}
 	var cKey C.float
-	
+  
 
 cKey = C.float(key)
 
 
 	val := bool(C.MapFloatFloat_contains(C.MapFloatFloatHandle(h.chandle), cKey))
-	err := h.errorHandler.CheckCapiError()
+	err = h.errorHandler.CheckCapiError()
 	if err != nil {
 		return false, err
 	}

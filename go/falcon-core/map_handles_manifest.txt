@@ -2,3 +2,9 @@ generic/mapintint/mapIntInt.go
 generic/mapintint/mapIntInt_test.go
 generic/mapfloatfloat/mapFloatFloat.go
 generic/mapfloatfloat/mapFloatFloat_test.go
+generic/mapstringbool/mapStringBool.go
+generic/mapstringbool/mapStringBool_test.go
+generic/mapstringdouble/mapStringDouble.go
+generic/mapstringdouble/mapStringDouble_test.go
+generic/mapstringstring/mapStringString.go
+generic/mapstringstring/mapStringString_test.go

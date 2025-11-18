@@ -38,6 +38,15 @@ type MapType struct {
 	SecondTestOther   string
 }
 
+func dict(values ...interface{}) map[string]interface{} {
+	d := make(map[string]interface{}, len(values)/2)
+	for i := 0; i < len(values); i += 2 {
+		k := values[i].(string)
+		d[k] = values[i+1]
+	}
+	return d
+}
+
 func toFileName(typeName string) string {
 	if typeName == "" {
 		return ""
@@ -111,6 +120,75 @@ func main() {
 			FirstTestOther:       "float32(99)",
 			SecondTestOther:      "float32(11)",
 		},
+		{
+			Type:                 "MapStringBool",
+			PairGoType:           "pairstringbool",
+			PairCType:            "PairStringBoolHandle",
+			FirstGoType:          "string",
+			FirstCType:           "StringHandle",
+			FirstIsPrimitive:     false,
+			FirstZeroValue:       `""`,
+			FirstConstructor:     "str.FromGoString",
+			FirstOptionalImport:  "",
+			SecondGoType:         "bool",
+			SecondCType:          "bool",
+			SecondIsPrimitive:    true,
+			SecondZeroValue:      "false",
+			SecondConstructor:    "",
+			SecondOptionalImport: "",
+			ListKeyGoType:        "liststring",
+			ListValueGoType:      "listbool",
+			FirstTestDefault:     `"hello"`,
+			SecondTestDefault:    "true",
+			FirstTestOther:       `"world"`,
+			SecondTestOther:      "false",
+		},
+		{
+			Type:                 "MapStringDouble",
+			PairGoType:           "pairstringdouble",
+			PairCType:            "PairStringDoubleHandle",
+			FirstGoType:          "string",
+			FirstCType:           "StringHandle",
+			FirstIsPrimitive:     false,
+			FirstZeroValue:       `""`,
+			FirstConstructor:     "str.FromGoString",
+			FirstOptionalImport:  "",
+			SecondGoType:         "float64",
+			SecondCType:          "double",
+			SecondIsPrimitive:    true,
+			SecondZeroValue:      "0.0",
+			SecondConstructor:    "",
+			SecondOptionalImport: "",
+			ListKeyGoType:        "liststring",
+			ListValueGoType:      "listdouble",
+			FirstTestDefault:     `"foo"`,
+			SecondTestDefault:    "1.23",
+			FirstTestOther:       `"bar"`,
+			SecondTestOther:      "4.56",
+		},
+		{
+			Type:                 "MapStringString",
+			PairGoType:           "pairstringstring",
+			PairCType:            "PairStringStringHandle",
+			FirstGoType:          "string",
+			FirstCType:           "StringHandle",
+			FirstIsPrimitive:     false,
+			FirstZeroValue:       `""`,
+			FirstConstructor:     "str.FromGoString",
+			FirstOptionalImport:  "",
+			SecondGoType:         "string",
+			SecondCType:          "StringHandle",
+			SecondIsPrimitive:    false,
+			SecondZeroValue:      `""`,
+			SecondConstructor:    "str.FromGoString",
+			SecondOptionalImport: "",
+			ListKeyGoType:        "liststring",
+			ListValueGoType:      "liststring",
+			FirstTestDefault:     `"foo"`,
+			SecondTestDefault:    `"bar"`,
+			FirstTestOther:       `"baz"`,
+			SecondTestOther:      `"qux"`,
+		},
 	}
 
 	for i := range maps {
@@ -121,8 +199,11 @@ func main() {
 		maps[i].SecondIsString = isString(maps[i].SecondGoType)
 	}
 
-	wrapperTmpl := template.Must(template.ParseFiles("generic/map/map_wrapper.tmpl"))
-	testTmpl := template.Must(template.ParseFiles("generic/map/map_test_wrapper.tmpl"))
+	wrapperTmpl := template.New("map_wrapper.tmpl").Funcs(template.FuncMap{"dict": dict})
+	wrapperTmpl = template.Must(wrapperTmpl.ParseFiles("generic/map/map_wrapper.tmpl"))
+
+	testTmpl := template.New("map_test_wrapper.tmpl").Funcs(template.FuncMap{"dict": dict})
+	testTmpl = template.Must(testTmpl.ParseFiles("generic/map/map_test_wrapper.tmpl"))
 	manifest, err := os.Create("map_handles_manifest.txt")
 	if err != nil {
 		panic(err)
