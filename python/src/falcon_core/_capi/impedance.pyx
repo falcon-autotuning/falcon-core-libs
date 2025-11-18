@@ -41,15 +41,16 @@ cdef class Impedance:
         cdef const char* raw = b
         cdef size_t l = len(b)
         cdef c_api.StringHandle s = c_api.String_create(raw, l)
+        cdef c_api.ImpedanceHandle h
         try:
             h = c_api.Impedance_from_json_string(s)
         finally:
             c_api.String_destroy(s)
         if h == <c_api.ImpedanceHandle>0:
-            cdef Impedance i = <Impedance>cls.__new__(cls)
-            i.handle = h
-            return i
-        raise ValueError("failed to parse Impedance from json")
+            raise ValueError("failed to parse Impedance from json")
+        i = <Impedance>cls.__new__(cls)
+        i.handle = h
+        return i
 
     def connection(self):
         if self.handle == <c_api.ImpedanceHandle>0:
