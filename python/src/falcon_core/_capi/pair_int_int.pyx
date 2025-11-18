@@ -5,8 +5,6 @@ from libc.stddef cimport size_t
 
 cdef class PairIntInt:
     """Manages a PairIntIntHandle and its lifecycle."""
-    cdef c_api.PairIntIntHandle handle
-    cdef bint owned
 
     def __cinit__(self):
         self.handle = <c_api.PairIntIntHandle>0
