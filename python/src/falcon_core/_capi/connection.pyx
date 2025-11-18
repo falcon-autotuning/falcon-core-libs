@@ -18,6 +18,16 @@ cdef class Connection:
             c_api.Connection_destroy(self.handle)
             self.handle = <c_api.ConnectionHandle>0
 
+    cdef classmethod Connection from_capi(cls, c_api.ConnectionHandle h):                                              
+        """                                                                                                            
+        Create a cdef Connection wrapper directly from a raw C API handle.                                             
+        Note: this does not change ownership semantics — be careful to avoid                                           
+        double-free if the handle is owned elsewhere.                                                                  
+        """                                                                                                            
+        cdef Connection c = <Connection>cls.__new__(cls)                                                               
+        c.handle = h                                                                                                   
+        return c
+
     @classmethod
     def new_barrier(cls, name):
         name_bytes = name.encode("utf-8")
