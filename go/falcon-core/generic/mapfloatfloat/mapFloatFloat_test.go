@@ -3,10 +3,6 @@ package mapfloatfloat
 
 import (
 	"testing"
-	
-	
-	
-	
 )
 
 var (

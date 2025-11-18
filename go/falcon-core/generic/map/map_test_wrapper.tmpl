@@ -3,10 +3,6 @@ package {{.Package}}
 
 import (
 	"testing"
-	{{if .FirstIsPrimitive}}{{end}}
-	{{if .SecondIsPrimitive}}{{end}}
-	{{if .FirstOptionalImport}}{{.FirstOptionalImport}}{{end}}
-	{{if .SecondOptionalImport}}{{.SecondOptionalImport}}{{end}}
 )
 
 var (

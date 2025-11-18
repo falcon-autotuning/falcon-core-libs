@@ -8,3 +8,7 @@ generic/mapstringdouble/mapStringDouble.go
 generic/mapstringdouble/mapStringDouble_test.go
 generic/mapstringstring/mapStringString.go
 generic/mapstringstring/mapStringString_test.go
+generic/mapconnectiondouble/mapConnectionDouble.go
+generic/mapconnectiondouble/mapConnectionDouble_test.go
+generic/mapconnectionfloat/mapConnectionFloat.go
+generic/mapconnectionfloat/mapConnectionFloat_test.go

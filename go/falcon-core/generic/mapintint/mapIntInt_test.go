@@ -3,10 +3,6 @@ package mapintint
 
 import (
 	"testing"
-	
-	
-	
-	
 )
 
 var (
