@@ -235,4 +235,5 @@ cdef Connection _connection_from_capi(c_api.ConnectionHandle h):
     """
     cdef Connection c = <Connection>Connection.__new__(Connection)
     c.handle = h
+    c.owned = False
     return c
