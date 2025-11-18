@@ -75,3 +75,28 @@ def test_serialization_roundtrip_and_invalid_json():
 
     with pytest.raises(ValueError):
         Connections.from_json("this is not valid connections json")
+
+
+def test_misc_methods_and_type_errors():
+    p1, b1, r1 = build_sample_connections()
+    c = Connections.from_list([p1, b1, r1])
+
+    # new_empty and length via GenericList wrapper
+    empty = Connections.new_empty()
+    assert len(empty) == 0
+
+    # is_* convenience accessors — we don't assert exact semantics here,
+    # just ensure they return booleans and are callable.
+    assert isinstance(c.is_gates(), bool)
+    assert isinstance(c.is_ohmics(), bool)
+    assert isinstance(c.is_dot_gates(), bool)
+    assert isinstance(c.is_plunger_gates(), bool)
+    assert isinstance(c.is_barrier_gates(), bool)
+    assert isinstance(c.is_reservoir_gates(), bool)
+    assert isinstance(c.is_screening_gates(), bool)
+
+    # Equality with unrelated types should raise per wrapper design
+    with pytest.raises(TypeError):
+        _ = c == 123
+    with pytest.raises(TypeError):
+        _ = c != "foo"
