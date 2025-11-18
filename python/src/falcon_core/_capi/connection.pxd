@@ -8,3 +8,4 @@ from . cimport c_api
 cdef class Connection:
     # Only cdef attributes need to be declared here.
     cdef c_api.ConnectionHandle handle
+    cdef Connection from_capi(c_api.ConnectionHandle h)
