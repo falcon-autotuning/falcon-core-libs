@@ -62,6 +62,7 @@ cdef class Impedance:
         c_conn.handle = h
         return PyConnection(c_conn)
 
+
     def resistance(self):
         return c_api.Impedance_resistance(self.handle)
 
