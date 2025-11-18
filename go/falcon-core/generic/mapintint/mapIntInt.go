@@ -6,6 +6,7 @@ import (
 	"runtime"
 	"sync"
 	"unsafe"
+  "strconv"
 	
 	
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
@@ -66,19 +67,24 @@ func NewEmpty() (*Handle, error) {
 }
 
 func New(data []*pairintint.Handle) (*Handle, error) {
-	var cArr []*C.PairIntIntHandle
-	for _, v := range data {
-		capi, err := v.CAPIHandle()
-		if err != nil {
-			return nil, err
+	if len(data) == 0 {
+		return NewEmpty()
+	}
+	cArray := C.malloc(C.size_t(len(data)) * C.size_t(unsafe.Sizeof(uintptr(0))))
+	defer C.free(cArray)
+	cSlice := (*[1 << 30]C.PairIntIntHandle)(cArray)[:len(data):len(data)]
+	for i, v := range data {
+		if v == nil {
+			return nil, errors.New("New: data contains nil element at index " + strconv.Itoa(i))
 		}
-		cArr = append(cArr, (*C.PairIntIntHandle)(capi))
+		capi, err := v.CAPIHandle()
+		if err != nil || capi == nil {
+			return nil, errors.Join(errors.New("New iteration failed on invalid pointer"), err)
+		}
+		cSlice[i] = C.PairIntIntHandle(capi)
 	}
-	var cArrPtr *C.PairIntIntHandle
-	if len(cArr) > 0 {
-		cArrPtr = cArr[0]
-	}
-	h := chandle(C.MapIntInt_create((*C.PairIntIntHandle)(unsafe.Pointer(&cArrPtr)), C.size_t(len(cArr))))
+	ptr := (*C.PairIntIntHandle)(cArray)
+	h := chandle(C.MapIntInt_create(ptr, C.size_t(len(data))))
 	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err

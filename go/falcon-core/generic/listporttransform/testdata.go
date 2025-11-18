@@ -1,4 +1,4 @@
-package pairinstrumentportporttransform
+package listporttransform
 
 import (
 	"fmt"
@@ -43,10 +43,13 @@ func mustPortTransform(port *instrumentport.Handle, val float64) *porttransform.
 }
 
 var (
-	defaultInstrumentPort = mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), "")
-	defaultPortTransform  = mustPortTransform(
-		mustInstrumentPort("P2", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0)
-	otherInstrumentPort = mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), "")
-	otherPortTransform  = mustPortTransform(
-		mustInstrumentPort("P4", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.2)
+	defaultListData = []*porttransform.Handle{
+		mustPortTransform(
+			mustInstrumentPort("P2", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0),
+		mustPortTransform(
+			mustInstrumentPort("P1", mustBarrierGate("P1"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0),
+	}
+	otherListData = []*porttransform.Handle{
+		mustPortTransform(mustInstrumentPort("P4", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.2),
+	}
 )

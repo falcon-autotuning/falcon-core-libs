@@ -1,8 +1,9 @@
-package pairinstrumentportporttransform
+package listpairinstrumentportporttransform
 
 import (
 	"fmt"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairinstrumentportporttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
@@ -42,11 +43,22 @@ func mustPortTransform(port *instrumentport.Handle, val float64) *porttransform.
 	return h
 }
 
+func mustPairInstrumentPortPortTransform(port *instrumentport.Handle, pt *porttransform.Handle) *pairinstrumentportporttransform.Handle {
+	h, err := pairinstrumentportporttransform.New(port, pt)
+	if err != nil {
+		panic(err)
+	}
+	return h
+}
+
+// ... more helpers as needed
+
 var (
-	defaultInstrumentPort = mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), "")
-	defaultPortTransform  = mustPortTransform(
-		mustInstrumentPort("P2", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0)
-	otherInstrumentPort = mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), "")
-	otherPortTransform  = mustPortTransform(
-		mustInstrumentPort("P4", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.2)
+	defaultListData = []*pairinstrumentportporttransform.Handle{
+		mustPairInstrumentPortPortTransform(mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""), mustPortTransform(mustInstrumentPort("P1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0)),
+		mustPairInstrumentPortPortTransform(mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), ""), mustPortTransform(mustInstrumentPort("P3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0)),
+	}
+	otherListData = []*pairinstrumentportporttransform.Handle{
+		mustPairInstrumentPortPortTransform(mustInstrumentPort("B4", mustBarrierGate("B4"), instrumenttypes.VoltageSource(), mustVolt(), ""), mustPortTransform(mustInstrumentPort("P3", mustBarrierGate("B4"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0)),
+	}
 )

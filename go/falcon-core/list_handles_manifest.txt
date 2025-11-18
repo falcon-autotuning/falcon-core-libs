@@ -60,3 +60,17 @@ generic/listinstrumentport/listInstrumentPort.go
 generic/listinstrumentport/listInstrumentPort_test.go
 generic/listfarraydouble/listFArrayDouble.go
 generic/listfarraydouble/listFArrayDouble_test.go
+generic/listporttransform/listPortTransform.go
+generic/listporttransform/listPortTransform_test.go
+generic/listpairgnamegroup/listPairGnameGroup.go
+generic/listpairgnamegroup/listPairGnameGroup_test.go
+generic/listmapstringbool/listMapStringBool.go
+generic/listmapstringbool/listMapStringBool_test.go
+generic/listgroup/listGroup.go
+generic/listgroup/listGroup_test.go
+generic/listcontrolarray1d/listControlArray1D.go
+generic/listcontrolarray1d/listControlArray1D_test.go
+generic/listcontrolarray/listControlArray.go
+generic/listcontrolarray/listControlArray_test.go
+generic/listpairinstrumentportporttransform/listPairInstrumentPortPortTransform.go
+generic/listpairinstrumentportporttransform/listPairInstrumentPortPortTransform_test.go
