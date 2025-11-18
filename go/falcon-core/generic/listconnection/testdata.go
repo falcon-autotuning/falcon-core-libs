@@ -29,9 +29,7 @@ var (
 		mustPlungerGate("P1"),
 		mustBarrierGate("B1"),
 	}
-	val1          = mustBarrierGate("B2")
 	otherListData = []*connection.Handle{
 		mustPlungerGate("P2"),
 	}
-	defaultElemType = mustBarrierGate("B1")
 )
