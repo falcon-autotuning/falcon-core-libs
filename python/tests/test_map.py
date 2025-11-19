@@ -220,3 +220,77 @@ def test_from_json_unsupported_types_and_invalid_types_param():
     # unsupported types tuple
     with pytest.raises(TypeError):
         Map.from_json("{}", types=(str, int))
+
+
+def test_factory_with_iterable_initial():
+    # Iterable of pairs should be accepted by the Map factory
+    m = Map[int, int]([(1, 10), (2, 20)])
+    assert len(m) == 2
+    assert dict(m.items()) == {1: 10, 2: 20}
+
+
+def test_iter_and_items_with_non_int_maptype():
+    # Fake low-level object that only supplies to_json() and friends,
+    # but uses string keys; wrap with a non-int c_map_type so coercion is skipped.
+    class FakeStringKeys:
+        def __init__(self):
+            self._d = {"a": 1, "b": 2}
+
+        def to_json(self):
+            return json.dumps(self._d)
+
+        def size(self):
+            return len(self._d)
+
+        def at(self, k):
+            # support at if someone calls with a key
+            return self._d[str(k)]
+
+        def contains(self, k):
+            return str(k) in self._d
+
+        def insert_or_assign(self, k, v):
+            self._d[str(k)] = v
+
+        def erase(self, k):
+            self._d.pop(str(k), None)
+
+    fake = FakeStringKeys()
+    # Pass a non-_CMapIntInt c_map_type so Map._coerce_key returns keys unchanged.
+    m = Map(fake, c_map_type=object)
+
+    # iteration should yield string keys (fallback path, no int coercion)
+    keys = list(iter(m))
+    assert set(keys) == {"a", "b"}
+
+    # items should return string keys
+    assert dict(m.items()) == {"a": 1, "b": 2}
+
+
+def test_items_fallback_returns_string_keys():
+    class FakeStringKeys2:
+        def __init__(self):
+            self._d = {"x": 100}
+
+        def to_json(self):
+            return json.dumps(self._d)
+
+        def size(self):
+            return len(self._d)
+
+        def at(self, k):
+            return self._d[str(k)]
+
+        def contains(self, k):
+            return str(k) in self._d
+
+        def insert_or_assign(self, k, v):
+            self._d[str(k)] = v
+
+        def erase(self, k):
+            self._d.pop(str(k), None)
+
+    fake = FakeStringKeys2()
+    m = Map(fake, c_map_type=object)
+    items = m.items()
+    assert items == [("x", 100)]
