@@ -294,3 +294,82 @@ def test_items_fallback_returns_string_keys():
     m = Map(fake, c_map_type=object)
     items = m.items()
     assert items == [("x", 100)]
+
+
+def test_map_equality_and_non_map_comparisons():
+    m1 = Map[int, int]({1: 10, 2: 20})
+    m2 = Map[int, int]({1: 10, 2: 20})
+    m3 = Map[int, int]({1: 11})
+
+    # equality between maps
+    assert m1 == m2
+    assert not (m1 != m2)
+    assert m1 != m3
+
+    # comparison with unrelated objects should return False (not raise)
+    assert (m1 == 123) is False
+    assert (m1 != 123) is True
+
+
+def test_items_with_keys_only_and_values_only_behavior():
+    # keys-only fake: has keys() but no values(); items() should fallback to to_json()
+    class KeysOnly:
+        def __init__(self):
+            # maintain a dict for to_json fallback
+            self._d = {"1": 100, "2": 200}
+        def keys(self):
+            return ["1", "2"]
+        def to_json(self):
+            return json.dumps(self._d)
+        def size(self):
+            return len(self._d)
+        def at(self, k):
+            return self._d[str(k)]
+        def contains(self, k):
+            return str(k) in self._d
+        def insert_or_assign(self, k, v):
+            self._d[str(k)] = int(v)
+        def erase(self, k):
+            self._d.pop(str(k), None)
+
+    konly = KeysOnly()
+    m = Map(konly, _CMapIntInt)
+    # __iter__ should prefer low-level keys() method
+    assert list(m) == ["1", "2"]
+    # items() should fall back to to_json() and produce int keys for _CMapIntInt
+    it = dict(m.items())
+    assert it == {1: 100, 2: 200}
+
+    # values-only fake: has values() but no keys(); values() should use low-level values()
+    class ValuesOnly:
+        def __init__(self):
+            self._vals = [7, 8]
+            self._d = {"1": 7, "2": 8}
+        def values(self):
+            return list(self._vals)
+        def to_json(self):
+            return json.dumps(self._d)
+        def size(self):
+            return len(self._vals)
+        def at(self, k):
+            return self._d[str(k)]
+        def contains(self, k):
+            return str(k) in self._d
+        def insert_or_assign(self, k, v):
+            self._d[str(k)] = int(v)
+        def erase(self, k):
+            self._d.pop(str(k), None)
+
+    vonly = ValuesOnly()
+    m2 = Map(vonly, _CMapIntInt)
+    assert m2.values() == [7, 8]
+
+
+def test_from_json_default_types_path():
+    m = Map[int, int]()
+    m[10] = 100
+    js = m.to_json()
+    # default from_json should accept no types argument (uses MapIntInt)
+    m_round = Map.from_json(js)
+    assert isinstance(m_round, Map)
+    assert dict(m_round.items()) == dict(m.items())
