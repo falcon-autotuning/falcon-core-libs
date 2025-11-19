@@ -8,9 +8,6 @@ TESTNAME ?= TestConnection_ErrorOnClosed
 
 all: build
 
-gen-lists:
-	go run tools/genList/main.go
-
 gen-pairs:
 	go run tools/genPair/main.go
 
@@ -19,6 +16,9 @@ gen-farray:
 
 gen-maps:
 	go run tools/genMap/main.go
+
+gen-axes:
+	go run tools/genAxes/main.go
 
 build:
 	go build ./...
@@ -45,6 +45,14 @@ clean-gen-lists:
 			rm -f "$$file"; \
 		done < list_handles_manifest.txt; \
 		rm -f list_handles_manifest.txt; \
+	fi
+
+clean-gen-axes:
+	@if [ -f axes_handles_manifest.txt ]; then \
+		while read -r file; do \
+			rm -f "$$file"; \
+		done < axes_handles_manifest.txt; \
+		rm -f axes_handles_manifest.txt; \
 	fi
 
 clean-gen-maps:
