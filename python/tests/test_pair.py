@@ -71,3 +71,13 @@ def test_pair_eq_behavior():
     # comparison to an unrelated type should not raise, but evaluate to False/True
     assert (a == 123) is False
     assert (a != 123) is True
+
+
+def test_pair_from_json_invalid_types_param():
+    # Non-tuple types argument should raise the specific TypeError branch.
+    with pytest.raises(TypeError, match="types must be a tuple of"):
+        Pair.from_json("{}", types="not-a-tuple")
+
+    # Wrong-length tuple should also hit the same branch.
+    with pytest.raises(TypeError, match="types must be a tuple of"):
+        Pair.from_json("{}", types=(int,))
