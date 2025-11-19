@@ -89,50 +89,34 @@ cdef class MapIntInt:
             c_api.String_destroy(s)
 
     def keys(self):
-        """Return a Python list of keys (properly-typed)."""
+        """Return a Python list of keys (properly-typed) by reading the ListInt handle."""
         if self.handle == <c_api.MapIntIntHandle>0:
             return []
         cdef c_api.ListIntHandle lh = c_api.MapIntInt_keys(self.handle)
         if lh == <c_api.ListIntHandle>0:
             return []
-        cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
-        cdef const char* raw
-        cdef size_t ln
-        try:
-            if s == <c_api.StringHandle>0:
-                return []
-            raw = s.raw
-            ln = s.length
-            b = PyBytes_FromStringAndSize(raw, ln)
-            js = b.decode("utf-8")
-            return json.loads(js)
-        finally:
-            if s != <c_api.StringHandle>0:
-                c_api.String_destroy(s)
-            c_api.ListInt_destroy(lh)
+        cdef size_t n = c_api.ListInt_size(lh)
+        py_list = []
+        cdef size_t i
+        for i in range(n):
+            py_list.append(c_api.ListInt_at(lh, i))
+        c_api.ListInt_destroy(lh)
+        return py_list
 
     def values(self):
-        """Return a Python list of values (properly-typed)."""
+        """Return a Python list of values (properly-typed) by reading the ListInt handle."""
         if self.handle == <c_api.MapIntIntHandle>0:
             return []
         cdef c_api.ListIntHandle lh = c_api.MapIntInt_values(self.handle)
         if lh == <c_api.ListIntHandle>0:
             return []
-        cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
-        cdef const char* raw
-        cdef size_t ln
-        try:
-            if s == <c_api.StringHandle>0:
-                return []
-            raw = s.raw
-            ln = s.length
-            b = PyBytes_FromStringAndSize(raw, ln)
-            js = b.decode("utf-8")
-            return json.loads(js)
-        finally:
-            if s != <c_api.StringHandle>0:
-                c_api.String_destroy(s)
-            c_api.ListInt_destroy(lh)
+        cdef size_t n = c_api.ListInt_size(lh)
+        py_list = []
+        cdef size_t i
+        for i in range(n):
+            py_list.append(c_api.ListInt_at(lh, i))
+        c_api.ListInt_destroy(lh)
+        return py_list
 
     def __richcmp__(self, other, int op):
         if not isinstance(other, MapIntInt):
