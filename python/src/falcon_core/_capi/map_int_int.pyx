@@ -2,6 +2,7 @@
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from . cimport c_api
 from libc.stddef cimport size_t
+import json
 
 cdef class MapIntInt:
     """Manages a MapIntIntHandle and its lifecycle."""
@@ -86,6 +87,48 @@ cdef class MapIntInt:
             return b.decode("utf-8")
         finally:
             c_api.String_destroy(s)
+
+    def keys(self):
+        """Return a Python list of keys (properly-typed)."""
+        if self.handle == <c_api.MapIntIntHandle>0:
+            return []
+        cdef c_api.ListIntHandle lh = c_api.MapIntInt_keys(self.handle)
+        if lh == <c_api.ListIntHandle>0:
+            return []
+        cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
+        try:
+            if s == <c_api.StringHandle>0:
+                return []
+            cdef const char* raw = s.raw
+            cdef size_t ln = s.length
+            b = PyBytes_FromStringAndSize(raw, ln)
+            js = b.decode("utf-8")
+            return json.loads(js)
+        finally:
+            if s != <c_api.StringHandle>0:
+                c_api.String_destroy(s)
+            c_api.ListInt_destroy(lh)
+
+    def values(self):
+        """Return a Python list of values (properly-typed)."""
+        if self.handle == <c_api.MapIntIntHandle>0:
+            return []
+        cdef c_api.ListIntHandle lh = c_api.MapIntInt_values(self.handle)
+        if lh == <c_api.ListIntHandle>0:
+            return []
+        cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
+        try:
+            if s == <c_api.StringHandle>0:
+                return []
+            cdef const char* raw = s.raw
+            cdef size_t ln = s.length
+            b = PyBytes_FromStringAndSize(raw, ln)
+            js = b.decode("utf-8")
+            return json.loads(js)
+        finally:
+            if s != <c_api.StringHandle>0:
+                c_api.String_destroy(s)
+            c_api.ListInt_destroy(lh)
 
     def __richcmp__(self, other, int op):
         if not isinstance(other, MapIntInt):

@@ -42,6 +42,12 @@ class Map(collections.abc.MutableMapping):
         self._c = c_obj
         self._c_map_type = c_map_type
 
+    def _coerce_key(self, key):
+        # Currently only support int keys for the MapIntInt implementation.
+        if self._c_map_type is _CMapIntInt:
+            return int(key)
+        return key
+
     @classmethod
     def __class_getitem__(cls, types):
         if not isinstance(types, tuple) or len(types) != 2:
@@ -52,36 +58,52 @@ class Map(collections.abc.MutableMapping):
         return _MapFactory(c_map_type)
 
     def __getitem__(self, key):
-        try:
-            return self._c.at(key)
-        except ValueError:
+        key = self._coerce_key(key)
+        # Use contains to ensure we raise KeyError for missing keys.
+        if not self._c.contains(key):
             raise KeyError(key)
+        return self._c.at(key)
 
     def __setitem__(self, key, value):
         if self._c_map_type is None:
             raise TypeError("Cannot modify a Map that was not created with a factory.")
+        key = self._coerce_key(key)
+        # For int,int map coerce value as well
+        if self._c_map_type is _CMapIntInt:
+            value = int(value)
         self._c.insert_or_assign(key, value)
 
     def __delitem__(self, key):
+        key = self._coerce_key(key)
         if not self._c.contains(key):
             raise KeyError(key)
         self._c.erase(key)
 
     def __iter__(self):
-        # Use JSON serialization for a stable, simple iteration path.
+        # Prefer low-level keys() if available (returns Python list)
+        if hasattr(self._c, "keys"):
+            return iter(self._c.keys())
+        # Fallback to JSON parsing
         js = self.to_json()
         if not js:
             return iter(())
         d = json.loads(js)
+        # For int-key maps, convert keys back to ints
+        if self._c_map_type is _CMapIntInt:
+            return iter(int(k) for k in d.keys())
         return iter(d.keys())
 
     def __len__(self):
         return self._c.size()
 
     def keys(self):
+        if hasattr(self._c, "keys"):
+            return list(self._c.keys())
         return list(iter(self))
 
     def values(self):
+        if hasattr(self._c, "values"):
+            return list(self._c.values())
         js = self.to_json()
         if not js:
             return []
@@ -89,13 +111,21 @@ class Map(collections.abc.MutableMapping):
         return list(d.values())
 
     def items(self):
+        # Use low-level keys/values if available for correct typing
+        if hasattr(self._c, "keys") and hasattr(self._c, "values"):
+            ks = self._c.keys()
+            vs = self._c.values()
+            return list(zip(ks, vs))
         js = self.to_json()
         if not js:
             return []
         d = json.loads(js)
+        if self._c_map_type is _CMapIntInt:
+            return [(int(k), v) for k, v in d.items()]
         return list(d.items())
 
     def get(self, key, default=None):
+        key = self._coerce_key(key)
         if self._c.contains(key):
             return self._c.at(key)
         return default
