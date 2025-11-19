@@ -90,3 +90,5 @@ generic/listlabelledmeasuredarray/listLabelledMeasuredArray.go
 generic/listlabelledmeasuredarray/listLabelledMeasuredArray_test.go
 generic/listmeasurementcontext/listMeasurementContext.go
 generic/listmeasurementcontext/listMeasurementContext_test.go
+generic/listcoupledlabelleddomain/listCoupledLabelledDomain.go
+generic/listcoupledlabelleddomain/listCoupledLabelledDomain_test.go

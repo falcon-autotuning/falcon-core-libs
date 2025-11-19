@@ -442,6 +442,14 @@ func main() {
 			PrimitiveType:        false,
 			CElemTypeConstructor: "measurementcontext.FromCAPI",
 		},
+		{
+			Type:                 "ListCoupledLabelledDomain",
+			ElemType:             "*coupledlabelleddomain.Handle",
+			CType:                "CoupledLabelledDomainHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/coupledlabelleddomain"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "coupledlabelleddomain.FromCAPI",
+		},
 		// Add more types here...
 	}
 	for i := range types {
