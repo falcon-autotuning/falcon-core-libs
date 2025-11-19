@@ -46,12 +46,14 @@ class Map(collections.abc.MutableMapping):
         # Currently only support int keys for the MapIntInt implementation.
         if self._c_map_type is _CMapIntInt:
             return int(key)
-        return key
+        # return key
 
     @classmethod
     def __class_getitem__(cls, types):
         if not isinstance(types, tuple) or len(types) != 2:
-            raise TypeError("Map[...] requires two type parameters, e.g., Map[int, int]")
+            raise TypeError(
+                "Map[...] requires two type parameters, e.g., Map[int, int]"
+            )
         c_map_type = _C_MAP_REGISTRY.get(types)
         if c_map_type is None:
             raise TypeError(f"Map does not support types: {types}")
