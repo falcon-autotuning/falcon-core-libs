@@ -75,6 +75,29 @@ cdef extern from "falcon_core/generic/PairIntInt_c_api.h":
     StringHandle PairIntInt_to_json_string(PairIntIntHandle handle)
     PairIntIntHandle PairIntInt_from_json_string(StringHandle json)
 
+# Define types and functions from the MapIntInt C API.
+cdef extern from "falcon_core/generic/MapIntInt_c_api.h":
+    ctypedef void* MapIntIntHandle
+
+    MapIntIntHandle MapIntInt_create_empty()
+    MapIntIntHandle MapIntInt_create(const void* data, size_t count)
+    void MapIntInt_destroy(MapIntIntHandle handle)
+    void MapIntInt_insert_or_assign(MapIntIntHandle handle, int key, int value)
+    void MapIntInt_insert(MapIntIntHandle handle, int key, int value)
+    int  MapIntInt_at(MapIntIntHandle handle, int key)
+    void MapIntInt_erase(MapIntIntHandle handle, int key)
+    size_t MapIntInt_size(MapIntIntHandle handle)
+    int  MapIntInt_empty(MapIntIntHandle handle)
+    void MapIntInt_clear(MapIntIntHandle handle)
+    int  MapIntInt_contains(MapIntIntHandle handle, int key)
+    ListIntHandle MapIntInt_keys(MapIntIntHandle handle)
+    ListIntHandle MapIntInt_values(MapIntIntHandle handle)
+    void*        MapIntInt_items(MapIntIntHandle handle)
+    int MapIntInt_equal(MapIntIntHandle a, MapIntIntHandle b)
+    int MapIntInt_not_equal(MapIntIntHandle a, MapIntIntHandle b)
+    StringHandle MapIntInt_to_json_string(MapIntIntHandle handle)
+    MapIntIntHandle MapIntInt_from_json_string(StringHandle json)
+
 # Define types and functions from the ListConnection C API header.
 cdef extern from "falcon_core/generic/ListConnection_c_api.h":
     ctypedef void* ListConnectionHandle

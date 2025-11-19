@@ -74,6 +74,15 @@ ext_modules = [
         runtime_library_dirs=[C_API_LIB_DIR],
         language="c++",
     ),
+    Extension(
+        "falcon_core._capi.map_int_int",
+        sources=[os.path.join(CAPI_WRAPPER_DIR, "map_int_int.pyx")],
+        include_dirs=[C_API_INCLUDE_DIR, CAPI_WRAPPER_DIR],
+        libraries=C_API_LIBS,
+        library_dirs=[C_API_LIB_DIR],
+        runtime_library_dirs=[C_API_LIB_DIR],
+        language="c++",
+    ),
 ]
 
 setup(
