@@ -4,20 +4,20 @@ package mapconnectiondouble
 import (
 	"errors"
 	"runtime"
+	"strconv"
 	"sync"
 	"unsafe"
-  "strconv"
+
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	
+
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairconnectiondouble"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectiondouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectiondouble"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairconnectiondouble"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
-  
+
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listdouble"
-  
 )
 
 /*
@@ -118,19 +118,14 @@ func (h *Handle) InsertOrAssign(key *connection.Handle, value float64) error {
 	}
 	var cKey C.ConnectionHandle
 	var cValue C.double
-  
 
-capiKey, err := key.CAPIHandle()
-if err != nil {
-	return err
-}
-cKey = C.ConnectionHandle(capiKey)
+	capiKey, err := key.CAPIHandle()
+	if err != nil {
+		return err
+	}
+	cKey = C.ConnectionHandle(capiKey)
 
-
-  
-
-cValue = C.double(value)
-
+	cValue = C.double(value)
 
 	C.MapConnectionDouble_insert_or_assign(C.MapConnectionDoubleHandle(h.chandle), cKey, cValue)
 	return h.errorHandler.CheckCapiError()
@@ -144,50 +139,39 @@ func (h *Handle) Insert(key *connection.Handle, value float64) error {
 	}
 	var cKey C.ConnectionHandle
 	var cValue C.double
-  
 
-capiKey, err := key.CAPIHandle()
-if err != nil {
-	return err
-}
-cKey = C.ConnectionHandle(capiKey)
+	capiKey, err := key.CAPIHandle()
+	if err != nil {
+		return err
+	}
+	cKey = C.ConnectionHandle(capiKey)
 
-
-  
-
-cValue = C.double(value)
-
+	cValue = C.double(value)
 
 	C.MapConnectionDouble_insert(C.MapConnectionDoubleHandle(h.chandle), cKey, cValue)
 	return h.errorHandler.CheckCapiError()
 }
 
 func (h *Handle) At(key *connection.Handle) (float64, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
-		
 		return 0.0, errors.New("At: map is closed")
-		
 	}
 	var cKey C.ConnectionHandle
 
-capiKey, err := key.CAPIHandle()
-if err != nil {
-	return 0.0, err
-}
-cKey = C.ConnectionHandle(capiKey)
+	capiKey, err := key.CAPIHandle()
+	if err != nil {
+		return 0.0, err
+	}
+	cKey = C.ConnectionHandle(capiKey)
 
-
-	
 	val := float64(C.MapConnectionDouble_at(C.MapConnectionDoubleHandle(h.chandle), cKey))
-	
+
 	err = h.errorHandler.CheckCapiError()
 	if err != nil {
-		
 		return 0.0, err
-		
 	}
 	return val, nil
 }
@@ -199,14 +183,12 @@ func (h *Handle) Erase(key *connection.Handle) error {
 		return errors.New("Erase: map is closed")
 	}
 	var cKey C.ConnectionHandle
-  
 
-capiKey, err := key.CAPIHandle()
-if err != nil {
-	return err
-}
-cKey = C.ConnectionHandle(capiKey)
-
+	capiKey, err := key.CAPIHandle()
+	if err != nil {
+		return err
+	}
+	cKey = C.ConnectionHandle(capiKey)
 
 	C.MapConnectionDouble_erase(C.MapConnectionDoubleHandle(h.chandle), cKey)
 	return h.errorHandler.CheckCapiError()
@@ -251,21 +233,19 @@ func (h *Handle) Clear() error {
 }
 
 func (h *Handle) Contains(key *connection.Handle) (bool, error) {
-  var err error
+	var err error
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return false, errors.New("Contains: map is closed")
 	}
 	var cKey C.ConnectionHandle
-  
 
-capiKey, err := key.CAPIHandle()
-if err != nil {
-	return false, err
-}
-cKey = C.ConnectionHandle(capiKey)
-
+	capiKey, err := key.CAPIHandle()
+	if err != nil {
+		return false, err
+	}
+	cKey = C.ConnectionHandle(capiKey)
 
 	val := bool(C.MapConnectionDouble_contains(C.MapConnectionDoubleHandle(h.chandle), cKey))
 	err = h.errorHandler.CheckCapiError()
@@ -393,7 +373,3 @@ func FromJSON(json string) (*Handle, error) {
 	}
 	return new(h), nil
 }
-
-
-
-
