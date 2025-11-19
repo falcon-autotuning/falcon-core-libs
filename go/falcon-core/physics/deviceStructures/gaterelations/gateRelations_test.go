@@ -3,8 +3,6 @@ package gaterelations
 import (
 	"testing"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairconnectionconnections"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectionconnections"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
 )
@@ -27,32 +25,6 @@ func mustConnections(ids ...string) *connections.Handle {
 		handles[i] = h
 	}
 	h, err := connections.New(handles)
-	if err != nil {
-		panic(err)
-	}
-	return h
-}
-
-func mustListPairConnectionConnections() *listpairconnectionconnections.Handle {
-	type pair struct {
-		key  string
-		vals []string
-	}
-	inputs := []pair{
-		{"a", []string{"x", "y"}},
-		{"b", []string{"z"}},
-	}
-	pairs := make([]*pairconnectionconnections.Handle, len(inputs))
-	for i, p := range inputs {
-		conn := mustConnection(p.key)
-		conns := mustConnections(p.vals...)
-		h, err := pairconnectionconnections.New(conn, conns)
-		if err != nil {
-			panic(err)
-		}
-		pairs[i] = h
-	}
-	h, err := listpairconnectionconnections.New(pairs)
 	if err != nil {
 		panic(err)
 	}
