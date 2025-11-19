@@ -1,8 +1,13 @@
 # cython: language_level=3
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from . cimport c_api
+from .list_int cimport ListInt as _CListInt
 from libc.stddef cimport size_t
 import json
+
+# Import the high-level Python List wrapper so we can return List objects
+# for keys() and values().
+from ..generic.list import List as PyList
 
 cdef class MapIntInt:
     """Manages a MapIntIntHandle and its lifecycle."""
@@ -89,50 +94,38 @@ cdef class MapIntInt:
             c_api.String_destroy(s)
 
     def keys(self):
-        """Return a Python list of keys (properly-typed)."""
+        """Return a high-level List[int] wrapper for the keys."""
         if self.handle == <c_api.MapIntIntHandle>0:
-            return []
+            return PyList(_CListInt.create_empty(), _CListInt)
+
         cdef c_api.ListIntHandle lh = c_api.MapIntInt_keys(self.handle)
         if lh == <c_api.ListIntHandle>0:
-            return []
-        cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
-        cdef const char* raw
-        cdef size_t ln
-        try:
-            if s == <c_api.StringHandle>0:
-                return []
-            raw = s.raw
-            ln = s.length
-            b = PyBytes_FromStringAndSize(raw, ln)
-            js = b.decode("utf-8")
-            return json.loads(js)
-        finally:
-            if s != <c_api.StringHandle>0:
-                c_api.String_destroy(s)
-            c_api.ListInt_destroy(lh)
+            return PyList(_CListInt.create_empty(), _CListInt)
+
+        # Wrap the returned ListIntHandle into a cdef ListInt instance (owning)
+        cdef _CListInt c_list = _CListInt.__new__(_CListInt)
+        c_list.handle = lh
+        c_list.owned = True
+
+        # Return a Python-level generic List wrapper around the c_list
+        return PyList(c_list, _CListInt)
 
     def values(self):
-        """Return a Python list of values (properly-typed)."""
+        """Return a high-level List[int] wrapper for the values."""
         if self.handle == <c_api.MapIntIntHandle>0:
-            return []
+            return PyList(_CListInt.create_empty(), _CListInt)
+
         cdef c_api.ListIntHandle lh = c_api.MapIntInt_values(self.handle)
         if lh == <c_api.ListIntHandle>0:
-            return []
-        cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
-        cdef const char* raw
-        cdef size_t ln
-        try:
-            if s == <c_api.StringHandle>0:
-                return []
-            raw = s.raw
-            ln = s.length
-            b = PyBytes_FromStringAndSize(raw, ln)
-            js = b.decode("utf-8")
-            return json.loads(js)
-        finally:
-            if s != <c_api.StringHandle>0:
-                c_api.String_destroy(s)
-            c_api.ListInt_destroy(lh)
+            return PyList(_CListInt.create_empty(), _CListInt)
+
+        # Wrap the returned ListIntHandle into a cdef ListInt instance (owning)
+        cdef _CListInt c_list = _CListInt.__new__(_CListInt)
+        c_list.handle = lh
+        c_list.owned = True
+
+        # Return a Python-level generic List wrapper around the c_list
+        return PyList(c_list, _CListInt)
 
     def __richcmp__(self, other, int op):
         if not isinstance(other, MapIntInt):
