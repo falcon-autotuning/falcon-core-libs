@@ -17,6 +17,9 @@ gen-pairs:
 gen-farray:
 	go run tools/genFarray/main.go
 
+gen-maps:
+	go run tools/genMap/main.go
+
 build:
 	go build ./...
 
@@ -42,6 +45,14 @@ clean-gen-lists:
 			rm -f "$$file"; \
 		done < list_handles_manifest.txt; \
 		rm -f list_handles_manifest.txt; \
+	fi
+
+clean-gen-maps:
+	@if [ -f map_handles_manifest.txt ]; then \
+		while read -r file; do \
+			rm -f "$$file"; \
+		done < map_handles_manifest.txt; \
+		rm -f map_handles_manifest.txt; \
 	fi
 
 clean-gen-farray:

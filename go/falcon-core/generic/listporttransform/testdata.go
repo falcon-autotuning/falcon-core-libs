@@ -1,10 +1,11 @@
-package listinstrumentport
+package listporttransform
 
 import (
 	"fmt"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
@@ -33,14 +34,22 @@ func mustVolt() *symbolunit.Handle {
 	return h
 }
 
-// ... more helpers as needed
+func mustPortTransform(port *instrumentport.Handle, val float64) *porttransform.Handle {
+	h, err := porttransform.NewConstantTransform(port, val)
+	if err != nil {
+		panic(err)
+	}
+	return h
+}
 
 var (
-	defaultListData = []*instrumentport.Handle{
-		mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""),
-		mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), ""),
+	defaultListData = []*porttransform.Handle{
+		mustPortTransform(
+			mustInstrumentPort("P2", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0),
+		mustPortTransform(
+			mustInstrumentPort("P1", mustBarrierGate("P1"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0),
 	}
-	otherListData = []*instrumentport.Handle{
-		mustInstrumentPort("P2", mustBarrierGate("P2"), instrumenttypes.VoltageSource(), mustVolt(), ""),
+	otherListData = []*porttransform.Handle{
+		mustPortTransform(mustInstrumentPort("P4", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.2),
 	}
 )
