@@ -8,6 +8,8 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listfarraydouble"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listlistsizet"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
@@ -120,6 +122,9 @@ func (h *Handle) Close() error {
 func (h *Handle) Is1D() (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	val := bool(C.MeasuredArray1D_is_1D(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -131,6 +136,9 @@ func (h *Handle) Is1D() (bool, error) {
 func (h *Handle) As1D() (*farraydouble.Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := C.MeasuredArray1D_as_1D(C.MeasuredArray1DHandle(h.chandle))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -142,6 +150,9 @@ func (h *Handle) As1D() (*farraydouble.Handle, error) {
 func (h *Handle) GetStart() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_start(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -153,6 +164,9 @@ func (h *Handle) GetStart() (float64, error) {
 func (h *Handle) GetEnd() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_end(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -164,6 +178,9 @@ func (h *Handle) GetEnd() (float64, error) {
 func (h *Handle) IsDecreasing() (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	val := bool(C.MeasuredArray1D_is_decreasing(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -175,6 +192,9 @@ func (h *Handle) IsDecreasing() (bool, error) {
 func (h *Handle) IsIncreasing() (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	val := bool(C.MeasuredArray1D_is_increasing(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -186,6 +206,9 @@ func (h *Handle) IsIncreasing() (bool, error) {
 func (h *Handle) GetDistance() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_distance(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -197,6 +220,9 @@ func (h *Handle) GetDistance() (float64, error) {
 func (h *Handle) GetMean() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_mean(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -208,6 +234,9 @@ func (h *Handle) GetMean() (float64, error) {
 func (h *Handle) GetStd() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_std(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -219,6 +248,9 @@ func (h *Handle) GetStd() (float64, error) {
 func (h *Handle) Reverse() error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_reverse(C.MeasuredArray1DHandle(h.chandle))
 	return h.errorHandler.CheckCapiError()
 }
@@ -226,6 +258,9 @@ func (h *Handle) Reverse() error {
 func (h *Handle) GetClosestIndex(value float64) (int, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := int(C.MeasuredArray1D_get_closest_index(C.MeasuredArray1DHandle(h.chandle), C.double(value)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -234,20 +269,26 @@ func (h *Handle) GetClosestIndex(value float64) (int, error) {
 	return val, nil
 }
 
-func (h *Handle) EvenDivisions(divisions int) (unsafe.Pointer, error) {
+func (h *Handle) EvenDivisions(divisions int) (*listfarraydouble.Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := C.MeasuredArray1D_even_divisions(C.MeasuredArray1DHandle(h.chandle), C.size_t(divisions))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
-	return unsafe.Pointer(res), nil
+	return listfarraydouble.FromCAPI(unsafe.Pointer(res))
 }
 
 func (h *Handle) Size() (int, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return 0, errors.New("Size: MeasuredArray1D is closed")
 	}
@@ -318,6 +359,9 @@ func (h *Handle) Data() ([]float64, error) {
 func (h *Handle) PlusEqualsFArray(other *farraydouble.Handle) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return errors.New("PlusEqualsFArray: other is nil")
 	}
@@ -332,6 +376,9 @@ func (h *Handle) PlusEqualsFArray(other *farraydouble.Handle) error {
 func (h *Handle) PlusEqualsDouble(other float64) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_plusequals_double(C.MeasuredArray1DHandle(h.chandle), C.double(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -339,6 +386,9 @@ func (h *Handle) PlusEqualsDouble(other float64) error {
 func (h *Handle) PlusEqualsInt(other int) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_plusequals_int(C.MeasuredArray1DHandle(h.chandle), C.int(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -346,6 +396,9 @@ func (h *Handle) PlusEqualsInt(other int) error {
 func (h *Handle) PlusMeasuredArray1D(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("PlusMeasuredArray1D: other is nil")
 	}
@@ -365,6 +418,9 @@ func (h *Handle) PlusMeasuredArray1D(other *Handle) (*Handle, error) {
 func (h *Handle) PlusFArray(other *farraydouble.Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("PlusFArray: other is nil")
 	}
@@ -383,6 +439,9 @@ func (h *Handle) PlusFArray(other *farraydouble.Handle) (*Handle, error) {
 func (h *Handle) PlusDouble(other float64) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_plus_double(C.MeasuredArray1DHandle(h.chandle), C.double(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -394,6 +453,9 @@ func (h *Handle) PlusDouble(other float64) (*Handle, error) {
 func (h *Handle) PlusInt(other int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_plus_int(C.MeasuredArray1DHandle(h.chandle), C.int(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -405,6 +467,9 @@ func (h *Handle) PlusInt(other int) (*Handle, error) {
 func (h *Handle) MinusEqualsFArray(other *farraydouble.Handle) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return errors.New("MinusEqualsFArray: other is nil")
 	}
@@ -419,6 +484,9 @@ func (h *Handle) MinusEqualsFArray(other *farraydouble.Handle) error {
 func (h *Handle) MinusEqualsDouble(other float64) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_minusequals_double(C.MeasuredArray1DHandle(h.chandle), C.double(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -426,6 +494,9 @@ func (h *Handle) MinusEqualsDouble(other float64) error {
 func (h *Handle) MinusEqualsInt(other int) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_minusequals_int(C.MeasuredArray1DHandle(h.chandle), C.int(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -433,6 +504,9 @@ func (h *Handle) MinusEqualsInt(other int) error {
 func (h *Handle) MinusMeasuredArray1D(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("MinusMeasuredArray1D: other is nil")
 	}
@@ -452,6 +526,9 @@ func (h *Handle) MinusMeasuredArray1D(other *Handle) (*Handle, error) {
 func (h *Handle) MinusFArray(other *farraydouble.Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("MinusFArray: other is nil")
 	}
@@ -470,6 +547,9 @@ func (h *Handle) MinusFArray(other *farraydouble.Handle) (*Handle, error) {
 func (h *Handle) MinusDouble(other float64) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_minus_double(C.MeasuredArray1DHandle(h.chandle), C.double(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -481,6 +561,9 @@ func (h *Handle) MinusDouble(other float64) (*Handle, error) {
 func (h *Handle) MinusInt(other int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_minus_int(C.MeasuredArray1DHandle(h.chandle), C.int(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -492,6 +575,9 @@ func (h *Handle) MinusInt(other int) (*Handle, error) {
 func (h *Handle) Negation() (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_negation(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -503,6 +589,9 @@ func (h *Handle) Negation() (*Handle, error) {
 func (h *Handle) TimesEqualsFArray(other *farraydouble.Handle) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return errors.New("TimesEqualsMeasuredArray1D: other is nil")
 	}
@@ -517,6 +606,9 @@ func (h *Handle) TimesEqualsFArray(other *farraydouble.Handle) error {
 func (h *Handle) TimesEqualsDouble(other float64) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_timesequals_double(C.MeasuredArray1DHandle(h.chandle), C.double(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -524,6 +616,9 @@ func (h *Handle) TimesEqualsDouble(other float64) error {
 func (h *Handle) TimesEqualsInt(other int) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_timesequals_int(C.MeasuredArray1DHandle(h.chandle), C.int(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -531,6 +626,9 @@ func (h *Handle) TimesEqualsInt(other int) error {
 func (h *Handle) TimesMeasuredArray1D(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("TimesMeasuredArray1D: other is nil")
 	}
@@ -550,6 +648,9 @@ func (h *Handle) TimesMeasuredArray1D(other *Handle) (*Handle, error) {
 func (h *Handle) TimesFArray(other *farraydouble.Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("TimesFArray: other is nil")
 	}
@@ -568,6 +669,9 @@ func (h *Handle) TimesFArray(other *farraydouble.Handle) (*Handle, error) {
 func (h *Handle) TimesDouble(other float64) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_times_double(C.MeasuredArray1DHandle(h.chandle), C.double(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -579,6 +683,9 @@ func (h *Handle) TimesDouble(other float64) (*Handle, error) {
 func (h *Handle) TimesInt(other int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_times_int(C.MeasuredArray1DHandle(h.chandle), C.int(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -590,6 +697,9 @@ func (h *Handle) TimesInt(other int) (*Handle, error) {
 func (h *Handle) DividesEqualsFArray(other *farraydouble.Handle) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return errors.New("DividesEqualsFArray: other is nil")
 	}
@@ -604,6 +714,9 @@ func (h *Handle) DividesEqualsFArray(other *farraydouble.Handle) error {
 func (h *Handle) DividesEqualsDouble(other float64) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_dividesequals_double(C.MeasuredArray1DHandle(h.chandle), C.double(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -611,6 +724,9 @@ func (h *Handle) DividesEqualsDouble(other float64) error {
 func (h *Handle) DividesEqualsInt(other int) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_dividesequals_int(C.MeasuredArray1DHandle(h.chandle), C.int(other))
 	return h.errorHandler.CheckCapiError()
 }
@@ -618,6 +734,9 @@ func (h *Handle) DividesEqualsInt(other int) error {
 func (h *Handle) DividesMeasuredArray1D(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("DividesMeasuredArray1D: other is nil")
 	}
@@ -641,6 +760,9 @@ func (h *Handle) DividesMeasuredArray1D(other *Handle) (*Handle, error) {
 func (h *Handle) DividesFArray(other *farraydouble.Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("DividesFArray: other is nil")
 	}
@@ -659,6 +781,9 @@ func (h *Handle) DividesFArray(other *farraydouble.Handle) (*Handle, error) {
 func (h *Handle) DividesDouble(other float64) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_divides_double(C.MeasuredArray1DHandle(h.chandle), C.double(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -670,6 +795,9 @@ func (h *Handle) DividesDouble(other float64) (*Handle, error) {
 func (h *Handle) DividesInt(other int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_divides_int(C.MeasuredArray1DHandle(h.chandle), C.int(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -681,6 +809,9 @@ func (h *Handle) DividesInt(other int) (*Handle, error) {
 func (h *Handle) Pow(other float64) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_pow(C.MeasuredArray1DHandle(h.chandle), C.double(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -692,6 +823,9 @@ func (h *Handle) Pow(other float64) (*Handle, error) {
 func (h *Handle) Abs() (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_abs(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -703,6 +837,9 @@ func (h *Handle) Abs() (*Handle, error) {
 func (h *Handle) MinFArray(other *farraydouble.Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("MinFArray: other is nil")
 	}
@@ -721,6 +858,9 @@ func (h *Handle) MinFArray(other *farraydouble.Handle) (*Handle, error) {
 func (h *Handle) MinMeasuredArray1D(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("MinMeasuredArray1D: other is nil")
 	}
@@ -740,6 +880,9 @@ func (h *Handle) MinMeasuredArray1D(other *Handle) (*Handle, error) {
 func (h *Handle) MaxFArray(other *farraydouble.Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("MaxFArray: other is nil")
 	}
@@ -758,6 +901,9 @@ func (h *Handle) MaxFArray(other *farraydouble.Handle) (*Handle, error) {
 func (h *Handle) MaxMeasuredArray1D(other *Handle) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return nil, errors.New("MaxMeasuredArray1D: other is nil")
 	}
@@ -777,6 +923,9 @@ func (h *Handle) MaxMeasuredArray1D(other *Handle) (*Handle, error) {
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return false, errors.New("Equal: other is nil")
 	}
@@ -796,6 +945,9 @@ func (h *Handle) Equal(other *Handle) (bool, error) {
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return false, errors.New("NotEqual: other is nil")
 	}
@@ -815,6 +967,9 @@ func (h *Handle) NotEqual(other *Handle) (bool, error) {
 func (h *Handle) GreaterThan(value float64) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	val := bool(C.MeasuredArray1D_greaterthan(C.MeasuredArray1DHandle(h.chandle), C.double(value)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -826,6 +981,9 @@ func (h *Handle) GreaterThan(value float64) (bool, error) {
 func (h *Handle) LessThan(value float64) (bool, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return false, errors.New("MeasuredArray1D is closed")
+	}
 	val := bool(C.MeasuredArray1D_lessthan(C.MeasuredArray1DHandle(h.chandle), C.double(value)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -837,6 +995,9 @@ func (h *Handle) LessThan(value float64) (bool, error) {
 func (h *Handle) RemoveOffset(offset float64) error {
 	h.mu.Lock()
 	defer h.mu.Unlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return errors.New("MeasuredArray1D is closed")
+	}
 	C.MeasuredArray1D_remove_offset(C.MeasuredArray1DHandle(h.chandle), C.double(offset))
 	return h.errorHandler.CheckCapiError()
 }
@@ -844,6 +1005,9 @@ func (h *Handle) RemoveOffset(offset float64) error {
 func (h *Handle) Sum() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_sum(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -855,6 +1019,9 @@ func (h *Handle) Sum() (float64, error) {
 func (h *Handle) Reshape(shape []int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -867,20 +1034,26 @@ func (h *Handle) Reshape(shape []int) (*Handle, error) {
 	return new(res), nil
 }
 
-func (h *Handle) Where(value float64) (unsafe.Pointer, error) {
+func (h *Handle) Where(value float64) (*listlistsizet.Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := C.MeasuredArray1D_where(C.MeasuredArray1DHandle(h.chandle), C.double(value))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
 		return nil, err
 	}
-	return unsafe.Pointer(res), nil
+	return listlistsizet.FromCAPI(unsafe.Pointer(res))
 }
 
 func (h *Handle) Flip(axis int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_flip(C.MeasuredArray1DHandle(h.chandle), C.size_t(axis)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -892,6 +1065,9 @@ func (h *Handle) Flip(axis int) (*Handle, error) {
 func (h *Handle) FullGradient() ([]*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	size := int(C.MeasuredArray1D_dimension(C.MeasuredArray1DHandle(h.chandle)))
 	out := make([]C.MeasuredArray1DHandle, size)
 	C.MeasuredArray1D_full_gradient(C.MeasuredArray1DHandle(h.chandle), &out[0], C.size_t(size))
@@ -909,6 +1085,9 @@ func (h *Handle) FullGradient() ([]*Handle, error) {
 func (h *Handle) Gradient(axis int) (*Handle, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return nil, errors.New("MeasuredArray1D is closed")
+	}
 	res := chandle(C.MeasuredArray1D_gradient(C.MeasuredArray1DHandle(h.chandle), C.size_t(axis)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -920,6 +1099,9 @@ func (h *Handle) Gradient(axis int) (*Handle, error) {
 func (h *Handle) GetSumOfSquares() (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_sum_of_squares(C.MeasuredArray1DHandle(h.chandle)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -931,6 +1113,9 @@ func (h *Handle) GetSumOfSquares() (float64, error) {
 func (h *Handle) GetSummedDiffIntOfSquares(other int) (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_summed_diff_int_of_squares(C.MeasuredArray1DHandle(h.chandle), C.int(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -942,6 +1127,9 @@ func (h *Handle) GetSummedDiffIntOfSquares(other int) (float64, error) {
 func (h *Handle) GetSummedDiffDoubleOfSquares(other float64) (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	val := float64(C.MeasuredArray1D_get_summed_diff_double_of_squares(C.MeasuredArray1DHandle(h.chandle), C.double(other)))
 	err := h.errorHandler.CheckCapiError()
 	if err != nil {
@@ -953,6 +1141,9 @@ func (h *Handle) GetSummedDiffDoubleOfSquares(other float64) (float64, error) {
 func (h *Handle) GetSummedDiffArrayOfSquares(other *Handle) (float64, error) {
 	h.mu.RLock()
 	defer h.mu.RUnlock()
+	if h.closed || h.chandle == utils.NilHandle[chandle]() {
+		return 0, errors.New("MeasuredArray1D is closed")
+	}
 	if other == nil {
 		return 0, errors.New("GetSummedDiffArrayOfSquares: other is nil")
 	}
