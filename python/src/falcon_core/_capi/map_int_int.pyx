@@ -96,11 +96,13 @@ cdef class MapIntInt:
         if lh == <c_api.ListIntHandle>0:
             return []
         cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
+        cdef const char* raw
+        cdef size_t ln
         try:
             if s == <c_api.StringHandle>0:
                 return []
-            cdef const char* raw = s.raw
-            cdef size_t ln = s.length
+            raw = s.raw
+            ln = s.length
             b = PyBytes_FromStringAndSize(raw, ln)
             js = b.decode("utf-8")
             return json.loads(js)
@@ -117,11 +119,13 @@ cdef class MapIntInt:
         if lh == <c_api.ListIntHandle>0:
             return []
         cdef c_api.StringHandle s = c_api.ListInt_to_json_string(lh)
+        cdef const char* raw
+        cdef size_t ln
         try:
             if s == <c_api.StringHandle>0:
                 return []
-            cdef const char* raw = s.raw
-            cdef size_t ln = s.length
+            raw = s.raw
+            ln = s.length
             b = PyBytes_FromStringAndSize(raw, ln)
             js = b.decode("utf-8")
             return json.loads(js)
