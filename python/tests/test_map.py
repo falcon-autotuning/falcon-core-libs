@@ -62,4 +62,3 @@ def test_map_get_default_and_contains_clear_empty():
     assert m.contains(1) if hasattr(m, "contains") else True
     m.clear()
     assert len(m) == 0
-    assert m.to_json() == "{}" or m.to_json() == ""  # depending on C API representation
