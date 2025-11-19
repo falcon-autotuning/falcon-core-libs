@@ -8,8 +8,6 @@ from cpython.bytes cimport PyBytes_FromStringAndSize
 
 cdef class ListInt:
     """Manages a ListIntHandle and its lifecycle."""
-    cdef c_api.ListIntHandle handle
-    cdef bint owned
 
     def __cinit__(self):
         self.handle = <c_api.ListIntHandle>0
