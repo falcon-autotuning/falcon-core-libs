@@ -373,3 +373,61 @@ def test_from_json_default_types_path():
     m_round = Map.from_json(js)
     assert isinstance(m_round, Map)
     assert dict(m_round.items()) == dict(m.items())
+
+
+def test_empty_to_json_fallback_returns_empty_iterables():
+    """Ensure empty to_json() from low-level object yields empty iter/values/items."""
+    class EmptyJSON:
+        def to_json(self):
+            return ""
+        def size(self):
+            return 0
+        def at(self, k):
+            raise KeyError(k)
+        def contains(self, k):
+            return False
+        def insert_or_assign(self, k, v):
+            pass
+        def erase(self, k):
+            pass
+
+    fake = EmptyJSON()
+    m = Map(fake, c_map_type=object)
+
+    # __iter__ should hit the js == "" branch and return an empty iterator
+    assert list(m) == []
+    # keys() falls back to iter(), should be empty
+    assert m.keys() == []
+    # values() should hit js == "" branch and return empty list
+    assert m.values() == []
+    # items() should hit js == "" branch and return empty list
+    assert m.items() == []
+
+
+def test_coerce_key_non_maptype_used_in_get_and_getitem():
+    """When c_map_type is not the int-int specialization, _coerce_key must return the key unchanged."""
+    class FakeStrKeys:
+        def __init__(self):
+            self._d = {"a": 1}
+        def to_json(self):
+            return json.dumps(self._d)
+        def size(self):
+            return len(self._d)
+        def at(self, k):
+            return self._d[str(k)]
+        def contains(self, k):
+            return str(k) in self._d
+        def insert_or_assign(self, k, v):
+            self._d[str(k)] = v
+        def erase(self, k):
+            self._d.pop(str(k), None)
+
+    fake = FakeStrKeys()
+    m = Map(fake, c_map_type=object)
+
+    # get should use the unmodified key 'a' and return the value
+    assert m.get("a") == 1
+
+    # missing key should raise KeyError via __getitem__
+    with pytest.raises(KeyError):
+        _ = m["missing"]
