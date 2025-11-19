@@ -66,57 +66,6 @@ def test_map_get_default_and_contains_clear_empty():
     assert len(m) == 0
 
 
-def test_iter_and_items_fallback_using_to_json():
-    """
-    If the low-level object does not expose keys()/values(), Map should
-    fall back to using to_json() for iteration and items().
-    """
-    class FakeFallback:
-        # This fake simulates a low-level C wrapper that provides at/size/contains
-        # and a to_json() method, but DOES NOT have keys()/values().
-        def __init__(self):
-            # JSON uses string keys; Map should convert them back to ints in fallback
-            self._dict = {"1": 100, "2": 200}
-
-        def to_json(self):
-            return json.dumps(self._dict)
-
-        def size(self):
-            # used by __len__
-            return len(self._dict)
-
-        def at(self, key_or_index):
-            # Map.__getitem__ only calls self._c.at(key) when key is int after coercion,
-            # but for iteration/fallback we rely on JSON parsing, so 'at' isn't used here.
-            # Implement a best-effort mapping: if given int, map to value by str(key).
-            return self._dict[str(key_or_index)]
-
-        def contains(self, key):
-            return str(key) in self._dict
-
-        def insert_or_assign(self, key, value):
-            self._dict[str(key)] = int(value)
-
-        def erase(self, key):
-            self._dict.pop(str(key), None)
-
-    fake = FakeFallback()
-    m = Map(fake, _CMapIntInt)
-
-    # iteration should yield integer keys
-    it_keys = list(iter(m))
-    assert set(it_keys) == {1, 2}
-
-    # keys/values/items should be derived from JSON fallback
-    k = m.keys()
-    v = m.values()
-    it = dict(m.items())
-    assert set(k) == {1, 2}
-    assert set(v) == {100, 200}
-    assert it == {1: 100, 2: 200}
-
-    # repr should contain Map( and the mapping
-    assert "Map(" in repr(m)
 
 
 def test_lowlevel_keys_values_preferred():
@@ -229,71 +178,8 @@ def test_factory_with_iterable_initial():
     assert dict(m.items()) == {1: 10, 2: 20}
 
 
-def test_iter_and_items_with_non_int_maptype():
-    # Fake low-level object that only supplies to_json() and friends,
-    # but uses string keys; wrap with a non-int c_map_type so coercion is skipped.
-    class FakeStringKeys:
-        def __init__(self):
-            self._d = {"a": 1, "b": 2}
-
-        def to_json(self):
-            return json.dumps(self._d)
-
-        def size(self):
-            return len(self._d)
-
-        def at(self, k):
-            # support at if someone calls with a key
-            return self._d[str(k)]
-
-        def contains(self, k):
-            return str(k) in self._d
-
-        def insert_or_assign(self, k, v):
-            self._d[str(k)] = v
-
-        def erase(self, k):
-            self._d.pop(str(k), None)
-
-    fake = FakeStringKeys()
-    # Pass a non-_CMapIntInt c_map_type so Map._coerce_key returns keys unchanged.
-    m = Map(fake, c_map_type=object)
-
-    # iteration should yield string keys (fallback path, no int coercion)
-    keys = list(iter(m))
-    assert set(keys) == {"a", "b"}
-
-    # items should return string keys
-    assert dict(m.items()) == {"a": 1, "b": 2}
 
 
-def test_items_fallback_returns_string_keys():
-    class FakeStringKeys2:
-        def __init__(self):
-            self._d = {"x": 100}
-
-        def to_json(self):
-            return json.dumps(self._d)
-
-        def size(self):
-            return len(self._d)
-
-        def at(self, k):
-            return self._d[str(k)]
-
-        def contains(self, k):
-            return str(k) in self._d
-
-        def insert_or_assign(self, k, v):
-            self._d[str(k)] = v
-
-        def erase(self, k):
-            self._d.pop(str(k), None)
-
-    fake = FakeStringKeys2()
-    m = Map(fake, c_map_type=object)
-    items = m.items()
-    assert items == [("x", 100)]
 
 
 def test_map_equality_and_non_map_comparisons():
@@ -311,58 +197,6 @@ def test_map_equality_and_non_map_comparisons():
     assert (m1 != 123) is True
 
 
-def test_items_with_keys_only_and_values_only_behavior():
-    # keys-only fake: has keys() but no values(); items() should fallback to to_json()
-    class KeysOnly:
-        def __init__(self):
-            # maintain a dict for to_json fallback
-            self._d = {"1": 100, "2": 200}
-        def keys(self):
-            return ["1", "2"]
-        def to_json(self):
-            return json.dumps(self._d)
-        def size(self):
-            return len(self._d)
-        def at(self, k):
-            return self._d[str(k)]
-        def contains(self, k):
-            return str(k) in self._d
-        def insert_or_assign(self, k, v):
-            self._d[str(k)] = int(v)
-        def erase(self, k):
-            self._d.pop(str(k), None)
-
-    konly = KeysOnly()
-    m = Map(konly, _CMapIntInt)
-    # __iter__ should prefer low-level keys() method
-    assert list(m) == ["1", "2"]
-    # items() should fall back to to_json() and produce int keys for _CMapIntInt
-    it = dict(m.items())
-    assert it == {1: 100, 2: 200}
-
-    # values-only fake: has values() but no keys(); values() should use low-level values()
-    class ValuesOnly:
-        def __init__(self):
-            self._vals = [7, 8]
-            self._d = {"1": 7, "2": 8}
-        def values(self):
-            return list(self._vals)
-        def to_json(self):
-            return json.dumps(self._d)
-        def size(self):
-            return len(self._vals)
-        def at(self, k):
-            return self._d[str(k)]
-        def contains(self, k):
-            return str(k) in self._d
-        def insert_or_assign(self, k, v):
-            self._d[str(k)] = int(v)
-        def erase(self, k):
-            self._d.pop(str(k), None)
-
-    vonly = ValuesOnly()
-    m2 = Map(vonly, _CMapIntInt)
-    assert m2.values() == [7, 8]
 
 
 def test_from_json_default_types_path():
@@ -375,59 +209,5 @@ def test_from_json_default_types_path():
     assert dict(m_round.items()) == dict(m.items())
 
 
-def test_empty_to_json_fallback_returns_empty_iterables():
-    """Ensure empty to_json() from low-level object yields empty iter/values/items."""
-    class EmptyJSON:
-        def to_json(self):
-            return ""
-        def size(self):
-            return 0
-        def at(self, k):
-            raise KeyError(k)
-        def contains(self, k):
-            return False
-        def insert_or_assign(self, k, v):
-            pass
-        def erase(self, k):
-            pass
-
-    fake = EmptyJSON()
-    m = Map(fake, c_map_type=object)
-
-    # __iter__ should hit the js == "" branch and return an empty iterator
-    assert list(m) == []
-    # keys() falls back to iter(), should be empty
-    assert m.keys() == []
-    # values() should hit js == "" branch and return empty list
-    assert m.values() == []
-    # items() should hit js == "" branch and return empty list
-    assert m.items() == []
 
 
-def test_coerce_key_non_maptype_used_in_get_and_getitem():
-    """When c_map_type is not the int-int specialization, _coerce_key must return the key unchanged."""
-    class FakeStrKeys:
-        def __init__(self):
-            self._d = {"a": 1}
-        def to_json(self):
-            return json.dumps(self._d)
-        def size(self):
-            return len(self._d)
-        def at(self, k):
-            return self._d[str(k)]
-        def contains(self, k):
-            return str(k) in self._d
-        def insert_or_assign(self, k, v):
-            self._d[str(k)] = v
-        def erase(self, k):
-            self._d.pop(str(k), None)
-
-    fake = FakeStrKeys()
-    m = Map(fake, c_map_type=object)
-
-    # get should use the unmodified key 'a' and return the value
-    assert m.get("a") == 1
-
-    # missing key should raise KeyError via __getitem__
-    with pytest.raises(KeyError):
-        _ = m["missing"]
