@@ -11,7 +11,7 @@ cdef class MapIntInt:
         self.owned = True
 
     def __dealloc__(self):
-        if getattr(self, "handle", <c_api.MapIntIntHandle>0) != <c_api.MapIntIntHandle>0 and getattr(self, "owned", True):
+        if hasattr(self, "handle") and self.handle != <c_api.MapIntIntHandle>0 and getattr(self, "owned", True):
             c_api.MapIntInt_destroy(self.handle)
         self.handle = <c_api.MapIntIntHandle>0
 
