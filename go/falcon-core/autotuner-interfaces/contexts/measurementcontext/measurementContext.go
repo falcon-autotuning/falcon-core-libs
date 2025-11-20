@@ -16,6 +16,7 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
@@ -24,13 +25,14 @@ import (
 type chandle C.MeasurementContextHandle
 
 type Handle struct {
-	chandle chandle
-	mu      sync.RWMutex
-	closed  bool
+	chandle      chandle
+	mu           sync.RWMutex
+	closed       bool
+	errorHandler *errorhandling.Handle
 }
 
 func new(h chandle) *Handle {
-	handle := &Handle{chandle: h}
+	handle := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
 	runtime.SetFinalizer(handle, func(h *Handle) { h.Close() })
 	return handle
 }
@@ -54,6 +56,10 @@ func New(connection *connection.Handle, instrumentType string) (*Handle, error) 
 		return nil, err
 	}
 	h := chandle(C.MeasurementContext_create(C.ConnectionHandle(connPtr), C.StringHandle(strPtr)))
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return new(h), nil
 }
 
@@ -63,6 +69,10 @@ func NewFromPort(port *instrumentport.Handle) (*Handle, error) {
 		return nil, err
 	}
 	h := chandle(C.MeasurementContext_create_from_port(C.InstrumentPortHandle(portPtr)))
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return new(h), nil
 }
 
@@ -94,6 +104,10 @@ func (h *Handle) Connection() (*connection.Handle, error) {
 		return nil, errors.New("Connection: handle is closed")
 	}
 	cConn := C.MeasurementContext_connection(C.MeasurementContextHandle(h.chandle))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return nil, capiErr
+	}
 	return connection.FromCAPI(unsafe.Pointer(cConn))
 }
 
@@ -104,6 +118,10 @@ func (h *Handle) InstrumentType() (string, error) {
 		return "", errors.New("InstrumentType: handle is closed")
 	}
 	cStr := C.MeasurementContext_instrument_type(C.MeasurementContextHandle(h.chandle))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return "", capiErr
+	}
 	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
 	if err != nil {
 		return "", err
@@ -121,7 +139,12 @@ func (h *Handle) Equal(other *Handle) (bool, error) {
 	if other == nil || other.closed || other.chandle == nil {
 		return false, errors.New("Equal: other handle is closed or nil")
 	}
-	return bool(C.MeasurementContext_equal(C.MeasurementContextHandle(h.chandle), C.MeasurementContextHandle(other.chandle))), nil
+	out := bool(C.MeasurementContext_equal(C.MeasurementContextHandle(h.chandle), C.MeasurementContextHandle(other.chandle)))
+	err := h.errorHandler.CheckCapiError()
+	if err != nil {
+		return false, err
+	}
+	return out, nil
 }
 
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
@@ -133,7 +156,12 @@ func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	if other == nil || other.closed || other.chandle == nil {
 		return false, errors.New("NotEqual: other handle is closed or nil")
 	}
-	return bool(C.MeasurementContext_not_equal(C.MeasurementContextHandle(h.chandle), C.MeasurementContextHandle(other.chandle))), nil
+	out := bool(C.MeasurementContext_not_equal(C.MeasurementContextHandle(h.chandle), C.MeasurementContextHandle(other.chandle)))
+	err := h.errorHandler.CheckCapiError()
+	if err != nil {
+		return false, err
+	}
+	return out, nil
 }
 
 func (h *Handle) ToJSON() (string, error) {
@@ -147,6 +175,10 @@ func (h *Handle) ToJSON() (string, error) {
 	if err != nil {
 		return "", err
 	}
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return "", capiErr
+	}
 	defer strHandle.Close()
 	return strHandle.ToGoString()
 }
@@ -159,5 +191,9 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, err
 	}
 	h := chandle(C.MeasurementContext_from_json_string(C.StringHandle(strPtr)))
+	capiErr := errorhandling.ErrorHandler.CheckCapiError()
+	if capiErr != nil {
+		return nil, capiErr
+	}
 	return new(h), nil
 }

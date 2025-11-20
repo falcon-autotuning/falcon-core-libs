@@ -17,6 +17,7 @@ import (
 	"sync"
 	"unsafe"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
@@ -26,15 +27,20 @@ import (
 type chandle C.AcquisitionContextHandle
 
 type Handle struct {
-	chandle chandle
-	mu      sync.RWMutex
-	closed  bool
+	chandle      chandle
+	mu           sync.RWMutex
+	closed       bool
+	errorHandler *errorhandling.Handle
 }
 
+// new adds an auto cleanup whenever added to a constructor
 func new(h chandle) *Handle {
-	handle := &Handle{chandle: h}
-	runtime.SetFinalizer(handle, func(h *Handle) { h.Close() })
-	return handle
+	conn := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
+	// NOTE: The following AddCleanup/finalizer is not covered by tests because
+	// Go's garbage collector does not guarantee finalizer execution during tests.
+	// This is a known limitation of Go's coverage tooling and is safe to ignore.
+	runtime.AddCleanup(conn, func(_ any) { conn.Close() }, true)
+	return conn
 }
 
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
@@ -60,6 +66,10 @@ func (h *Handle) Close() error {
 		return errors.New("Handle already closed")
 	}
 	C.AcquisitionContext_destroy(C.AcquisitionContextHandle(h.chandle))
+	err := errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return err
+	}
 	h.closed = true
 	h.chandle = nil
 	return nil
@@ -85,6 +95,10 @@ func New(connection *connection.Handle, instrumentType string, units *symbolunit
 		C.StringHandle(strPtr),
 		C.SymbolUnitHandle(unitsPtr),
 	))
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return new(h), nil
 }
 
@@ -94,7 +108,7 @@ func NewFromPort(port *instrumentport.Handle) (*Handle, error) {
 		return nil, err
 	}
 	h := chandle(C.AcquisitionContext_create_from_port(C.InstrumentPortHandle(portPtr)))
-	return new(h), nil
+	return new(h), errorhandling.ErrorHandler.CheckCapiError()
 }
 
 func (h *Handle) Connection() (*connection.Handle, error) {
@@ -104,6 +118,10 @@ func (h *Handle) Connection() (*connection.Handle, error) {
 		return nil, errors.New("Connection: handle is closed")
 	}
 	cConn := C.AcquisitionContext_connection(C.AcquisitionContextHandle(h.chandle))
+	err := errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return connection.FromCAPI(unsafe.Pointer(cConn))
 }
 
@@ -114,6 +132,10 @@ func (h *Handle) InstrumentType() (string, error) {
 		return "", errors.New("InstrumentType: handle is closed")
 	}
 	cStr := C.AcquisitionContext_instrument_type(C.AcquisitionContextHandle(h.chandle))
+	err := errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return "", err
+	}
 	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
 	if err != nil {
 		return "", err
@@ -129,6 +151,10 @@ func (h *Handle) Units() (*symbolunit.Handle, error) {
 		return nil, errors.New("Units: handle is closed")
 	}
 	cUnits := C.AcquisitionContext_units(C.AcquisitionContextHandle(h.chandle))
+	err := errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return symbolunit.FromCAPI(unsafe.Pointer(cUnits))
 }
 
@@ -143,6 +169,10 @@ func (h *Handle) DivisionUnit(other *symbolunit.Handle) (*Handle, error) {
 		return nil, err
 	}
 	res := chandle(C.AcquisitionContext_division_unit(C.AcquisitionContextHandle(h.chandle), C.SymbolUnitHandle(otherPtr)))
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return new(res), nil
 }
 
@@ -156,6 +186,10 @@ func (h *Handle) Division(other *Handle) (*Handle, error) {
 		return nil, errors.New("Division: other handle is closed or nil")
 	}
 	res := chandle(C.AcquisitionContext_division(C.AcquisitionContextHandle(h.chandle), C.AcquisitionContextHandle(other.chandle)))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return nil, capiErr
+	}
 	return new(res), nil
 }
 
@@ -170,6 +204,10 @@ func (h *Handle) MatchConnection(other *connection.Handle) (bool, error) {
 		return false, err
 	}
 	val := bool(C.AcquisitionContext_match_connection(C.AcquisitionContextHandle(h.chandle), C.ConnectionHandle(otherPtr)))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return false, capiErr
+	}
 	return val, nil
 }
 
@@ -186,6 +224,10 @@ func (h *Handle) MatchInstrumentType(other string) (bool, error) {
 		return false, err
 	}
 	val := bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.chandle), C.StringHandle(otherPtr)))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return false, capiErr
+	}
 	return val, nil
 }
 
@@ -199,6 +241,10 @@ func (h *Handle) Equal(other *Handle) (bool, error) {
 		return false, errors.New("Equal: other handle is closed or nil")
 	}
 	val := bool(C.AcquisitionContext_equal(C.AcquisitionContextHandle(h.chandle), C.AcquisitionContextHandle(other.chandle)))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return false, capiErr
+	}
 	return val, nil
 }
 
@@ -212,6 +258,10 @@ func (h *Handle) NotEqual(other *Handle) (bool, error) {
 		return false, errors.New("NotEqual: other handle is closed or nil")
 	}
 	val := bool(C.AcquisitionContext_not_equal(C.AcquisitionContextHandle(h.chandle), C.AcquisitionContextHandle(other.chandle)))
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return false, capiErr
+	}
 	return val, nil
 }
 
@@ -227,6 +277,10 @@ func (h *Handle) ToJSON() (string, error) {
 		return "", err
 	}
 	defer strHandle.Close()
+	capiErr := h.errorHandler.CheckCapiError()
+	if capiErr != nil {
+		return "", capiErr
+	}
 	return strHandle.ToGoString()
 }
 
@@ -238,5 +292,9 @@ func FromJSON(json string) (*Handle, error) {
 		return nil, err
 	}
 	h := chandle(C.AcquisitionContext_from_json_string(C.StringHandle(strPtr)))
+	err = errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return nil, err
+	}
 	return new(h), nil
 }
