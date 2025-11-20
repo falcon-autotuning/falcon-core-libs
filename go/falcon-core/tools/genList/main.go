@@ -466,6 +466,30 @@ func main() {
 			PrimitiveType:        false,
 			CElemTypeConstructor: "interpretationcontext.FromCAPI",
 		},
+		{
+			Type:                 "ListPairInterpretationContextDouble",
+			ElemType:             "*pairinterpretationcontextdouble.Handle",
+			CType:                "PairInterpretationContextDoubleHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairinterpretationcontextdouble"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "pairinterpretationcontextdouble.FromCAPI",
+		},
+		{
+			Type:                 "ListPairInterpretationContextQuantity",
+			ElemType:             "*pairinterpretationcontextquantity.Handle",
+			CType:                "PairInterpretationContextQuantityHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairinterpretationcontextquantity"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "pairinterpretationcontextquantity.FromCAPI",
+		},
+		{
+			Type:                 "ListPairInterpretationContextString",
+			ElemType:             "*pairinterpretationcontextstring.Handle",
+			CType:                "PairInterpretationContextStringHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairinterpretationcontextstring"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "pairinterpretationcontextstring.FromCAPI",
+		},
 		// Add more types here...
 	}
 	for i := range types {
