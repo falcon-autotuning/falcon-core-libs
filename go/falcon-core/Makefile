@@ -20,6 +20,9 @@ gen-maps:
 gen-axes:
 	go run tools/genAxes/main.go
 
+gen-labelledarrays:
+	go run tools/genLabelledArrays/main.go
+
 build:
 	go build ./...
 
@@ -45,6 +48,14 @@ clean-gen-lists:
 			rm -f "$$file"; \
 		done < list_handles_manifest.txt; \
 		rm -f list_handles_manifest.txt; \
+	fi
+
+clean-gen-labelledarrays:
+	@if [ -f labelledarrays_handles_manifest.txt ]; then \
+		while read -r file; do \
+			rm -f "$$file"; \
+		done < labelledarrays_handles_manifest.txt; \
+		rm -f labelledarrays_handles_manifest.txt; \
 	fi
 
 clean-gen-axes:
