@@ -8,6 +8,9 @@ TESTNAME ?= TestConnection_ErrorOnClosed
 
 all: build
 
+gen-lists:
+	go run tools/genList/main.go
+
 gen-pairs:
 	go run tools/genPair/main.go
 

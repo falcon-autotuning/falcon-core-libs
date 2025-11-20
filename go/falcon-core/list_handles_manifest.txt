@@ -92,3 +92,7 @@ generic/listmeasurementcontext/listMeasurementContext.go
 generic/listmeasurementcontext/listMeasurementContext_test.go
 generic/listcoupledlabelleddomain/listCoupledLabelledDomain.go
 generic/listcoupledlabelleddomain/listCoupledLabelledDomain_test.go
+generic/listwaveform/listWaveform.go
+generic/listwaveform/listWaveform_test.go
+generic/listinterpretationcontext/listInterpretationContext.go
+generic/listinterpretationcontext/listInterpretationContext_test.go

@@ -450,6 +450,22 @@ func main() {
 			PrimitiveType:        false,
 			CElemTypeConstructor: "coupledlabelleddomain.FromCAPI",
 		},
+		{
+			Type:                 "ListWaveform",
+			ElemType:             "*waveform.Handle",
+			CType:                "WaveformHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/waveform"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "waveform.FromCAPI",
+		},
+		{
+			Type:                 "ListInterpretationContext",
+			ElemType:             "*interpretationcontext.Handle",
+			CType:                "InterpretationContextHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/interpretations/interpretationcontext"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "interpretationcontext.FromCAPI",
+		},
 		// Add more types here...
 	}
 	for i := range types {
