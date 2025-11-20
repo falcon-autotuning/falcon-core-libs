@@ -71,7 +71,7 @@ func main() {
 	}
 	defer manifest.Close()
 	for _, t := range types {
-		dir := filepath.Join("math", "arrays", "labelledarrays", t.Package)
+		dir := filepath.Join("math", "arrays", t.Package)
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
