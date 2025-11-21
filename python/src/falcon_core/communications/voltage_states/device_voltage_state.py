@@ -126,20 +126,74 @@ class DeviceVoltageState:
         ret = self._c.equal(b._c)
         return ret
 
-    def __eq__(self, b: DeviceVoltageState) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.equal(b)
-
     def not_equal(self, b: DeviceVoltageState) -> None:
         ret = self._c.not_equal(b._c)
         return ret
 
-    def __ne__(self, b: DeviceVoltageState) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.not_equal(b)
-
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __add__(self, other):
+        """Operator overload for +"""
+        if hasattr(other, "_c") and type(other).__name__ == "Quantity":
+            return self.add_quantity(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsQuantity":
+            return self.add_equals_quantity(other)
+        return NotImplemented
+
+    def __sub__(self, other):
+        """Operator overload for -"""
+        if hasattr(other, "_c") and type(other).__name__ == "Quantity":
+            return self.subtract_quantity(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsQuantity":
+            return self.subtract_equals_quantity(other)
+        return NotImplemented
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if isinstance(other, int):
+            return self.multiply_int(other)
+        if isinstance(other, float):
+            return self.multiply_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "Quantity":
+            return self.multiply_quantity(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.multiply_equals_int(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.multiply_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsQuantity":
+            return self.multiply_equals_quantity(other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, int):
+            return self.divide_int(other)
+        if isinstance(other, float):
+            return self.divide_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "Quantity":
+            return self.divide_quantity(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.divide_equals_int(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.divide_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsQuantity":
+            return self.divide_equals_quantity(other)
+        return NotImplemented
+
+    def __neg__(self):
+        """Operator overload for unary -"""
+        return self.negation()
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, DeviceVoltageState):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, DeviceVoltageState):
+            return NotImplemented
+        return self.notequality(other)

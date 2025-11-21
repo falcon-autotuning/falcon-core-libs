@@ -105,36 +105,21 @@ class Point:
         ret = self._c.addition(other._c)
         return cls._from_capi(ret)
 
-    def __add__(self, other: Point) -> Point:
-        return self.addition(other)
-
     def subtraction(self, other: Point) -> Point:
         ret = self._c.subtraction(other._c)
         return cls._from_capi(ret)
-
-    def __sub__(self, other: Point) -> Point:
-        return self.subtraction(other)
 
     def multiplication(self, scalar: Any) -> Point:
         ret = self._c.multiplication(scalar)
         return cls._from_capi(ret)
 
-    def __mul__(self, scalar: Any) -> Point:
-        return self.multiplication(scalar)
-
     def division(self, scalar: Any) -> Point:
         ret = self._c.division(scalar)
         return cls._from_capi(ret)
 
-    def __truediv__(self, scalar: Any) -> Point:
-        return self.division(scalar)
-
     def negation(self, ) -> Point:
         ret = self._c.negation()
         return cls._from_capi(ret)
-
-    def __neg__(self, ) -> Point:
-        return self.negation()
 
     def set_unit(self, unit: SymbolUnit) -> None:
         ret = self._c.set_unit(unit._c)
@@ -144,20 +129,50 @@ class Point:
         ret = self._c.equal(b._c)
         return ret
 
-    def __eq__(self, b: Point) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.equal(b)
-
     def not_equal(self, b: Point) -> None:
         ret = self._c.not_equal(b._c)
         return ret
 
-    def __ne__(self, b: Point) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.not_equal(b)
-
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __add__(self, other):
+        """Operator overload for +"""
+        if isinstance(other, Point):
+            return self.addition(other)
+        return NotImplemented
+
+    def __sub__(self, other):
+        """Operator overload for -"""
+        if isinstance(other, Point):
+            return self.subtraction(other)
+        return NotImplemented
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if isinstance(other, (int, float)):
+            return self.multiplication(other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, (int, float)):
+            return self.division(other)
+        return NotImplemented
+
+    def __neg__(self):
+        """Operator overload for unary -"""
+        return self.negation()
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, Point):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, Point):
+            return NotImplemented
+        return self.notequality(other)

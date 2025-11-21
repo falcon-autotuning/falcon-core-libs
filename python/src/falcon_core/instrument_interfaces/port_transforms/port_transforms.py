@@ -83,20 +83,22 @@ class PortTransforms:
         ret = self._c.equal(b._c)
         return ret
 
-    def __eq__(self, b: PortTransforms) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.equal(b)
-
     def not_equal(self, b: PortTransforms) -> None:
         ret = self._c.not_equal(b._c)
         return ret
 
-    def __ne__(self, b: PortTransforms) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.not_equal(b)
-
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, PortTransforms):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, PortTransforms):
+            return NotImplemented
+        return self.notequality(other)

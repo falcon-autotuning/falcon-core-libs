@@ -254,15 +254,9 @@ class SymbolUnit:
         ret = self._c.multiplication(other._c)
         return cls._from_capi(ret)
 
-    def __mul__(self, other: SymbolUnit) -> SymbolUnit:
-        return self.multiplication(other)
-
     def division(self, other: SymbolUnit) -> SymbolUnit:
         ret = self._c.division(other._c)
         return cls._from_capi(ret)
-
-    def __truediv__(self, other: SymbolUnit) -> SymbolUnit:
-        return self.division(other)
 
     def power(self, power: Any) -> SymbolUnit:
         ret = self._c.power(power)
@@ -284,20 +278,34 @@ class SymbolUnit:
         ret = self._c.equal(other._c)
         return ret
 
-    def __eq__(self, other: SymbolUnit) -> None:
-        if not hasattr(other, "_c"):
-            return NotImplemented
-        return self.equal(other)
-
     def not_equal(self, other: SymbolUnit) -> None:
         ret = self._c.not_equal(other._c)
         return ret
 
-    def __ne__(self, other: SymbolUnit) -> None:
-        if not hasattr(other, "_c"):
-            return NotImplemented
-        return self.not_equal(other)
-
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if isinstance(other, (int, float)):
+            return self.multiplication(other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, (int, float)):
+            return self.division(other)
+        return NotImplemented
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, SymbolUnit):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, SymbolUnit):
+            return NotImplemented
+        return self.notequality(other)

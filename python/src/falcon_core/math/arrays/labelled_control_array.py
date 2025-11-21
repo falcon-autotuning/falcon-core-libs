@@ -133,9 +133,6 @@ class LabelledControlArray:
         ret = self._c.negation()
         return cls._from_capi(ret)
 
-    def __neg__(self, ) -> LabelledControlArray:
-        return self.negation()
-
     def timesequals_double(self, other: Any) -> None:
         ret = self._c.timesequals_double(other)
         return ret
@@ -265,3 +262,59 @@ class LabelledControlArray:
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __add__(self, other):
+        """Operator overload for +"""
+        if isinstance(other, LabelledControlArray):
+            return self.plus_control_array(other)
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.plus_farray(other)
+        if isinstance(other, float):
+            return self.plus_double(other)
+        if isinstance(other, int):
+            return self.plus_int(other)
+        return NotImplemented
+
+    def __sub__(self, other):
+        """Operator overload for -"""
+        if isinstance(other, LabelledControlArray):
+            return self.minus_control_array(other)
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.minus_farray(other)
+        if isinstance(other, float):
+            return self.minus_double(other)
+        if isinstance(other, int):
+            return self.minus_int(other)
+        return NotImplemented
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if isinstance(other, float):
+            return self.times_double(other)
+        if isinstance(other, int):
+            return self.times_int(other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, float):
+            return self.divides_double(other)
+        if isinstance(other, int):
+            return self.divides_int(other)
+        return NotImplemented
+
+    def __neg__(self):
+        """Operator overload for unary -"""
+        return self.negation()
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, LabelledControlArray):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, LabelledControlArray):
+            return NotImplemented
+        return self.notequality(other)

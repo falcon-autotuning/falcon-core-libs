@@ -51,9 +51,6 @@ class AcquisitionContext:
         ret = self._c.division(other._c)
         return cls._from_capi(ret)
 
-    def __truediv__(self, other: AcquisitionContext) -> AcquisitionContext:
-        return self.division(other)
-
     def match_connection(self, other: Connection) -> None:
         ret = self._c.match_connection(other._c)
         return ret
@@ -66,20 +63,28 @@ class AcquisitionContext:
         ret = self._c.equal(b._c)
         return ret
 
-    def __eq__(self, b: AcquisitionContext) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.equal(b)
-
     def not_equal(self, b: AcquisitionContext) -> None:
         ret = self._c.not_equal(b._c)
         return ret
 
-    def __ne__(self, b: AcquisitionContext) -> None:
-        if not hasattr(b, "_c"):
-            return NotImplemented
-        return self.not_equal(b)
-
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, (int, float)):
+            return self.division(other)
+        return NotImplemented
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, AcquisitionContext):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, AcquisitionContext):
+            return NotImplemented
+        return self.notequality(other)

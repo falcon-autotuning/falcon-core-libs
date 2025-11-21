@@ -30,20 +30,22 @@ class StandardRequest:
         ret = self._c.equal(other._c)
         return ret
 
-    def __eq__(self, other: StandardRequest) -> None:
-        if not hasattr(other, "_c"):
-            return NotImplemented
-        return self.equal(other)
-
     def not_equal(self, other: StandardRequest) -> None:
         ret = self._c.not_equal(other._c)
         return ret
 
-    def __ne__(self, other: StandardRequest) -> None:
-        if not hasattr(other, "_c"):
-            return NotImplemented
-        return self.not_equal(other)
-
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, StandardRequest):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, StandardRequest):
+            return NotImplemented
+        return self.notequality(other)

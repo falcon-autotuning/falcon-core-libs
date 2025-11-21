@@ -157,9 +157,6 @@ class MeasuredArray1D:
         ret = self._c.negation()
         return cls._from_capi(ret)
 
-    def __neg__(self, ) -> MeasuredArray1D:
-        return self.negation()
-
     def timesequals_farray(self, other: FArrayDouble) -> MeasuredArray1D:
         ret = self._c.timesequals_farray(other._c)
         return cls._from_capi(ret)
@@ -308,3 +305,67 @@ class MeasuredArray1D:
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __add__(self, other):
+        """Operator overload for +"""
+        if isinstance(other, MeasuredArray1D):
+            return self.plus_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.plus_farray(other)
+        if isinstance(other, float):
+            return self.plus_double(other)
+        if isinstance(other, int):
+            return self.plus_int(other)
+        return NotImplemented
+
+    def __sub__(self, other):
+        """Operator overload for -"""
+        if isinstance(other, MeasuredArray1D):
+            return self.minus_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.minus_farray(other)
+        if isinstance(other, float):
+            return self.minus_double(other)
+        if isinstance(other, int):
+            return self.minus_int(other)
+        return NotImplemented
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if isinstance(other, MeasuredArray1D):
+            return self.times_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.times_farray(other)
+        if isinstance(other, float):
+            return self.times_double(other)
+        if isinstance(other, int):
+            return self.times_int(other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, MeasuredArray1D):
+            return self.divides_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.divides_farray(other)
+        if isinstance(other, float):
+            return self.divides_double(other)
+        if isinstance(other, int):
+            return self.divides_int(other)
+        return NotImplemented
+
+    def __neg__(self):
+        """Operator overload for unary -"""
+        return self.negation()
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, MeasuredArray1D):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, MeasuredArray1D):
+            return NotImplemented
+        return self.notequality(other)

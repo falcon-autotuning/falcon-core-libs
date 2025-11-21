@@ -84,3 +84,21 @@ class Adjacency:
     def to_json_string(self, ) -> str:
         ret = self._c.to_json_string()
         return ret
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
+            return self.times_farray(other)
+        return NotImplemented
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, Adjacency):
+            return NotImplemented
+        return self.equality(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, Adjacency):
+            return NotImplemented
+        return self.notequality(other)
