@@ -1,118 +1,178 @@
+from __future__ import annotations
+from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from .._capi.list_int import ListInt as _CListInt
-from .._capi.list_connection import ListConnection as _CListConnection
-from ..physics.device_structures.connection import Connection
+from ._list_registry import LIST_REGISTRY
 
-# A registry mapping Python types to their low-level Cython wrappers.
-# This is the key to the generic factory.
-_C_LIST_REGISTRY = {
-    int: _CListInt,
-    Connection: _CListConnection,
-}
-
+T = TypeVar('T')
 
 class _ListFactory:
-    """A helper class to act as a specialized constructor, e.g., List[int]."""
+    """Factory for List[T] instances."""
 
-    def __init__(self, c_list_type):
-        self._c_list_type = c_list_type
+    def __init__(self, element_type, c_list_class):
+        self.element_type = element_type
+        self._c_class = c_list_class
 
-    def __call__(self, initial_data=None):
-        """Creates a new List instance, e.g., List[int]([1, 2, 3])."""
-        if initial_data is None:
-            c_obj = self._c_list_type.create_empty()
-        else:
-            c_obj = self._c_list_type.from_list(initial_data)
-        return List(c_obj, self._c_list_type)
+    def __call__(self, *args, **kwargs):
+        """Construct a new List instance."""
+        # This is for direct construction, not typically used
+        # Users should use class methods like List[T].new_empty(...)
+        raise TypeError(f'Use List[{self.element_type}].new_*() class methods to construct instances')
 
+    def __getattr__(self, name):
+        """Delegate class method calls to the underlying Cython class."""
+        attr = getattr(self._c_class, name, None)
+        if attr is None:
+            raise AttributeError(f"List[{self.element_type}] has no attribute {name!r}")
+        
+        # If it's a class method or static method, wrap the result
+        if callable(attr):
+            def wrapper(*args, **kwargs):
+                result = attr(*args, **kwargs)
+                # Wrap the result if it's a Cython instance
+                if result is not None and hasattr(result, 'handle'):
+                    return List(result, self.element_type)
+                return result
+            return wrapper
+        return attr
 
-class List(collections.abc.MutableSequence):
-    """
-    A generic, Pythonic list wrapper for Falcon Core list types.
+class List:
+    """Generic List wrapper with full method support."""
 
-    This class acts as a generic factory. Use square brackets to specify the
-    contained type, for example:
-        int_list = List[int]([1, 2, 3])
-    """
-
-    def __init__(self, c_obj, c_list_type=None):
-        """
-        Initializes the list with a low-level Cython wrapper object.
-        Users should not call this directly. Use the List[type] factory syntax.
-        """
-        if not hasattr(c_obj, "at") or not hasattr(c_obj, "size"):
-            raise TypeError("Object must conform to the low-level list interface.")
+    def __init__(self, c_obj, element_type=None):
+        """Initialize from a Cython object."""
         self._c = c_obj
-        self._c_list_type = c_list_type
+        self._element_type = element_type
 
     @classmethod
-    def __class_getitem__(cls, item_type):
-        """Enables the `List[type]` syntax."""
-        c_list_type = _C_LIST_REGISTRY.get(item_type)
-        if c_list_type is None:
-            raise TypeError(f"List does not support type: {item_type}")
-        return _ListFactory(c_list_type)
+    def __class_getitem__(cls, types):
+        """Enable List[T] syntax."""
+        c_class = LIST_REGISTRY.get(types)
+        if c_class is None:
+            raise TypeError(f"List does not support type: {types}")
+        return _ListFactory(types, c_class)
 
-    def __getitem__(self, index):
-        if isinstance(index, slice):
-            return [self[i] for i in range(*index.indices(len(self)))]
+    def __getattr__(self, name):
+        """Delegate attribute access to the underlying Cython object."""
+        if name.startswith('_'):
+            raise AttributeError(f'{name}')
+        
+        attr = getattr(self._c, name, None)
+        if attr is None:
+            raise AttributeError(f"List has no attribute {name!r}")
+        
+        # If it's a method, wrap it to handle return values
+        if callable(attr):
+            def wrapper(*args, **kwargs):
+                # Unwrap List arguments to their Cython objects
+                unwrapped_args = []
+                for arg in args:
+                    if isinstance(arg, List):
+                        unwrapped_args.append(arg._c)
+                    else:
+                        unwrapped_args.append(arg)
+                
+                result = attr(*unwrapped_args, **kwargs)
+                
+                # Wrap the result if it's a Cython instance of the same type
+                if result is not None and hasattr(result, 'handle'):
+                    # Check if it's the same type as self._c
+                    if type(result).__name__ == type(self._c).__name__:
+                        return List(result, self._element_type)
+                return result
+            return wrapper
+        return attr
 
-        list_len = len(self)
-        if index < 0:
-            index += list_len
+    def __add__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, List) and hasattr(self._c, 'plus_farray'):
+            result = self._c.plus_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'plus_double'):
+            result = self._c.plus_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'plus_int'):
+            result = self._c.plus_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __add__: {type(self).__name__} and {type(other).__name__}')
 
-        if not 0 <= index < list_len:
-            raise IndexError("list index out of range")
+    def __sub__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, List) and hasattr(self._c, 'minus_farray'):
+            result = self._c.minus_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'minus_double'):
+            result = self._c.minus_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'minus_int'):
+            result = self._c.minus_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __sub__: {type(self).__name__} and {type(other).__name__}')
 
-        return self._c.at(index)
+    def __mul__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, List) and hasattr(self._c, 'times_farray'):
+            result = self._c.times_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'times_double'):
+            result = self._c.times_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'times_int'):
+            result = self._c.times_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __mul__: {type(self).__name__} and {type(other).__name__}')
 
-    def __len__(self):
-        return self._c.size()
+    def __truediv__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, List) and hasattr(self._c, 'divides_farray'):
+            result = self._c.divides_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'divides_double'):
+            result = self._c.divides_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'divides_int'):
+            result = self._c.divides_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __truediv__: {type(self).__name__} and {type(other).__name__}')
 
-    def __setitem__(self, index, value):
-        if self._c_list_type is None:
-            raise TypeError("Cannot modify a List that was not created with a factory.")
-
-        temp_list = list(self)
-        temp_list[index] = value
-        new_c_obj = self._c_list_type.from_list(temp_list)
-        self._c = new_c_obj
-
-    def __delitem__(self, index):
-        list_len = len(self)
-        if index < 0:
-            index += list_len
-
-        if not 0 <= index < list_len:
-            raise IndexError("list index out of range")
-
-        self._c.erase_at(index)
-
-    def insert(self, index, value):
-        if self._c_list_type is None:
-            raise TypeError("Cannot modify a List that was not created with a factory.")
-        temp_list = list(self)
-        temp_list.insert(index, value)
-        new_c_obj = self._c_list_type.from_list(temp_list)
-        self._c = new_c_obj
-
-    def append(self, value):
-        self._c.push_back(value)
-
-    def intersection(self, other):
-        """Returns a new List containing elements common to both lists."""
-        if not isinstance(other, List):
-            raise TypeError("Intersection is only defined between List objects.")
-        if self._c_list_type != other._c_list_type:
-            raise TypeError("Cannot find intersection of Lists of different types.")
-
-        new_c_obj = self._c.intersection(other._c)
-        return List(new_c_obj, self._c_list_type)
+    def __neg__(self):
+        if hasattr(self._c, 'negation'):
+            result = self._c.negation()
+            if result is not None and hasattr(result, 'handle'):
+                return List(result, self._element_type)
+            return result
+        raise AttributeError(f'__neg__ not supported')
 
     def __eq__(self, other):
-        if not isinstance(other, self.__class__):
-            return NotImplemented
-        return self._c == other._c
+        # Try different method overloads based on argument type
+        return NotImplemented
+
+    def __ne__(self, other):
+        # Try different method overloads based on argument type
+        return NotImplemented
 
     def __repr__(self):
-        return f"List({list(self)})"
+        return f"List[{self._element_type}]({self._c})"

@@ -1,0 +1,115 @@
+from __future__ import annotations
+from typing import Any, List, Dict, Tuple, Optional
+from falcon_core._capi.coupled_labelled_domain import CoupledLabelledDomain as _CCoupledLabelledDomain
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.math.domains.labelled_domain import LabelledDomain
+from falcon_core.generic.list import List
+from falcon_core.instrument_interfaces.names.ports import Ports
+
+class CoupledLabelledDomain:
+    """Python wrapper for CoupledLabelledDomain."""
+
+    def __init__(self, c_obj):
+        self._c = c_obj
+
+    @classmethod
+    def _from_capi(cls, c_obj):
+        if c_obj is None:
+            return None
+        return cls(c_obj)
+
+    @classmethod
+    def CoupledLabelledDomain_create_empty(cls, ) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.CoupledLabelledDomain_create_empty())
+
+    @classmethod
+    def CoupledLabelledDomain_create(cls, items: List) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.CoupledLabelledDomain_create(items._c))
+
+    @classmethod
+    def CoupledLabelledDomain_from_json_string(cls, json: str) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.CoupledLabelledDomain_from_json_string(json))
+
+    def domains(self, ) -> List:
+        ret = self._c.domains()
+        if ret is None: return None
+        return List(ret)
+
+    def labels(self, ) -> Ports:
+        ret = self._c.labels()
+        if ret is None: return None
+        return Ports._from_capi(ret)
+
+    def get_domain(self, search: InstrumentPort) -> LabelledDomain:
+        ret = self._c.get_domain(search._c)
+        if ret is None: return None
+        return LabelledDomain._from_capi(ret)
+
+    def intersection(self, other: CoupledLabelledDomain) -> CoupledLabelledDomain:
+        ret = self._c.intersection(other._c)
+        return cls._from_capi(ret)
+
+    def push_back(self, value: LabelledDomain) -> None:
+        ret = self._c.push_back(value._c)
+        return ret
+
+    def size(self, ) -> None:
+        ret = self._c.size()
+        return ret
+
+    def empty(self, ) -> None:
+        ret = self._c.empty()
+        return ret
+
+    def erase_at(self, idx: Any) -> None:
+        ret = self._c.erase_at(idx)
+        return ret
+
+    def clear(self, ) -> None:
+        ret = self._c.clear()
+        return ret
+
+    def const_at(self, idx: Any) -> LabelledDomain:
+        ret = self._c.const_at(idx)
+        if ret is None: return None
+        return LabelledDomain._from_capi(ret)
+
+    def at(self, idx: Any) -> LabelledDomain:
+        ret = self._c.at(idx)
+        if ret is None: return None
+        return LabelledDomain._from_capi(ret)
+
+    def items(self, ) -> List:
+        ret = self._c.items()
+        if ret is None: return None
+        return List(ret)
+
+    def contains(self, value: LabelledDomain) -> None:
+        ret = self._c.contains(value._c)
+        return ret
+
+    def index(self, value: LabelledDomain) -> None:
+        ret = self._c.index(value._c)
+        return ret
+
+    def equal(self, b: CoupledLabelledDomain) -> None:
+        ret = self._c.equal(b._c)
+        return ret
+
+    def __eq__(self, b: CoupledLabelledDomain) -> None:
+        if not hasattr(b, "_c"):
+            return NotImplemented
+        return self.equal(b)
+
+    def not_equal(self, b: CoupledLabelledDomain) -> None:
+        ret = self._c.not_equal(b._c)
+        return ret
+
+    def __ne__(self, b: CoupledLabelledDomain) -> None:
+        if not hasattr(b, "_c"):
+            return NotImplemented
+        return self.not_equal(b)
+
+    def to_json_string(self, ) -> str:
+        ret = self._c.to_json_string()
+        return ret

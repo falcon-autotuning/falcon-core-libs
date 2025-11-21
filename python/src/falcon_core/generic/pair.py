@@ -1,80 +1,181 @@
-from .._capi.pair_int_int import PairIntInt as _CPairIntInt
+from __future__ import annotations
+from typing import Any, TypeVar, Generic, Union
+import collections.abc
+from ._pair_registry import PAIR_REGISTRY
 
-# Registry keyed by a tuple (first_type, second_type)
-_C_PAIR_REGISTRY = {
-    (int, int): _CPairIntInt,
-}
-
+K = TypeVar('K')
+V = TypeVar('V')
 
 class _PairFactory:
-    """Helper to construct Pair[A, B] via Pair[A, B](a, b)."""
+    """Factory for Pair[T] instances."""
 
-    def __init__(self, c_pair_type):
-        self._c_pair_type = c_pair_type
+    def __init__(self, element_type, c_pair_class):
+        self.element_type = element_type
+        self._c_class = c_pair_class
 
-    def __call__(self, a=None, b=None):
-        """Constructs a Pair. If a and b are None, construct a (0,0) default pair."""
-        if a is None and b is None:
-            c_obj = self._c_pair_type.new(0, 0)
-        else:
-            c_obj = self._c_pair_type.new(a, b)
-        return Pair(c_obj, self._c_pair_type)
+    def __call__(self, *args, **kwargs):
+        """Construct a new Pair instance."""
+        # This is for direct construction, not typically used
+        # Users should use class methods like Pair[T].new_empty(...)
+        raise TypeError(f'Use Pair[{self.element_type}].new_*() class methods to construct instances')
 
+    def __getattr__(self, name):
+        """Delegate class method calls to the underlying Cython class."""
+        attr = getattr(self._c_class, name, None)
+        if attr is None:
+            raise AttributeError(f"Pair[{self.element_type}] has no attribute {name!r}")
+        
+        # If it's a class method or static method, wrap the result
+        if callable(attr):
+            def wrapper(*args, **kwargs):
+                result = attr(*args, **kwargs)
+                # Wrap the result if it's a Cython instance
+                if result is not None and hasattr(result, 'handle'):
+                    return Pair(result, self.element_type)
+                return result
+            return wrapper
+        return attr
 
 class Pair:
-    """
-    Generic Pair[A, B] wrapper that provides a Pythonic interface on top of
-    low-level Cython pair implementations.
-    """
+    """Generic Pair wrapper with full method support."""
 
-    def __init__(self, c_obj, c_pair_type=None):
-        if not hasattr(c_obj, "first") or not hasattr(c_obj, "second"):
-            raise TypeError("Object must conform to the low-level pair interface.")
+    def __init__(self, c_obj, element_type=None):
+        """Initialize from a Cython object."""
         self._c = c_obj
-        self._c_pair_type = c_pair_type
+        self._element_type = element_type
 
     @classmethod
     def __class_getitem__(cls, types):
-        """Enable Pair[A, B] factory syntax."""
+        """Enable Pair[K, V] syntax."""
         if not isinstance(types, tuple) or len(types) != 2:
-            raise TypeError("Pair[...] requires two type parameters, e.g., Pair[int, int]")
-        c_pair_type = _C_PAIR_REGISTRY.get(types)
-        if c_pair_type is None:
+            raise TypeError(f"Pair requires 2 type parameters")
+        c_class = PAIR_REGISTRY.get(types)
+        if c_class is None:
             raise TypeError(f"Pair does not support types: {types}")
-        return _PairFactory(c_pair_type)
+        return _PairFactory(types, c_class)
 
-    def first(self):
-        return self._c.first()
+    def __getattr__(self, name):
+        """Delegate attribute access to the underlying Cython object."""
+        if name.startswith('_'):
+            raise AttributeError(f'{name}')
+        
+        attr = getattr(self._c, name, None)
+        if attr is None:
+            raise AttributeError(f"Pair has no attribute {name!r}")
+        
+        # If it's a method, wrap it to handle return values
+        if callable(attr):
+            def wrapper(*args, **kwargs):
+                # Unwrap Pair arguments to their Cython objects
+                unwrapped_args = []
+                for arg in args:
+                    if isinstance(arg, Pair):
+                        unwrapped_args.append(arg._c)
+                    else:
+                        unwrapped_args.append(arg)
+                
+                result = attr(*unwrapped_args, **kwargs)
+                
+                # Wrap the result if it's a Cython instance of the same type
+                if result is not None and hasattr(result, 'handle'):
+                    # Check if it's the same type as self._c
+                    if type(result).__name__ == type(self._c).__name__:
+                        return Pair(result, self._element_type)
+                return result
+            return wrapper
+        return attr
 
-    def second(self):
-        return self._c.second()
+    def __add__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, Pair) and hasattr(self._c, 'plus_farray'):
+            result = self._c.plus_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'plus_double'):
+            result = self._c.plus_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'plus_int'):
+            result = self._c.plus_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __add__: {type(self).__name__} and {type(other).__name__}')
 
-    def to_json(self):
-        return self._c.to_json()
+    def __sub__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, Pair) and hasattr(self._c, 'minus_farray'):
+            result = self._c.minus_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'minus_double'):
+            result = self._c.minus_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'minus_int'):
+            result = self._c.minus_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __sub__: {type(self).__name__} and {type(other).__name__}')
 
-    @classmethod
-    def from_json(cls, json_str, types=None):
-        """
-        Deserialize a Pair from JSON. If `types` is provided it must be a (A,B)
-        tuple matching a registered C pair implementation; otherwise defaults
-        to Pair[int, int].
-        """
-        if types is None:
-            c_obj = _CPairIntInt.from_json(json_str)
-            return cls(c_obj, _CPairIntInt)
-        else:
-            if not isinstance(types, tuple) or len(types) != 2:
-                raise TypeError("types must be a tuple of (A,B)")
-            c_pair_type = _C_PAIR_REGISTRY.get(types)
-            if c_pair_type is None:
-                raise TypeError(f"Pair does not support types: {types}")
-            c_obj = c_pair_type.from_json(json_str)
-            return cls(c_obj, c_pair_type)
+    def __mul__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, Pair) and hasattr(self._c, 'times_farray'):
+            result = self._c.times_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'times_double'):
+            result = self._c.times_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'times_int'):
+            result = self._c.times_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __mul__: {type(self).__name__} and {type(other).__name__}')
+
+    def __truediv__(self, other):
+        # Try different method overloads based on argument type
+        if isinstance(other, Pair) and hasattr(self._c, 'divides_farray'):
+            result = self._c.divides_farray(other._c)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, float) and hasattr(self._c, 'divides_double'):
+            result = self._c.divides_double(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        if isinstance(other, int) and hasattr(self._c, 'divides_int'):
+            result = self._c.divides_int(other)
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        raise TypeError(f'unsupported operand type(s) for __truediv__: {type(self).__name__} and {type(other).__name__}')
+
+    def __neg__(self):
+        if hasattr(self._c, 'negation'):
+            result = self._c.negation()
+            if result is not None and hasattr(result, 'handle'):
+                return Pair(result, self._element_type)
+            return result
+        raise AttributeError(f'__neg__ not supported')
 
     def __eq__(self, other):
-        if not isinstance(other, Pair):
-            return NotImplemented
-        return self._c == other._c
+        # Try different method overloads based on argument type
+        return NotImplemented
+
+    def __ne__(self, other):
+        # Try different method overloads based on argument type
+        return NotImplemented
 
     def __repr__(self):
-        return f"Pair({self.first()}, {self.second()})"
+        return f"Pair[{self._element_type}]({self._c})"

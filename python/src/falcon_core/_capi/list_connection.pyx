@@ -1,18 +1,13 @@
 # cython: language_level=3
-# cython: c_string_type=str, c_string_encoding=utf-8
-# Low-level Cython wrapper for the ListConnection C-API
-
 from . cimport c_api
-from .connection cimport Connection as _CConnection
-from libc.stddef cimport size_t
 from cpython.bytes cimport PyBytes_FromStringAndSize
-
-# Import the Python class to wrap the handles we get back
-from ..physics.device_structures.connection import Connection as PyConnection
+from libc.stddef cimport size_t
+from libc.stdbool cimport bool
+from .connection cimport Connection
 
 cdef class ListConnection:
-    """Manages a ListConnectionHandle and its lifecycle."""
-    # 'handle' cdef attribute is declared in list_connection.pxd; do not redeclare it here.
+    cdef c_api.ListConnectionHandle handle
+    cdef bint owned
 
     def __cinit__(self):
         self.handle = <c_api.ListConnectionHandle>0
@@ -23,93 +18,150 @@ cdef class ListConnection:
             c_api.ListConnection_destroy(self.handle)
         self.handle = <c_api.ListConnectionHandle>0
 
-    @classmethod
-    def create_empty(cls):
-        """Factory for an empty list."""
-        cdef ListConnection new_obj = <ListConnection>cls.__new__(cls)
-        new_obj.handle = c_api.ListConnection_create_empty()
-        if new_obj.handle == <c_api.ListConnectionHandle>0:
-            raise MemoryError("Failed to create ListConnection")
-        new_obj.owned = True
-        return new_obj
+    cdef ListConnection from_capi(cls, c_api.ListConnectionHandle h):
+        cdef ListConnection obj = <ListConnection>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = False
+        return obj
 
     @classmethod
-    def from_list(cls, conn_list: list):
-        """Factory from a Python list of Connection objects."""
-        cdef ListConnection new_obj = <ListConnection>cls.__new__(cls)
-        new_obj.handle = c_api.ListConnection_create_empty()
-        if new_obj.handle == <c_api.ListConnectionHandle>0:
+    def new_empty(cls, ):
+        cdef c_api.ListConnectionHandle h
+        h = c_api.ListConnection_create_empty()
+        if h == <c_api.ListConnectionHandle>0:
             raise MemoryError("Failed to create ListConnection")
-        for item in conn_list:
-            # Cast the Python object's internal _c attribute to the Cython type
-            # to access its cdef handle attribute.
-            c_conn = <_CConnection>item._c
-            c_api.ListConnection_push_back(new_obj.handle, c_conn.handle)
-        return new_obj
+        cdef ListConnection obj = <ListConnection>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-    def push_back(self, value: PyConnection):
-        c_conn = <_CConnection>value._c
-        c_api.ListConnection_push_back(self.handle, c_conn.handle)
+    @classmethod
+    def new(cls, data, count):
+        cdef c_api.ListConnectionHandle h
+        h = c_api.ListConnection_create(<c_api.ConnectionHandle>data.handle, count)
+        if h == <c_api.ListConnectionHandle>0:
+            raise MemoryError("Failed to create ListConnection")
+        cdef ListConnection obj = <ListConnection>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-    def at(self, size_t index):
-        if index >= self.size():
-            raise IndexError("list index out of range")
-
-        # Get a ConnectionHandle from the C-API.
-        cdef c_api.ConnectionHandle new_conn_handle = c_api.ListConnection_at(self.handle, index)
-        if new_conn_handle == <c_api.ConnectionHandle>0:
-            raise MemoryError("Failed to get Connection from list at index")
-
-        # Serialize the returned handle to JSON and reconstruct an owned Connection wrapper.
-        cdef c_api.StringHandle s = c_api.Connection_to_json_string(new_conn_handle)
-        if s == <c_api.StringHandle>0:
-            raise MemoryError("Failed to serialize Connection")
-        cdef const char* raw = s.raw
-        cdef size_t ln = s.length
+    @classmethod
+    def from_json(cls, json):
+        json_bytes = json.encode("utf-8")
+        cdef const char* raw_json = json_bytes
+        cdef size_t len_json = len(json_bytes)
+        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
+        cdef c_api.ListConnectionHandle h
         try:
-            b = PyBytes_FromStringAndSize(raw, ln)
-            json_str = b.decode("utf-8")
+            h = c_api.ListConnection_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s)
+            c_api.String_destroy(s_json)
+        if h == <c_api.ListConnectionHandle>0:
+            raise MemoryError("Failed to create ListConnection")
+        cdef ListConnection obj = <ListConnection>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-        cdef _CConnection c_conn = _CConnection.from_json(json_str)
-        return PyConnection(c_conn)
+    @staticmethod
+    def fill_value(count, value):
+        cdef c_api.ListConnectionHandle h_ret
+        h_ret = c_api.ListConnection_fill_value(count, <c_api.ConnectionHandle>value.handle)
+        if h_ret == <c_api.ListConnectionHandle>0:
+            return None
+        return ListConnection.from_capi(ListConnection, h_ret)
+
+    def push_back(self, value):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        c_api.ListConnection_push_back(self.handle, <c_api.ConnectionHandle>value.handle)
 
     def size(self):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
         return c_api.ListConnection_size(self.handle)
 
-    def __richcmp__(self, other, int op):
-        if not isinstance(other, ListConnection):
+    def empty(self):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.ListConnection_empty(self.handle)
+
+    def erase_at(self, idx):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        c_api.ListConnection_erase_at(self.handle, idx)
+
+    def clear(self):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        c_api.ListConnection_clear(self.handle)
+
+    def at(self, idx):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.ConnectionHandle h_ret
+        h_ret = c_api.ListConnection_at(self.handle, idx)
+        if h_ret == <c_api.ConnectionHandle>0:
+            return None
+        return Connection.from_capi(Connection, h_ret)
+
+    def items(self, out_buffer, buffer_size):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.ListConnection_items(self.handle, <c_api.ConnectionHandle>out_buffer.handle, buffer_size)
+
+    def contains(self, value):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.ListConnection_contains(self.handle, <c_api.ConnectionHandle>value.handle)
+
+    def index(self, value):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.ListConnection_index(self.handle, <c_api.ConnectionHandle>value.handle)
+
+    def intersection(self, other):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.ListConnectionHandle h_ret
+        h_ret = c_api.ListConnection_intersection(self.handle, <c_api.ListConnectionHandle>other.handle)
+        if h_ret == <c_api.ListConnectionHandle>0:
+            return None
+        return ListConnection.from_capi(ListConnection, h_ret)
+
+    def equal(self, b):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.ListConnection_equal(self.handle, <c_api.ListConnectionHandle>b.handle)
+
+    def __eq__(self, b):
+        if not hasattr(b, "handle"):
             return NotImplemented
-        cdef ListConnection o = <ListConnection>other
-        if op == 2:  # ==
-            return bool(c_api.ListConnection_equal(self.handle, o.handle))
-        elif op == 3:  # !=
-            return not bool(c_api.ListConnection_equal(self.handle, o.handle))
-        return NotImplemented
+        return self.equal(b)
 
-    def intersection(self, ListConnection other):
-        cdef c_api.ListConnectionHandle new_handle = c_api.ListConnection_intersection(self.handle, other.handle)
-        if new_handle == <c_api.ListConnectionHandle>0:
-            raise MemoryError("Failed to create intersection ListConnection")
-        cdef ListConnection new_obj = <ListConnection>self.__class__.__new__(self.__class__)
-        new_obj.handle = new_handle
-        new_obj.owned = True
-        return new_obj
+    def not_equal(self, b):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.ListConnection_not_equal(self.handle, <c_api.ListConnectionHandle>b.handle)
 
-    cdef ListConnection from_capi(cls, c_api.ListConnectionHandle h):
-        """
-        Create a cdef ListConnection wrapper directly from a raw C API handle.
-        Returned wrapper is non-owning.
-        """
-        cdef ListConnection c = <ListConnection>cls.__new__(cls)
-        c.handle = h
-        c.owned = False
-        return c
+    def __ne__(self, b):
+        if not hasattr(b, "handle"):
+            return NotImplemented
+        return self.not_equal(b)
 
-# Module-level C factory for ListConnection
+    def to_json_string(self):
+        if self.handle == <c_api.ListConnectionHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.StringHandle s_ret
+        s_ret = c_api.ListConnection_to_json_string(self.handle)
+        if s_ret == <c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            c_api.String_destroy(s_ret)
+
 cdef ListConnection _listconnection_from_capi(c_api.ListConnectionHandle h):
-    cdef ListConnection c = <ListConnection>ListConnection.__new__(ListConnection)
-    c.handle = h
-    c.owned = False
-    return c
+    cdef ListConnection obj = <ListConnection>ListConnection.__new__(ListConnection)
+    obj.handle = h

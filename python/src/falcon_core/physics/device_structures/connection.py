@@ -1,70 +1,97 @@
-from ..._capi.connection import Connection as _CConnection
-
+from __future__ import annotations
+from typing import Any, List, Dict, Tuple, Optional
+from falcon_core._capi.connection import Connection as _CConnection
 
 class Connection:
-    """Lightweight Python wrapper around the Cython Connection class."""
+    """Python wrapper for Connection."""
 
-    def __init__(self, cobj):
-        self._c = cobj
-
-    @classmethod
-    def new_barrier(cls, name: str):
-        return cls(_CConnection.new_barrier(name))
+    def __init__(self, c_obj):
+        self._c = c_obj
 
     @classmethod
-    def new_plunger(cls, name: str):
-        return cls(_CConnection.new_plunger(name))
+    def _from_capi(cls, c_obj):
+        if c_obj is None:
+            return None
+        return cls(c_obj)
 
     @classmethod
-    def new_reservoir(cls, name: str):
-        return cls(_CConnection.new_reservoir(name))
+    def Connection_create_barrier_gate(cls, name: str) -> Connection:
+        return cls(_CConnection.Connection_create_barrier_gate(name))
 
     @classmethod
-    def new_screening(cls, name: str):
-        return cls(_CConnection.new_screening(name))
+    def Connection_create_plunger_gate(cls, name: str) -> Connection:
+        return cls(_CConnection.Connection_create_plunger_gate(name))
 
     @classmethod
-    def new_ohmic(cls, name: str):
-        return cls(_CConnection.new_ohmic(name))
+    def Connection_create_reservoir_gate(cls, name: str) -> Connection:
+        return cls(_CConnection.Connection_create_reservoir_gate(name))
 
     @classmethod
-    def from_json(cls, json_str: str):
-        return cls(_CConnection.from_json(json_str))
+    def Connection_create_screening_gate(cls, name: str) -> Connection:
+        return cls(_CConnection.Connection_create_screening_gate(name))
 
-    def name(self) -> str:
-        return self._c.name()
+    @classmethod
+    def Connection_create_ohmic(cls, name: str) -> Connection:
+        return cls(_CConnection.Connection_create_ohmic(name))
 
-    def type(self) -> str:
-        return self._c.type()
+    @classmethod
+    def Connection_from_json_string(cls, json: str) -> Connection:
+        return cls(_CConnection.Connection_from_json_string(json))
 
-    def to_json(self) -> str:
-        return self._c.to_json()
+    def name(self, ) -> str:
+        ret = self._c.name()
+        return ret
 
-    def is_plunger_gate(self) -> bool:
-        return self._c.is_plunger_gate()
+    def type(self, ) -> str:
+        ret = self._c.type()
+        return ret
 
-    def is_barrier_gate(self) -> bool:
-        return self._c.is_barrier_gate()
+    def is_dot_gate(self, ) -> None:
+        ret = self._c.is_dot_gate()
+        return ret
 
-    def is_screening_gate(self) -> bool:
-        return self._c.is_screening_gate()
+    def is_barrier_gate(self, ) -> None:
+        ret = self._c.is_barrier_gate()
+        return ret
 
-    def is_reservoir_gate(self) -> bool:
-        return self._c.is_reservoir_gate()
+    def is_plunger_gate(self, ) -> None:
+        ret = self._c.is_plunger_gate()
+        return ret
 
-    def is_ohmic(self) -> bool:
-        return self._c.is_ohmic()
+    def is_reservoir_gate(self, ) -> None:
+        ret = self._c.is_reservoir_gate()
+        return ret
 
-    def __eq__(self, other):
-        if not isinstance(other, Connection):
-            raise TypeError(
-                f"Equality is not defined between Connection and {type(other)}"
-            )
-        return self._c == other._c
+    def is_screening_gate(self, ) -> None:
+        ret = self._c.is_screening_gate()
+        return ret
 
-    def __ne__(self, other):
-        if not isinstance(other, Connection):
-            raise TypeError(
-                f"Equality is not defined between Connection and {type(other)}"
-            )
-        return self._c != other._c
+    def is_ohmic(self, ) -> None:
+        ret = self._c.is_ohmic()
+        return ret
+
+    def is_gate(self, ) -> None:
+        ret = self._c.is_gate()
+        return ret
+
+    def equal(self, b: Connection) -> None:
+        ret = self._c.equal(b._c)
+        return ret
+
+    def __eq__(self, b: Connection) -> None:
+        if not hasattr(b, "_c"):
+            return NotImplemented
+        return self.equal(b)
+
+    def not_equal(self, b: Connection) -> None:
+        ret = self._c.not_equal(b._c)
+        return ret
+
+    def __ne__(self, b: Connection) -> None:
+        if not hasattr(b, "_c"):
+            return NotImplemented
+        return self.not_equal(b)
+
+    def to_json_string(self, ) -> str:
+        ret = self._c.to_json_string()
+        return ret

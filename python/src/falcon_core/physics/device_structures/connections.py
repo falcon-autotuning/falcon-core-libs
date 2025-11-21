@@ -1,122 +1,126 @@
-from ..._capi.connections import Connections as _CConnections
-from ..._capi.list_connection import ListConnection as _CListConnection
-from ...generic.list import List as GenericList
-from .connection import Connection as PyConnection
-
+from __future__ import annotations
+from typing import Any, List, Dict, Tuple, Optional
+from falcon_core._capi.connections import Connections as _CConnections
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.generic.list import List
 
 class Connections:
-    """
-    High-level Python wrapper that behaves like a list of Connection while delegating
-    storage and many operations to the underlying _capi.Connections (C API backed).
-    """
+    """Python wrapper for Connections."""
 
-    def __init__(self, cobj):
-        # cobj is the low-level Cython Connections instance
-        self._c = cobj
-        # Build a generic.List wrapper around the low-level object so Pythonic
-        # list ops (iteration, indexing) work. We intentionally do not pass
-        # a c_list_type because modifications should be delegated to the
-        # Connections backend.
-        self._list = GenericList(self._c)
+    def __init__(self, c_obj):
+        self._c = c_obj
 
     @classmethod
-    def new_empty(cls):
-        return cls(_CConnections.create_empty())
+    def _from_capi(cls, c_obj):
+        if c_obj is None:
+            return None
+        return cls(c_obj)
 
     @classmethod
-    def from_list(cls, conn_list: list):
-        # Accept a list of Python-level Connection wrappers
-        return cls(_CConnections.from_list(conn_list))
-
-    def append(self, conn: PyConnection):
-        self._c.push_back(conn)
-
-    def __len__(self):
-        return len(self._list)
-
-    def __getitem__(self, idx):
-        return self._list[idx]
-
-    def __iter__(self):
-        return iter(self._list)
-
-    def __contains__(self, item):
-        # let low-level contains handle comparisons
-        return self._c.contains(item)
-
-    def index(self, item):
-        return self._c.index(item)
-
-    def erase_at(self, idx: int):
-        self._c.erase_at(idx)
-
-    def clear(self):
-        self._c.clear()
-
-    def intersection(self, other: "Connections"):
-        return Connections(self._c.intersection(other._c))
-
-    def to_json(self) -> str:
-        return self._c.to_json()
+    def Connections_create_empty(cls, ) -> Connections:
+        return cls(_CConnections.Connections_create_empty())
 
     @classmethod
-    def from_json(cls, json_str: str):
-        return cls(_CConnections.from_json(json_str))
+    def Connections_create(cls, items: List) -> Connections:
+        return cls(_CConnections.Connections_create(items._c))
 
-    # convenience accessors delegating to low-level impl
-    def is_gates(self):
-        try:
-            return bool(self._c.is_gates())
-        except AttributeError:
-            return False
+    @classmethod
+    def Connections_from_json_string(cls, json: str) -> Connections:
+        return cls(_CConnections.Connections_from_json_string(json))
 
-    def is_ohmics(self):
-        try:
-            return bool(self._c.is_ohmics())
-        except AttributeError:
-            return False
+    def is_gates(self, ) -> None:
+        ret = self._c.is_gates()
+        return ret
 
-    def is_dot_gates(self):
-        try:
-            return bool(self._c.is_dot_gates())
-        except AttributeError:
-            return False
+    def is_ohmics(self, ) -> None:
+        ret = self._c.is_ohmics()
+        return ret
 
-    def is_plunger_gates(self):
-        try:
-            return bool(self._c.is_plunger_gates())
-        except AttributeError:
-            return False
+    def is_dot_gates(self, ) -> None:
+        ret = self._c.is_dot_gates()
+        return ret
 
-    def is_barrier_gates(self):
-        try:
-            return bool(self._c.is_barrier_gates())
-        except AttributeError:
-            return False
+    def is_plunger_gates(self, ) -> None:
+        ret = self._c.is_plunger_gates()
+        return ret
 
-    def is_reservoir_gates(self):
-        try:
-            return bool(self._c.is_reservoir_gates())
-        except AttributeError:
-            return False
+    def is_barrier_gates(self, ) -> None:
+        ret = self._c.is_barrier_gates()
+        return ret
 
-    def is_screening_gates(self):
-        try:
-            return bool(self._c.is_screening_gates())
-        except AttributeError:
-            return False
+    def is_reservoir_gates(self, ) -> None:
+        ret = self._c.is_reservoir_gates()
+        return ret
 
-    def __eq__(self, other):
-        if not isinstance(other, Connections):
-            raise TypeError(f"Equality is not defined between Connections and {type(other)}")
-        return self._c == other._c
+    def is_screening_gates(self, ) -> None:
+        ret = self._c.is_screening_gates()
+        return ret
 
-    def __ne__(self, other):
-        if not isinstance(other, Connections):
-            raise TypeError(f"Equality is not defined between Connections and {type(other)}")
-        return self._c != other._c
+    def intersection(self, other: Connections) -> Connections:
+        ret = self._c.intersection(other._c)
+        return cls._from_capi(ret)
 
-    def items(self):
-        # Return a Generic List wrapper built from a low-level ListConnection
-        c_list = self._c.items()
-        return GenericList(c_list)
+    def push_back(self, value: Connection) -> None:
+        ret = self._c.push_back(value._c)
+        return ret
+
+    def size(self, ) -> None:
+        ret = self._c.size()
+        return ret
+
+    def empty(self, ) -> None:
+        ret = self._c.empty()
+        return ret
+
+    def erase_at(self, idx: Any) -> None:
+        ret = self._c.erase_at(idx)
+        return ret
+
+    def clear(self, ) -> None:
+        ret = self._c.clear()
+        return ret
+
+    def const_at(self, idx: Any) -> const Connection:
+        ret = self._c.const_at(idx)
+        if ret is None: return None
+        return const Connection._from_capi(ret)
+
+    def at(self, idx: Any) -> Connection:
+        ret = self._c.at(idx)
+        if ret is None: return None
+        return Connection._from_capi(ret)
+
+    def items(self, ) -> List:
+        ret = self._c.items()
+        if ret is None: return None
+        return List(ret)
+
+    def contains(self, value: Connection) -> None:
+        ret = self._c.contains(value._c)
+        return ret
+
+    def index(self, value: Connection) -> None:
+        ret = self._c.index(value._c)
+        return ret
+
+    def equal(self, b: Connections) -> None:
+        ret = self._c.equal(b._c)
+        return ret
+
+    def __eq__(self, b: Connections) -> None:
+        if not hasattr(b, "_c"):
+            return NotImplemented
+        return self.equal(b)
+
+    def not_equal(self, b: Connections) -> None:
+        ret = self._c.not_equal(b._c)
+        return ret
+
+    def __ne__(self, b: Connections) -> None:
+        if not hasattr(b, "_c"):
+            return NotImplemented
+        return self.not_equal(b)
+
+    def to_json_string(self, ) -> str:
+        ret = self._c.to_json_string()
+        return ret

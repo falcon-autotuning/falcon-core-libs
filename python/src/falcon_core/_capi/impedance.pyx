@@ -1,127 +1,109 @@
 # cython: language_level=3
-from cpython.bytes cimport PyBytes_FromStringAndSize
 from . cimport c_api
-from .connection cimport Connection as _CConnection
-from .connection cimport _connection_from_capi
+from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-
-# Import the Python class to wrap returned/created Connection objects
-from ..physics.device_structures.connection import Connection as PyConnection
+from libc.stdbool cimport bool
+from .connection cimport Connection
 
 cdef class Impedance:
-    """Thin Cython wrapper owning an ImpedanceHandle."""
-    # 'handle' cdef attribute is declared in impedance.pxd; do not redeclare it here.
+    cdef c_api.ImpedanceHandle handle
+    cdef bint owned
 
     def __cinit__(self):
         self.handle = <c_api.ImpedanceHandle>0
         self.owned = True
 
     def __dealloc__(self):
-        if self.handle != <c_api.ImpedanceHandle>0 and getattr(self, "owned", True):
+        if self.handle != <c_api.ImpedanceHandle>0 and self.owned:
             c_api.Impedance_destroy(self.handle)
         self.handle = <c_api.ImpedanceHandle>0
 
-    @classmethod
-    def new(cls, conn, double resistance, double capacitance):
-        """
-        Create an Impedance from a Python Connection wrapper (expects the
-        Python Connection instance that has a ._c attribute pointing to
-        the Cython Connection object).
-        """
-        # extract the cdef connection wrapper from the Python Connection wrapper
-        c_conn = <_CConnection>conn._c
-        cdef c_api.ImpedanceHandle h = c_api.Impedance_create(c_conn.handle, resistance, capacitance)
-        if h == <c_api.ImpedanceHandle>0:
-            raise MemoryError("failed to create Impedance")
-        cdef Impedance i = <Impedance>cls.__new__(cls)
-        i.handle = h
-        i.owned = True
-        return i
+    cdef Impedance from_capi(cls, c_api.ImpedanceHandle h):
+        cdef Impedance obj = <Impedance>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = False
+        return obj
 
     @classmethod
-    def from_json(cls, json_str):
-        b = json_str.encode("utf-8")
-        cdef const char* raw = b
-        cdef size_t l = len(b)
-        cdef c_api.StringHandle s = c_api.String_create(raw, l)
+    def new(cls, connection, resistance, capacitance):
+        cdef c_api.ImpedanceHandle h
+        h = c_api.Impedance_create(<c_api.ConnectionHandle>connection.handle, resistance, capacitance)
+        if h == <c_api.ImpedanceHandle>0:
+            raise MemoryError("Failed to create Impedance")
+        cdef Impedance obj = <Impedance>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
+    def from_json(cls, json):
+        json_bytes = json.encode("utf-8")
+        cdef const char* raw_json = json_bytes
+        cdef size_t len_json = len(json_bytes)
+        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
         cdef c_api.ImpedanceHandle h
         try:
-            h = c_api.Impedance_from_json_string(s)
+            h = c_api.Impedance_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s)
+            c_api.String_destroy(s_json)
         if h == <c_api.ImpedanceHandle>0:
-            raise ValueError("failed to parse Impedance from json")
-        i = <Impedance>cls.__new__(cls)
-        i.handle = h
-        return i
+            raise MemoryError("Failed to create Impedance")
+        cdef Impedance obj = <Impedance>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
     def connection(self):
         if self.handle == <c_api.ImpedanceHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.ConnectionHandle h_ret
+        h_ret = c_api.Impedance_connection(self.handle)
+        if h_ret == <c_api.ConnectionHandle>0:
             return None
-        cdef c_api.ConnectionHandle h = c_api.Impedance_connection(self.handle)
-        if h == <c_api.ConnectionHandle>0:
-            return None
-        cdef _CConnection c_conn = _connection_from_capi(h)
-        return PyConnection(c_conn)
-        # # Serialize the returned handle to JSON and rebuild an owned Connection wrapper.
-        # cdef c_api.StringHandle s = c_api.Connection_to_json_string(h)
-        # if s == <c_api.StringHandle>0:
-        #     return None
-        # cdef const char* raw = s.raw
-        # cdef size_t ln = s.length
-        # try:
-        #     b = PyBytes_FromStringAndSize(raw, ln)
-        #     json_str = b.decode("utf-8")
-        # finally:
-        #     c_api.String_destroy(s)
-        #
-        # cdef _CConnection new_c = _CConnection.from_json(json_str)
-        # return PyConnection(new_c)
-
+        return Connection.from_capi(Connection, h_ret)
 
     def resistance(self):
+        if self.handle == <c_api.ImpedanceHandle>0:
+            raise RuntimeError("Handle is null")
         return c_api.Impedance_resistance(self.handle)
 
     def capacitance(self):
+        if self.handle == <c_api.ImpedanceHandle>0:
+            raise RuntimeError("Handle is null")
         return c_api.Impedance_capacitance(self.handle)
 
-    def to_json(self):
+    def equal(self, b):
         if self.handle == <c_api.ImpedanceHandle>0:
-            return ""
-        cdef c_api.StringHandle s = c_api.Impedance_to_json_string(self.handle)
-        if s == <c_api.StringHandle>0:
-            return ""
-        cdef const char* raw = s.raw
-        cdef size_t ln = s.length
-        try:
-            b = PyBytes_FromStringAndSize(raw, ln)
-            return b.decode("utf-8")
-        finally:
-            c_api.String_destroy(s)
+            raise RuntimeError("Handle is null")
+        return c_api.Impedance_equal(self.handle, <c_api.ImpedanceHandle>b.handle)
 
-    def __richcmp__(self, other, int op):
-        if not isinstance(other, Impedance):
+    def __eq__(self, b):
+        if not hasattr(b, "handle"):
             return NotImplemented
-        cdef Impedance o = <Impedance>other
-        if op == 2:  # ==
-            return bool(c_api.Impedance_equal(self.handle, o.handle))
-        elif op == 3:  # !=
-            return bool(c_api.Impedance_not_equal(self.handle, o.handle))
-        return NotImplemented
+        return self.equal(b)
 
-    cdef Impedance from_capi(cls, c_api.ImpedanceHandle h):
-        """
-        Create a cdef Impedance wrapper directly from a raw C API handle.
-        Returned wrapper is non-owning.
-        """
-        cdef Impedance i = <Impedance>cls.__new__(cls)
-        i.handle = h
-        i.owned = False
-        return i
+    def not_equal(self, b):
+        if self.handle == <c_api.ImpedanceHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.Impedance_not_equal(self.handle, <c_api.ImpedanceHandle>b.handle)
 
-# Module-level C factory for Impedance
+    def __ne__(self, b):
+        if not hasattr(b, "handle"):
+            return NotImplemented
+        return self.not_equal(b)
+
+    def to_json_string(self):
+        if self.handle == <c_api.ImpedanceHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.StringHandle s_ret
+        s_ret = c_api.Impedance_to_json_string(self.handle)
+        if s_ret == <c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            c_api.String_destroy(s_ret)
+
 cdef Impedance _impedance_from_capi(c_api.ImpedanceHandle h):
-    cdef Impedance i = <Impedance>Impedance.__new__(Impedance)
-    i.handle = h
-    i.owned = False
-    return i
+    cdef Impedance obj = <Impedance>Impedance.__new__(Impedance)
+    obj.handle = h

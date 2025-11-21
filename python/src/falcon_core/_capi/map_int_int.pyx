@@ -1,143 +1,170 @@
 # cython: language_level=3
-from cpython.bytes cimport PyBytes_FromStringAndSize
 from . cimport c_api
+from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-import json
+from libc.stdbool cimport bool
+from .list_int cimport ListInt
+from .list_pair_int_int cimport ListPairIntInt
+from .pair_int_int cimport PairIntInt
 
 cdef class MapIntInt:
-    """Manages a MapIntIntHandle and its lifecycle."""
+    cdef c_api.MapIntIntHandle handle
+    cdef bint owned
 
     def __cinit__(self):
         self.handle = <c_api.MapIntIntHandle>0
         self.owned = True
 
     def __dealloc__(self):
-        if hasattr(self, "handle") and self.handle != <c_api.MapIntIntHandle>0 and getattr(self, "owned", True):
+        if self.handle != <c_api.MapIntIntHandle>0 and self.owned:
             c_api.MapIntInt_destroy(self.handle)
         self.handle = <c_api.MapIntIntHandle>0
 
-    @classmethod
-    def create_empty(cls):
-        cdef MapIntInt m = <MapIntInt>cls.__new__(cls)
-        m.handle = c_api.MapIntInt_create_empty()
-        if m.handle == <c_api.MapIntIntHandle>0:
-            raise MemoryError("Failed to create MapIntInt")
-        m.owned = True
-        return m
+    cdef MapIntInt from_capi(cls, c_api.MapIntIntHandle h):
+        cdef MapIntInt obj = <MapIntInt>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = False
+        return obj
 
     @classmethod
-    def from_json(cls, json_str):
-        b = json_str.encode("utf-8")
-        cdef const char* raw = b
-        cdef size_t l = len(b)
-        cdef c_api.StringHandle s = c_api.String_create(raw, l)
-        try:
-            h = c_api.MapIntInt_from_json_string(s)
-        finally:
-            c_api.String_destroy(s)
+    def new_empty(cls, ):
+        cdef c_api.MapIntIntHandle h
+        h = c_api.MapIntInt_create_empty()
         if h == <c_api.MapIntIntHandle>0:
-            raise ValueError("failed to parse MapIntInt from json")
-        m = <MapIntInt>cls.__new__(cls)
-        m.handle = h
-        m.owned = True
-        return m
+            raise MemoryError("Failed to create MapIntInt")
+        cdef MapIntInt obj = <MapIntInt>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-    def insert_or_assign(self, int key, int value):
+    @classmethod
+    def new(cls, data, count):
+        cdef c_api.MapIntIntHandle h
+        h = c_api.MapIntInt_create(<c_api.PairIntIntHandle>data.handle, count)
+        if h == <c_api.MapIntIntHandle>0:
+            raise MemoryError("Failed to create MapIntInt")
+        cdef MapIntInt obj = <MapIntInt>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
+    def from_json(cls, json):
+        json_bytes = json.encode("utf-8")
+        cdef const char* raw_json = json_bytes
+        cdef size_t len_json = len(json_bytes)
+        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
+        cdef c_api.MapIntIntHandle h
+        try:
+            h = c_api.MapIntInt_from_json_string(s_json)
+        finally:
+            c_api.String_destroy(s_json)
+        if h == <c_api.MapIntIntHandle>0:
+            raise MemoryError("Failed to create MapIntInt")
+        cdef MapIntInt obj = <MapIntInt>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def insert_or_assign(self, key, value):
         if self.handle == <c_api.MapIntIntHandle>0:
-            raise ValueError("Map is closed")
+            raise RuntimeError("Handle is null")
         c_api.MapIntInt_insert_or_assign(self.handle, key, value)
 
-    def insert(self, int key, int value):
+    def insert(self, key, value):
         if self.handle == <c_api.MapIntIntHandle>0:
-            raise ValueError("Map is closed")
+            raise RuntimeError("Handle is null")
         c_api.MapIntInt_insert(self.handle, key, value)
 
-    def at(self, int key):
+    def at(self, key):
         if self.handle == <c_api.MapIntIntHandle>0:
-            raise ValueError("Map is closed")
+            raise RuntimeError("Handle is null")
         return c_api.MapIntInt_at(self.handle, key)
 
-    def erase(self, int key):
+    def erase(self, key):
         if self.handle == <c_api.MapIntIntHandle>0:
-            raise ValueError("Map is closed")
+            raise RuntimeError("Handle is null")
         c_api.MapIntInt_erase(self.handle, key)
 
     def size(self):
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
         return c_api.MapIntInt_size(self.handle)
 
     def empty(self):
-        return bool(c_api.MapIntInt_empty(self.handle))
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.MapIntInt_empty(self.handle)
 
     def clear(self):
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
         c_api.MapIntInt_clear(self.handle)
 
-    def contains(self, int key):
-        return bool(c_api.MapIntInt_contains(self.handle, key))
-
-    def to_json(self):
+    def contains(self, key):
         if self.handle == <c_api.MapIntIntHandle>0:
-            return ""
-        cdef c_api.StringHandle s = c_api.MapIntInt_to_json_string(self.handle)
-        if s == <c_api.StringHandle>0:
-            return ""
-        cdef const char* raw = s.raw
-        cdef size_t ln = s.length
-        try:
-            b = PyBytes_FromStringAndSize(raw, ln)
-            return b.decode("utf-8")
-        finally:
-            c_api.String_destroy(s)
+            raise RuntimeError("Handle is null")
+        return c_api.MapIntInt_contains(self.handle, key)
 
     def keys(self):
-        """Return a Python list of keys (properly-typed) by reading the ListInt handle."""
         if self.handle == <c_api.MapIntIntHandle>0:
-            return []
-        cdef c_api.ListIntHandle lh = c_api.MapIntInt_keys(self.handle)
-        if lh == <c_api.ListIntHandle>0:
-            return []
-        cdef size_t n = c_api.ListInt_size(lh)
-        py_list = []
-        cdef size_t i
-        for i in range(n):
-            py_list.append(c_api.ListInt_at(lh, i))
-        c_api.ListInt_destroy(lh)
-        return py_list
+            raise RuntimeError("Handle is null")
+        cdef c_api.ListIntHandle h_ret
+        h_ret = c_api.MapIntInt_keys(self.handle)
+        if h_ret == <c_api.ListIntHandle>0:
+            return None
+        return ListInt.from_capi(ListInt, h_ret)
 
     def values(self):
-        """Return a Python list of values (properly-typed) by reading the ListInt handle."""
         if self.handle == <c_api.MapIntIntHandle>0:
-            return []
-        cdef c_api.ListIntHandle lh = c_api.MapIntInt_values(self.handle)
-        if lh == <c_api.ListIntHandle>0:
-            return []
-        cdef size_t n = c_api.ListInt_size(lh)
-        py_list = []
-        cdef size_t i
-        for i in range(n):
-            py_list.append(c_api.ListInt_at(lh, i))
-        c_api.ListInt_destroy(lh)
-        return py_list
+            raise RuntimeError("Handle is null")
+        cdef c_api.ListIntHandle h_ret
+        h_ret = c_api.MapIntInt_values(self.handle)
+        if h_ret == <c_api.ListIntHandle>0:
+            return None
+        return ListInt.from_capi(ListInt, h_ret)
 
-    def __richcmp__(self, other, int op):
-        if not isinstance(other, MapIntInt):
+    def items(self):
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.ListPairIntIntHandle h_ret
+        h_ret = c_api.MapIntInt_items(self.handle)
+        if h_ret == <c_api.ListPairIntIntHandle>0:
+            return None
+        return ListPairIntInt.from_capi(ListPairIntInt, h_ret)
+
+    def equal(self, b):
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.MapIntInt_equal(self.handle, <c_api.MapIntIntHandle>b.handle)
+
+    def __eq__(self, b):
+        if not hasattr(b, "handle"):
             return NotImplemented
-        cdef MapIntInt o = <MapIntInt>other
-        if op == 2:  # ==
-            return bool(c_api.MapIntInt_equal(self.handle, o.handle))
-        elif op == 3:  # !=
-            return bool(c_api.MapIntInt_not_equal(self.handle, o.handle))
-        return NotImplemented
+        return self.equal(b)
 
-    cdef MapIntInt from_capi(cls, c_api.MapIntIntHandle h):
-        cdef MapIntInt m = <MapIntInt>cls.__new__(cls)
-        m.handle = h
-        m.owned = False
-        return m
+    def not_equal(self, b):
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
+        return c_api.MapIntInt_not_equal(self.handle, <c_api.MapIntIntHandle>b.handle)
 
+    def __ne__(self, b):
+        if not hasattr(b, "handle"):
+            return NotImplemented
+        return self.not_equal(b)
 
-# Module-level C factory for MapIntInt
+    def to_json_string(self):
+        if self.handle == <c_api.MapIntIntHandle>0:
+            raise RuntimeError("Handle is null")
+        cdef c_api.StringHandle s_ret
+        s_ret = c_api.MapIntInt_to_json_string(self.handle)
+        if s_ret == <c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            c_api.String_destroy(s_ret)
+
 cdef MapIntInt _mapintint_from_capi(c_api.MapIntIntHandle h):
-    cdef MapIntInt m = <MapIntInt>MapIntInt.__new__(MapIntInt)
-    m.handle = h
-    m.owned = False
-    return m
+    cdef MapIntInt obj = <MapIntInt>MapIntInt.__new__(MapIntInt)
+    obj.handle = h
