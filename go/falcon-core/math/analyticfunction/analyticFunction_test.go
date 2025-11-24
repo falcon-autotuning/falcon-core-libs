@@ -1,10 +1,12 @@
 package analyticfunction
 
 import (
+	"sync"
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/liststring"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringdouble"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairstringdouble"
 )
 
 func makeTestLabels(t *testing.T) *liststring.Handle {
@@ -199,4 +201,45 @@ func TestAnalyticFunction_ClosedErrors(t *testing.T) {
 	if err := af.Close(); err == nil {
 		t.Error("Close() on closed: expected error")
 	}
+}
+
+func TestSimultaneousEvaluationAndClosing(t *testing.T) {
+	af, labels := makeTestAnalyticFunction(t)
+	defer af.Close()
+	defer labels.Close()
+	pair, err := pairstringdouble.New("x", 2)
+	if err != nil {
+		t.Fatalf("Failed to create pair: %v", err)
+	}
+	args, err := mapstringdouble.New([]*pairstringdouble.Handle{pair})
+	if err != nil {
+		t.Fatalf("Failed to create args: %v", err)
+	}
+	defer args.Close()
+
+	var wg sync.WaitGroup
+	wg.Add(2)
+
+	// Run Evaluate in a goroutine
+	go func() {
+		defer wg.Done()
+		val, evalErr := af.Evaluate(args, 0)
+		// Either we get a value, or an error if closed
+		if evalErr != nil && evalErr.Error() != "Evaluate: object is closed" {
+			t.Errorf("Unexpected error from Evaluate: %v", evalErr)
+		}
+		_ = val // ignore value
+	}()
+
+	// Run Close in a goroutine
+	go func() {
+		defer wg.Done()
+		closeErr := args.Close()
+		// Either close succeeds, or returns error if already closed
+		if closeErr != nil && closeErr.Error() != "unable to close the arguments map" {
+			t.Errorf("Unexpected error from Close: %v", closeErr)
+		}
+	}()
+
+	wg.Wait()
 }

@@ -10,352 +10,205 @@ import "C"
 
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
 
-var stringFromCAPI = str.FromCAPI
-
-type connectionHandle C.ConnectionHandle
-
 type Handle struct {
-	chandle      connectionHandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-// CAPIHandle provides access to the underlying CAPI handle for the String
-func (s *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
-	if s.closed || s.chandle == utils.NilHandle[connectionHandle]() {
-		return nil, errors.New(`Name The connection is closed`)
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{
+			FalconCoreHandle: falconcorehandle.Construct(ptr),
+		}
 	}
-	return unsafe.Pointer(s.chandle), nil
-}
+	destroy = func(ptr unsafe.Pointer) {
+		C.Connection_destroy(C.ConnectionHandle(ptr))
+	}
+)
 
-// new adds an auto cleanup whenever added to a constructor
-func new(h connectionHandle) *Handle {
-	conn := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
-	// NOTE: The following AddCleanup/finalizer is not covered by tests because
-	// Go's garbage collector does not guarantee finalizer execution during tests.
-	// This is a known limitation of Go's coverage tooling and is safe to ignore.
-	runtime.AddCleanup(conn, func(_ any) { conn.Close() }, true)
-	return conn
-}
+// --- Constructors using cmemoryallocation ---
 
-// FromCAPI provides a constructor directly from the CAPI
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New(`FromCAPI The pointer is null`)
-	}
-	return new(connectionHandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
 
 func NewBarrierGate(name string) (*Handle, error) {
-	str := str.New(name)
-	defer str.Close()
-	capistr, err := str.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to create name`), err)
-	}
-	h := connectionHandle(C.Connection_create_barrier_gate(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	strObj := str.New(name)
+	return cmemoryallocation.Read(strObj, func() (*Handle, error) {
+		capistr := strObj.CAPIHandle()
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Connection_create_barrier_gate(C.StringHandle(capistr))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func NewPlungerGate(name string) (*Handle, error) {
-	str := str.New(name)
-	defer str.Close()
-	capistr, err := str.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to create name`), err)
-	}
-	h := connectionHandle(C.Connection_create_plunger_gate(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	strObj := str.New(name)
+	capistr := strObj.CAPIHandle()
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Connection_create_plunger_gate(C.StringHandle(capistr))), nil
+		},
+		construct,
+		destroy,
+	)
 }
 
 func NewReservoirGate(name string) (*Handle, error) {
-	str := str.New(name)
-	defer str.Close()
-	capistr, err := str.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to create name`), err)
-	}
-	h := connectionHandle(C.Connection_create_reservoir_gate(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	strObj := str.New(name)
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Connection_create_plunger_gate(C.StringHandle(strObj.CAPIHandle()))), nil
+		},
+		construct,
+		destroy,
+	)
 }
 
 func NewScreeningGate(name string) (*Handle, error) {
-	str := str.New(name)
-	defer str.Close()
-	capistr, err := str.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to create name`), err)
-	}
-	h := connectionHandle(C.Connection_create_screening_gate(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	strObj := str.New(name)
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Connection_create_plunger_gate(C.StringHandle(strObj.CAPIHandle()))), nil
+		},
+		construct,
+		destroy,
+	)
 }
 
 func NewOhmic(name string) (*Handle, error) {
-	str := str.New(name)
-	defer str.Close()
-	capistr, err := str.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to create name`), err)
-	}
-	h := connectionHandle(C.Connection_create_ohmic(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	strObj := str.New(name)
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Connection_create_plunger_gate(C.StringHandle(strObj.CAPIHandle()))), nil
+		},
+		construct,
+		destroy,
+	)
 }
 
 func FromJSON(json string) (*Handle, error) {
 	realJSON := str.New(json)
-	defer realJSON.Close()
-	capistr, err := realJSON.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
-	}
-	h := connectionHandle(C.Connection_from_json_string(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Connection_create_plunger_gate(C.StringHandle(realJSON.CAPIHandle()))), nil
+		},
+		construct,
+		destroy,
+	)
 }
 
-func (c *Handle) Close() error {
-	c.mu.Lock()
-	defer c.mu.Unlock()
-	if !c.closed && c.chandle != utils.NilHandle[connectionHandle]() {
-		C.Connection_destroy(C.ConnectionHandle(c.chandle))
-		err := c.errorHandler.CheckCapiError()
+// --- Destroy method using cmemoryallocation.CloseAllocation ---
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+
+// --- Read-only methods using cmemoryallocation.Read ---
+
+func (h *Handle) Name() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Connection_name(C.ConnectionHandle(h.CAPIHandle()))))
 		if err != nil {
-			return err
+			return "", errors.New(`Name:` + err.Error())
 		}
-		c.closed = true
-		c.chandle = utils.NilHandle[connectionHandle]()
-		return nil
-	}
-	return errors.New("unable to close the Handle")
+		return strObj.ToGoString()
+	})
 }
 
-func (c *Handle) Name() (string, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return "", errors.New(`Name The connection is closed`)
-	}
-	str, err := stringFromCAPI(unsafe.Pointer(C.Connection_name(C.ConnectionHandle(c.chandle))))
-	if err != nil {
-		return "", errors.New(`Name:` + err.Error())
-	}
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer str.Close()
-	return str.ToGoString()
+func (h *Handle) Type() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Connection_type(C.ConnectionHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New(`Type:` + err.Error())
+		}
+		return strObj.ToGoString()
+	})
 }
 
-func (c *Handle) Type() (string, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return "", errors.New(`Type The connection is closed`)
-	}
-	str, err := stringFromCAPI(unsafe.Pointer(C.Connection_type(C.ConnectionHandle(c.chandle))))
-	if err != nil {
-		return "", errors.New(`Type:` + err.Error())
-	}
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer str.Close()
-	return str.ToGoString()
+func (h *Handle) IsDotGate() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_dot_gate(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsDotGate() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsDotGate The connection is closed`)
-	}
-	val := bool(C.Connection_is_dot_gate(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) IsBarrierGate() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_barrier_gate(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsBarrierGate() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsBarrierGate The connection is closed`)
-	}
-	val := bool(C.Connection_is_barrier_gate(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) IsPlungerGate() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_plunger_gate(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsPlungerGate() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsPlungerGate The connection is closed`)
-	}
-	val := bool(C.Connection_is_plunger_gate(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) IsReservoirGate() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_reservoir_gate(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsReservoirGate() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsReservoirGate The connection is closed`)
-	}
-	val := bool(C.Connection_is_reservoir_gate(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) IsScreeningGate() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_screening_gate(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsScreeningGate() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsScreeningGate The connection is closed`)
-	}
-	val := bool(C.Connection_is_screening_gate(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) IsOhmic() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_ohmic(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsOhmic() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsOhmic The connection is closed`)
-	}
-	val := bool(C.Connection_is_ohmic(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) IsGate() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		val := bool(C.Connection_is_gate(C.ConnectionHandle(h.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) IsGate() (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`IsGate The connection is closed`)
-	}
-	val := bool(C.Connection_is_gate(C.ConnectionHandle(c.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		val := bool(C.Connection_equal(C.ConnectionHandle(h.CAPIHandle()), C.ConnectionHandle(other.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) Equal(other *Handle) (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`Equal The connection is closed`)
-	}
-	if other == nil {
-		return false, errors.New(`Equal The other connection is null`)
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`Equal The other connection is closed`)
-	}
-	val := bool(C.Connection_equal(C.ConnectionHandle(c.chandle), C.ConnectionHandle(other.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		val := bool(C.Connection_not_equal(C.ConnectionHandle(h.CAPIHandle()), C.ConnectionHandle(other.CAPIHandle())))
+		return val, nil
+	})
 }
 
-func (c *Handle) NotEqual(other *Handle) (bool, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`NotEqual The connection is closed`)
-	}
-	if other == nil {
-		return false, errors.New(`NotEqual The other connection is null`)
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[connectionHandle]() {
-		return false, errors.New(`NotEqual The other connection is closed`)
-	}
-	val := bool(C.Connection_not_equal(C.ConnectionHandle(c.chandle), C.ConnectionHandle(other.chandle)))
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
-}
-
-func (c *Handle) ToJSON() (string, error) {
-	c.mu.RLock()
-	defer c.mu.RUnlock()
-	if c.closed || c.chandle == utils.NilHandle[connectionHandle]() {
-		return "", errors.New(`ToJSON The connection is closed`)
-	}
-	str, err := stringFromCAPI(unsafe.Pointer(C.Connection_to_json_string(C.ConnectionHandle(c.chandle))))
-	if err != nil {
-		return "", errors.New(`ToJSON could not convert to a String. ` + err.Error())
-	}
-	capiErr := c.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer str.Close()
-	return str.ToGoString()
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Connection_to_json_string(C.ConnectionHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New(`ToJSON could not convert to a String. ` + err.Error())
+		}
+		return strObj.ToGoString()
+	})
 }

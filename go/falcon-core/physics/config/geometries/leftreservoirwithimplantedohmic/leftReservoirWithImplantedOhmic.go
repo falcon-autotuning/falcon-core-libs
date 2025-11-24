@@ -61,11 +61,8 @@ func New(name string, rightNeighbor, ohmic *connection.Handle) (*Handle, error) 
 	if err != nil {
 		return nil, errors.Join(errors.New("New failed: could not get CAPI handle for name"), err)
 	}
-	rightCapi, err := rightNeighbor.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("New failed: could not get CAPI handle for rightNeighbor"), err)
-	}
-	ohmicCapi, err := ohmic.CAPIHandle()
+	rightCapi := rightNeighbor.CAPIHandle()
+	ohmicCapi := ohmic.CAPIHandle()
 	if err != nil {
 		return nil, errors.Join(errors.New("New failed: could not get CAPI handle for ohmic"), err)
 	}
@@ -144,7 +141,7 @@ func (h *Handle) Ohmic() (*connection.Handle, error) {
 	if capiErr != nil {
 		return nil, capiErr
 	}
-	return connection.FromCAPI(cHandle)
+	return connection.FromCAPI(cHandle), nil
 }
 
 func (h *Handle) RightNeighbor() (*connection.Handle, error) {
@@ -158,7 +155,7 @@ func (h *Handle) RightNeighbor() (*connection.Handle, error) {
 	if capiErr != nil {
 		return nil, capiErr
 	}
-	return connection.FromCAPI(cHandle)
+	return connection.FromCAPI(cHandle), nil
 }
 
 func (h *Handle) Equal(other *Handle) (bool, error) {

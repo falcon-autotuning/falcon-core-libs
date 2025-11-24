@@ -64,14 +64,8 @@ func NewPlungerGateWithNeighbors(name string, left, right *connection.Handle) (*
 	if err != nil {
 		return nil, errors.Join(errors.New("NewPlungerGateWithNeighbors failed from illegal name"), err)
 	}
-	leftCapi, err := left.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("NewPlungerGateWithNeighbors failed from illegal left connection"), err)
-	}
-	rightCapi, err := right.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("NewPlungerGateWithNeighbors failed from illegal right connection"), err)
-	}
+	leftCapi := left.CAPIHandle()
+	rightCapi := right.CAPIHandle()
 	h := dotGateWithNeighborsHandle(C.DotGateWithNeighbors_create_plungergatewithneighbors(
 		C.StringHandle(nameCapi),
 		C.ConnectionHandle(leftCapi),
@@ -94,14 +88,8 @@ func NewBarrierGateWithNeighbors(name string, left, right *connection.Handle) (*
 	if err != nil {
 		return nil, errors.Join(errors.New("NewBarrierGateWithNeighbors failed from illegal name"), err)
 	}
-	leftCapi, err := left.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("NewBarrierGateWithNeighbors failed from illegal left connection"), err)
-	}
-	rightCapi, err := right.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("NewBarrierGateWithNeighbors failed from illegal right connection"), err)
-	}
+	leftCapi := left.CAPIHandle()
+	rightCapi := right.CAPIHandle()
 	h := dotGateWithNeighborsHandle(C.DotGateWithNeighbors_create_barriergatewithneighbors(
 		C.StringHandle(nameCapi),
 		C.ConnectionHandle(leftCapi),

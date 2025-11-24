@@ -10,6 +10,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
+  
 )
 
 /*
@@ -511,7 +512,9 @@ func (h *Handle) Pow(other float64) (*Handle, error) {
 	return new(res), nil
 }
 
+
 func (h *Handle) DoublePow(other float64) (*Handle, error) {
+
 	h.mu.RLock()
 	defer h.mu.RUnlock()
 	res := chandle(C.FArrayDouble_double_pow(C.FArrayDoubleHandle(h.chandle), C.double(other)))
@@ -521,6 +524,7 @@ func (h *Handle) DoublePow(other float64) (*Handle, error) {
 	}
 
 	return new(res), nil
+
 }
 
 func (h *Handle) PowInplace(other float64) error {

@@ -26,7 +26,12 @@ gen-axes:
 gen-labelledarrays:
 	go run tools/genLabelledArrays/main.go
 
-build:
+gen-interpretationcontainer:
+	go run tools/genInterpretationContainer/main.go
+
+gen: gen-lists gen-pairs gen-farray gen-maps gen-axes gen-labelledarrays gen-interpretationcontainer
+
+build: gen
 	go build ./...
 
 func-coverage:
@@ -77,6 +82,14 @@ clean-gen-maps:
 		rm -f map_handles_manifest.txt; \
 	fi
 
+clean-gen-interpretationcontainer:
+	@if [ -f interpretationcontainer_handles_manifest.txt ]; then \
+		while read -r file; do \
+			rm -f "$$file"; \
+		done < interpretationcontainer_handles_manifest.txt; \
+		rm -f interpretationcontainer_handles_manifest.txt; \
+	fi
+
 clean-gen-farray:
 	@if [ -f farray_handles_manifest.txt ]; then \
 		while read -r file; do \
@@ -92,6 +105,8 @@ clean-gen-pairs:
 		done < pair_handles_manifest.txt; \
 		rm -f pair_handles_manifest.txt; \
 	fi
+
+make clean: clean-gen-lists clean-gen-labelledarrays clean-gen-axes clean-gen-maps clean-gen-interpretationcontainer clean-gen-farray clean-gen-pairs
 
 test-traceback:
 	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH GOTRACEBACK=crash go test -v  ./...

@@ -1,11 +1,8 @@
 package connection
 
 import (
-	"errors"
+	"fmt"
 	"testing"
-	"unsafe"
-
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 )
 
 func TestConnection_ErrorOnClosed(t *testing.T) {
@@ -13,7 +10,10 @@ func TestConnection_ErrorOnClosed(t *testing.T) {
 	if err != nil {
 		t.Fatalf("unexpected error creating BarrierGate: %v", err)
 	}
-	c.Close()
+	err = c.Close()
+	if err != nil {
+		t.Fatalf("unexpected error closing BarrierGate: %v", err)
+	}
 	c2, err := NewBarrierGate("bar")
 	if err != nil {
 		t.Fatalf("unexpected error creating BarrierGate: %v", err)
@@ -51,6 +51,7 @@ func TestConnection_AccessorsReturnValues(t *testing.T) {
 	if err != nil {
 		t.Fatalf("unexpected error creating BarrierGate: %v", err)
 	}
+	fmt.Printf("Finished allocating NewBarrierGate\n")
 	defer c.Close()
 	c2, err := NewBarrierGate("foo")
 	if err != nil {
@@ -178,37 +179,13 @@ func TestConnection_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("unexpected error creating BarrierGate: %v", err)
 	}
 	defer c.Close()
-	capi, err := c.CAPIHandle()
-	if err != nil {
-		t.Fatalf("unexpected error converting Barriet Gate to CAPI: %v", err)
-	}
+	capi := c.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}
 	if h == nil {
 		t.Fatal("FromCAPI valid: got nil")
-	}
-}
-
-func TestConnection_Name_Type_FromCAPIError(t *testing.T) {
-	oldFromCAPI := stringFromCAPI
-	stringFromCAPI = func(p unsafe.Pointer) (*str.Handle, error) {
-		return nil, errors.New("simulated FromCAPI error")
-	}
-	defer func() { stringFromCAPI = oldFromCAPI }()
-	c, err := NewBarrierGate("foo")
-	if err != nil {
-		t.Fatalf("unexpected error creating BarrierGate: %v", err)
-	}
-	defer c.Close()
-	_, err = c.Name()
-	if err == nil || err.Error() != "Name:simulated FromCAPI error" {
-		t.Errorf("Name() FromCAPI error not handled, got: %v", err)
-	}
-	_, err = c.Type()
-	if err == nil || err.Error() != "Type:simulated FromCAPI error" {
-		t.Errorf("Type() FromCAPI error not handled, got: %v", err)
 	}
 }
 
