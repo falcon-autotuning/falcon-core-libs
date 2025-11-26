@@ -1,11 +1,7 @@
 package symbolunit
 
 import (
-	"errors"
 	"testing"
-	"unsafe"
-
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 )
 
 func TestSymbolUnit_ErrorOnClosed(t *testing.T) {
@@ -175,37 +171,13 @@ func TestSymbolUnit_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("unexpected error creating SymbolUnit: %v", err)
 	}
 	defer u.Close()
-	capiunit, err := u.CAPIHandle()
-	if err != nil {
-		t.Errorf("FromCAPI valid: got error with accessing capi: %v", err)
-	}
+	capiunit := u.CAPIHandle()
 	h, err := FromCAPI(capiunit)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}
 	if h == nil {
 		t.Fatal("FromCAPI valid: got nil")
-	}
-}
-
-func TestSymbolUnit_Name_Symbol_FromCAPIError(t *testing.T) {
-	oldFromCAPI := stringFromCAPI
-	stringFromCAPI = func(p unsafe.Pointer) (*str.Handle, error) {
-		return nil, errors.New("simulated FromCAPI error")
-	}
-	defer func() { stringFromCAPI = oldFromCAPI }()
-	u, err := NewMeter()
-	if err != nil {
-		t.Fatalf("unexpected error creating SymbolUnit: %v", err)
-	}
-	defer u.Close()
-	_, err = u.Name()
-	if err == nil || err.Error() != "Name: simulated FromCAPI error" {
-		t.Errorf("Name() FromCAPI error not handled, got: %v", err)
-	}
-	_, err = u.Symbol()
-	if err == nil || err.Error() != "Symbol: simulated FromCAPI error" {
-		t.Errorf("Symbol() FromCAPI error not handled, got: %v", err)
 	}
 }
 

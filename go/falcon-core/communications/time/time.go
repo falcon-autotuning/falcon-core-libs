@@ -7,207 +7,111 @@ package time
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
+
+	// no extra imports
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
 
-type timeHandle C.TimeHandle
-
 type Handle struct {
-	thandle      timeHandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-// CAPIHandle provides access to the underlying CAPI handle for the Time
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return nil, errors.New(`CAPIHandle The time is closed`)
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
 	}
-	return unsafe.Pointer(h.thandle), nil
-}
+	destroy = func(ptr unsafe.Pointer) {
+		C.Time_destroy(C.TimeHandle(ptr))
+	}
+)
 
-// new adds an auto cleanup whenever added to a constructor
-func new(i timeHandle) *Handle {
-	t := &Handle{thandle: i, errorHandler: errorhandling.ErrorHandler}
-	runtime.AddCleanup(t, func(_ any) { t.Close() }, true)
-	return t
-}
-
-// FromCAPI provides a constructor directly from the CAPI
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New(`TimeFromCAPI The pointer is null`)
-	}
-	return new(timeHandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
-
-// NewNow creates a new Time representing the current time
 func NewNow() (*Handle, error) {
-	h := timeHandle(C.Time_create_now())
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
 
-// NewAt creates a new Time at the given microseconds since epoch
-func NewAt(microSecondsSinceEpoch int64) (*Handle, error) {
-	h := timeHandle(C.Time_create_at(C.longlong(microSecondsSinceEpoch)))
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Time_create_now()), nil
+		},
+		construct,
+		destroy,
+	)
+}
+func NewAt(micro_seconds_since_epoch int64) (*Handle, error) {
+
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Time_create_at(C.longlong(micro_seconds_since_epoch))), nil
+		},
+		construct,
+		destroy,
+	)
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if !h.closed && h.thandle != utils.NilHandle[timeHandle]() {
-		C.Time_destroy(C.TimeHandle(h.thandle))
-		err := h.errorHandler.CheckCapiError()
-		if err != nil {
-			return err
-		}
-		h.closed = true
-		h.thandle = utils.NilHandle[timeHandle]()
-		return nil
-	}
-	return errors.New("unable to close the Time")
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
 func (h *Handle) MicroSecondsSinceEpoch() (int64, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return 0, errors.New(`MicroSecondsSinceEpoch The time is closed`)
-	}
-	val := int64(C.Time_micro_seconds_since_epoch(C.TimeHandle(h.thandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return 0, capiErr
-	}
-	return val, nil
+	return cmemoryallocation.Read(h, func() (int64, error) {
+		return int64(C.Time_micro_seconds_since_epoch(C.TimeHandle(h.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) Time() (int64, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return 0, errors.New(`Time The time is closed`)
-	}
-	val := int64(C.Time_time(C.TimeHandle(h.thandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return 0, capiErr
-	}
-	return val, nil
+	return cmemoryallocation.Read(h, func() (int64, error) {
+		return int64(C.Time_time(C.TimeHandle(h.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) ToString() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return "", errors.New(`ToString The time is closed`)
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(C.Time_to_string(C.TimeHandle(h.thandle))))
-	if err != nil {
-		return "", errors.New(`ToString could not convert to a String. ` + err.Error())
-	}
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return false, errors.New(`Equal The time is closed`)
-	}
-	if other == nil {
-		return false, errors.New(`Equal The other time is null`)
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.thandle == utils.NilHandle[timeHandle]() {
-		return false, errors.New(`Equal The other time is closed`)
-	}
-	val := bool(C.Time_equal(C.TimeHandle(h.thandle), C.TimeHandle(other.thandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Time_to_string(C.TimeHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToString:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
 }
-
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return false, errors.New(`NotEqual The time is closed`)
-	}
-	if other == nil {
-		return false, errors.New(`NotEqual The other time is null`)
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.thandle == utils.NilHandle[timeHandle]() {
-		return false, errors.New(`NotEqual The other time is closed`)
-	}
-	val := bool(C.Time_not_equal(C.TimeHandle(h.thandle), C.TimeHandle(other.thandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) Equal(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.Time_equal(C.TimeHandle(h.CAPIHandle()), C.TimeHandle(b.CAPIHandle()))), nil
+	})
 }
-
+func (h *Handle) NotEqual(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.Time_not_equal(C.TimeHandle(h.CAPIHandle()), C.TimeHandle(b.CAPIHandle()))), nil
+	})
+}
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.thandle == utils.NilHandle[timeHandle]() {
-		return "", errors.New(`ToJSON The time is closed`)
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(C.Time_to_json_string(C.TimeHandle(h.thandle))))
-	if err != nil {
-		return "", errors.New(`ToJSON could not convert to a String. ` + err.Error())
-	}
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Time_to_json_string(C.TimeHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func FromJSON(json string) (*Handle, error) {
-	realJSON := str.New(json)
-	defer realJSON.Close()
-	capistr, err := realJSON.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
-	}
-	h := timeHandle(C.Time_from_json_string(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Time_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }

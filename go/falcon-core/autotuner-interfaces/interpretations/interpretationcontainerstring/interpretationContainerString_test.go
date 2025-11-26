@@ -3,16 +3,16 @@ package interpretationcontainerstring
 
 import (
 	"testing"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapinterpretationcontextstring"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listinterpretationcontext"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/liststring"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairinterpretationcontextstring"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/interpretations/interpretationcontext"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
-	
+
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/interpretations/interpretationcontext"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listinterpretationcontext"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairinterpretationcontextstring"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/liststring"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapinterpretationcontextstring"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
 // ---- Consolidated test variables ----
@@ -48,9 +48,9 @@ func setupHandles() {
 }
 
 func eqValue(a, b string) bool {
-	
+
 	return a == b
-	
+
 }
 
 // ---- Tests ----
@@ -286,16 +286,16 @@ func TestSizeAndEmptyAndClear(t *testing.T) {
 	if err != nil {
 		t.Errorf("Size failed: %v", err)
 	}
-  if sz != 2  {
-    t.Errorf("Size returned wrong value: got %d, want %d", sz, 2)
-  }
+	if sz != 2 {
+		t.Errorf("Size returned wrong value: got %d, want %d", sz, 2)
+	}
 	empty, err := h.Empty()
 	if err != nil {
 		t.Errorf("Empty failed: %v", err)
 	}
-  if empty {
-    t.Errorf("Empty returned wrong value: got %v, want %v", empty, false)
-  }
+	if empty {
+		t.Errorf("Empty returned wrong value: got %v, want %v", empty, false)
+	}
 	err = h.Clear()
 	if err != nil {
 		t.Errorf("Clear failed: %v", err)
@@ -323,9 +323,9 @@ func TestContains(t *testing.T) {
 	if err != nil {
 		t.Errorf("Contains failed: %v", err)
 	}
-  if !ok {
-      t.Errorf("Contains returned wrong value: got %v, want %v", ok, true)
-  }
+	if !ok {
+		t.Errorf("Contains returned wrong value: got %v, want %v", ok, true)
+	}
 	h.Close()
 	_, err = h.Contains(testInterpretationCtx)
 	if err == nil {
@@ -341,35 +341,35 @@ func TestKeysValuesItems(t *testing.T) {
 	if err != nil {
 		t.Errorf("Keys failed: %v", err)
 	}
-  size, err := keys.Size()
-  if err != nil {
-      t.Errorf("Keys Size failed: %v", err)
-  }
-  if size != 2 {
-      t.Errorf("Keys returned wrong size: got %d, want %d", size, 2)
-  }
+	size, err := keys.Size()
+	if err != nil {
+		t.Errorf("Keys Size failed: %v", err)
+	}
+	if size != 2 {
+		t.Errorf("Keys returned wrong size: got %d, want %d", size, 2)
+	}
 	values, err := h.Values()
 	if err != nil {
 		t.Errorf("Values failed: %v", err)
 	}
-  size, err = values.Size()
-  if err != nil {
-      t.Errorf("Values Size failed: %v", err)
-  }
-  if size != 2 {
-      t.Errorf("Values returned wrong size: got %d, want %d", size, 2)
-  }
+	size, err = values.Size()
+	if err != nil {
+		t.Errorf("Values Size failed: %v", err)
+	}
+	if size != 2 {
+		t.Errorf("Values returned wrong size: got %d, want %d", size, 2)
+	}
 	items, err := h.Items()
 	if err != nil {
 		t.Errorf("Items failed: %v", err)
 	}
-  size, err = items.Size()
-  if err != nil {
-      t.Errorf("Items Size failed: %v", err)
-  }
-  if size != 2 {
-      t.Errorf("Items returned wrong size: got %d, want %d", size, 2)
-  }
+	size, err = items.Size()
+	if err != nil {
+		t.Errorf("Items Size failed: %v", err)
+	}
+	if size != 2 {
+		t.Errorf("Items returned wrong size: got %d, want %d", size, 2)
+	}
 	h.Close()
 	_, err = h.Keys()
 	if err == nil {
@@ -395,16 +395,16 @@ func TestEqualNotEqual(t *testing.T) {
 	if err != nil {
 		t.Errorf("Equal failed: %v", err)
 	}
-  if !eq {
-      t.Errorf("Equal returned wrong value: got %v, want %v", eq, true)
-  }
+	if !eq {
+		t.Errorf("Equal returned wrong value: got %v, want %v", eq, true)
+	}
 	neq, err := a.NotEqual(b)
 	if err != nil {
 		t.Errorf("NotEqual failed: %v", err)
 	}
-  if neq {
-      t.Errorf("NotEqual returned wrong value: got %v, want %v", neq, false)
-  }
+	if neq {
+		t.Errorf("NotEqual returned wrong value: got %v, want %v", neq, false)
+	}
 	// nil branch
 	eq, err = a.Equal(nil)
 	if err == nil {

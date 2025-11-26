@@ -7,132 +7,94 @@ package standardresponse
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
+
+	// no extra imports
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 )
 
-type chandle C.StandardResponseHandle
-
 type Handle struct {
-	chandle chandle
-	mu      sync.RWMutex
-	closed  bool
+	falconcorehandle.FalconCoreHandle
 }
 
-func new(h chandle) *Handle {
-	handle := &Handle{chandle: h}
-	runtime.SetFinalizer(handle, func(h *Handle) { h.Close() })
-	return handle
-}
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
+	}
+	destroy = func(ptr unsafe.Pointer) {
+		C.StandardResponse_destroy(C.StandardResponseHandle(ptr))
+	}
+)
 
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New("FromCAPI: pointer is nil")
-	}
-	return new(chandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
+func New(message string) (*Handle, error) {
+	realmessage := str.New(message)
+	return cmemoryallocation.Read(realmessage, func() (*Handle, error) {
 
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("CAPIHandle: handle is closed")
-	}
-	return unsafe.Pointer(h.chandle), nil
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.StandardResponse_create(C.StringHandle(realmessage.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if h.closed || h.chandle == nil {
-		return errors.New("Handle already closed")
-	}
-	C.StandardResponse_destroy(C.StandardResponseHandle(h.chandle))
-	h.closed = true
-	h.chandle = nil
-	return nil
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
-func New(message string) (*Handle, error) {
-	msgStr := str.New(message)
-	defer msgStr.Close()
-	msgPtr, err := msgStr.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := chandle(C.StandardResponse_create(C.StringHandle(msgPtr)))
-	return new(h), nil
-}
-
 func (h *Handle) Message() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return "", errors.New("Message: handle is closed")
-	}
-	cStr := C.StandardResponse_message(C.StandardResponseHandle(h.chandle))
-	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
-	if err != nil {
-		return "", err
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.StandardResponse_message(C.StandardResponseHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Message:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return false, errors.New("Equal: handle is closed")
-	}
-	if other == nil || other.closed || other.chandle == nil {
-		return false, errors.New("Equal: other handle is closed or nil")
-	}
-	val := bool(C.StandardResponse_equal(C.StandardResponseHandle(h.chandle), C.StandardResponseHandle(other.chandle)))
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.StandardResponse_equal(C.StandardResponseHandle(h.CAPIHandle()), C.StandardResponseHandle(other.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return false, errors.New("NotEqual: handle is closed")
-	}
-	if other == nil || other.closed || other.chandle == nil {
-		return false, errors.New("NotEqual: other handle is closed or nil")
-	}
-	val := bool(C.StandardResponse_not_equal(C.StandardResponseHandle(h.chandle), C.StandardResponseHandle(other.chandle)))
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.StandardResponse_not_equal(C.StandardResponseHandle(h.CAPIHandle()), C.StandardResponseHandle(other.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return "", errors.New("ToJSON: handle is closed")
-	}
-	cStr := C.StandardResponse_to_json_string(C.StandardResponseHandle(h.chandle))
-	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
-	if err != nil {
-		return "", err
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.StandardResponse_to_json_string(C.StandardResponseHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func FromJSON(json string) (*Handle, error) {
-	strHandle := str.New(json)
-	defer strHandle.Close()
-	strPtr, err := strHandle.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := chandle(C.StandardResponse_from_json_string(C.StringHandle(strPtr)))
-	return new(h), nil
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.StandardResponse_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }

@@ -4,297 +4,144 @@ package acquisitioncontext
 #cgo pkg-config: falcon_core_c_api
 #include <falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h>
 #include <falcon_core/generic/String_c_api.h>
-#include <falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h>
-#include <falcon_core/physics/device_structures/Connection_c_api.h>
-#include <falcon_core/physics/units/SymbolUnit_c_api.h>
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
-type chandle C.AcquisitionContextHandle
-
 type Handle struct {
-	chandle      chandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-// new adds an auto cleanup whenever added to a constructor
-func new(h chandle) *Handle {
-	conn := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
-	// NOTE: The following AddCleanup/finalizer is not covered by tests because
-	// Go's garbage collector does not guarantee finalizer execution during tests.
-	// This is a known limitation of Go's coverage tooling and is safe to ignore.
-	runtime.AddCleanup(conn, func(_ any) { conn.Close() }, true)
-	return conn
-}
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
+	}
+	destroy = func(ptr unsafe.Pointer) {
+		C.AcquisitionContext_destroy(C.AcquisitionContextHandle(ptr))
+	}
+)
 
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New("FromCAPI: pointer is nil")
-	}
-	return new(chandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
+func New(connection *connection.Handle, instrument_type string, units *symbolunit.Handle) (*Handle, error) {
+	realinstrument_type := str.New(instrument_type)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{connection, realinstrument_type, units}, func() (*Handle, error) {
 
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("CAPIHandle: handle is closed")
-	}
-	return unsafe.Pointer(h.chandle), nil
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AcquisitionContext_create(C.ConnectionHandle(connection.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.SymbolUnitHandle(units.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewFromPort(port *instrumentport.Handle) (*Handle, error) {
+	return cmemoryallocation.Read(port, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AcquisitionContext_create_from_port(C.InstrumentPortHandle(port.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if h.closed || h.chandle == nil {
-		return errors.New("Handle already closed")
-	}
-	C.AcquisitionContext_destroy(C.AcquisitionContextHandle(h.chandle))
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return err
-	}
-	h.closed = true
-	h.chandle = nil
-	return nil
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
-func New(connection *connection.Handle, instrumentType string, units *symbolunit.Handle) (*Handle, error) {
-	connPtr, err := connection.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	strHandle := str.New(instrumentType)
-	defer strHandle.Close()
-	strPtr, err := strHandle.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	unitsPtr, err := units.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := chandle(C.AcquisitionContext_create(
-		C.ConnectionHandle(connPtr),
-		C.StringHandle(strPtr),
-		C.SymbolUnitHandle(unitsPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewFromPort(port *instrumentport.Handle) (*Handle, error) {
-	portPtr, err := port.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := chandle(C.AcquisitionContext_create_from_port(C.InstrumentPortHandle(portPtr)))
-	return new(h), errorhandling.ErrorHandler.CheckCapiError()
-}
-
 func (h *Handle) Connection() (*connection.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("Connection: handle is closed")
-	}
-	cConn := C.AcquisitionContext_connection(C.AcquisitionContextHandle(h.chandle))
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return connection.FromCAPI(unsafe.Pointer(cConn))
-}
+	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
 
+		return connection.FromCAPI(unsafe.Pointer(C.AcquisitionContext_connection(C.AcquisitionContextHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) InstrumentType() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return "", errors.New("InstrumentType: handle is closed")
-	}
-	cStr := C.AcquisitionContext_instrument_type(C.AcquisitionContextHandle(h.chandle))
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return "", err
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
-	if err != nil {
-		return "", err
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.AcquisitionContext_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("InstrumentType:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func (h *Handle) Units() (*symbolunit.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("Units: handle is closed")
-	}
-	cUnits := C.AcquisitionContext_units(C.AcquisitionContextHandle(h.chandle))
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return symbolunit.FromCAPI(unsafe.Pointer(cUnits))
-}
+	return cmemoryallocation.Read(h, func() (*symbolunit.Handle, error) {
 
+		return symbolunit.FromCAPI(unsafe.Pointer(C.AcquisitionContext_units(C.AcquisitionContextHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) DivisionUnit(other *symbolunit.Handle) (*Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("DivisionUnit: handle is closed")
-	}
-	otherPtr, err := other.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	res := chandle(C.AcquisitionContext_division_unit(C.AcquisitionContextHandle(h.chandle), C.SymbolUnitHandle(otherPtr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(res), nil
-}
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
+		return Handle.FromCAPI(unsafe.Pointer(C.AcquisitionContext_division_unit(C.AcquisitionContextHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
+	})
+}
 func (h *Handle) Division(other *Handle) (*Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("Division: handle is closed")
-	}
-	if other == nil || other.closed || other.chandle == nil {
-		return nil, errors.New("Division: other handle is closed or nil")
-	}
-	res := chandle(C.AcquisitionContext_division(C.AcquisitionContextHandle(h.chandle), C.AcquisitionContextHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return nil, capiErr
-	}
-	return new(res), nil
-}
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
+		return Handle.FromCAPI(unsafe.Pointer(C.AcquisitionContext_division(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(other.CAPIHandle()))))
+	})
+}
 func (h *Handle) MatchConnection(other *connection.Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return false, errors.New("MatchConnection: handle is closed")
-	}
-	otherPtr, err := other.CAPIHandle()
-	if err != nil {
-		return false, err
-	}
-	val := bool(C.AcquisitionContext_match_connection(C.AcquisitionContextHandle(h.chandle), C.ConnectionHandle(otherPtr)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AcquisitionContext_match_connection(C.AcquisitionContextHandle(h.CAPIHandle()), C.ConnectionHandle(other.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) MatchInstrumentType(other string) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return false, errors.New("MatchInstrumentType: handle is closed")
-	}
-	otherStr := str.New(other)
-	defer otherStr.Close()
-	otherPtr, err := otherStr.CAPIHandle()
-	if err != nil {
-		return false, err
-	}
-	val := bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.chandle), C.StringHandle(otherPtr)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()), C.StringHandle(other.CAPIHandle()))), nil
+	})
 }
-
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return false, errors.New("Equal: handle is closed")
-	}
-	if other == nil || other.closed || other.chandle == nil {
-		return false, errors.New("Equal: other handle is closed or nil")
-	}
-	val := bool(C.AcquisitionContext_equal(C.AcquisitionContextHandle(h.chandle), C.AcquisitionContextHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) Equal(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.AcquisitionContext_equal(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(b.CAPIHandle()))), nil
+	})
 }
-
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return false, errors.New("NotEqual: handle is closed")
-	}
-	if other == nil || other.closed || other.chandle == nil {
-		return false, errors.New("NotEqual: other handle is closed or nil")
-	}
-	val := bool(C.AcquisitionContext_not_equal(C.AcquisitionContextHandle(h.chandle), C.AcquisitionContextHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) NotEqual(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.AcquisitionContext_not_equal(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(b.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return "", errors.New("ToJSON: handle is closed")
-	}
-	cStr := C.AcquisitionContext_to_json_string(C.AcquisitionContextHandle(h.chandle))
-	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
-	if err != nil {
-		return "", err
-	}
-	defer strHandle.Close()
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.AcquisitionContext_to_json_string(C.AcquisitionContextHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func FromJSON(json string) (*Handle, error) {
-	strHandle := str.New(json)
-	defer strHandle.Close()
-	strPtr, err := strHandle.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := chandle(C.AcquisitionContext_from_json_string(C.StringHandle(strPtr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AcquisitionContext_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }

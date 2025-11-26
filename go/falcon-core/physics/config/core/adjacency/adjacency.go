@@ -1,63 +1,46 @@
 package adjacency
 
-import (
-	"errors"
-	"runtime"
-	"sync"
-	"unsafe"
-
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farrayint"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairsizetsizet"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
-)
-
 /*
 #cgo pkg-config: falcon_core_c_api
 #include <falcon_core/physics/config/core/Adjacency_c_api.h>
-#include <falcon_core/generic/FArrayInt_c_api.h>
-#include <falcon_core/generic/ListListSizeT_c_api.h>
-#include <falcon_core/generic/ListPairSizeTSizeT_c_api.h>
 #include <falcon_core/generic/String_c_api.h>
-#include <falcon_core/physics/device_structures/Connections_c_api.h>
 #include <stdlib.h>
 */
 import "C"
+import (
+	"errors"
+	"unsafe"
 
-type chandle C.AdjacencyHandle
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farrayint"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listlistsizet"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairsizetsizet"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
+)
 
 type Handle struct {
-	chandle      chandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[chandle]() {
-		return nil, errors.New("CAPIHandle: Adjacency is closed")
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
 	}
-	return unsafe.Pointer(h.chandle), nil
-}
-
-func new(h chandle) *Handle {
-	handle := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
-	runtime.SetFinalizer(handle, func(_ any) { handle.Close() })
-	return handle
-}
+	destroy = func(ptr unsafe.Pointer) {
+		C.Adjacency_destroy(C.AdjacencyHandle(ptr))
+	}
+)
 
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New("FromCAPI: pointer is null")
-	}
-	return new(chandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
-
-func Create(data []int, shape []int, indexes *connections.Handle) (*Handle, error) {
+func New(data []int32, shape []int, indexes *connections.Handle) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -66,261 +49,143 @@ func Create(data []int, shape []int, indexes *connections.Handle) (*Handle, erro
 	for i, v := range data {
 		cdata[i] = C.int(v)
 	}
-	if indexes == nil {
-		return nil, errors.New(`cannot create adjacency from nil connections`)
-	}
-	capiIndexes, err := indexes.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := chandle(C.Adjacency_create(&cdata[0], &cshape[0], C.size_t(len(shape)), C.ConnectionsHandle(capiIndexes)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func FromJSON(json string) (*Handle, error) {
-	realJSON := str.New(json)
-	defer realJSON.Close()
-	capistr, err := realJSON.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("failed to access capi for json"), err)
-	}
-	h := chandle(C.Adjacency_from_json_string(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	return cmemoryallocation.Read(indexes, func() (*Handle, error) {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Adjacency_create(&cdata[0], &cshape[0], C.size_t(len(shape)), C.ConnectionsHandle(indexes))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if !h.closed && h.chandle != nil {
-		C.Adjacency_destroy(C.AdjacencyHandle(h.chandle))
-		err := h.errorHandler.CheckCapiError()
-		if err != nil {
-			return err
-		}
-		h.closed = true
-		h.chandle = nil
-		return nil
-	}
-	return errors.New("unable to close the Handle")
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
 func (h *Handle) Indexes() (*connections.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	res := C.Adjacency_indexes(C.AdjacencyHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return connections.FromCAPI(unsafe.Pointer(res))
-}
+	return cmemoryallocation.Read(h, func() (*connections.Handle, error) {
 
+		return connections.FromCAPI(unsafe.Pointer(C.Adjacency_indexes(C.AdjacencyHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) GetTruePairs() (*listpairsizetsizet.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	res := C.Adjacency_get_true_pairs(C.AdjacencyHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
+	return cmemoryallocation.Read(h, func() (*listpairsizetsizet.Handle, error) {
+
+		return listpairsizetsizet.FromCAPI(unsafe.Pointer(C.Adjacency_get_true_pairs(C.AdjacencyHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Size() (uint32, error) {
+	return cmemoryallocation.Read(h, func() (uint32, error) {
+		return uint32(C.Adjacency_size(C.AdjacencyHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) Dimension() (uint32, error) {
+	return cmemoryallocation.Read(h, func() (uint32, error) {
+		return uint32(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) Shape() ([]uint32, error) {
+	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
+		return int32(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
+	})
+	if err != nil {
+		return nil, errors.Join(errors.New("Shape: dimension errored"), err)
+	}
+	out := make([]C.size_t, dim)
+	_, err = cmemoryallocation.Read(h, func() (bool, error) {
+		C.Adjacency_shape(C.AdjacencyHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		return true, nil
+	})
 	if err != nil {
 		return nil, err
 	}
-	return listpairsizetsizet.FromCAPI(unsafe.Pointer(res))
-}
-
-func (h *Handle) Size() (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	val := int(C.Adjacency_size(C.AdjacencyHandle(h.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return 0, err
-	}
-	return val, nil
-}
-
-func (h *Handle) Dimension() (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	val := int(C.Adjacency_dimension(C.AdjacencyHandle(h.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return 0, err
-	}
-	return val, nil
-}
-
-func (h *Handle) Shape() ([]int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("Shape: Adjacency is closed")
-	}
-	ndim := int(C.Adjacency_dimension(C.AdjacencyHandle(h.chandle)))
-	if ndim == 0 {
-		return nil, errors.New("Shape: dimension is zero")
-	}
-	out := make([]C.size_t, ndim)
-	C.Adjacency_shape(C.AdjacencyHandle(h.chandle), &out[0], C.size_t(ndim))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	shape := make([]int, ndim)
+	realout := make([]uint32, dim)
 	for i := range out {
-		shape[i] = int(out[i])
+		realout[i] = uint32(realout[i])
 	}
-	return shape, nil
+	return realout, nil
 }
-
-func (h *Handle) Data() ([]int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return nil, errors.New("Data: Adjacency is closed")
+func (h *Handle) Data() ([]int32, error) {
+	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
+		return int32(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
+	})
+	if err != nil {
+		return nil, errors.Join(errors.New("Data: dimension errored"), err)
 	}
-	size := int(C.Adjacency_size(C.AdjacencyHandle(h.chandle)))
-	if size == 0 {
-		return nil, errors.New("Data: size is zero")
-	}
-	out := make([]C.int, size)
-	C.Adjacency_data(C.AdjacencyHandle(h.chandle), &out[0], C.size_t(size))
-	err := h.errorHandler.CheckCapiError()
+	out := make([]C.int, dim)
+	_, err = cmemoryallocation.Read(h, func() (bool, error) {
+		C.Adjacency_data(C.AdjacencyHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		return true, nil
+	})
 	if err != nil {
 		return nil, err
 	}
-	data := make([]int, size)
+	realout := make([]int32, dim)
 	for i := range out {
-		data[i] = int(out[i])
+		realout[i] = int32(realout[i])
 	}
-	return data, nil
+	return realout, nil
 }
-
-func (h *Handle) TimesEqualsFArray(other *farrayint.Handle) error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if other == nil {
-		return errors.New(`TimesEqualsFArray: the other array was nil`)
-	}
-	capiarray, err := other.CAPIHandle()
-	if err != nil {
-		return err
-	}
-	C.Adjacency_timesequals_farray(C.AdjacencyHandle(h.chandle), C.FArrayIntHandle(capiarray))
-	return h.errorHandler.CheckCapiError()
+func (h *Handle) TimesequalsFarray(other *farrayint.Handle) error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
+		C.Adjacency_timesequals_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))
+		return nil
+	})
 }
+func (h *Handle) TimesFarray(other *farrayint.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-func (h *Handle) TimesFArray(other *farrayint.Handle) (*Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if other == nil {
-		return nil, errors.New(`TimesFArray: the other array was nil`)
-	}
-	capiarray, err := other.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	res := chandle(C.Adjacency_times_farray(C.AdjacencyHandle(h.chandle), C.FArrayIntHandle(capiarray)))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(res), nil
+		return Handle.FromCAPI(unsafe.Pointer(C.Adjacency_times_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))))
+	})
 }
-
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if other == nil {
-		return false, errors.New("Equal: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	otherPtr, err := other.CAPIHandle()
-	if err != nil {
-		return false, err
-	}
-	val := bool(C.Adjacency_equality(C.AdjacencyHandle(h.chandle), C.AdjacencyHandle(otherPtr)))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return false, err
-	}
-	return val, nil
+func (h *Handle) Equality(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Adjacency_equality(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
+	})
 }
-
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if other == nil {
-		return false, errors.New("NotEqual: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	otherPtr, err := other.CAPIHandle()
-	if err != nil {
-		return false, err
-	}
-	val := bool(C.Adjacency_notequality(C.AdjacencyHandle(h.chandle), C.AdjacencyHandle(otherPtr)))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return false, err
-	}
-	return val, nil
+func (h *Handle) Notequality(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Adjacency_notequality(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
+	})
 }
-
-func (h *Handle) Sum() (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	val := int(C.Adjacency_sum(C.AdjacencyHandle(h.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return 0, err
-	}
-	return val, nil
+func (h *Handle) Sum() (int32, error) {
+	return cmemoryallocation.Read(h, func() (int32, error) {
+		return int32(C.Adjacency_sum(C.AdjacencyHandle(h.CAPIHandle()))), nil
+	})
 }
+func (h *Handle) Where(value int32) (*listlistsizet.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*listlistsizet.Handle, error) {
 
-func (h *Handle) Where(value int) (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	res := C.Adjacency_where(C.AdjacencyHandle(h.chandle), C.int(value))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return unsafe.Pointer(res), nil
+		return listlistsizet.FromCAPI(unsafe.Pointer(C.Adjacency_where(C.AdjacencyHandle(h.CAPIHandle()), C.int(value))))
+	})
 }
+func (h *Handle) Flip(axis uint32) (*Handle, error) {
+	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-func (h *Handle) Flip(axis int) (*Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	res := chandle(C.Adjacency_flip(C.AdjacencyHandle(h.chandle), C.size_t(axis)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(res), nil
+		return Handle.FromCAPI(unsafe.Pointer(C.Adjacency_flip(C.AdjacencyHandle(h.CAPIHandle()), C.size_t(axis))))
+	})
 }
-
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == nil {
-		return "", errors.New("ToJSON: Adjacency is closed")
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(C.Adjacency_to_json_string(C.AdjacencyHandle(h.chandle))))
-	if err != nil {
-		return "", errors.New("ToJSON could not convert to a String. " + err.Error())
-	}
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Adjacency_to_json_string(C.AdjacencyHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Adjacency_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }

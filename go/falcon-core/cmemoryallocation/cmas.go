@@ -315,7 +315,6 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns the output of the read function and an error if any.
 */
 func MultiRead[T any](objs []HasCAPIHandle, fn func() (T, error)) (T, error) {
-	// Sort objs by mNum to avoid deadlocks
 	type lockInfo struct {
 		stack *MemoryStack
 		mNum  uint32
@@ -335,9 +334,6 @@ func MultiRead[T any](objs []HasCAPIHandle, fn func() (T, error)) (T, error) {
 		}
 		infos[i] = lockInfo{stack, mNum}
 	}
-	// Sort by mNum for deadlock safety
-	sort.Slice(infos, func(i, j int) bool { return infos[i].mNum < infos[j].mNum })
-	// Lock all
 	for _, info := range infos {
 		info.stack.mu.RLock()
 		defer info.stack.mu.RUnlock()
@@ -367,37 +363,83 @@ Go does not directly control memory for C resources, so we need to use a factory
   - obj: HasCAPIHandle object to write to
   - fn: function to perform the write operation
 
-This method returns the output of the write function and an error if any.
+This method returns an error if any.
 */
-func Write[T any](obj HasCAPIHandle, fn func() (T, error)) (T, error) {
+func Write(obj HasCAPIHandle, fn func() error) error {
 	if obj == nil || obj.CAPIHandle() == nil {
-		var zero T
-		return zero, errors.New(`Write: the object is nil`)
+		return errors.New(`Write: the object is nil`)
 	}
 	mNum := uint32(uintptr(obj.CAPIHandle()))
 	cmas := GetCMAS()
 	stack, exists := cmas.memoryStacks[mNum]
 	if !exists {
-		var zero T
-		return zero, ErrStackNotFound
+		return ErrStackNotFound
 	}
 	stack.mu.Lock()
 	defer stack.mu.Unlock()
 	if stack.deleted {
-		var zero T
-		return zero, ErrStackDeleted
+		return ErrStackDeleted
 	}
-	out, err := fn()
+	err := fn()
 	if err != nil {
-		var zero T
-		return zero, errors.Join(errors.New(`Write function failed`), err)
+		return errors.Join(errors.New(`Write function failed`), err)
 	}
-	err = errorhandling.ErrorHandler.CheckCapiError()
+	return errorhandling.ErrorHandler.CheckCapiError()
+}
+
+/*
+ReadWrite is a wrapper to perform many reads and a write operation on the memory stack.
+
+Go does not directly control memory for C resources, so we need to use a factory function to maintain our records and ensure thread safety.
+
+  - obj: HasCAPIHandle object to write to
+  - fn: function to perform the write operation
+
+This method returns an error if any.
+*/
+func ReadWrite(write HasCAPIHandle, objs []HasCAPIHandle, fn func() error) error {
+	type lockInfo struct {
+		stack *MemoryStack
+		mNum  uint32
+	}
+	cmas := GetCMAS()
+	infos := make([]lockInfo, len(objs))
+	for i, obj := range objs {
+		if obj == nil || obj.CAPIHandle() == nil {
+			return errors.New(`ReadWrite: the object is nil`)
+		}
+		mNum := uint32(uintptr(obj.CAPIHandle()))
+		stack, exists := cmas.memoryStacks[mNum]
+		if !exists {
+			return ErrStackNotFound
+		}
+		infos[i] = lockInfo{stack, mNum}
+	}
+	for _, info := range infos {
+		info.stack.mu.RLock()
+		defer info.stack.mu.RUnlock()
+		if info.stack.deleted {
+			return ErrStackDeleted
+		}
+	}
+	if write == nil || write.CAPIHandle() == nil {
+		return errors.New(`ReadWrite: the write object is nil`)
+	}
+	mNum := uint32(uintptr(write.CAPIHandle()))
+	stack, exists := cmas.memoryStacks[mNum]
+	if !exists {
+		return ErrStackNotFound
+	}
+	stack.mu.Lock()
+	defer stack.mu.Unlock()
+	if stack.deleted {
+		return ErrStackDeleted
+	}
+	err := fn()
 	if err != nil {
-		var zero T
-		return zero, errors.Join(errors.New(`C-API error during Write operation`), err)
+		return errors.Join(errors.New(`ReadWrite function failed`), err)
 	}
-	return out, nil
+	return errorhandling.ErrorHandler.CheckCapiError()
 }
 
 // Cleaner goroutine: periodically removes deleted stacks with zero usage
@@ -410,7 +452,7 @@ func (cmas *CMAS) cleaner() {
 			cmas.cacheMu.Lock()
 			for mNum, stack := range cmas.memoryStacks {
 				if stack.deleted && cmas.usageStacks[mNum] == 0 {
-					fmt.Printf("Deleting stack mNum=%x\n", mNum)
+					fmt.Printf("D:qeleting stack mNum=%x\n", mNum)
 					delete(cmas.memoryStacks, mNum)
 					delete(cmas.usageStacks, mNum)
 				}

@@ -7,175 +7,94 @@ package channel
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
+
+	// no extra imports
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
 
-type channelHandle C.ChannelHandle
-
 type Handle struct {
-	chandle      channelHandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-// CAPIHandle provides access to the underlying CAPI handle for the Channel
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[channelHandle]() {
-		return nil, errors.New(`CAPIHandle The channel is closed`)
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
 	}
-	return unsafe.Pointer(h.chandle), nil
-}
+	destroy = func(ptr unsafe.Pointer) {
+		C.Channel_destroy(C.ChannelHandle(ptr))
+	}
+)
 
-// new adds an auto cleanup whenever added to a constructor
-func new(i channelHandle) *Handle {
-	ch := &Handle{chandle: i, errorHandler: errorhandling.ErrorHandler}
-	runtime.AddCleanup(ch, func(_ any) { ch.Close() }, true)
-	return ch
-}
-
-// FromCAPI provides a constructor directly from the CAPI
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New(`ChannelFromCAPI The pointer is null`)
-	}
-	return new(channelHandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
-
-// New creates a new Channel from a name
 func New(name string) (*Handle, error) {
-	strHandle := str.New(name)
-	defer strHandle.Close()
-	capistr, err := strHandle.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New("New construction failed from illegal string"), err)
-	}
-	h := channelHandle(C.Channel_create(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	realname := str.New(name)
+	return cmemoryallocation.Read(realname, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Channel_create(C.StringHandle(realname.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if !h.closed && h.chandle != utils.NilHandle[channelHandle]() {
-		C.Channel_destroy(C.ChannelHandle(h.chandle))
-		err := h.errorHandler.CheckCapiError()
-		if err != nil {
-			return err
-		}
-		h.closed = true
-		h.chandle = utils.NilHandle[channelHandle]()
-		return nil
-	}
-	return errors.New("unable to close the Channel")
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
 func (h *Handle) Name() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[channelHandle]() {
-		return "", errors.New(`Name The channel is closed`)
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(C.Channel_name(C.ChannelHandle(h.chandle))))
-	if err != nil {
-		return "", errors.New(`Name could not convert to a String. ` + err.Error())
-	}
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[channelHandle]() {
-		return false, errors.New(`Equal The channel is closed`)
-	}
-	if other == nil {
-		return false, errors.New(`Equal The other channel is null`)
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[channelHandle]() {
-		return false, errors.New(`Equal The other channel is closed`)
-	}
-	val := bool(C.Channel_equal(C.ChannelHandle(h.chandle), C.ChannelHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Channel_name(C.ChannelHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Name:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
 }
-
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[channelHandle]() {
-		return false, errors.New(`NotEqual The channel is closed`)
-	}
-	if other == nil {
-		return false, errors.New(`NotEqual The other channel is null`)
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[channelHandle]() {
-		return false, errors.New(`NotEqual The other channel is closed`)
-	}
-	val := bool(C.Channel_not_equal(C.ChannelHandle(h.chandle), C.ChannelHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) Equal(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.Channel_equal(C.ChannelHandle(h.CAPIHandle()), C.ChannelHandle(b.CAPIHandle()))), nil
+	})
 }
-
+func (h *Handle) NotEqual(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.Channel_not_equal(C.ChannelHandle(h.CAPIHandle()), C.ChannelHandle(b.CAPIHandle()))), nil
+	})
+}
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[channelHandle]() {
-		return "", errors.New(`ToJSON The channel is closed`)
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(C.Channel_to_json_string(C.ChannelHandle(h.chandle))))
-	if err != nil {
-		return "", errors.New(`ToJSON could not convert to a String. ` + err.Error())
-	}
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return "", capiErr
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Channel_to_json_string(C.ChannelHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func FromJSON(json string) (*Handle, error) {
-	realJSON := str.New(json)
-	defer realJSON.Close()
-	capistr, err := realJSON.CAPIHandle()
-	if err != nil {
-		return nil, errors.Join(errors.New(`failed to access capi for json`), err)
-	}
-	h := channelHandle(C.Channel_from_json_string(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Channel_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
