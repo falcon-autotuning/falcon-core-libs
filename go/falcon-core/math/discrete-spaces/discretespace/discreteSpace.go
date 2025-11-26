@@ -2,28 +2,20 @@ package discretespace
 
 /*
 #cgo pkg-config: falcon_core_c_api
-#include <falcon_core/generic/String_c_api.h>
-#include <falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h>
-#include <falcon_core/math/AxesCoupledLabelledDomain_c_api.h>
-#include <falcon_core/math/AxesInstrumentPort_c_api.h>
-#include <falcon_core/math/AxesLabelledControlArray_c_api.h>
-#include <falcon_core/math/AxesMapStringBool_c_api.h>
-#include <falcon_core/math/UnitSpace_c_api.h>
-#include <falcon_core/math/domains/CoupledLabelledDomain_c_api.h>
 #include <falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h>
+#include <falcon_core/generic/String_c_api.h>
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringbool"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/ports"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axescoupledlabelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axesinstrumentport"
@@ -33,350 +25,151 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/coupledlabelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/unitspace"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
 
-type discreteSpaceHandle C.DiscreteSpaceHandle
-
 type Handle struct {
-	chandle      discreteSpaceHandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-func new(h discreteSpaceHandle) *Handle {
-	handle := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
-	runtime.AddCleanup(handle, func(_ any) { handle.Close() }, true)
-	return handle
-}
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
+	}
+	destroy = func(ptr unsafe.Pointer) {
+		C.DiscreteSpace_destroy(C.DiscreteSpaceHandle(ptr))
+	}
+)
 
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New("FromCAPI: pointer is nil")
-	}
-	return new(discreteSpaceHandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
+func New(space *unitspace.Handle, axes *axescoupledlabelleddomain.Handle, increasing *axesmapstringbool.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{space, axes, increasing}, func() (*Handle, error) {
 
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("CAPIHandle: handle is closed")
-	}
-	return unsafe.Pointer(h.chandle), nil
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DiscreteSpace_create(C.UnitSpaceHandle(space.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(axes.CAPIHandle()), C.AxesMapStringBoolHandle(increasing.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewCartesianDiscreteSpace(divisions *axesint.Handle, axes *axescoupledlabelleddomain.Handle, increasing *axesmapstringbool.Handle, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{divisions, axes, increasing, domain}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DiscreteSpace_create_cartesian_discrete_space(C.AxesIntHandle(divisions.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(axes.CAPIHandle()), C.AxesMapStringBoolHandle(increasing.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewCartesianDiscreteSpace1D(division int32, shared_domain *coupledlabelleddomain.Handle, increasing *mapstringbool.Handle, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{shared_domain, increasing, domain}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DiscreteSpace_create_cartesian_discrete_space_1D(C.int(division), C.CoupledLabelledDomainHandle(shared_domain.CAPIHandle()), C.MapStringBoolHandle(increasing.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if !h.closed && h.chandle != utils.NilHandle[discreteSpaceHandle]() {
-		C.DiscreteSpace_destroy(C.DiscreteSpaceHandle(h.chandle))
-		err := h.errorHandler.CheckCapiError()
-		if err != nil {
-			return err
-		}
-		h.closed = true
-		h.chandle = utils.NilHandle[discreteSpaceHandle]()
-		return nil
-	}
-	return errors.New("unable to close the Handle")
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
-func New(space *unitspace.Handle, axes *axescoupledlabelleddomain.Handle, increasing *axesmapstringbool.Handle) (*Handle, error) {
-	spacePtr, err := space.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	axesPtr, err := axes.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	incrPtr, err := increasing.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := discreteSpaceHandle(C.DiscreteSpace_create(
-		C.UnitSpaceHandle(spacePtr),
-		C.AxesCoupledLabelledDomainHandle(axesPtr),
-		C.AxesMapStringBoolHandle(incrPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewCartesian(divisions *axesint.Handle, axes *axescoupledlabelleddomain.Handle, increasing *axesmapstringbool.Handle, dom *domain.Handle) (*Handle, error) {
-	divPtr, err := divisions.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	axesPtr, err := axes.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	incrPtr, err := increasing.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := discreteSpaceHandle(C.DiscreteSpace_create_cartesiandiscretespace(
-		C.AxesIntHandle(divPtr),
-		C.AxesCoupledLabelledDomainHandle(axesPtr),
-		C.AxesMapStringBoolHandle(incrPtr),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewCartesian1D(division int, sharedDomain *coupledlabelleddomain.Handle, increasing *mapstringbool.Handle, dom *domain.Handle) (*Handle, error) {
-	sharedPtr, err := sharedDomain.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	incrPtr, err := increasing.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := discreteSpaceHandle(C.DiscreteSpace_create_cartesiandiscretespace1D(
-		C.int(division),
-		C.CoupledLabelledDomainHandle(sharedPtr),
-		C.MapStringBoolHandle(incrPtr),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
 func (h *Handle) Space() (*unitspace.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("Space: handle is closed")
-	}
-	cSpace := C.DiscreteSpace_space(C.DiscreteSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return unitspace.FromCAPI(unsafe.Pointer(cSpace))
-}
+	return cmemoryallocation.Read(h, func() (*unitspace.Handle, error) {
 
+		return unitspace.FromCAPI(unsafe.Pointer(C.DiscreteSpace_space(C.DiscreteSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) Axes() (*axescoupledlabelleddomain.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("Axes: handle is closed")
-	}
-	cAxes := C.DiscreteSpace_axes(C.DiscreteSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return axescoupledlabelleddomain.FromCAPI(unsafe.Pointer(cAxes))
-}
+	return cmemoryallocation.Read(h, func() (*axescoupledlabelleddomain.Handle, error) {
 
+		return axescoupledlabelleddomain.FromCAPI(unsafe.Pointer(C.DiscreteSpace_axes(C.DiscreteSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) Increasing() (*axesmapstringbool.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("Increasing: handle is closed")
-	}
-	cInc := C.DiscreteSpace_increasing(C.DiscreteSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return axesmapstringbool.FromCAPI(unsafe.Pointer(cInc))
-}
+	return cmemoryallocation.Read(h, func() (*axesmapstringbool.Handle, error) {
 
+		return axesmapstringbool.FromCAPI(unsafe.Pointer(C.DiscreteSpace_increasing(C.DiscreteSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) Knobs() (*ports.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("Knobs: handle is closed")
-	}
-	cKnobs := C.DiscreteSpace_knobs(C.DiscreteSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return ports.FromCAPI(unsafe.Pointer(cKnobs))
-}
+	return cmemoryallocation.Read(h, func() (*ports.Handle, error) {
 
+		return ports.FromCAPI(unsafe.Pointer(C.DiscreteSpace_knobs(C.DiscreteSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) ValidateUnitSpaceDimensionalityMatchesKnobs() error {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return errors.New("ValidateUnitSpaceDimensionalityMatchesKnobs: handle is closed")
-	}
-	C.DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(C.DiscreteSpaceHandle(h.chandle))
-	return h.errorHandler.CheckCapiError()
+	return cmemoryallocation.Write(h, func() error {
+		C.DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(C.DiscreteSpaceHandle(h.CAPIHandle()))
+		return nil
+	})
 }
-
 func (h *Handle) ValidateKnobUniqueness() error {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return errors.New("ValidateKnobUniqueness: handle is closed")
-	}
-	C.DiscreteSpace_validate_knob_uniqueness(C.DiscreteSpaceHandle(h.chandle))
-	return h.errorHandler.CheckCapiError()
+	return cmemoryallocation.Write(h, func() error {
+		C.DiscreteSpace_validate_knob_uniqueness(C.DiscreteSpaceHandle(h.CAPIHandle()))
+		return nil
+	})
 }
-
-func (h *Handle) GetAxis(knob *ports.Handle) (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return 0, errors.New("GetAxis: handle is closed")
-	}
-	if knob == nil {
-		return 0, errors.New("GetAxis: the knob is null")
-	}
-	knobPtr, err := knob.CAPIHandle()
-	if err != nil {
-		return 0, err
-	}
-	val := int(C.DiscreteSpace_get_axis(C.DiscreteSpaceHandle(h.chandle), C.InstrumentPortHandle(knobPtr)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return 0, capiErr
-	}
-	return val, nil
+func (h *Handle) GetAxis(knob *instrumentport.Handle) (int32, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, knob}, func() (int32, error) {
+		return int32(C.DiscreteSpace_get_axis(C.DiscreteSpaceHandle(h.CAPIHandle()), C.InstrumentPortHandle(knob.CAPIHandle()))), nil
+	})
 }
+func (h *Handle) GetDomain(knob *instrumentport.Handle) (*domain.Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, knob}, func() (*domain.Handle, error) {
 
-func (h *Handle) GetDomain(knob *ports.Handle) (*domain.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("GetDomain: handle is closed")
-	}
-	if knob == nil {
-		return nil, errors.New("GetAxis: the knob is null")
-	}
-	knobPtr, err := knob.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	cDom := C.DiscreteSpace_get_domain(C.DiscreteSpaceHandle(h.chandle), C.InstrumentPortHandle(knobPtr))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return nil, capiErr
-	}
-	return domain.FromCAPI(unsafe.Pointer(cDom))
+		return domain.FromCAPI(unsafe.Pointer(C.DiscreteSpace_get_domain(C.DiscreteSpaceHandle(h.CAPIHandle()), C.InstrumentPortHandle(knob.CAPIHandle()))))
+	})
 }
-
 func (h *Handle) GetProjection(projection *axesinstrumentport.Handle) (*axeslabelledcontrolarray.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return nil, errors.New("GetProjection: handle is closed")
-	}
-	if projection == nil {
-		return nil, errors.New("GetProjection: projection is null")
-	}
-	projPtr, err := projection.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	cProj := C.DiscreteSpace_get_projection(C.DiscreteSpaceHandle(h.chandle), C.AxesInstrumentPortHandle(projPtr))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return nil, capiErr
-	}
-	return axeslabelledcontrolarray.FromCAPI(unsafe.Pointer(cProj))
-}
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, projection}, func() (*axeslabelledcontrolarray.Handle, error) {
 
+		return axeslabelledcontrolarray.FromCAPI(unsafe.Pointer(C.DiscreteSpace_get_projection(C.DiscreteSpaceHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(projection.CAPIHandle()))))
+	})
+}
 func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return false, errors.New("Equal: handle is closed")
-	}
-	if other == nil {
-		return false, errors.New("Equal: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return false, errors.New("Equal: other is closed")
-	}
-	val := bool(C.DiscreteSpace_equal(C.DiscreteSpaceHandle(h.chandle), C.DiscreteSpaceHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.DiscreteSpace_equal(C.DiscreteSpaceHandle(h.CAPIHandle()), C.DiscreteSpaceHandle(other.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return false, errors.New("NotEqual: handle is closed")
-	}
-	if other == nil {
-		return false, errors.New("NotEqual: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return false, errors.New("NotEqual: other is closed")
-	}
-	val := bool(C.DiscreteSpace_not_equal(C.DiscreteSpaceHandle(h.chandle), C.DiscreteSpaceHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.DiscreteSpace_not_equal(C.DiscreteSpaceHandle(h.CAPIHandle()), C.DiscreteSpaceHandle(other.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[discreteSpaceHandle]() {
-		return "", errors.New("ToJSON: handle is closed")
-	}
-	cStr := C.DiscreteSpace_to_json_string(C.DiscreteSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return "", err
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
-	if err != nil {
-		return "", err
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.DiscreteSpace_to_json_string(C.DiscreteSpaceHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func FromJSON(json string) (*Handle, error) {
-	realJSON := str.New(json)
-	defer realJSON.Close()
-	capistr, err := realJSON.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := discreteSpaceHandle(C.DiscreteSpace_from_json_string(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DiscreteSpace_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }

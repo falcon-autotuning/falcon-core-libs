@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listlabelledcontrolarray1d"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledcontrolarray1d"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledcontrolarray1d"
 )
 
 func eqSlice(a, b []*labelledcontrolarray1d.Handle) bool {

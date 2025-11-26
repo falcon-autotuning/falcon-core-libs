@@ -167,7 +167,9 @@ func CtoGType(ctype, packagetype string) string {
 
 // extracts the header associated with a non primitve handle
 func extractCPrefix(ctype string) string {
-	return strings.TrimSpace(ctype[:len(ctype)-len("Handle")])
+	ctype = strings.ReplaceAll(ctype, "*", "")
+	ctype = strings.ReplaceAll(ctype, "Handle", "")
+	return strings.TrimSpace(ctype)
 }
 
 // extracts the package associated with a non primitve handle

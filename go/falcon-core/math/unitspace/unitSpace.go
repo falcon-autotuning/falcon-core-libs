@@ -2,27 +2,17 @@ package unitspace
 
 /*
 #cgo pkg-config: falcon_core_c_api
-#include <falcon_core/generic/FArrayDouble_c_api.h>
-#include <falcon_core/generic/ListInt_c_api.h>
-#include <falcon_core/generic/String_c_api.h>
-#include <falcon_core/math/AxesControlArray_c_api.h>
-#include <falcon_core/math/AxesDiscretizer_c_api.h>
-#include <falcon_core/math/AxesDouble_c_api.h>
-#include <falcon_core/math/AxesInt_c_api.h>
-#include <falcon_core/math/discrete_spaces/Discretizer_c_api.h>
 #include <falcon_core/math/UnitSpace_c_api.h>
-#include <falcon_core/math/domains/Domain_c_api.h>
+#include <falcon_core/generic/String_c_api.h>
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
-	"runtime"
-	"sync"
 	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listint"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
@@ -32,496 +22,234 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axesint"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/discrete-spaces/discretizer"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/utils"
 )
 
-type unitSpaceHandle C.UnitSpaceHandle
-
 type Handle struct {
-	chandle      unitSpaceHandle
-	mu           sync.RWMutex
-	closed       bool
-	errorHandler *errorhandling.Handle
+	falconcorehandle.FalconCoreHandle
 }
 
-func new(h unitSpaceHandle) *Handle {
-	handle := &Handle{chandle: h, errorHandler: errorhandling.ErrorHandler}
-	runtime.AddCleanup(handle, func(_ any) { handle.Close() }, true)
-	return handle
-}
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
+	}
+	destroy = func(ptr unsafe.Pointer) {
+		C.UnitSpace_destroy(C.UnitSpaceHandle(ptr))
+	}
+)
 
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
-	if p == nil {
-		return nil, errors.New("FromCAPI: pointer is nil")
-	}
-	return new(unitSpaceHandle(p)), nil
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
 }
+func New(axes *axesdiscretizer.Handle, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{axes, domain}, func() (*Handle, error) {
 
-func (h *Handle) CAPIHandle() (unsafe.Pointer, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("CAPIHandle: handle is closed")
-	}
-	return unsafe.Pointer(h.chandle), nil
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_create(C.AxesDiscretizerHandle(axes.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewRayspace(dr float64, dtheta float64, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.Read(domain, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_create_rayspace(C.double(dr), C.double(dtheta), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewCartesianspace(deltas *axesdouble.Handle, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{deltas, domain}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_create_cartesianspace(C.AxesDoubleHandle(deltas.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewCartesian1dspace(delta float64, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.Read(domain, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_create_cartesian1Dspace(C.double(delta), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewCartesian2dspace(deltas *axesdouble.Handle, domain *domain.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{deltas, domain}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_create_cartesian2Dspace(C.AxesDoubleHandle(deltas.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if !h.closed && h.chandle != utils.NilHandle[unitSpaceHandle]() {
-		C.UnitSpace_destroy(C.UnitSpaceHandle(h.chandle))
-		err := h.errorHandler.CheckCapiError()
-		if err != nil {
-			return err
-		}
-		h.closed = true
-		h.chandle = utils.NilHandle[unitSpaceHandle]()
-		return nil
-	}
-	return errors.New("unable to close the Handle")
+	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
-func New(axes *axesdiscretizer.Handle, dom *domain.Handle) (*Handle, error) {
-	axesPtr, err := axes.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := unitSpaceHandle(C.UnitSpace_create(
-		C.AxesDiscretizerHandle(axesPtr),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewRaySpace(dr, dtheta float64, dom *domain.Handle) (*Handle, error) {
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := unitSpaceHandle(C.UnitSpace_create_rayspace(
-		C.double(dr),
-		C.double(dtheta),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewCartesianSpace(deltas *axesdouble.Handle, dom *domain.Handle) (*Handle, error) {
-	deltasPtr, err := deltas.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := unitSpaceHandle(C.UnitSpace_create_cartesianspace(
-		C.AxesDoubleHandle(deltasPtr),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewCartesian1DSpace(delta float64, dom *domain.Handle) (*Handle, error) {
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := unitSpaceHandle(C.UnitSpace_create_cartesian1Dspace(
-		C.double(delta),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
-func NewCartesian2DSpace(deltas *axesdouble.Handle, dom *domain.Handle) (*Handle, error) {
-	deltasPtr, err := deltas.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	domPtr, err := dom.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := unitSpaceHandle(C.UnitSpace_create_cartesian2Dspace(
-		C.AxesDoubleHandle(deltasPtr),
-		C.DomainHandle(domPtr),
-	))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
-}
-
 func (h *Handle) Axes() (*axesdiscretizer.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Axes: handle is closed")
-	}
-	cAxes := C.UnitSpace_axes(C.UnitSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return axesdiscretizer.FromCAPI(unsafe.Pointer(cAxes))
-}
+	return cmemoryallocation.Read(h, func() (*axesdiscretizer.Handle, error) {
 
+		return axesdiscretizer.FromCAPI(unsafe.Pointer(C.UnitSpace_axes(C.UnitSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) Domain() (*domain.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Domain: handle is closed")
-	}
-	cDom := C.UnitSpace_domain(C.UnitSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return domain.FromCAPI(unsafe.Pointer(cDom))
-}
+	return cmemoryallocation.Read(h, func() (*domain.Handle, error) {
 
+		return domain.FromCAPI(unsafe.Pointer(C.UnitSpace_domain(C.UnitSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) Space() (*farraydouble.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Space: handle is closed")
-	}
-	cSpace := C.UnitSpace_space(C.UnitSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return farraydouble.FromCAPI(unsafe.Pointer(cSpace))
-}
+	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
 
+		return farraydouble.FromCAPI(unsafe.Pointer(C.UnitSpace_space(C.UnitSpaceHandle(h.CAPIHandle()))))
+	})
+}
 func (h *Handle) Shape() (*listint.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Shape: handle is closed")
-	}
-	cShape := C.UnitSpace_shape(C.UnitSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return listint.FromCAPI(unsafe.Pointer(cShape))
-}
+	return cmemoryallocation.Read(h, func() (*listint.Handle, error) {
 
-func (h *Handle) Dimension() (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return 0, errors.New("Dimension: handle is closed")
-	}
-	val := int(C.UnitSpace_dimension(C.UnitSpaceHandle(h.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return 0, err
-	}
-	return val, nil
+		return listint.FromCAPI(unsafe.Pointer(C.UnitSpace_shape(C.UnitSpaceHandle(h.CAPIHandle()))))
+	})
 }
-
+func (h *Handle) Dimension() (uint32, error) {
+	return cmemoryallocation.Read(h, func() (uint32, error) {
+		return uint32(C.UnitSpace_dimension(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+	})
+}
 func (h *Handle) Compile() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return errors.New("Compile: handle is closed")
-	}
-	C.UnitSpace_compile(C.UnitSpaceHandle(h.chandle))
-	return h.errorHandler.CheckCapiError()
+	return cmemoryallocation.Write(h, func() error {
+		C.UnitSpace_compile(C.UnitSpaceHandle(h.CAPIHandle()))
+		return nil
+	})
 }
-
 func (h *Handle) CreateArray(axes *axesint.Handle) (*axescontrolarray.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("CreateArray: handle is closed")
-	}
-	axesPtr, err := axes.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	cArr := C.UnitSpace_create_array(C.UnitSpaceHandle(h.chandle), C.AxesIntHandle(axesPtr))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return axescontrolarray.FromCAPI(unsafe.Pointer(cArr))
-}
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, axes}, func() (*axescontrolarray.Handle, error) {
 
+		return axescontrolarray.FromCAPI(unsafe.Pointer(C.UnitSpace_create_array(C.UnitSpaceHandle(h.CAPIHandle()), C.AxesIntHandle(axes.CAPIHandle()))))
+	})
+}
 func (h *Handle) PushBack(value *discretizer.Handle) error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return errors.New("PushBack: handle is closed")
-	}
-	valPtr, err := value.CAPIHandle()
-	if err != nil {
-		return err
-	}
-	C.UnitSpace_push_back(C.UnitSpaceHandle(h.chandle), C.DiscretizerHandle(valPtr))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return err
-	}
-	return nil
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{value}, func() error {
+		C.UnitSpace_push_back(C.UnitSpaceHandle(h.CAPIHandle()), C.DiscretizerHandle(value.CAPIHandle()))
+		return nil
+	})
 }
-
-func (h *Handle) Size() (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return 0, errors.New("Size: handle is closed")
-	}
-	val := int(C.UnitSpace_size(C.UnitSpaceHandle(h.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return 0, err
-	}
-	return val, nil
+func (h *Handle) Size() (uint32, error) {
+	return cmemoryallocation.Read(h, func() (uint32, error) {
+		return uint32(C.UnitSpace_size(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) Empty() (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return false, errors.New("Empty: handle is closed")
-	}
-	val := bool(C.UnitSpace_empty(C.UnitSpaceHandle(h.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return false, err
-	}
-	return val, nil
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		return bool(C.UnitSpace_empty(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+	})
 }
-
-func (h *Handle) EraseAt(idx int) error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return errors.New("EraseAt: handle is closed")
-	}
-	C.UnitSpace_erase_at(C.UnitSpaceHandle(h.chandle), C.size_t(idx))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return err
-	}
-	return nil
+func (h *Handle) EraseAt(idx uint32) error {
+	return cmemoryallocation.Write(h, func() error {
+		C.UnitSpace_erase_at(C.UnitSpaceHandle(h.CAPIHandle()), C.size_t(idx))
+		return nil
+	})
 }
-
 func (h *Handle) Clear() error {
-	h.mu.Lock()
-	defer h.mu.Unlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return errors.New("Clear: handle is closed")
-	}
-	C.UnitSpace_clear(C.UnitSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return err
-	}
-	return nil
+	return cmemoryallocation.Write(h, func() error {
+		C.UnitSpace_clear(C.UnitSpaceHandle(h.CAPIHandle()))
+		return nil
+	})
 }
+func (h *Handle) At(idx uint32) (*discretizer.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*discretizer.Handle, error) {
 
-func (h *Handle) At(idx int) (*discretizer.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("At: handle is closed")
-	}
-	cVal := C.UnitSpace_at(C.UnitSpaceHandle(h.chandle), C.size_t(idx))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return discretizer.FromCAPI(unsafe.Pointer(cVal))
+		return discretizer.FromCAPI(unsafe.Pointer(C.UnitSpace_at(C.UnitSpaceHandle(h.CAPIHandle()), C.size_t(idx))))
+	})
 }
-
 func (h *Handle) Items() ([]*discretizer.Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Items: handle is closed")
+	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
+		return int32(C.UnitSpace_dimension(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+	})
+	if err != nil {
+		return nil, errors.Join(errors.New("Items: dimension errored"), err)
 	}
-	size, err := h.Size()
+	out := make([]C.DiscretizerHandle, dim)
+	_, err = cmemoryallocation.Read(h, func() (bool, error) {
+		C.UnitSpace_items(C.UnitSpaceHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		return true, nil
+	})
 	if err != nil {
 		return nil, err
 	}
-	if size == 0 {
-		return nil, nil
-	}
-	out := make([]C.DiscretizerHandle, size)
-	C.UnitSpace_items(C.UnitSpaceHandle(h.chandle), &out[0], C.size_t(size))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return nil, capiErr
-	}
-	res := make([]*discretizer.Handle, size)
+	realout := make([]*discretizer.Handle, dim)
 	for i := range out {
-		res[i], err = discretizer.FromCAPI(unsafe.Pointer(out[i]))
-		if err != nil {
-			return nil, err
-		}
+		realout[i] = *discretizer.Handle(realout[i])
 	}
-	return res, nil
+	return realout, nil
 }
-
 func (h *Handle) Contains(value *discretizer.Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return false, errors.New("Contains: handle is closed")
-	}
-	valPtr, err := value.CAPIHandle()
-	if err != nil {
-		return false, err
-	}
-	val := bool(C.UnitSpace_contains(C.UnitSpaceHandle(h.chandle), C.DiscretizerHandle(valPtr)))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return false, err
-	}
-	return val, nil
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (bool, error) {
+		return bool(C.UnitSpace_contains(C.UnitSpaceHandle(h.CAPIHandle()), C.DiscretizerHandle(value.CAPIHandle()))), nil
+	})
 }
-
-func (h *Handle) Index(value *discretizer.Handle) (int, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return 0, errors.New("Index: handle is closed")
-	}
-	valPtr, err := value.CAPIHandle()
-	if err != nil {
-		return 0, err
-	}
-	val := int(C.UnitSpace_index(C.UnitSpaceHandle(h.chandle), C.DiscretizerHandle(valPtr)))
-	err = h.errorHandler.CheckCapiError()
-	if err != nil {
-		return 0, err
-	}
-	return val, nil
+func (h *Handle) Index(value *discretizer.Handle) (uint32, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
+		return uint32(C.UnitSpace_index(C.UnitSpaceHandle(h.CAPIHandle()), C.DiscretizerHandle(value.CAPIHandle()))), nil
+	})
 }
-
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Intersection: handle is closed")
-	}
-	if other == nil {
-		return nil, errors.New("Intersection: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return nil, errors.New("Intersection: other is closed")
-	}
-	res := unitSpaceHandle(C.UnitSpace_intersection(C.UnitSpaceHandle(h.chandle), C.UnitSpaceHandle(other.chandle)))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(res), nil
-}
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return false, errors.New("Equal: handle is closed")
-	}
-	if other == nil {
-		return false, errors.New("Equal: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return false, errors.New("Equal: other is closed")
-	}
-	val := bool(C.UnitSpace_equal(C.UnitSpaceHandle(h.chandle), C.UnitSpaceHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+		return Handle.FromCAPI(unsafe.Pointer(C.UnitSpace_intersection(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(other.CAPIHandle()))))
+	})
 }
-
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return false, errors.New("NotEqual: handle is closed")
-	}
-	if other == nil {
-		return false, errors.New("NotEqual: other is nil")
-	}
-	other.mu.RLock()
-	defer other.mu.RUnlock()
-	if other.closed || other.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return false, errors.New("NotEqual: other is closed")
-	}
-	val := bool(C.UnitSpace_not_equal(C.UnitSpaceHandle(h.chandle), C.UnitSpaceHandle(other.chandle)))
-	capiErr := h.errorHandler.CheckCapiError()
-	if capiErr != nil {
-		return false, capiErr
-	}
-	return val, nil
+func (h *Handle) Equal(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.UnitSpace_equal(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(b.CAPIHandle()))), nil
+	})
 }
-
+func (h *Handle) NotEqual(b *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
+		return bool(C.UnitSpace_not_equal(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(b.CAPIHandle()))), nil
+	})
+}
 func (h *Handle) ToJSON() (string, error) {
-	h.mu.RLock()
-	defer h.mu.RUnlock()
-	if h.closed || h.chandle == utils.NilHandle[unitSpaceHandle]() {
-		return "", errors.New("ToJSON: handle is closed")
-	}
-	cStr := C.UnitSpace_to_json_string(C.UnitSpaceHandle(h.chandle))
-	err := h.errorHandler.CheckCapiError()
-	if err != nil {
-		return "", err
-	}
-	strHandle, err := str.FromCAPI(unsafe.Pointer(cStr))
-	if err != nil {
-		return "", err
-	}
-	defer strHandle.Close()
-	return strHandle.ToGoString()
-}
+	return cmemoryallocation.Read(h, func() (string, error) {
 
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.UnitSpace_to_json_string(C.UnitSpaceHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
 func FromJSON(json string) (*Handle, error) {
-	realJSON := str.New(json)
-	defer realJSON.Close()
-	capistr, err := realJSON.CAPIHandle()
-	if err != nil {
-		return nil, err
-	}
-	h := unitSpaceHandle(C.UnitSpace_from_json_string(C.StringHandle(capistr)))
-	err = errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return nil, err
-	}
-	return new(h), nil
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
