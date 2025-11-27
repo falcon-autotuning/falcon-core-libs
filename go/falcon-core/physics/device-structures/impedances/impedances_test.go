@@ -46,7 +46,7 @@ func TestImpedances_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Items() error: %v", err)
 		}
-		if size, _ := items.Size(); size != len(imps) {
+		if size, _ := items.Size(); size != uint32(len(imps)) {
 			t.Errorf("Items() length = %v, want %v", size, len(imps))
 		}
 	})
@@ -147,7 +147,7 @@ func TestImpedances_Intersection(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Intersection Items error: %v", err)
 		}
-		if size, _ := items.Size(); size != len(imps) {
+		if size, _ := items.Size(); size != uint32(len(imps)) {
 			t.Errorf("Intersection Items = %v, want %v", size, len(imps))
 		}
 	})

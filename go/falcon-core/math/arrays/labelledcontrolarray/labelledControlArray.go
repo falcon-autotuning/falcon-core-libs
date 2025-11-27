@@ -42,7 +42,7 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func FromFarray(farray *farraydouble.Handle, label *acquisitioncontext.Handle) (*Handle, error) {
+func FromFArray(farray *farraydouble.Handle, label *acquisitioncontext.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{farray, label}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -110,10 +110,10 @@ func (h *Handle) Dimension() (uint32, error) {
 }
 func (h *Handle) Shape() ([]uint32, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.LabelledControlArray_dimension(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
+		return int32(C.LabelledControlArray_size(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Shape: dimension errored"), err)
+		return nil, errors.Join(errors.New("Shape: size errored"), err)
 	}
 	out := make([]C.size_t, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -125,16 +125,17 @@ func (h *Handle) Shape() ([]uint32, error) {
 	}
 	realout := make([]uint32, dim)
 	for i := range out {
-		realout[i] = uint32(realout[i])
+		realout[i] = uint32(out[i])
+
 	}
 	return realout, nil
 }
 func (h *Handle) Data() ([]float64, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.LabelledControlArray_dimension(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
+		return int32(C.LabelledControlArray_size(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Data: dimension errored"), err)
+		return nil, errors.Join(errors.New("Data: size errored"), err)
 	}
 	out := make([]C.double, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -146,220 +147,221 @@ func (h *Handle) Data() ([]float64, error) {
 	}
 	realout := make([]float64, dim)
 	for i := range out {
-		realout[i] = float64(realout[i])
+		realout[i] = float64(out[i])
+
 	}
 	return realout, nil
 }
-func (h *Handle) PlusequalsFarray(other *farraydouble.Handle) error {
+func (h *Handle) PlusEqualsFArray(other *farraydouble.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
-		C.LabelledControlArray_plusequals_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))
+		C.LabelledControlArray_plus_equals_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))
 		return nil
 	})
 }
-func (h *Handle) PlusequalsDouble(other float64) error {
+func (h *Handle) PlusEqualsDouble(other float64) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_plusequals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
+		C.LabelledControlArray_plus_equals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
 		return nil
 	})
 }
-func (h *Handle) PlusequalsInt(other int32) error {
+func (h *Handle) PlusEqualsInt(other int32) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_plusequals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
+		C.LabelledControlArray_plus_equals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
 		return nil
 	})
 }
 func (h *Handle) PlusControlArray(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) PlusFarray(other *farraydouble.Handle) (*Handle, error) {
+func (h *Handle) PlusFArray(other *farraydouble.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PlusDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) PlusInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_plus_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
-func (h *Handle) MinusequalsControlArray(other *Handle) error {
+func (h *Handle) MinusEqualsControlArray(other *Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
-		C.LabelledControlArray_minusequals_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))
+		C.LabelledControlArray_minus_equals_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))
 		return nil
 	})
 }
-func (h *Handle) MinusequalsFarray(other *farraydouble.Handle) error {
+func (h *Handle) MinusEqualsFArray(other *farraydouble.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
-		C.LabelledControlArray_minusequals_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))
+		C.LabelledControlArray_minus_equals_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))
 		return nil
 	})
 }
-func (h *Handle) MinusequalsDouble(other float64) error {
+func (h *Handle) MinusEqualsDouble(other float64) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_minusequals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
+		C.LabelledControlArray_minus_equals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
 		return nil
 	})
 }
-func (h *Handle) MinusequalsInt(other int32) error {
+func (h *Handle) MinusEqualsInt(other int32) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_minusequals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
+		C.LabelledControlArray_minus_equals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
 		return nil
 	})
 }
 func (h *Handle) MinusControlArray(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) MinusFarray(other *farraydouble.Handle) (*Handle, error) {
+func (h *Handle) MinusFArray(other *farraydouble.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) MinusDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) MinusInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_minus_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) Negation() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_negation(C.LabelledControlArrayHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_negation(C.LabelledControlArrayHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) TimesequalsDouble(other float64) error {
+func (h *Handle) TimesEqualsDouble(other float64) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_timesequals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
+		C.LabelledControlArray_times_equals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
 		return nil
 	})
 }
-func (h *Handle) TimesequalsInt(other int32) error {
+func (h *Handle) TimesEqualsInt(other int32) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_timesequals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
+		C.LabelledControlArray_times_equals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
 		return nil
 	})
 }
 func (h *Handle) TimesDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_times_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_times_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) TimesInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_times_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_times_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
-func (h *Handle) DividesequalsDouble(other float64) error {
+func (h *Handle) DividesEqualsDouble(other float64) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_dividesequals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
+		C.LabelledControlArray_divides_equals_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))
 		return nil
 	})
 }
-func (h *Handle) DividesequalsInt(other int32) error {
+func (h *Handle) DividesEqualsInt(other int32) error {
 	return cmemoryallocation.Write(h, func() error {
-		C.LabelledControlArray_dividesequals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
+		C.LabelledControlArray_divides_equals_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))
 		return nil
 	})
 }
 func (h *Handle) DividesDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_divides_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_divides_double(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) DividesInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_divides_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_divides_int(C.LabelledControlArrayHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) Pow(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_pow(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_pow(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) Abs() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_abs(C.LabelledControlArrayHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_abs(C.LabelledControlArrayHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Min() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_min(C.LabelledControlArrayHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_min(C.LabelledControlArrayHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) MinFarray(other *farraydouble.Handle) (*Handle, error) {
+func (h *Handle) MinFArray(other *farraydouble.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_min_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_min_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) MinControlArray(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_min_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_min_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Max() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_max(C.LabelledControlArrayHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_max(C.LabelledControlArrayHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) MaxFarray(other *farraydouble.Handle) (*Handle, error) {
+func (h *Handle) MaxFArray(other *farraydouble.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_max_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_max_farray(C.LabelledControlArrayHandle(h.CAPIHandle()), C.FArrayDoubleHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) MaxControlArray(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_max_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_max_control_array(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equality(other *Handle) (bool, error) {
+func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.LabelledControlArray_equality(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))), nil
+		return bool(C.LabelledControlArray_equal(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Notequality(other *Handle) (bool, error) {
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.LabelledControlArray_notequality(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))), nil
+		return bool(C.LabelledControlArray_not_equal(C.LabelledControlArrayHandle(h.CAPIHandle()), C.LabelledControlArrayHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Greaterthan(value float64) (bool, error) {
+func (h *Handle) GreaterThan(value float64) (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
-		return bool(C.LabelledControlArray_greaterthan(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(value))), nil
+		return bool(C.LabelledControlArray_greater_than(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(value))), nil
 	})
 }
-func (h *Handle) Lessthan(value float64) (bool, error) {
+func (h *Handle) LessThan(value float64) (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
-		return bool(C.LabelledControlArray_lessthan(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(value))), nil
+		return bool(C.LabelledControlArray_less_than(C.LabelledControlArrayHandle(h.CAPIHandle()), C.double(value))), nil
 	})
 }
 func (h *Handle) RemoveOffset(offset float64) error {
@@ -382,15 +384,15 @@ func (h *Handle) Where(value float64) (*listlistsizet.Handle, error) {
 func (h *Handle) Flip(axis uint32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledControlArray_flip(C.LabelledControlArrayHandle(h.CAPIHandle()), C.size_t(axis))))
+		return FromCAPI(unsafe.Pointer(C.LabelledControlArray_flip(C.LabelledControlArrayHandle(h.CAPIHandle()), C.size_t(axis))))
 	})
 }
 func (h *Handle) FullGradient() ([]*farraydouble.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.LabelledControlArray_dimension(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
+		return int32(C.LabelledControlArray_size(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("FullGradient: dimension errored"), err)
+		return nil, errors.Join(errors.New("FullGradient: size errored"), err)
 	}
 	out := make([]C.FArrayDoubleHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -402,7 +404,11 @@ func (h *Handle) FullGradient() ([]*farraydouble.Handle, error) {
 	}
 	realout := make([]*farraydouble.Handle, dim)
 	for i := range out {
-		realout[i] = *farraydouble.Handle(realout[i])
+		realout[i], err = farraydouble.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("FullGradient: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }

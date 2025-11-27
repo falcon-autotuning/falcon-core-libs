@@ -113,9 +113,10 @@ func (h *Handle) GetPsuedonameMatchingPort(name *connection.Handle) (*instrument
 	})
 }
 func (h *Handle) GetInstrumentTypeMatchingPort(insttype string) (*instrumentport.Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, insttype}, func() (*instrumentport.Handle, error) {
+	realinsttype := str.New(insttype)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, realinsttype}, func() (*instrumentport.Handle, error) {
 
-		return instrumentport.FromCAPI(unsafe.Pointer(C.Ports__get_instrument_type_matching_port(C.PortsHandle(h.CAPIHandle()), C.StringHandle(insttype.CAPIHandle()))))
+		return instrumentport.FromCAPI(unsafe.Pointer(C.Ports__get_instrument_type_matching_port(C.PortsHandle(h.CAPIHandle()), C.StringHandle(realinsttype.CAPIHandle()))))
 	})
 }
 func (h *Handle) IsKnobs() (bool, error) {
@@ -131,7 +132,7 @@ func (h *Handle) IsMeters() (bool, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Ports_intersection(C.PortsHandle(h.CAPIHandle()), C.PortsHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Ports_intersection(C.PortsHandle(h.CAPIHandle()), C.PortsHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PushBack(value *instrumentport.Handle) error {

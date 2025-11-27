@@ -3,7 +3,7 @@ package devicevoltagestate
 import (
 	"testing"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -34,8 +34,8 @@ func TestDeviceVoltageState_Basic(t *testing.T) {
 	}
 	defer dvs.Close()
 
-	ptr, err := dvs.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := dvs.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 	gotConn, err := dvs.Connection()
@@ -99,13 +99,13 @@ func TestDeviceVoltageState_Arithmetic(t *testing.T) {
 	h, err = dvs.MultiplyQuantity(dvs)
 	checkClose(h, err, "MultiplyQuantity", true)
 
-	h, err = dvs.MultiplyEqualsInt(2)
+	err = dvs.MultiplyEqualsInt(2)
 	checkClose(h, err, "MultiplyEqualsInt", false)
 
-	h, err = dvs.MultiplyEqualsDouble(2.5)
+	err = dvs.MultiplyEqualsDouble(2.5)
 	checkClose(h, err, "MultiplyEqualsDouble", false)
 
-	h, err = dvs.MultiplyEqualsQuantity(dvs)
+	err = dvs.MultiplyEqualsQuantity(dvs)
 	checkClose(h, err, "MultiplyEqualsQuantity", false)
 
 	h, err = dvs.DivideInt(2)
@@ -117,13 +117,13 @@ func TestDeviceVoltageState_Arithmetic(t *testing.T) {
 	h, err = dvs.DivideQuantity(dvs)
 	checkClose(h, err, "DivideQuantity", true)
 
-	h, err = dvs.DivideEqualsInt(2)
+	err = dvs.DivideEqualsInt(2)
 	checkClose(h, err, "DivideEqualsInt", false)
 
-	h, err = dvs.DivideEqualsDouble(2.5)
+	err = dvs.DivideEqualsDouble(2.5)
 	checkClose(h, err, "DivideEqualsDouble", false)
 
-	h, err = dvs.DivideEqualsQuantity(dvs)
+	err = dvs.DivideEqualsQuantity(dvs)
 	checkClose(h, err, "DivideEqualsQuantity", false)
 
 	h, err = dvs.Power(2)
@@ -132,13 +132,13 @@ func TestDeviceVoltageState_Arithmetic(t *testing.T) {
 	h, err = dvs.AddQuantity(dvs)
 	checkClose(h, err, "AddQuantity", true)
 
-	h, err = dvs.AddEqualsQuantity(dvs)
+	err = dvs.AddEqualsQuantity(dvs)
 	checkClose(h, err, "AddEqualsQuantity", false)
 
 	h, err = dvs.SubtractQuantity(dvs)
 	checkClose(h, err, "SubtractQuantity", true)
 
-	h, err = dvs.SubtractEqualsQuantity(dvs)
+	err = dvs.SubtractEqualsQuantity(dvs)
 	checkClose(h, err, "SubtractEqualsQuantity", false)
 
 	h, err = dvs.Negate()
@@ -196,10 +196,6 @@ func TestDeviceVoltageState_ErrorBranches(t *testing.T) {
 		t.Fatalf("New failed: %v", err)
 	}
 	dvs.Close()
-	_, err = dvs.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
 	err = dvs.Close()
 	if err == nil {
 		t.Errorf("Second Close should error")
@@ -236,15 +232,15 @@ func TestDeviceVoltageState_ErrorBranches(t *testing.T) {
 	if err == nil {
 		t.Errorf("MultiplyQuantity on closed should error")
 	}
-	_, err = dvs.MultiplyEqualsInt(2)
+	err = dvs.MultiplyEqualsInt(2)
 	if err == nil {
 		t.Errorf("MultiplyEqualsInt on closed should error")
 	}
-	_, err = dvs.MultiplyEqualsDouble(2.5)
+	err = dvs.MultiplyEqualsDouble(2.5)
 	if err == nil {
 		t.Errorf("MultiplyEqualsDouble on closed should error")
 	}
-	_, err = dvs.MultiplyEqualsQuantity(dvs)
+	err = dvs.MultiplyEqualsQuantity(dvs)
 	if err == nil {
 		t.Errorf("MultiplyEqualsQuantity on closed should error")
 	}
@@ -260,15 +256,15 @@ func TestDeviceVoltageState_ErrorBranches(t *testing.T) {
 	if err == nil {
 		t.Errorf("DivideQuantity on closed should error")
 	}
-	_, err = dvs.DivideEqualsInt(2)
+	err = dvs.DivideEqualsInt(2)
 	if err == nil {
 		t.Errorf("DivideEqualsInt on closed should error")
 	}
-	_, err = dvs.DivideEqualsDouble(2.5)
+	err = dvs.DivideEqualsDouble(2.5)
 	if err == nil {
 		t.Errorf("DivideEqualsDouble on closed should error")
 	}
-	_, err = dvs.DivideEqualsQuantity(dvs)
+	err = dvs.DivideEqualsQuantity(dvs)
 	if err == nil {
 		t.Errorf("DivideEqualsQuantity on closed should error")
 	}
@@ -280,7 +276,7 @@ func TestDeviceVoltageState_ErrorBranches(t *testing.T) {
 	if err == nil {
 		t.Errorf("AddQuantity on closed should error")
 	}
-	_, err = dvs.AddEqualsQuantity(dvs)
+	err = dvs.AddEqualsQuantity(dvs)
 	if err == nil {
 		t.Errorf("AddEqualsQuantity on closed should error")
 	}
@@ -288,7 +284,7 @@ func TestDeviceVoltageState_ErrorBranches(t *testing.T) {
 	if err == nil {
 		t.Errorf("SubtractQuantity on closed should error")
 	}
-	_, err = dvs.SubtractEqualsQuantity(dvs)
+	err = dvs.SubtractEqualsQuantity(dvs)
 	if err == nil {
 		t.Errorf("SubtractEqualsQuantity on closed should error")
 	}

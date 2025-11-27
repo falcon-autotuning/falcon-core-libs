@@ -5,7 +5,7 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -42,8 +42,8 @@ func TestPorts_FullCoverage(t *testing.T) {
 	defer portsHandle.Close()
 
 	// CAPIHandle (open)
-	ptr, err := portsHandle.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := portsHandle.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 
@@ -177,12 +177,6 @@ func TestPorts_FullCoverage(t *testing.T) {
 		t.Errorf("Empty failed: %v", err)
 	}
 
-	// ConstAt
-	_, err = portsHandle.ConstAt(0)
-	if err != nil {
-		t.Errorf("ConstAt failed: %v", err)
-	}
-
 	// At
 	_, err = portsHandle.At(0)
 	if err != nil {
@@ -284,10 +278,6 @@ func TestPorts_FullCoverage(t *testing.T) {
 
 	// CAPIHandle (closed)
 	portsHandle.Close()
-	_, err = portsHandle.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
 	// Close twice
 	err = portsHandle.Close()
 	if err == nil {
@@ -352,10 +342,6 @@ func TestPorts_FullCoverage(t *testing.T) {
 	err = portsHandle.Clear()
 	if err == nil {
 		t.Errorf("Clear on closed should error")
-	}
-	_, err = portsHandle.ConstAt(0)
-	if err == nil {
-		t.Errorf("ConstAt on closed should error")
 	}
 	_, err = portsHandle.At(0)
 	if err == nil {

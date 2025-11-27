@@ -90,13 +90,13 @@ func (h *Handle) Center() (float64, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Domain_intersection(C.DomainHandle(h.CAPIHandle()), C.DomainHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Domain_intersection(C.DomainHandle(h.CAPIHandle()), C.DomainHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Union(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Domain_union(C.DomainHandle(h.CAPIHandle()), C.DomainHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Domain_union(C.DomainHandle(h.CAPIHandle()), C.DomainHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) IsEmpty() (bool, error) {
@@ -112,13 +112,13 @@ func (h *Handle) ContainsDomain(other *Handle) (bool, error) {
 func (h *Handle) Shift(offset float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Domain_shift(C.DomainHandle(h.CAPIHandle()), C.double(offset))))
+		return FromCAPI(unsafe.Pointer(C.Domain_shift(C.DomainHandle(h.CAPIHandle()), C.double(offset))))
 	})
 }
 func (h *Handle) Scale(scale float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Domain_scale(C.DomainHandle(h.CAPIHandle()), C.double(scale))))
+		return FromCAPI(unsafe.Pointer(C.Domain_scale(C.DomainHandle(h.CAPIHandle()), C.double(scale))))
 	})
 }
 func (h *Handle) Transform(other *Handle, value float64) (float64, error) {

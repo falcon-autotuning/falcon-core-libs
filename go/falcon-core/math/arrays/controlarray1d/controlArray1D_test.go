@@ -63,7 +63,7 @@ func TestControlArray1D_ShapeDimensionSize(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != len(defaultShape) {
+	if dim != uint32(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	sz, err := a.Size()
@@ -209,7 +209,7 @@ func TestControlArray1D_NonMutatingOps(t *testing.T) {
 	want := make([]float64, len(defaultData))
 
 	// PlusControlArray1D
-	res, err := a.PlusControlArray1D(b)
+	res, err := a.PlusControlArray(b)
 	if err != nil {
 		t.Errorf("PlusControlArray1D failed: %v", err)
 	}
@@ -266,7 +266,7 @@ func TestControlArray1D_NonMutatingOps(t *testing.T) {
 
 	// MinusControlArray1D
 	c, _ := a.TimesDouble(2.0)
-	res5, err := c.MinusControlArray1D(b)
+	res5, err := c.MinusControlArray(b)
 	if err != nil {
 		t.Errorf("MinusControlArray1D failed: %v", err)
 	}
@@ -481,10 +481,10 @@ func TestControlArray1D_MinMax(t *testing.T) {
 	b, _ := FromData(defaultData, defaultShape)
 	d, _ := b.TimesDouble(2.0)
 	defer b.Close()
-	if _, err := a.MinControlArray1D(d); err != nil {
+	if _, err := a.MinControlArray(d); err != nil {
 		t.Errorf("MinControlArray1D failed: %v", err)
 	}
-	if _, err := a.MaxControlArray1D(d); err != nil {
+	if _, err := a.MaxControlArray(d); err != nil {
 		t.Errorf("MaxControlArray1D failed: %v", err)
 	}
 }
@@ -625,15 +625,15 @@ func TestControlArray1D_ErrorBranches(t *testing.T) {
 	if err == nil {
 		t.Error("Expected error on Data after Close")
 	}
-	_, err = a.PlusControlArray1D(nil)
+	_, err = a.PlusControlArray(nil)
 	if err == nil {
 		t.Error("Expected error on PlusControlArray1D with nil")
 	}
-	_, err = a.MinControlArray1D(nil)
+	_, err = a.MinControlArray(nil)
 	if err == nil {
 		t.Error("Expected error on MinControlArray1D with nil")
 	}
-	_, err = a.MaxControlArray1D(nil)
+	_, err = a.MaxControlArray(nil)
 	if err == nil {
 		t.Error("Expected error on MaxControlArray1D with nil")
 	}

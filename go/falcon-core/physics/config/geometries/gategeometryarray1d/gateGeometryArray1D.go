@@ -100,10 +100,10 @@ func (h *Handle) RightBarrier() (*dotgatewithneighbors.Handle, error) {
 		return dotgatewithneighbors.FromCAPI(unsafe.Pointer(C.GateGeometryArray1D_right_barrier(C.GateGeometryArray1DHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Lineararray() (*connections.Handle, error) {
+func (h *Handle) LinearArray() (*connections.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*connections.Handle, error) {
 
-		return connections.FromCAPI(unsafe.Pointer(C.GateGeometryArray1D_lineararray(C.GateGeometryArray1DHandle(h.CAPIHandle()))))
+		return connections.FromCAPI(unsafe.Pointer(C.GateGeometryArray1D_linear_array(C.GateGeometryArray1DHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) ScreeningGates() (*connections.Handle, error) {

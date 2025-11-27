@@ -191,7 +191,6 @@ func main() {
 		types[i].ListPackage = toPkgName(types[i].ListType)
 	}
 
-	wrapperTmpl := template.Must(template.ParseFiles("math/axes/axes_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("math/axes/axes_test_wrapper.tmpl"))
 	manifest, err := os.Create("axes_handles_manifest.txt")
 	if err != nil {
@@ -203,16 +202,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, t.File+".go")
-		f, err := os.Create(implFile)
-		if err != nil {
-			panic(err)
-		}
-		if err := wrapperTmpl.Execute(f, t); err != nil {
-			panic(err)
-		}
-		f.Close()
-		fmt.Fprintln(manifest, implFile)
 		testFile := filepath.Join(dir, t.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {

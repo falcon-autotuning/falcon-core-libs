@@ -230,8 +230,11 @@ func CloseAllocation(
 	obj HasCAPIHandle,
 	deallocMem func(unsafe.Pointer),
 ) error {
-	if obj == nil || obj.CAPIHandle() == nil {
+	if obj == nil {
 		return errors.New(`CloseAllocation: the object is nil`)
+	}
+	if obj.CAPIHandle() == nil {
+		return errors.New(`CloseAllocation: the object contains nil`)
 	}
 	mNum := uint32(uintptr(obj.CAPIHandle()))
 	cmas := GetCMAS()
@@ -274,9 +277,13 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns the output of the read function and an error if any.
 */
 func Read[T any](obj HasCAPIHandle, fn func() (T, error)) (T, error) {
-	if obj == nil || obj.CAPIHandle() == nil {
+	if obj == nil {
 		var zero T
 		return zero, errors.New(`Read: the object is nil`)
+	}
+	if obj.CAPIHandle() == nil {
+		var zero T
+		return zero, errors.New(`Read: the object contains nil`)
 	}
 	mNum := uint32(uintptr(obj.CAPIHandle()))
 	cmas := GetCMAS()
@@ -322,9 +329,13 @@ func MultiRead[T any](objs []HasCAPIHandle, fn func() (T, error)) (T, error) {
 	cmas := GetCMAS()
 	infos := make([]lockInfo, len(objs))
 	for i, obj := range objs {
-		if obj == nil || obj.CAPIHandle() == nil {
+		if obj == nil {
 			var zero T
 			return zero, errors.New(`MultiRead: the object is nil`)
+		}
+		if obj.CAPIHandle() == nil {
+			var zero T
+			return zero, errors.New(`MultiRead: the object contains nil`)
 		}
 		mNum := uint32(uintptr(obj.CAPIHandle()))
 		stack, exists := cmas.memoryStacks[mNum]
@@ -366,8 +377,11 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns an error if any.
 */
 func Write(obj HasCAPIHandle, fn func() error) error {
-	if obj == nil || obj.CAPIHandle() == nil {
+	if obj == nil {
 		return errors.New(`Write: the object is nil`)
+	}
+	if obj.CAPIHandle() == nil {
+		return errors.New(`Write: the object contains nil`)
 	}
 	mNum := uint32(uintptr(obj.CAPIHandle()))
 	cmas := GetCMAS()
@@ -405,8 +419,11 @@ func ReadWrite(write HasCAPIHandle, objs []HasCAPIHandle, fn func() error) error
 	cmas := GetCMAS()
 	infos := make([]lockInfo, len(objs))
 	for i, obj := range objs {
-		if obj == nil || obj.CAPIHandle() == nil {
+		if obj == nil {
 			return errors.New(`ReadWrite: the object is nil`)
+		}
+		if obj.CAPIHandle() == nil {
+			return errors.New(`ReadWrite: the object contains nil`)
 		}
 		mNum := uint32(uintptr(obj.CAPIHandle()))
 		stack, exists := cmas.memoryStacks[mNum]

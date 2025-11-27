@@ -2,8 +2,8 @@ package pairchannelconnections
 
 import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/names/channel"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 func mustBarrierGate(name string) *connection.Handle {

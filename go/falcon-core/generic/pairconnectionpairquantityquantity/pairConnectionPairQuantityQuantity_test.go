@@ -5,7 +5,7 @@ import (
 	"testing"
 	
 	
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairquantityquantity"
 )
 
@@ -107,10 +107,7 @@ func TestPairConnectionPairQuantityQuantity_CAPIHandle(t *testing.T) {
 		t.Fatalf("New failed: %v", err)
 	}
 	defer p.Close()
-	ptr, err := p.CAPIHandle()
-	if err != nil {
-		t.Errorf("CAPIHandle failed to access capi")
-	}
+	ptr:= p.CAPIHandle()
 	if ptr == nil {
 		t.Errorf("CAPIHandle returned nil")
 	}

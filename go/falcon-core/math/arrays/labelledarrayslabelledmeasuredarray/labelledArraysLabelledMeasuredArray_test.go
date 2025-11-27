@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listlabelledmeasuredarray"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledmeasuredarray"
+  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledmeasuredarray"
 )
 
 func eqSlice(a, b []*labelledmeasuredarray.Handle) bool {

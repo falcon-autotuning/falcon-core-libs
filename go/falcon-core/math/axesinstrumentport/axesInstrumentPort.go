@@ -109,10 +109,10 @@ func (h *Handle) At(idx uint32) (*instrumentport.Handle, error) {
 }
 func (h *Handle) Items() ([]*instrumentport.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.AxesInstrumentPort_dimension(C.AxesInstrumentPortHandle(h.CAPIHandle()))), nil
+		return int32(C.AxesInstrumentPort_size(C.AxesInstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.InstrumentPortHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -124,7 +124,11 @@ func (h *Handle) Items() ([]*instrumentport.Handle, error) {
 	}
 	realout := make([]*instrumentport.Handle, dim)
 	for i := range out {
-		realout[i] = *instrumentport.Handle(realout[i])
+		realout[i], err = instrumentport.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("Items: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }
@@ -141,7 +145,7 @@ func (h *Handle) Index(value *instrumentport.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AxesInstrumentPort_intersection(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AxesInstrumentPort_intersection(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

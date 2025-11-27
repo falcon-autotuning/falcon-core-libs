@@ -152,10 +152,7 @@ func TestTime_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("Time NewNow error: %v", err)
 	}
 	defer th.Close()
-	capi, err := th.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert time to CAPI: %v", err)
-	}
+	capi := th.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

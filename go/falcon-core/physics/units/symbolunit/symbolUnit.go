@@ -625,25 +625,26 @@ func (h *Handle) Name() (string, error) {
 func (h *Handle) Multiplication(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.SymbolUnit_multiplication(C.SymbolUnitHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.SymbolUnit_multiplication(C.SymbolUnitHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Division(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.SymbolUnit_division(C.SymbolUnitHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.SymbolUnit_division(C.SymbolUnitHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Power(power int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.SymbolUnit_power(C.SymbolUnitHandle(h.CAPIHandle()), C.int(power))))
+		return FromCAPI(unsafe.Pointer(C.SymbolUnit_power(C.SymbolUnitHandle(h.CAPIHandle()), C.int(power))))
 	})
 }
 func (h *Handle) WithPrefix(prefix string) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, prefix}, func() (*Handle, error) {
+	realprefix := str.New(prefix)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, realprefix}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.SymbolUnit_with_prefix(C.SymbolUnitHandle(h.CAPIHandle()), C.StringHandle(prefix.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.SymbolUnit_with_prefix(C.SymbolUnitHandle(h.CAPIHandle()), C.StringHandle(realprefix.CAPIHandle()))))
 	})
 }
 func (h *Handle) ConvertValueTo(value float64, target *Handle) (float64, error) {

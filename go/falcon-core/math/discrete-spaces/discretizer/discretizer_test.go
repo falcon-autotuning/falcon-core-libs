@@ -5,7 +5,7 @@ import (
 )
 
 func TestDiscretizer_LifecycleAndAccessors(t *testing.T) {
-	d, err := NewCartesian(0.5)
+	d, err := NewCartesianDiscretizer(0.5)
 	if err != nil {
 		t.Fatalf("Discretizer NewCartesian error: %v", err)
 	}
@@ -107,7 +107,7 @@ func TestDiscretizer_LifecycleAndAccessors(t *testing.T) {
 }
 
 func TestDiscretizer_Polar(t *testing.T) {
-	d, err := NewPolar(2.0)
+	d, err := NewPolarDiscretizer(2.0)
 	if err != nil {
 		t.Fatalf("Discretizer NewPolar error: %v", err)
 	}

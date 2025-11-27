@@ -198,7 +198,7 @@ func (h *Handle) Index(value *porttransform.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Waveform_intersection(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Waveform_intersection(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {

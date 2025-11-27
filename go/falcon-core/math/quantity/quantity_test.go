@@ -368,10 +368,7 @@ func TestQuantity_FromCAPI_Valid(t *testing.T) {
 	volt, _ := symbolunit.NewVolt()
 	q, _ := New(1.0, volt)
 	defer q.Close()
-	capi, err := q.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert quantity to CAPI: %v", err)
-	}
+	capi := q.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

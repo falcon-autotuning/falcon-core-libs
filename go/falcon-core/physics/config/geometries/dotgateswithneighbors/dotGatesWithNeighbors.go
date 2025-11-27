@@ -86,7 +86,7 @@ func (h *Handle) IsBarrierGates() (bool, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DotGatesWithNeighbors_intersection(C.DotGatesWithNeighborsHandle(h.CAPIHandle()), C.DotGatesWithNeighborsHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DotGatesWithNeighbors_intersection(C.DotGatesWithNeighborsHandle(h.CAPIHandle()), C.DotGatesWithNeighborsHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PushBack(value *dotgatewithneighbors.Handle) error {

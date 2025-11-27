@@ -2,7 +2,7 @@ package pairconnectionquantity
 
 import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/quantity"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 

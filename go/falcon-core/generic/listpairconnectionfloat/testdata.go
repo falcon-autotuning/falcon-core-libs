@@ -2,7 +2,7 @@ package listpairconnectionfloat
 
 import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectionfloat"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 func mustPairConnectionFloat(conn *connection.Handle, val float32) *pairconnectionfloat.Handle {

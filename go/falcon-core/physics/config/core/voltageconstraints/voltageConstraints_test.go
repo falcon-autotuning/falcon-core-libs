@@ -5,13 +5,13 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairdoubledouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/adjacency"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 func makeTestAdjacency(t *testing.T) *adjacency.Handle {
 	// Minimal 2x2 adjacency matrix: [0,1,1,0] with shape [2,2]
-	data := []int{0, 1, 1, 0}
+	data := []int32{0, 1, 1, 0}
 	shape := []int{2, 2}
 	// Create dummy connections for indexes (must be non-nil)
 	c1, err := connection.NewBarrierGate("A")
@@ -26,7 +26,7 @@ func makeTestAdjacency(t *testing.T) *adjacency.Handle {
 	if err != nil {
 		t.Fatalf("connections.New: %v", err)
 	}
-	adj, err := adjacency.Create(data, shape, idx)
+	adj, err := adjacency.New(data, shape, idx)
 	if err != nil {
 		t.Fatalf("adjacency.Create: %v", err)
 	}
@@ -197,10 +197,7 @@ func TestVoltageConstraints_FromCAPI_Valid(t *testing.T) {
 	defer vc.Close()
 	defer adj.Close()
 	defer bounds.Close()
-	capi, err := vc.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert to CAPI: %v", err)
-	}
+	capi := vc.CAPIHandle()
 	if capi == nil {
 		t.Fatal("CAPIHandle returned nil")
 	}

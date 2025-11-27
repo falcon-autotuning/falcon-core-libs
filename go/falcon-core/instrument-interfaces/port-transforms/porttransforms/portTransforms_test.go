@@ -7,7 +7,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/analyticfunction"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -30,7 +30,7 @@ func makeTestPortTransforms(t *testing.T) []*porttransform.Handle {
 
 func withPortTransforms(t *testing.T, fn func(t *testing.T, pt *Handle, items []*porttransform.Handle)) {
 	items := makeTestPortTransforms(t)
-	pt, err := NewRaw(items)
+	pt, err := New(items)
 	if err != nil {
 		t.Fatalf("NewRaw error: %v", err)
 	}
@@ -44,7 +44,7 @@ func TestPortTransforms_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size() error: %v", err)
 		}
-		if sz != len(items) {
+		if sz != uint32(len(items)) {
 			t.Errorf("Size() = %v, want %v", sz, len(items))
 		}
 		list, err := pt.Items()
@@ -64,7 +64,7 @@ func TestPortTransforms_SizeAndItems(t *testing.T) {
 func TestPortTransforms_At(t *testing.T) {
 	withPortTransforms(t, func(t *testing.T, pt *Handle, items []*porttransform.Handle) {
 		for i, want := range items {
-			got, err := pt.At(i)
+			got, err := pt.At(uint32(i))
 			if err != nil {
 				t.Fatalf("At(%d) error: %v", i, err)
 			}
@@ -90,7 +90,7 @@ func TestPortTransforms_ContainsAndIndex(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Index(%d) error: %v", i, err)
 			}
-			if idx != i {
+			if idx != uint32(i) {
 				t.Errorf("Index(%d) = %v, want %v", i, idx, i)
 			}
 		}
@@ -113,7 +113,7 @@ func TestPortTransforms_PushBack(t *testing.T) {
 			t.Fatalf("PushBack error: %v", err)
 		}
 		sz, _ := pt.Size()
-		if sz != len(items)+1 {
+		if sz != uint32(len(items)+1) {
 			t.Errorf("After PushBack, Size() = %v, want %v", sz, len(items)+1)
 		}
 	})
@@ -121,7 +121,7 @@ func TestPortTransforms_PushBack(t *testing.T) {
 
 func TestPortTransforms_EraseAtAndClear(t *testing.T) {
 	items := makeTestPortTransforms(t)
-	pt, err := NewRaw(items)
+	pt, err := New(items)
 	if err != nil {
 		t.Fatalf("NewRaw error: %v", err)
 	}
@@ -130,7 +130,7 @@ func TestPortTransforms_EraseAtAndClear(t *testing.T) {
 		t.Fatalf("EraseAt error: %v", err)
 	}
 	sz, _ := pt.Size()
-	if sz != len(items)-1 {
+	if sz != uint32(len(items)-1) {
 		t.Errorf("After EraseAt, Size() = %v, want %v", sz, len(items)-1)
 	}
 	if err := pt.Clear(); err != nil {
@@ -144,7 +144,7 @@ func TestPortTransforms_EraseAtAndClear(t *testing.T) {
 
 func TestPortTransforms_Intersection(t *testing.T) {
 	withPortTransforms(t, func(t *testing.T, pt *Handle, items []*porttransform.Handle) {
-		pt2, err := NewRaw(items)
+		pt2, err := New(items)
 		if err != nil {
 			t.Fatalf("NewRaw error: %v", err)
 		}
@@ -170,7 +170,7 @@ func TestPortTransforms_Intersection(t *testing.T) {
 
 func TestPortTransforms_EqualAndNotEqual(t *testing.T) {
 	withPortTransforms(t, func(t *testing.T, pt *Handle, items []*porttransform.Handle) {
-		pt2, err := NewRaw(items)
+		pt2, err := New(items)
 		if err != nil {
 			t.Fatalf("NewRaw error: %v", err)
 		}
@@ -206,7 +206,7 @@ func TestPortTransforms_ToJSONAndFromJSON(t *testing.T) {
 
 func TestPortTransforms_ClosedErrors(t *testing.T) {
 	items := makeTestPortTransforms(t)
-	pt, err := NewRaw(items)
+	pt, err := New(items)
 	if err != nil {
 		t.Fatalf("NewRaw error: %v", err)
 	}
@@ -261,10 +261,7 @@ func TestPortTransforms_FromCAPI_Error(t *testing.T) {
 
 func TestPortTransforms_FromCAPI_Valid(t *testing.T) {
 	withPortTransforms(t, func(t *testing.T, pt *Handle, _ []*porttransform.Handle) {
-		capi, err := pt.CAPIHandle()
-		if err != nil {
-			t.Fatalf("Could not convert to CAPI: %v", err)
-		}
+		capi := pt.CAPIHandle()
 		h, err := FromCAPI(capi)
 		if err != nil {
 			t.Errorf("FromCAPI valid: unexpected error: %v", err)

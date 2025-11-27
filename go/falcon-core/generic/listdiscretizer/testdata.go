@@ -5,7 +5,7 @@ import (
 )
 
 func mustDiscretizer(val float64) *discretizer.Handle {
-	h, err := discretizer.NewCartesian(val)
+	h, err := discretizer.NewCartesianDiscretizer(val)
 	if err != nil {
 		panic(err)
 	}

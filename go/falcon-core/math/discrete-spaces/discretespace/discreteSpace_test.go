@@ -17,7 +17,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/unitspace"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -30,7 +30,7 @@ func makeTestUnitSpace(t *testing.T) *unitspace.Handle {
 }
 
 func makeTestDiscretizer(t *testing.T) *discretizer.Handle {
-	a, err := discretizer.NewCartesian(0.2)
+	a, err := discretizer.NewCartesianDiscretizer(0.2)
 	if err != nil {
 		t.Fatalf("discretizer.NewEmpty error: %v", err)
 	}
@@ -195,7 +195,7 @@ func TestDiscreteSpace_NewCartesian(t *testing.T) {
 	defer incr.Close()
 	dom := makeTestDomain(t)
 	defer dom.Close()
-	ds, err := NewCartesian(div, axes, incr, dom)
+	ds, err := NewCartesianDiscreteSpace(div, axes, incr, dom)
 	if err != nil {
 		t.Fatalf("NewCartesian error: %v", err)
 	}
@@ -209,7 +209,7 @@ func TestDiscreteSpace_NewCartesian1D(t *testing.T) {
 	defer incr.Close()
 	dom := makeTestDomain(t)
 	defer dom.Close()
-	ds, err := NewCartesian1D(5, shared, incr, dom)
+	ds, err := NewCartesianDiscreteSpace1D(5, shared, incr, dom)
 	if err != nil {
 		t.Fatalf("NewCartesian1D error: %v", err)
 	}
@@ -325,10 +325,7 @@ func TestDiscreteSpace_FromCAPI_Error(t *testing.T) {
 
 func TestDiscreteSpace_CAPIHandle(t *testing.T) {
 	withDiscreteSpace(t, func(t *testing.T, ds *Handle) {
-		ptr, err := ds.CAPIHandle()
-		if err != nil {
-			t.Errorf("CAPIHandle failed: %v", err)
-		}
+		ptr := ds.CAPIHandle()
 		if ptr == nil {
 			t.Errorf("CAPIHandle returned nil")
 		}
@@ -347,9 +344,6 @@ func TestDiscreteSpace_ClosedErrors(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	ds.Close()
-	if _, err := ds.CAPIHandle(); err == nil {
-		t.Error("CAPIHandle on closed: expected error")
-	}
 	if err := ds.Close(); err == nil {
 		t.Error("Second close should error")
 	}

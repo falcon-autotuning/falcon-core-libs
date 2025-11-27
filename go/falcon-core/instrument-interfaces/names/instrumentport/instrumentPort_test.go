@@ -1,12 +1,9 @@
 package instrumentport
 
 import (
-	"errors"
 	"testing"
-	"unsafe"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -196,34 +193,13 @@ func TestInstrumentPort_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("unexpected error creating Port: %v", err)
 	}
 	defer p.Close()
-	capi, err := p.CAPIHandle()
-	if err != nil {
-		t.Fatalf("unexpected error converting Port to CAPI: %v", err)
-	}
+	capi := p.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)
 	}
 	if h == nil {
 		t.Fatal("FromCAPI valid: got nil")
-	}
-}
-
-func TestInstrumentPort_Name_FromCAPIError(t *testing.T) {
-	oldFromCAPI := stringFromCAPI
-	stringFromCAPI = func(p unsafe.Pointer) (*str.Handle, error) {
-		return nil, errors.New("simulated FromCAPI error")
-	}
-	defer func() { stringFromCAPI = oldFromCAPI }()
-	name, conn, typ, unit, desc := makeTestInputs(t)
-	p, err := NewPort(name, conn, typ, unit, desc)
-	if err != nil {
-		t.Fatalf("unexpected error creating Port: %v", err)
-	}
-	defer p.Close()
-	_, err = p.DefaultName()
-	if err == nil || err.Error() != "simulated FromCAPI error" {
-		t.Errorf("DefaultName() FromCAPI error not handled, got: %v", err)
 	}
 }
 

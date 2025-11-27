@@ -98,14 +98,16 @@ func (h *Handle) SelectContexts(independent_connections *listconnection.Handle, 
 	})
 }
 func (h *Handle) InsertOrAssign(key *interpretationcontext.Handle, value string) error {
-	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, value}, func() error {
-		C.InterpretationContainerString_insert_or_assign(C.InterpretationContainerStringHandle(h.CAPIHandle()), C.InterpretationContextHandle(key.CAPIHandle()), C.StringHandle(value.CAPIHandle()))
+	realvalue := str.New(value)
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, realvalue}, func() error {
+		C.InterpretationContainerString_insert_or_assign(C.InterpretationContainerStringHandle(h.CAPIHandle()), C.InterpretationContextHandle(key.CAPIHandle()), C.StringHandle(realvalue.CAPIHandle()))
 		return nil
 	})
 }
 func (h *Handle) Insert(key *interpretationcontext.Handle, value string) error {
-	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, value}, func() error {
-		C.InterpretationContainerString_insert(C.InterpretationContainerStringHandle(h.CAPIHandle()), C.InterpretationContextHandle(key.CAPIHandle()), C.StringHandle(value.CAPIHandle()))
+	realvalue := str.New(value)
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, realvalue}, func() error {
+		C.InterpretationContainerString_insert(C.InterpretationContainerStringHandle(h.CAPIHandle()), C.InterpretationContextHandle(key.CAPIHandle()), C.StringHandle(realvalue.CAPIHandle()))
 		return nil
 	})
 }

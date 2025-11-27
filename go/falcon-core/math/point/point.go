@@ -166,31 +166,31 @@ func (h *Handle) Connections() (*listconnection.Handle, error) {
 func (h *Handle) Addition(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Point_addition(C.PointHandle(h.CAPIHandle()), C.PointHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Point_addition(C.PointHandle(h.CAPIHandle()), C.PointHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Subtraction(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Point_subtraction(C.PointHandle(h.CAPIHandle()), C.PointHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Point_subtraction(C.PointHandle(h.CAPIHandle()), C.PointHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Multiplication(scalar float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Point_multiplication(C.PointHandle(h.CAPIHandle()), C.double(scalar))))
+		return FromCAPI(unsafe.Pointer(C.Point_multiplication(C.PointHandle(h.CAPIHandle()), C.double(scalar))))
 	})
 }
 func (h *Handle) Division(scalar float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Point_division(C.PointHandle(h.CAPIHandle()), C.double(scalar))))
+		return FromCAPI(unsafe.Pointer(C.Point_division(C.PointHandle(h.CAPIHandle()), C.double(scalar))))
 	})
 }
 func (h *Handle) Negation() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Point_negation(C.PointHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Point_negation(C.PointHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) SetUnit(unit *symbolunit.Handle) error {

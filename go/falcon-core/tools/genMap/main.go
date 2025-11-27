@@ -198,7 +198,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "float64",
 			SecondCType:          "double",
 			SecondIsPrimitive:    true,
@@ -221,7 +221,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "float32",
 			SecondCType:          "float",
 			SecondIsPrimitive:    true,
@@ -250,7 +250,7 @@ func main() {
 			SecondIsPrimitive:    false,
 			SecondZeroValue:      "nil",
 			SecondConstructor:    "connections.FromCAPI",
-			SecondOptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"`,
+			SecondOptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"`,
 			ListKeyGoType:        "listchannel",
 			ListValueGoType:      "listconnections",
 			FirstTestDefault:     "firstChannel",
@@ -267,7 +267,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "*quantity.Handle",
 			SecondCType:          "QuantityHandle",
 			SecondIsPrimitive:    false,
@@ -406,9 +406,6 @@ func main() {
 		maps[i].SecondIsString = isString(maps[i].SecondGoType)
 	}
 
-	wrapperTmpl := template.New("map_wrapper.tmpl").Funcs(template.FuncMap{"dict": dict})
-	wrapperTmpl = template.Must(wrapperTmpl.ParseFiles("generic/map/map_wrapper.tmpl"))
-
 	testTmpl := template.New("map_test_wrapper.tmpl").Funcs(template.FuncMap{"dict": dict})
 	testTmpl = template.Must(testTmpl.ParseFiles("generic/map/map_test_wrapper.tmpl"))
 	manifest, err := os.Create("map_handles_manifest.txt")
@@ -421,16 +418,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, m.File+".go")
-		f, err := os.Create(implFile)
-		if err != nil {
-			panic(err)
-		}
-		if err := wrapperTmpl.Execute(f, m); err != nil {
-			panic(err)
-		}
-		f.Close()
-		fmt.Fprintln(manifest, implFile)
 		testFile := filepath.Join(dir, m.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {

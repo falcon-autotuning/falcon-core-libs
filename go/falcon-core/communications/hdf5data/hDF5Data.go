@@ -71,13 +71,16 @@ func NewFromFile(path string) (*Handle, error) {
 		)
 	})
 }
-func NewFromCommunications(request *measurementrequest.Handle, response *measurementresponse.Handle, device_voltage_states *devicevoltagestates.Handle, session_id int8, measurement_title string, unique_id int32, timestamp int32) (*Handle, error) {
+func NewFromCommunications(request *measurementrequest.Handle, response *measurementresponse.Handle, device_voltage_states *devicevoltagestates.Handle, session_id [16]int8, measurement_title string, unique_id int32, timestamp int32) (*Handle, error) {
+	var cSessionID [16]C.int8_t
+	for i := 0; i < 16; i++ {
+		cSessionID[i] = C.int8_t(session_id[i])
+	}
 	realmeasurement_title := str.New(measurement_title)
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{request, response, device_voltage_states, realmeasurement_title}, func() (*Handle, error) {
-
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.HDF5Data_create_from_communications(C.MeasurementRequestHandle(request.CAPIHandle()), C.MeasurementResponseHandle(response.CAPIHandle()), C.DeviceVoltageStatesHandle(device_voltage_states.CAPIHandle()), C.int8_t(session_id), C.StringHandle(realmeasurement_title.CAPIHandle()), C.int(unique_id), C.int(timestamp))), nil
+				return unsafe.Pointer(C.HDF5Data_create_from_communications(C.MeasurementRequestHandle(request.CAPIHandle()), C.MeasurementResponseHandle(response.CAPIHandle()), C.DeviceVoltageStatesHandle(device_voltage_states.CAPIHandle()), &cSessionID[0], C.StringHandle(realmeasurement_title.CAPIHandle()), C.int(unique_id), C.int(timestamp))), nil
 			},
 			construct,
 			destroy,
@@ -89,8 +92,9 @@ func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
 func (h *Handle) ToFile(path string) error {
-	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{path}, func() error {
-		C.HDF5Data_to_file(C.HDF5DataHandle(h.CAPIHandle()), C.StringHandle(path.CAPIHandle()))
+	realpath := str.New(path)
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{realpath}, func() error {
+		C.HDF5Data_to_file(C.HDF5DataHandle(h.CAPIHandle()), C.StringHandle(realpath.CAPIHandle()))
 		return nil
 	})
 }

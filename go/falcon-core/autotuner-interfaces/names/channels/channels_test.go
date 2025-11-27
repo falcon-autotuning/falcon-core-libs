@@ -104,8 +104,8 @@ func TestChannels_LifecycleAndAccessors(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Items() error: %v", err)
 		}
-		if len(items) != 2 {
-			t.Errorf("Items() len = %v, want 2", len(items))
+		if size, _ := items.Size(); size != 2 {
+			t.Errorf("Items() len = %v, want 2", size)
 		}
 	})
 
@@ -239,10 +239,7 @@ func TestChannels_FromCAPI_Valid(t *testing.T) {
 	ch := mustChannel("A")
 	c, _ := New([]*channel.Handle{ch})
 	defer c.Close()
-	capi, err := c.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert Channels to CAPI: %v", err)
-	}
+	capi := c.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

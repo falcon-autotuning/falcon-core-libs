@@ -43,7 +43,7 @@ func makeTestAxesInt(t *testing.T) *axesint.Handle {
 }
 
 func makeTestDiscretizer(t *testing.T) *discretizer.Handle {
-	a, err := discretizer.NewCartesian(0.2)
+	a, err := discretizer.NewCartesianDiscretizer(0.2)
 	if err != nil {
 		t.Fatalf("discretizer.NewEmpty error: %v", err)
 	}
@@ -265,10 +265,7 @@ func TestUnitSpace_FromCAPI_Error(t *testing.T) {
 
 func TestUnitSpace_CAPIHandle(t *testing.T) {
 	withUnitSpace(t, func(t *testing.T, us *Handle) {
-		ptr, err := us.CAPIHandle()
-		if err != nil {
-			t.Errorf("CAPIHandle failed: %v", err)
-		}
+		ptr := us.CAPIHandle()
 		if ptr == nil {
 			t.Errorf("CAPIHandle returned nil")
 		}
@@ -285,9 +282,6 @@ func TestUnitSpace_ClosedErrors(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	us.Close()
-	if _, err := us.CAPIHandle(); err == nil {
-		t.Error("CAPIHandle on closed: expected error")
-	}
 	if err := us.Close(); err == nil {
 		t.Error("Second close should error")
 	}

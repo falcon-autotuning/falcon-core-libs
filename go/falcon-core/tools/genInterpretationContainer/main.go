@@ -113,9 +113,6 @@ func main() {
 		types[i].ElemIsString = isString(types[i].GoValueType)
 		types[i].ElemIsPrimitive = isPrimitive(types[i].GoValueType)
 	}
-	wrapperTmpl := template.Must(template.ParseFiles(
-		"autotuner-interfaces/interpretations/interpretationcontainer/interpretationContainer_wrapper.tmpl",
-	))
 	testTmpl := template.Must(template.ParseFiles(
 		"autotuner-interfaces/interpretations/interpretationcontainer/interpretationContainer_test_wrapper.tmpl",
 	))
@@ -131,17 +128,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, t.File+".go")
-		f, err := os.Create(implFile)
-		if err != nil {
-			panic(err)
-		}
-		if err := wrapperTmpl.Execute(f, t); err != nil {
-			panic(err)
-		}
-		f.Close()
-		fmt.Fprintln(manifest, implFile)
-
 		testFile := filepath.Join(dir, t.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {

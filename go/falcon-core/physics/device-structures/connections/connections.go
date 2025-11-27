@@ -111,7 +111,7 @@ func (h *Handle) IsScreeningGates() (bool, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Connections_intersection(C.ConnectionsHandle(h.CAPIHandle()), C.ConnectionsHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Connections_intersection(C.ConnectionsHandle(h.CAPIHandle()), C.ConnectionsHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PushBack(value *connection.Handle) error {

@@ -96,7 +96,7 @@ func (h *Handle) GetDomain(search *instrumentport.Handle) (*labelleddomain.Handl
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.CoupledLabelledDomain_intersection(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.CoupledLabelledDomain_intersection(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PushBack(value *labelleddomain.Handle) error {

@@ -126,7 +126,7 @@ func main() {
 			Type:                 "ListConnection",
 			ElemType:             "*connection.Handle",
 			CType:                "ConnectionHandle",
-			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			PrimitiveType:        false,
 			CElemTypeConstructor: "connection.FromCAPI",
 		},
@@ -134,7 +134,7 @@ func main() {
 			Type:                 "ListImpedance",
 			ElemType:             "*impedance.Handle",
 			CType:                "ImpedanceHandle",
-			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/impedance"`,
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/impedance"`,
 			PrimitiveType:        false,
 			CElemTypeConstructor: "impedance.FromCAPI",
 		},
@@ -150,7 +150,7 @@ func main() {
 			Type:                 "ListConnections",
 			ElemType:             "*connections.Handle",
 			CType:                "ConnectionsHandle",
-			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"`,
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"`,
 			PrimitiveType:        false,
 			CElemTypeConstructor: "connections.FromCAPI",
 		},
@@ -499,7 +499,6 @@ func main() {
 		types[i].ElemIsString = isString(types[i].ElemType)
 		types[i].ElemIsPrimitive = isPrimitive(types[i].ElemType)
 	}
-	wrapperTmpl := template.Must(template.ParseFiles("generic/list/list_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("generic/list/list_test_wrapper.tmpl"))
 
 	manifest, err := os.Create("list_handles_manifest.txt")
@@ -512,17 +511,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, t.File+".go")
-		f, err := os.Create(implFile)
-		if err != nil {
-			panic(err)
-		}
-		if err := wrapperTmpl.Execute(f, t); err != nil {
-			panic(err)
-		}
-		f.Close()
-		fmt.Fprintln(manifest, implFile)
-
 		testFile := filepath.Join(dir, t.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {

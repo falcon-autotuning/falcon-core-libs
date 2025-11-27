@@ -56,48 +56,48 @@ func New(axes *axesdiscretizer.Handle, domain *domain.Handle) (*Handle, error) {
 		)
 	})
 }
-func NewRayspace(dr float64, dtheta float64, domain *domain.Handle) (*Handle, error) {
+func NewRaySpace(dr float64, dtheta float64, domain *domain.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(domain, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.UnitSpace_create_rayspace(C.double(dr), C.double(dtheta), C.DomainHandle(domain.CAPIHandle()))), nil
+				return unsafe.Pointer(C.UnitSpace_create_ray_space(C.double(dr), C.double(dtheta), C.DomainHandle(domain.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewCartesianspace(deltas *axesdouble.Handle, domain *domain.Handle) (*Handle, error) {
+func NewCartesianSpace(deltas *axesdouble.Handle, domain *domain.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{deltas, domain}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.UnitSpace_create_cartesianspace(C.AxesDoubleHandle(deltas.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+				return unsafe.Pointer(C.UnitSpace_create_cartesian_space(C.AxesDoubleHandle(deltas.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewCartesian1dspace(delta float64, domain *domain.Handle) (*Handle, error) {
+func NewCartesian1DSpace(delta float64, domain *domain.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(domain, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.UnitSpace_create_cartesian1Dspace(C.double(delta), C.DomainHandle(domain.CAPIHandle()))), nil
+				return unsafe.Pointer(C.UnitSpace_create_cartesian_1D_space(C.double(delta), C.DomainHandle(domain.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewCartesian2dspace(deltas *axesdouble.Handle, domain *domain.Handle) (*Handle, error) {
+func NewCartesian2DSpace(deltas *axesdouble.Handle, domain *domain.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{deltas, domain}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.UnitSpace_create_cartesian2Dspace(C.AxesDoubleHandle(deltas.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
+				return unsafe.Pointer(C.UnitSpace_create_cartesian_2D_space(C.AxesDoubleHandle(deltas.CAPIHandle()), C.DomainHandle(domain.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -185,10 +185,10 @@ func (h *Handle) At(idx uint32) (*discretizer.Handle, error) {
 }
 func (h *Handle) Items() ([]*discretizer.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.UnitSpace_dimension(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+		return int32(C.UnitSpace_size(C.UnitSpaceHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.DiscretizerHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -200,7 +200,11 @@ func (h *Handle) Items() ([]*discretizer.Handle, error) {
 	}
 	realout := make([]*discretizer.Handle, dim)
 	for i := range out {
-		realout[i] = *discretizer.Handle(realout[i])
+		realout[i], err = discretizer.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("Items: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }
@@ -217,7 +221,7 @@ func (h *Handle) Index(value *discretizer.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.UnitSpace_intersection(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.UnitSpace_intersection(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

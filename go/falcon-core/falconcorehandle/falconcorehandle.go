@@ -12,6 +12,9 @@ type FalconCoreHandle struct {
 }
 
 func (h *FalconCoreHandle) CAPIHandle() unsafe.Pointer {
+	if h == nil {
+		return nil
+	}
 	return h.chandle
 }
 

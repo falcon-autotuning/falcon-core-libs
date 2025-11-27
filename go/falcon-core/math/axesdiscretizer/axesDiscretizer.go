@@ -109,10 +109,10 @@ func (h *Handle) At(idx uint32) (*discretizer.Handle, error) {
 }
 func (h *Handle) Items() ([]*discretizer.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.AxesDiscretizer_dimension(C.AxesDiscretizerHandle(h.CAPIHandle()))), nil
+		return int32(C.AxesDiscretizer_size(C.AxesDiscretizerHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.DiscretizerHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -124,7 +124,11 @@ func (h *Handle) Items() ([]*discretizer.Handle, error) {
 	}
 	realout := make([]*discretizer.Handle, dim)
 	for i := range out {
-		realout[i] = *discretizer.Handle(realout[i])
+		realout[i], err = discretizer.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("Items: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }
@@ -141,7 +145,7 @@ func (h *Handle) Index(value *discretizer.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AxesDiscretizer_intersection(C.AxesDiscretizerHandle(h.CAPIHandle()), C.AxesDiscretizerHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AxesDiscretizer_intersection(C.AxesDiscretizerHandle(h.CAPIHandle()), C.AxesDiscretizerHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

@@ -47,7 +47,7 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func New(items []*int.Handle) (*Handle, error) {
+func New(items []int32) (*Handle, error) {
 	list, err := listint.New(items)
 	if err != nil {
 		return nil, errors.Join(errors.New("construction of list of int failed"), err)
@@ -107,10 +107,10 @@ func (h *Handle) At(idx uint32) (int32, error) {
 }
 func (h *Handle) Items() ([]int32, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.AxesInt_dimension(C.AxesIntHandle(h.CAPIHandle()))), nil
+		return int32(C.AxesInt_size(C.AxesIntHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.int, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -122,7 +122,8 @@ func (h *Handle) Items() ([]int32, error) {
 	}
 	realout := make([]int32, dim)
 	for i := range out {
-		realout[i] = int32(realout[i])
+		realout[i] = int32(out[i])
+
 	}
 	return realout, nil
 }
@@ -139,7 +140,7 @@ func (h *Handle) Index(value int32) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AxesInt_intersection(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AxesInt_intersection(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

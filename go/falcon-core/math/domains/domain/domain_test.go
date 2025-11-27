@@ -281,10 +281,7 @@ func TestDomain_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("Domain New error: %v", err)
 	}
 	defer d.Close()
-	capi, err := d.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert domain to CAPI: %v", err)
-	}
+	capi := d.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

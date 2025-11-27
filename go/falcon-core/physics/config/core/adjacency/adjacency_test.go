@@ -5,13 +5,13 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farrayint"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 var (
 	defaultShape = []int{2, 2}
-	defaultData  = []int{1, 2, 3, 4}
+	defaultData  = []int32{1, 2, 3, 4}
 )
 
 func makeConnections(t *testing.T) *connections.Handle {
@@ -45,7 +45,7 @@ func makeFArrayInt(t *testing.T) *farrayint.Handle {
 func TestAdjacency_CreateAndData(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, err := Create(defaultData, defaultShape, conn)
+	a, err := New(defaultData, defaultShape, conn)
 	if err != nil {
 		t.Fatalf("Create failed: %v", err)
 	}
@@ -62,7 +62,7 @@ func TestAdjacency_CreateAndData(t *testing.T) {
 func TestAdjacency_ShapeDimensionSize(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
 	shape, err := a.Shape()
 	if err != nil {
@@ -75,7 +75,7 @@ func TestAdjacency_ShapeDimensionSize(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != len(defaultShape) {
+	if dim != uint32(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	sz, err := a.Size()
@@ -90,7 +90,7 @@ func TestAdjacency_ShapeDimensionSize(t *testing.T) {
 func TestAdjacency_IndexesAndGetTruePairs(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
 	_, err := a.Indexes()
 	if err != nil {
@@ -105,7 +105,7 @@ func TestAdjacency_IndexesAndGetTruePairs(t *testing.T) {
 func TestAdjacency_TimesEqualsFArray(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, err := Create(defaultData, defaultShape, conn)
+	a, err := New(defaultData, defaultShape, conn)
 	if err != nil {
 		t.Fatalf("Create failed: %v", err)
 	}
@@ -123,7 +123,7 @@ func TestAdjacency_TimesEqualsFArray(t *testing.T) {
 func TestAdjacency_TimesFArray(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
 	fa := makeFArrayInt(t)
 	defer fa.Close()
@@ -137,9 +137,9 @@ func TestAdjacency_TimesFArray(t *testing.T) {
 func TestAdjacency_EqualAndNotEqual(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
-	b, _ := Create(defaultData, defaultShape, conn)
+	b, _ := New(defaultData, defaultShape, conn)
 	defer b.Close()
 	ok, err := a.Equal(b)
 	if err != nil {
@@ -156,7 +156,7 @@ func TestAdjacency_EqualAndNotEqual(t *testing.T) {
 func TestAdjacency_Sum(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
 	_, err := a.Sum()
 	if err != nil {
@@ -167,7 +167,7 @@ func TestAdjacency_Sum(t *testing.T) {
 func TestAdjacency_WhereFlip(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
 	_, err := a.Where(2)
 	if err != nil {
@@ -182,7 +182,7 @@ func TestAdjacency_WhereFlip(t *testing.T) {
 func TestAdjacency_ToJSONAndFromJSON(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	defer a.Close()
 	js, err := a.ToJSON()
 	if err != nil {
@@ -205,7 +205,7 @@ func TestAdjacency_ToJSONAndFromJSON(t *testing.T) {
 func TestAdjacency_ErrorBranches(t *testing.T) {
 	conn := makeConnections(t)
 	defer conn.Close()
-	a, _ := Create(defaultData, defaultShape, conn)
+	a, _ := New(defaultData, defaultShape, conn)
 	a.Close()
 	_, err := a.Size()
 	if err == nil {

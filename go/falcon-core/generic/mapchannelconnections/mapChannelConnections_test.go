@@ -5,7 +5,7 @@ import (
 	"testing"
 	
 	
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 var (
@@ -218,10 +218,7 @@ func TestMapChannelConnections_CAPIHandle(t *testing.T) {
 		t.Fatalf("NewEmpty failed: %v", err)
 	}
 	defer m.Close()
-	ptr, err := m.CAPIHandle()
-	if err != nil {
-		t.Errorf("CAPIHandle failed to access capi")
-	}
+	ptr := m.CAPIHandle()
 	if ptr == nil {
 		t.Errorf("CAPIHandle returned nil")
 	}

@@ -99,7 +99,7 @@ func IsNonPrimitive(gotype string) bool {
 }
 
 func IsExtraImport(gotype string) bool {
-	return IsNonPrimitive(gotype) && !IsString(gotype) && gotype != "*Handle"
+	return IsNonPrimitive(gotype) && !IsString(gotype) && gotype != "*Handle" && gotype != "*string.Handle" // don't include string since it is already imported
 }
 
 func uniqueStrings(input []string) []string {
@@ -120,6 +120,9 @@ func CtoGType(ctype, packagetype string) string {
 	}
 	if ctype == "StringHandle" {
 		return "string"
+	}
+	if ctype == "StringHandle*" {
+		return "*string"
 	}
 	if ctype == "bool" {
 		return "bool"
@@ -192,8 +195,18 @@ func IsPrimitive(gotype string) bool {
 	return false
 }
 
+// Handle converting a go string into a C style string in the outFile
+func writeStringConversion(Goparams []*GoParameterPair, outFile *os.File) {
+	for _, arg := range Goparams {
+		if arg.Gotype == "string" {
+			fmt.Fprintf(outFile, "real%s := str.New(%s)\n", arg.Name, arg.Name)
+			arg.updateName(fmt.Sprintf("real%s", arg.Name))
+		}
+	}
+}
+
 func IsString(gotype string) bool {
-	return gotype == "string"
+	return gotype == "string" || gotype == "*string"
 }
 
 type CParameterPair struct {
@@ -315,7 +328,9 @@ func constructorGoMethodName(methodName, objectName string) string {
 		for i := range parts {
 			parts[i] = caser.String(parts[i])
 		}
-		return "New" + strings.Join(parts, "")
+		newmethod := "New" + strings.Join(parts, "")
+		newmethod = strings.ReplaceAll(newmethod, "Farray", "FArray")
+		return newmethod
 	}
 	if strings.Contains(methodName, "_from_json_string") {
 		return "FromJSON"
@@ -344,6 +359,7 @@ func nonConstructorGoMethodName(methodName, objectName string) string {
 		parts[i] = caser.String(parts[i])
 	}
 	out := strings.Join(parts, "")
+	out = strings.ReplaceAll(out, "Farray", "FArray")
 	if out == "ToJsonString" {
 		return "ToJSON"
 	} else {
@@ -372,6 +388,7 @@ func MakeCArgs(goparams []*GoParameterPair, cparams []*CParameterPair) string {
 			goParamHandle = pair.Name + ".CAPIHandle()"
 		}
 		ctype = strings.ReplaceAll(ctype, " ", "") // Removing spaces for long long case
+		ctype = strings.ReplaceAll(ctype, "*", "") // Removing asterisk for pointer case
 		cargs[i] = fmt.Sprintf("C.%s(%s)", ctype, goParamHandle)
 	}
 	return strings.Join(cargs, ",")
@@ -405,14 +422,21 @@ func main() {
 		return
 	}
 	headerPath := os.Args[1]
-	fmt.Println("proceessing", headerPath)
+	fmt.Println("processing", headerPath)
 	f, err := os.Open(headerPath)
 	if err != nil {
 		panic(err)
 	}
 	defer f.Close()
 
-	fmt.Println("Generating", headerPath)
+	// for storing long output for debug
+	manifest, err := os.OpenFile("manifest.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		panic(err)
+	}
+	defer manifest.Close()
+
+	fmt.Fprintln(manifest, "Generating", headerPath)
 
 	// Extract the include path (after "falcon_core/")
 	parts := strings.Split(headerPath, "falcon_core/")
@@ -492,34 +516,34 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		fullSig := strings.Join(funcLines, " ")
 		fullSig = strings.ReplaceAll(fullSig, "\n", " ")
 		fullSig = strings.ReplaceAll(fullSig, "\t", " ")
-		fmt.Println("FUll signal:", fullSig)
+		fmt.Fprintln(manifest, "FUll signal:", fullSig)
 		funcLines = nil
 		resultCType := extractResultType(fullSig)
-		fmt.Println("result c type:", resultCType)
+		fmt.Fprintln(manifest, "result c type:", resultCType)
 		resultGoType := CtoGType(resultCType, packageName)
-		fmt.Println("result go type:", resultGoType)
+		fmt.Fprintln(manifest, "result go type:", resultGoType)
 		methodName := extractMethodName(fullSig, objectName)
-		fmt.Println("method name:", methodName)
+		fmt.Fprintln(manifest, "method name:", methodName)
 		goName := goMethodName(methodName, objectName, currentCategory)
-		fmt.Println("go method name:", goName)
+		fmt.Fprintln(manifest, "go method name:", goName)
 		NumParams, Cparams := countParams(fullSig)
 		for _, param := range Cparams {
-			fmt.Println("C param:", param.Ctype, param.Name)
+			fmt.Fprintln(manifest, "C param:", param.Ctype, param.Name)
 		}
 		Goparams := toGoParams(Cparams, packageName)
 		NumNonPrimitiveParams := CountNonPrimitiveParams(Goparams)
 		for i, param := range Goparams {
 			if IsExtraImport(param.Gotype) {
-				fmt.Println("Adding extra import for param:", param.Gotype)
-				fmt.Println("Adding extra extraimport for param:", extractCPrefix(Cparams[i].Ctype), ".")
+				fmt.Fprintln(manifest, "Adding extra import for param:", param.Gotype)
+				fmt.Fprintln(manifest, "Adding extra extraimport for param:", extractCPrefix(Cparams[i].Ctype), ".")
 				extraImports = append(extraImports, extractCPrefix(Cparams[i].Ctype))
 			}
 		}
-		fmt.Println("Generating method:", goName)
-		fmt.Println("  with", resultGoType, "result")
+		fmt.Fprintln(manifest, "Generating method:", goName)
+		fmt.Fprintln(manifest, "  with", resultGoType, "result")
 		if IsExtraImport(resultGoType) {
-			fmt.Println("Adding extra import for param:", resultCType)
-			fmt.Println("Adding extra extraimport for param:", extractCPrefix(resultCType), ".")
+			fmt.Fprintln(manifest, "Adding extra import for param:", resultCType)
+			fmt.Fprintln(manifest, "Adding extra extraimport for param:", extractCPrefix(resultCType), ".")
 			extraImports = append(extraImports, extractCPrefix(resultCType))
 		}
 		if currentCategory == "deallocation" {
@@ -531,7 +555,30 @@ func (h *Handle) Close() error {
 		}
 		if currentCategory == "allocation" {
 			methodArguments := flattenGoParameters(Goparams)
-			if (NumParams-NumNonPrimitiveParams) == 3 && strings.Contains(methodArguments, "*uint32") {
+			// format used by HDF5_from_communications
+			if NumParams == 7 && NumNonPrimitiveParams == 4 && strings.Contains(methodArguments, "measurement_title") {
+				fmt.Fprintf(outFile, `func NewFromCommunications(request *measurementrequest.Handle, response *measurementresponse.Handle, device_voltage_states *devicevoltagestates.Handle, session_id [16]int8, measurement_title string, unique_id int32, timestamp int32) (*Handle, error) {
+	var cSessionID [16]C.int8_t
+	for i := 0; i < 16; i++ {
+		cSessionID[i] = C.int8_t(session_id[i])
+	}
+	realmeasurement_title := str.New(measurement_title)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{request, response, device_voltage_states, realmeasurement_title}, func() (*Handle, error) {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.HDF5Data_create_from_communications(C.MeasurementRequestHandle(request.CAPIHandle()), C.MeasurementResponseHandle(response.CAPIHandle()), C.DeviceVoltageStatesHandle(device_voltage_states.CAPIHandle()), &cSessionID[0], C.StringHandle(realmeasurement_title.CAPIHandle()), C.int(unique_id), C.int(timestamp))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+					`)
+				continue
+			}
+			// format used by Adjacency_create
+			if (NumParams-NumNonPrimitiveParams) == 3 && NumNonPrimitiveParams == 1 && strings.Contains(methodArguments, "*uint32") {
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
 				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
 				fmt.Fprintf(outFile, `func %s(%s []%s, %s []int, %s %s) (*Handle, error) {
@@ -546,22 +593,103 @@ func (h *Handle) Close() error {
 	return cmemoryallocation.Read(%s, func() (*Handle, error) {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Adjacency_create(&cdata[0], &cshape[0], C.size_t(len(%s)), C.%s(%s))), nil
+				return unsafe.Pointer(C.%s(&cdata[0], &cshape[0], C.size_t(len(%s)), C.%s(%s))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-					`, goName, Goparams[0].Name, Goparams[0].Gotype[1:], Goparams[1].Name, Goparams[3].Name, Goparams[3].Gotype, ctype1, Goparams[1].Name, Goparams[1].Name, ctype0, Cparams[0].Name, Cparams[0].Name, ctype0, Goparams[3].Name, Goparams[1].Name, Cparams[3].Ctype, Goparams[3].Name)
+					`, goName, Goparams[0].Name, Goparams[0].Gotype[1:], Goparams[1].Name, Goparams[3].Name, Goparams[3].Gotype, ctype1, Goparams[1].Name, Goparams[1].Name, ctype0, Cparams[0].Name, Cparams[0].Name, ctype0, Goparams[3].Name, methodName, Goparams[1].Name, Cparams[3].Ctype, Goparams[3].Name)
 				continue
 			}
+			// format used by ControlArray_from_data
+			if NumParams == 3 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint32") {
+				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
+				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
+				fmt.Fprintf(outFile, `func %s(%s []%s, %s []int) (*Handle, error) {
+	cshape := make([]C.%s, len(%s))
+	for i, v := range %s {
+		cshape[i] = C.size_t(v)
+	}
+	cdata := make([]C.%s, len(%s))
+	for i, v := range %s{
+		cdata[i] = C.%s(v)
+	}
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.%s(&cdata[0], &cshape[0], C.size_t(len(%s)))), nil
+		},
+		construct,
+		destroy,
+	)
+}
+					`, goName, Goparams[0].Name, Goparams[0].Gotype[1:], Goparams[1].Name, ctype1, Goparams[1].Name, Goparams[1].Name, ctype0, Cparams[0].Name, Cparams[0].Name, ctype0, methodName, Goparams[1].Name)
+				continue
+			}
+			// format used by FArrayDouble_create_empty
+			if NumParams == 2 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint32") && strings.Contains(methodArguments, "shape") {
+				fmt.Fprintf(outFile, `func %s(%s []int) (*Handle, error) {
+	cshape := make([]C.size_t, len(%s))
+	for i, v := range %s {
+		cshape[i] = C.size_t(v)
+	}
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.%s(&cshape[0], C.size_t(len(%s)))), nil
+		},
+		construct,
+		destroy,
+	)
+}
+					`, goName, Goparams[0].Name, Goparams[0].Name, Cparams[0].Name, methodName, Goparams[0].Name)
+				continue
+			}
+			// format used by List_create
+			if NumParams == 2 && strings.Contains(methodArguments, "uint32") && goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map")) {
+				var Go0type string
+				var argument string
+				if IsString(Goparams[0].Gotype) {
+					Go0type = "string"
+				} else if IsNonPrimitive(Goparams[0].Gotype) {
+					Go0type = Goparams[0].Gotype
+				} else {
+					Go0type = Goparams[0].Gotype[1:]
+				}
+				C0type := Cparams[0].Ctype[:strings.Index(Cparams[0].Ctype, "*")]
+				if Go0type == "string" {
+					argument = "str.New(v).CAPIHandle()"
+				} else {
+					argument = "v"
+				}
+				fmt.Fprintf(outFile, `func New(%s []%s) (*Handle, error) {
+	list:= make([]C.%s, len(%s))
+	for i, v := range %s {
+		list[i] = C.%s(%s)
+	}
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.%s(&list[0], C.size_t(len(%s)))), nil
+		},
+		construct,
+		destroy,
+	)
+}
+					`, Goparams[0].Name, Go0type, C0type, Goparams[0].Name, Goparams[0].Name, C0type, argument, methodName, Goparams[0].Name)
+				continue
+			}
+			// Listlike_create special case
 			if NumNonPrimitiveParams == 1 && goName == "New" && strings.Contains(methodArguments, "list") {
+				var goItemType string
 				starIdx := strings.Index(methodArguments, "*")
 				dotIdx := strings.Index(methodArguments, ".")
 				typeName := methodArguments[starIdx+1 : dotIdx]
-				itemPackageName := strings.TrimPrefix(typeName, "list")
-				fmt.Fprintf(outFile, `func New(items []*%s.Handle) (*Handle, error) {
+				itemPackageName := strings.TrimPrefix(typeName, "list") // if primitive a C type
+				goItemType = CtoGType(itemPackageName, itemPackageName)
+				if goItemType == "*Handle" {
+					goItemType = "*" + itemPackageName + ".Handle"
+				}
+				fmt.Fprintf(outFile, `func New(items []%s) (*Handle, error) {
 	list, err := list%s.New(items)
 	if err != nil {
 		return nil, errors.Join(errors.New("construction of list of %s failed"), err)
@@ -570,20 +698,12 @@ func (h *Handle) Close() error {
 		return NewFromList(list)
 	},)
 }
-`, itemPackageName, itemPackageName, itemPackageName)
+`, goItemType, itemPackageName, itemPackageName)
 				fmt.Fprintf(outFile, "func NewFromList(%s) (*Handle, error) {\n", methodArguments)
 			} else {
 				fmt.Fprintf(outFile, "func %s(%s) (*Handle, error) {\n", goName, methodArguments)
 			}
-
-			// Handle string arguments
-			for _, arg := range Goparams {
-				if arg.Gotype == "string" {
-					fmt.Fprintf(outFile, "real%s := str.New(%s)\n", arg.Name, arg.Name)
-					arg.updateName(fmt.Sprintf("real%s", arg.Name))
-				}
-			}
-
+			writeStringConversion(Goparams, outFile)
 			carguments := MakeCArgs(Goparams, Cparams)
 			gonames := MakeGoArgNames(Goparams)
 			// Choose Read or MultiRead
@@ -613,13 +733,34 @@ func (h *Handle) Close() error {
 		methodArguments := flattenGoParameters(Goparams[1:])
 		Goparams[0] = &GoParameterPair{Gotype: "*Handle", Name: "h"}
 
-		carguments := MakeCArgs(Goparams, Cparams)
 		if currentCategory == "read" {
+			// special case for reshape of farray
+			if strings.Contains(methodArguments, "shape") && strings.Contains(methodArguments, "*uint32") {
+				fmt.Fprintf(outFile, `func (h *Handle) %s(%s []int32) (*Handle, error) {
+	cshape := make([]C.size_t, len(%s))
+	for i, v := range %s {
+		cshape[i] = C.size_t(v)
+	}
+	return cmemoryallocation.Read(h, func() (*Handle, error) {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.%s(C.%s(h.CAPIHandle()), &cshape[0], C.size_t(len(%s)))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+`, goName, Goparams[1].Name, Goparams[1].Name, Goparams[1].Name, methodName, Cparams[0].Ctype, Goparams[1].Name)
+				continue
+			}
 			if !strings.Contains(methodArguments, "out_buffer") {
 				fmt.Fprintf(outFile, "func (h *Handle) %s(%s) (%s, error) { \n", goName, methodArguments, resultGoType)
+				writeStringConversion(Goparams, outFile)
+				carguments := MakeCArgs(Goparams, Cparams)
+				gonames := MakeGoArgNames(Goparams)
 
 				// Choose Read or MultiRead
-				gonames := MakeGoArgNames(Goparams)
 				if NumNonPrimitiveParams == 1 {
 					fmt.Fprintf(outFile, "  return cmemoryallocation.Read(%s, func() (%s, error) { \n", gonames, resultGoType)
 				} else if NumNonPrimitiveParams > 1 {
@@ -636,6 +777,10 @@ func (h *Handle) Close() error {
 		}
 		return strObj.ToGoString()
 `, cfunction, goName)
+				} else if resultGoType == "*Handle" {
+					fmt.Fprintf(outFile, `
+		return FromCAPI(unsafe.Pointer(%s))
+`, cfunction)
 				} else {
 					resultPackage := extractGoPrefix(resultGoType)
 					fmt.Fprintf(outFile, `
@@ -646,6 +791,7 @@ func (h *Handle) Close() error {
 				continue
 			} else {
 				var bufferParam *CParameterPair
+				var reconstruction string
 				for _, param := range Cparams {
 					if param.Name != "out_buffer" {
 						continue
@@ -655,12 +801,38 @@ func (h *Handle) Close() error {
 				}
 				bufferCType := bufferParam.Ctype[:len(bufferParam.Ctype)-1] // remove the *
 				bufferGoType := CtoGType(bufferCType, packageName)
+				if IsNonPrimitive(bufferGoType) && !IsString(bufferGoType) {
+					bufferpackage := extractGoPrefix(bufferGoType)
+					if bufferpackage != "Handle" {
+						bufferpackage = bufferpackage + "."
+					} else {
+						bufferpackage = ""
+					}
+					reconstruction = fmt.Sprintf(`realout[i], err = %sFromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("%s: conversion from CAPI failed"), err)
+		}
+`, bufferpackage, goName)
+				} else if IsString(bufferGoType) {
+					reconstruction = `realstr, err := str.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("string: conversion from capi failed"), err)
+		}
+		realout[i], err = realstr.ToGoString()
+		if err != nil {
+			return nil, errors.Join(errors.New("string: conversion to string failed"), err)
+		}
+`
+				} else {
+					reconstruction = fmt.Sprintf(`realout[i] = %s(out[i])
+`, bufferGoType)
+				}
 				fmt.Fprintf(outFile, `func (h *Handle) %s() ([]%s, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.%s_dimension(C.%sHandle(h.CAPIHandle()))), nil
+		return int32(C.%s_size(C.%sHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("%s: dimension errored"), err)
+		return nil, errors.Join(errors.New("%s: size errored"), err)
 	}
 	out := make([]C.%s, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -672,25 +844,22 @@ func (h *Handle) Close() error {
 	}
 	realout:= make([]%s, dim)
 	for i := range out {
-		realout[i] = %s(realout[i])
+		%s
 	}
 	return realout, nil
 }
-	`, goName, bufferGoType, objectName, objectName, goName, bufferCType, methodName, objectName, bufferGoType, bufferGoType)
+	`, goName, bufferGoType, objectName, objectName, goName, bufferCType, methodName, objectName, bufferGoType, reconstruction)
 				continue
 			}
 		}
 		fmt.Fprintf(outFile, "func (h *Handle) %s(%s) error { \n", goName, methodArguments)
+		writeStringConversion(Goparams, outFile)
+		carguments := MakeCArgs(Goparams, Cparams)
+		gonames := MakeGoArgNames(Goparams[1:])
 		// Choose Write or ReadWrite
 		if NumNonPrimitiveParams == 1 {
 			fmt.Fprintf(outFile, "  return cmemoryallocation.Write(%s, func() error {\n", Goparams[0].Name)
 		} else if NumNonPrimitiveParams > 1 {
-			// Build Go argument names
-			names := make([]string, len(Goparams[1:]))
-			for i, pair := range Goparams[1:] {
-				names[i] = pair.Name
-			}
-			gonames := strings.Join(names, ",")
 			fmt.Fprintf(outFile, "  return cmemoryallocation.ReadWrite(%s, []cmemoryallocation.HasCAPIHandle{%s}, func() error {\n", Goparams[0].Name, gonames)
 		}
 		fmt.Fprintf(outFile, `C.%s(%s)
@@ -700,9 +869,9 @@ func (h *Handle) Close() error {
 `, methodName, carguments)
 	}
 	outFile.Close()
-	fmt.Println("Extra imports before uniqueStrings", extraImports)
+	fmt.Fprintln(manifest, "Extra imports before uniqueStrings", extraImports)
 	extraImports = uniqueStrings(extraImports)
-	fmt.Println("Extra imports ", extraImports)
+	fmt.Fprintln(manifest, "Extra imports ", extraImports)
 	// Finally reinject imports at the watermark
 	var goImportPaths []string
 	for _, extraImport := range extraImports {
@@ -716,5 +885,5 @@ func (h *Handle) Close() error {
 	if err := insertImports(goFilePath, goImportPaths); err != nil {
 		panic(err)
 	}
-	fmt.Println("Imports inserted successfully.")
+	fmt.Fprintln(manifest, "Imports inserted successfully.")
 }

@@ -4,7 +4,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairsizetsizet"
 )
 
-func mustListPairSizeTSizeT(val1 uint64, val2 uint64) *pairsizetsizet.Handle {
+func mustListPairSizeTSizeT(val1 uint32, val2 uint32) *pairsizetsizet.Handle {
 	h, err := pairsizetsizet.New(val1, val2)
 	if err != nil {
 		panic(err)

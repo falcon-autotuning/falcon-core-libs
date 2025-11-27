@@ -5,7 +5,7 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/communications/voltage-states/devicevoltagestate"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/communications/voltage-states/devicevoltagestates"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -47,8 +47,8 @@ func TestVoltageStatesResponse_FullCoverage(t *testing.T) {
 	defer vsr.Close()
 
 	// CAPIHandle (open)
-	ptr, err := vsr.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := vsr.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 
@@ -124,11 +124,6 @@ func TestVoltageStatesResponse_FullCoverage(t *testing.T) {
 
 	// CAPIHandle (closed)
 	vsr.Close()
-	_, err = vsr.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
-
 	// Close twice
 	err = vsr.Close()
 	if err == nil {

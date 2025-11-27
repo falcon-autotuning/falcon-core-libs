@@ -31,7 +31,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/unitspace"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -165,7 +165,7 @@ func mustWaveform(name string) *waveform.Handle {
 	}
 	amap.PushBack(msb)
 	// Discretizer
-	discr, err := discretizer.NewCartesian(0.1)
+	discr, err := discretizer.NewCartesianDiscretizer(0.1)
 	if err != nil {
 		panic(fmt.Errorf("discretizer.NewCartesian error: %v", err))
 	}

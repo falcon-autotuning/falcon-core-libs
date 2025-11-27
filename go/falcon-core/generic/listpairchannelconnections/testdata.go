@@ -3,8 +3,8 @@ package listpairchannelconnections
 import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/names/channel"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairchannelconnections"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 func mustPairChannelConnections(channel *channel.Handle, conns *connections.Handle) *pairchannelconnections.Handle {

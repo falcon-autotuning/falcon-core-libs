@@ -7,7 +7,6 @@ package axeslabelledmeasuredarray1d
 #include <stdlib.h>
 */
 import "C"
-
 import (
 	"errors"
 	"unsafe"
@@ -39,8 +38,8 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-
 func NewEmpty() (*Handle, error) {
+
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
 			return unsafe.Pointer(C.AxesLabelledMeasuredArray1D_create_empty()), nil
@@ -49,7 +48,6 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-
 func New(items []*labelledmeasuredarray1d.Handle) (*Handle, error) {
 	list, err := listlabelledmeasuredarray1d.New(items)
 	if err != nil {
@@ -59,9 +57,9 @@ func New(items []*labelledmeasuredarray1d.Handle) (*Handle, error) {
 		return NewFromList(list)
 	})
 }
-
 func NewFromList(data *listlabelledmeasuredarray1d.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(data, func() (*Handle, error) {
+
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(C.AxesLabelledMeasuredArray1D_create(C.ListLabelledMeasuredArray1DHandle(data.CAPIHandle()))), nil
@@ -75,52 +73,46 @@ func NewFromList(data *listlabelledmeasuredarray1d.Handle) (*Handle, error) {
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-
 func (h *Handle) PushBack(value *labelledmeasuredarray1d.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{value}, func() error {
 		C.AxesLabelledMeasuredArray1D_push_back(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.LabelledMeasuredArray1DHandle(value.CAPIHandle()))
 		return nil
 	})
 }
-
 func (h *Handle) Size() (uint32, error) {
 	return cmemoryallocation.Read(h, func() (uint32, error) {
 		return uint32(C.AxesLabelledMeasuredArray1D_size(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 }
-
 func (h *Handle) Empty() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
 		return bool(C.AxesLabelledMeasuredArray1D_empty(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 }
-
 func (h *Handle) EraseAt(idx uint32) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesLabelledMeasuredArray1D_erase_at(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
 	})
 }
-
 func (h *Handle) Clear() error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesLabelledMeasuredArray1D_clear(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))
 		return nil
 	})
 }
-
 func (h *Handle) At(idx uint32) (*labelledmeasuredarray1d.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*labelledmeasuredarray1d.Handle, error) {
+
 		return labelledmeasuredarray1d.FromCAPI(unsafe.Pointer(C.AxesLabelledMeasuredArray1D_at(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.size_t(idx))))
 	})
 }
-
 func (h *Handle) Items() ([]*labelledmeasuredarray1d.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.AxesLabelledMeasuredArray1D_dimension(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
+		return int32(C.AxesLabelledMeasuredArray1D_size(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.LabelledMeasuredArray1DHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -132,43 +124,43 @@ func (h *Handle) Items() ([]*labelledmeasuredarray1d.Handle, error) {
 	}
 	realout := make([]*labelledmeasuredarray1d.Handle, dim)
 	for i := range out {
-		realout[i] = *labelledmeasuredarray1d.Handle(realout[i])
+		realout[i], err = labelledmeasuredarray1d.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("Items: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }
-
 func (h *Handle) Contains(value *labelledmeasuredarray1d.Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (bool, error) {
 		return bool(C.AxesLabelledMeasuredArray1D_contains(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.LabelledMeasuredArray1DHandle(value.CAPIHandle()))), nil
 	})
 }
-
 func (h *Handle) Index(value *labelledmeasuredarray1d.Handle) (uint32, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
 		return uint32(C.AxesLabelledMeasuredArray1D_index(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.LabelledMeasuredArray1DHandle(value.CAPIHandle()))), nil
 	})
 }
-
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
-		return Handle.FromCAPI(unsafe.Pointer(C.AxesLabelledMeasuredArray1D_intersection(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(other.CAPIHandle()))))
+
+		return FromCAPI(unsafe.Pointer(C.AxesLabelledMeasuredArray1D_intersection(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(other.CAPIHandle()))))
 	})
 }
-
 func (h *Handle) Equal(b *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
 		return bool(C.AxesLabelledMeasuredArray1D_equal(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(b.CAPIHandle()))), nil
 	})
 }
-
 func (h *Handle) NotEqual(b *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
 		return bool(C.AxesLabelledMeasuredArray1D_not_equal(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(b.CAPIHandle()))), nil
 	})
 }
-
 func (h *Handle) ToJSON() (string, error) {
 	return cmemoryallocation.Read(h, func() (string, error) {
+
 		strObj, err := str.FromCAPI(unsafe.Pointer(C.AxesLabelledMeasuredArray1D_to_json_string(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))))
 		if err != nil {
 			return "", errors.New("ToJSON:" + err.Error())
@@ -176,10 +168,10 @@ func (h *Handle) ToJSON() (string, error) {
 		return strObj.ToGoString()
 	})
 }
-
 func FromJSON(json string) (*Handle, error) {
 	realjson := str.New(json)
 	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(C.AxesLabelledMeasuredArray1D_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil

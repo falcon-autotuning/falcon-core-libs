@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/communications/voltage-states/devicevoltagestate"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -45,37 +45,29 @@ func TestDeviceVoltageStates_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size() error: %v", err)
 		}
-		if sz != len(states) {
+		if sz != uint32(len(states)) {
 			t.Errorf("Size() = %v, want %v", sz, len(states))
 		}
 		items, err := h.Items()
 		if err != nil {
 			t.Fatalf("Items() error: %v", err)
 		}
-		if len(items) != len(states) {
-			t.Errorf("Items() length = %v, want %v", len(items), len(states))
+		if size, _ := items.Size(); size != uint32(len(states)) {
+			t.Errorf("Items() length = %v, want %v", size, len(states))
 		}
 	})
 }
 
-func TestDeviceVoltageStates_AtAndConstAt(t *testing.T) {
+func TestDeviceVoltageStates_At(t *testing.T) {
 	withDeviceVoltageStates(t, func(t *testing.T, h *Handle, states []*devicevoltagestate.Handle) {
 		for i, want := range states {
-			got, err := h.At(i)
+			got, err := h.At(uint32(i))
 			if err != nil {
 				t.Fatalf("At(%d) error: %v", i, err)
 			}
 			eq, err := got.Equal(want)
 			if err != nil || !eq {
 				t.Errorf("At(%d) = %v, want %v", i, got, want)
-			}
-			got2, err := h.ConstAt(i)
-			if err != nil {
-				t.Fatalf("ConstAt(%d) error: %v", i, err)
-			}
-			eq2, err := got2.Equal(want)
-			if err != nil || !eq2 {
-				t.Errorf("ConstAt(%d) = %v, want %v", i, got2, want)
 			}
 		}
 	})
@@ -95,7 +87,7 @@ func TestDeviceVoltageStates_ContainsAndIndex(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Index(%d) error: %v", i, err)
 			}
-			if idx != i {
+			if idx != uint32(i) {
 				t.Errorf("Index(%d) = %v, want %v", i, idx, i)
 			}
 		}
@@ -120,7 +112,7 @@ func TestDeviceVoltageStates_PushBack(t *testing.T) {
 			t.Fatalf("PushBack error: %v", err)
 		}
 		sz, _ := h.Size()
-		if sz != len(states)+1 {
+		if sz != uint32(len(states)+1) {
 			t.Errorf("After PushBack, Size() = %v, want %v", sz, len(states)+1)
 		}
 	})
@@ -137,7 +129,7 @@ func TestDeviceVoltageStates_EraseAtAndClear(t *testing.T) {
 		t.Fatalf("EraseAt error: %v", err)
 	}
 	sz, _ := h.Size()
-	if sz != len(states)-1 {
+	if sz != uint32(len(states)-1) {
 		t.Errorf("After EraseAt, Size() = %v, want %v", sz, len(states)-1)
 	}
 	if err := h.Clear(); err != nil {
@@ -165,8 +157,8 @@ func TestDeviceVoltageStates_Intersection(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Intersection Items error: %v", err)
 		}
-		if len(items) != len(states) {
-			t.Errorf("Intersection Items = %v, want %v", len(items), len(states))
+		if size, _ := items.Size(); size != uint32(len(states)) {
+			t.Errorf("Intersection Items = %v, want %v", size, len(states))
 		}
 	})
 }
@@ -223,9 +215,6 @@ func TestDeviceVoltageStates_ClosedErrors(t *testing.T) {
 	if _, err := h.At(0); err == nil {
 		t.Error("At() on closed: expected error")
 	}
-	if _, err := h.ConstAt(0); err == nil {
-		t.Error("ConstAt() on closed: expected error")
-	}
 	if _, err := h.Contains(states[0]); err == nil {
 		t.Error("Contains() on closed: expected error")
 	}
@@ -267,10 +256,7 @@ func TestDeviceVoltageStates_FromCAPI_Error(t *testing.T) {
 
 func TestDeviceVoltageStates_FromCAPI_Valid(t *testing.T) {
 	withDeviceVoltageStates(t, func(t *testing.T, h *Handle, _ []*devicevoltagestate.Handle) {
-		capi, err := h.CAPIHandle()
-		if err != nil {
-			t.Fatalf("Could not convert to CAPI: %v", err)
-		}
+		capi := h.CAPIHandle()
 		h2, err := FromCAPI(capi)
 		if err != nil {
 			t.Errorf("FromCAPI valid: unexpected error: %v", err)
@@ -306,8 +292,8 @@ func TestDeviceVoltageStates_StatesAndAddState(t *testing.T) {
 	if err != nil {
 		t.Fatalf("States() error: %v", err)
 	}
-	if len(states) != 1 {
-		t.Errorf("States() length = %v, want 1", len(states))
+	if size, _ := states.Size(); size != 1 {
+		t.Errorf("States() length = %v, want 1", size)
 	}
 }
 

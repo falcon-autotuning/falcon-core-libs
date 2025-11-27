@@ -5,7 +5,7 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapconnectiondouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/quantity"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -41,7 +41,7 @@ func makeTestPoint(t *testing.T) (*Handle, []*connection.Handle, []*quantity.Han
 			t.Fatalf("mcd.Insert: %v", err)
 		}
 	}
-	pt, err := Create(mcd, unit)
+	pt, err := New(mcd, unit)
 	if err != nil {
 		t.Fatalf("Create: %v", err)
 	}
@@ -60,7 +60,7 @@ func TestPoint_SizeAndEmpty(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size error: %v", err)
 		}
-		if sz != len(conns) {
+		if sz != uint32(len(conns)) {
 			t.Errorf("Size = %v, want %v", sz, len(conns))
 		}
 		empty, err := pt.Empty()
@@ -79,8 +79,8 @@ func TestPoint_KeysValuesItemsConnections(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Keys error: %v", err)
 		}
-		if len(keys) != len(conns) {
-			t.Errorf("Keys len = %v, want %v", len(keys), len(conns))
+		if size, _ := keys.Size(); size != uint32(len(conns)) {
+			t.Errorf("Keys len = %v, want %v", size, len(conns))
 		}
 		values, err := pt.Values()
 		if err != nil {
@@ -108,8 +108,8 @@ func TestPoint_KeysValuesItemsConnections(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Connections error: %v", err)
 		}
-		if len(connections) != len(conns) {
-			t.Errorf("Connections len = %v, want %v", len(connections), len(conns))
+		if size, _ := connections.Size(); size != uint32(len(conns)) {
+			t.Errorf("Connections len = %v, want %v", size, len(conns))
 		}
 	})
 }
@@ -390,10 +390,7 @@ func TestPoint_FromCAPI_Error(t *testing.T) {
 
 func TestPoint_FromCAPI_Valid(t *testing.T) {
 	withPoint(t, func(t *testing.T, pt *Handle, conns []*connection.Handle, vals []*quantity.Handle, unit *symbolunit.Handle) {
-		capi, err := pt.CAPIHandle()
-		if err != nil {
-			t.Fatalf("Could not convert to CAPI: %v", err)
-		}
+		capi := pt.CAPIHandle()
 		h, err := FromCAPI(capi)
 		if err != nil {
 			t.Errorf("FromCAPI valid: unexpected error: %v", err)

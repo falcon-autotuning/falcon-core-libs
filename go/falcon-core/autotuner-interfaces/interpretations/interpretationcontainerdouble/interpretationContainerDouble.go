@@ -98,13 +98,13 @@ func (h *Handle) SelectContexts(independent_connections *listconnection.Handle, 
 	})
 }
 func (h *Handle) InsertOrAssign(key *interpretationcontext.Handle, value float64) error {
-	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, value}, func() error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key}, func() error {
 		C.InterpretationContainerDouble_insert_or_assign(C.InterpretationContainerDoubleHandle(h.CAPIHandle()), C.InterpretationContextHandle(key.CAPIHandle()), C.double(value))
 		return nil
 	})
 }
 func (h *Handle) Insert(key *interpretationcontext.Handle, value float64) error {
-	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, value}, func() error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key}, func() error {
 		C.InterpretationContainerDouble_insert(C.InterpretationContainerDoubleHandle(h.CAPIHandle()), C.InterpretationContextHandle(key.CAPIHandle()), C.double(value))
 		return nil
 	})

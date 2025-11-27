@@ -3,7 +3,7 @@ package rightreservoirwithimplantedohmic
 import (
 	"testing"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 func makeTestConnections(t *testing.T) (*connection.Handle, *connection.Handle) {
@@ -161,10 +161,7 @@ func TestRightReservoirWithImplantedOhmic_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	defer rr.Close()
-	capi, err := rr.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert to CAPI: %v", err)
-	}
+	capi := rr.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

@@ -93,13 +93,13 @@ func (h *Handle) Units() (*symbolunit.Handle, error) {
 func (h *Handle) DivisionUnit(other *symbolunit.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AcquisitionContext_division_unit(C.AcquisitionContextHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AcquisitionContext_division_unit(C.AcquisitionContextHandle(h.CAPIHandle()), C.SymbolUnitHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Division(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AcquisitionContext_division(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AcquisitionContext_division(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) MatchConnection(other *connection.Handle) (bool, error) {
@@ -108,8 +108,9 @@ func (h *Handle) MatchConnection(other *connection.Handle) (bool, error) {
 	})
 }
 func (h *Handle) MatchInstrumentType(other string) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()), C.StringHandle(other.CAPIHandle()))), nil
+	realother := str.New(other)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, realother}, func() (bool, error) {
+		return bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()), C.StringHandle(realother.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

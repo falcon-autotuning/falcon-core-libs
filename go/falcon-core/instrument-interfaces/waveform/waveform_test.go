@@ -21,7 +21,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/unitspace"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -98,7 +98,7 @@ func makeTestAxesMapStringBool(t *testing.T, m *mapstringbool.Handle) *axesmapst
 }
 
 func makeTestUnitSpace(t *testing.T, dom *domain.Handle) *unitspace.Handle {
-	discr, err := discretizer.NewCartesian(0.1)
+	discr, err := discretizer.NewCartesianDiscretizer(0.1)
 	if err != nil {
 		t.Fatalf("unitspace.NewDiscretizerCartesian error: %v", err)
 	}
@@ -210,32 +210,32 @@ func TestWaveform_Constructors(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	defer w.Close()
-	wc, err := NewCartesian(divisions, axes, incr, lpt, dom)
+	wc, err := NewCartesianWaveform(divisions, axes, incr, lpt, dom)
 	if err != nil {
 		t.Fatalf("NewCartesian error: %v", err)
 	}
 	defer wc.Close()
-	wci, err := NewCartesianIdentity(divisions, axes, incr, dom)
+	wci, err := NewCartesianIdentityWaveform(divisions, axes, incr, dom)
 	if err != nil {
 		t.Fatalf("NewCartesianIdentity error: %v", err)
 	}
 	defer wci.Close()
-	wc2d, err := NewCartesian2D(divisions2D, axes2D, incr2D, lpt, dom)
+	wc2d, err := NewCartesianWaveform2D(divisions2D, axes2D, incr2D, lpt, dom)
 	if err != nil {
 		t.Fatalf("NewCartesian2D error: %v", err)
 	}
 	defer wc2d.Close()
-	wci2d, err := NewCartesianIdentity2D(divisions2D, axes2D, incr2D, dom)
+	wci2d, err := NewCartesianIdentityWaveform2D(divisions2D, axes2D, incr2D, dom)
 	if err != nil {
 		t.Fatalf("NewCartesianIdentity2D error: %v", err)
 	}
 	defer wci2d.Close()
-	wc1d, err := NewCartesian1D(2, cldA, mapSBA, lpt, dom)
+	wc1d, err := NewCartesianWaveform1D(2, cldA, mapSBA, lpt, dom)
 	if err != nil {
 		t.Fatalf("NewCartesian1D error: %v", err)
 	}
 	defer wc1d.Close()
-	wci1d, err := NewCartesianIdentity1D(2, cldA, mapSBA, dom)
+	wci1d, err := NewCartesianIdentityWaveform1D(2, cldA, mapSBA, dom)
 	if err != nil {
 		t.Fatalf("NewCartesianIdentity1D error: %v", err)
 	}
@@ -277,7 +277,11 @@ func TestWaveform_Accessors(t *testing.T) {
 	if err != nil {
 		t.Errorf("Items error: %v", err)
 	}
-	for _, it := range items {
+	otheritems, err := items.Items()
+	if err != nil {
+		t.Errorf("Second Items error: %v", err)
+	}
+	for _, it := range otheritems {
 		it.Close()
 	}
 }

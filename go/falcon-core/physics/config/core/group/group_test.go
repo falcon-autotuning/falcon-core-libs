@@ -4,13 +4,13 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/names/channel"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 type testGroupConfig struct {
 	channel   *channel.Handle
-	numDots   int
+	numDots   int32
 	screening *connections.Handle
 	reservoir *connections.Handle
 	plunger   *connections.Handle
@@ -25,7 +25,7 @@ func setupGroup(t *testing.T) *testGroupConfig {
 	if err != nil {
 		t.Fatalf("channel.New error: %v", err)
 	}
-	numDots := 2
+	numDots := int32(2)
 
 	s1, _ := connection.NewScreeningGate("s1")
 	s2, _ := connection.NewScreeningGate("s2")

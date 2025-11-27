@@ -39,7 +39,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/unitspace"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -145,7 +145,7 @@ func mustWaveform(name string) *waveform.Handle {
 	}
 	amap.PushBack(msb)
 	// Discretizer
-	discr, err := discretizer.NewCartesian(0.1)
+	discr, err := discretizer.NewCartesianDiscretizer(0.1)
 	if err != nil {
 		panic(fmt.Errorf("discretizer.NewCartesian error: %v", err))
 	}
@@ -523,9 +523,6 @@ func TestHDF5Data_ClosedErrorBranches(t *testing.T) {
 	}
 	if _, err := h3.ToCommunications(); err == nil {
 		t.Errorf("ToCommunications on closed should error")
-	}
-	if _, err := h3.CAPIHandle(); err == nil {
-		t.Errorf("CAPIHandle on closed should error")
 	}
 	if _, err := h3.ToJSON(); err == nil {
 		t.Errorf("ToJSON on closed should error")

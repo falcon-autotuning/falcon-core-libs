@@ -161,10 +161,7 @@ func TestAnalyticFunction_FromCAPI_Valid(t *testing.T) {
 	af, labels := makeTestAnalyticFunction(t)
 	defer af.Close()
 	defer labels.Close()
-	capi, err := af.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert to CAPI: %v", err)
-	}
+	capi := af.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

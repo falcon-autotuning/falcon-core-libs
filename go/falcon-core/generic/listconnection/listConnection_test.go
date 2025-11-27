@@ -3,7 +3,7 @@ package listconnection
 import (
 
 	"testing"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 // eqSlice compares two slices of *connection.Handle pointers by dereferencing and calling Equal.
@@ -45,7 +45,7 @@ func TestListConnection_NewEmptyAndPushBack(t *testing.T) {
 			t.Fatalf("PushBack failed at %d: %v", i, err)
 		}
 	}
-	if sz, err := l.Size(); err != nil || sz != len(fixtureListData()) {
+	if sz, err := l.Size(); err != nil || sz != uint32(len(fixtureListData())) {
 		t.Errorf("Expected size %d, got %d, err: %v", len(fixtureListData()), sz, err)
 	}
 }
@@ -174,10 +174,7 @@ func TestListConnection_CAPIHandle(t *testing.T) {
 		t.Fatalf("New failed: %v", err)
 	}
 	defer l.Close()
-	ptr, err := l.CAPIHandle()
-  if err != nil {
-      t.Errorf("CAPIHandle failed to access capi")
-  }
+	ptr := l.CAPIHandle()
 	if ptr == nil {
 		t.Errorf("CAPIHandle returned nil")
 	}

@@ -71,7 +71,6 @@ func main() {
 		arrays[i].Header = arrays[i].Type + "_c_api.h"
 	}
 
-	wrapperTmpl := template.Must(template.ParseFiles("generic/farray/farray_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("generic/farray/farray_test_wrapper.tmpl"))
 	manifest, err := os.Create("farray_handles_manifest.txt")
 	if err != nil {
@@ -83,16 +82,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, p.File+".go")
-		f, err := os.Create(implFile)
-		if err != nil {
-			panic(err)
-		}
-		if err := wrapperTmpl.Execute(f, p); err != nil {
-			panic(err)
-		}
-		f.Close()
-		fmt.Fprintln(manifest, implFile)
 		testFile := filepath.Join(dir, p.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {

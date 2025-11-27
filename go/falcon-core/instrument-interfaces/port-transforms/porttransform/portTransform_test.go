@@ -6,7 +6,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringdouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/analyticfunction"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -213,10 +213,7 @@ func TestPortTransform_FromCAPI_Valid(t *testing.T) {
 	defer pt.Close()
 	defer port.Close()
 	defer af.Close()
-	capi, err := pt.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert to CAPI: %v", err)
-	}
+	capi := pt.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

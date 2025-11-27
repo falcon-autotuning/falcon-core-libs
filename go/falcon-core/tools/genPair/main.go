@@ -163,7 +163,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "float32",
 			SecondCType:          "float",
 			SecondIsPrimitive:    true,
@@ -182,7 +182,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "*connection.Handle",
 			SecondCType:          "ConnectionHandle",
 			SecondIsPrimitive:    false,
@@ -201,7 +201,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "float64",
 			SecondCType:          "double",
 			SecondIsPrimitive:    true,
@@ -302,7 +302,7 @@ func main() {
 			SecondIsPrimitive:    false,
 			SecondZeroValue:      "nil",
 			SecondConstructor:    "connections.FromCAPI",
-			SecondOptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"`,
+			SecondOptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"`,
 			FirstTestDefault:     "defaultChannel",
 			SecondTestDefault:    "defaultConnections",
 			FirstTestOther:       "otherChannel",
@@ -315,13 +315,13 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "*connections.Handle",
 			SecondCType:          "ConnectionsHandle",
 			SecondIsPrimitive:    false,
 			SecondZeroValue:      "nil",
 			SecondConstructor:    "connections.FromCAPI",
-			SecondOptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"`,
+			SecondOptionalImport: `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"`,
 			FirstTestDefault:     "defaultConnection",
 			SecondTestDefault:    "defaultConnections",
 			FirstTestOther:       "otherConnection",
@@ -334,7 +334,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "*quantity.Handle",
 			SecondCType:          "QuantityHandle",
 			SecondIsPrimitive:    false,
@@ -353,7 +353,7 @@ func main() {
 			FirstIsPrimitive:     false,
 			FirstZeroValue:       "nil",
 			FirstConstructor:     "connection.FromCAPI",
-			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"`,
+			FirstOptionalImport:  `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"`,
 			SecondGoType:         "*pairquantityquantity.Handle",
 			SecondCType:          "PairQuantityQuantityHandle",
 			SecondIsPrimitive:    false,
@@ -489,7 +489,6 @@ func main() {
 		pairs[i].FirstIsString = isString(pairs[i].FirstGoType)
 		pairs[i].SecondIsString = isString(pairs[i].SecondGoType)
 	}
-	wrapperTmpl := template.Must(template.ParseFiles("generic/pair/pair_wrapper.tmpl"))
 	testTmpl := template.Must(template.ParseFiles("generic/pair/pair_test_wrapper.tmpl"))
 	manifest, err := os.Create("pair_handles_manifest.txt")
 	if err != nil {
@@ -501,16 +500,6 @@ func main() {
 		if err := os.MkdirAll(dir, 0o755); err != nil {
 			panic(err)
 		}
-		implFile := filepath.Join(dir, p.File+".go")
-		f, err := os.Create(implFile)
-		if err != nil {
-			panic(err)
-		}
-		if err := wrapperTmpl.Execute(f, p); err != nil {
-			panic(err)
-		}
-		f.Close()
-		fmt.Fprintln(manifest, implFile)
 		testFile := filepath.Join(dir, p.File+"_test.go")
 		tf, err := os.Create(testFile)
 		if err != nil {

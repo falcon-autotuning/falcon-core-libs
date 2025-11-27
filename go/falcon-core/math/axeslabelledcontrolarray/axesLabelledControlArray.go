@@ -109,10 +109,10 @@ func (h *Handle) At(idx uint32) (*labelledcontrolarray.Handle, error) {
 }
 func (h *Handle) Items() ([]*labelledcontrolarray.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.AxesLabelledControlArray_dimension(C.AxesLabelledControlArrayHandle(h.CAPIHandle()))), nil
+		return int32(C.AxesLabelledControlArray_size(C.AxesLabelledControlArrayHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.LabelledControlArrayHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -124,7 +124,11 @@ func (h *Handle) Items() ([]*labelledcontrolarray.Handle, error) {
 	}
 	realout := make([]*labelledcontrolarray.Handle, dim)
 	for i := range out {
-		realout[i] = *labelledcontrolarray.Handle(realout[i])
+		realout[i], err = labelledcontrolarray.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("Items: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }
@@ -141,7 +145,7 @@ func (h *Handle) Index(value *labelledcontrolarray.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AxesLabelledControlArray_intersection(C.AxesLabelledControlArrayHandle(h.CAPIHandle()), C.AxesLabelledControlArrayHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AxesLabelledControlArray_intersection(C.AxesLabelledControlArrayHandle(h.CAPIHandle()), C.AxesLabelledControlArrayHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

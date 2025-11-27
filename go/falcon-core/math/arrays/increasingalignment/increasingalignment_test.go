@@ -150,10 +150,7 @@ func TestIncreasingAlignment_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("New(true) error: %v", err)
 	}
 	defer ia.Close()
-	capi, err := ia.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert IncreasingAlignment to CAPI: %v", err)
-	}
+	capi := ia.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

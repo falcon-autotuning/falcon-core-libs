@@ -63,7 +63,7 @@ func TestControlArray_ShapeDimensionSize(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != len(defaultShape) {
+	if dim != uint32(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	sz, err := a.Size()

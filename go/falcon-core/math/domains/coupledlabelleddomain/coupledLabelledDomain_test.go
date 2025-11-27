@@ -6,7 +6,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -318,10 +318,6 @@ func TestCoupledLabelledDomain_ErrorBranches(t *testing.T) {
 	}
 
 	cld.Close()
-	_, err = cld.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
 	err = cld.Close()
 	if err == nil {
 		t.Errorf("second Close should error")

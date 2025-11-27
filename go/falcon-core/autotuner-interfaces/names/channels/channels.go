@@ -77,7 +77,7 @@ func (h *Handle) Close() error {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Channels_intersection(C.ChannelsHandle(h.CAPIHandle()), C.ChannelsHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Channels_intersection(C.ChannelsHandle(h.CAPIHandle()), C.ChannelsHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PushBack(value *channel.Handle) error {

@@ -2,8 +2,8 @@ package listpairconnectionconnections
 
 import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectionconnections"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 )
 
 func mustPairConnectionConnections(conn *connection.Handle, conns *connections.Handle) *pairconnectionconnections.Handle {

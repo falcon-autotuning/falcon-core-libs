@@ -37,26 +37,26 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func NewPlungergatewithneighbors(name string, left_neighbor *connection.Handle, right_neighbor *connection.Handle) (*Handle, error) {
+func NewPlungerGateWithNeighbors(name string, left_neighbor *connection.Handle, right_neighbor *connection.Handle) (*Handle, error) {
 	realname := str.New(name)
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realname, left_neighbor, right_neighbor}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.DotGateWithNeighbors_create_plungergatewithneighbors(C.StringHandle(realname.CAPIHandle()), C.ConnectionHandle(left_neighbor.CAPIHandle()), C.ConnectionHandle(right_neighbor.CAPIHandle()))), nil
+				return unsafe.Pointer(C.DotGateWithNeighbors_create_plunger_gate_with_neighbors(C.StringHandle(realname.CAPIHandle()), C.ConnectionHandle(left_neighbor.CAPIHandle()), C.ConnectionHandle(right_neighbor.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewBarriergatewithneighbors(name string, left_neighbor *connection.Handle, right_neighbor *connection.Handle) (*Handle, error) {
+func NewBarrierGateWithNeighbors(name string, left_neighbor *connection.Handle, right_neighbor *connection.Handle) (*Handle, error) {
 	realname := str.New(name)
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realname, left_neighbor, right_neighbor}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.DotGateWithNeighbors_create_barriergatewithneighbors(C.StringHandle(realname.CAPIHandle()), C.ConnectionHandle(left_neighbor.CAPIHandle()), C.ConnectionHandle(right_neighbor.CAPIHandle()))), nil
+				return unsafe.Pointer(C.DotGateWithNeighbors_create_barrier_gate_with_neighbors(C.StringHandle(realname.CAPIHandle()), C.ConnectionHandle(left_neighbor.CAPIHandle()), C.ConnectionHandle(right_neighbor.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,

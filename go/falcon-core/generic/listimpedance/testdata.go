@@ -3,8 +3,8 @@ package listimpedance
 import (
 	"fmt"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/impedance"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/impedance"
 )
 
 func mustImpedance(name string, resistance float64, capacitance float64) *impedance.Handle {

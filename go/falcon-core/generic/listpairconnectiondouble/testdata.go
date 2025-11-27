@@ -2,7 +2,7 @@ package listpairconnectiondouble
 
 import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectiondouble"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 func mustPairConnectionDouble(conn *connection.Handle, val float64) *pairconnectiondouble.Handle {

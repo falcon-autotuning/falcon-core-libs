@@ -14,8 +14,8 @@ func teststandardresponse_fullcoverage(t *testing.T) {
 	defer sr.Close()
 
 	// capihandle (open)
-	ptr, err := sr.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := sr.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("capihandle (open) failed: %v", err)
 	}
 
@@ -80,10 +80,6 @@ func teststandardresponse_fullcoverage(t *testing.T) {
 
 	// capihandle (closed)
 	sr.Close()
-	_, err = sr.CAPIHandle()
-	if err == nil {
-		t.Errorf("capihandle on closed should error")
-	}
 	// close twice
 	err = sr.Close()
 	if err == nil {

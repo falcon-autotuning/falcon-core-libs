@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/geometries/dotgatewithneighbors"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 func mustDotGateWithNeighbors(name string, left *connection.Handle, right *connection.Handle) *dotgatewithneighbors.Handle {

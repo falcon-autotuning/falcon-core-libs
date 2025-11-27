@@ -86,7 +86,7 @@ func (h *Handle) AddDependentVariable(variable *measurementcontext.Handle) error
 	})
 }
 func (h *Handle) ReplaceDependentVariable(index int32, variable *measurementcontext.Handle) error {
-	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{index, variable}, func() error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{variable}, func() error {
 		C.InterpretationContext_replace_dependent_variable(C.InterpretationContextHandle(h.CAPIHandle()), C.int(index), C.MeasurementContextHandle(variable.CAPIHandle()))
 		return nil
 	})
@@ -100,7 +100,7 @@ func (h *Handle) GetIndependentVariables(index int32) (*measurementcontext.Handl
 func (h *Handle) WithUnit(unit *symbolunit.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, unit}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.InterpretationContext_with_unit(C.InterpretationContextHandle(h.CAPIHandle()), C.SymbolUnitHandle(unit.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.InterpretationContext_with_unit(C.InterpretationContextHandle(h.CAPIHandle()), C.SymbolUnitHandle(unit.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

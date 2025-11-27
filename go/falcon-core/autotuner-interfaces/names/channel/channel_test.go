@@ -105,10 +105,7 @@ func TestChannel_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("Channel New error: %v", err)
 	}
 	defer ch.Close()
-	capi, err := ch.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert channel to CAPI: %v", err)
-	}
+	capi := ch.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

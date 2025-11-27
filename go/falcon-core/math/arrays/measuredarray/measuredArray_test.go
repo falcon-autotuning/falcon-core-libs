@@ -60,7 +60,7 @@ func TestMeasuredArray_ShapeDimensionData(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != len(defaultShape) {
+	if dim != uint32(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	data, err := a.Data()
@@ -529,7 +529,7 @@ func TestMeasuredArray_RemoveOffsetSum(t *testing.T) {
 func TestMeasuredArray_ReshapeWhereFlip(t *testing.T) {
 	a, _ := FromData(defaultData, defaultShape)
 	defer a.Close()
-	_, err := a.Reshape([]int{4, 1})
+	_, err := a.Reshape([]int32{4, 1})
 	if err != nil {
 		t.Errorf("Reshape failed: %v", err)
 	}

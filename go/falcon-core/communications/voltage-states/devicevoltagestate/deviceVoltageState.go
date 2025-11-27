@@ -85,19 +85,19 @@ func (h *Handle) ConvertTo(target_unit *symbolunit.Handle) error {
 func (h *Handle) MultiplyInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_multiply_int(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_multiply_int(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) MultiplyDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_multiply_double(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_multiply_double(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) MultiplyQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_multiply_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_multiply_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) MultiplyEqualsInt(other int32) error {
@@ -121,19 +121,19 @@ func (h *Handle) MultiplyEqualsQuantity(other *Handle) error {
 func (h *Handle) DivideInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_divide_int(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_divide_int(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) DivideDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_divide_double(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_divide_double(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) DivideQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_divide_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_divide_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) DivideEqualsInt(other int32) error {
@@ -157,13 +157,13 @@ func (h *Handle) DivideEqualsQuantity(other *Handle) error {
 func (h *Handle) Power(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_power(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_power(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) AddQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_add_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_add_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) AddEqualsQuantity(other *Handle) error {
@@ -175,7 +175,7 @@ func (h *Handle) AddEqualsQuantity(other *Handle) error {
 func (h *Handle) SubtractQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_subtract_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_subtract_quantity(C.DeviceVoltageStateHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) SubtractEqualsQuantity(other *Handle) error {
@@ -187,13 +187,13 @@ func (h *Handle) SubtractEqualsQuantity(other *Handle) error {
 func (h *Handle) Negate() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_negate(C.DeviceVoltageStateHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_negate(C.DeviceVoltageStateHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Abs() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageState_abs(C.DeviceVoltageStateHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageState_abs(C.DeviceVoltageStateHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

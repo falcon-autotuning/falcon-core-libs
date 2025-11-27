@@ -3,7 +3,7 @@ package dotgatewithneighbors
 import (
 	"testing"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 func makePlungerNeighbors(t *testing.T) (*connection.Handle, *connection.Handle) {
@@ -222,10 +222,7 @@ func TestDotGateWithNeighbors_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("NewPlungerGateWithNeighbors error: %v", err)
 	}
 	defer gate.Close()
-	capi, err := gate.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert gate to CAPI: %v", err)
-	}
+	capi := gate.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

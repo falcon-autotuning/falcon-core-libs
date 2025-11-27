@@ -5,7 +5,7 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -46,8 +46,8 @@ func TestMeasurementContext_FullCoverage(t *testing.T) {
 	defer mc.Close()
 
 	// Test CAPIHandle (open)
-	ptr, err := mc.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := mc.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 
@@ -121,10 +121,6 @@ func TestMeasurementContext_FullCoverage(t *testing.T) {
 
 	// Test CAPIHandle (closed)
 	mc.Close()
-	_, err = mc.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
 	// Test Close twice
 	err = mc.Close()
 	if err == nil {

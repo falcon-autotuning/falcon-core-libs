@@ -120,10 +120,7 @@ func TestGname_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("Gname New error: %v", err)
 	}
 	defer gn.Close()
-	capi, err := gn.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert gname to CAPI: %v", err)
-	}
+	capi := gn.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

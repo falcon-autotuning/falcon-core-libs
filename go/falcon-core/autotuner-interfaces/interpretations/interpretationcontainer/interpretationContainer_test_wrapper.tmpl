@@ -9,8 +9,8 @@ import (
   "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/{{.ListPairGoType}}"
   "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/interpretations/interpretationcontext"
   "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connections"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
+  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
   "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 	{{.OptionalImport}}
 )
@@ -67,34 +67,14 @@ func TestNewAndCAPIHandle(t *testing.T) {
 		t.Fatalf("New failed: %v", err)
 	}
 	defer h.Close()
-	ptr, err := h.CAPIHandle()
-	if err != nil {
-		t.Errorf("CAPIHandle failed: %v", err)
-	}
+	ptr:= h.CAPIHandle()
 	if ptr == nil {
 		t.Errorf("CAPIHandle returned nil")
 	}
 	// Closed handle branch
 	h.Close()
-	ptr, err = h.CAPIHandle()
-	if err == nil || ptr != nil {
-		t.Errorf("CAPIHandle should error and return nil on closed handle")
-	}
 }
 
-func TestFromCAPI(t *testing.T) {
-	setupHandles()
-	h, err := FromCAPI(nil)
-	if err == nil || h != nil {
-		t.Errorf("FromCAPI(nil) should error and return nil")
-	}
-	// Valid pointer branch (simulate with unsafe.Pointer)
-	// p := unsafe.Pointer(...)
-	// h, err = FromCAPI(p)
-	// if err != nil || h == nil {
-	// 	t.Errorf("FromCAPI(valid) failed: %v", err)
-	// }
-}
 
 func TestCloseTwice(t *testing.T) {
 	setupHandles()

@@ -4,22 +4,22 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/geometries/dotgatewithneighbors"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
-func TestDotGatesWithNeighbors_CreateEmptyAndClose(t *testing.T) {
-	h, err := CreateEmpty()
+func TestDotGatesWithNeighbors_NewEmptyAndClose(t *testing.T) {
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
 	defer h.Close()
 	if h == nil {
-		t.Fatal("CreateEmpty returned nil")
+		t.Fatal("NewEmpty returned nil")
 	}
 }
 
-func TestDotGatesWithNeighbors_CreateAndSize(t *testing.T) {
-	h, err := CreateEmpty()
+func TestDotGatesWithNeighbors_NewAndSize(t *testing.T) {
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -32,7 +32,7 @@ func TestDotGatesWithNeighbors_CreateAndSize(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_PushBackAndEraseAt(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -64,7 +64,7 @@ func TestDotGatesWithNeighbors_PushBackAndEraseAt(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_ClearAndEmpty(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -78,8 +78,8 @@ func TestDotGatesWithNeighbors_ClearAndEmpty(t *testing.T) {
 	}
 }
 
-func TestDotGatesWithNeighbors_AtAndConstAt(t *testing.T) {
-	h, err := CreateEmpty()
+func TestDotGatesWithNeighbors_At(t *testing.T) {
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -102,13 +102,10 @@ func TestDotGatesWithNeighbors_AtAndConstAt(t *testing.T) {
 	if _, err := h.At(0); err != nil {
 		t.Errorf("At failed: %v", err)
 	}
-	if _, err := h.ConstAt(0); err != nil {
-		t.Errorf("ConstAt failed: %v", err)
-	}
 }
 
 func TestDotGatesWithNeighbors_Items(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -119,7 +116,7 @@ func TestDotGatesWithNeighbors_Items(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_ContainsAndIndex(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -148,7 +145,7 @@ func TestDotGatesWithNeighbors_ContainsAndIndex(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_IsPlungerAndBarrier(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -162,12 +159,12 @@ func TestDotGatesWithNeighbors_IsPlungerAndBarrier(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_Intersection(t *testing.T) {
-	h1, err := CreateEmpty()
+	h1, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
 	defer h1.Close()
-	h2, err := CreateEmpty()
+	h2, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -180,12 +177,12 @@ func TestDotGatesWithNeighbors_Intersection(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_EqualAndNotEqual(t *testing.T) {
-	h1, err := CreateEmpty()
+	h1, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
 	defer h1.Close()
-	h2, err := CreateEmpty()
+	h2, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -203,7 +200,7 @@ func TestDotGatesWithNeighbors_EqualAndNotEqual(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_ToJSONAndFromJSON(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -220,7 +217,7 @@ func TestDotGatesWithNeighbors_ToJSONAndFromJSON(t *testing.T) {
 }
 
 func TestDotGatesWithNeighbors_ErrorBranches(t *testing.T) {
-	h, err := CreateEmpty()
+	h, err := NewEmpty()
 	if err != nil {
 		t.Fatalf(`Failed to create empty dot gates with neighbors: %v`, err)
 	}
@@ -232,10 +229,6 @@ func TestDotGatesWithNeighbors_ErrorBranches(t *testing.T) {
 	_, err = h.At(0)
 	if err == nil {
 		t.Error("Expected error on At after Close")
-	}
-	_, err = h.ConstAt(0)
-	if err == nil {
-		t.Error("Expected error on ConstAt after Close")
 	}
 	_, err = h.Items()
 	if err == nil {

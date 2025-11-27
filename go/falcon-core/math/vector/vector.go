@@ -259,115 +259,115 @@ func (h *Handle) Items() (*listpairconnectionpairquantityquantity.Handle, error)
 func (h *Handle) Addition(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_addition(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_addition(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Subtraction(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_subtraction(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_subtraction(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) DoubleMultiplication(scalar float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_double_multiplication(C.VectorHandle(h.CAPIHandle()), C.double(scalar))))
+		return FromCAPI(unsafe.Pointer(C.Vector_double_multiplication(C.VectorHandle(h.CAPIHandle()), C.double(scalar))))
 	})
 }
 func (h *Handle) IntMultiplication(scalar int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_int_multiplication(C.VectorHandle(h.CAPIHandle()), C.int(scalar))))
+		return FromCAPI(unsafe.Pointer(C.Vector_int_multiplication(C.VectorHandle(h.CAPIHandle()), C.int(scalar))))
 	})
 }
 func (h *Handle) DoubleDivision(scalar float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_double_division(C.VectorHandle(h.CAPIHandle()), C.double(scalar))))
+		return FromCAPI(unsafe.Pointer(C.Vector_double_division(C.VectorHandle(h.CAPIHandle()), C.double(scalar))))
 	})
 }
 func (h *Handle) IntDivision(scalar int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_int_division(C.VectorHandle(h.CAPIHandle()), C.int(scalar))))
+		return FromCAPI(unsafe.Pointer(C.Vector_int_division(C.VectorHandle(h.CAPIHandle()), C.int(scalar))))
 	})
 }
 func (h *Handle) Negation() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_negation(C.VectorHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_negation(C.VectorHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) UpdateStartFromStates(state *devicevoltagestates.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, state}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_update_start_from_states(C.VectorHandle(h.CAPIHandle()), C.DeviceVoltageStatesHandle(state.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_update_start_from_states(C.VectorHandle(h.CAPIHandle()), C.DeviceVoltageStatesHandle(state.CAPIHandle()))))
 	})
 }
 func (h *Handle) TranslateDoubles(point *mapconnectiondouble.Handle, unit *symbolunit.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, point, unit}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_translate_doubles(C.VectorHandle(h.CAPIHandle()), C.MapConnectionDoubleHandle(point.CAPIHandle()), C.SymbolUnitHandle(unit.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_translate_doubles(C.VectorHandle(h.CAPIHandle()), C.MapConnectionDoubleHandle(point.CAPIHandle()), C.SymbolUnitHandle(unit.CAPIHandle()))))
 	})
 }
 func (h *Handle) TranslateQuantities(point *mapconnectionquantity.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, point}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_translate_quantities(C.VectorHandle(h.CAPIHandle()), C.MapConnectionQuantityHandle(point.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_translate_quantities(C.VectorHandle(h.CAPIHandle()), C.MapConnectionQuantityHandle(point.CAPIHandle()))))
 	})
 }
 func (h *Handle) Translate(point *point.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, point}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_translate(C.VectorHandle(h.CAPIHandle()), C.PointHandle(point.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_translate(C.VectorHandle(h.CAPIHandle()), C.PointHandle(point.CAPIHandle()))))
 	})
 }
 func (h *Handle) TranslateToOrigin() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_translate_to_origin(C.VectorHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_translate_to_origin(C.VectorHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) DoubleExtend(extension float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_double_extend(C.VectorHandle(h.CAPIHandle()), C.double(extension))))
+		return FromCAPI(unsafe.Pointer(C.Vector_double_extend(C.VectorHandle(h.CAPIHandle()), C.double(extension))))
 	})
 }
 func (h *Handle) IntExtend(extension int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_int_extend(C.VectorHandle(h.CAPIHandle()), C.int(extension))))
+		return FromCAPI(unsafe.Pointer(C.Vector_int_extend(C.VectorHandle(h.CAPIHandle()), C.int(extension))))
 	})
 }
 func (h *Handle) DoubleShrink(extension float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_double_shrink(C.VectorHandle(h.CAPIHandle()), C.double(extension))))
+		return FromCAPI(unsafe.Pointer(C.Vector_double_shrink(C.VectorHandle(h.CAPIHandle()), C.double(extension))))
 	})
 }
 func (h *Handle) IntShrink(extension int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_int_shrink(C.VectorHandle(h.CAPIHandle()), C.int(extension))))
+		return FromCAPI(unsafe.Pointer(C.Vector_int_shrink(C.VectorHandle(h.CAPIHandle()), C.int(extension))))
 	})
 }
 func (h *Handle) UnitVector() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_unit_vector(C.VectorHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_unit_vector(C.VectorHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Normalize() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_normalize(C.VectorHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_normalize(C.VectorHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Project(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Vector_project(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Vector_project(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) UpdateUnit(unit *symbolunit.Handle) error {

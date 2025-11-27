@@ -105,10 +105,7 @@ func TestStandardRequest_FromCAPI_Valid(t *testing.T) {
 		t.Fatalf("StandardRequest New error: %v", err)
 	}
 	defer sr.Close()
-	capi, err := sr.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert StandardRequest to CAPI: %v", err)
-	}
+	capi := sr.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

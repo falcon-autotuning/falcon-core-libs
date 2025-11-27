@@ -11,7 +11,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairquantityquantity"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/point"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/quantity"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -84,7 +84,7 @@ func makeTestPoint(t *testing.T) *point.Handle {
 	defer m.Close()
 	u := makeTestSymbolUnit(t)
 	defer u.Close()
-	p, err := point.Create(m, u)
+	p, err := point.New(m, u)
 	if err != nil {
 		t.Fatalf("point.Create failed: %v", err)
 	}
@@ -109,8 +109,8 @@ func TestVector_FullCoverage(t *testing.T) {
 		t.Fatalf("New failed: %v", err)
 	}
 	defer v.Close()
-	ptr, err := v.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := v.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 	ep, err := v.EndPoint()
@@ -403,10 +403,6 @@ func TestVector_FullCoverage(t *testing.T) {
 	}
 
 	v.Close()
-	_, err = v.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
 	err = v.Close()
 	if err == nil {
 		t.Errorf("Second close should error")

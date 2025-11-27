@@ -7,7 +7,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listmeasurementcontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axesmeasurementcontext"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -111,7 +111,7 @@ func TestInterpretationContext_AddReplaceDependentVariable(t *testing.T) {
 
 func TestInterpretationContext_GetIndependentVariable(t *testing.T) {
 	withInterpretationContext(t, func(t *testing.T, ic *Handle, indep *axesmeasurementcontext.Handle, dep *listmeasurementcontext.Handle, unit *symbolunit.Handle) {
-		mc, err := ic.GetIndependentVariable(0)
+		mc, err := ic.GetIndependentVariables(0)
 		if err != nil {
 			t.Fatalf("GetIndependentVariable error: %v", err)
 		}
@@ -179,10 +179,7 @@ func TestInterpretationContext_FromCAPI_Error(t *testing.T) {
 
 func TestInterpretationContext_CAPIHandle(t *testing.T) {
 	withInterpretationContext(t, func(t *testing.T, ic *Handle, indep *axesmeasurementcontext.Handle, dep *listmeasurementcontext.Handle, unit *symbolunit.Handle) {
-		ptr, err := ic.CAPIHandle()
-		if err != nil {
-			t.Errorf("CAPIHandle failed: %v", err)
-		}
+		ptr := ic.CAPIHandle()
 		if ptr == nil {
 			t.Errorf("CAPIHandle returned nil")
 		}
@@ -201,9 +198,6 @@ func TestInterpretationContext_ClosedErrors(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	ic.Close()
-	if _, err := ic.CAPIHandle(); err == nil {
-		t.Error("CAPIHandle on closed: expected error")
-	}
 	if err := ic.Close(); err == nil {
 		t.Error("Second close should error")
 	}
@@ -227,7 +221,7 @@ func TestInterpretationContext_ClosedErrors(t *testing.T) {
 	if err := ic.ReplaceDependentVariable(0, mc); err == nil {
 		t.Error("ReplaceDependentVariable on closed: expected error")
 	}
-	if _, err := ic.GetIndependentVariable(0); err == nil {
+	if _, err := ic.GetIndependentVariables(0); err == nil {
 		t.Error("GetIndependentVariable on closed: expected error")
 	}
 	if _, err := ic.WithUnit(unit); err == nil {

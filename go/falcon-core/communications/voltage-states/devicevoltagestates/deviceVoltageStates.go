@@ -90,7 +90,7 @@ func (h *Handle) AddState(state *devicevoltagestate.Handle) error {
 func (h *Handle) FindState(connection *connection.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, connection}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageStates_find_state(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.ConnectionHandle(connection.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageStates_find_state(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.ConnectionHandle(connection.CAPIHandle()))))
 	})
 }
 func (h *Handle) ToPoint() (*point.Handle, error) {
@@ -102,7 +102,7 @@ func (h *Handle) ToPoint() (*point.Handle, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.DeviceVoltageStates_intersection(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.DeviceVoltageStatesHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.DeviceVoltageStates_intersection(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.DeviceVoltageStatesHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) PushBack(value *devicevoltagestate.Handle) error {

@@ -109,10 +109,10 @@ func (h *Handle) At(idx uint32) (*measurementcontext.Handle, error) {
 }
 func (h *Handle) Items() ([]*measurementcontext.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.AxesMeasurementContext_dimension(C.AxesMeasurementContextHandle(h.CAPIHandle()))), nil
+		return int32(C.AxesMeasurementContext_size(C.AxesMeasurementContextHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Items: dimension errored"), err)
+		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
 	out := make([]C.MeasurementContextHandle, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -124,7 +124,11 @@ func (h *Handle) Items() ([]*measurementcontext.Handle, error) {
 	}
 	realout := make([]*measurementcontext.Handle, dim)
 	for i := range out {
-		realout[i] = *measurementcontext.Handle(realout[i])
+		realout[i], err = measurementcontext.FromCAPI(unsafe.Pointer(out[i]))
+		if err != nil {
+			return nil, errors.Join(errors.New("Items: conversion from CAPI failed"), err)
+		}
+
 	}
 	return realout, nil
 }
@@ -141,7 +145,7 @@ func (h *Handle) Index(value *measurementcontext.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.AxesMeasurementContext_intersection(C.AxesMeasurementContextHandle(h.CAPIHandle()), C.AxesMeasurementContextHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.AxesMeasurementContext_intersection(C.AxesMeasurementContextHandle(h.CAPIHandle()), C.AxesMeasurementContextHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

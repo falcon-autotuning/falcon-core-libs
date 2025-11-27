@@ -107,10 +107,7 @@ func TestPairGnameGroup_CAPIHandle(t *testing.T) {
 		t.Fatalf("New failed: %v", err)
 	}
 	defer p.Close()
-	ptr, err := p.CAPIHandle()
-	if err != nil {
-		t.Errorf("CAPIHandle failed to access capi")
-	}
+	ptr:= p.CAPIHandle()
 	if ptr == nil {
 		t.Errorf("CAPIHandle returned nil")
 	}

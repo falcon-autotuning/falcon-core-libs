@@ -87,10 +87,10 @@ func (h *Handle) Dimension() (uint32, error) {
 }
 func (h *Handle) Shape() ([]uint32, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
+		return int32(C.Adjacency_size(C.AdjacencyHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Shape: dimension errored"), err)
+		return nil, errors.Join(errors.New("Shape: size errored"), err)
 	}
 	out := make([]C.size_t, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -102,16 +102,17 @@ func (h *Handle) Shape() ([]uint32, error) {
 	}
 	realout := make([]uint32, dim)
 	for i := range out {
-		realout[i] = uint32(realout[i])
+		realout[i] = uint32(out[i])
+
 	}
 	return realout, nil
 }
 func (h *Handle) Data() ([]int32, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
+		return int32(C.Adjacency_size(C.AdjacencyHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
-		return nil, errors.Join(errors.New("Data: dimension errored"), err)
+		return nil, errors.Join(errors.New("Data: size errored"), err)
 	}
 	out := make([]C.int, dim)
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
@@ -123,30 +124,31 @@ func (h *Handle) Data() ([]int32, error) {
 	}
 	realout := make([]int32, dim)
 	for i := range out {
-		realout[i] = int32(realout[i])
+		realout[i] = int32(out[i])
+
 	}
 	return realout, nil
 }
-func (h *Handle) TimesequalsFarray(other *farrayint.Handle) error {
+func (h *Handle) TimesEqualsFArray(other *farrayint.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
-		C.Adjacency_timesequals_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))
+		C.Adjacency_times_equals_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))
 		return nil
 	})
 }
-func (h *Handle) TimesFarray(other *farrayint.Handle) (*Handle, error) {
+func (h *Handle) TimesFArray(other *farrayint.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Adjacency_times_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Adjacency_times_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equality(other *Handle) (bool, error) {
+func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.Adjacency_equality(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
+		return bool(C.Adjacency_equal(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Notequality(other *Handle) (bool, error) {
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.Adjacency_notequality(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
+		return bool(C.Adjacency_not_equal(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Sum() (int32, error) {
@@ -163,7 +165,7 @@ func (h *Handle) Where(value int32) (*listlistsizet.Handle, error) {
 func (h *Handle) Flip(axis uint32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Adjacency_flip(C.AdjacencyHandle(h.CAPIHandle()), C.size_t(axis))))
+		return FromCAPI(unsafe.Pointer(C.Adjacency_flip(C.AdjacencyHandle(h.CAPIHandle()), C.size_t(axis))))
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

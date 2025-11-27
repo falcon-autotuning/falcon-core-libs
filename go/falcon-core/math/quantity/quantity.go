@@ -73,115 +73,115 @@ func (h *Handle) ConvertTo(target_unit *symbolunit.Handle) error {
 func (h *Handle) MultiplyInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_multiply_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) MultiplyDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_multiply_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) MultiplyQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_multiply_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) MultiplyEqualsInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) MultiplyEqualsDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) MultiplyEqualsQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) DivideInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_divide_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_divide_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) DivideDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_divide_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_divide_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) DivideQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_divide_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_divide_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) DivideEqualsInt(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) DivideEqualsDouble(other float64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
 	})
 }
 func (h *Handle) DivideEqualsQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Power(other int32) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_power(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_power(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
 	})
 }
 func (h *Handle) AddQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_add_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_add_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) AddEqualsQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_add_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_add_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) SubtractQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_subtract_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_subtract_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) SubtractEqualsQuantity(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_subtract_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_subtract_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Negate() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_negate(C.QuantityHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_negate(C.QuantityHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Abs() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Quantity_abs(C.QuantityHandle(h.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Quantity_abs(C.QuantityHandle(h.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

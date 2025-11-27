@@ -121,7 +121,7 @@ func (h *Handle) Contains(value *impedance.Handle) (bool, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.Impedances_intersection(C.ImpedancesHandle(h.CAPIHandle()), C.ImpedancesHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.Impedances_intersection(C.ImpedancesHandle(h.CAPIHandle()), C.ImpedancesHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Index(value *impedance.Handle) (uint32, error) {

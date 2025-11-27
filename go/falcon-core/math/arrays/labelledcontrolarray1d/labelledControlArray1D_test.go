@@ -9,7 +9,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/controlarray"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -57,7 +57,7 @@ func TestLabelledControlArray1D_ShapeDimensionData(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != len(defaultShape) {
+	if dim != uint32(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	data, err := a.Data()
@@ -551,18 +551,14 @@ func TestLabelledControlArray1D_RemoveOffsetSum(t *testing.T) {
 	}
 }
 
-func TestLabelledControlArray1D_ReshapeWhereFlip(t *testing.T) {
+func TestLabelledControlArray1D_WhereFlip(t *testing.T) {
 	aold, _ := farraydouble.FromData(defaultData, defaultShape)
 	bgate, _ := connection.NewBarrierGate("B1")
 	volt, _ := symbolunit.NewVolt()
 	ac, _ := acquisitioncontext.New(bgate, instrumenttypes.VoltageSource(), volt)
 	a, _ := FromFArray(aold, ac)
 	defer a.Close()
-	_, err := a.Reshape([]int{4, 1})
-	if err != nil {
-		t.Errorf("Reshape failed: %v", err)
-	}
-	_, err = a.Where(defaultVal)
+	_, err := a.Where(defaultVal)
 	if err != nil {
 		t.Errorf("Where failed: %v", err)
 	}
@@ -724,8 +720,8 @@ func TestLabelledControlArray1D_FromControlArray(t *testing.T) {
 	defer lma.Close()
 
 	// CAPIHandle (open)
-	ptr, err := lma.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := lma.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 

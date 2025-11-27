@@ -9,7 +9,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/measuredarray"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -58,7 +58,7 @@ func TestLabelledMeasuredArray_ShapeDimensionData(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != len(defaultShape) {
+	if dim != uint32(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	data, err := a.Data()
@@ -627,7 +627,7 @@ func TestLabelledMeasuredArray_ReshapeWhereFlip(t *testing.T) {
 	ac, _ := acquisitioncontext.New(bgate, instrumenttypes.VoltageSource(), volt)
 	a, _ := FromFArray(aold, ac)
 	defer a.Close()
-	_, err := a.Reshape([]int{4, 1})
+	_, err := a.Reshape([]int32{4, 1})
 	if err != nil {
 		t.Errorf("Reshape failed: %v", err)
 	}

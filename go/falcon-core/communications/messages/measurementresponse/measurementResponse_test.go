@@ -10,7 +10,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledarrayslabelledmeasuredarray"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledmeasuredarray"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -142,9 +142,6 @@ func TestMeasurementResponse_FullCoverage(t *testing.T) {
 	}
 	if _, err := h3.Message(); err == nil {
 		t.Errorf("Message on closed should error")
-	}
-	if _, err := h3.CAPIHandle(); err == nil {
-		t.Errorf("CAPIHandle on closed should error")
 	}
 	if _, err := h3.ToJSON(); err == nil {
 		t.Errorf("ToJSON on closed should error")

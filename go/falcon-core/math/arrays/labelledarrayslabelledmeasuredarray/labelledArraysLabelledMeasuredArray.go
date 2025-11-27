@@ -76,14 +76,14 @@ func (h *Handle) Labels() (*listacquisitioncontext.Handle, error) {
 		return listacquisitioncontext.FromCAPI(unsafe.Pointer(C.LabelledArraysLabelledMeasuredArray_labels(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Iscontrolarrays() (bool, error) {
+func (h *Handle) IsControlArrays() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
-		return bool(C.LabelledArraysLabelledMeasuredArray_isControlArrays(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
+		return bool(C.LabelledArraysLabelledMeasuredArray_is_control_arrays(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Ismeasuredarrays() (bool, error) {
+func (h *Handle) IsMeasuredArrays() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
-		return bool(C.LabelledArraysLabelledMeasuredArray_isMeasuredArrays(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
+		return bool(C.LabelledArraysLabelledMeasuredArray_is_measured_arrays(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) PushBack(value *labelledmeasuredarray.Handle) error {
@@ -133,7 +133,7 @@ func (h *Handle) Index(value *labelledmeasuredarray.Handle) (uint32, error) {
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
-		return Handle.FromCAPI(unsafe.Pointer(C.LabelledArraysLabelledMeasuredArray_intersection(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.LabelledArraysLabelledMeasuredArrayHandle(other.CAPIHandle()))))
+		return FromCAPI(unsafe.Pointer(C.LabelledArraysLabelledMeasuredArray_intersection(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.LabelledArraysLabelledMeasuredArrayHandle(other.CAPIHandle()))))
 	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {

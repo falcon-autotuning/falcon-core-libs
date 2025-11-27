@@ -42,7 +42,7 @@ func TestConnections_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Items() error: %v", err)
 		}
-		if size, _ := items.Size(); size != len(conns) {
+		if size, _ := items.Size(); size != uint32(len(conns)) {
 			t.Errorf("Items() length = %v, want %v", size, len(conns))
 		}
 	})
@@ -140,7 +140,7 @@ func TestConnections_Intersection(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Intersection Items error: %v", err)
 		}
-		if size, _ := items.Size(); size != len(conns) {
+		if size, _ := items.Size(); size != uint32(len(conns)) {
 			t.Errorf("Intersection Items = %v, want %v", size, len(conns))
 		}
 	})

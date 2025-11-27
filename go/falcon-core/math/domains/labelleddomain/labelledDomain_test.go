@@ -6,7 +6,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
@@ -103,8 +103,8 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 	defer ld6.Close()
 
 	// CAPIHandle (open)
-	ptr, err := ld.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := ld.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 
@@ -256,10 +256,6 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 
 	// Error branches
 	ld.Close()
-	_, err = ld.CAPIHandle()
-	if err == nil {
-		t.Errorf("CAPIHandle on closed should error")
-	}
 	err = ld.Close()
 	if err == nil {
 		t.Errorf("Second Close should error")

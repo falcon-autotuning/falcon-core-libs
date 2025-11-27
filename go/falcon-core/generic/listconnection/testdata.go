@@ -3,7 +3,7 @@ package listconnection
 import (
 	"fmt"
 
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/deviceStructures/connection"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
 func mustBarrierGate(name string) *connection.Handle {
