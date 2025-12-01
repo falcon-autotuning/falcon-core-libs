@@ -81,10 +81,6 @@ class Adjacency:
         ret = self._c.flip(axis)
         return cls._from_capi(ret)
 
-    def to_json_string(self, ) -> str:
-        ret = self._c.to_json_string()
-        return ret
-
     def __mul__(self, other):
         """Operator overload for *"""
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:

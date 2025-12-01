@@ -1,0 +1,7 @@
+cimport _c_api
+
+cdef class ListPairInstrumentPortPortTransform:
+    cdef _c_api.ListPairInstrumentPortPortTransformHandle handle
+    cdef bint owned
+
+cdef ListPairInstrumentPortPortTransform _list_pair_instrument_port_port_transform_from_capi(_c_api.ListPairInstrumentPortPortTransformHandle h)

@@ -1,34 +1,32 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .pair_connection_float cimport PairConnectionFloat
+from . cimport pair_connection_float
 
 cdef class ListPairConnectionFloat:
-    cdef c_api.ListPairConnectionFloatHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.ListPairConnectionFloatHandle>0
-        self.owned = True
+        self.handle = <_c_api.ListPairConnectionFloatHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.ListPairConnectionFloatHandle>0 and self.owned:
-            c_api.ListPairConnectionFloat_destroy(self.handle)
-        self.handle = <c_api.ListPairConnectionFloatHandle>0
+        if self.handle != <_c_api.ListPairConnectionFloatHandle>0 and self.owned:
+            _c_api.ListPairConnectionFloat_destroy(self.handle)
+        self.handle = <_c_api.ListPairConnectionFloatHandle>0
 
-    cdef ListPairConnectionFloat from_capi(cls, c_api.ListPairConnectionFloatHandle h):
-        cdef ListPairConnectionFloat obj = <ListPairConnectionFloat>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef ListPairConnectionFloat _list_pair_connection_float_from_capi(_c_api.ListPairConnectionFloatHandle h):
+    if h == <_c_api.ListPairConnectionFloatHandle>0:
+        return None
+    cdef ListPairConnectionFloat obj = ListPairConnectionFloat.__new__(ListPairConnectionFloat)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.ListPairConnectionFloatHandle h
-        h = c_api.ListPairConnectionFloat_create_empty()
-        if h == <c_api.ListPairConnectionFloatHandle>0:
+    def empty(cls, ):
+        cdef _c_api.ListPairConnectionFloatHandle h
+        h = _c_api.ListPairConnectionFloat_create_empty()
+        if h == <_c_api.ListPairConnectionFloatHandle>0:
             raise MemoryError("Failed to create ListPairConnectionFloat")
         cdef ListPairConnectionFloat obj = <ListPairConnectionFloat>cls.__new__(cls)
         obj.handle = h
@@ -36,10 +34,10 @@ cdef class ListPairConnectionFloat:
         return obj
 
     @classmethod
-    def new(cls, data, count):
-        cdef c_api.ListPairConnectionFloatHandle h
-        h = c_api.ListPairConnectionFloat_create(<c_api.PairConnectionFloatHandle>data.handle, count)
-        if h == <c_api.ListPairConnectionFloatHandle>0:
+    def create(cls, PairConnectionFloat data, size_t count):
+        cdef _c_api.ListPairConnectionFloatHandle h
+        h = _c_api.ListPairConnectionFloat_create(data.handle, count)
+        if h == <_c_api.ListPairConnectionFloatHandle>0:
             raise MemoryError("Failed to create ListPairConnectionFloat")
         cdef ListPairConnectionFloat obj = <ListPairConnectionFloat>cls.__new__(cls)
         obj.handle = h
@@ -47,17 +45,15 @@ cdef class ListPairConnectionFloat:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.ListPairConnectionFloatHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.ListPairConnectionFloatHandle h
         try:
-            h = c_api.ListPairConnectionFloat_from_json_string(s_json)
+            h = _c_api.ListPairConnectionFloat_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.ListPairConnectionFloatHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.ListPairConnectionFloatHandle>0:
             raise MemoryError("Failed to create ListPairConnectionFloat")
         cdef ListPairConnectionFloat obj = <ListPairConnectionFloat>cls.__new__(cls)
         obj.handle = h
@@ -65,103 +61,60 @@ cdef class ListPairConnectionFloat:
         return obj
 
     @staticmethod
-    def fill_value(count, value):
-        cdef c_api.ListPairConnectionFloatHandle h_ret
-        h_ret = c_api.ListPairConnectionFloat_fill_value(count, <c_api.PairConnectionFloatHandle>value.handle)
-        if h_ret == <c_api.ListPairConnectionFloatHandle>0:
+    def fill_value(size_t count, PairConnectionFloat value):
+        cdef _c_api.ListPairConnectionFloatHandle h_ret = _c_api.ListPairConnectionFloat_fill_value(count, value.handle)
+        if h_ret == <_c_api.ListPairConnectionFloatHandle>0:
             return None
-        return ListPairConnectionFloat.from_capi(ListPairConnectionFloat, h_ret)
+        return _list_pair_connection_float_from_capi(h_ret)
 
-    def push_back(self, value):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListPairConnectionFloat_push_back(self.handle, <c_api.PairConnectionFloatHandle>value.handle)
+    def push_back(self, PairConnectionFloat value):
+        _c_api.ListPairConnectionFloat_push_back(self.handle, value.handle)
 
-    def size(self):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_size(self.handle)
+    def size(self, ):
+        return _c_api.ListPairConnectionFloat_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_empty(self.handle)
+    def empty(self, ):
+        return _c_api.ListPairConnectionFloat_empty(self.handle)
 
-    def erase_at(self, idx):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListPairConnectionFloat_erase_at(self.handle, idx)
+    def erase_at(self, size_t idx):
+        _c_api.ListPairConnectionFloat_erase_at(self.handle, idx)
 
-    def clear(self):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListPairConnectionFloat_clear(self.handle)
+    def clear(self, ):
+        _c_api.ListPairConnectionFloat_clear(self.handle)
 
-    def at(self, idx):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.PairConnectionFloatHandle h_ret
-        h_ret = c_api.ListPairConnectionFloat_at(self.handle, idx)
-        if h_ret == <c_api.PairConnectionFloatHandle>0:
+    def at(self, size_t idx):
+        cdef _c_api.PairConnectionFloatHandle h_ret = _c_api.ListPairConnectionFloat_at(self.handle, idx)
+        if h_ret == <_c_api.PairConnectionFloatHandle>0:
             return None
-        return PairConnectionFloat.from_capi(PairConnectionFloat, h_ret)
+        return pair_connection_float._pair_connection_float_from_capi(h_ret)
 
-    def items(self, out_buffer, buffer_size):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_items(self.handle, <c_api.PairConnectionFloatHandle>out_buffer.handle, buffer_size)
+    def items(self, PairConnectionFloat out_buffer, size_t buffer_size):
+        return _c_api.ListPairConnectionFloat_items(self.handle, out_buffer.handle, buffer_size)
 
-    def contains(self, value):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_contains(self.handle, <c_api.PairConnectionFloatHandle>value.handle)
+    def contains(self, PairConnectionFloat value):
+        return _c_api.ListPairConnectionFloat_contains(self.handle, value.handle)
 
-    def index(self, value):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_index(self.handle, <c_api.PairConnectionFloatHandle>value.handle)
+    def index(self, PairConnectionFloat value):
+        return _c_api.ListPairConnectionFloat_index(self.handle, value.handle)
 
-    def intersection(self, other):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListPairConnectionFloatHandle h_ret
-        h_ret = c_api.ListPairConnectionFloat_intersection(self.handle, <c_api.ListPairConnectionFloatHandle>other.handle)
-        if h_ret == <c_api.ListPairConnectionFloatHandle>0:
+    def intersection(self, ListPairConnectionFloat other):
+        cdef _c_api.ListPairConnectionFloatHandle h_ret = _c_api.ListPairConnectionFloat_intersection(self.handle, other.handle)
+        if h_ret == <_c_api.ListPairConnectionFloatHandle>0:
             return None
-        return ListPairConnectionFloat.from_capi(ListPairConnectionFloat, h_ret)
+        return _list_pair_connection_float_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_equal(self.handle, <c_api.ListPairConnectionFloatHandle>b.handle)
+    def equal(self, ListPairConnectionFloat b):
+        return _c_api.ListPairConnectionFloat_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, ListPairConnectionFloat b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairConnectionFloat_not_equal(self.handle, <c_api.ListPairConnectionFloatHandle>b.handle)
+    def not_equal(self, ListPairConnectionFloat b):
+        return _c_api.ListPairConnectionFloat_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, ListPairConnectionFloat b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.ListPairConnectionFloatHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.ListPairConnectionFloat_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef ListPairConnectionFloat _listpairconnectionfloat_from_capi(c_api.ListPairConnectionFloatHandle h):
-    cdef ListPairConnectionFloat obj = <ListPairConnectionFloat>ListPairConnectionFloat.__new__(ListPairConnectionFloat)
-    obj.handle = h

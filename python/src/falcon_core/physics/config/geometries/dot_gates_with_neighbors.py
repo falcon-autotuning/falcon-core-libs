@@ -60,10 +60,10 @@ class DotGatesWithNeighbors:
         ret = self._c.clear()
         return ret
 
-    def const_at(self, idx: Any) -> const DotGateWithNeighbors:
+    def const_at(self, idx: Any) -> DotGateWithNeighbors:
         ret = self._c.const_at(idx)
         if ret is None: return None
-        return const DotGateWithNeighbors._from_capi(ret)
+        return DotGateWithNeighbors._from_capi(ret)
 
     def at(self, idx: Any) -> DotGateWithNeighbors:
         ret = self._c.at(idx)
@@ -89,10 +89,6 @@ class DotGatesWithNeighbors:
 
     def not_equal(self, b: DotGatesWithNeighbors) -> None:
         ret = self._c.not_equal(b._c)
-        return ret
-
-    def to_json_string(self, ) -> str:
-        ret = self._c.to_json_string()
         return ret
 
     def __eq__(self, other):

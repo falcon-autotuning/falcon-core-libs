@@ -298,10 +298,6 @@ class LabelledControlArray1D:
         ret = self._c.get_summed_diff_array_of_squares(other._c)
         return ret
 
-    def to_json_string(self, ) -> str:
-        ret = self._c.to_json_string()
-        return ret
-
     def __add__(self, other):
         """Operator overload for +"""
         if isinstance(other, LabelledControlArray1D):

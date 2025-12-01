@@ -82,10 +82,6 @@ class Impedances:
         ret = self._c.not_equal(b._c)
         return ret
 
-    def to_json_string(self, ) -> str:
-        ret = self._c.to_json_string()
-        return ret
-
     def __eq__(self, other):
         """Operator overload for =="""
         if not isinstance(other, Impedances):

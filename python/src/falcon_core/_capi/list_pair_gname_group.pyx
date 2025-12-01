@@ -1,34 +1,32 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .pair_gname_group cimport PairGnameGroup
+from . cimport pair_gname_group
 
 cdef class ListPairGnameGroup:
-    cdef c_api.ListPairGnameGroupHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.ListPairGnameGroupHandle>0
-        self.owned = True
+        self.handle = <_c_api.ListPairGnameGroupHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.ListPairGnameGroupHandle>0 and self.owned:
-            c_api.ListPairGnameGroup_destroy(self.handle)
-        self.handle = <c_api.ListPairGnameGroupHandle>0
+        if self.handle != <_c_api.ListPairGnameGroupHandle>0 and self.owned:
+            _c_api.ListPairGnameGroup_destroy(self.handle)
+        self.handle = <_c_api.ListPairGnameGroupHandle>0
 
-    cdef ListPairGnameGroup from_capi(cls, c_api.ListPairGnameGroupHandle h):
-        cdef ListPairGnameGroup obj = <ListPairGnameGroup>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef ListPairGnameGroup _list_pair_gname_group_from_capi(_c_api.ListPairGnameGroupHandle h):
+    if h == <_c_api.ListPairGnameGroupHandle>0:
+        return None
+    cdef ListPairGnameGroup obj = ListPairGnameGroup.__new__(ListPairGnameGroup)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.ListPairGnameGroupHandle h
-        h = c_api.ListPairGnameGroup_create_empty()
-        if h == <c_api.ListPairGnameGroupHandle>0:
+    def empty(cls, ):
+        cdef _c_api.ListPairGnameGroupHandle h
+        h = _c_api.ListPairGnameGroup_create_empty()
+        if h == <_c_api.ListPairGnameGroupHandle>0:
             raise MemoryError("Failed to create ListPairGnameGroup")
         cdef ListPairGnameGroup obj = <ListPairGnameGroup>cls.__new__(cls)
         obj.handle = h
@@ -36,10 +34,10 @@ cdef class ListPairGnameGroup:
         return obj
 
     @classmethod
-    def new(cls, data, count):
-        cdef c_api.ListPairGnameGroupHandle h
-        h = c_api.ListPairGnameGroup_create(<c_api.PairGnameGroupHandle>data.handle, count)
-        if h == <c_api.ListPairGnameGroupHandle>0:
+    def create(cls, PairGnameGroup data, size_t count):
+        cdef _c_api.ListPairGnameGroupHandle h
+        h = _c_api.ListPairGnameGroup_create(data.handle, count)
+        if h == <_c_api.ListPairGnameGroupHandle>0:
             raise MemoryError("Failed to create ListPairGnameGroup")
         cdef ListPairGnameGroup obj = <ListPairGnameGroup>cls.__new__(cls)
         obj.handle = h
@@ -47,17 +45,15 @@ cdef class ListPairGnameGroup:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.ListPairGnameGroupHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.ListPairGnameGroupHandle h
         try:
-            h = c_api.ListPairGnameGroup_from_json_string(s_json)
+            h = _c_api.ListPairGnameGroup_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.ListPairGnameGroupHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.ListPairGnameGroupHandle>0:
             raise MemoryError("Failed to create ListPairGnameGroup")
         cdef ListPairGnameGroup obj = <ListPairGnameGroup>cls.__new__(cls)
         obj.handle = h
@@ -65,103 +61,60 @@ cdef class ListPairGnameGroup:
         return obj
 
     @staticmethod
-    def fill_value(count, value):
-        cdef c_api.ListPairGnameGroupHandle h_ret
-        h_ret = c_api.ListPairGnameGroup_fill_value(count, <c_api.PairGnameGroupHandle>value.handle)
-        if h_ret == <c_api.ListPairGnameGroupHandle>0:
+    def fill_value(size_t count, PairGnameGroup value):
+        cdef _c_api.ListPairGnameGroupHandle h_ret = _c_api.ListPairGnameGroup_fill_value(count, value.handle)
+        if h_ret == <_c_api.ListPairGnameGroupHandle>0:
             return None
-        return ListPairGnameGroup.from_capi(ListPairGnameGroup, h_ret)
+        return _list_pair_gname_group_from_capi(h_ret)
 
-    def push_back(self, value):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListPairGnameGroup_push_back(self.handle, <c_api.PairGnameGroupHandle>value.handle)
+    def push_back(self, PairGnameGroup value):
+        _c_api.ListPairGnameGroup_push_back(self.handle, value.handle)
 
-    def size(self):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_size(self.handle)
+    def size(self, ):
+        return _c_api.ListPairGnameGroup_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_empty(self.handle)
+    def empty(self, ):
+        return _c_api.ListPairGnameGroup_empty(self.handle)
 
-    def erase_at(self, idx):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListPairGnameGroup_erase_at(self.handle, idx)
+    def erase_at(self, size_t idx):
+        _c_api.ListPairGnameGroup_erase_at(self.handle, idx)
 
-    def clear(self):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListPairGnameGroup_clear(self.handle)
+    def clear(self, ):
+        _c_api.ListPairGnameGroup_clear(self.handle)
 
-    def at(self, idx):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.PairGnameGroupHandle h_ret
-        h_ret = c_api.ListPairGnameGroup_at(self.handle, idx)
-        if h_ret == <c_api.PairGnameGroupHandle>0:
+    def at(self, size_t idx):
+        cdef _c_api.PairGnameGroupHandle h_ret = _c_api.ListPairGnameGroup_at(self.handle, idx)
+        if h_ret == <_c_api.PairGnameGroupHandle>0:
             return None
-        return PairGnameGroup.from_capi(PairGnameGroup, h_ret)
+        return pair_gname_group._pair_gname_group_from_capi(h_ret)
 
-    def items(self, out_buffer, buffer_size):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_items(self.handle, <c_api.PairGnameGroupHandle>out_buffer.handle, buffer_size)
+    def items(self, PairGnameGroup out_buffer, size_t buffer_size):
+        return _c_api.ListPairGnameGroup_items(self.handle, out_buffer.handle, buffer_size)
 
-    def contains(self, value):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_contains(self.handle, <c_api.PairGnameGroupHandle>value.handle)
+    def contains(self, PairGnameGroup value):
+        return _c_api.ListPairGnameGroup_contains(self.handle, value.handle)
 
-    def index(self, value):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_index(self.handle, <c_api.PairGnameGroupHandle>value.handle)
+    def index(self, PairGnameGroup value):
+        return _c_api.ListPairGnameGroup_index(self.handle, value.handle)
 
-    def intersection(self, other):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListPairGnameGroupHandle h_ret
-        h_ret = c_api.ListPairGnameGroup_intersection(self.handle, <c_api.ListPairGnameGroupHandle>other.handle)
-        if h_ret == <c_api.ListPairGnameGroupHandle>0:
+    def intersection(self, ListPairGnameGroup other):
+        cdef _c_api.ListPairGnameGroupHandle h_ret = _c_api.ListPairGnameGroup_intersection(self.handle, other.handle)
+        if h_ret == <_c_api.ListPairGnameGroupHandle>0:
             return None
-        return ListPairGnameGroup.from_capi(ListPairGnameGroup, h_ret)
+        return _list_pair_gname_group_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_equal(self.handle, <c_api.ListPairGnameGroupHandle>b.handle)
+    def equal(self, ListPairGnameGroup b):
+        return _c_api.ListPairGnameGroup_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, ListPairGnameGroup b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListPairGnameGroup_not_equal(self.handle, <c_api.ListPairGnameGroupHandle>b.handle)
+    def not_equal(self, ListPairGnameGroup b):
+        return _c_api.ListPairGnameGroup_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, ListPairGnameGroup b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.ListPairGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.ListPairGnameGroup_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef ListPairGnameGroup _listpairgnamegroup_from_capi(c_api.ListPairGnameGroupHandle h):
-    cdef ListPairGnameGroup obj = <ListPairGnameGroup>ListPairGnameGroup.__new__(ListPairGnameGroup)
-    obj.handle = h

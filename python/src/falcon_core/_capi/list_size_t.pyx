@@ -1,33 +1,31 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
 
 cdef class ListSizeT:
-    cdef c_api.ListSizeTHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.ListSizeTHandle>0
-        self.owned = True
+        self.handle = <_c_api.ListSizeTHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.ListSizeTHandle>0 and self.owned:
-            c_api.ListSizeT_destroy(self.handle)
-        self.handle = <c_api.ListSizeTHandle>0
+        if self.handle != <_c_api.ListSizeTHandle>0 and self.owned:
+            _c_api.ListSizeT_destroy(self.handle)
+        self.handle = <_c_api.ListSizeTHandle>0
 
-    cdef ListSizeT from_capi(cls, c_api.ListSizeTHandle h):
-        cdef ListSizeT obj = <ListSizeT>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef ListSizeT _list_size_t_from_capi(_c_api.ListSizeTHandle h):
+    if h == <_c_api.ListSizeTHandle>0:
+        return None
+    cdef ListSizeT obj = ListSizeT.__new__(ListSizeT)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.ListSizeTHandle h
-        h = c_api.ListSizeT_create_empty()
-        if h == <c_api.ListSizeTHandle>0:
+    def empty(cls, ):
+        cdef _c_api.ListSizeTHandle h
+        h = _c_api.ListSizeT_create_empty()
+        if h == <_c_api.ListSizeTHandle>0:
             raise MemoryError("Failed to create ListSizeT")
         cdef ListSizeT obj = <ListSizeT>cls.__new__(cls)
         obj.handle = h
@@ -35,10 +33,10 @@ cdef class ListSizeT:
         return obj
 
     @classmethod
-    def new(cls, data, count):
-        cdef c_api.ListSizeTHandle h
-        h = c_api.ListSizeT_create(data, count)
-        if h == <c_api.ListSizeTHandle>0:
+    def create(cls, size_t data, size_t count):
+        cdef _c_api.ListSizeTHandle h
+        h = _c_api.ListSizeT_create(data, count)
+        if h == <_c_api.ListSizeTHandle>0:
             raise MemoryError("Failed to create ListSizeT")
         cdef ListSizeT obj = <ListSizeT>cls.__new__(cls)
         obj.handle = h
@@ -46,17 +44,15 @@ cdef class ListSizeT:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.ListSizeTHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.ListSizeTHandle h
         try:
-            h = c_api.ListSizeT_from_json_string(s_json)
+            h = _c_api.ListSizeT_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.ListSizeTHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.ListSizeTHandle>0:
             raise MemoryError("Failed to create ListSizeT")
         cdef ListSizeT obj = <ListSizeT>cls.__new__(cls)
         obj.handle = h
@@ -64,107 +60,64 @@ cdef class ListSizeT:
         return obj
 
     @staticmethod
-    def allocate(count):
-        cdef c_api.ListSizeTHandle h_ret
-        h_ret = c_api.ListSizeT_allocate(count)
-        if h_ret == <c_api.ListSizeTHandle>0:
+    def allocate(size_t count):
+        cdef _c_api.ListSizeTHandle h_ret = _c_api.ListSizeT_allocate(count)
+        if h_ret == <_c_api.ListSizeTHandle>0:
             return None
-        return ListSizeT.from_capi(ListSizeT, h_ret)
+        return _list_size_t_from_capi(h_ret)
 
     @staticmethod
-    def fill_value(count, value):
-        cdef c_api.ListSizeTHandle h_ret
-        h_ret = c_api.ListSizeT_fill_value(count, value)
-        if h_ret == <c_api.ListSizeTHandle>0:
+    def fill_value(size_t count, size_t value):
+        cdef _c_api.ListSizeTHandle h_ret = _c_api.ListSizeT_fill_value(count, value)
+        if h_ret == <_c_api.ListSizeTHandle>0:
             return None
-        return ListSizeT.from_capi(ListSizeT, h_ret)
+        return _list_size_t_from_capi(h_ret)
 
-    def push_back(self, value):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListSizeT_push_back(self.handle, value)
+    def push_back(self, size_t value):
+        _c_api.ListSizeT_push_back(self.handle, value)
 
-    def size(self):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_size(self.handle)
+    def size(self, ):
+        return _c_api.ListSizeT_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_empty(self.handle)
+    def empty(self, ):
+        return _c_api.ListSizeT_empty(self.handle)
 
-    def erase_at(self, idx):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListSizeT_erase_at(self.handle, idx)
+    def erase_at(self, size_t idx):
+        _c_api.ListSizeT_erase_at(self.handle, idx)
 
-    def clear(self):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListSizeT_clear(self.handle)
+    def clear(self, ):
+        _c_api.ListSizeT_clear(self.handle)
 
-    def at(self, idx):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_at(self.handle, idx)
+    def at(self, size_t idx):
+        return _c_api.ListSizeT_at(self.handle, idx)
 
-    def items(self, out_buffer, buffer_size):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_items(self.handle, out_buffer, buffer_size)
+    def items(self, size_t out_buffer, size_t buffer_size):
+        return _c_api.ListSizeT_items(self.handle, out_buffer, buffer_size)
 
-    def contains(self, value):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_contains(self.handle, value)
+    def contains(self, size_t value):
+        return _c_api.ListSizeT_contains(self.handle, value)
 
-    def index(self, value):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_index(self.handle, value)
+    def index(self, size_t value):
+        return _c_api.ListSizeT_index(self.handle, value)
 
-    def intersection(self, other):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListSizeTHandle h_ret
-        h_ret = c_api.ListSizeT_intersection(self.handle, <c_api.ListSizeTHandle>other.handle)
-        if h_ret == <c_api.ListSizeTHandle>0:
+    def intersection(self, ListSizeT other):
+        cdef _c_api.ListSizeTHandle h_ret = _c_api.ListSizeT_intersection(self.handle, other.handle)
+        if h_ret == <_c_api.ListSizeTHandle>0:
             return None
-        return ListSizeT.from_capi(ListSizeT, h_ret)
+        return _list_size_t_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_equal(self.handle, <c_api.ListSizeTHandle>b.handle)
+    def equal(self, ListSizeT b):
+        return _c_api.ListSizeT_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, ListSizeT b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListSizeT_not_equal(self.handle, <c_api.ListSizeTHandle>b.handle)
+    def not_equal(self, ListSizeT b):
+        return _c_api.ListSizeT_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, ListSizeT b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.ListSizeTHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.ListSizeT_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef ListSizeT _listsizet_from_capi(c_api.ListSizeTHandle h):
-    cdef ListSizeT obj = <ListSizeT>ListSizeT.__new__(ListSizeT)
-    obj.handle = h

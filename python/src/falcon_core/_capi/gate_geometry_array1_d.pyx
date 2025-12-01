@@ -1,39 +1,37 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .connection cimport Connection
-from .connections cimport Connections
-from .dot_gate_with_neighbors cimport DotGateWithNeighbors
-from .dot_gates_with_neighbors cimport DotGatesWithNeighbors
-from .left_reservoir_with_implanted_ohmic cimport LeftReservoirWithImplantedOhmic
-from .right_reservoir_with_implanted_ohmic cimport RightReservoirWithImplantedOhmic
+from . cimport connection
+from . cimport connections
+from . cimport dot_gate_with_neighbors
+from . cimport dot_gates_with_neighbors
+from . cimport left_reservoir_with_implanted_ohmic
+from . cimport right_reservoir_with_implanted_ohmic
 
 cdef class GateGeometryArray1D:
-    cdef c_api.GateGeometryArray1DHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.GateGeometryArray1DHandle>0
-        self.owned = True
+        self.handle = <_c_api.GateGeometryArray1DHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.GateGeometryArray1DHandle>0 and self.owned:
-            c_api.GateGeometryArray1D_destroy(self.handle)
-        self.handle = <c_api.GateGeometryArray1DHandle>0
+        if self.handle != <_c_api.GateGeometryArray1DHandle>0 and self.owned:
+            _c_api.GateGeometryArray1D_destroy(self.handle)
+        self.handle = <_c_api.GateGeometryArray1DHandle>0
 
-    cdef GateGeometryArray1D from_capi(cls, c_api.GateGeometryArray1DHandle h):
-        cdef GateGeometryArray1D obj = <GateGeometryArray1D>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h):
+    if h == <_c_api.GateGeometryArray1DHandle>0:
+        return None
+    cdef GateGeometryArray1D obj = GateGeometryArray1D.__new__(GateGeometryArray1D)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new(cls, lineararray, screening_gates):
-        cdef c_api.GateGeometryArray1DHandle h
-        h = c_api.GateGeometryArray1D_create(<c_api.ConnectionsHandle>lineararray.handle, <c_api.ConnectionsHandle>screening_gates.handle)
-        if h == <c_api.GateGeometryArray1DHandle>0:
+    def create(cls, Connections lineararray, Connections screening_gates):
+        cdef _c_api.GateGeometryArray1DHandle h
+        h = _c_api.GateGeometryArray1D_create(lineararray.handle, screening_gates.handle)
+        if h == <_c_api.GateGeometryArray1DHandle>0:
             raise MemoryError("Failed to create GateGeometryArray1D")
         cdef GateGeometryArray1D obj = <GateGeometryArray1D>cls.__new__(cls)
         obj.handle = h
@@ -41,159 +39,102 @@ cdef class GateGeometryArray1D:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.GateGeometryArray1DHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.GateGeometryArray1DHandle h
         try:
-            h = c_api.GateGeometryArray1D_from_json_string(s_json)
+            h = _c_api.GateGeometryArray1D_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.GateGeometryArray1DHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.GateGeometryArray1DHandle>0:
             raise MemoryError("Failed to create GateGeometryArray1D")
         cdef GateGeometryArray1D obj = <GateGeometryArray1D>cls.__new__(cls)
         obj.handle = h
         obj.owned = True
         return obj
 
-    def append_central_gate(self, left_neighbor, selected_gate, right_neighbor):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.GateGeometryArray1D_append_central_gate(self.handle, <c_api.ConnectionHandle>left_neighbor.handle, <c_api.ConnectionHandle>selected_gate.handle, <c_api.ConnectionHandle>right_neighbor.handle)
+    def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):
+        _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle, selected_gate.handle, right_neighbor.handle)
 
-    def all_dot_gates(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.DotGatesWithNeighborsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_all_dot_gates(self.handle)
-        if h_ret == <c_api.DotGatesWithNeighborsHandle>0:
+    def all_dot_gates(self, ):
+        cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
+        if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
             return None
-        return DotGatesWithNeighbors.from_capi(DotGatesWithNeighbors, h_ret)
+        return dot_gates_with_neighbors._dot_gates_with_neighbors_from_capi(h_ret)
 
-    def query_neighbors(self, gate):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_query_neighbors(self.handle, <c_api.ConnectionHandle>gate.handle)
-        if h_ret == <c_api.ConnectionsHandle>0:
+    def query_neighbors(self, Connection gate):
+        cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle)
+        if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return Connections.from_capi(Connections, h_ret)
+        return connections._connections_from_capi(h_ret)
 
-    def left_reservoir(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.LeftReservoirWithImplantedOhmicHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_left_reservoir(self.handle)
-        if h_ret == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
+    def left_reservoir(self, ):
+        cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
+        if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
             return None
-        return LeftReservoirWithImplantedOhmic.from_capi(LeftReservoirWithImplantedOhmic, h_ret)
+        return left_reservoir_with_implanted_ohmic._left_reservoir_with_implanted_ohmic_from_capi(h_ret)
 
-    def right_reservoir(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.RightReservoirWithImplantedOhmicHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_right_reservoir(self.handle)
-        if h_ret == <c_api.RightReservoirWithImplantedOhmicHandle>0:
+    def right_reservoir(self, ):
+        cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
+        if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
             return None
-        return RightReservoirWithImplantedOhmic.from_capi(RightReservoirWithImplantedOhmic, h_ret)
+        return right_reservoir_with_implanted_ohmic._right_reservoir_with_implanted_ohmic_from_capi(h_ret)
 
-    def left_barrier(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.DotGateWithNeighborsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_left_barrier(self.handle)
-        if h_ret == <c_api.DotGateWithNeighborsHandle>0:
+    def left_barrier(self, ):
+        cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
+        if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
             return None
-        return DotGateWithNeighbors.from_capi(DotGateWithNeighbors, h_ret)
+        return dot_gate_with_neighbors._dot_gate_with_neighbors_from_capi(h_ret)
 
-    def right_barrier(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.DotGateWithNeighborsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_right_barrier(self.handle)
-        if h_ret == <c_api.DotGateWithNeighborsHandle>0:
+    def right_barrier(self, ):
+        cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
+        if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
             return None
-        return DotGateWithNeighbors.from_capi(DotGateWithNeighbors, h_ret)
+        return dot_gate_with_neighbors._dot_gate_with_neighbors_from_capi(h_ret)
 
-    def lineararray(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_lineararray(self.handle)
-        if h_ret == <c_api.ConnectionsHandle>0:
+    def lineararray(self, ):
+        cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_lineararray(self.handle)
+        if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return Connections.from_capi(Connections, h_ret)
+        return connections._connections_from_capi(h_ret)
 
-    def screening_gates(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_screening_gates(self.handle)
-        if h_ret == <c_api.ConnectionsHandle>0:
+    def screening_gates(self, ):
+        cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
+        if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return Connections.from_capi(Connections, h_ret)
+        return connections._connections_from_capi(h_ret)
 
-    def raw_central_gates(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_raw_central_gates(self.handle)
-        if h_ret == <c_api.ConnectionsHandle>0:
+    def raw_central_gates(self, ):
+        cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
+        if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return Connections.from_capi(Connections, h_ret)
+        return connections._connections_from_capi(h_ret)
 
-    def central_dot_gates(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.DotGatesWithNeighborsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_central_dot_gates(self.handle)
-        if h_ret == <c_api.DotGatesWithNeighborsHandle>0:
+    def central_dot_gates(self, ):
+        cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
+        if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
             return None
-        return DotGatesWithNeighbors.from_capi(DotGatesWithNeighbors, h_ret)
+        return dot_gates_with_neighbors._dot_gates_with_neighbors_from_capi(h_ret)
 
-    def ohmics(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionsHandle h_ret
-        h_ret = c_api.GateGeometryArray1D_ohmics(self.handle)
-        if h_ret == <c_api.ConnectionsHandle>0:
+    def ohmics(self, ):
+        cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
+        if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return Connections.from_capi(Connections, h_ret)
+        return connections._connections_from_capi(h_ret)
 
-    def equal(self, other):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.GateGeometryArray1D_equal(self.handle, <c_api.GateGeometryArray1DHandle>other.handle)
+    def equal(self, GateGeometryArray1D other):
+        return _c_api.GateGeometryArray1D_equal(self.handle, other.handle)
 
-    def __eq__(self, other):
+    def __eq__(self, GateGeometryArray1D other):
         if not hasattr(other, "handle"):
             return NotImplemented
         return self.equal(other)
 
-    def not_equal(self, other):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.GateGeometryArray1D_not_equal(self.handle, <c_api.GateGeometryArray1DHandle>other.handle)
+    def not_equal(self, GateGeometryArray1D other):
+        return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle)
 
-    def __ne__(self, other):
+    def __ne__(self, GateGeometryArray1D other):
         if not hasattr(other, "handle"):
             return NotImplemented
         return self.not_equal(other)
-
-    def to_json_string(self):
-        if self.handle == <c_api.GateGeometryArray1DHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.GateGeometryArray1D_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef GateGeometryArray1D _gategeometryarray1d_from_capi(c_api.GateGeometryArray1DHandle h):
-    cdef GateGeometryArray1D obj = <GateGeometryArray1D>GateGeometryArray1D.__new__(GateGeometryArray1D)
-    obj.handle = h

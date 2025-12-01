@@ -1,41 +1,37 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .connection cimport Connection
+from . cimport connection
 
 cdef class LeftReservoirWithImplantedOhmic:
-    cdef c_api.LeftReservoirWithImplantedOhmicHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.LeftReservoirWithImplantedOhmicHandle>0
-        self.owned = True
+        self.handle = <_c_api.LeftReservoirWithImplantedOhmicHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.LeftReservoirWithImplantedOhmicHandle>0 and self.owned:
-            c_api.LeftReservoirWithImplantedOhmic_destroy(self.handle)
-        self.handle = <c_api.LeftReservoirWithImplantedOhmicHandle>0
+        if self.handle != <_c_api.LeftReservoirWithImplantedOhmicHandle>0 and self.owned:
+            _c_api.LeftReservoirWithImplantedOhmic_destroy(self.handle)
+        self.handle = <_c_api.LeftReservoirWithImplantedOhmicHandle>0
 
-    cdef LeftReservoirWithImplantedOhmic from_capi(cls, c_api.LeftReservoirWithImplantedOhmicHandle h):
-        cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h):
+    if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
+        return None
+    cdef LeftReservoirWithImplantedOhmic obj = LeftReservoirWithImplantedOhmic.__new__(LeftReservoirWithImplantedOhmic)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new(cls, name, right_neighbor, ohmic):
-        name_bytes = name.encode("utf-8")
-        cdef const char* raw_name = name_bytes
-        cdef size_t len_name = len(name_bytes)
-        cdef c_api.StringHandle s_name = c_api.String_create(raw_name, len_name)
-        cdef c_api.LeftReservoirWithImplantedOhmicHandle h
+    def create(cls, str name, Connection right_neighbor, Connection ohmic):
+        cdef bytes b_name = name.encode("utf-8")
+        cdef StringHandle s_name = _c_api.String_create(b_name, len(b_name))
+        cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
         try:
-            h = c_api.LeftReservoirWithImplantedOhmic_create(s_name, <c_api.ConnectionHandle>right_neighbor.handle, <c_api.ConnectionHandle>ohmic.handle)
+            h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle, ohmic.handle)
         finally:
-            c_api.String_destroy(s_name)
-        if h == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
+            _c_api.String_destroy(s_name)
+        if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
         obj.handle = h
@@ -43,97 +39,65 @@ cdef class LeftReservoirWithImplantedOhmic:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.LeftReservoirWithImplantedOhmicHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
         try:
-            h = c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)
+            h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
         obj.handle = h
         obj.owned = True
         return obj
 
-    def name(self):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
-        if s_ret == <c_api.StringHandle>0:
+    def name(self, ):
+        cdef StringHandle s_ret
+        s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+        if s_ret == <StringHandle>0:
             return ""
         try:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            c_api.String_destroy(s_ret)
+            _c_api.String_destroy(s_ret)
 
-    def type(self):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
-        if s_ret == <c_api.StringHandle>0:
+    def type(self, ):
+        cdef StringHandle s_ret
+        s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+        if s_ret == <StringHandle>0:
             return ""
         try:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            c_api.String_destroy(s_ret)
+            _c_api.String_destroy(s_ret)
 
-    def ohmic(self):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionHandle h_ret
-        h_ret = c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
-        if h_ret == <c_api.ConnectionHandle>0:
+    def ohmic(self, ):
+        cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+        if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return Connection.from_capi(Connection, h_ret)
+        return connection._connection_from_capi(h_ret)
 
-    def right_neighbor(self):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ConnectionHandle h_ret
-        h_ret = c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
-        if h_ret == <c_api.ConnectionHandle>0:
+    def right_neighbor(self, ):
+        cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+        if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return Connection.from_capi(Connection, h_ret)
+        return connection._connection_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, <c_api.LeftReservoirWithImplantedOhmicHandle>b.handle)
+    def equal(self, LeftReservoirWithImplantedOhmic b):
+        return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, LeftReservoirWithImplantedOhmic b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.LeftReservoirWithImplantedOhmic_not_equal(self.handle, <c_api.LeftReservoirWithImplantedOhmicHandle>b.handle)
+    def not_equal(self, LeftReservoirWithImplantedOhmic b):
+        return _c_api.LeftReservoirWithImplantedOhmic_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, LeftReservoirWithImplantedOhmic b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.LeftReservoirWithImplantedOhmicHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.LeftReservoirWithImplantedOhmic_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef LeftReservoirWithImplantedOhmic _leftreservoirwithimplantedohmic_from_capi(c_api.LeftReservoirWithImplantedOhmicHandle h):
-    cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>LeftReservoirWithImplantedOhmic.__new__(LeftReservoirWithImplantedOhmic)
-    obj.handle = h

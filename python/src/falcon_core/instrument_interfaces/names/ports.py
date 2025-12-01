@@ -98,10 +98,10 @@ class Ports:
         ret = self._c.clear()
         return ret
 
-    def const_at(self, idx: Any) -> const InstrumentPort:
+    def const_at(self, idx: Any) -> InstrumentPort:
         ret = self._c.const_at(idx)
         if ret is None: return None
-        return const InstrumentPort._from_capi(ret)
+        return InstrumentPort._from_capi(ret)
 
     def at(self, idx: Any) -> InstrumentPort:
         ret = self._c.at(idx)
@@ -127,10 +127,6 @@ class Ports:
 
     def not_equal(self, b: Ports) -> None:
         ret = self._c.not_equal(b._c)
-        return ret
-
-    def to_json_string(self, ) -> str:
-        ret = self._c.to_json_string()
         return ret
 
     def __eq__(self, other):

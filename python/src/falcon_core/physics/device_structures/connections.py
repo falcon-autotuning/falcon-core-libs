@@ -80,10 +80,10 @@ class Connections:
         ret = self._c.clear()
         return ret
 
-    def const_at(self, idx: Any) -> const Connection:
+    def const_at(self, idx: Any) -> Connection:
         ret = self._c.const_at(idx)
         if ret is None: return None
-        return const Connection._from_capi(ret)
+        return Connection._from_capi(ret)
 
     def at(self, idx: Any) -> Connection:
         ret = self._c.at(idx)
@@ -109,10 +109,6 @@ class Connections:
 
     def not_equal(self, b: Connections) -> None:
         ret = self._c.not_equal(b._c)
-        return ret
-
-    def to_json_string(self, ) -> str:
-        ret = self._c.to_json_string()
         return ret
 
     def __eq__(self, other):

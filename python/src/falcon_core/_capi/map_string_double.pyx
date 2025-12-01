@@ -1,37 +1,35 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .list_double cimport ListDouble
-from .list_pair_string_double cimport ListPairStringDouble
-from .list_string cimport ListString
-from .pair_string_double cimport PairStringDouble
+from . cimport list_double
+from . cimport list_pair_string_double
+from . cimport list_string
+from . cimport pair_string_double
 
 cdef class MapStringDouble:
-    cdef c_api.MapStringDoubleHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.MapStringDoubleHandle>0
-        self.owned = True
+        self.handle = <_c_api.MapStringDoubleHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.MapStringDoubleHandle>0 and self.owned:
-            c_api.MapStringDouble_destroy(self.handle)
-        self.handle = <c_api.MapStringDoubleHandle>0
+        if self.handle != <_c_api.MapStringDoubleHandle>0 and self.owned:
+            _c_api.MapStringDouble_destroy(self.handle)
+        self.handle = <_c_api.MapStringDoubleHandle>0
 
-    cdef MapStringDouble from_capi(cls, c_api.MapStringDoubleHandle h):
-        cdef MapStringDouble obj = <MapStringDouble>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef MapStringDouble _map_string_double_from_capi(_c_api.MapStringDoubleHandle h):
+    if h == <_c_api.MapStringDoubleHandle>0:
+        return None
+    cdef MapStringDouble obj = MapStringDouble.__new__(MapStringDouble)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.MapStringDoubleHandle h
-        h = c_api.MapStringDouble_create_empty()
-        if h == <c_api.MapStringDoubleHandle>0:
+    def empty(cls, ):
+        cdef _c_api.MapStringDoubleHandle h
+        h = _c_api.MapStringDouble_create_empty()
+        if h == <_c_api.MapStringDoubleHandle>0:
             raise MemoryError("Failed to create MapStringDouble")
         cdef MapStringDouble obj = <MapStringDouble>cls.__new__(cls)
         obj.handle = h
@@ -39,10 +37,10 @@ cdef class MapStringDouble:
         return obj
 
     @classmethod
-    def new(cls, data, count):
-        cdef c_api.MapStringDoubleHandle h
-        h = c_api.MapStringDouble_create(<c_api.PairStringDoubleHandle>data.handle, count)
-        if h == <c_api.MapStringDoubleHandle>0:
+    def create(cls, PairStringDouble data, size_t count):
+        cdef _c_api.MapStringDoubleHandle h
+        h = _c_api.MapStringDouble_create(data.handle, count)
+        if h == <_c_api.MapStringDoubleHandle>0:
             raise MemoryError("Failed to create MapStringDouble")
         cdef MapStringDouble obj = <MapStringDouble>cls.__new__(cls)
         obj.handle = h
@@ -50,161 +48,98 @@ cdef class MapStringDouble:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.MapStringDoubleHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.MapStringDoubleHandle h
         try:
-            h = c_api.MapStringDouble_from_json_string(s_json)
+            h = _c_api.MapStringDouble_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.MapStringDoubleHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.MapStringDoubleHandle>0:
             raise MemoryError("Failed to create MapStringDouble")
         cdef MapStringDouble obj = <MapStringDouble>cls.__new__(cls)
         obj.handle = h
         obj.owned = True
         return obj
 
-    def insert_or_assign(self, key, value):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        key_bytes = key.encode("utf-8")
-        cdef const char* raw_key = key_bytes
-        cdef size_t len_key = len(key_bytes)
-        cdef c_api.StringHandle s_key = c_api.String_create(raw_key, len_key)
-        try:
-            c_api.MapStringDouble_insert_or_assign(self.handle, s_key, value)
-        finally:
-            c_api.String_destroy(s_key)
+    def insert_or_assign(self, str key, double value):
+        cdef bytes b_key = key.encode("utf-8")
+        cdef StringHandle s_key = _c_api.String_create(b_key, len(b_key))
+        _c_api.MapStringDouble_insert_or_assign(self.handle, s_key, value)
+        _c_api.String_destroy(s_key)
 
-    def insert(self, key, value):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        key_bytes = key.encode("utf-8")
-        cdef const char* raw_key = key_bytes
-        cdef size_t len_key = len(key_bytes)
-        cdef c_api.StringHandle s_key = c_api.String_create(raw_key, len_key)
-        try:
-            c_api.MapStringDouble_insert(self.handle, s_key, value)
-        finally:
-            c_api.String_destroy(s_key)
+    def insert(self, str key, double value):
+        cdef bytes b_key = key.encode("utf-8")
+        cdef StringHandle s_key = _c_api.String_create(b_key, len(b_key))
+        _c_api.MapStringDouble_insert(self.handle, s_key, value)
+        _c_api.String_destroy(s_key)
 
-    def at(self, key):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        key_bytes = key.encode("utf-8")
-        cdef const char* raw_key = key_bytes
-        cdef size_t len_key = len(key_bytes)
-        cdef c_api.StringHandle s_key = c_api.String_create(raw_key, len_key)
+    def at(self, str key):
+        cdef bytes b_key = key.encode("utf-8")
+        cdef StringHandle s_key = _c_api.String_create(b_key, len(b_key))
         cdef double ret_val
         try:
-            ret_val = c_api.MapStringDouble_at(self.handle, s_key)
+            ret_val = _c_api.MapStringDouble_at(self.handle, s_key)
         finally:
-            c_api.String_destroy(s_key)
+            _c_api.String_destroy(s_key)
         return ret_val
 
-    def erase(self, key):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        key_bytes = key.encode("utf-8")
-        cdef const char* raw_key = key_bytes
-        cdef size_t len_key = len(key_bytes)
-        cdef c_api.StringHandle s_key = c_api.String_create(raw_key, len_key)
-        try:
-            c_api.MapStringDouble_erase(self.handle, s_key)
-        finally:
-            c_api.String_destroy(s_key)
+    def erase(self, str key):
+        cdef bytes b_key = key.encode("utf-8")
+        cdef StringHandle s_key = _c_api.String_create(b_key, len(b_key))
+        _c_api.MapStringDouble_erase(self.handle, s_key)
+        _c_api.String_destroy(s_key)
 
-    def size(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapStringDouble_size(self.handle)
+    def size(self, ):
+        return _c_api.MapStringDouble_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapStringDouble_empty(self.handle)
+    def empty(self, ):
+        return _c_api.MapStringDouble_empty(self.handle)
 
-    def clear(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.MapStringDouble_clear(self.handle)
+    def clear(self, ):
+        _c_api.MapStringDouble_clear(self.handle)
 
-    def contains(self, key):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        key_bytes = key.encode("utf-8")
-        cdef const char* raw_key = key_bytes
-        cdef size_t len_key = len(key_bytes)
-        cdef c_api.StringHandle s_key = c_api.String_create(raw_key, len_key)
+    def contains(self, str key):
+        cdef bytes b_key = key.encode("utf-8")
+        cdef StringHandle s_key = _c_api.String_create(b_key, len(b_key))
         cdef bool ret_val
         try:
-            ret_val = c_api.MapStringDouble_contains(self.handle, s_key)
+            ret_val = _c_api.MapStringDouble_contains(self.handle, s_key)
         finally:
-            c_api.String_destroy(s_key)
+            _c_api.String_destroy(s_key)
         return ret_val
 
-    def keys(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListStringHandle h_ret
-        h_ret = c_api.MapStringDouble_keys(self.handle)
-        if h_ret == <c_api.ListStringHandle>0:
+    def keys(self, ):
+        cdef _c_api.ListStringHandle h_ret = _c_api.MapStringDouble_keys(self.handle)
+        if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return ListString.from_capi(ListString, h_ret)
+        return list_string._list_string_from_capi(h_ret)
 
-    def values(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListDoubleHandle h_ret
-        h_ret = c_api.MapStringDouble_values(self.handle)
-        if h_ret == <c_api.ListDoubleHandle>0:
+    def values(self, ):
+        cdef _c_api.ListDoubleHandle h_ret = _c_api.MapStringDouble_values(self.handle)
+        if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return ListDouble.from_capi(ListDouble, h_ret)
+        return list_double._list_double_from_capi(h_ret)
 
-    def items(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListPairStringDoubleHandle h_ret
-        h_ret = c_api.MapStringDouble_items(self.handle)
-        if h_ret == <c_api.ListPairStringDoubleHandle>0:
+    def items(self, ):
+        cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.MapStringDouble_items(self.handle)
+        if h_ret == <_c_api.ListPairStringDoubleHandle>0:
             return None
-        return ListPairStringDouble.from_capi(ListPairStringDouble, h_ret)
+        return list_pair_string_double._list_pair_string_double_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapStringDouble_equal(self.handle, <c_api.MapStringDoubleHandle>b.handle)
+    def equal(self, MapStringDouble b):
+        return _c_api.MapStringDouble_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, MapStringDouble b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapStringDouble_not_equal(self.handle, <c_api.MapStringDoubleHandle>b.handle)
+    def not_equal(self, MapStringDouble b):
+        return _c_api.MapStringDouble_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, MapStringDouble b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.MapStringDoubleHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.MapStringDouble_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef MapStringDouble _mapstringdouble_from_capi(c_api.MapStringDoubleHandle h):
-    cdef MapStringDouble obj = <MapStringDouble>MapStringDouble.__new__(MapStringDouble)
-    obj.handle = h

@@ -1,39 +1,36 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .connection cimport Connection
-from .instrument_port cimport InstrumentPort
-from .list_connection cimport ListConnection
-from .list_instrument_port cimport ListInstrumentPort
-from .list_string cimport ListString
-from .const _instrument_port cimport const InstrumentPort
+from . cimport connection
+from . cimport instrument_port
+from . cimport list_connection
+from . cimport list_instrument_port
+from . cimport list_string
 
 cdef class Ports:
-    cdef c_api.PortsHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.PortsHandle>0
-        self.owned = True
+        self.handle = <_c_api.PortsHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.PortsHandle>0 and self.owned:
-            c_api.Ports_destroy(self.handle)
-        self.handle = <c_api.PortsHandle>0
+        if self.handle != <_c_api.PortsHandle>0 and self.owned:
+            _c_api.Ports_destroy(self.handle)
+        self.handle = <_c_api.PortsHandle>0
 
-    cdef Ports from_capi(cls, c_api.PortsHandle h):
-        cdef Ports obj = <Ports>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef Ports _ports_from_capi(_c_api.PortsHandle h):
+    if h == <_c_api.PortsHandle>0:
+        return None
+    cdef Ports obj = Ports.__new__(Ports)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.PortsHandle h
-        h = c_api.Ports_create_empty()
-        if h == <c_api.PortsHandle>0:
+    def empty(cls, ):
+        cdef _c_api.PortsHandle h
+        h = _c_api.Ports_create_empty()
+        if h == <_c_api.PortsHandle>0:
             raise MemoryError("Failed to create Ports")
         cdef Ports obj = <Ports>cls.__new__(cls)
         obj.handle = h
@@ -41,10 +38,10 @@ cdef class Ports:
         return obj
 
     @classmethod
-    def new(cls, items):
-        cdef c_api.PortsHandle h
-        h = c_api.Ports_create(<c_api.ListInstrumentPortHandle>items.handle)
-        if h == <c_api.PortsHandle>0:
+    def create(cls, ListInstrumentPort items):
+        cdef _c_api.PortsHandle h
+        h = _c_api.Ports_create(items.handle)
+        if h == <_c_api.PortsHandle>0:
             raise MemoryError("Failed to create Ports")
         cdef Ports obj = <Ports>cls.__new__(cls)
         obj.handle = h
@@ -52,206 +49,129 @@ cdef class Ports:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.PortsHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.PortsHandle h
         try:
-            h = c_api.Ports_from_json_string(s_json)
+            h = _c_api.Ports_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.PortsHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.PortsHandle>0:
             raise MemoryError("Failed to create Ports")
         cdef Ports obj = <Ports>cls.__new__(cls)
         obj.handle = h
         obj.owned = True
         return obj
 
-    def ports(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListInstrumentPortHandle h_ret
-        h_ret = c_api.Ports_ports(self.handle)
-        if h_ret == <c_api.ListInstrumentPortHandle>0:
+    def ports(self, ):
+        cdef _c_api.ListInstrumentPortHandle h_ret = _c_api.Ports_ports(self.handle)
+        if h_ret == <_c_api.ListInstrumentPortHandle>0:
             return None
-        return ListInstrumentPort.from_capi(ListInstrumentPort, h_ret)
+        return list_instrument_port._list_instrument_port_from_capi(h_ret)
 
-    def default_names(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListStringHandle h_ret
-        h_ret = c_api.Ports_default_names(self.handle)
-        if h_ret == <c_api.ListStringHandle>0:
+    def default_names(self, ):
+        cdef _c_api.ListStringHandle h_ret = _c_api.Ports_default_names(self.handle)
+        if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return ListString.from_capi(ListString, h_ret)
+        return list_string._list_string_from_capi(h_ret)
 
-    def get_psuedo_names(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListConnectionHandle h_ret
-        h_ret = c_api.Ports_get_psuedo_names(self.handle)
-        if h_ret == <c_api.ListConnectionHandle>0:
+    def get_psuedo_names(self, ):
+        cdef _c_api.ListConnectionHandle h_ret = _c_api.Ports_get_psuedo_names(self.handle)
+        if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return ListConnection.from_capi(ListConnection, h_ret)
+        return list_connection._list_connection_from_capi(h_ret)
 
-    def _get_raw_names(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListStringHandle h_ret
-        h_ret = c_api.Ports__get_raw_names(self.handle)
-        if h_ret == <c_api.ListStringHandle>0:
+    def _get_raw_names(self, ):
+        cdef _c_api.ListStringHandle h_ret = _c_api.Ports__get_raw_names(self.handle)
+        if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return ListString.from_capi(ListString, h_ret)
+        return list_string._list_string_from_capi(h_ret)
 
-    def _get_instrument_facing_names(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListStringHandle h_ret
-        h_ret = c_api.Ports__get_instrument_facing_names(self.handle)
-        if h_ret == <c_api.ListStringHandle>0:
+    def _get_instrument_facing_names(self, ):
+        cdef _c_api.ListStringHandle h_ret = _c_api.Ports__get_instrument_facing_names(self.handle)
+        if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return ListString.from_capi(ListString, h_ret)
+        return list_string._list_string_from_capi(h_ret)
 
-    def _get_psuedoname_matching_port(self, name):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.InstrumentPortHandle h_ret
-        h_ret = c_api.Ports__get_psuedoname_matching_port(self.handle, <c_api.ConnectionHandle>name.handle)
-        if h_ret == <c_api.InstrumentPortHandle>0:
+    def _get_psuedoname_matching_port(self, Connection name):
+        cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports__get_psuedoname_matching_port(self.handle, name.handle)
+        if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return InstrumentPort.from_capi(InstrumentPort, h_ret)
+        return instrument_port._instrument_port_from_capi(h_ret)
 
-    def _get_instrument_type_matching_port(self, type):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        type_bytes = type.encode("utf-8")
-        cdef const char* raw_type = type_bytes
-        cdef size_t len_type = len(type_bytes)
-        cdef c_api.StringHandle s_type = c_api.String_create(raw_type, len_type)
-        cdef c_api.InstrumentPortHandle h_ret
-        try:
-            h_ret = c_api.Ports__get_instrument_type_matching_port(self.handle, s_type)
-        finally:
-            c_api.String_destroy(s_type)
-        if h_ret == <c_api.InstrumentPortHandle>0:
+    def _get_instrument_type_matching_port(self, str type):
+        cdef bytes b_type = type.encode("utf-8")
+        cdef StringHandle s_type = _c_api.String_create(b_type, len(b_type))
+        cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports__get_instrument_type_matching_port(self.handle, s_type)
+        _c_api.String_destroy(s_type)
+        if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return InstrumentPort.from_capi(InstrumentPort, h_ret)
+        return instrument_port._instrument_port_from_capi(h_ret)
 
-    def is_knobs(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_is_knobs(self.handle)
+    def is_knobs(self, ):
+        return _c_api.Ports_is_knobs(self.handle)
 
-    def is_meters(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_is_meters(self.handle)
+    def is_meters(self, ):
+        return _c_api.Ports_is_meters(self.handle)
 
-    def intersection(self, other):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.PortsHandle h_ret
-        h_ret = c_api.Ports_intersection(self.handle, <c_api.PortsHandle>other.handle)
-        if h_ret == <c_api.PortsHandle>0:
+    def intersection(self, Ports other):
+        cdef _c_api.PortsHandle h_ret = _c_api.Ports_intersection(self.handle, other.handle)
+        if h_ret == <_c_api.PortsHandle>0:
             return None
-        return Ports.from_capi(Ports, h_ret)
+        return _ports_from_capi(h_ret)
 
-    def push_back(self, value):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.Ports_push_back(self.handle, <c_api.InstrumentPortHandle>value.handle)
+    def push_back(self, InstrumentPort value):
+        _c_api.Ports_push_back(self.handle, value.handle)
 
-    def size(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_size(self.handle)
+    def size(self, ):
+        return _c_api.Ports_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_empty(self.handle)
+    def empty(self, ):
+        return _c_api.Ports_empty(self.handle)
 
-    def erase_at(self, idx):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.Ports_erase_at(self.handle, idx)
+    def erase_at(self, size_t idx):
+        _c_api.Ports_erase_at(self.handle, idx)
 
-    def clear(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.Ports_clear(self.handle)
+    def clear(self, ):
+        _c_api.Ports_clear(self.handle)
 
-    def const_at(self, idx):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.const InstrumentPortHandle h_ret
-        h_ret = c_api.Ports_const_at(self.handle, idx)
-        if h_ret == <c_api.const InstrumentPortHandle>0:
+    def const_at(self, size_t idx):
+        cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports_const_at(self.handle, idx)
+        if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return const InstrumentPort.from_capi(const InstrumentPort, h_ret)
+        return instrument_port._instrument_port_from_capi(h_ret)
 
-    def at(self, idx):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.InstrumentPortHandle h_ret
-        h_ret = c_api.Ports_at(self.handle, idx)
-        if h_ret == <c_api.InstrumentPortHandle>0:
+    def at(self, size_t idx):
+        cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports_at(self.handle, idx)
+        if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return InstrumentPort.from_capi(InstrumentPort, h_ret)
+        return instrument_port._instrument_port_from_capi(h_ret)
 
-    def items(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListStringHandle h_ret
-        h_ret = c_api.Ports_items(self.handle)
-        if h_ret == <c_api.ListStringHandle>0:
+    def items(self, ):
+        cdef _c_api.ListStringHandle h_ret = _c_api.Ports_items(self.handle)
+        if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return ListString.from_capi(ListString, h_ret)
+        return list_string._list_string_from_capi(h_ret)
 
-    def contains(self, value):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_contains(self.handle, <c_api.InstrumentPortHandle>value.handle)
+    def contains(self, InstrumentPort value):
+        return _c_api.Ports_contains(self.handle, value.handle)
 
-    def index(self, value):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_index(self.handle, <c_api.InstrumentPortHandle>value.handle)
+    def index(self, InstrumentPort value):
+        return _c_api.Ports_index(self.handle, value.handle)
 
-    def equal(self, b):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_equal(self.handle, <c_api.PortsHandle>b.handle)
+    def equal(self, Ports b):
+        return _c_api.Ports_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, Ports b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.Ports_not_equal(self.handle, <c_api.PortsHandle>b.handle)
+    def not_equal(self, Ports b):
+        return _c_api.Ports_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, Ports b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.PortsHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.Ports_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef Ports _ports_from_capi(c_api.PortsHandle h):
-    cdef Ports obj = <Ports>Ports.__new__(Ports)
-    obj.handle = h

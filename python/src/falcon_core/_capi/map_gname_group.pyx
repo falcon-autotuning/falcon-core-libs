@@ -1,39 +1,37 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .gname cimport Gname
-from .group cimport Group
-from .list_gname cimport ListGname
-from .list_group cimport ListGroup
-from .list_pair_gname_group cimport ListPairGnameGroup
-from .pair_gname_group cimport PairGnameGroup
+from . cimport gname
+from . cimport group
+from . cimport list_gname
+from . cimport list_group
+from . cimport list_pair_gname_group
+from . cimport pair_gname_group
 
 cdef class MapGnameGroup:
-    cdef c_api.MapGnameGroupHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.MapGnameGroupHandle>0
-        self.owned = True
+        self.handle = <_c_api.MapGnameGroupHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.MapGnameGroupHandle>0 and self.owned:
-            c_api.MapGnameGroup_destroy(self.handle)
-        self.handle = <c_api.MapGnameGroupHandle>0
+        if self.handle != <_c_api.MapGnameGroupHandle>0 and self.owned:
+            _c_api.MapGnameGroup_destroy(self.handle)
+        self.handle = <_c_api.MapGnameGroupHandle>0
 
-    cdef MapGnameGroup from_capi(cls, c_api.MapGnameGroupHandle h):
-        cdef MapGnameGroup obj = <MapGnameGroup>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef MapGnameGroup _map_gname_group_from_capi(_c_api.MapGnameGroupHandle h):
+    if h == <_c_api.MapGnameGroupHandle>0:
+        return None
+    cdef MapGnameGroup obj = MapGnameGroup.__new__(MapGnameGroup)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.MapGnameGroupHandle h
-        h = c_api.MapGnameGroup_create_empty()
-        if h == <c_api.MapGnameGroupHandle>0:
+    def empty(cls, ):
+        cdef _c_api.MapGnameGroupHandle h
+        h = _c_api.MapGnameGroup_create_empty()
+        if h == <_c_api.MapGnameGroupHandle>0:
             raise MemoryError("Failed to create MapGnameGroup")
         cdef MapGnameGroup obj = <MapGnameGroup>cls.__new__(cls)
         obj.handle = h
@@ -41,10 +39,10 @@ cdef class MapGnameGroup:
         return obj
 
     @classmethod
-    def new(cls, data, count):
-        cdef c_api.MapGnameGroupHandle h
-        h = c_api.MapGnameGroup_create(<c_api.PairGnameGroupHandle>data.handle, count)
-        if h == <c_api.MapGnameGroupHandle>0:
+    def create(cls, PairGnameGroup data, size_t count):
+        cdef _c_api.MapGnameGroupHandle h
+        h = _c_api.MapGnameGroup_create(data.handle, count)
+        if h == <_c_api.MapGnameGroupHandle>0:
             raise MemoryError("Failed to create MapGnameGroup")
         cdef MapGnameGroup obj = <MapGnameGroup>cls.__new__(cls)
         obj.handle = h
@@ -52,126 +50,78 @@ cdef class MapGnameGroup:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.MapGnameGroupHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.MapGnameGroupHandle h
         try:
-            h = c_api.MapGnameGroup_from_json_string(s_json)
+            h = _c_api.MapGnameGroup_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.MapGnameGroupHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.MapGnameGroupHandle>0:
             raise MemoryError("Failed to create MapGnameGroup")
         cdef MapGnameGroup obj = <MapGnameGroup>cls.__new__(cls)
         obj.handle = h
         obj.owned = True
         return obj
 
-    def insert_or_assign(self, key, value):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.MapGnameGroup_insert_or_assign(self.handle, <c_api.GnameHandle>key.handle, <c_api.GroupHandle>value.handle)
+    def insert_or_assign(self, Gname key, Group value):
+        _c_api.MapGnameGroup_insert_or_assign(self.handle, key.handle, value.handle)
 
-    def insert(self, key, value):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.MapGnameGroup_insert(self.handle, <c_api.GnameHandle>key.handle, <c_api.GroupHandle>value.handle)
+    def insert(self, Gname key, Group value):
+        _c_api.MapGnameGroup_insert(self.handle, key.handle, value.handle)
 
-    def at(self, key):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.GroupHandle h_ret
-        h_ret = c_api.MapGnameGroup_at(self.handle, <c_api.GnameHandle>key.handle)
-        if h_ret == <c_api.GroupHandle>0:
+    def at(self, Gname key):
+        cdef _c_api.GroupHandle h_ret = _c_api.MapGnameGroup_at(self.handle, key.handle)
+        if h_ret == <_c_api.GroupHandle>0:
             return None
-        return Group.from_capi(Group, h_ret)
+        return group._group_from_capi(h_ret)
 
-    def erase(self, key):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.MapGnameGroup_erase(self.handle, <c_api.GnameHandle>key.handle)
+    def erase(self, Gname key):
+        _c_api.MapGnameGroup_erase(self.handle, key.handle)
 
-    def size(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapGnameGroup_size(self.handle)
+    def size(self, ):
+        return _c_api.MapGnameGroup_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapGnameGroup_empty(self.handle)
+    def empty(self, ):
+        return _c_api.MapGnameGroup_empty(self.handle)
 
-    def clear(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.MapGnameGroup_clear(self.handle)
+    def clear(self, ):
+        _c_api.MapGnameGroup_clear(self.handle)
 
-    def contains(self, key):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapGnameGroup_contains(self.handle, <c_api.GnameHandle>key.handle)
+    def contains(self, Gname key):
+        return _c_api.MapGnameGroup_contains(self.handle, key.handle)
 
-    def keys(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListGnameHandle h_ret
-        h_ret = c_api.MapGnameGroup_keys(self.handle)
-        if h_ret == <c_api.ListGnameHandle>0:
+    def keys(self, ):
+        cdef _c_api.ListGnameHandle h_ret = _c_api.MapGnameGroup_keys(self.handle)
+        if h_ret == <_c_api.ListGnameHandle>0:
             return None
-        return ListGname.from_capi(ListGname, h_ret)
+        return list_gname._list_gname_from_capi(h_ret)
 
-    def values(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListGroupHandle h_ret
-        h_ret = c_api.MapGnameGroup_values(self.handle)
-        if h_ret == <c_api.ListGroupHandle>0:
+    def values(self, ):
+        cdef _c_api.ListGroupHandle h_ret = _c_api.MapGnameGroup_values(self.handle)
+        if h_ret == <_c_api.ListGroupHandle>0:
             return None
-        return ListGroup.from_capi(ListGroup, h_ret)
+        return list_group._list_group_from_capi(h_ret)
 
-    def items(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListPairGnameGroupHandle h_ret
-        h_ret = c_api.MapGnameGroup_items(self.handle)
-        if h_ret == <c_api.ListPairGnameGroupHandle>0:
+    def items(self, ):
+        cdef _c_api.ListPairGnameGroupHandle h_ret = _c_api.MapGnameGroup_items(self.handle)
+        if h_ret == <_c_api.ListPairGnameGroupHandle>0:
             return None
-        return ListPairGnameGroup.from_capi(ListPairGnameGroup, h_ret)
+        return list_pair_gname_group._list_pair_gname_group_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapGnameGroup_equal(self.handle, <c_api.MapGnameGroupHandle>b.handle)
+    def equal(self, MapGnameGroup b):
+        return _c_api.MapGnameGroup_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, MapGnameGroup b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.MapGnameGroup_not_equal(self.handle, <c_api.MapGnameGroupHandle>b.handle)
+    def not_equal(self, MapGnameGroup b):
+        return _c_api.MapGnameGroup_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, MapGnameGroup b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.MapGnameGroupHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.MapGnameGroup_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef MapGnameGroup _mapgnamegroup_from_capi(c_api.MapGnameGroupHandle h):
-    cdef MapGnameGroup obj = <MapGnameGroup>MapGnameGroup.__new__(MapGnameGroup)
-    obj.handle = h

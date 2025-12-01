@@ -1,34 +1,32 @@
-# cython: language_level=3
-from . cimport c_api
+cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from libc.stdbool cimport bool
-from .map_string_bool cimport MapStringBool
+from . cimport map_string_bool
 
 cdef class ListMapStringBool:
-    cdef c_api.ListMapStringBoolHandle handle
-    cdef bint owned
-
     def __cinit__(self):
-        self.handle = <c_api.ListMapStringBoolHandle>0
-        self.owned = True
+        self.handle = <_c_api.ListMapStringBoolHandle>0
+        self.owned = False
 
     def __dealloc__(self):
-        if self.handle != <c_api.ListMapStringBoolHandle>0 and self.owned:
-            c_api.ListMapStringBool_destroy(self.handle)
-        self.handle = <c_api.ListMapStringBoolHandle>0
+        if self.handle != <_c_api.ListMapStringBoolHandle>0 and self.owned:
+            _c_api.ListMapStringBool_destroy(self.handle)
+        self.handle = <_c_api.ListMapStringBoolHandle>0
 
-    cdef ListMapStringBool from_capi(cls, c_api.ListMapStringBoolHandle h):
-        cdef ListMapStringBool obj = <ListMapStringBool>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = False
-        return obj
+
+cdef ListMapStringBool _list_map_string_bool_from_capi(_c_api.ListMapStringBoolHandle h):
+    if h == <_c_api.ListMapStringBoolHandle>0:
+        return None
+    cdef ListMapStringBool obj = ListMapStringBool.__new__(ListMapStringBool)
+    obj.handle = h
+    obj.owned = True
+    return obj
 
     @classmethod
-    def new_empty(cls, ):
-        cdef c_api.ListMapStringBoolHandle h
-        h = c_api.ListMapStringBool_create_empty()
-        if h == <c_api.ListMapStringBoolHandle>0:
+    def empty(cls, ):
+        cdef _c_api.ListMapStringBoolHandle h
+        h = _c_api.ListMapStringBool_create_empty()
+        if h == <_c_api.ListMapStringBoolHandle>0:
             raise MemoryError("Failed to create ListMapStringBool")
         cdef ListMapStringBool obj = <ListMapStringBool>cls.__new__(cls)
         obj.handle = h
@@ -36,10 +34,10 @@ cdef class ListMapStringBool:
         return obj
 
     @classmethod
-    def new(cls, data, count):
-        cdef c_api.ListMapStringBoolHandle h
-        h = c_api.ListMapStringBool_create(<c_api.MapStringBoolHandle>data.handle, count)
-        if h == <c_api.ListMapStringBoolHandle>0:
+    def create(cls, MapStringBool data, size_t count):
+        cdef _c_api.ListMapStringBoolHandle h
+        h = _c_api.ListMapStringBool_create(data.handle, count)
+        if h == <_c_api.ListMapStringBoolHandle>0:
             raise MemoryError("Failed to create ListMapStringBool")
         cdef ListMapStringBool obj = <ListMapStringBool>cls.__new__(cls)
         obj.handle = h
@@ -47,17 +45,15 @@ cdef class ListMapStringBool:
         return obj
 
     @classmethod
-    def from_json(cls, json):
-        json_bytes = json.encode("utf-8")
-        cdef const char* raw_json = json_bytes
-        cdef size_t len_json = len(json_bytes)
-        cdef c_api.StringHandle s_json = c_api.String_create(raw_json, len_json)
-        cdef c_api.ListMapStringBoolHandle h
+    def from_json_string(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.ListMapStringBoolHandle h
         try:
-            h = c_api.ListMapStringBool_from_json_string(s_json)
+            h = _c_api.ListMapStringBool_from_json_string(s_json)
         finally:
-            c_api.String_destroy(s_json)
-        if h == <c_api.ListMapStringBoolHandle>0:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.ListMapStringBoolHandle>0:
             raise MemoryError("Failed to create ListMapStringBool")
         cdef ListMapStringBool obj = <ListMapStringBool>cls.__new__(cls)
         obj.handle = h
@@ -65,103 +61,60 @@ cdef class ListMapStringBool:
         return obj
 
     @staticmethod
-    def fill_value(count, value):
-        cdef c_api.ListMapStringBoolHandle h_ret
-        h_ret = c_api.ListMapStringBool_fill_value(count, <c_api.MapStringBoolHandle>value.handle)
-        if h_ret == <c_api.ListMapStringBoolHandle>0:
+    def fill_value(size_t count, MapStringBool value):
+        cdef _c_api.ListMapStringBoolHandle h_ret = _c_api.ListMapStringBool_fill_value(count, value.handle)
+        if h_ret == <_c_api.ListMapStringBoolHandle>0:
             return None
-        return ListMapStringBool.from_capi(ListMapStringBool, h_ret)
+        return _list_map_string_bool_from_capi(h_ret)
 
-    def push_back(self, value):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListMapStringBool_push_back(self.handle, <c_api.MapStringBoolHandle>value.handle)
+    def push_back(self, MapStringBool value):
+        _c_api.ListMapStringBool_push_back(self.handle, value.handle)
 
-    def size(self):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_size(self.handle)
+    def size(self, ):
+        return _c_api.ListMapStringBool_size(self.handle)
 
-    def empty(self):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_empty(self.handle)
+    def empty(self, ):
+        return _c_api.ListMapStringBool_empty(self.handle)
 
-    def erase_at(self, idx):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListMapStringBool_erase_at(self.handle, idx)
+    def erase_at(self, size_t idx):
+        _c_api.ListMapStringBool_erase_at(self.handle, idx)
 
-    def clear(self):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        c_api.ListMapStringBool_clear(self.handle)
+    def clear(self, ):
+        _c_api.ListMapStringBool_clear(self.handle)
 
-    def at(self, idx):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.MapStringBoolHandle h_ret
-        h_ret = c_api.ListMapStringBool_at(self.handle, idx)
-        if h_ret == <c_api.MapStringBoolHandle>0:
+    def at(self, size_t idx):
+        cdef _c_api.MapStringBoolHandle h_ret = _c_api.ListMapStringBool_at(self.handle, idx)
+        if h_ret == <_c_api.MapStringBoolHandle>0:
             return None
-        return MapStringBool.from_capi(MapStringBool, h_ret)
+        return map_string_bool._map_string_bool_from_capi(h_ret)
 
-    def items(self, out_buffer, buffer_size):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_items(self.handle, <c_api.MapStringBoolHandle>out_buffer.handle, buffer_size)
+    def items(self, MapStringBool out_buffer, size_t buffer_size):
+        return _c_api.ListMapStringBool_items(self.handle, out_buffer.handle, buffer_size)
 
-    def contains(self, value):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_contains(self.handle, <c_api.MapStringBoolHandle>value.handle)
+    def contains(self, MapStringBool value):
+        return _c_api.ListMapStringBool_contains(self.handle, value.handle)
 
-    def index(self, value):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_index(self.handle, <c_api.MapStringBoolHandle>value.handle)
+    def index(self, MapStringBool value):
+        return _c_api.ListMapStringBool_index(self.handle, value.handle)
 
-    def intersection(self, other):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.ListMapStringBoolHandle h_ret
-        h_ret = c_api.ListMapStringBool_intersection(self.handle, <c_api.ListMapStringBoolHandle>other.handle)
-        if h_ret == <c_api.ListMapStringBoolHandle>0:
+    def intersection(self, ListMapStringBool other):
+        cdef _c_api.ListMapStringBoolHandle h_ret = _c_api.ListMapStringBool_intersection(self.handle, other.handle)
+        if h_ret == <_c_api.ListMapStringBoolHandle>0:
             return None
-        return ListMapStringBool.from_capi(ListMapStringBool, h_ret)
+        return _list_map_string_bool_from_capi(h_ret)
 
-    def equal(self, b):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_equal(self.handle, <c_api.ListMapStringBoolHandle>b.handle)
+    def equal(self, ListMapStringBool b):
+        return _c_api.ListMapStringBool_equal(self.handle, b.handle)
 
-    def __eq__(self, b):
+    def __eq__(self, ListMapStringBool b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.equal(b)
 
-    def not_equal(self, b):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        return c_api.ListMapStringBool_not_equal(self.handle, <c_api.ListMapStringBoolHandle>b.handle)
+    def not_equal(self, ListMapStringBool b):
+        return _c_api.ListMapStringBool_not_equal(self.handle, b.handle)
 
-    def __ne__(self, b):
+    def __ne__(self, ListMapStringBool b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
-
-    def to_json_string(self):
-        if self.handle == <c_api.ListMapStringBoolHandle>0:
-            raise RuntimeError("Handle is null")
-        cdef c_api.StringHandle s_ret
-        s_ret = c_api.ListMapStringBool_to_json_string(self.handle)
-        if s_ret == <c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            c_api.String_destroy(s_ret)
-
-cdef ListMapStringBool _listmapstringbool_from_capi(c_api.ListMapStringBoolHandle h):
-    cdef ListMapStringBool obj = <ListMapStringBool>ListMapStringBool.__new__(ListMapStringBool)
-    obj.handle = h
