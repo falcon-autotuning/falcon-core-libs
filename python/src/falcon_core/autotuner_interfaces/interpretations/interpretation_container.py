@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._interpretation_container_registry import INTERPRETATIONCONTAINER_REGISTRY
 
 T = TypeVar('T')
 
@@ -46,6 +45,7 @@ class InterpretationContainer:
     @classmethod
     def __class_getitem__(cls, types):
         """Enable InterpretationContainer[T] syntax."""
+        from ._interpretation_container_registry import INTERPRETATIONCONTAINER_REGISTRY
         c_class = INTERPRETATIONCONTAINER_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"InterpretationContainer does not support type: {types}")

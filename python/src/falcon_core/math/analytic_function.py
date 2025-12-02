@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.analytic_function import AnalyticFunction as _CAnalyticFunction
-from falcon_core.generic.f_array_double import FArrayDouble
+from falcon_core.generic.f_array import FArray
 from falcon_core.generic.list import List
 from falcon_core.generic.map import Map
 
@@ -42,10 +42,10 @@ class AnalyticFunction:
         ret = self._c.evaluate(args._c, time)
         return ret
 
-    def evaluate_arraywise(self, args: Map, deltaT: Any, maxTime: Any) -> FArrayDouble:
+    def evaluate_arraywise(self, args: Map, deltaT: Any, maxTime: Any) -> FArray:
         ret = self._c.evaluate_arraywise(args._c, deltaT, maxTime)
         if ret is None: return None
-        return FArrayDouble._from_capi(ret)
+        return FArray(ret)
 
     def equal(self, b: AnalyticFunction) -> None:
         ret = self._c.equal(b._c)

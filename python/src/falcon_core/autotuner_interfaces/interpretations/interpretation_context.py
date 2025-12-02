@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.interpretation_context import InterpretationContext as _CInterpretationContext
-from falcon_core.math.axes_measurement_context import AxesMeasurementContext
+from falcon_core.math.axes import Axes
 from falcon_core.generic.list import List
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
 from falcon_core.physics.units.symbol_unit import SymbolUnit
@@ -19,17 +19,17 @@ class InterpretationContext:
         return cls(c_obj)
 
     @classmethod
-    def InterpretationContext_create(cls, independant_variables: AxesMeasurementContext, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
+    def InterpretationContext_create(cls, independant_variables: Axes, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
         return cls(_CInterpretationContext.InterpretationContext_create(independant_variables._c, dependant_variables._c, unit._c))
 
     @classmethod
     def InterpretationContext_from_json_string(cls, json: str) -> InterpretationContext:
         return cls(_CInterpretationContext.InterpretationContext_from_json_string(json))
 
-    def independent_variables(self, ) -> AxesMeasurementContext:
+    def independent_variables(self, ) -> Axes:
         ret = self._c.independent_variables()
         if ret is None: return None
-        return AxesMeasurementContext._from_capi(ret)
+        return Axes(ret)
 
     def dependent_variables(self, ) -> List:
         ret = self._c.dependent_variables()

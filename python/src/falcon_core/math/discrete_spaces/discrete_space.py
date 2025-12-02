@@ -1,11 +1,11 @@
 from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.discrete_space import DiscreteSpace as _CDiscreteSpace
-from falcon_core.math.axes_coupled_labelled_domain import AxesCoupledLabelledDomain
-from falcon_core.math.axes_instrument_port import AxesInstrumentPort
-from falcon_core.math.axes_int import AxesInt
-from falcon_core.math.axes_labelled_control_array import AxesLabelledControlArray
-from falcon_core.math.axes_map_string_bool import AxesMapStringBool
+from falcon_core.math.axes import Axes
+from falcon_core.math.axes import Axes
+from falcon_core.math.axes import Axes
+from falcon_core.math.axes import Axes
+from falcon_core.math.axes import Axes
 from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.math.domains.domain import Domain
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
@@ -26,11 +26,11 @@ class DiscreteSpace:
         return cls(c_obj)
 
     @classmethod
-    def DiscreteSpace_create(cls, space: UnitSpace, axes: AxesCoupledLabelledDomain, increasing: AxesMapStringBool) -> DiscreteSpace:
+    def DiscreteSpace_create(cls, space: UnitSpace, axes: Axes, increasing: Axes) -> DiscreteSpace:
         return cls(_CDiscreteSpace.DiscreteSpace_create(space._c, axes._c, increasing._c))
 
     @classmethod
-    def DiscreteSpace_create_cartesiandiscretespace(cls, divisions: AxesInt, axes: AxesCoupledLabelledDomain, increasing: AxesMapStringBool, domain: Domain) -> DiscreteSpace:
+    def DiscreteSpace_create_cartesiandiscretespace(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> DiscreteSpace:
         return cls(_CDiscreteSpace.DiscreteSpace_create_cartesiandiscretespace(divisions._c, axes._c, increasing._c, domain._c))
 
     @classmethod
@@ -46,15 +46,15 @@ class DiscreteSpace:
         if ret is None: return None
         return UnitSpace._from_capi(ret)
 
-    def axes(self, ) -> AxesCoupledLabelledDomain:
+    def axes(self, ) -> Axes:
         ret = self._c.axes()
         if ret is None: return None
-        return AxesCoupledLabelledDomain._from_capi(ret)
+        return Axes(ret)
 
-    def increasing(self, ) -> AxesMapStringBool:
+    def increasing(self, ) -> Axes:
         ret = self._c.increasing()
         if ret is None: return None
-        return AxesMapStringBool._from_capi(ret)
+        return Axes(ret)
 
     def knobs(self, ) -> Ports:
         ret = self._c.knobs()
@@ -78,10 +78,10 @@ class DiscreteSpace:
         if ret is None: return None
         return Domain._from_capi(ret)
 
-    def get_projection(self, projection: AxesInstrumentPort) -> AxesLabelledControlArray:
+    def get_projection(self, projection: Axes) -> Axes:
         ret = self._c.get_projection(projection._c)
         if ret is None: return None
-        return AxesLabelledControlArray._from_capi(ret)
+        return Axes(ret)
 
     def equal(self, other: DiscreteSpace) -> None:
         ret = self._c.equal(other._c)

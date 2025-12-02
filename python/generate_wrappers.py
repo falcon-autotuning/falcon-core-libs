@@ -66,6 +66,17 @@ TEMPLATE_PATTERNS = {
                            "LabelledMeasuredArray1D", "LabelledMeasuredArray"]),
 }
 
+# Define where each template base should live
+TEMPLATE_LOCATIONS = {
+    "List": "falcon_core.generic.list",
+    "Map": "falcon_core.generic.map",
+    "Pair": "falcon_core.generic.pair",
+    "FArray": "falcon_core.generic.f_array",
+    "InterpretationContainer": "falcon_core.autotuner_interfaces.interpretations.interpretation_container",
+    "Axes": "falcon_core.math.axes",
+    "LabelledArrays": "falcon_core.math.arrays.labelled_arrays",
+}
+
 # Type suffix to Python type mapping
 TYPE_SUFFIX_TO_PYTHON = {
     "Int": "int",
@@ -732,12 +743,18 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             
     # Add imports for required types
     for t in sorted(required_types):
-        if t.startswith("List"):
-            lines.append(f'from falcon_core.generic.list import List')
-        elif t.startswith("Map"):
-            lines.append(f'from falcon_core.generic.map import Map')
-        elif t.startswith("Pair"):
-            lines.append(f'from falcon_core.generic.pair import Pair')
+        # Check if it's a template type
+        classification = classify_template_type(t)
+        if classification:
+            base, _ = classification
+            if base in TEMPLATE_LOCATIONS:
+                mod_path = TEMPLATE_LOCATIONS[base]
+                # Import the generic wrapper class
+                # from module import Base
+                lines.append(f'from {mod_path} import {base}')
+            else:
+                # Fallback or warning?
+                pass
         elif t in type_map:
             # Import the wrapper class
             # from module import Class
@@ -795,10 +812,11 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             elif arg_type == "Bool": py_type = "bool"
             elif arg_type.endswith("Handle"):
                 base = arg_type[:-6]
-                if base.startswith("List"): py_type = f"List"
-                elif base.startswith("Map"): py_type = f"Map"
-                elif base.startswith("Pair"): py_type = f"Pair"
-                else: py_type = base
+                classification = classify_template_type(base)
+                if classification:
+                    py_type = classification[0] # Use generic base name
+                else:
+                    py_type = base
             
             py_args.append(f"{arg_name}: {py_type}")
             
@@ -853,10 +871,11 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             elif arg_type == "Bool": py_type = "bool"
             elif arg_type.endswith("Handle"):
                 base = arg_type[:-6]
-                if base.startswith("List"): py_type = f"List" # We could be more specific
-                elif base.startswith("Map"): py_type = f"Map"
-                elif base.startswith("Pair"): py_type = f"Pair"
-                else: py_type = base
+                classification = classify_template_type(base)
+                if classification:
+                    py_type = classification[0] # Use generic base name
+                else:
+                    py_type = base
             
             py_args.append(f"{arg_name}: {py_type}")
             
@@ -864,7 +883,8 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             if arg_type.endswith("Handle") and arg_type != "StringHandle":
                 # If it's a wrapper, pass ._c
                 # Check if it's generic
-                if arg_type.startswith("List") or arg_type.startswith("Map") or arg_type.startswith("Pair"):
+                base = arg_type[:-6]
+                if classify_template_type(base): # Check if it's a generic type
                      call_args.append(f"{arg_name}._c")
                 else:
                      call_args.append(f"{arg_name}._c")
@@ -880,10 +900,11 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         elif ret == "Bool": py_ret = "bool"
         elif ret.endswith("Handle"):
             base = ret[:-6]
-            if base.startswith("List"): py_ret = "List"
-            elif base.startswith("Map"): py_ret = "Map"
-            elif base.startswith("Pair"): py_ret = "Pair"
-            else: py_ret = base
+            classification = classify_template_type(base)
+            if classification:
+                py_ret = classification[0]
+            else:
+                py_ret = base
             
         # Generate method
         if is_static:
@@ -895,17 +916,16 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             lines.append(f'        ret = self._c.{method_name}({", ".join(call_args)})')
             
         # Return handling
-        if ret.endswith("Handle") and ret != "StringHandle":
+        if ret == "StringHandle":
+            lines.append(f'        return ret')
+        elif ret.endswith("Handle") and ret != "StringHandle":
             base = ret[:-6]
-            if base.startswith("List"):
+            classification = classify_template_type(base)
+            
+            if classification:
+                generic_base = classification[0]
                 lines.append(f'        if ret is None: return None')
-                lines.append(f'        return List(ret)')
-            elif base.startswith("Map"):
-                lines.append(f'        if ret is None: return None')
-                lines.append(f'        return Map(ret)')
-            elif base.startswith("Pair"):
-                lines.append(f'        if ret is None: return None')
-                lines.append(f'        return Pair(ret)')
+                lines.append(f'        return {generic_base}(ret)')
             elif base == cls.name:
                 lines.append(f'        return cls._from_capi(ret)')
             else:

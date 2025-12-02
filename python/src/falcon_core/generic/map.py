@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._map_registry import MAP_REGISTRY
 
 K = TypeVar('K')
 V = TypeVar('V')
@@ -49,6 +48,7 @@ class Map:
         """Enable Map[K, V] syntax."""
         if not isinstance(types, tuple) or len(types) != 2:
             raise TypeError(f"Map requires 2 type parameters")
+        from ._map_registry import MAP_REGISTRY
         c_class = MAP_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"Map does not support types: {types}")

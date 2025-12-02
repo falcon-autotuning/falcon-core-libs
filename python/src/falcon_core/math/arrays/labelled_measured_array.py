@@ -3,7 +3,7 @@ from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.labelled_measured_array import LabelledMeasuredArray as _CLabelledMeasuredArray
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
 from falcon_core.physics.device_structures.connection import Connection
-from falcon_core.generic.f_array_double import FArrayDouble
+from falcon_core.generic.f_array import FArray
 from falcon_core.generic.list import List
 from falcon_core.math.arrays.measured_array import MeasuredArray
 from falcon_core.physics.units.symbol_unit import SymbolUnit
@@ -25,7 +25,7 @@ class LabelledMeasuredArray:
         return cls(_CLabelledMeasuredArray.LabelledMeasuredArray_from_json_string(json))
 
     @classmethod
-    def from_farray(cls, farray: FArrayDouble, label: AcquisitionContext) -> LabelledMeasuredArray:
+    def from_farray(cls, farray: FArray, label: AcquisitionContext) -> LabelledMeasuredArray:
         ret = _CLabelledMeasuredArray.from_farray(farray._c, label._c)
         return cls._from_capi(ret)
 
@@ -69,7 +69,7 @@ class LabelledMeasuredArray:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
-    def plusequals_farray(self, other: FArrayDouble) -> None:
+    def plusequals_farray(self, other: FArray) -> None:
         ret = self._c.plusequals_farray(other._c)
         return ret
 
@@ -85,7 +85,7 @@ class LabelledMeasuredArray:
         ret = self._c.plus_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def plus_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def plus_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.plus_farray(other._c)
         return cls._from_capi(ret)
 
@@ -101,7 +101,7 @@ class LabelledMeasuredArray:
         ret = self._c.minusequals_measured_array(other._c)
         return ret
 
-    def minusequals_farray(self, other: FArrayDouble) -> None:
+    def minusequals_farray(self, other: FArray) -> None:
         ret = self._c.minusequals_farray(other._c)
         return ret
 
@@ -117,7 +117,7 @@ class LabelledMeasuredArray:
         ret = self._c.minus_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def minus_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def minus_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.minus_farray(other._c)
         return cls._from_capi(ret)
 
@@ -137,7 +137,7 @@ class LabelledMeasuredArray:
         ret = self._c.timesequals_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def timesequals_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def timesequals_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.timesequals_farray(other._c)
         return cls._from_capi(ret)
 
@@ -153,7 +153,7 @@ class LabelledMeasuredArray:
         ret = self._c.times_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def times_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def times_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.times_farray(other._c)
         return cls._from_capi(ret)
 
@@ -169,7 +169,7 @@ class LabelledMeasuredArray:
         ret = self._c.dividesequals_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def dividesequals_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def dividesequals_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.dividesequals_farray(other._c)
         return cls._from_capi(ret)
 
@@ -185,7 +185,7 @@ class LabelledMeasuredArray:
         ret = self._c.divides_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def divides_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def divides_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.divides_farray(other._c)
         return cls._from_capi(ret)
 
@@ -205,7 +205,7 @@ class LabelledMeasuredArray:
         ret = self._c.abs()
         return cls._from_capi(ret)
 
-    def min_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def min_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.min_farray(other._c)
         return cls._from_capi(ret)
 
@@ -213,7 +213,7 @@ class LabelledMeasuredArray:
         ret = self._c.min_measured_array(other._c)
         return cls._from_capi(ret)
 
-    def max_farray(self, other: FArrayDouble) -> LabelledMeasuredArray:
+    def max_farray(self, other: FArray) -> LabelledMeasuredArray:
         ret = self._c.max_farray(other._c)
         return cls._from_capi(ret)
 

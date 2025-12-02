@@ -4,7 +4,7 @@ from falcon_core._capi.labelled_control_array1_d import LabelledControlArray1D a
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.math.arrays.control_array import ControlArray
-from falcon_core.generic.f_array_double import FArrayDouble
+from falcon_core.generic.f_array import FArray
 from falcon_core.generic.list import List
 from falcon_core.generic.list import List
 from falcon_core.physics.units.symbol_unit import SymbolUnit
@@ -26,7 +26,7 @@ class LabelledControlArray1D:
         return cls(_CLabelledControlArray1D.LabelledControlArray1D_from_json_string(json))
 
     @classmethod
-    def from_farray(cls, farray: FArrayDouble, label: AcquisitionContext) -> LabelledControlArray1D:
+    def from_farray(cls, farray: FArray, label: AcquisitionContext) -> LabelledControlArray1D:
         ret = _CLabelledControlArray1D.from_farray(farray._c, label._c)
         return cls._from_capi(ret)
 
@@ -39,10 +39,10 @@ class LabelledControlArray1D:
         ret = self._c.is_1D()
         return ret
 
-    def as_1D(self, ) -> FArrayDouble:
+    def as_1D(self, ) -> FArray:
         ret = self._c.as_1D()
         if ret is None: return None
-        return FArrayDouble._from_capi(ret)
+        return FArray(ret)
 
     def get_start(self, ) -> None:
         ret = self._c.get_start()
@@ -120,7 +120,7 @@ class LabelledControlArray1D:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
-    def plusequals_farray(self, other: FArrayDouble) -> None:
+    def plusequals_farray(self, other: FArray) -> None:
         ret = self._c.plusequals_farray(other._c)
         return ret
 
@@ -136,7 +136,7 @@ class LabelledControlArray1D:
         ret = self._c.plus_control_array(other._c)
         return cls._from_capi(ret)
 
-    def plus_farray(self, other: FArrayDouble) -> LabelledControlArray1D:
+    def plus_farray(self, other: FArray) -> LabelledControlArray1D:
         ret = self._c.plus_farray(other._c)
         return cls._from_capi(ret)
 
@@ -148,7 +148,7 @@ class LabelledControlArray1D:
         ret = self._c.plus_int(other)
         return cls._from_capi(ret)
 
-    def minusequals_farray(self, other: FArrayDouble) -> None:
+    def minusequals_farray(self, other: FArray) -> None:
         ret = self._c.minusequals_farray(other._c)
         return ret
 
@@ -164,7 +164,7 @@ class LabelledControlArray1D:
         ret = self._c.minus_control_array(other._c)
         return cls._from_capi(ret)
 
-    def minus_farray(self, other: FArrayDouble) -> LabelledControlArray1D:
+    def minus_farray(self, other: FArray) -> LabelledControlArray1D:
         ret = self._c.minus_farray(other._c)
         return cls._from_capi(ret)
 
@@ -220,7 +220,7 @@ class LabelledControlArray1D:
         ret = self._c.abs()
         return cls._from_capi(ret)
 
-    def min_farray(self, other: FArrayDouble) -> LabelledControlArray1D:
+    def min_farray(self, other: FArray) -> LabelledControlArray1D:
         ret = self._c.min_farray(other._c)
         return cls._from_capi(ret)
 
@@ -228,7 +228,7 @@ class LabelledControlArray1D:
         ret = self._c.min_control_array(other._c)
         return cls._from_capi(ret)
 
-    def max_farray(self, other: FArrayDouble) -> LabelledControlArray1D:
+    def max_farray(self, other: FArray) -> LabelledControlArray1D:
         ret = self._c.max_farray(other._c)
         return cls._from_capi(ret)
 
@@ -273,14 +273,14 @@ class LabelledControlArray1D:
         ret = self._c.flip(axis)
         return cls._from_capi(ret)
 
-    def full_gradient(self, out_buffer: FArrayDouble, buffer_size: Any) -> None:
+    def full_gradient(self, out_buffer: FArray, buffer_size: Any) -> None:
         ret = self._c.full_gradient(out_buffer._c, buffer_size)
         return ret
 
-    def gradient(self, axis: Any) -> FArrayDouble:
+    def gradient(self, axis: Any) -> FArray:
         ret = self._c.gradient(axis)
         if ret is None: return None
-        return FArrayDouble._from_capi(ret)
+        return FArray(ret)
 
     def get_sum_of_squares(self, ) -> None:
         ret = self._c.get_sum_of_squares()

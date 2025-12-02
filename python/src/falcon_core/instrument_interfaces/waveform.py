@@ -1,9 +1,9 @@
 from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.waveform import Waveform as _CWaveform
-from falcon_core.math.axes_coupled_labelled_domain import AxesCoupledLabelledDomain
-from falcon_core.math.axes_int import AxesInt
-from falcon_core.math.axes_map_string_bool import AxesMapStringBool
+from falcon_core.math.axes import Axes
+from falcon_core.math.axes import Axes
+from falcon_core.math.axes import Axes
 from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
 from falcon_core.math.domains.domain import Domain
@@ -28,19 +28,19 @@ class Waveform:
         return cls(_CWaveform.Waveform_create(space._c, transforms._c))
 
     @classmethod
-    def Waveform_create_cartesianwaveform(cls, divisions: AxesInt, axes: AxesCoupledLabelledDomain, increasing: AxesMapStringBool, transforms: List, domain: Domain) -> Waveform:
+    def Waveform_create_cartesianwaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
         return cls(_CWaveform.Waveform_create_cartesianwaveform(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianidentitywaveform(cls, divisions: AxesInt, axes: AxesCoupledLabelledDomain, increasing: AxesMapStringBool, domain: Domain) -> Waveform:
+    def Waveform_create_cartesianidentitywaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
         return cls(_CWaveform.Waveform_create_cartesianidentitywaveform(divisions._c, axes._c, increasing._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianwaveform2D(cls, divisions: AxesInt, axes: AxesCoupledLabelledDomain, increasing: AxesMapStringBool, transforms: List, domain: Domain) -> Waveform:
+    def Waveform_create_cartesianwaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
         return cls(_CWaveform.Waveform_create_cartesianwaveform2D(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianidentitywaveform2D(cls, divisions: AxesInt, axes: AxesCoupledLabelledDomain, increasing: AxesMapStringBool, domain: Domain) -> Waveform:
+    def Waveform_create_cartesianidentitywaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
         return cls(_CWaveform.Waveform_create_cartesianidentitywaveform2D(divisions._c, axes._c, increasing._c, domain._c))
 
     @classmethod

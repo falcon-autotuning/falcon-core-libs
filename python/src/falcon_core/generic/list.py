@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._list_registry import LIST_REGISTRY
 
 T = TypeVar('T')
 
@@ -46,6 +45,7 @@ class List:
     @classmethod
     def __class_getitem__(cls, types):
         """Enable List[T] syntax."""
+        from ._list_registry import LIST_REGISTRY
         c_class = LIST_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"List does not support type: {types}")

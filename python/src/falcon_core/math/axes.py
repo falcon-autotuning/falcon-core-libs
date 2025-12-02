@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._axes_registry import AXES_REGISTRY
 
 T = TypeVar('T')
 
@@ -46,6 +45,7 @@ class Axes:
     @classmethod
     def __class_getitem__(cls, types):
         """Enable Axes[T] syntax."""
+        from ._axes_registry import AXES_REGISTRY
         c_class = AXES_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"Axes does not support type: {types}")

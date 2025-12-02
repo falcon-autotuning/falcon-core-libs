@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._labelled_arrays_registry import LABELLEDARRAYS_REGISTRY
 
 T = TypeVar('T')
 
@@ -46,6 +45,7 @@ class LabelledArrays:
     @classmethod
     def __class_getitem__(cls, types):
         """Enable LabelledArrays[T] syntax."""
+        from ._labelled_arrays_registry import LABELLEDARRAYS_REGISTRY
         c_class = LABELLEDARRAYS_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"LabelledArrays does not support type: {types}")

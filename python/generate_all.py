@@ -295,7 +295,7 @@ def generate_generic_wrapper(base, instances):
     lines.append("from __future__ import annotations")
     lines.append("from typing import Any, TypeVar, Generic, Union")
     lines.append("import collections.abc")
-    lines.append(f"from ._{to_snake_case(base)}_registry import {base.upper()}_REGISTRY")
+    # Registry import moved to __class_getitem__ to avoid circular imports
     lines.append("")
     
     # Get parameter count
@@ -362,6 +362,7 @@ def generate_generic_wrapper(base, instances):
     
     if param_count == 1:
         lines.append(f'        """Enable {base}[T] syntax."""')
+        lines.append(f"        from ._{to_snake_case(base)}_registry import {base.upper()}_REGISTRY")
         lines.append(f"        c_class = {base.upper()}_REGISTRY.get(types)")
         lines.append(f"        if c_class is None:")
         lines.append(f'            raise TypeError(f"{base} does not support type: {{types}}")')
@@ -370,6 +371,7 @@ def generate_generic_wrapper(base, instances):
         lines.append(f'        """Enable {base}[K, V] syntax."""')
         lines.append(f"        if not isinstance(types, tuple) or len(types) != {param_count}:")
         lines.append(f'            raise TypeError(f"{base} requires {param_count} type parameters")')
+        lines.append(f"        from ._{to_snake_case(base)}_registry import {base.upper()}_REGISTRY")
         lines.append(f"        c_class = {base.upper()}_REGISTRY.get(types)")
         lines.append(f"        if c_class is None:")
         lines.append(f'            raise TypeError(f"{base} does not support types: {{types}}")')

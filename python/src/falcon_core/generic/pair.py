@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._pair_registry import PAIR_REGISTRY
 
 K = TypeVar('K')
 V = TypeVar('V')
@@ -49,6 +48,7 @@ class Pair:
         """Enable Pair[K, V] syntax."""
         if not isinstance(types, tuple) or len(types) != 2:
             raise TypeError(f"Pair requires 2 type parameters")
+        from ._pair_registry import PAIR_REGISTRY
         c_class = PAIR_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"Pair does not support types: {types}")

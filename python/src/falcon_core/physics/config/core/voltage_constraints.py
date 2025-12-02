@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.voltage_constraints import VoltageConstraints as _CVoltageConstraints
 from falcon_core.physics.config.core.adjacency import Adjacency
-from falcon_core.generic.f_array_double import FArrayDouble
+from falcon_core.generic.f_array import FArray
 from falcon_core.generic.pair import Pair
 
 class VoltageConstraints:
@@ -25,20 +25,20 @@ class VoltageConstraints:
     def VoltageConstraints_from_json_string(cls, json: str) -> VoltageConstraints:
         return cls(_CVoltageConstraints.VoltageConstraints_from_json_string(json))
 
-    def matrix(self, ) -> FArrayDouble:
+    def matrix(self, ) -> FArray:
         ret = self._c.matrix()
         if ret is None: return None
-        return FArrayDouble._from_capi(ret)
+        return FArray(ret)
 
     def adjacency(self, ) -> Adjacency:
         ret = self._c.adjacency()
         if ret is None: return None
         return Adjacency._from_capi(ret)
 
-    def limits(self, ) -> FArrayDouble:
+    def limits(self, ) -> FArray:
         ret = self._c.limits()
         if ret is None: return None
-        return FArrayDouble._from_capi(ret)
+        return FArray(ret)
 
     def equal(self, b: VoltageConstraints) -> None:
         ret = self._c.equal(b._c)

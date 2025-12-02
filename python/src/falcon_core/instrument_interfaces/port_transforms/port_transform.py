@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.port_transform import PortTransform as _CPortTransform
 from falcon_core.math.analytic_function import AnalyticFunction
-from falcon_core.generic.f_array_double import FArrayDouble
+from falcon_core.generic.f_array import FArray
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.generic.list import List
 from falcon_core.generic.map import Map
@@ -49,10 +49,10 @@ class PortTransform:
         ret = self._c.evaluate(args._c, time)
         return ret
 
-    def evaluate_arraywise(self, args: Map, deltaT: Any, maxTime: Any) -> FArrayDouble:
+    def evaluate_arraywise(self, args: Map, deltaT: Any, maxTime: Any) -> FArray:
         ret = self._c.evaluate_arraywise(args._c, deltaT, maxTime)
         if ret is None: return None
-        return FArrayDouble._from_capi(ret)
+        return FArray(ret)
 
     def equal(self, b: PortTransform) -> None:
         ret = self._c.equal(b._c)

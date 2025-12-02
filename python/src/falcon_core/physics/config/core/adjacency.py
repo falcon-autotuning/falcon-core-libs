@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.adjacency import Adjacency as _CAdjacency
 from falcon_core.physics.device_structures.connections import Connections
-from falcon_core.generic.f_array_int import FArrayInt
+from falcon_core.generic.f_array import FArray
 from falcon_core.generic.list import List
 from falcon_core.generic.list import List
 
@@ -52,11 +52,11 @@ class Adjacency:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
-    def timesequals_farray(self, other: FArrayInt) -> None:
+    def timesequals_farray(self, other: FArray) -> None:
         ret = self._c.timesequals_farray(other._c)
         return ret
 
-    def times_farray(self, other: FArrayInt) -> Adjacency:
+    def times_farray(self, other: FArray) -> Adjacency:
         ret = self._c.times_farray(other._c)
         return cls._from_capi(ret)
 

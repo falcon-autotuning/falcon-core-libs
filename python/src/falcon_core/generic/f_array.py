@@ -1,7 +1,6 @@
 from __future__ import annotations
 from typing import Any, TypeVar, Generic, Union
 import collections.abc
-from ._f_array_registry import FARRAY_REGISTRY
 
 T = TypeVar('T')
 
@@ -46,6 +45,7 @@ class FArray:
     @classmethod
     def __class_getitem__(cls, types):
         """Enable FArray[T] syntax."""
+        from ._f_array_registry import FARRAY_REGISTRY
         c_class = FARRAY_REGISTRY.get(types)
         if c_class is None:
             raise TypeError(f"FArray does not support type: {types}")

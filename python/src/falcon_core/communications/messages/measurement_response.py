@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import Any, List, Dict, Tuple, Optional
 from falcon_core._capi.measurement_response import MeasurementResponse as _CMeasurementResponse
-from falcon_core.math.arrays.labelled_arrays_labelled_measured_array import LabelledArraysLabelledMeasuredArray
+from falcon_core.math.arrays.labelled_arrays import LabelledArrays
 
 class MeasurementResponse:
     """Python wrapper for MeasurementResponse."""
@@ -16,17 +16,17 @@ class MeasurementResponse:
         return cls(c_obj)
 
     @classmethod
-    def MeasurementResponse_create(cls, arrays: LabelledArraysLabelledMeasuredArray) -> MeasurementResponse:
+    def MeasurementResponse_create(cls, arrays: LabelledArrays) -> MeasurementResponse:
         return cls(_CMeasurementResponse.MeasurementResponse_create(arrays._c))
 
     @classmethod
     def MeasurementResponse_from_json_string(cls, json: str) -> MeasurementResponse:
         return cls(_CMeasurementResponse.MeasurementResponse_from_json_string(json))
 
-    def arrays(self, ) -> LabelledArraysLabelledMeasuredArray:
+    def arrays(self, ) -> LabelledArrays:
         ret = self._c.arrays()
         if ret is None: return None
-        return LabelledArraysLabelledMeasuredArray._from_capi(ret)
+        return LabelledArrays(ret)
 
     def message(self, ) -> str:
         ret = self._c.message()
