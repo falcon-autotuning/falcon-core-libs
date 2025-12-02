@@ -17,28 +17,28 @@ class InstrumentPort:
         return cls(c_obj)
 
     @classmethod
-    def InstrumentPort_create_port(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.InstrumentPort_create_port(default_name, psuedo_name._c, instrument_type, units._c, description))
+    def new_port(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
+        return cls(_CInstrumentPort.new_port(default_name, psuedo_name._c, instrument_type, units._c, description))
 
     @classmethod
-    def InstrumentPort_create_knob(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.InstrumentPort_create_knob(default_name, psuedo_name._c, instrument_type, units._c, description))
+    def new_knob(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
+        return cls(_CInstrumentPort.new_knob(default_name, psuedo_name._c, instrument_type, units._c, description))
 
     @classmethod
-    def InstrumentPort_create_meter(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.InstrumentPort_create_meter(default_name, psuedo_name._c, instrument_type, units._c, description))
+    def new_meter(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
+        return cls(_CInstrumentPort.new_meter(default_name, psuedo_name._c, instrument_type, units._c, description))
 
     @classmethod
-    def InstrumentPort_create_timer(cls, ) -> InstrumentPort:
-        return cls(_CInstrumentPort.InstrumentPort_create_timer())
+    def new_timer(cls, ) -> InstrumentPort:
+        return cls(_CInstrumentPort.new_timer())
 
     @classmethod
-    def InstrumentPort_create_execution_clock(cls, ) -> InstrumentPort:
-        return cls(_CInstrumentPort.InstrumentPort_create_execution_clock())
+    def new_execution_clock(cls, ) -> InstrumentPort:
+        return cls(_CInstrumentPort.new_execution_clock())
 
     @classmethod
-    def InstrumentPort_from_json_string(cls, json: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.InstrumentPort_from_json_string(json))
+    def from_json(cls, json: str) -> InstrumentPort:
+        return cls(_CInstrumentPort.from_json(json))
 
     def default_name(self, ) -> str:
         ret = self._c.default_name()
@@ -90,10 +90,10 @@ class InstrumentPort:
         """Operator overload for =="""
         if not isinstance(other, InstrumentPort):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, InstrumentPort):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

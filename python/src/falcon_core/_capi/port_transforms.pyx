@@ -24,7 +24,7 @@ cdef PortTransforms _port_transforms_from_capi(_c_api.PortTransformsHandle h):
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.PortTransformsHandle h
         h = _c_api.PortTransforms_create_empty()
         if h == <_c_api.PortTransformsHandle>0:
@@ -35,7 +35,7 @@ cdef PortTransforms _port_transforms_from_capi(_c_api.PortTransformsHandle h):
         return obj
 
     @classmethod
-    def raw(cls, PortTransform data, size_t count):
+    def new_raw(cls, PortTransform data, size_t count):
         cdef _c_api.PortTransformsHandle h
         h = _c_api.PortTransforms_create_raw(data.handle, count)
         if h == <_c_api.PortTransformsHandle>0:
@@ -46,7 +46,7 @@ cdef PortTransforms _port_transforms_from_capi(_c_api.PortTransformsHandle h):
         return obj
 
     @classmethod
-    def create(cls, ListPortTransform handle):
+    def new(cls, ListPortTransform handle):
         cdef _c_api.PortTransformsHandle h
         h = _c_api.PortTransforms_create(handle.handle)
         if h == <_c_api.PortTransformsHandle>0:
@@ -57,7 +57,7 @@ cdef PortTransforms _port_transforms_from_capi(_c_api.PortTransformsHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PortTransformsHandle h

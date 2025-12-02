@@ -25,7 +25,7 @@ cdef Channels _channels_from_capi(_c_api.ChannelsHandle h):
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.ChannelsHandle h
         h = _c_api.Channels_create_empty()
         if h == <_c_api.ChannelsHandle>0:
@@ -36,7 +36,7 @@ cdef Channels _channels_from_capi(_c_api.ChannelsHandle h):
         return obj
 
     @classmethod
-    def create(cls, ListChannel items):
+    def new(cls, ListChannel items):
         cdef _c_api.ChannelsHandle h
         h = _c_api.Channels_create(items.handle)
         if h == <_c_api.ChannelsHandle>0:
@@ -47,7 +47,7 @@ cdef Channels _channels_from_capi(_c_api.ChannelsHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ChannelsHandle h

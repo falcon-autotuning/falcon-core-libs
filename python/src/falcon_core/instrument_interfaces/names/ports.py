@@ -20,16 +20,16 @@ class Ports:
         return cls(c_obj)
 
     @classmethod
-    def Ports_create_empty(cls, ) -> Ports:
-        return cls(_CPorts.Ports_create_empty())
+    def new_empty(cls, ) -> Ports:
+        return cls(_CPorts.new_empty())
 
     @classmethod
-    def Ports_create(cls, items: List) -> Ports:
-        return cls(_CPorts.Ports_create(items._c))
+    def new(cls, items: List) -> Ports:
+        return cls(_CPorts.new(items._c))
 
     @classmethod
-    def Ports_from_json_string(cls, json: str) -> Ports:
-        return cls(_CPorts.Ports_from_json_string(json))
+    def from_json(cls, json: str) -> Ports:
+        return cls(_CPorts.from_json(json))
 
     def ports(self, ) -> List:
         ret = self._c.ports()
@@ -133,10 +133,10 @@ class Ports:
         """Operator overload for =="""
         if not isinstance(other, Ports):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Ports):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

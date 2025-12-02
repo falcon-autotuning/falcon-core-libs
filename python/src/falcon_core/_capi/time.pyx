@@ -22,7 +22,7 @@ cdef Time _time_from_capi(_c_api.TimeHandle h):
     return obj
 
     @classmethod
-    def now(cls, ):
+    def new_now(cls, ):
         cdef _c_api.TimeHandle h
         h = _c_api.Time_create_now()
         if h == <_c_api.TimeHandle>0:
@@ -33,7 +33,7 @@ cdef Time _time_from_capi(_c_api.TimeHandle h):
         return obj
 
     @classmethod
-    def at(cls, long long micro_seconds_since_epoch):
+    def new_at(cls, long long micro_seconds_since_epoch):
         cdef _c_api.TimeHandle h
         h = _c_api.Time_create_at(micro_seconds_since_epoch)
         if h == <_c_api.TimeHandle>0:
@@ -44,7 +44,7 @@ cdef Time _time_from_capi(_c_api.TimeHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.TimeHandle h

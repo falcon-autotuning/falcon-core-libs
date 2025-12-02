@@ -15,16 +15,16 @@ class Time:
         return cls(c_obj)
 
     @classmethod
-    def Time_create_now(cls, ) -> Time:
-        return cls(_CTime.Time_create_now())
+    def new_now(cls, ) -> Time:
+        return cls(_CTime.new_now())
 
     @classmethod
-    def Time_create_at(cls, micro_seconds_since_epoch: Any) -> Time:
-        return cls(_CTime.Time_create_at(micro_seconds_since_epoch))
+    def new_at(cls, micro_seconds_since_epoch: Any) -> Time:
+        return cls(_CTime.new_at(micro_seconds_since_epoch))
 
     @classmethod
-    def Time_from_json_string(cls, json: str) -> Time:
-        return cls(_CTime.Time_from_json_string(json))
+    def from_json(cls, json: str) -> Time:
+        return cls(_CTime.from_json(json))
 
     def micro_seconds_since_epoch(self, ) -> None:
         ret = self._c.micro_seconds_since_epoch()
@@ -50,10 +50,10 @@ class Time:
         """Operator overload for =="""
         if not isinstance(other, Time):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Time):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

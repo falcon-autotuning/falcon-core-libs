@@ -31,7 +31,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
     return obj
 
     @classmethod
-    def create(cls, AxesInt shape, AxesControlArray unit_domain, AxesCoupledLabelledDomain domain_labels, LabelledArraysLabelledMeasuredArray ranges, MapStringString metadata, str measurement_title, int unique_id, int timestamp):
+    def new(cls, AxesInt shape, AxesControlArray unit_domain, AxesCoupledLabelledDomain domain_labels, LabelledArraysLabelledMeasuredArray ranges, MapStringString metadata, str measurement_title, int unique_id, int timestamp):
         cdef bytes b_measurement_title = measurement_title.encode("utf-8")
         cdef StringHandle s_measurement_title = _c_api.String_create(b_measurement_title, len(b_measurement_title))
         cdef _c_api.HDF5DataHandle h
@@ -47,7 +47,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
         return obj
 
     @classmethod
-    def from_file(cls, str path):
+    def new_from_file(cls, str path):
         cdef bytes b_path = path.encode("utf-8")
         cdef StringHandle s_path = _c_api.String_create(b_path, len(b_path))
         cdef _c_api.HDF5DataHandle h
@@ -63,7 +63,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
         return obj
 
     @classmethod
-    def from_communications(cls, MeasurementRequest request, MeasurementResponse response, DeviceVoltageStates device_voltage_states, int8_t session_id[16], str measurement_title, int unique_id, int timestamp):
+    def new_from_communications(cls, MeasurementRequest request, MeasurementResponse response, DeviceVoltageStates device_voltage_states, int8_t session_id[16], str measurement_title, int unique_id, int timestamp):
         cdef bytes b_measurement_title = measurement_title.encode("utf-8")
         cdef StringHandle s_measurement_title = _c_api.String_create(b_measurement_title, len(b_measurement_title))
         cdef _c_api.HDF5DataHandle h
@@ -79,7 +79,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.HDF5DataHandle h

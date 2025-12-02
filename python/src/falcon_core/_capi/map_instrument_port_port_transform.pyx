@@ -28,7 +28,7 @@ cdef MapInstrumentPortPortTransform _map_instrument_port_port_transform_from_cap
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.MapInstrumentPortPortTransformHandle h
         h = _c_api.MapInstrumentPortPortTransform_create_empty()
         if h == <_c_api.MapInstrumentPortPortTransformHandle>0:
@@ -39,7 +39,7 @@ cdef MapInstrumentPortPortTransform _map_instrument_port_port_transform_from_cap
         return obj
 
     @classmethod
-    def create(cls, PairInstrumentPortPortTransform data, size_t count):
+    def new(cls, PairInstrumentPortPortTransform data, size_t count):
         cdef _c_api.MapInstrumentPortPortTransformHandle h
         h = _c_api.MapInstrumentPortPortTransform_create(data.handle, count)
         if h == <_c_api.MapInstrumentPortPortTransformHandle>0:
@@ -50,7 +50,7 @@ cdef MapInstrumentPortPortTransform _map_instrument_port_port_transform_from_cap
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.MapInstrumentPortPortTransformHandle h

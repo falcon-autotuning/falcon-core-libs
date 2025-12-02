@@ -17,16 +17,16 @@ class DotGatesWithNeighbors:
         return cls(c_obj)
 
     @classmethod
-    def DotGatesWithNeighbors_create_empty(cls, ) -> DotGatesWithNeighbors:
-        return cls(_CDotGatesWithNeighbors.DotGatesWithNeighbors_create_empty())
+    def new_empty(cls, ) -> DotGatesWithNeighbors:
+        return cls(_CDotGatesWithNeighbors.new_empty())
 
     @classmethod
-    def DotGatesWithNeighbors_create(cls, items: List) -> DotGatesWithNeighbors:
-        return cls(_CDotGatesWithNeighbors.DotGatesWithNeighbors_create(items._c))
+    def new(cls, items: List) -> DotGatesWithNeighbors:
+        return cls(_CDotGatesWithNeighbors.new(items._c))
 
     @classmethod
-    def DotGatesWithNeighbors_from_json_string(cls, json: str) -> DotGatesWithNeighbors:
-        return cls(_CDotGatesWithNeighbors.DotGatesWithNeighbors_from_json_string(json))
+    def from_json(cls, json: str) -> DotGatesWithNeighbors:
+        return cls(_CDotGatesWithNeighbors.from_json(json))
 
     def is_plunger_gates(self, ) -> None:
         ret = self._c.is_plunger_gates()
@@ -95,10 +95,10 @@ class DotGatesWithNeighbors:
         """Operator overload for =="""
         if not isinstance(other, DotGatesWithNeighbors):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, DotGatesWithNeighbors):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

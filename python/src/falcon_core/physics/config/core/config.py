@@ -30,12 +30,12 @@ class Config:
         return cls(c_obj)
 
     @classmethod
-    def Config_create(cls, screening_gates: Connections, plunger_gates: Connections, ohmics: Connections, barrier_gates: Connections, reservoir_gates: Connections, groups: Map, wiring_DC: Impedances, constraints: VoltageConstraints) -> Config:
-        return cls(_CConfig.Config_create(screening_gates._c, plunger_gates._c, ohmics._c, barrier_gates._c, reservoir_gates._c, groups._c, wiring_DC._c, constraints._c))
+    def new(cls, screening_gates: Connections, plunger_gates: Connections, ohmics: Connections, barrier_gates: Connections, reservoir_gates: Connections, groups: Map, wiring_DC: Impedances, constraints: VoltageConstraints) -> Config:
+        return cls(_CConfig.new(screening_gates._c, plunger_gates._c, ohmics._c, barrier_gates._c, reservoir_gates._c, groups._c, wiring_DC._c, constraints._c))
 
     @classmethod
-    def Config_from_json_string(cls, json: str) -> Config:
-        return cls(_CConfig.Config_from_json_string(json))
+    def from_json(cls, json: str) -> Config:
+        return cls(_CConfig.from_json(json))
 
     def num_unique_channels(self, ) -> None:
         ret = self._c.num_unique_channels()
@@ -506,10 +506,10 @@ class Config:
         """Operator overload for =="""
         if not isinstance(other, Config):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Config):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

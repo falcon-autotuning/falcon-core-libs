@@ -16,12 +16,12 @@ class VoltageStatesResponse:
         return cls(c_obj)
 
     @classmethod
-    def VoltageStatesResponse_create(cls, message: str, states: DeviceVoltageStates) -> VoltageStatesResponse:
-        return cls(_CVoltageStatesResponse.VoltageStatesResponse_create(message, states._c))
+    def new(cls, message: str, states: DeviceVoltageStates) -> VoltageStatesResponse:
+        return cls(_CVoltageStatesResponse.new(message, states._c))
 
     @classmethod
-    def VoltageStatesResponse_from_json_string(cls, json: str) -> VoltageStatesResponse:
-        return cls(_CVoltageStatesResponse.VoltageStatesResponse_from_json_string(json))
+    def from_json(cls, json: str) -> VoltageStatesResponse:
+        return cls(_CVoltageStatesResponse.from_json(json))
 
     def message(self, ) -> str:
         ret = self._c.message()
@@ -44,10 +44,10 @@ class VoltageStatesResponse:
         """Operator overload for =="""
         if not isinstance(other, VoltageStatesResponse):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, VoltageStatesResponse):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

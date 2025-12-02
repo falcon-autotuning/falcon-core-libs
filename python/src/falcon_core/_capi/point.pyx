@@ -30,7 +30,7 @@ cdef Point _point_from_capi(_c_api.PointHandle h):
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.PointHandle h
         h = _c_api.Point_create_empty()
         if h == <_c_api.PointHandle>0:
@@ -41,7 +41,7 @@ cdef Point _point_from_capi(_c_api.PointHandle h):
         return obj
 
     @classmethod
-    def create(cls, MapConnectionDouble items, SymbolUnit unit):
+    def new(cls, MapConnectionDouble items, SymbolUnit unit):
         cdef _c_api.PointHandle h
         h = _c_api.Point_create(items.handle, unit.handle)
         if h == <_c_api.PointHandle>0:
@@ -52,7 +52,7 @@ cdef Point _point_from_capi(_c_api.PointHandle h):
         return obj
 
     @classmethod
-    def from_parent(cls, MapConnectionQuantity items):
+    def new_from_parent(cls, MapConnectionQuantity items):
         cdef _c_api.PointHandle h
         h = _c_api.Point_create_from_parent(items.handle)
         if h == <_c_api.PointHandle>0:
@@ -63,7 +63,7 @@ cdef Point _point_from_capi(_c_api.PointHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PointHandle h

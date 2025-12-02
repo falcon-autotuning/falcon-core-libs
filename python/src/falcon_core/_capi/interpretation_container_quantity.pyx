@@ -32,7 +32,7 @@ cdef InterpretationContainerQuantity _interpretation_container_quantity_from_cap
     return obj
 
     @classmethod
-    def create(cls, MapInterpretationContextQuantity map):
+    def new(cls, MapInterpretationContextQuantity map):
         cdef _c_api.InterpretationContainerQuantityHandle h
         h = _c_api.InterpretationContainerQuantity_create(map.handle)
         if h == <_c_api.InterpretationContainerQuantityHandle>0:
@@ -43,7 +43,7 @@ cdef InterpretationContainerQuantity _interpretation_container_quantity_from_cap
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.InterpretationContainerQuantityHandle h

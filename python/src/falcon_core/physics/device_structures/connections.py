@@ -17,16 +17,16 @@ class Connections:
         return cls(c_obj)
 
     @classmethod
-    def Connections_create_empty(cls, ) -> Connections:
-        return cls(_CConnections.Connections_create_empty())
+    def new_empty(cls, ) -> Connections:
+        return cls(_CConnections.new_empty())
 
     @classmethod
-    def Connections_create(cls, items: List) -> Connections:
-        return cls(_CConnections.Connections_create(items._c))
+    def new(cls, items: List) -> Connections:
+        return cls(_CConnections.new(items._c))
 
     @classmethod
-    def Connections_from_json_string(cls, json: str) -> Connections:
-        return cls(_CConnections.Connections_from_json_string(json))
+    def from_json(cls, json: str) -> Connections:
+        return cls(_CConnections.from_json(json))
 
     def is_gates(self, ) -> None:
         ret = self._c.is_gates()
@@ -115,10 +115,10 @@ class Connections:
         """Operator overload for =="""
         if not isinstance(other, Connections):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Connections):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

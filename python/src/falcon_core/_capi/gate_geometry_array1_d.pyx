@@ -28,7 +28,7 @@ cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryAr
     return obj
 
     @classmethod
-    def create(cls, Connections lineararray, Connections screening_gates):
+    def new(cls, Connections lineararray, Connections screening_gates):
         cdef _c_api.GateGeometryArray1DHandle h
         h = _c_api.GateGeometryArray1D_create(lineararray.handle, screening_gates.handle)
         if h == <_c_api.GateGeometryArray1DHandle>0:
@@ -39,7 +39,7 @@ cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryAr
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.GateGeometryArray1DHandle h

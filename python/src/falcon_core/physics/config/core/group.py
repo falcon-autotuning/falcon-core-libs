@@ -19,12 +19,12 @@ class Group:
         return cls(c_obj)
 
     @classmethod
-    def Group_create(cls, name: Channel, num_dots: Any, screening_gates: Connections, reservoir_gates: Connections, plunger_gates: Connections, barrier_gates: Connections, order: Connections) -> Group:
-        return cls(_CGroup.Group_create(name._c, num_dots, screening_gates._c, reservoir_gates._c, plunger_gates._c, barrier_gates._c, order._c))
+    def new(cls, name: Channel, num_dots: Any, screening_gates: Connections, reservoir_gates: Connections, plunger_gates: Connections, barrier_gates: Connections, order: Connections) -> Group:
+        return cls(_CGroup.new(name._c, num_dots, screening_gates._c, reservoir_gates._c, plunger_gates._c, barrier_gates._c, order._c))
 
     @classmethod
-    def Group_from_json_string(cls, json: str) -> Group:
-        return cls(_CGroup.Group_from_json_string(json))
+    def from_json(cls, json: str) -> Group:
+        return cls(_CGroup.from_json(json))
 
     def name(self, ) -> Channel:
         ret = self._c.name()
@@ -164,10 +164,10 @@ class Group:
         """Operator overload for =="""
         if not isinstance(other, Group):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Group):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

@@ -16,12 +16,12 @@ class Impedance:
         return cls(c_obj)
 
     @classmethod
-    def Impedance_create(cls, connection: Connection, resistance: Any, capacitance: Any) -> Impedance:
-        return cls(_CImpedance.Impedance_create(connection._c, resistance, capacitance))
+    def new(cls, connection: Connection, resistance: Any, capacitance: Any) -> Impedance:
+        return cls(_CImpedance.new(connection._c, resistance, capacitance))
 
     @classmethod
-    def Impedance_from_json_string(cls, json: str) -> Impedance:
-        return cls(_CImpedance.Impedance_from_json_string(json))
+    def from_json(cls, json: str) -> Impedance:
+        return cls(_CImpedance.from_json(json))
 
     def connection(self, ) -> Connection:
         ret = self._c.connection()
@@ -48,10 +48,10 @@ class Impedance:
         """Operator overload for =="""
         if not isinstance(other, Impedance):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Impedance):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

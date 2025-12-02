@@ -22,7 +22,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
     return obj
 
     @classmethod
-    def meter(cls, ):
+    def new_meter(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_meter()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -33,7 +33,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def kilogram(cls, ):
+    def new_kilogram(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_kilogram()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -44,7 +44,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def second(cls, ):
+    def new_second(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_second()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -55,7 +55,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def ampere(cls, ):
+    def new_ampere(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_ampere()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -66,7 +66,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def kelvin(cls, ):
+    def new_kelvin(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_kelvin()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -77,7 +77,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def mole(cls, ):
+    def new_mole(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_mole()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -88,7 +88,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def candela(cls, ):
+    def new_candela(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_candela()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -99,7 +99,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def hertz(cls, ):
+    def new_hertz(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_hertz()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -110,7 +110,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def newton(cls, ):
+    def new_newton(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_newton()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -121,7 +121,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def pascal(cls, ):
+    def new_pascal(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_pascal()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -132,7 +132,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def joule(cls, ):
+    def new_joule(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_joule()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -143,7 +143,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def watt(cls, ):
+    def new_watt(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_watt()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -154,7 +154,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def coulomb(cls, ):
+    def new_coulomb(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_coulomb()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -165,7 +165,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def volt(cls, ):
+    def new_volt(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_volt()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -176,7 +176,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def farad(cls, ):
+    def new_farad(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_farad()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -187,7 +187,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def ohm(cls, ):
+    def new_ohm(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_ohm()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -198,7 +198,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def siemens(cls, ):
+    def new_siemens(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_siemens()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -209,7 +209,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def weber(cls, ):
+    def new_weber(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_weber()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -220,7 +220,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def tesla(cls, ):
+    def new_tesla(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_tesla()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -231,7 +231,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def henry(cls, ):
+    def new_henry(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_henry()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -242,7 +242,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def minute(cls, ):
+    def new_minute(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_minute()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -253,7 +253,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def hour(cls, ):
+    def new_hour(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_hour()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -264,7 +264,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def electronvolt(cls, ):
+    def new_electronvolt(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_electronvolt()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -275,7 +275,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def celsius(cls, ):
+    def new_celsius(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_celsius()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -286,7 +286,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def fahrenheit(cls, ):
+    def new_fahrenheit(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_fahrenheit()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -297,7 +297,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def dimensionless(cls, ):
+    def new_dimensionless(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_dimensionless()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -308,7 +308,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def percent(cls, ):
+    def new_percent(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_percent()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -319,7 +319,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def radian(cls, ):
+    def new_radian(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_radian()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -330,7 +330,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def kilometer(cls, ):
+    def new_kilometer(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_kilometer()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -341,7 +341,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def millimeter(cls, ):
+    def new_millimeter(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_millimeter()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -352,7 +352,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def millivolt(cls, ):
+    def new_millivolt(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_millivolt()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -363,7 +363,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def kilovolt(cls, ):
+    def new_kilovolt(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_kilovolt()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -374,7 +374,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def milliampere(cls, ):
+    def new_milliampere(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_milliampere()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -385,7 +385,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def microampere(cls, ):
+    def new_microampere(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_microampere()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -396,7 +396,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def nanoampere(cls, ):
+    def new_nanoampere(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_nanoampere()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -407,7 +407,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def picoampere(cls, ):
+    def new_picoampere(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_picoampere()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -418,7 +418,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def millisecond(cls, ):
+    def new_millisecond(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_millisecond()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -429,7 +429,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def microsecond(cls, ):
+    def new_microsecond(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_microsecond()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -440,7 +440,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def nanosecond(cls, ):
+    def new_nanosecond(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_nanosecond()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -451,7 +451,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def picosecond(cls, ):
+    def new_picosecond(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_picosecond()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -462,7 +462,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def milliohm(cls, ):
+    def new_milliohm(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_milliohm()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -473,7 +473,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def kiloohm(cls, ):
+    def new_kiloohm(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_kiloohm()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -484,7 +484,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def megaohm(cls, ):
+    def new_megaohm(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_megaohm()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -495,7 +495,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def millihertz(cls, ):
+    def new_millihertz(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_millihertz()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -506,7 +506,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def kilohertz(cls, ):
+    def new_kilohertz(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_kilohertz()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -517,7 +517,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def megahertz(cls, ):
+    def new_megahertz(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_megahertz()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -528,7 +528,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def gigahertz(cls, ):
+    def new_gigahertz(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_gigahertz()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -539,7 +539,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def meters_per_second(cls, ):
+    def new_meters_per_second(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_meters_per_second()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -550,7 +550,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def meters_per_second_squared(cls, ):
+    def new_meters_per_second_squared(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_meters_per_second_squared()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -561,7 +561,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def newton_meter(cls, ):
+    def new_newton_meter(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_newton_meter()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -572,7 +572,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def newtons_per_meter(cls, ):
+    def new_newtons_per_meter(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_newtons_per_meter()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -583,7 +583,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def volts_per_meter(cls, ):
+    def new_volts_per_meter(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_volts_per_meter()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -594,7 +594,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def volts_per_second(cls, ):
+    def new_volts_per_second(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_volts_per_second()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -605,7 +605,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def amperes_per_meter(cls, ):
+    def new_amperes_per_meter(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_amperes_per_meter()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -616,7 +616,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def volts_per_ampere(cls, ):
+    def new_volts_per_ampere(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_volts_per_ampere()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -627,7 +627,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def watts_per_meter_kelvin(cls, ):
+    def new_watts_per_meter_kelvin(cls, ):
         cdef _c_api.SymbolUnitHandle h
         h = _c_api.SymbolUnit_create_watts_per_meter_kelvin()
         if h == <_c_api.SymbolUnitHandle>0:
@@ -638,7 +638,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.SymbolUnitHandle h

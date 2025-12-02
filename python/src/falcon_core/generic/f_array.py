@@ -13,9 +13,36 @@ class _FArrayFactory:
 
     def __call__(self, *args, **kwargs):
         """Construct a new FArray instance."""
-        # This is for direct construction, not typically used
-        # Users should use class methods like FArray[T].new_empty(...)
-        raise TypeError(f'Use FArray[{self.element_type}].new_*() class methods to construct instances')
+        # Try to find a suitable constructor based on arguments
+        if not args and not kwargs:
+            # Empty constructor
+            if hasattr(self._c_class, 'new_empty'):
+                return FArray(self._c_class.new_empty(), self.element_type)
+            elif hasattr(self._c_class, 'create_empty'):
+                return FArray(self._c_class.create_empty(), self.element_type)
+            elif hasattr(self._c_class, 'new'):
+                return FArray(self._c_class.new(), self.element_type)
+        
+        # Single argument constructor
+        if len(args) == 1 and not kwargs:
+            arg = args[0]
+            # List from iterable
+            if "FArray" == "List" and hasattr(self._c_class, 'from_list'):
+                return FArray(self._c_class.from_list(arg), self.element_type)
+            # Map from dict
+            elif "FArray" == "Map" and hasattr(self._c_class, 'from_map'):
+                return FArray(self._c_class.from_map(arg), self.element_type)
+            # Copy constructor or similar
+            elif hasattr(self._c_class, 'new'):
+                return FArray(self._c_class.new(arg), self.element_type)
+                
+        # Pair constructor
+        if "FArray" == "Pair" and len(args) == 2:
+            if hasattr(self._c_class, 'new'):
+                return FArray(self._c_class.new(*args), self.element_type)
+
+        # Fallback to raising error if no suitable constructor found
+        raise TypeError(f'No suitable constructor found for FArray[{self.element_type}] with args={args}')
 
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""

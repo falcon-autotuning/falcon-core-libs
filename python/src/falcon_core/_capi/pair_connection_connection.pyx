@@ -23,7 +23,7 @@ cdef PairConnectionConnection _pair_connection_connection_from_capi(_c_api.PairC
     return obj
 
     @classmethod
-    def create(cls, Connection first, Connection second):
+    def new(cls, Connection first, Connection second):
         cdef _c_api.PairConnectionConnectionHandle h
         h = _c_api.PairConnectionConnection_create(first.handle, second.handle)
         if h == <_c_api.PairConnectionConnectionHandle>0:
@@ -34,7 +34,7 @@ cdef PairConnectionConnection _pair_connection_connection_from_capi(_c_api.PairC
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairConnectionConnectionHandle h

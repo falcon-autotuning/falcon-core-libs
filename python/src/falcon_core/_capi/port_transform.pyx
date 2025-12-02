@@ -27,7 +27,7 @@ cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h):
     return obj
 
     @classmethod
-    def create(cls, InstrumentPort port, AnalyticFunction transform):
+    def new(cls, InstrumentPort port, AnalyticFunction transform):
         cdef _c_api.PortTransformHandle h
         h = _c_api.PortTransform_create(port.handle, transform.handle)
         if h == <_c_api.PortTransformHandle>0:
@@ -38,7 +38,7 @@ cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h):
         return obj
 
     @classmethod
-    def constant_transform(cls, InstrumentPort port, double value):
+    def new_constant_transform(cls, InstrumentPort port, double value):
         cdef _c_api.PortTransformHandle h
         h = _c_api.PortTransform_create_constant_transform(port.handle, value)
         if h == <_c_api.PortTransformHandle>0:
@@ -49,7 +49,7 @@ cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h):
         return obj
 
     @classmethod
-    def identity_transform(cls, InstrumentPort port):
+    def new_identity_transform(cls, InstrumentPort port):
         cdef _c_api.PortTransformHandle h
         h = _c_api.PortTransform_create_identity_transform(port.handle)
         if h == <_c_api.PortTransformHandle>0:
@@ -60,7 +60,7 @@ cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PortTransformHandle h

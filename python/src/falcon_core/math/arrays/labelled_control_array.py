@@ -21,8 +21,8 @@ class LabelledControlArray:
         return cls(c_obj)
 
     @classmethod
-    def LabelledControlArray_from_json_string(cls, json: str) -> LabelledControlArray:
-        return cls(_CLabelledControlArray.LabelledControlArray_from_json_string(json))
+    def from_json(cls, json: str) -> LabelledControlArray:
+        return cls(_CLabelledControlArray.from_json(json))
 
     @classmethod
     def from_farray(cls, farray: FArray, label: AcquisitionContext) -> LabelledControlArray:

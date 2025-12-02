@@ -15,16 +15,16 @@ class Gname:
         return cls(c_obj)
 
     @classmethod
-    def Gname_create_from_num(cls, num: Any) -> Gname:
-        return cls(_CGname.Gname_create_from_num(num))
+    def new_from_num(cls, num: Any) -> Gname:
+        return cls(_CGname.new_from_num(num))
 
     @classmethod
-    def Gname_create(cls, name: str) -> Gname:
-        return cls(_CGname.Gname_create(name))
+    def new(cls, name: str) -> Gname:
+        return cls(_CGname.new(name))
 
     @classmethod
-    def Gname_from_json_string(cls, json: str) -> Gname:
-        return cls(_CGname.Gname_from_json_string(json))
+    def from_json(cls, json: str) -> Gname:
+        return cls(_CGname.from_json(json))
 
     def gname(self, ) -> str:
         ret = self._c.gname()
@@ -42,10 +42,10 @@ class Gname:
         """Operator overload for =="""
         if not isinstance(other, Gname):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Gname):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

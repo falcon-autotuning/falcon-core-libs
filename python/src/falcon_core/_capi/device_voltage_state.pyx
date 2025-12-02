@@ -24,7 +24,7 @@ cdef DeviceVoltageState _device_voltage_state_from_capi(_c_api.DeviceVoltageStat
     return obj
 
     @classmethod
-    def create(cls, Connection connection, double voltage, SymbolUnit unit):
+    def new(cls, Connection connection, double voltage, SymbolUnit unit):
         cdef _c_api.DeviceVoltageStateHandle h
         h = _c_api.DeviceVoltageState_create(connection.handle, voltage, unit.handle)
         if h == <_c_api.DeviceVoltageStateHandle>0:
@@ -35,7 +35,7 @@ cdef DeviceVoltageState _device_voltage_state_from_capi(_c_api.DeviceVoltageStat
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.DeviceVoltageStateHandle h

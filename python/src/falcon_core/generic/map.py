@@ -14,9 +14,36 @@ class _MapFactory:
 
     def __call__(self, *args, **kwargs):
         """Construct a new Map instance."""
-        # This is for direct construction, not typically used
-        # Users should use class methods like Map[T].new_empty(...)
-        raise TypeError(f'Use Map[{self.element_type}].new_*() class methods to construct instances')
+        # Try to find a suitable constructor based on arguments
+        if not args and not kwargs:
+            # Empty constructor
+            if hasattr(self._c_class, 'new_empty'):
+                return Map(self._c_class.new_empty(), self.element_type)
+            elif hasattr(self._c_class, 'create_empty'):
+                return Map(self._c_class.create_empty(), self.element_type)
+            elif hasattr(self._c_class, 'new'):
+                return Map(self._c_class.new(), self.element_type)
+        
+        # Single argument constructor
+        if len(args) == 1 and not kwargs:
+            arg = args[0]
+            # List from iterable
+            if "Map" == "List" and hasattr(self._c_class, 'from_list'):
+                return Map(self._c_class.from_list(arg), self.element_type)
+            # Map from dict
+            elif "Map" == "Map" and hasattr(self._c_class, 'from_map'):
+                return Map(self._c_class.from_map(arg), self.element_type)
+            # Copy constructor or similar
+            elif hasattr(self._c_class, 'new'):
+                return Map(self._c_class.new(arg), self.element_type)
+                
+        # Pair constructor
+        if "Map" == "Pair" and len(args) == 2:
+            if hasattr(self._c_class, 'new'):
+                return Map(self._c_class.new(*args), self.element_type)
+
+        # Fallback to raising error if no suitable constructor found
+        raise TypeError(f'No suitable constructor found for Map[{self.element_type}] with args={args}')
 
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""

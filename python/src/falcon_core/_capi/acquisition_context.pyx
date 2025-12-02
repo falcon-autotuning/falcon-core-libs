@@ -25,7 +25,7 @@ cdef AcquisitionContext _acquisition_context_from_capi(_c_api.AcquisitionContext
     return obj
 
     @classmethod
-    def create(cls, Connection connection, str instrument_type, SymbolUnit units):
+    def new(cls, Connection connection, str instrument_type, SymbolUnit units):
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
         cdef StringHandle s_instrument_type = _c_api.String_create(b_instrument_type, len(b_instrument_type))
         cdef _c_api.AcquisitionContextHandle h
@@ -41,7 +41,7 @@ cdef AcquisitionContext _acquisition_context_from_capi(_c_api.AcquisitionContext
         return obj
 
     @classmethod
-    def from_port(cls, InstrumentPort port):
+    def new_from_port(cls, InstrumentPort port):
         cdef _c_api.AcquisitionContextHandle h
         h = _c_api.AcquisitionContext_create_from_port(port.handle)
         if h == <_c_api.AcquisitionContextHandle>0:
@@ -52,7 +52,7 @@ cdef AcquisitionContext _acquisition_context_from_capi(_c_api.AcquisitionContext
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.AcquisitionContextHandle h

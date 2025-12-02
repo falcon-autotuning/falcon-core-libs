@@ -22,7 +22,7 @@ cdef IncreasingAlignment _increasing_alignment_from_capi(_c_api.IncreasingAlignm
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.IncreasingAlignmentHandle h
         h = _c_api.IncreasingAlignment_create_empty()
         if h == <_c_api.IncreasingAlignmentHandle>0:
@@ -33,7 +33,7 @@ cdef IncreasingAlignment _increasing_alignment_from_capi(_c_api.IncreasingAlignm
         return obj
 
     @classmethod
-    def create(cls, bool alignment):
+    def new(cls, bool alignment):
         cdef _c_api.IncreasingAlignmentHandle h
         h = _c_api.IncreasingAlignment_create(alignment)
         if h == <_c_api.IncreasingAlignmentHandle>0:
@@ -44,7 +44,7 @@ cdef IncreasingAlignment _increasing_alignment_from_capi(_c_api.IncreasingAlignm
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.IncreasingAlignmentHandle h

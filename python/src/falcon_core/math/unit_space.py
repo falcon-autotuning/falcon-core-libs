@@ -22,32 +22,32 @@ class UnitSpace:
         return cls(c_obj)
 
     @classmethod
-    def UnitSpace_create(cls, axes: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_create(axes._c, domain._c))
+    def new(cls, axes: Axes, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new(axes._c, domain._c))
 
     @classmethod
-    def UnitSpace_create_rayspace(cls, dr: Any, dtheta: Any, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_create_rayspace(dr, dtheta, domain._c))
+    def new_rayspace(cls, dr: Any, dtheta: Any, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_rayspace(dr, dtheta, domain._c))
 
     @classmethod
-    def UnitSpace_create_cartesianspace(cls, deltas: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_create_cartesianspace(deltas._c, domain._c))
+    def new_cartesianspace(cls, deltas: Axes, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_cartesianspace(deltas._c, domain._c))
 
     @classmethod
-    def UnitSpace_create_cartesian1Dspace(cls, delta: Any, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_create_cartesian1Dspace(delta, domain._c))
+    def new_cartesian1Dspace(cls, delta: Any, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_cartesian1Dspace(delta, domain._c))
 
     @classmethod
-    def UnitSpace_create_cartesian2Dspace(cls, deltas: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_create_cartesian2Dspace(deltas._c, domain._c))
+    def new_cartesian2Dspace(cls, deltas: Axes, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_cartesian2Dspace(deltas._c, domain._c))
 
     @classmethod
-    def UnitSpace_create_array(cls, handle: UnitSpace, axes: Axes) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_create_array(handle._c, axes._c))
+    def new_array(cls, handle: UnitSpace, axes: Axes) -> UnitSpace:
+        return cls(_CUnitSpace.new_array(handle._c, axes._c))
 
     @classmethod
-    def UnitSpace_from_json_string(cls, json: str) -> UnitSpace:
-        return cls(_CUnitSpace.UnitSpace_from_json_string(json))
+    def from_json(cls, json: str) -> UnitSpace:
+        return cls(_CUnitSpace.from_json(json))
 
     def axes(self, ) -> Axes:
         ret = self._c.axes()
@@ -130,10 +130,10 @@ class UnitSpace:
         """Operator overload for =="""
         if not isinstance(other, UnitSpace):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, UnitSpace):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

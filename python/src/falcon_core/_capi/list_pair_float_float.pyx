@@ -23,7 +23,7 @@ cdef ListPairFloatFloat _list_pair_float_float_from_capi(_c_api.ListPairFloatFlo
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.ListPairFloatFloatHandle h
         h = _c_api.ListPairFloatFloat_create_empty()
         if h == <_c_api.ListPairFloatFloatHandle>0:
@@ -34,7 +34,7 @@ cdef ListPairFloatFloat _list_pair_float_float_from_capi(_c_api.ListPairFloatFlo
         return obj
 
     @classmethod
-    def create(cls, PairFloatFloat data, size_t count):
+    def new(cls, PairFloatFloat data, size_t count):
         cdef _c_api.ListPairFloatFloatHandle h
         h = _c_api.ListPairFloatFloat_create(data.handle, count)
         if h == <_c_api.ListPairFloatFloatHandle>0:
@@ -45,7 +45,7 @@ cdef ListPairFloatFloat _list_pair_float_float_from_capi(_c_api.ListPairFloatFlo
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ListPairFloatFloatHandle h

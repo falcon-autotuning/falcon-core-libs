@@ -22,7 +22,7 @@ cdef PairIntFloat _pair_int_float_from_capi(_c_api.PairIntFloatHandle h):
     return obj
 
     @classmethod
-    def create(cls, int first, float second):
+    def new(cls, int first, float second):
         cdef _c_api.PairIntFloatHandle h
         h = _c_api.PairIntFloat_create(first, second)
         if h == <_c_api.PairIntFloatHandle>0:
@@ -33,7 +33,7 @@ cdef PairIntFloat _pair_int_float_from_capi(_c_api.PairIntFloatHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairIntFloatHandle h

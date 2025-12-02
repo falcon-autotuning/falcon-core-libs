@@ -22,7 +22,7 @@ cdef StandardResponse _standard_response_from_capi(_c_api.StandardResponseHandle
     return obj
 
     @classmethod
-    def create(cls, str message):
+    def new(cls, str message):
         cdef bytes b_message = message.encode("utf-8")
         cdef StringHandle s_message = _c_api.String_create(b_message, len(b_message))
         cdef _c_api.StandardResponseHandle h
@@ -38,7 +38,7 @@ cdef StandardResponse _standard_response_from_capi(_c_api.StandardResponseHandle
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.StandardResponseHandle h

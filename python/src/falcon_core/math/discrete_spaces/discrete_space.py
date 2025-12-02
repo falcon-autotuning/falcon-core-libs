@@ -26,20 +26,20 @@ class DiscreteSpace:
         return cls(c_obj)
 
     @classmethod
-    def DiscreteSpace_create(cls, space: UnitSpace, axes: Axes, increasing: Axes) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.DiscreteSpace_create(space._c, axes._c, increasing._c))
+    def new(cls, space: UnitSpace, axes: Axes, increasing: Axes) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.new(space._c, axes._c, increasing._c))
 
     @classmethod
-    def DiscreteSpace_create_cartesiandiscretespace(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.DiscreteSpace_create_cartesiandiscretespace(divisions._c, axes._c, increasing._c, domain._c))
+    def new_cartesiandiscretespace(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.new_cartesiandiscretespace(divisions._c, axes._c, increasing._c, domain._c))
 
     @classmethod
-    def DiscreteSpace_create_cartesiandiscretespace1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.DiscreteSpace_create_cartesiandiscretespace1D(division, shared_domain._c, increasing._c, domain._c))
+    def new_cartesiandiscretespace1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.new_cartesiandiscretespace1D(division, shared_domain._c, increasing._c, domain._c))
 
     @classmethod
-    def DiscreteSpace_from_json_string(cls, json: str) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.DiscreteSpace_from_json_string(json))
+    def from_json(cls, json: str) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.from_json(json))
 
     def space(self, ) -> UnitSpace:
         ret = self._c.space()
@@ -95,10 +95,10 @@ class DiscreteSpace:
         """Operator overload for =="""
         if not isinstance(other, DiscreteSpace):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, DiscreteSpace):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

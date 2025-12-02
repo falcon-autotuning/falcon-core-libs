@@ -25,7 +25,7 @@ cdef AnalyticFunction _analytic_function_from_capi(_c_api.AnalyticFunctionHandle
     return obj
 
     @classmethod
-    def create(cls, ListString labels, str expression):
+    def new(cls, ListString labels, str expression):
         cdef bytes b_expression = expression.encode("utf-8")
         cdef StringHandle s_expression = _c_api.String_create(b_expression, len(b_expression))
         cdef _c_api.AnalyticFunctionHandle h
@@ -41,7 +41,7 @@ cdef AnalyticFunction _analytic_function_from_capi(_c_api.AnalyticFunctionHandle
         return obj
 
     @classmethod
-    def identity(cls, ):
+    def new_identity(cls, ):
         cdef _c_api.AnalyticFunctionHandle h
         h = _c_api.AnalyticFunction_create_identity()
         if h == <_c_api.AnalyticFunctionHandle>0:
@@ -52,7 +52,7 @@ cdef AnalyticFunction _analytic_function_from_capi(_c_api.AnalyticFunctionHandle
         return obj
 
     @classmethod
-    def constant(cls, double value):
+    def new_constant(cls, double value):
         cdef _c_api.AnalyticFunctionHandle h
         h = _c_api.AnalyticFunction_create_constant(value)
         if h == <_c_api.AnalyticFunctionHandle>0:
@@ -63,7 +63,7 @@ cdef AnalyticFunction _analytic_function_from_capi(_c_api.AnalyticFunctionHandle
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.AnalyticFunctionHandle h

@@ -23,7 +23,7 @@ cdef Loader _loader_from_capi(_c_api.LoaderHandle h):
     return obj
 
     @classmethod
-    def create(cls, str config_path):
+    def new(cls, str config_path):
         cdef bytes b_config_path = config_path.encode("utf-8")
         cdef StringHandle s_config_path = _c_api.String_create(b_config_path, len(b_config_path))
         cdef _c_api.LoaderHandle h

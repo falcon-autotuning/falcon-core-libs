@@ -27,7 +27,7 @@ cdef Ports _ports_from_capi(_c_api.PortsHandle h):
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.PortsHandle h
         h = _c_api.Ports_create_empty()
         if h == <_c_api.PortsHandle>0:
@@ -38,7 +38,7 @@ cdef Ports _ports_from_capi(_c_api.PortsHandle h):
         return obj
 
     @classmethod
-    def create(cls, ListInstrumentPort items):
+    def new(cls, ListInstrumentPort items):
         cdef _c_api.PortsHandle h
         h = _c_api.Ports_create(items.handle)
         if h == <_c_api.PortsHandle>0:
@@ -49,7 +49,7 @@ cdef Ports _ports_from_capi(_c_api.PortsHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PortsHandle h

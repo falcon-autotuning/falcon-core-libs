@@ -19,12 +19,12 @@ class Adjacency:
         return cls(c_obj)
 
     @classmethod
-    def Adjacency_create(cls, data: Any, shape: Any, ndim: Any, indexes: Connections) -> Adjacency:
-        return cls(_CAdjacency.Adjacency_create(data, shape, ndim, indexes._c))
+    def new(cls, data: Any, shape: Any, ndim: Any, indexes: Connections) -> Adjacency:
+        return cls(_CAdjacency.new(data, shape, ndim, indexes._c))
 
     @classmethod
-    def Adjacency_from_json_string(cls, json: str) -> Adjacency:
-        return cls(_CAdjacency.Adjacency_from_json_string(json))
+    def from_json(cls, json: str) -> Adjacency:
+        return cls(_CAdjacency.from_json(json))
 
     def indexes(self, ) -> Connections:
         ret = self._c.indexes()

@@ -16,12 +16,12 @@ class MeasurementResponse:
         return cls(c_obj)
 
     @classmethod
-    def MeasurementResponse_create(cls, arrays: LabelledArrays) -> MeasurementResponse:
-        return cls(_CMeasurementResponse.MeasurementResponse_create(arrays._c))
+    def new(cls, arrays: LabelledArrays) -> MeasurementResponse:
+        return cls(_CMeasurementResponse.new(arrays._c))
 
     @classmethod
-    def MeasurementResponse_from_json_string(cls, json: str) -> MeasurementResponse:
-        return cls(_CMeasurementResponse.MeasurementResponse_from_json_string(json))
+    def from_json(cls, json: str) -> MeasurementResponse:
+        return cls(_CMeasurementResponse.from_json(json))
 
     def arrays(self, ) -> LabelledArrays:
         ret = self._c.arrays()
@@ -44,10 +44,10 @@ class MeasurementResponse:
         """Operator overload for =="""
         if not isinstance(other, MeasurementResponse):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, MeasurementResponse):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

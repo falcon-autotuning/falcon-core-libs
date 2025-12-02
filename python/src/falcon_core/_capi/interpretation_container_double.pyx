@@ -31,7 +31,7 @@ cdef InterpretationContainerDouble _interpretation_container_double_from_capi(_c
     return obj
 
     @classmethod
-    def create(cls, MapInterpretationContextDouble map):
+    def new(cls, MapInterpretationContextDouble map):
         cdef _c_api.InterpretationContainerDoubleHandle h
         h = _c_api.InterpretationContainerDouble_create(map.handle)
         if h == <_c_api.InterpretationContainerDoubleHandle>0:
@@ -42,7 +42,7 @@ cdef InterpretationContainerDouble _interpretation_container_double_from_capi(_c
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.InterpretationContainerDoubleHandle h

@@ -17,8 +17,8 @@ class ControlArray:
         return cls(c_obj)
 
     @classmethod
-    def ControlArray_from_json_string(cls, json: str) -> ControlArray:
-        return cls(_CControlArray.ControlArray_from_json_string(json))
+    def from_json(cls, json: str) -> ControlArray:
+        return cls(_CControlArray.from_json(json))
 
     @classmethod
     def from_data(cls, data: Any, shape: Any, ndim: Any) -> ControlArray:

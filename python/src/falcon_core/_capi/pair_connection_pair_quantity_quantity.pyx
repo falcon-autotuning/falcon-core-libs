@@ -24,7 +24,7 @@ cdef PairConnectionPairQuantityQuantity _pair_connection_pair_quantity_quantity_
     return obj
 
     @classmethod
-    def create(cls, Connection first, PairQuantityQuantity second):
+    def new(cls, Connection first, PairQuantityQuantity second):
         cdef _c_api.PairConnectionPairQuantityQuantityHandle h
         h = _c_api.PairConnectionPairQuantityQuantity_create(first.handle, second.handle)
         if h == <_c_api.PairConnectionPairQuantityQuantityHandle>0:
@@ -35,7 +35,7 @@ cdef PairConnectionPairQuantityQuantity _pair_connection_pair_quantity_quantity_
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairConnectionPairQuantityQuantityHandle h

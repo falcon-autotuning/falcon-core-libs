@@ -17,16 +17,16 @@ class MeasurementContext:
         return cls(c_obj)
 
     @classmethod
-    def MeasurementContext_create(cls, connection: Connection, instrument_type: str) -> MeasurementContext:
-        return cls(_CMeasurementContext.MeasurementContext_create(connection._c, instrument_type))
+    def new(cls, connection: Connection, instrument_type: str) -> MeasurementContext:
+        return cls(_CMeasurementContext.new(connection._c, instrument_type))
 
     @classmethod
-    def MeasurementContext_create_from_port(cls, port: InstrumentPort) -> MeasurementContext:
-        return cls(_CMeasurementContext.MeasurementContext_create_from_port(port._c))
+    def new_from_port(cls, port: InstrumentPort) -> MeasurementContext:
+        return cls(_CMeasurementContext.new_from_port(port._c))
 
     @classmethod
-    def MeasurementContext_from_json_string(cls, json: str) -> MeasurementContext:
-        return cls(_CMeasurementContext.MeasurementContext_from_json_string(json))
+    def from_json(cls, json: str) -> MeasurementContext:
+        return cls(_CMeasurementContext.from_json(json))
 
     def connection(self, ) -> Connection:
         ret = self._c.connection()
@@ -49,10 +49,10 @@ class MeasurementContext:
         """Operator overload for =="""
         if not isinstance(other, MeasurementContext):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, MeasurementContext):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

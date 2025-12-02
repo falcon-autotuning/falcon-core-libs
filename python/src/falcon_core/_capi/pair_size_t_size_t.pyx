@@ -22,7 +22,7 @@ cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h)
     return obj
 
     @classmethod
-    def create(cls, size_t first, size_t second):
+    def new(cls, size_t first, size_t second):
         cdef _c_api.PairSizeTSizeTHandle h
         h = _c_api.PairSizeTSizeT_create(first, second)
         if h == <_c_api.PairSizeTSizeTHandle>0:
@@ -33,7 +33,7 @@ cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h)
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairSizeTSizeTHandle h

@@ -23,7 +23,7 @@ cdef Impedance _impedance_from_capi(_c_api.ImpedanceHandle h):
     return obj
 
     @classmethod
-    def create(cls, Connection connection, double resistance, double capacitance):
+    def new(cls, Connection connection, double resistance, double capacitance):
         cdef _c_api.ImpedanceHandle h
         h = _c_api.Impedance_create(connection.handle, resistance, capacitance)
         if h == <_c_api.ImpedanceHandle>0:
@@ -34,7 +34,7 @@ cdef Impedance _impedance_from_capi(_c_api.ImpedanceHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ImpedanceHandle h

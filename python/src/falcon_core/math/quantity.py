@@ -16,12 +16,12 @@ class Quantity:
         return cls(c_obj)
 
     @classmethod
-    def Quantity_create(cls, value: Any, unit: SymbolUnit) -> Quantity:
-        return cls(_CQuantity.Quantity_create(value, unit._c))
+    def new(cls, value: Any, unit: SymbolUnit) -> Quantity:
+        return cls(_CQuantity.new(value, unit._c))
 
     @classmethod
-    def Quantity_from_json_string(cls, json: str) -> Quantity:
-        return cls(_CQuantity.Quantity_from_json_string(json))
+    def from_json(cls, json: str) -> Quantity:
+        return cls(_CQuantity.from_json(json))
 
     def value(self, ) -> None:
         ret = self._c.value()
@@ -176,10 +176,10 @@ class Quantity:
         """Operator overload for =="""
         if not isinstance(other, Quantity):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Quantity):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

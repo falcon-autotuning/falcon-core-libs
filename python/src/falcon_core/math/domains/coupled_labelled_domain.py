@@ -19,16 +19,16 @@ class CoupledLabelledDomain:
         return cls(c_obj)
 
     @classmethod
-    def CoupledLabelledDomain_create_empty(cls, ) -> CoupledLabelledDomain:
-        return cls(_CCoupledLabelledDomain.CoupledLabelledDomain_create_empty())
+    def new_empty(cls, ) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.new_empty())
 
     @classmethod
-    def CoupledLabelledDomain_create(cls, items: List) -> CoupledLabelledDomain:
-        return cls(_CCoupledLabelledDomain.CoupledLabelledDomain_create(items._c))
+    def new(cls, items: List) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.new(items._c))
 
     @classmethod
-    def CoupledLabelledDomain_from_json_string(cls, json: str) -> CoupledLabelledDomain:
-        return cls(_CCoupledLabelledDomain.CoupledLabelledDomain_from_json_string(json))
+    def from_json(cls, json: str) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.from_json(json))
 
     def domains(self, ) -> List:
         ret = self._c.domains()
@@ -104,10 +104,10 @@ class CoupledLabelledDomain:
         """Operator overload for =="""
         if not isinstance(other, CoupledLabelledDomain):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, CoupledLabelledDomain):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

@@ -24,36 +24,36 @@ class Waveform:
         return cls(c_obj)
 
     @classmethod
-    def Waveform_create(cls, space: DiscreteSpace, transforms: List) -> Waveform:
-        return cls(_CWaveform.Waveform_create(space._c, transforms._c))
+    def new(cls, space: DiscreteSpace, transforms: List) -> Waveform:
+        return cls(_CWaveform.new(space._c, transforms._c))
 
     @classmethod
-    def Waveform_create_cartesianwaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.Waveform_create_cartesianwaveform(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
+    def new_cartesianwaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesianwaveform(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianidentitywaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
-        return cls(_CWaveform.Waveform_create_cartesianidentitywaveform(divisions._c, axes._c, increasing._c, domain._c))
+    def new_cartesianidentitywaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesianidentitywaveform(divisions._c, axes._c, increasing._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianwaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.Waveform_create_cartesianwaveform2D(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
+    def new_cartesianwaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesianwaveform2D(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianidentitywaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
-        return cls(_CWaveform.Waveform_create_cartesianidentitywaveform2D(divisions._c, axes._c, increasing._c, domain._c))
+    def new_cartesianidentitywaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesianidentitywaveform2D(divisions._c, axes._c, increasing._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianwaveform1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.Waveform_create_cartesianwaveform1D(division, shared_domain._c, increasing._c, transforms._c, domain._c))
+    def new_cartesianwaveform1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, transforms: List, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesianwaveform1D(division, shared_domain._c, increasing._c, transforms._c, domain._c))
 
     @classmethod
-    def Waveform_create_cartesianidentitywaveform1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> Waveform:
-        return cls(_CWaveform.Waveform_create_cartesianidentitywaveform1D(division, shared_domain._c, increasing._c, domain._c))
+    def new_cartesianidentitywaveform1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesianidentitywaveform1D(division, shared_domain._c, increasing._c, domain._c))
 
     @classmethod
-    def Waveform_from_json_string(cls, json: str) -> Waveform:
-        return cls(_CWaveform.Waveform_from_json_string(json))
+    def from_json(cls, json: str) -> Waveform:
+        return cls(_CWaveform.from_json(json))
 
     def space(self, ) -> DiscreteSpace:
         ret = self._c.space()
@@ -119,10 +119,10 @@ class Waveform:
         """Operator overload for =="""
         if not isinstance(other, Waveform):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Waveform):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

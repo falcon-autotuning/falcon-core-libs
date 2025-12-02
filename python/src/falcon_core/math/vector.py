@@ -25,36 +25,36 @@ class Vector:
         return cls(c_obj)
 
     @classmethod
-    def Vector_create(cls, start: Point, end: Point) -> Vector:
-        return cls(_CVector.Vector_create(start._c, end._c))
+    def new(cls, start: Point, end: Point) -> Vector:
+        return cls(_CVector.new(start._c, end._c))
 
     @classmethod
-    def Vector_create_from_end(cls, end: Point) -> Vector:
-        return cls(_CVector.Vector_create_from_end(end._c))
+    def new_from_end(cls, end: Point) -> Vector:
+        return cls(_CVector.new_from_end(end._c))
 
     @classmethod
-    def Vector_create_from_quantities(cls, start: Map, end: Map) -> Vector:
-        return cls(_CVector.Vector_create_from_quantities(start._c, end._c))
+    def new_from_quantities(cls, start: Map, end: Map) -> Vector:
+        return cls(_CVector.new_from_quantities(start._c, end._c))
 
     @classmethod
-    def Vector_create_from_end_quantities(cls, end: Map) -> Vector:
-        return cls(_CVector.Vector_create_from_end_quantities(end._c))
+    def new_from_end_quantities(cls, end: Map) -> Vector:
+        return cls(_CVector.new_from_end_quantities(end._c))
 
     @classmethod
-    def Vector_create_from_doubles(cls, start: Map, end: Map, unit: SymbolUnit) -> Vector:
-        return cls(_CVector.Vector_create_from_doubles(start._c, end._c, unit._c))
+    def new_from_doubles(cls, start: Map, end: Map, unit: SymbolUnit) -> Vector:
+        return cls(_CVector.new_from_doubles(start._c, end._c, unit._c))
 
     @classmethod
-    def Vector_create_from_end_doubles(cls, end: Map, unit: SymbolUnit) -> Vector:
-        return cls(_CVector.Vector_create_from_end_doubles(end._c, unit._c))
+    def new_from_end_doubles(cls, end: Map, unit: SymbolUnit) -> Vector:
+        return cls(_CVector.new_from_end_doubles(end._c, unit._c))
 
     @classmethod
-    def Vector_create_from_parent(cls, items: Map) -> Vector:
-        return cls(_CVector.Vector_create_from_parent(items._c))
+    def new_from_parent(cls, items: Map) -> Vector:
+        return cls(_CVector.new_from_parent(items._c))
 
     @classmethod
-    def Vector_from_json_string(cls, json: str) -> Vector:
-        return cls(_CVector.Vector_from_json_string(json))
+    def from_json(cls, json: str) -> Vector:
+        return cls(_CVector.from_json(json))
 
     def endPoint(self, ) -> Point:
         ret = self._c.endPoint()
@@ -277,10 +277,10 @@ class Vector:
         """Operator overload for =="""
         if not isinstance(other, Vector):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Vector):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

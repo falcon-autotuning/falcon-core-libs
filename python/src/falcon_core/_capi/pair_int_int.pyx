@@ -22,7 +22,7 @@ cdef PairIntInt _pair_int_int_from_capi(_c_api.PairIntIntHandle h):
     return obj
 
     @classmethod
-    def create(cls, int first, int second):
+    def new(cls, int first, int second):
         cdef _c_api.PairIntIntHandle h
         h = _c_api.PairIntInt_create(first, second)
         if h == <_c_api.PairIntIntHandle>0:
@@ -33,7 +33,7 @@ cdef PairIntInt _pair_int_int_from_capi(_c_api.PairIntIntHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairIntIntHandle h

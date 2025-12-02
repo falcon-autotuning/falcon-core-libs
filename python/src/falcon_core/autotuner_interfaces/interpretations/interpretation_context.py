@@ -19,12 +19,12 @@ class InterpretationContext:
         return cls(c_obj)
 
     @classmethod
-    def InterpretationContext_create(cls, independant_variables: Axes, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
-        return cls(_CInterpretationContext.InterpretationContext_create(independant_variables._c, dependant_variables._c, unit._c))
+    def new(cls, independant_variables: Axes, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
+        return cls(_CInterpretationContext.new(independant_variables._c, dependant_variables._c, unit._c))
 
     @classmethod
-    def InterpretationContext_from_json_string(cls, json: str) -> InterpretationContext:
-        return cls(_CInterpretationContext.InterpretationContext_from_json_string(json))
+    def from_json(cls, json: str) -> InterpretationContext:
+        return cls(_CInterpretationContext.from_json(json))
 
     def independent_variables(self, ) -> Axes:
         ret = self._c.independent_variables()
@@ -74,10 +74,10 @@ class InterpretationContext:
         """Operator overload for =="""
         if not isinstance(other, InterpretationContext):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, InterpretationContext):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

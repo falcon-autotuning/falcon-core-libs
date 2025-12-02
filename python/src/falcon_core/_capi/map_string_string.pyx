@@ -25,7 +25,7 @@ cdef MapStringString _map_string_string_from_capi(_c_api.MapStringStringHandle h
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.MapStringStringHandle h
         h = _c_api.MapStringString_create_empty()
         if h == <_c_api.MapStringStringHandle>0:
@@ -36,7 +36,7 @@ cdef MapStringString _map_string_string_from_capi(_c_api.MapStringStringHandle h
         return obj
 
     @classmethod
-    def create(cls, PairStringString data, size_t count):
+    def new(cls, PairStringString data, size_t count):
         cdef _c_api.MapStringStringHandle h
         h = _c_api.MapStringString_create(data.handle, count)
         if h == <_c_api.MapStringStringHandle>0:
@@ -47,7 +47,7 @@ cdef MapStringString _map_string_string_from_capi(_c_api.MapStringStringHandle h
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.MapStringStringHandle h

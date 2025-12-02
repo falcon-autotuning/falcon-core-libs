@@ -22,7 +22,7 @@ cdef PairStringDouble _pair_string_double_from_capi(_c_api.PairStringDoubleHandl
     return obj
 
     @classmethod
-    def create(cls, str first, double second):
+    def new(cls, str first, double second):
         cdef bytes b_first = first.encode("utf-8")
         cdef StringHandle s_first = _c_api.String_create(b_first, len(b_first))
         cdef _c_api.PairStringDoubleHandle h
@@ -38,7 +38,7 @@ cdef PairStringDouble _pair_string_double_from_capi(_c_api.PairStringDoubleHandl
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairStringDoubleHandle h

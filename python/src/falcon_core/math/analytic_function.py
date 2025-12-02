@@ -18,20 +18,20 @@ class AnalyticFunction:
         return cls(c_obj)
 
     @classmethod
-    def AnalyticFunction_create(cls, labels: List, expression: str) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.AnalyticFunction_create(labels._c, expression))
+    def new(cls, labels: List, expression: str) -> AnalyticFunction:
+        return cls(_CAnalyticFunction.new(labels._c, expression))
 
     @classmethod
-    def AnalyticFunction_create_identity(cls, ) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.AnalyticFunction_create_identity())
+    def new_identity(cls, ) -> AnalyticFunction:
+        return cls(_CAnalyticFunction.new_identity())
 
     @classmethod
-    def AnalyticFunction_create_constant(cls, value: Any) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.AnalyticFunction_create_constant(value))
+    def new_constant(cls, value: Any) -> AnalyticFunction:
+        return cls(_CAnalyticFunction.new_constant(value))
 
     @classmethod
-    def AnalyticFunction_from_json_string(cls, json: str) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.AnalyticFunction_from_json_string(json))
+    def from_json(cls, json: str) -> AnalyticFunction:
+        return cls(_CAnalyticFunction.from_json(json))
 
     def labels(self, ) -> List:
         ret = self._c.labels()
@@ -59,10 +59,10 @@ class AnalyticFunction:
         """Operator overload for =="""
         if not isinstance(other, AnalyticFunction):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, AnalyticFunction):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

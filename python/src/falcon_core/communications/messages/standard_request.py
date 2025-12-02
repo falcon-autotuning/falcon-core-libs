@@ -15,12 +15,12 @@ class StandardRequest:
         return cls(c_obj)
 
     @classmethod
-    def StandardRequest_create(cls, message: str) -> StandardRequest:
-        return cls(_CStandardRequest.StandardRequest_create(message))
+    def new(cls, message: str) -> StandardRequest:
+        return cls(_CStandardRequest.new(message))
 
     @classmethod
-    def StandardRequest_from_json_string(cls, json: str) -> StandardRequest:
-        return cls(_CStandardRequest.StandardRequest_from_json_string(json))
+    def from_json(cls, json: str) -> StandardRequest:
+        return cls(_CStandardRequest.from_json(json))
 
     def message(self, ) -> str:
         ret = self._c.message()
@@ -38,10 +38,10 @@ class StandardRequest:
         """Operator overload for =="""
         if not isinstance(other, StandardRequest):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, StandardRequest):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

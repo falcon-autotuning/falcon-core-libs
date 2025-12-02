@@ -31,7 +31,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
     return obj
 
     @classmethod
-    def create(cls, DiscreteSpace space, ListPortTransform transforms):
+    def new(cls, DiscreteSpace space, ListPortTransform transforms):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create(space.handle, transforms.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -42,7 +42,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def cartesianwaveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
+    def new_cartesianwaveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create_cartesianwaveform(divisions.handle, axes.handle, increasing.handle, transforms.handle, domain.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -53,7 +53,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def cartesianidentitywaveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
+    def new_cartesianidentitywaveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create_cartesianidentitywaveform(divisions.handle, axes.handle, increasing.handle, domain.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -64,7 +64,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def cartesianwaveform2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
+    def new_cartesianwaveform2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create_cartesianwaveform2D(divisions.handle, axes.handle, increasing.handle, transforms.handle, domain.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -75,7 +75,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def cartesianidentitywaveform2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
+    def new_cartesianidentitywaveform2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create_cartesianidentitywaveform2D(divisions.handle, axes.handle, increasing.handle, domain.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -86,7 +86,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def cartesianwaveform1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, ListPortTransform transforms, Domain domain):
+    def new_cartesianwaveform1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, ListPortTransform transforms, Domain domain):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create_cartesianwaveform1D(division, shared_domain.handle, increasing.handle, transforms.handle, domain.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -97,7 +97,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def cartesianidentitywaveform1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
+    def new_cartesianidentitywaveform1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create_cartesianidentitywaveform1D(division, shared_domain.handle, increasing.handle, domain.handle)
         if h == <_c_api.WaveformHandle>0:
@@ -108,7 +108,7 @@ cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.WaveformHandle h

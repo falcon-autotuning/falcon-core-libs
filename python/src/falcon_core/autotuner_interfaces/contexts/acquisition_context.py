@@ -18,16 +18,16 @@ class AcquisitionContext:
         return cls(c_obj)
 
     @classmethod
-    def AcquisitionContext_create(cls, connection: Connection, instrument_type: str, units: SymbolUnit) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.AcquisitionContext_create(connection._c, instrument_type, units._c))
+    def new(cls, connection: Connection, instrument_type: str, units: SymbolUnit) -> AcquisitionContext:
+        return cls(_CAcquisitionContext.new(connection._c, instrument_type, units._c))
 
     @classmethod
-    def AcquisitionContext_create_from_port(cls, port: InstrumentPort) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.AcquisitionContext_create_from_port(port._c))
+    def new_from_port(cls, port: InstrumentPort) -> AcquisitionContext:
+        return cls(_CAcquisitionContext.new_from_port(port._c))
 
     @classmethod
-    def AcquisitionContext_from_json_string(cls, json: str) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.AcquisitionContext_from_json_string(json))
+    def from_json(cls, json: str) -> AcquisitionContext:
+        return cls(_CAcquisitionContext.from_json(json))
 
     def connection(self, ) -> Connection:
         ret = self._c.connection()
@@ -77,10 +77,10 @@ class AcquisitionContext:
         """Operator overload for =="""
         if not isinstance(other, AcquisitionContext):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, AcquisitionContext):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

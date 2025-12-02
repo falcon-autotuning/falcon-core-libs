@@ -26,7 +26,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
     return obj
 
     @classmethod
-    def primitive_knob(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bool lesser_bound_contained, bool greater_bound_contained, SymbolUnit units, str description):
+    def new_primitive_knob(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bool lesser_bound_contained, bool greater_bound_contained, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -48,7 +48,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
         return obj
 
     @classmethod
-    def primitive_meter(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bool lesser_bound_contained, bool greater_bound_contained, SymbolUnit units, str description):
+    def new_primitive_meter(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bool lesser_bound_contained, bool greater_bound_contained, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -70,7 +70,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
         return obj
 
     @classmethod
-    def primitive_port(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bool lesser_bound_contained, bool greater_bound_contained, SymbolUnit units, str description):
+    def new_primitive_port(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bool lesser_bound_contained, bool greater_bound_contained, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -92,7 +92,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
         return obj
 
     @classmethod
-    def from_port(cls, double min_val, double max_val, str instrument_type, InstrumentPort port, bool lesser_bound_contained, bool greater_bound_contained):
+    def new_from_port(cls, double min_val, double max_val, str instrument_type, InstrumentPort port, bool lesser_bound_contained, bool greater_bound_contained):
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
         cdef StringHandle s_instrument_type = _c_api.String_create(b_instrument_type, len(b_instrument_type))
         cdef _c_api.LabelledDomainHandle h
@@ -108,7 +108,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
         return obj
 
     @classmethod
-    def from_port_and_domain(cls, InstrumentPort port, Domain domain):
+    def new_from_port_and_domain(cls, InstrumentPort port, Domain domain):
         cdef _c_api.LabelledDomainHandle h
         h = _c_api.LabelledDomain_create_from_port_and_domain(port.handle, domain.handle)
         if h == <_c_api.LabelledDomainHandle>0:
@@ -119,7 +119,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
         return obj
 
     @classmethod
-    def from_domain(cls, Domain domain, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
+    def new_from_domain(cls, Domain domain, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -141,7 +141,7 @@ cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.LabelledDomainHandle h

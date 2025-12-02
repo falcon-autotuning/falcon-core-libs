@@ -26,7 +26,7 @@ cdef Group _group_from_capi(_c_api.GroupHandle h):
     return obj
 
     @classmethod
-    def create(cls, Channel name, int num_dots, Connections screening_gates, Connections reservoir_gates, Connections plunger_gates, Connections barrier_gates, Connections order):
+    def new(cls, Channel name, int num_dots, Connections screening_gates, Connections reservoir_gates, Connections plunger_gates, Connections barrier_gates, Connections order):
         cdef _c_api.GroupHandle h
         h = _c_api.Group_create(name.handle, num_dots, screening_gates.handle, reservoir_gates.handle, plunger_gates.handle, barrier_gates.handle, order.handle)
         if h == <_c_api.GroupHandle>0:
@@ -37,7 +37,7 @@ cdef Group _group_from_capi(_c_api.GroupHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.GroupHandle h

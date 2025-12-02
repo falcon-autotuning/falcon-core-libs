@@ -23,20 +23,20 @@ class Point:
         return cls(c_obj)
 
     @classmethod
-    def Point_create_empty(cls, ) -> Point:
-        return cls(_CPoint.Point_create_empty())
+    def new_empty(cls, ) -> Point:
+        return cls(_CPoint.new_empty())
 
     @classmethod
-    def Point_create(cls, items: Map, unit: SymbolUnit) -> Point:
-        return cls(_CPoint.Point_create(items._c, unit._c))
+    def new(cls, items: Map, unit: SymbolUnit) -> Point:
+        return cls(_CPoint.new(items._c, unit._c))
 
     @classmethod
-    def Point_create_from_parent(cls, items: Map) -> Point:
-        return cls(_CPoint.Point_create_from_parent(items._c))
+    def new_from_parent(cls, items: Map) -> Point:
+        return cls(_CPoint.new_from_parent(items._c))
 
     @classmethod
-    def Point_from_json_string(cls, json: str) -> Point:
-        return cls(_CPoint.Point_from_json_string(json))
+    def from_json(cls, json: str) -> Point:
+        return cls(_CPoint.from_json(json))
 
     def unit(self, ) -> SymbolUnit:
         ret = self._c.unit()
@@ -165,10 +165,10 @@ class Point:
         """Operator overload for =="""
         if not isinstance(other, Point):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Point):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

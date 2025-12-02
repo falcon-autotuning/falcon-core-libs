@@ -18,8 +18,8 @@ class MeasuredArray1D:
         return cls(c_obj)
 
     @classmethod
-    def MeasuredArray1D_from_json_string(cls, json: str) -> MeasuredArray1D:
-        return cls(_CMeasuredArray1D.MeasuredArray1D_from_json_string(json))
+    def from_json(cls, json: str) -> MeasuredArray1D:
+        return cls(_CMeasuredArray1D.from_json(json))
 
     @classmethod
     def from_data(cls, data: Any, shape: Any, ndim: Any) -> MeasuredArray1D:

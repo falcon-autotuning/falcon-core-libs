@@ -22,7 +22,7 @@ cdef Domain _domain_from_capi(_c_api.DomainHandle h):
     return obj
 
     @classmethod
-    def create(cls, double min_val, double max_val, bool lesser_bound_contained, bool greater_bound_contained):
+    def new(cls, double min_val, double max_val, bool lesser_bound_contained, bool greater_bound_contained):
         cdef _c_api.DomainHandle h
         h = _c_api.Domain_create(min_val, max_val, lesser_bound_contained, greater_bound_contained)
         if h == <_c_api.DomainHandle>0:
@@ -33,7 +33,7 @@ cdef Domain _domain_from_capi(_c_api.DomainHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.DomainHandle h

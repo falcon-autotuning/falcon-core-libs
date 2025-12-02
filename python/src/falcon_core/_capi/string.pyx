@@ -22,7 +22,7 @@ cdef String _string_from_capi(_c_api.StringHandle h):
     return obj
 
     @classmethod
-    def create(cls, char raw, size_t length):
+    def new(cls, char raw, size_t length):
         cdef _c_api.StringHandle h
         h = _c_api.String_create(raw, length)
         if h == <_c_api.StringHandle>0:

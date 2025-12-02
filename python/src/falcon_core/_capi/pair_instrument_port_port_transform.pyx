@@ -24,7 +24,7 @@ cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_c
     return obj
 
     @classmethod
-    def create(cls, InstrumentPort first, PortTransform second):
+    def new(cls, InstrumentPort first, PortTransform second):
         cdef _c_api.PairInstrumentPortPortTransformHandle h
         h = _c_api.PairInstrumentPortPortTransform_create(first.handle, second.handle)
         if h == <_c_api.PairInstrumentPortPortTransformHandle>0:
@@ -35,7 +35,7 @@ cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_c
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairInstrumentPortPortTransformHandle h

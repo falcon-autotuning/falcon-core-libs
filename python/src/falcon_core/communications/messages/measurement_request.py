@@ -19,12 +19,12 @@ class MeasurementRequest:
         return cls(c_obj)
 
     @classmethod
-    def MeasurementRequest_create(cls, message: str, measurement_name: str, waveforms: List, getters: Ports, meter_transforms: Map, time_domain: LabelledDomain) -> MeasurementRequest:
-        return cls(_CMeasurementRequest.MeasurementRequest_create(message, measurement_name, waveforms._c, getters._c, meter_transforms._c, time_domain._c))
+    def new(cls, message: str, measurement_name: str, waveforms: List, getters: Ports, meter_transforms: Map, time_domain: LabelledDomain) -> MeasurementRequest:
+        return cls(_CMeasurementRequest.new(message, measurement_name, waveforms._c, getters._c, meter_transforms._c, time_domain._c))
 
     @classmethod
-    def MeasurementRequest_from_json_string(cls, json: str) -> MeasurementRequest:
-        return cls(_CMeasurementRequest.MeasurementRequest_from_json_string(json))
+    def from_json(cls, json: str) -> MeasurementRequest:
+        return cls(_CMeasurementRequest.from_json(json))
 
     def measurement_name(self, ) -> str:
         ret = self._c.measurement_name()
@@ -66,10 +66,10 @@ class MeasurementRequest:
         """Operator overload for =="""
         if not isinstance(other, MeasurementRequest):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, MeasurementRequest):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

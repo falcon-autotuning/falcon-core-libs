@@ -25,7 +25,7 @@ cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_
     return obj
 
     @classmethod
-    def create(cls, ListLabelledControlArray arrays):
+    def new(cls, ListLabelledControlArray arrays):
         cdef _c_api.LabelledArraysLabelledControlArrayHandle h
         h = _c_api.LabelledArraysLabelledControlArray_create(arrays.handle)
         if h == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
@@ -36,7 +36,7 @@ cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.LabelledArraysLabelledControlArrayHandle h

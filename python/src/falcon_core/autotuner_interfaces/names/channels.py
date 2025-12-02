@@ -18,16 +18,16 @@ class Channels:
         return cls(c_obj)
 
     @classmethod
-    def Channels_create_empty(cls, ) -> Channels:
-        return cls(_CChannels.Channels_create_empty())
+    def new_empty(cls, ) -> Channels:
+        return cls(_CChannels.new_empty())
 
     @classmethod
-    def Channels_create(cls, items: List) -> Channels:
-        return cls(_CChannels.Channels_create(items._c))
+    def new(cls, items: List) -> Channels:
+        return cls(_CChannels.new(items._c))
 
     @classmethod
-    def Channels_from_json_string(cls, json: str) -> Channels:
-        return cls(_CChannels.Channels_from_json_string(json))
+    def from_json(cls, json: str) -> Channels:
+        return cls(_CChannels.from_json(json))
 
     def intersection(self, other: Channels) -> Channels:
         ret = self._c.intersection(other._c)
@@ -83,10 +83,10 @@ class Channels:
         """Operator overload for =="""
         if not isinstance(other, Channels):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Channels):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

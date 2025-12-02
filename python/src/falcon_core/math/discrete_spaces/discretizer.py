@@ -16,16 +16,16 @@ class Discretizer:
         return cls(c_obj)
 
     @classmethod
-    def Discretizer_create_cartesian_discretizer(cls, delta: Any) -> Discretizer:
-        return cls(_CDiscretizer.Discretizer_create_cartesian_discretizer(delta))
+    def new_cartesian_discretizer(cls, delta: Any) -> Discretizer:
+        return cls(_CDiscretizer.new_cartesian_discretizer(delta))
 
     @classmethod
-    def Discretizer_create_polar_discretizer(cls, delta: Any) -> Discretizer:
-        return cls(_CDiscretizer.Discretizer_create_polar_discretizer(delta))
+    def new_polar_discretizer(cls, delta: Any) -> Discretizer:
+        return cls(_CDiscretizer.new_polar_discretizer(delta))
 
     @classmethod
-    def Discretizer_from_json_string(cls, json: str) -> Discretizer:
-        return cls(_CDiscretizer.Discretizer_from_json_string(json))
+    def from_json(cls, json: str) -> Discretizer:
+        return cls(_CDiscretizer.from_json(json))
 
     def delta(self, ) -> None:
         ret = self._c.delta()
@@ -60,10 +60,10 @@ class Discretizer:
         """Operator overload for =="""
         if not isinstance(other, Discretizer):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Discretizer):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

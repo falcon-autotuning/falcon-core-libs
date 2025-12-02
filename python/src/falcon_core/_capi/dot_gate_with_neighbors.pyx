@@ -23,7 +23,7 @@ cdef DotGateWithNeighbors _dot_gate_with_neighbors_from_capi(_c_api.DotGateWithN
     return obj
 
     @classmethod
-    def plungergatewithneighbors(cls, str name, Connection left_neighbor, Connection right_neighbor):
+    def new_plungergatewithneighbors(cls, str name, Connection left_neighbor, Connection right_neighbor):
         cdef bytes b_name = name.encode("utf-8")
         cdef StringHandle s_name = _c_api.String_create(b_name, len(b_name))
         cdef _c_api.DotGateWithNeighborsHandle h
@@ -39,7 +39,7 @@ cdef DotGateWithNeighbors _dot_gate_with_neighbors_from_capi(_c_api.DotGateWithN
         return obj
 
     @classmethod
-    def barriergatewithneighbors(cls, str name, Connection left_neighbor, Connection right_neighbor):
+    def new_barriergatewithneighbors(cls, str name, Connection left_neighbor, Connection right_neighbor):
         cdef bytes b_name = name.encode("utf-8")
         cdef StringHandle s_name = _c_api.String_create(b_name, len(b_name))
         cdef _c_api.DotGateWithNeighborsHandle h
@@ -55,7 +55,7 @@ cdef DotGateWithNeighbors _dot_gate_with_neighbors_from_capi(_c_api.DotGateWithN
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.DotGateWithNeighborsHandle h

@@ -32,7 +32,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
     return obj
 
     @classmethod
-    def create(cls, Point start, Point end):
+    def new(cls, Point start, Point end):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create(start.handle, end.handle)
         if h == <_c_api.VectorHandle>0:
@@ -43,7 +43,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_end(cls, Point end):
+    def new_from_end(cls, Point end):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create_from_end(end.handle)
         if h == <_c_api.VectorHandle>0:
@@ -54,7 +54,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_quantities(cls, MapConnectionQuantity start, MapConnectionQuantity end):
+    def new_from_quantities(cls, MapConnectionQuantity start, MapConnectionQuantity end):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create_from_quantities(start.handle, end.handle)
         if h == <_c_api.VectorHandle>0:
@@ -65,7 +65,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_end_quantities(cls, MapConnectionQuantity end):
+    def new_from_end_quantities(cls, MapConnectionQuantity end):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create_from_end_quantities(end.handle)
         if h == <_c_api.VectorHandle>0:
@@ -76,7 +76,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_doubles(cls, MapConnectionDouble start, MapConnectionDouble end, SymbolUnit unit):
+    def new_from_doubles(cls, MapConnectionDouble start, MapConnectionDouble end, SymbolUnit unit):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create_from_doubles(start.handle, end.handle, unit.handle)
         if h == <_c_api.VectorHandle>0:
@@ -87,7 +87,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_end_doubles(cls, MapConnectionDouble end, SymbolUnit unit):
+    def new_from_end_doubles(cls, MapConnectionDouble end, SymbolUnit unit):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create_from_end_doubles(end.handle, unit.handle)
         if h == <_c_api.VectorHandle>0:
@@ -98,7 +98,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_parent(cls, MapConnectionQuantity items):
+    def new_from_parent(cls, MapConnectionQuantity items):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create_from_parent(items.handle)
         if h == <_c_api.VectorHandle>0:
@@ -109,7 +109,7 @@ cdef Vector _vector_from_capi(_c_api.VectorHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.VectorHandle h

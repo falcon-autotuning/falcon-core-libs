@@ -15,12 +15,12 @@ class Channel:
         return cls(c_obj)
 
     @classmethod
-    def Channel_create(cls, name: str) -> Channel:
-        return cls(_CChannel.Channel_create(name))
+    def new(cls, name: str) -> Channel:
+        return cls(_CChannel.new(name))
 
     @classmethod
-    def Channel_from_json_string(cls, json: str) -> Channel:
-        return cls(_CChannel.Channel_from_json_string(json))
+    def from_json(cls, json: str) -> Channel:
+        return cls(_CChannel.from_json(json))
 
     def name(self, ) -> str:
         ret = self._c.name()
@@ -38,10 +38,10 @@ class Channel:
         """Operator overload for =="""
         if not isinstance(other, Channel):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Channel):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

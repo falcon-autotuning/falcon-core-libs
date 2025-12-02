@@ -20,16 +20,16 @@ class GateRelations:
         return cls(c_obj)
 
     @classmethod
-    def GateRelations_create_empty(cls, ) -> GateRelations:
-        return cls(_CGateRelations.GateRelations_create_empty())
+    def new_empty(cls, ) -> GateRelations:
+        return cls(_CGateRelations.new_empty())
 
     @classmethod
-    def GateRelations_create(cls, items: List) -> GateRelations:
-        return cls(_CGateRelations.GateRelations_create(items._c))
+    def new(cls, items: List) -> GateRelations:
+        return cls(_CGateRelations.new(items._c))
 
     @classmethod
-    def GateRelations_from_json_string(cls, json: str) -> GateRelations:
-        return cls(_CGateRelations.GateRelations_from_json_string(json))
+    def from_json(cls, json: str) -> GateRelations:
+        return cls(_CGateRelations.from_json(json))
 
     def insert_or_assign(self, key: Connection, value: Connections) -> None:
         ret = self._c.insert_or_assign(key._c, value._c)
@@ -91,10 +91,10 @@ class GateRelations:
         """Operator overload for =="""
         if not isinstance(other, GateRelations):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, GateRelations):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

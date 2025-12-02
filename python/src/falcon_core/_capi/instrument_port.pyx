@@ -24,7 +24,7 @@ cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h):
     return obj
 
     @classmethod
-    def port(cls, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
+    def new_port(cls, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -46,7 +46,7 @@ cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h):
         return obj
 
     @classmethod
-    def knob(cls, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
+    def new_knob(cls, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -68,7 +68,7 @@ cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h):
         return obj
 
     @classmethod
-    def meter(cls, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
+    def new_meter(cls, str default_name, Connection psuedo_name, str instrument_type, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
         cdef bytes b_instrument_type = instrument_type.encode("utf-8")
@@ -90,7 +90,7 @@ cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h):
         return obj
 
     @classmethod
-    def timer(cls, ):
+    def new_timer(cls, ):
         cdef _c_api.InstrumentPortHandle h
         h = _c_api.InstrumentPort_create_timer()
         if h == <_c_api.InstrumentPortHandle>0:
@@ -101,7 +101,7 @@ cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h):
         return obj
 
     @classmethod
-    def execution_clock(cls, ):
+    def new_execution_clock(cls, ):
         cdef _c_api.InstrumentPortHandle h
         h = _c_api.InstrumentPort_create_execution_clock()
         if h == <_c_api.InstrumentPortHandle>0:
@@ -112,7 +112,7 @@ cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.InstrumentPortHandle h

@@ -17,16 +17,16 @@ class Impedances:
         return cls(c_obj)
 
     @classmethod
-    def Impedances_create_empty(cls, ) -> Impedances:
-        return cls(_CImpedances.Impedances_create_empty())
+    def new_empty(cls, ) -> Impedances:
+        return cls(_CImpedances.new_empty())
 
     @classmethod
-    def Impedances_create(cls, items: List) -> Impedances:
-        return cls(_CImpedances.Impedances_create(items._c))
+    def new(cls, items: List) -> Impedances:
+        return cls(_CImpedances.new(items._c))
 
     @classmethod
-    def Impedances_from_json_string(cls, json: str) -> Impedances:
-        return cls(_CImpedances.Impedances_from_json_string(json))
+    def from_json(cls, json: str) -> Impedances:
+        return cls(_CImpedances.from_json(json))
 
     def push_back(self, value: Impedance) -> None:
         ret = self._c.push_back(value._c)
@@ -86,10 +86,10 @@ class Impedances:
         """Operator overload for =="""
         if not isinstance(other, Impedances):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Impedances):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

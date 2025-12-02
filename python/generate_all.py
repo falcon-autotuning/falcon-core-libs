@@ -325,10 +325,37 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"        self._c_class = c_{to_snake_case(base)}_class")
     lines.append("")
     lines.append(f"    def __call__(self, *args, **kwargs):")
-    lines.append(f'        """Construct a new {base} instance."""')
-    lines.append(f"        # This is for direct construction, not typically used")
-    lines.append(f"        # Users should use class methods like {base}[T].new_empty(...)")
-    lines.append(f"        raise TypeError(f'Use {base}[{{self.element_type}}].new_*() class methods to construct instances')")
+    lines.append(f"        \"\"\"Construct a new {base} instance.\"\"\"")
+    lines.append(f"        # Try to find a suitable constructor based on arguments")
+    lines.append(f"        if not args and not kwargs:")
+    lines.append(f"            # Empty constructor")
+    lines.append(f"            if hasattr(self._c_class, 'new_empty'):")
+    lines.append(f"                return {base}(self._c_class.new_empty(), self.element_type)")
+    lines.append(f"            elif hasattr(self._c_class, 'create_empty'):")
+    lines.append(f"                return {base}(self._c_class.create_empty(), self.element_type)")
+    lines.append(f"            elif hasattr(self._c_class, 'new'):")
+    lines.append(f"                return {base}(self._c_class.new(), self.element_type)")
+    lines.append(f"        ")
+    lines.append(f"        # Single argument constructor")
+    lines.append(f"        if len(args) == 1 and not kwargs:")
+    lines.append(f"            arg = args[0]")
+    lines.append(f"            # List from iterable")
+    lines.append(f"            if \"{base}\" == \"List\" and hasattr(self._c_class, 'from_list'):")
+    lines.append(f"                return {base}(self._c_class.from_list(arg), self.element_type)")
+    lines.append(f"            # Map from dict")
+    lines.append(f"            elif \"{base}\" == \"Map\" and hasattr(self._c_class, 'from_map'):")
+    lines.append(f"                return {base}(self._c_class.from_map(arg), self.element_type)")
+    lines.append(f"            # Copy constructor or similar")
+    lines.append(f"            elif hasattr(self._c_class, 'new'):")
+    lines.append(f"                return {base}(self._c_class.new(arg), self.element_type)")
+    lines.append(f"                ")
+    lines.append(f"        # Pair constructor")
+    lines.append(f"        if \"{base}\" == \"Pair\" and len(args) == 2:")
+    lines.append(f"            if hasattr(self._c_class, 'new'):")
+    lines.append(f"                return {base}(self._c_class.new(*args), self.element_type)")
+    lines.append("")
+    lines.append(f"        # Fallback to raising error if no suitable constructor found")
+    lines.append(f"        raise TypeError(f'No suitable constructor found for {base}[{{self.element_type}}] with args={{args}}')")
     lines.append("")
     lines.append(f"    def __getattr__(self, name):")
     lines.append(f'        """Delegate class method calls to the underlying Cython class."""')
@@ -422,8 +449,8 @@ def generate_generic_wrapper(base, instances):
         '__mul__': ('times_farray', 'times_double', 'times_int'),
         '__truediv__': ('divides_farray', 'divides_double', 'divides_int'),
         '__neg__': ('negation',),
-        '__eq__': ('equality',),
-        '__ne__': ('notequality',),
+        '__eq__': ('equality', 'equal'),
+        '__ne__': ('notequality', 'not_equal'),
     }
     
     for op, method_names in operator_methods.items():

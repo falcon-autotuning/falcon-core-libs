@@ -24,7 +24,7 @@ cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChann
     return obj
 
     @classmethod
-    def create(cls, Channel first, Connections second):
+    def new(cls, Channel first, Connections second):
         cdef _c_api.PairChannelConnectionsHandle h
         h = _c_api.PairChannelConnections_create(first.handle, second.handle)
         if h == <_c_api.PairChannelConnectionsHandle>0:
@@ -35,7 +35,7 @@ cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChann
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairChannelConnectionsHandle h

@@ -23,7 +23,7 @@ cdef PairInterpretationContextString _pair_interpretation_context_string_from_ca
     return obj
 
     @classmethod
-    def create(cls, InterpretationContext first, str second):
+    def new(cls, InterpretationContext first, str second):
         cdef bytes b_second = second.encode("utf-8")
         cdef StringHandle s_second = _c_api.String_create(b_second, len(b_second))
         cdef _c_api.PairInterpretationContextStringHandle h
@@ -39,7 +39,7 @@ cdef PairInterpretationContextString _pair_interpretation_context_string_from_ca
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairInterpretationContextStringHandle h

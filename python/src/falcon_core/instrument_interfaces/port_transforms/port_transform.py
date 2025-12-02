@@ -20,20 +20,20 @@ class PortTransform:
         return cls(c_obj)
 
     @classmethod
-    def PortTransform_create(cls, port: InstrumentPort, transform: AnalyticFunction) -> PortTransform:
-        return cls(_CPortTransform.PortTransform_create(port._c, transform._c))
+    def new(cls, port: InstrumentPort, transform: AnalyticFunction) -> PortTransform:
+        return cls(_CPortTransform.new(port._c, transform._c))
 
     @classmethod
-    def PortTransform_create_constant_transform(cls, port: InstrumentPort, value: Any) -> PortTransform:
-        return cls(_CPortTransform.PortTransform_create_constant_transform(port._c, value))
+    def new_constant_transform(cls, port: InstrumentPort, value: Any) -> PortTransform:
+        return cls(_CPortTransform.new_constant_transform(port._c, value))
 
     @classmethod
-    def PortTransform_create_identity_transform(cls, port: InstrumentPort) -> PortTransform:
-        return cls(_CPortTransform.PortTransform_create_identity_transform(port._c))
+    def new_identity_transform(cls, port: InstrumentPort) -> PortTransform:
+        return cls(_CPortTransform.new_identity_transform(port._c))
 
     @classmethod
-    def PortTransform_from_json_string(cls, json: str) -> PortTransform:
-        return cls(_CPortTransform.PortTransform_from_json_string(json))
+    def from_json(cls, json: str) -> PortTransform:
+        return cls(_CPortTransform.from_json(json))
 
     def port(self, ) -> InstrumentPort:
         ret = self._c.port()
@@ -66,10 +66,10 @@ class PortTransform:
         """Operator overload for =="""
         if not isinstance(other, PortTransform):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, PortTransform):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

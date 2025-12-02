@@ -26,7 +26,7 @@ cdef InterpretationContext _interpretation_context_from_capi(_c_api.Interpretati
     return obj
 
     @classmethod
-    def create(cls, AxesMeasurementContext independant_variables, ListMeasurementContext dependant_variables, SymbolUnit unit):
+    def new(cls, AxesMeasurementContext independant_variables, ListMeasurementContext dependant_variables, SymbolUnit unit):
         cdef _c_api.InterpretationContextHandle h
         h = _c_api.InterpretationContext_create(independant_variables.handle, dependant_variables.handle, unit.handle)
         if h == <_c_api.InterpretationContextHandle>0:
@@ -37,7 +37,7 @@ cdef InterpretationContext _interpretation_context_from_capi(_c_api.Interpretati
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.InterpretationContextHandle h

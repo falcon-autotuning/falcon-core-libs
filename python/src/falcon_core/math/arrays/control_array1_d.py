@@ -18,8 +18,8 @@ class ControlArray1D:
         return cls(c_obj)
 
     @classmethod
-    def ControlArray1D_from_json_string(cls, json: str) -> ControlArray1D:
-        return cls(_CControlArray1D.ControlArray1D_from_json_string(json))
+    def from_json(cls, json: str) -> ControlArray1D:
+        return cls(_CControlArray1D.from_json(json))
 
     @classmethod
     def from_data(cls, data: Any, shape: Any, ndim: Any) -> ControlArray1D:

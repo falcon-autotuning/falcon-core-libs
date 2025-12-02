@@ -23,7 +23,7 @@ cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_c
     return obj
 
     @classmethod
-    def create(cls, str name, Connection right_neighbor, Connection ohmic):
+    def new(cls, str name, Connection right_neighbor, Connection ohmic):
         cdef bytes b_name = name.encode("utf-8")
         cdef StringHandle s_name = _c_api.String_create(b_name, len(b_name))
         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
@@ -39,7 +39,7 @@ cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_c
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h

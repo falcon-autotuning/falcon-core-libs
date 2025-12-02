@@ -15,28 +15,28 @@ class Connection:
         return cls(c_obj)
 
     @classmethod
-    def Connection_create_barrier_gate(cls, name: str) -> Connection:
-        return cls(_CConnection.Connection_create_barrier_gate(name))
+    def new_barrier(cls, name: str) -> Connection:
+        return cls(_CConnection.new_barrier(name))
 
     @classmethod
-    def Connection_create_plunger_gate(cls, name: str) -> Connection:
-        return cls(_CConnection.Connection_create_plunger_gate(name))
+    def new_plunger(cls, name: str) -> Connection:
+        return cls(_CConnection.new_plunger(name))
 
     @classmethod
-    def Connection_create_reservoir_gate(cls, name: str) -> Connection:
-        return cls(_CConnection.Connection_create_reservoir_gate(name))
+    def new_reservoir(cls, name: str) -> Connection:
+        return cls(_CConnection.new_reservoir(name))
 
     @classmethod
-    def Connection_create_screening_gate(cls, name: str) -> Connection:
-        return cls(_CConnection.Connection_create_screening_gate(name))
+    def new_screening(cls, name: str) -> Connection:
+        return cls(_CConnection.new_screening(name))
 
     @classmethod
-    def Connection_create_ohmic(cls, name: str) -> Connection:
-        return cls(_CConnection.Connection_create_ohmic(name))
+    def new_ohmic(cls, name: str) -> Connection:
+        return cls(_CConnection.new_ohmic(name))
 
     @classmethod
-    def Connection_from_json_string(cls, json: str) -> Connection:
-        return cls(_CConnection.Connection_from_json_string(json))
+    def from_json(cls, json: str) -> Connection:
+        return cls(_CConnection.from_json(json))
 
     def name(self, ) -> str:
         ret = self._c.name()
@@ -86,10 +86,10 @@ class Connection:
         """Operator overload for =="""
         if not isinstance(other, Connection):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Connection):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

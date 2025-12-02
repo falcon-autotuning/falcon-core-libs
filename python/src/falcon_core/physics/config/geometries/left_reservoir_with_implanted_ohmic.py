@@ -16,12 +16,12 @@ class LeftReservoirWithImplantedOhmic:
         return cls(c_obj)
 
     @classmethod
-    def LeftReservoirWithImplantedOhmic_create(cls, name: str, right_neighbor: Connection, ohmic: Connection) -> LeftReservoirWithImplantedOhmic:
-        return cls(_CLeftReservoirWithImplantedOhmic.LeftReservoirWithImplantedOhmic_create(name, right_neighbor._c, ohmic._c))
+    def new(cls, name: str, right_neighbor: Connection, ohmic: Connection) -> LeftReservoirWithImplantedOhmic:
+        return cls(_CLeftReservoirWithImplantedOhmic.new(name, right_neighbor._c, ohmic._c))
 
     @classmethod
-    def LeftReservoirWithImplantedOhmic_from_json_string(cls, json: str) -> LeftReservoirWithImplantedOhmic:
-        return cls(_CLeftReservoirWithImplantedOhmic.LeftReservoirWithImplantedOhmic_from_json_string(json))
+    def from_json(cls, json: str) -> LeftReservoirWithImplantedOhmic:
+        return cls(_CLeftReservoirWithImplantedOhmic.from_json(json))
 
     def name(self, ) -> str:
         ret = self._c.name()
@@ -53,10 +53,10 @@ class LeftReservoirWithImplantedOhmic:
         """Operator overload for =="""
         if not isinstance(other, LeftReservoirWithImplantedOhmic):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, LeftReservoirWithImplantedOhmic):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

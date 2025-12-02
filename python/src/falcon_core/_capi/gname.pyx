@@ -22,7 +22,7 @@ cdef Gname _gname_from_capi(_c_api.GnameHandle h):
     return obj
 
     @classmethod
-    def from_num(cls, int num):
+    def new_from_num(cls, int num):
         cdef _c_api.GnameHandle h
         h = _c_api.Gname_create_from_num(num)
         if h == <_c_api.GnameHandle>0:
@@ -33,7 +33,7 @@ cdef Gname _gname_from_capi(_c_api.GnameHandle h):
         return obj
 
     @classmethod
-    def create(cls, str name):
+    def new(cls, str name):
         cdef bytes b_name = name.encode("utf-8")
         cdef StringHandle s_name = _c_api.String_create(b_name, len(b_name))
         cdef _c_api.GnameHandle h
@@ -49,7 +49,7 @@ cdef Gname _gname_from_capi(_c_api.GnameHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.GnameHandle h

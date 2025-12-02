@@ -23,7 +23,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
     return obj
 
     @classmethod
-    def create(cls, double value, SymbolUnit unit):
+    def new(cls, double value, SymbolUnit unit):
         cdef _c_api.QuantityHandle h
         h = _c_api.Quantity_create(value, unit.handle)
         if h == <_c_api.QuantityHandle>0:
@@ -34,7 +34,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.QuantityHandle h

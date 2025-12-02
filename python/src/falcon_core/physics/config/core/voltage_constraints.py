@@ -18,12 +18,12 @@ class VoltageConstraints:
         return cls(c_obj)
 
     @classmethod
-    def VoltageConstraints_create(cls, adjacency: Adjacency, max_safe_diff: Any, bounds: Pair) -> VoltageConstraints:
-        return cls(_CVoltageConstraints.VoltageConstraints_create(adjacency._c, max_safe_diff, bounds._c))
+    def new(cls, adjacency: Adjacency, max_safe_diff: Any, bounds: Pair) -> VoltageConstraints:
+        return cls(_CVoltageConstraints.new(adjacency._c, max_safe_diff, bounds._c))
 
     @classmethod
-    def VoltageConstraints_from_json_string(cls, json: str) -> VoltageConstraints:
-        return cls(_CVoltageConstraints.VoltageConstraints_from_json_string(json))
+    def from_json(cls, json: str) -> VoltageConstraints:
+        return cls(_CVoltageConstraints.from_json(json))
 
     def matrix(self, ) -> FArray:
         ret = self._c.matrix()
@@ -52,10 +52,10 @@ class VoltageConstraints:
         """Operator overload for =="""
         if not isinstance(other, VoltageConstraints):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, VoltageConstraints):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

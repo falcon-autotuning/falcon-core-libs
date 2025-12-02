@@ -25,7 +25,7 @@ cdef VoltageConstraints _voltage_constraints_from_capi(_c_api.VoltageConstraints
     return obj
 
     @classmethod
-    def create(cls, Adjacency adjacency, double max_safe_diff, PairDoubleDouble bounds):
+    def new(cls, Adjacency adjacency, double max_safe_diff, PairDoubleDouble bounds):
         cdef _c_api.VoltageConstraintsHandle h
         h = _c_api.VoltageConstraints_create(adjacency.handle, max_safe_diff, bounds.handle)
         if h == <_c_api.VoltageConstraintsHandle>0:
@@ -36,7 +36,7 @@ cdef VoltageConstraints _voltage_constraints_from_capi(_c_api.VoltageConstraints
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.VoltageConstraintsHandle h

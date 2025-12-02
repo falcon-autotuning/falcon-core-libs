@@ -15,12 +15,12 @@ class Domain:
         return cls(c_obj)
 
     @classmethod
-    def Domain_create(cls, min_val: Any, max_val: Any, lesser_bound_contained: Any, greater_bound_contained: Any) -> Domain:
-        return cls(_CDomain.Domain_create(min_val, max_val, lesser_bound_contained, greater_bound_contained))
+    def new(cls, min_val: Any, max_val: Any, lesser_bound_contained: Any, greater_bound_contained: Any) -> Domain:
+        return cls(_CDomain.new(min_val, max_val, lesser_bound_contained, greater_bound_contained))
 
     @classmethod
-    def Domain_from_json_string(cls, json: str) -> Domain:
-        return cls(_CDomain.Domain_from_json_string(json))
+    def from_json(cls, json: str) -> Domain:
+        return cls(_CDomain.from_json(json))
 
     def lesser_bound(self, ) -> None:
         ret = self._c.lesser_bound()
@@ -38,12 +38,12 @@ class Domain:
         ret = self._c.greater_bound_contained()
         return ret
 
-    def in(self, value: Any) -> None:
-        ret = self._c.in(value)
+    def contains(self, value: Any) -> None:
+        ret = self._c.contains(value)
         return ret
 
-    def range(self, ) -> None:
-        ret = self._c.range()
+    def get_range(self, ) -> None:
+        ret = self._c.get_range()
         return ret
 
     def center(self, ) -> None:
@@ -90,10 +90,10 @@ class Domain:
         """Operator overload for =="""
         if not isinstance(other, Domain):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Domain):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

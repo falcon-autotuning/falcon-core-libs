@@ -25,7 +25,7 @@ cdef MapIntInt _map_int_int_from_capi(_c_api.MapIntIntHandle h):
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.MapIntIntHandle h
         h = _c_api.MapIntInt_create_empty()
         if h == <_c_api.MapIntIntHandle>0:
@@ -36,7 +36,7 @@ cdef MapIntInt _map_int_int_from_capi(_c_api.MapIntIntHandle h):
         return obj
 
     @classmethod
-    def create(cls, PairIntInt data, size_t count):
+    def new(cls, PairIntInt data, size_t count):
         cdef _c_api.MapIntIntHandle h
         h = _c_api.MapIntInt_create(data.handle, count)
         if h == <_c_api.MapIntIntHandle>0:
@@ -47,7 +47,7 @@ cdef MapIntInt _map_int_int_from_capi(_c_api.MapIntIntHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.MapIntIntHandle h

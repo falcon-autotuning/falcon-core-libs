@@ -24,7 +24,7 @@ cdef PairMeasurementResponseMeasurementRequest _pair_measurement_response_measur
     return obj
 
     @classmethod
-    def create(cls, MeasurementResponse first, MeasurementRequest second):
+    def new(cls, MeasurementResponse first, MeasurementRequest second):
         cdef _c_api.PairMeasurementResponseMeasurementRequestHandle h
         h = _c_api.PairMeasurementResponseMeasurementRequest_create(first.handle, second.handle)
         if h == <_c_api.PairMeasurementResponseMeasurementRequestHandle>0:
@@ -35,7 +35,7 @@ cdef PairMeasurementResponseMeasurementRequest _pair_measurement_response_measur
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairMeasurementResponseMeasurementRequestHandle h

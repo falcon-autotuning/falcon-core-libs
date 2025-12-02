@@ -19,32 +19,32 @@ class LabelledDomain:
         return cls(c_obj)
 
     @classmethod
-    def LabelledDomain_create_primitive_knob(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_create_primitive_knob(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
+    def new_primitive_knob(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
+        return cls(_CLabelledDomain.new_primitive_knob(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
 
     @classmethod
-    def LabelledDomain_create_primitive_meter(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_create_primitive_meter(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
+    def new_primitive_meter(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
+        return cls(_CLabelledDomain.new_primitive_meter(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
 
     @classmethod
-    def LabelledDomain_create_primitive_port(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_create_primitive_port(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
+    def new_primitive_port(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
+        return cls(_CLabelledDomain.new_primitive_port(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
 
     @classmethod
-    def LabelledDomain_create_from_port(cls, min_val: Any, max_val: Any, instrument_type: str, port: InstrumentPort, lesser_bound_contained: Any, greater_bound_contained: Any) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_create_from_port(min_val, max_val, instrument_type, port._c, lesser_bound_contained, greater_bound_contained))
+    def new_from_port(cls, min_val: Any, max_val: Any, instrument_type: str, port: InstrumentPort, lesser_bound_contained: Any, greater_bound_contained: Any) -> LabelledDomain:
+        return cls(_CLabelledDomain.new_from_port(min_val, max_val, instrument_type, port._c, lesser_bound_contained, greater_bound_contained))
 
     @classmethod
-    def LabelledDomain_create_from_port_and_domain(cls, port: InstrumentPort, domain: Domain) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_create_from_port_and_domain(port._c, domain._c))
+    def new_from_port_and_domain(cls, port: InstrumentPort, domain: Domain) -> LabelledDomain:
+        return cls(_CLabelledDomain.new_from_port_and_domain(port._c, domain._c))
 
     @classmethod
-    def LabelledDomain_create_from_domain(cls, domain: Domain, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_create_from_domain(domain._c, default_name, psuedo_name._c, instrument_type, units._c, description))
+    def new_from_domain(cls, domain: Domain, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> LabelledDomain:
+        return cls(_CLabelledDomain.new_from_domain(domain._c, default_name, psuedo_name._c, instrument_type, units._c, description))
 
     @classmethod
-    def LabelledDomain_from_json_string(cls, json: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.LabelledDomain_from_json_string(json))
+    def from_json(cls, json: str) -> LabelledDomain:
+        return cls(_CLabelledDomain.from_json(json))
 
     def port(self, ) -> InstrumentPort:
         ret = self._c.port()
@@ -76,12 +76,12 @@ class LabelledDomain:
         ret = self._c.greater_bound_contained()
         return ret
 
-    def in(self, value: Any) -> None:
-        ret = self._c.in(value)
+    def contains(self, value: Any) -> None:
+        ret = self._c.contains(value)
         return ret
 
-    def range(self, ) -> None:
-        ret = self._c.range()
+    def get_range(self, ) -> None:
+        ret = self._c.get_range()
         return ret
 
     def center(self, ) -> None:
@@ -128,10 +128,10 @@ class LabelledDomain:
         """Operator overload for =="""
         if not isinstance(other, LabelledDomain):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, LabelledDomain):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

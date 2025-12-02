@@ -15,16 +15,16 @@ class IncreasingAlignment:
         return cls(c_obj)
 
     @classmethod
-    def IncreasingAlignment_create_empty(cls, ) -> IncreasingAlignment:
-        return cls(_CIncreasingAlignment.IncreasingAlignment_create_empty())
+    def new_empty(cls, ) -> IncreasingAlignment:
+        return cls(_CIncreasingAlignment.new_empty())
 
     @classmethod
-    def IncreasingAlignment_create(cls, alignment: Any) -> IncreasingAlignment:
-        return cls(_CIncreasingAlignment.IncreasingAlignment_create(alignment))
+    def new(cls, alignment: Any) -> IncreasingAlignment:
+        return cls(_CIncreasingAlignment.new(alignment))
 
     @classmethod
-    def IncreasingAlignment_from_json_string(cls, json: str) -> IncreasingAlignment:
-        return cls(_CIncreasingAlignment.IncreasingAlignment_from_json_string(json))
+    def from_json(cls, json: str) -> IncreasingAlignment:
+        return cls(_CIncreasingAlignment.from_json(json))
 
     def alignment(self, ) -> None:
         ret = self._c.alignment()
@@ -42,10 +42,10 @@ class IncreasingAlignment:
         """Operator overload for =="""
         if not isinstance(other, IncreasingAlignment):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, IncreasingAlignment):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

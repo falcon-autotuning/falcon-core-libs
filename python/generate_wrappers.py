@@ -497,10 +497,15 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
     # Constructors
     for ctor in cls.constructors:
         method_name = ctor.name[len(cls.name)+1:]
-        if method_name.startswith("create_"):
-            method_name = method_name[7:]
-        elif method_name == "create":
-            method_name = "create" # Keep as create if it's just create
+        if method_name == "create":
+             method_name = "new"
+        elif method_name.startswith("create_"):
+             suffix = method_name[7:]
+             if suffix.endswith("_gate"):
+                 suffix = suffix[:-5]
+             method_name = "new_" + suffix
+        elif method_name == "from_json_string":
+             method_name = "from_json"
             
         py_args = []
         call_args = []
@@ -550,11 +555,21 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
     # Methods
     for method in cls.methods:
         # Strip the class name prefix to get the actual method name
-        method_name = method.name[len(cls.name)+1:] if method.name.startswith(cls.name + '_') else method.name
-        
+        if method.name.startswith(cls.name + '_'):
+            method_name = method.name[len(cls.name)+1:]
+        else:
+            method_name = method.name
+            
+        # Debug print for LabelledDomain
+        if cls.name == "LabelledDomain" and method_name == "in":
+            print(f"DEBUG: Found 'in' method in LabelledDomain. Original: {method.name}")
+
         # Rename Python keywords
-        method_name = PYTHON_KEYWORD_RENAMES.get(method_name, method_name)
-        
+        if method_name in PYTHON_KEYWORD_RENAMES:
+            method_name = PYTHON_KEYWORD_RENAMES[method_name]
+        elif method_name == "in": # Fallback
+            method_name = "contains"
+            
         if method_name == "to_json_string":
             continue
         
@@ -787,10 +802,17 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         # If name is "from_json_string", map to "from_json"
         
         method_name = ctor.name
+        # Strip class name prefix if present
+        if method_name.startswith(cls.name + "_"):
+            method_name = method_name[len(cls.name)+1:]
+            
         if method_name == "create":
             py_name = "new"
         elif method_name.startswith("create_"):
-            py_name = "new_" + method_name[7:]
+            suffix = method_name[7:]
+            if suffix.endswith("_gate"):
+                suffix = suffix[:-5]
+            py_name = "new_" + suffix
         elif method_name == "from_json_string":
             py_name = "from_json"
         else:
@@ -835,6 +857,10 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
     for method in cls.methods:
         # Strip the class name prefix to get the actual method name
         method_name = method.name[len(cls.name)+1:] if method.name.startswith(cls.name + '_') else method.name
+
+        # Rename Python keywords
+        if method_name in PYTHON_KEYWORD_RENAMES:
+            method_name = PYTHON_KEYWORD_RENAMES[method_name]
 
         if method_name == "to_json_string":
             continue
@@ -1192,7 +1218,9 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         lines.append(f'        """Operator overload for =="""')
         lines.append(f'        if not isinstance(other, {cls.name}):')
         lines.append(f'            return NotImplemented')
-        lines.append(f'        return self.equality(other)')
+        # Use the first available equality method
+        eq_method, eq_name = operator_methods['equality'][0]
+        lines.append(f'        return self.{eq_name}(other)')
         lines.append('')
     
     # Generate __ne__ if we have notequality method
@@ -1201,7 +1229,9 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         lines.append(f'        """Operator overload for !="""')
         lines.append(f'        if not isinstance(other, {cls.name}):')
         lines.append(f'            return NotImplemented')
-        lines.append(f'        return self.notequality(other)')
+        # Use the first available notequality method
+        ne_method, ne_name = operator_methods['notequality'][0]
+        lines.append(f'        return self.{ne_name}(other)')
         lines.append('')
 
     return "\n".join(lines)

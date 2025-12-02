@@ -24,7 +24,7 @@ cdef PairInterpretationContextQuantity _pair_interpretation_context_quantity_fro
     return obj
 
     @classmethod
-    def create(cls, InterpretationContext first, Quantity second):
+    def new(cls, InterpretationContext first, Quantity second):
         cdef _c_api.PairInterpretationContextQuantityHandle h
         h = _c_api.PairInterpretationContextQuantity_create(first.handle, second.handle)
         if h == <_c_api.PairInterpretationContextQuantityHandle>0:
@@ -35,7 +35,7 @@ cdef PairInterpretationContextQuantity _pair_interpretation_context_quantity_fro
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairInterpretationContextQuantityHandle h

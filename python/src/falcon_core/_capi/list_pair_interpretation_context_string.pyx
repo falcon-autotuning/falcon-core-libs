@@ -23,7 +23,7 @@ cdef ListPairInterpretationContextString _list_pair_interpretation_context_strin
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.ListPairInterpretationContextStringHandle h
         h = _c_api.ListPairInterpretationContextString_create_empty()
         if h == <_c_api.ListPairInterpretationContextStringHandle>0:
@@ -34,7 +34,7 @@ cdef ListPairInterpretationContextString _list_pair_interpretation_context_strin
         return obj
 
     @classmethod
-    def create(cls, PairInterpretationContextString data, size_t count):
+    def new(cls, PairInterpretationContextString data, size_t count):
         cdef _c_api.ListPairInterpretationContextStringHandle h
         h = _c_api.ListPairInterpretationContextString_create(data.handle, count)
         if h == <_c_api.ListPairInterpretationContextStringHandle>0:
@@ -45,7 +45,7 @@ cdef ListPairInterpretationContextString _list_pair_interpretation_context_strin
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ListPairInterpretationContextStringHandle h

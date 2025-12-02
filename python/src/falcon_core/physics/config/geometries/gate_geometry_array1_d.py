@@ -21,12 +21,12 @@ class GateGeometryArray1D:
         return cls(c_obj)
 
     @classmethod
-    def GateGeometryArray1D_create(cls, lineararray: Connections, screening_gates: Connections) -> GateGeometryArray1D:
-        return cls(_CGateGeometryArray1D.GateGeometryArray1D_create(lineararray._c, screening_gates._c))
+    def new(cls, lineararray: Connections, screening_gates: Connections) -> GateGeometryArray1D:
+        return cls(_CGateGeometryArray1D.new(lineararray._c, screening_gates._c))
 
     @classmethod
-    def GateGeometryArray1D_from_json_string(cls, json: str) -> GateGeometryArray1D:
-        return cls(_CGateGeometryArray1D.GateGeometryArray1D_from_json_string(json))
+    def from_json(cls, json: str) -> GateGeometryArray1D:
+        return cls(_CGateGeometryArray1D.from_json(json))
 
     def append_central_gate(self, left_neighbor: Connection, selected_gate: Connection, right_neighbor: Connection) -> None:
         ret = self._c.append_central_gate(left_neighbor._c, selected_gate._c, right_neighbor._c)
@@ -99,10 +99,10 @@ class GateGeometryArray1D:
         """Operator overload for =="""
         if not isinstance(other, GateGeometryArray1D):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, GateGeometryArray1D):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

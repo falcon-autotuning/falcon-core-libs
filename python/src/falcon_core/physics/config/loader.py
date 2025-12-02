@@ -16,8 +16,8 @@ class Loader:
         return cls(c_obj)
 
     @classmethod
-    def Loader_create(cls, config_path: str) -> Loader:
-        return cls(_CLoader.Loader_create(config_path))
+    def new(cls, config_path: str) -> Loader:
+        return cls(_CLoader.new(config_path))
 
     def config(self, ) -> Config:
         ret = self._c.config()

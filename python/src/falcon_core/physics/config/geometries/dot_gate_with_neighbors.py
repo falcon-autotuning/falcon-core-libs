@@ -16,16 +16,16 @@ class DotGateWithNeighbors:
         return cls(c_obj)
 
     @classmethod
-    def DotGateWithNeighbors_create_plungergatewithneighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.DotGateWithNeighbors_create_plungergatewithneighbors(name, left_neighbor._c, right_neighbor._c))
+    def new_plungergatewithneighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
+        return cls(_CDotGateWithNeighbors.new_plungergatewithneighbors(name, left_neighbor._c, right_neighbor._c))
 
     @classmethod
-    def DotGateWithNeighbors_create_barriergatewithneighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.DotGateWithNeighbors_create_barriergatewithneighbors(name, left_neighbor._c, right_neighbor._c))
+    def new_barriergatewithneighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
+        return cls(_CDotGateWithNeighbors.new_barriergatewithneighbors(name, left_neighbor._c, right_neighbor._c))
 
     @classmethod
-    def DotGateWithNeighbors_from_json_string(cls, json: str) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.DotGateWithNeighbors_from_json_string(json))
+    def from_json(cls, json: str) -> DotGateWithNeighbors:
+        return cls(_CDotGateWithNeighbors.from_json(json))
 
     def equal(self, other: DotGateWithNeighbors) -> None:
         ret = self._c.equal(other._c)
@@ -65,10 +65,10 @@ class DotGateWithNeighbors:
         """Operator overload for =="""
         if not isinstance(other, DotGateWithNeighbors):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, DotGateWithNeighbors):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

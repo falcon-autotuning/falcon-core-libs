@@ -21,8 +21,8 @@ class LabelledMeasuredArray:
         return cls(c_obj)
 
     @classmethod
-    def LabelledMeasuredArray_from_json_string(cls, json: str) -> LabelledMeasuredArray:
-        return cls(_CLabelledMeasuredArray.LabelledMeasuredArray_from_json_string(json))
+    def from_json(cls, json: str) -> LabelledMeasuredArray:
+        return cls(_CLabelledMeasuredArray.from_json(json))
 
     @classmethod
     def from_farray(cls, farray: FArray, label: AcquisitionContext) -> LabelledMeasuredArray:

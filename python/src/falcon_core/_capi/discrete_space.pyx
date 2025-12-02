@@ -33,7 +33,7 @@ cdef DiscreteSpace _discrete_space_from_capi(_c_api.DiscreteSpaceHandle h):
     return obj
 
     @classmethod
-    def create(cls, UnitSpace space, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing):
+    def new(cls, UnitSpace space, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing):
         cdef _c_api.DiscreteSpaceHandle h
         h = _c_api.DiscreteSpace_create(space.handle, axes.handle, increasing.handle)
         if h == <_c_api.DiscreteSpaceHandle>0:
@@ -44,7 +44,7 @@ cdef DiscreteSpace _discrete_space_from_capi(_c_api.DiscreteSpaceHandle h):
         return obj
 
     @classmethod
-    def cartesiandiscretespace(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
+    def new_cartesiandiscretespace(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
         cdef _c_api.DiscreteSpaceHandle h
         h = _c_api.DiscreteSpace_create_cartesiandiscretespace(divisions.handle, axes.handle, increasing.handle, domain.handle)
         if h == <_c_api.DiscreteSpaceHandle>0:
@@ -55,7 +55,7 @@ cdef DiscreteSpace _discrete_space_from_capi(_c_api.DiscreteSpaceHandle h):
         return obj
 
     @classmethod
-    def cartesiandiscretespace1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
+    def new_cartesiandiscretespace1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
         cdef _c_api.DiscreteSpaceHandle h
         h = _c_api.DiscreteSpace_create_cartesiandiscretespace1D(division, shared_domain.handle, increasing.handle, domain.handle)
         if h == <_c_api.DiscreteSpaceHandle>0:
@@ -66,7 +66,7 @@ cdef DiscreteSpace _discrete_space_from_capi(_c_api.DiscreteSpaceHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.DiscreteSpaceHandle h

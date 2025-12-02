@@ -29,7 +29,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
     return obj
 
     @classmethod
-    def create(cls, AxesDiscretizer axes, Domain domain):
+    def new(cls, AxesDiscretizer axes, Domain domain):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create(axes.handle, domain.handle)
         if h == <_c_api.UnitSpaceHandle>0:
@@ -40,7 +40,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
         return obj
 
     @classmethod
-    def rayspace(cls, double dr, double dtheta, Domain domain):
+    def new_rayspace(cls, double dr, double dtheta, Domain domain):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create_rayspace(dr, dtheta, domain.handle)
         if h == <_c_api.UnitSpaceHandle>0:
@@ -51,7 +51,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
         return obj
 
     @classmethod
-    def cartesianspace(cls, AxesDouble deltas, Domain domain):
+    def new_cartesianspace(cls, AxesDouble deltas, Domain domain):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create_cartesianspace(deltas.handle, domain.handle)
         if h == <_c_api.UnitSpaceHandle>0:
@@ -62,7 +62,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
         return obj
 
     @classmethod
-    def cartesian1Dspace(cls, double delta, Domain domain):
+    def new_cartesian1Dspace(cls, double delta, Domain domain):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create_cartesian1Dspace(delta, domain.handle)
         if h == <_c_api.UnitSpaceHandle>0:
@@ -73,7 +73,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
         return obj
 
     @classmethod
-    def cartesian2Dspace(cls, AxesDouble deltas, Domain domain):
+    def new_cartesian2Dspace(cls, AxesDouble deltas, Domain domain):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create_cartesian2Dspace(deltas.handle, domain.handle)
         if h == <_c_api.UnitSpaceHandle>0:
@@ -84,7 +84,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
         return obj
 
     @classmethod
-    def array(cls, UnitSpace handle, AxesInt axes):
+    def new_array(cls, UnitSpace handle, AxesInt axes):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create_array(handle.handle, axes.handle)
         if h == <_c_api.UnitSpaceHandle>0:
@@ -95,7 +95,7 @@ cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h):
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.UnitSpaceHandle h

@@ -19,16 +19,16 @@ class DeviceVoltageStates:
         return cls(c_obj)
 
     @classmethod
-    def DeviceVoltageStates_create_empty(cls, ) -> DeviceVoltageStates:
-        return cls(_CDeviceVoltageStates.DeviceVoltageStates_create_empty())
+    def new_empty(cls, ) -> DeviceVoltageStates:
+        return cls(_CDeviceVoltageStates.new_empty())
 
     @classmethod
-    def DeviceVoltageStates_create(cls, items: List) -> DeviceVoltageStates:
-        return cls(_CDeviceVoltageStates.DeviceVoltageStates_create(items._c))
+    def new(cls, items: List) -> DeviceVoltageStates:
+        return cls(_CDeviceVoltageStates.new(items._c))
 
     @classmethod
-    def DeviceVoltageStates_from_json_string(cls, json: str) -> DeviceVoltageStates:
-        return cls(_CDeviceVoltageStates.DeviceVoltageStates_from_json_string(json))
+    def from_json(cls, json: str) -> DeviceVoltageStates:
+        return cls(_CDeviceVoltageStates.from_json(json))
 
     def states(self, ) -> List:
         ret = self._c.states()
@@ -113,10 +113,10 @@ class DeviceVoltageStates:
         """Operator overload for =="""
         if not isinstance(other, DeviceVoltageStates):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, DeviceVoltageStates):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

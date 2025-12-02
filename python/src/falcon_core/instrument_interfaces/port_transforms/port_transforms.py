@@ -17,20 +17,20 @@ class PortTransforms:
         return cls(c_obj)
 
     @classmethod
-    def PortTransforms_create_empty(cls, ) -> PortTransforms:
-        return cls(_CPortTransforms.PortTransforms_create_empty())
+    def new_empty(cls, ) -> PortTransforms:
+        return cls(_CPortTransforms.new_empty())
 
     @classmethod
-    def PortTransforms_create_raw(cls, data: PortTransform, count: Any) -> PortTransforms:
-        return cls(_CPortTransforms.PortTransforms_create_raw(data._c, count))
+    def new_raw(cls, data: PortTransform, count: Any) -> PortTransforms:
+        return cls(_CPortTransforms.new_raw(data._c, count))
 
     @classmethod
-    def PortTransforms_create(cls, handle: List) -> PortTransforms:
-        return cls(_CPortTransforms.PortTransforms_create(handle._c))
+    def new(cls, handle: List) -> PortTransforms:
+        return cls(_CPortTransforms.new(handle._c))
 
     @classmethod
-    def PortTransforms_from_json_string(cls, json: str) -> PortTransforms:
-        return cls(_CPortTransforms.PortTransforms_from_json_string(json))
+    def from_json(cls, json: str) -> PortTransforms:
+        return cls(_CPortTransforms.from_json(json))
 
     def transforms(self, ) -> List:
         ret = self._c.transforms()
@@ -91,10 +91,10 @@ class PortTransforms:
         """Operator overload for =="""
         if not isinstance(other, PortTransforms):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, PortTransforms):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

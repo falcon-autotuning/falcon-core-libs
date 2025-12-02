@@ -24,7 +24,7 @@ cdef AxesControlArray1D _axes_control_array1_d_from_capi(_c_api.AxesControlArray
     return obj
 
     @classmethod
-    def empty(cls, ):
+    def new_empty(cls, ):
         cdef _c_api.AxesControlArray1DHandle h
         h = _c_api.AxesControlArray1D_create_empty()
         if h == <_c_api.AxesControlArray1DHandle>0:
@@ -35,7 +35,7 @@ cdef AxesControlArray1D _axes_control_array1_d_from_capi(_c_api.AxesControlArray
         return obj
 
     @classmethod
-    def raw(cls, ControlArray1D data, size_t count):
+    def new_raw(cls, ControlArray1D data, size_t count):
         cdef _c_api.AxesControlArray1DHandle h
         h = _c_api.AxesControlArray1D_create_raw(data.handle, count)
         if h == <_c_api.AxesControlArray1DHandle>0:
@@ -46,7 +46,7 @@ cdef AxesControlArray1D _axes_control_array1_d_from_capi(_c_api.AxesControlArray
         return obj
 
     @classmethod
-    def create(cls, ListControlArray1D data):
+    def new(cls, ListControlArray1D data):
         cdef _c_api.AxesControlArray1DHandle h
         h = _c_api.AxesControlArray1D_create(data.handle)
         if h == <_c_api.AxesControlArray1DHandle>0:
@@ -57,7 +57,7 @@ cdef AxesControlArray1D _axes_control_array1_d_from_capi(_c_api.AxesControlArray
         return obj
 
     @classmethod
-    def from_json_string(cls, str json):
+    def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.AxesControlArray1DHandle h
