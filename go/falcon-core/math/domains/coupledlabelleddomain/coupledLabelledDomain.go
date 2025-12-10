@@ -40,6 +40,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.CoupledLabelledDomain_copy(C.CoupledLabelledDomainHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.CoupledLabelledDomain_equal(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.CoupledLabelledDomain_not_equal(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.CoupledLabelledDomain_to_json_string(C.CoupledLabelledDomainHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.CoupledLabelledDomain_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func NewEmpty() (*Handle, error) {
 
 	return cmemoryallocation.NewAllocation(
@@ -71,10 +120,6 @@ func NewFromList(items *listlabelleddomain.Handle) (*Handle, error) {
 		)
 	})
 }
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
-}
 func (h *Handle) Domains() (*listlabelleddomain.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*listlabelleddomain.Handle, error) {
 
@@ -105,9 +150,9 @@ func (h *Handle) PushBack(value *labelleddomain.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.CoupledLabelledDomain_size(C.CoupledLabelledDomainHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.CoupledLabelledDomain_size(C.CoupledLabelledDomainHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -115,7 +160,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.CoupledLabelledDomain_empty(C.CoupledLabelledDomainHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.CoupledLabelledDomain_erase_at(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -127,13 +172,13 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) ConstAt(idx uint32) (*labelleddomain.Handle, error) {
+func (h *Handle) ConstAt(idx uint64) (*labelleddomain.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*labelleddomain.Handle, error) {
 
 		return labelleddomain.FromCAPI(unsafe.Pointer(C.CoupledLabelledDomain_const_at(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.size_t(idx))))
 	})
 }
-func (h *Handle) At(idx uint32) (*labelleddomain.Handle, error) {
+func (h *Handle) At(idx uint64) (*labelleddomain.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*labelleddomain.Handle, error) {
 
 		return labelleddomain.FromCAPI(unsafe.Pointer(C.CoupledLabelledDomain_at(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -150,41 +195,8 @@ func (h *Handle) Contains(value *labelleddomain.Handle) (bool, error) {
 		return bool(C.CoupledLabelledDomain_contains(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *labelleddomain.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.CoupledLabelledDomain_index(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(value.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.CoupledLabelledDomain_equal(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.CoupledLabelledDomain_not_equal(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.CoupledLabelledDomain_to_json_string(C.CoupledLabelledDomainHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.CoupledLabelledDomain_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
+func (h *Handle) Index(value *labelleddomain.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.CoupledLabelledDomain_index(C.CoupledLabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(value.CAPIHandle()))), nil
 	})
 }

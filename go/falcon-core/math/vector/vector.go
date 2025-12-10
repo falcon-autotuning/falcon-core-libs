@@ -46,6 +46,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Vector_copy(C.VectorHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Vector_equal(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Vector_not_equal(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Vector_to_json_string(C.VectorHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Vector_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(start *point.Handle, end *point.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{start, end}, func() (*Handle, error) {
 
@@ -130,10 +179,6 @@ func NewFromParent(items *mapconnectionquantity.Handle) (*Handle, error) {
 		)
 	})
 }
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
-}
 func (h *Handle) EndPoint() (*point.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*point.Handle, error) {
 
@@ -217,9 +262,9 @@ func (h *Handle) Erase(key *connection.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.Vector_size(C.VectorHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.Vector_size(C.VectorHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -374,38 +419,5 @@ func (h *Handle) UpdateUnit(unit *symbolunit.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{unit}, func() error {
 		C.Vector_update_unit(C.VectorHandle(h.CAPIHandle()), C.SymbolUnitHandle(unit.CAPIHandle()))
 		return nil
-	})
-}
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Vector_equal(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Vector_not_equal(C.VectorHandle(h.CAPIHandle()), C.VectorHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.Vector_to_json_string(C.VectorHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Vector_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

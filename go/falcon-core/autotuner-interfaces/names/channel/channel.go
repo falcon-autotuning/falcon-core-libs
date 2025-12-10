@@ -38,13 +38,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func New(name string) (*Handle, error) {
-	realname := str.New(name)
-	return cmemoryallocation.Read(realname, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Channel_create(C.StringHandle(realname.CAPIHandle()))), nil
+				return unsafe.Pointer(C.Channel_copy(C.ChannelHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -55,24 +54,14 @@ func New(name string) (*Handle, error) {
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-func (h *Handle) Name() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.Channel_name(C.ChannelHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("Name:" + err.Error())
-		}
-		return strObj.ToGoString()
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Channel_equal(C.ChannelHandle(h.CAPIHandle()), C.ChannelHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Channel_equal(C.ChannelHandle(h.CAPIHandle()), C.ChannelHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Channel_not_equal(C.ChannelHandle(h.CAPIHandle()), C.ChannelHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Channel_not_equal(C.ChannelHandle(h.CAPIHandle()), C.ChannelHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {
@@ -96,5 +85,28 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func New(name string) (*Handle, error) {
+	realname := str.New(name)
+	return cmemoryallocation.Read(realname, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Channel_create(C.StringHandle(realname.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Name() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Channel_name(C.ChannelHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Name:" + err.Error())
+		}
+		return strObj.ToGoString()
 	})
 }

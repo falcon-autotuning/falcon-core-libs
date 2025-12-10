@@ -40,6 +40,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.LabelledDomain_copy(C.LabelledDomainHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.LabelledDomain_equal(C.LabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.LabelledDomain_not_equal(C.LabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.LabelledDomain_to_json_string(C.LabelledDomainHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.LabelledDomain_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func NewPrimitiveKnob(default_name string, min_val float64, max_val float64, psuedo_name *connection.Handle, instrument_type string, lesser_bound_contained bool, greater_bound_contained bool, units *symbolunit.Handle, description string) (*Handle, error) {
 	realdefault_name := str.New(default_name)
 	realinstrument_type := str.New(instrument_type)
@@ -85,13 +134,12 @@ func NewPrimitivePort(default_name string, min_val float64, max_val float64, psu
 		)
 	})
 }
-func NewFromPort(min_val float64, max_val float64, instrument_type string, port *instrumentport.Handle, lesser_bound_contained bool, greater_bound_contained bool) (*Handle, error) {
-	realinstrument_type := str.New(instrument_type)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realinstrument_type, port}, func() (*Handle, error) {
+func NewFromPort(min_val float64, max_val float64, port *instrumentport.Handle, lesser_bound_contained bool, greater_bound_contained bool) (*Handle, error) {
+	return cmemoryallocation.Read(port, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LabelledDomain_create_from_port(C.double(min_val), C.double(max_val), C.StringHandle(realinstrument_type.CAPIHandle()), C.InstrumentPortHandle(port.CAPIHandle()), C.bool(lesser_bound_contained), C.bool(greater_bound_contained))), nil
+				return unsafe.Pointer(C.LabelledDomain_create_from_port(C.double(min_val), C.double(max_val), C.InstrumentPortHandle(port.CAPIHandle()), C.bool(lesser_bound_contained), C.bool(greater_bound_contained))), nil
 			},
 			construct,
 			destroy,
@@ -124,10 +172,6 @@ func NewFromDomain(domain *domain.Handle, default_name string, psuedo_name *conn
 			destroy,
 		)
 	})
-}
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
 }
 func (h *Handle) Port() (*instrumentport.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*instrumentport.Handle, error) {
@@ -218,38 +262,5 @@ func (h *Handle) Scale(scale float64) (*Handle, error) {
 func (h *Handle) Transform(other *Handle, value float64) (float64, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (float64, error) {
 		return float64(C.LabelledDomain_transform(C.LabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(other.CAPIHandle()), C.double(value))), nil
-	})
-}
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.LabelledDomain_equal(C.LabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.LabelledDomain_not_equal(C.LabelledDomainHandle(h.CAPIHandle()), C.LabelledDomainHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.LabelledDomain_to_json_string(C.LabelledDomainHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LabelledDomain_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

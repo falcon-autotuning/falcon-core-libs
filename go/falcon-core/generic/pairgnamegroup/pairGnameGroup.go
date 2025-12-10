@@ -50,6 +50,18 @@ func New(first *gname.Handle, second *group.Handle) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairGnameGroup_copy(C.PairGnameGroupHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -66,14 +78,14 @@ func (h *Handle) Second() (*group.Handle, error) {
 		return group.FromCAPI(unsafe.Pointer(C.PairGnameGroup_second(C.PairGnameGroupHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairGnameGroup_equal(C.PairGnameGroupHandle(h.CAPIHandle()), C.PairGnameGroupHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairGnameGroup_equal(C.PairGnameGroupHandle(h.CAPIHandle()), C.PairGnameGroupHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairGnameGroup_not_equal(C.PairGnameGroupHandle(h.CAPIHandle()), C.PairGnameGroupHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairGnameGroup_not_equal(C.PairGnameGroupHandle(h.CAPIHandle()), C.PairGnameGroupHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

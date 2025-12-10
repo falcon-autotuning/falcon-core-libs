@@ -57,6 +57,18 @@ func New(contextDoubleMap *mapinterpretationcontextdouble.Handle) (*Handle, erro
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.InterpretationContainerDouble_copy(C.InterpretationContainerDoubleHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -120,9 +132,9 @@ func (h *Handle) Erase(key *interpretationcontext.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.InterpretationContainerDouble_size(C.InterpretationContainerDoubleHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.InterpretationContainerDouble_size(C.InterpretationContainerDoubleHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {

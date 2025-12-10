@@ -39,12 +39,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func New(adjacency *adjacency.Handle, max_safe_diff float64, bounds *pairdoubledouble.Handle) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{adjacency, bounds}, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.VoltageConstraints_create(C.AdjacencyHandle(adjacency.CAPIHandle()), C.double(max_safe_diff), C.PairDoubleDoubleHandle(bounds.CAPIHandle()))), nil
+				return unsafe.Pointer(C.VoltageConstraints_copy(C.VoltageConstraintsHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -54,24 +54,6 @@ func New(adjacency *adjacency.Handle, max_safe_diff float64, bounds *pairdoubled
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
-}
-func (h *Handle) Matrix() (*farraydouble.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
-
-		return farraydouble.FromCAPI(unsafe.Pointer(C.VoltageConstraints_matrix(C.VoltageConstraintsHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) Adjacency() (*adjacency.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*adjacency.Handle, error) {
-
-		return adjacency.FromCAPI(unsafe.Pointer(C.VoltageConstraints_adjacency(C.VoltageConstraintsHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) Limits() (*farraydouble.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
-
-		return farraydouble.FromCAPI(unsafe.Pointer(C.VoltageConstraints_limits(C.VoltageConstraintsHandle(h.CAPIHandle()))))
-	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
@@ -104,5 +86,35 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func New(adjacency *adjacency.Handle, max_safe_diff float64, bounds *pairdoubledouble.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{adjacency, bounds}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.VoltageConstraints_create(C.AdjacencyHandle(adjacency.CAPIHandle()), C.double(max_safe_diff), C.PairDoubleDoubleHandle(bounds.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Matrix() (*farraydouble.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
+
+		return farraydouble.FromCAPI(unsafe.Pointer(C.VoltageConstraints_matrix(C.VoltageConstraintsHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Adjacency() (*adjacency.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*adjacency.Handle, error) {
+
+		return adjacency.FromCAPI(unsafe.Pointer(C.VoltageConstraints_adjacency(C.VoltageConstraintsHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Limits() (*farraydouble.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
+
+		return farraydouble.FromCAPI(unsafe.Pointer(C.VoltageConstraints_limits(C.VoltageConstraintsHandle(h.CAPIHandle()))))
 	})
 }

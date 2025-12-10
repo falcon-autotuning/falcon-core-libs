@@ -42,6 +42,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.GateRelations_copy(C.GateRelationsHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.GateRelations_equal(C.GateRelationsHandle(h.CAPIHandle()), C.GateRelationsHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.GateRelations_not_equal(C.GateRelationsHandle(h.CAPIHandle()), C.GateRelationsHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.GateRelations_to_json_string(C.GateRelationsHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.GateRelations_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func NewEmpty() (*Handle, error) {
 
 	return cmemoryallocation.NewAllocation(
@@ -73,10 +122,6 @@ func NewFromList(items *listpairconnectionconnections.Handle) (*Handle, error) {
 		)
 	})
 }
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
-}
 func (h *Handle) InsertOrAssign(key *connection.Handle, value *connections.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{key, value}, func() error {
 		C.GateRelations_insert_or_assign(C.GateRelationsHandle(h.CAPIHandle()), C.ConnectionHandle(key.CAPIHandle()), C.ConnectionsHandle(value.CAPIHandle()))
@@ -101,9 +146,9 @@ func (h *Handle) Erase(key *connection.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.GateRelations_size(C.GateRelationsHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.GateRelations_size(C.GateRelationsHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -138,38 +183,5 @@ func (h *Handle) Items() (*listpairconnectionconnections.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*listpairconnectionconnections.Handle, error) {
 
 		return listpairconnectionconnections.FromCAPI(unsafe.Pointer(C.GateRelations_items(C.GateRelationsHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.GateRelations_equal(C.GateRelationsHandle(h.CAPIHandle()), C.GateRelationsHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.GateRelations_not_equal(C.GateRelationsHandle(h.CAPIHandle()), C.GateRelationsHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.GateRelations_to_json_string(C.GateRelationsHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.GateRelations_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

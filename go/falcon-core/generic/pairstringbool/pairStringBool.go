@@ -51,6 +51,18 @@ func New(first string, second bool) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairStringBool_copy(C.PairStringBoolHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -70,14 +82,14 @@ func (h *Handle) Second() (bool, error) {
 		return bool(C.PairStringBool_second(C.PairStringBoolHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairStringBool_equal(C.PairStringBoolHandle(h.CAPIHandle()), C.PairStringBoolHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairStringBool_equal(C.PairStringBoolHandle(h.CAPIHandle()), C.PairStringBoolHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairStringBool_not_equal(C.PairStringBoolHandle(h.CAPIHandle()), C.PairStringBoolHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairStringBool_not_equal(C.PairStringBoolHandle(h.CAPIHandle()), C.PairStringBoolHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

@@ -44,6 +44,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_copy(C.UnitSpaceHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.UnitSpace_equal(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.UnitSpace_not_equal(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.UnitSpace_to_json_string(C.UnitSpaceHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.UnitSpace_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(axes *axesdiscretizer.Handle, domain *domain.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{axes, domain}, func() (*Handle, error) {
 
@@ -104,10 +153,6 @@ func NewCartesian2DSpace(deltas *axesdouble.Handle, domain *domain.Handle) (*Han
 		)
 	})
 }
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
-}
 func (h *Handle) Axes() (*axesdiscretizer.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*axesdiscretizer.Handle, error) {
 
@@ -132,9 +177,9 @@ func (h *Handle) Shape() (*listint.Handle, error) {
 		return listint.FromCAPI(unsafe.Pointer(C.UnitSpace_shape(C.UnitSpaceHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Dimension() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.UnitSpace_dimension(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+func (h *Handle) Dimension() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.UnitSpace_dimension(C.UnitSpaceHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Compile() error {
@@ -155,9 +200,9 @@ func (h *Handle) PushBack(value *discretizer.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.UnitSpace_size(C.UnitSpaceHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.UnitSpace_size(C.UnitSpaceHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -165,7 +210,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.UnitSpace_empty(C.UnitSpaceHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.UnitSpace_erase_at(C.UnitSpaceHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -177,7 +222,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*discretizer.Handle, error) {
+func (h *Handle) At(idx uint64) (*discretizer.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*discretizer.Handle, error) {
 
 		return discretizer.FromCAPI(unsafe.Pointer(C.UnitSpace_at(C.UnitSpaceHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -213,47 +258,14 @@ func (h *Handle) Contains(value *discretizer.Handle) (bool, error) {
 		return bool(C.UnitSpace_contains(C.UnitSpaceHandle(h.CAPIHandle()), C.DiscretizerHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *discretizer.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.UnitSpace_index(C.UnitSpaceHandle(h.CAPIHandle()), C.DiscretizerHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *discretizer.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.UnitSpace_index(C.UnitSpaceHandle(h.CAPIHandle()), C.DiscretizerHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
 		return FromCAPI(unsafe.Pointer(C.UnitSpace_intersection(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(other.CAPIHandle()))))
-	})
-}
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.UnitSpace_equal(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.UnitSpace_not_equal(C.UnitSpaceHandle(h.CAPIHandle()), C.UnitSpaceHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.UnitSpace_to_json_string(C.UnitSpaceHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.UnitSpace_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

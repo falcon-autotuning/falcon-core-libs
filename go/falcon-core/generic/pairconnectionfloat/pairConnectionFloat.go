@@ -49,6 +49,18 @@ func New(first *connection.Handle, second float32) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairConnectionFloat_copy(C.PairConnectionFloatHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -64,14 +76,14 @@ func (h *Handle) Second() (float32, error) {
 		return float32(C.PairConnectionFloat_second(C.PairConnectionFloatHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairConnectionFloat_equal(C.PairConnectionFloatHandle(h.CAPIHandle()), C.PairConnectionFloatHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairConnectionFloat_equal(C.PairConnectionFloatHandle(h.CAPIHandle()), C.PairConnectionFloatHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairConnectionFloat_not_equal(C.PairConnectionFloatHandle(h.CAPIHandle()), C.PairConnectionFloatHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairConnectionFloat_not_equal(C.PairConnectionFloatHandle(h.CAPIHandle()), C.PairConnectionFloatHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

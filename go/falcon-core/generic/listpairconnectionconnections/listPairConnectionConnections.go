@@ -47,7 +47,19 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func FillValue(count uint32, value *pairconnectionconnections.Handle) (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.ListPairConnectionConnections_copy(C.ListPairConnectionConnectionsHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func FillValue(count uint64, value *pairconnectionconnections.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(value, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -60,13 +72,31 @@ func FillValue(count uint32, value *pairconnectionconnections.Handle) (*Handle, 
 	})
 }
 func New(data []*pairconnectionconnections.Handle) (*Handle, error) {
-	list := make([]C.PairConnectionConnectionsHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairConnectionConnectionsHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairConnectionConnectionsHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairConnectionConnectionsHandle(v)
+		slice[i] = C.PairConnectionConnectionsHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ListPairConnectionConnections_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.ListPairConnectionConnections_create((*C.PairConnectionConnectionsHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -82,9 +112,9 @@ func (h *Handle) PushBack(value *pairconnectionconnections.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.ListPairConnectionConnections_size(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.ListPairConnectionConnections_size(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -92,7 +122,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.ListPairConnectionConnections_empty(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.ListPairConnectionConnections_erase_at(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -104,7 +134,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*pairconnectionconnections.Handle, error) {
+func (h *Handle) At(idx uint64) (*pairconnectionconnections.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*pairconnectionconnections.Handle, error) {
 
 		return pairconnectionconnections.FromCAPI(unsafe.Pointer(C.ListPairConnectionConnections_at(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -140,9 +170,9 @@ func (h *Handle) Contains(value *pairconnectionconnections.Handle) (bool, error)
 		return bool(C.ListPairConnectionConnections_contains(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.PairConnectionConnectionsHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *pairconnectionconnections.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.ListPairConnectionConnections_index(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.PairConnectionConnectionsHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *pairconnectionconnections.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.ListPairConnectionConnections_index(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.PairConnectionConnectionsHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -151,14 +181,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.ListPairConnectionConnections_intersection(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.ListPairConnectionConnectionsHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListPairConnectionConnections_equal(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.ListPairConnectionConnectionsHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListPairConnectionConnections_equal(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.ListPairConnectionConnectionsHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListPairConnectionConnections_not_equal(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.ListPairConnectionConnectionsHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListPairConnectionConnections_not_equal(C.ListPairConnectionConnectionsHandle(h.CAPIHandle()), C.ListPairConnectionConnectionsHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

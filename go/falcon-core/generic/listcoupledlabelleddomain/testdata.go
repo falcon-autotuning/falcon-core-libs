@@ -29,7 +29,7 @@ func mustTestInstrumentPort(name string) *instrumentport.Handle {
 }
 
 func mustTestLabelledDomain(ip *instrumentport.Handle) *labelleddomain.Handle {
-	ld, err := labelleddomain.NewFromPort(0.0, 1.0, instrumenttypes.VoltageSource(), ip, true, false)
+	ld, err := labelleddomain.NewFromPort(0.0, 1.0, ip, true, false)
 	if err != nil {
 		panic(fmt.Errorf("labelleddomain.NewFromPort failed: %v", err))
 	}

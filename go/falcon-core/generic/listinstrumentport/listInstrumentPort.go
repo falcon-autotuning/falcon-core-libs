@@ -47,7 +47,19 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func FillValue(count uint32, value *instrumentport.Handle) (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.ListInstrumentPort_copy(C.ListInstrumentPortHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func FillValue(count uint64, value *instrumentport.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(value, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -60,13 +72,31 @@ func FillValue(count uint32, value *instrumentport.Handle) (*Handle, error) {
 	})
 }
 func New(data []*instrumentport.Handle) (*Handle, error) {
-	list := make([]C.InstrumentPortHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.InstrumentPortHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.InstrumentPortHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.InstrumentPortHandle(v)
+		slice[i] = C.InstrumentPortHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ListInstrumentPort_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.ListInstrumentPort_create((*C.InstrumentPortHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -82,9 +112,9 @@ func (h *Handle) PushBack(value *instrumentport.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.ListInstrumentPort_size(C.ListInstrumentPortHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.ListInstrumentPort_size(C.ListInstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -92,7 +122,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.ListInstrumentPort_empty(C.ListInstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.ListInstrumentPort_erase_at(C.ListInstrumentPortHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -104,7 +134,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*instrumentport.Handle, error) {
+func (h *Handle) At(idx uint64) (*instrumentport.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*instrumentport.Handle, error) {
 
 		return instrumentport.FromCAPI(unsafe.Pointer(C.ListInstrumentPort_at(C.ListInstrumentPortHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -140,9 +170,9 @@ func (h *Handle) Contains(value *instrumentport.Handle) (bool, error) {
 		return bool(C.ListInstrumentPort_contains(C.ListInstrumentPortHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *instrumentport.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.ListInstrumentPort_index(C.ListInstrumentPortHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *instrumentport.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.ListInstrumentPort_index(C.ListInstrumentPortHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -151,14 +181,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.ListInstrumentPort_intersection(C.ListInstrumentPortHandle(h.CAPIHandle()), C.ListInstrumentPortHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListInstrumentPort_equal(C.ListInstrumentPortHandle(h.CAPIHandle()), C.ListInstrumentPortHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListInstrumentPort_equal(C.ListInstrumentPortHandle(h.CAPIHandle()), C.ListInstrumentPortHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListInstrumentPort_not_equal(C.ListInstrumentPortHandle(h.CAPIHandle()), C.ListInstrumentPortHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListInstrumentPort_not_equal(C.ListInstrumentPortHandle(h.CAPIHandle()), C.ListInstrumentPortHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

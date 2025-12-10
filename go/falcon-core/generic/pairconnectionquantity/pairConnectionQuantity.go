@@ -50,6 +50,18 @@ func New(first *connection.Handle, second *quantity.Handle) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairConnectionQuantity_copy(C.PairConnectionQuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -66,14 +78,14 @@ func (h *Handle) Second() (*quantity.Handle, error) {
 		return quantity.FromCAPI(unsafe.Pointer(C.PairConnectionQuantity_second(C.PairConnectionQuantityHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairConnectionQuantity_equal(C.PairConnectionQuantityHandle(h.CAPIHandle()), C.PairConnectionQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairConnectionQuantity_equal(C.PairConnectionQuantityHandle(h.CAPIHandle()), C.PairConnectionQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairConnectionQuantity_not_equal(C.PairConnectionQuantityHandle(h.CAPIHandle()), C.PairConnectionQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairConnectionQuantity_not_equal(C.PairConnectionQuantityHandle(h.CAPIHandle()), C.PairConnectionQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

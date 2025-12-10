@@ -60,6 +60,18 @@ func NewFromList(arrays *listlabelledmeasuredarray.Handle) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.LabelledArraysLabelledMeasuredArray_copy(C.LabelledArraysLabelledMeasuredArrayHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -92,9 +104,9 @@ func (h *Handle) PushBack(value *labelledmeasuredarray.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.LabelledArraysLabelledMeasuredArray_size(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.LabelledArraysLabelledMeasuredArray_size(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -102,7 +114,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.LabelledArraysLabelledMeasuredArray_empty(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.LabelledArraysLabelledMeasuredArray_erase_at(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -114,7 +126,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*labelledmeasuredarray.Handle, error) {
+func (h *Handle) At(idx uint64) (*labelledmeasuredarray.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*labelledmeasuredarray.Handle, error) {
 
 		return labelledmeasuredarray.FromCAPI(unsafe.Pointer(C.LabelledArraysLabelledMeasuredArray_at(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -125,9 +137,9 @@ func (h *Handle) Contains(value *labelledmeasuredarray.Handle) (bool, error) {
 		return bool(C.LabelledArraysLabelledMeasuredArray_contains(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.LabelledMeasuredArrayHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *labelledmeasuredarray.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.LabelledArraysLabelledMeasuredArray_index(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.LabelledMeasuredArrayHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *labelledmeasuredarray.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.LabelledArraysLabelledMeasuredArray_index(C.LabelledArraysLabelledMeasuredArrayHandle(h.CAPIHandle()), C.LabelledMeasuredArrayHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {

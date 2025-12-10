@@ -51,6 +51,18 @@ func NewEmpty(shape []int) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.FArrayInt_copy(C.FArrayIntHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func NewZeros(shape []int) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
@@ -98,17 +110,17 @@ func FromData(data []int32, shape []int) (*Handle, error) {
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.FArrayInt_size(C.FArrayIntHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.FArrayInt_size(C.FArrayIntHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Dimension() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.FArrayInt_dimension(C.FArrayIntHandle(h.CAPIHandle()))), nil
+func (h *Handle) Dimension() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.FArrayInt_dimension(C.FArrayIntHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Shape() ([]uint32, error) {
+func (h *Handle) Shape() ([]uint64, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
 		return int32(C.FArrayInt_size(C.FArrayIntHandle(h.CAPIHandle()))), nil
 	})
@@ -123,9 +135,9 @@ func (h *Handle) Shape() ([]uint32, error) {
 	if err != nil {
 		return nil, err
 	}
-	realout := make([]uint32, dim)
+	realout := make([]uint64, dim)
 	for i := range out {
-		realout[i] = uint32(out[i])
+		realout[i] = uint64(out[i])
 
 	}
 	return realout, nil
@@ -400,7 +412,7 @@ func (h *Handle) Where(value int32) (*listlistsizet.Handle, error) {
 		return listlistsizet.FromCAPI(unsafe.Pointer(C.FArrayInt_where(C.FArrayIntHandle(h.CAPIHandle()), C.int(value))))
 	})
 }
-func (h *Handle) Flip(axis uint32) (*Handle, error) {
+func (h *Handle) Flip(axis uint64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
 		return FromCAPI(unsafe.Pointer(C.FArrayInt_flip(C.FArrayIntHandle(h.CAPIHandle()), C.size_t(axis))))
@@ -431,7 +443,7 @@ func (h *Handle) FullGradient() ([]*Handle, error) {
 	}
 	return realout, nil
 }
-func (h *Handle) Gradient(axis uint32) (*Handle, error) {
+func (h *Handle) Gradient(axis uint64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
 		return FromCAPI(unsafe.Pointer(C.FArrayInt_gradient(C.FArrayIntHandle(h.CAPIHandle()), C.size_t(axis))))

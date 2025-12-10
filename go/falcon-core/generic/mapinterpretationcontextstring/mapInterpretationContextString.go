@@ -51,14 +51,44 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.MapInterpretationContextString_copy(C.MapInterpretationContextStringHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(data []*pairinterpretationcontextstring.Handle) (*Handle, error) {
-	list := make([]C.PairInterpretationContextStringHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairInterpretationContextStringHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairInterpretationContextStringHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairInterpretationContextStringHandle(v)
+		slice[i] = C.PairInterpretationContextStringHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.MapInterpretationContextString_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.MapInterpretationContextString_create((*C.PairInterpretationContextStringHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -98,9 +128,9 @@ func (h *Handle) Erase(key *interpretationcontext.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.MapInterpretationContextString_size(C.MapInterpretationContextStringHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.MapInterpretationContextString_size(C.MapInterpretationContextStringHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -137,14 +167,14 @@ func (h *Handle) Items() (*listpairinterpretationcontextstring.Handle, error) {
 		return listpairinterpretationcontextstring.FromCAPI(unsafe.Pointer(C.MapInterpretationContextString_items(C.MapInterpretationContextStringHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapInterpretationContextString_equal(C.MapInterpretationContextStringHandle(h.CAPIHandle()), C.MapInterpretationContextStringHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapInterpretationContextString_equal(C.MapInterpretationContextStringHandle(h.CAPIHandle()), C.MapInterpretationContextStringHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapInterpretationContextString_not_equal(C.MapInterpretationContextStringHandle(h.CAPIHandle()), C.MapInterpretationContextStringHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapInterpretationContextString_not_equal(C.MapInterpretationContextStringHandle(h.CAPIHandle()), C.MapInterpretationContextStringHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

@@ -48,6 +48,18 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AxesCoupledLabelledDomain_copy(C.AxesCoupledLabelledDomainHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(items []*coupledlabelleddomain.Handle) (*Handle, error) {
 	list, err := listcoupledlabelleddomain.New(items)
 	if err != nil {
@@ -79,9 +91,9 @@ func (h *Handle) PushBack(value *coupledlabelleddomain.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.AxesCoupledLabelledDomain_size(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.AxesCoupledLabelledDomain_size(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -89,7 +101,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.AxesCoupledLabelledDomain_empty(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesCoupledLabelledDomain_erase_at(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -101,7 +113,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*coupledlabelleddomain.Handle, error) {
+func (h *Handle) At(idx uint64) (*coupledlabelleddomain.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*coupledlabelleddomain.Handle, error) {
 
 		return coupledlabelleddomain.FromCAPI(unsafe.Pointer(C.AxesCoupledLabelledDomain_at(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -137,9 +149,9 @@ func (h *Handle) Contains(value *coupledlabelleddomain.Handle) (bool, error) {
 		return bool(C.AxesCoupledLabelledDomain_contains(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *coupledlabelleddomain.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.AxesCoupledLabelledDomain_index(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *coupledlabelleddomain.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.AxesCoupledLabelledDomain_index(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.CoupledLabelledDomainHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -148,14 +160,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.AxesCoupledLabelledDomain_intersection(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesCoupledLabelledDomain_equal(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesCoupledLabelledDomain_equal(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesCoupledLabelledDomain_not_equal(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesCoupledLabelledDomain_not_equal(C.AxesCoupledLabelledDomainHandle(h.CAPIHandle()), C.AxesCoupledLabelledDomainHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

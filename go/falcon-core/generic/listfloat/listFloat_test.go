@@ -34,27 +34,27 @@ func TestListFloat_NewEmptyAndPushBack(t *testing.T) {
 			t.Fatalf("PushBack failed at %d: %v", i, err)
 		}
 	}
-	if sz, err := l.Size(); err != nil || sz != uint32(len(fixtureListData())) {
+	if sz, err := l.Size(); err != nil || sz != uint64(len(fixtureListData())) {
 		t.Errorf("Expected size %d, got %d, err: %v", len(fixtureListData()), sz, err)
 	}
 }
 
-func TestListFloat_NewAllocateAndFillValue(t *testing.T) {
-	l2, err := NewAllocate(3)
+func TestListFloat_AllocateAndFillValue(t *testing.T) {
+	l2, err := Allocate(3)
 	if err != nil {
-		t.Fatalf("NewAllocate failed: %v", err)
+		t.Fatalf("Allocate failed: %v", err)
 	}
 	defer l2.Close()
 	if sz, err := l2.Size(); err != nil || sz != 3 {
 		t.Errorf("Expected size 3, got %d, err: %v", sz, err)
 	}
-	l3, err := NewFillValue(2, val1)
+	l3, err := FillValue(2, val1)
 	if err != nil {
-		t.Fatalf("NewFillValue failed: %v", err)
+		t.Fatalf("FillValue failed: %v", err)
 	}
 	defer l3.Close()
 	for i := 0; i < 2; i++ {
-		val, err := l3.At(i)
+		val, err := l3.At(uint64(i))
 		if err != nil || val != val1 {
 			t.Errorf("Expected %v at %d, got %v, err: %v", val1, i, val, err)
 		}

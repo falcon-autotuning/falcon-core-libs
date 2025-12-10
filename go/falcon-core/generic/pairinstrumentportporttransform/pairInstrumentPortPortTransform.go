@@ -50,6 +50,18 @@ func New(first *instrumentport.Handle, second *porttransform.Handle) (*Handle, e
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInstrumentPortPortTransform_copy(C.PairInstrumentPortPortTransformHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -66,14 +78,14 @@ func (h *Handle) Second() (*porttransform.Handle, error) {
 		return porttransform.FromCAPI(unsafe.Pointer(C.PairInstrumentPortPortTransform_second(C.PairInstrumentPortPortTransformHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInstrumentPortPortTransform_equal(C.PairInstrumentPortPortTransformHandle(h.CAPIHandle()), C.PairInstrumentPortPortTransformHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInstrumentPortPortTransform_equal(C.PairInstrumentPortPortTransformHandle(h.CAPIHandle()), C.PairInstrumentPortPortTransformHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInstrumentPortPortTransform_not_equal(C.PairInstrumentPortPortTransformHandle(h.CAPIHandle()), C.PairInstrumentPortPortTransformHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInstrumentPortPortTransform_not_equal(C.PairInstrumentPortPortTransformHandle(h.CAPIHandle()), C.PairInstrumentPortPortTransformHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

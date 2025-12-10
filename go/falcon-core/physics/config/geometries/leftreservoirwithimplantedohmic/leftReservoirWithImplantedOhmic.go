@@ -37,13 +37,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func New(name string, right_neighbor *connection.Handle, ohmic *connection.Handle) (*Handle, error) {
-	realname := str.New(name)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realname, right_neighbor, ohmic}, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_create(C.StringHandle(realname.CAPIHandle()), C.ConnectionHandle(right_neighbor.CAPIHandle()), C.ConnectionHandle(ohmic.CAPIHandle()))), nil
+				return unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_copy(C.LeftReservoirWithImplantedOhmicHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -53,38 +52,6 @@ func New(name string, right_neighbor *connection.Handle, ohmic *connection.Handl
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
-}
-func (h *Handle) Name() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_name(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("Name:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func (h *Handle) Type() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_type(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("Type:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func (h *Handle) Ohmic() (*connection.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
-
-		return connection.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_ohmic(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) RightNeighbor() (*connection.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
-
-		return connection.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_right_neighbor(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
-	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
@@ -117,5 +84,50 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func New(name string, right_neighbor *connection.Handle, ohmic *connection.Handle) (*Handle, error) {
+	realname := str.New(name)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realname, right_neighbor, ohmic}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_create(C.StringHandle(realname.CAPIHandle()), C.ConnectionHandle(right_neighbor.CAPIHandle()), C.ConnectionHandle(ohmic.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Name() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_name(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Name:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func (h *Handle) Type() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_type(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Type:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func (h *Handle) Ohmic() (*connection.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
+
+		return connection.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_ohmic(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) RightNeighbor() (*connection.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
+
+		return connection.FromCAPI(unsafe.Pointer(C.LeftReservoirWithImplantedOhmic_right_neighbor(C.LeftReservoirWithImplantedOhmicHandle(h.CAPIHandle()))))
 	})
 }

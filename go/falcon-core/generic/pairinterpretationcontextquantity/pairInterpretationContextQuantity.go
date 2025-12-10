@@ -50,6 +50,18 @@ func New(first *interpretationcontext.Handle, second *quantity.Handle) (*Handle,
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInterpretationContextQuantity_copy(C.PairInterpretationContextQuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -66,14 +78,14 @@ func (h *Handle) Second() (*quantity.Handle, error) {
 		return quantity.FromCAPI(unsafe.Pointer(C.PairInterpretationContextQuantity_second(C.PairInterpretationContextQuantityHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInterpretationContextQuantity_equal(C.PairInterpretationContextQuantityHandle(h.CAPIHandle()), C.PairInterpretationContextQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInterpretationContextQuantity_equal(C.PairInterpretationContextQuantityHandle(h.CAPIHandle()), C.PairInterpretationContextQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInterpretationContextQuantity_not_equal(C.PairInterpretationContextQuantityHandle(h.CAPIHandle()), C.PairInterpretationContextQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInterpretationContextQuantity_not_equal(C.PairInterpretationContextQuantityHandle(h.CAPIHandle()), C.PairInterpretationContextQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

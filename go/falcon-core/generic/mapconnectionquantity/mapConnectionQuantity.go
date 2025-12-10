@@ -52,14 +52,44 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.MapConnectionQuantity_copy(C.MapConnectionQuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(data []*pairconnectionquantity.Handle) (*Handle, error) {
-	list := make([]C.PairConnectionQuantityHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairConnectionQuantityHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairConnectionQuantityHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairConnectionQuantityHandle(v)
+		slice[i] = C.PairConnectionQuantityHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.MapConnectionQuantity_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.MapConnectionQuantity_create((*C.PairConnectionQuantityHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -93,9 +123,9 @@ func (h *Handle) Erase(key *connection.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.MapConnectionQuantity_size(C.MapConnectionQuantityHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.MapConnectionQuantity_size(C.MapConnectionQuantityHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -132,14 +162,14 @@ func (h *Handle) Items() (*listpairconnectionquantity.Handle, error) {
 		return listpairconnectionquantity.FromCAPI(unsafe.Pointer(C.MapConnectionQuantity_items(C.MapConnectionQuantityHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapConnectionQuantity_equal(C.MapConnectionQuantityHandle(h.CAPIHandle()), C.MapConnectionQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapConnectionQuantity_equal(C.MapConnectionQuantityHandle(h.CAPIHandle()), C.MapConnectionQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapConnectionQuantity_not_equal(C.MapConnectionQuantityHandle(h.CAPIHandle()), C.MapConnectionQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapConnectionQuantity_not_equal(C.MapConnectionQuantityHandle(h.CAPIHandle()), C.MapConnectionQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

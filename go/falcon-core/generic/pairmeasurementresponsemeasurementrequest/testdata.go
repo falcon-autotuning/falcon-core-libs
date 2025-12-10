@@ -235,7 +235,7 @@ func mustInstrumentPort(name string) *instrumentport.Handle {
 }
 
 func mustLabelledDomain(minVal, maxVal float64, instrumentType string, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
-	h, err := labelleddomain.NewFromPort(minVal, maxVal, instrumentType, port, lesserBoundContained, greaterBoundContained)
+	h, err := labelleddomain.NewFromPort(minVal, maxVal, port, lesserBoundContained, greaterBoundContained)
 	if err != nil {
 		panic(fmt.Errorf("failed to craete a lablled domain: %v", err))
 	}

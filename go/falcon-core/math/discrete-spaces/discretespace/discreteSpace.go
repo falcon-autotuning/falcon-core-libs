@@ -47,6 +47,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DiscreteSpace_copy(C.DiscreteSpaceHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.DiscreteSpace_equal(C.DiscreteSpaceHandle(h.CAPIHandle()), C.DiscreteSpaceHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.DiscreteSpace_not_equal(C.DiscreteSpaceHandle(h.CAPIHandle()), C.DiscreteSpaceHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.DiscreteSpace_to_json_string(C.DiscreteSpaceHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DiscreteSpace_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(space *unitspace.Handle, axes *axescoupledlabelleddomain.Handle, increasing *axesmapstringbool.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{space, axes, increasing}, func() (*Handle, error) {
 
@@ -82,10 +131,6 @@ func NewCartesianDiscreteSpace1D(division int32, shared_domain *coupledlabelledd
 			destroy,
 		)
 	})
-}
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
 }
 func (h *Handle) Space() (*unitspace.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*unitspace.Handle, error) {
@@ -138,38 +183,5 @@ func (h *Handle) GetProjection(projection *axesinstrumentport.Handle) (*axeslabe
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, projection}, func() (*axeslabelledcontrolarray.Handle, error) {
 
 		return axeslabelledcontrolarray.FromCAPI(unsafe.Pointer(C.DiscreteSpace_get_projection(C.DiscreteSpaceHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(projection.CAPIHandle()))))
-	})
-}
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.DiscreteSpace_equal(C.DiscreteSpaceHandle(h.CAPIHandle()), C.DiscreteSpaceHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.DiscreteSpace_not_equal(C.DiscreteSpaceHandle(h.CAPIHandle()), C.DiscreteSpaceHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.DiscreteSpace_to_json_string(C.DiscreteSpaceHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.DiscreteSpace_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

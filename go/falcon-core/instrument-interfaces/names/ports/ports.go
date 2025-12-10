@@ -41,6 +41,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Ports_copy(C.PortsHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Ports_equal(C.PortsHandle(h.CAPIHandle()), C.PortsHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Ports_not_equal(C.PortsHandle(h.CAPIHandle()), C.PortsHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Ports_to_json_string(C.PortsHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Ports_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func NewEmpty() (*Handle, error) {
 
 	return cmemoryallocation.NewAllocation(
@@ -71,10 +120,6 @@ func NewFromList(items *listinstrumentport.Handle) (*Handle, error) {
 			destroy,
 		)
 	})
-}
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
 }
 func (h *Handle) Ports() (*listinstrumentport.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*listinstrumentport.Handle, error) {
@@ -141,9 +186,9 @@ func (h *Handle) PushBack(value *instrumentport.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.Ports_size(C.PortsHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.Ports_size(C.PortsHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -151,7 +196,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.Ports_empty(C.PortsHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.Ports_erase_at(C.PortsHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -163,7 +208,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*instrumentport.Handle, error) {
+func (h *Handle) At(idx uint64) (*instrumentport.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*instrumentport.Handle, error) {
 
 		return instrumentport.FromCAPI(unsafe.Pointer(C.Ports_at(C.PortsHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -180,41 +225,8 @@ func (h *Handle) Contains(value *instrumentport.Handle) (bool, error) {
 		return bool(C.Ports_contains(C.PortsHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *instrumentport.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.Ports_index(C.PortsHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Ports_equal(C.PortsHandle(h.CAPIHandle()), C.PortsHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Ports_not_equal(C.PortsHandle(h.CAPIHandle()), C.PortsHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.Ports_to_json_string(C.PortsHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Ports_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
+func (h *Handle) Index(value *instrumentport.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.Ports_index(C.PortsHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
 	})
 }

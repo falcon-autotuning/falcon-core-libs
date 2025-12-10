@@ -47,6 +47,18 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AxesInt_copy(C.AxesIntHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(items []int32) (*Handle, error) {
 	list, err := listint.New(items)
 	if err != nil {
@@ -78,9 +90,9 @@ func (h *Handle) PushBack(value int32) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.AxesInt_size(C.AxesIntHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.AxesInt_size(C.AxesIntHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -88,7 +100,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.AxesInt_empty(C.AxesIntHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesInt_erase_at(C.AxesIntHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -100,7 +112,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (int32, error) {
+func (h *Handle) At(idx uint64) (int32, error) {
 	return cmemoryallocation.Read(h, func() (int32, error) {
 		return int32(C.AxesInt_at(C.AxesIntHandle(h.CAPIHandle()), C.size_t(idx))), nil
 	})
@@ -132,9 +144,9 @@ func (h *Handle) Contains(value int32) (bool, error) {
 		return bool(C.AxesInt_contains(C.AxesIntHandle(h.CAPIHandle()), C.int(value))), nil
 	})
 }
-func (h *Handle) Index(value int32) (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.AxesInt_index(C.AxesIntHandle(h.CAPIHandle()), C.int(value))), nil
+func (h *Handle) Index(value int32) (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.AxesInt_index(C.AxesIntHandle(h.CAPIHandle()), C.int(value))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -143,14 +155,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.AxesInt_intersection(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesInt_equal(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesInt_equal(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesInt_not_equal(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesInt_not_equal(C.AxesIntHandle(h.CAPIHandle()), C.AxesIntHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

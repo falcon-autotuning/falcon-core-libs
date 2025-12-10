@@ -47,7 +47,19 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func FillValue(count uint32, value *pairquantityquantity.Handle) (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.ListPairQuantityQuantity_copy(C.ListPairQuantityQuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func FillValue(count uint64, value *pairquantityquantity.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(value, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -60,13 +72,31 @@ func FillValue(count uint32, value *pairquantityquantity.Handle) (*Handle, error
 	})
 }
 func New(data []*pairquantityquantity.Handle) (*Handle, error) {
-	list := make([]C.PairQuantityQuantityHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairQuantityQuantityHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairQuantityQuantityHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairQuantityQuantityHandle(v)
+		slice[i] = C.PairQuantityQuantityHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ListPairQuantityQuantity_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.ListPairQuantityQuantity_create((*C.PairQuantityQuantityHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -82,9 +112,9 @@ func (h *Handle) PushBack(value *pairquantityquantity.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.ListPairQuantityQuantity_size(C.ListPairQuantityQuantityHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.ListPairQuantityQuantity_size(C.ListPairQuantityQuantityHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -92,7 +122,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.ListPairQuantityQuantity_empty(C.ListPairQuantityQuantityHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.ListPairQuantityQuantity_erase_at(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -104,7 +134,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*pairquantityquantity.Handle, error) {
+func (h *Handle) At(idx uint64) (*pairquantityquantity.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*pairquantityquantity.Handle, error) {
 
 		return pairquantityquantity.FromCAPI(unsafe.Pointer(C.ListPairQuantityQuantity_at(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -140,9 +170,9 @@ func (h *Handle) Contains(value *pairquantityquantity.Handle) (bool, error) {
 		return bool(C.ListPairQuantityQuantity_contains(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.PairQuantityQuantityHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *pairquantityquantity.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.ListPairQuantityQuantity_index(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.PairQuantityQuantityHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *pairquantityquantity.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.ListPairQuantityQuantity_index(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.PairQuantityQuantityHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -151,14 +181,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.ListPairQuantityQuantity_intersection(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.ListPairQuantityQuantityHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListPairQuantityQuantity_equal(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.ListPairQuantityQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListPairQuantityQuantity_equal(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.ListPairQuantityQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListPairQuantityQuantity_not_equal(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.ListPairQuantityQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListPairQuantityQuantity_not_equal(C.ListPairQuantityQuantityHandle(h.CAPIHandle()), C.ListPairQuantityQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

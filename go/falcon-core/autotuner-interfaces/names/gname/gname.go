@@ -38,23 +38,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func NewFromNum(num int32) (*Handle, error) {
-
-	return cmemoryallocation.NewAllocation(
-		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.Gname_create_from_num(C.int(num))), nil
-		},
-		construct,
-		destroy,
-	)
-}
-func New(name string) (*Handle, error) {
-	realname := str.New(name)
-	return cmemoryallocation.Read(realname, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Gname_create(C.StringHandle(realname.CAPIHandle()))), nil
+				return unsafe.Pointer(C.Gname_copy(C.GnameHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -65,24 +54,14 @@ func New(name string) (*Handle, error) {
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-func (h *Handle) Gname() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.Gname_gname(C.GnameHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("Gname:" + err.Error())
-		}
-		return strObj.ToGoString()
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Gname_equal(C.GnameHandle(h.CAPIHandle()), C.GnameHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Gname_equal(C.GnameHandle(h.CAPIHandle()), C.GnameHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Gname_not_equal(C.GnameHandle(h.CAPIHandle()), C.GnameHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Gname_not_equal(C.GnameHandle(h.CAPIHandle()), C.GnameHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {
@@ -106,5 +85,38 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func NewFromNum(num int32) (*Handle, error) {
+
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.Gname_create_from_num(C.int(num))), nil
+		},
+		construct,
+		destroy,
+	)
+}
+func New(name string) (*Handle, error) {
+	realname := str.New(name)
+	return cmemoryallocation.Read(realname, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Gname_create(C.StringHandle(realname.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Gname() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Gname_gname(C.GnameHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Gname:" + err.Error())
+		}
+		return strObj.ToGoString()
 	})
 }

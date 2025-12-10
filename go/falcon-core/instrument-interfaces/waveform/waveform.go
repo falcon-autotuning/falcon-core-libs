@@ -45,6 +45,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Waveform_copy(C.WaveformHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Waveform_equal(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Waveform_not_equal(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Waveform_to_json_string(C.WaveformHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Waveform_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(space *discretespace.Handle, transforms *listporttransform.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{space, transforms}, func() (*Handle, error) {
 
@@ -129,10 +178,6 @@ func NewCartesianIdentityWaveform1D(division int32, shared_domain *coupledlabell
 		)
 	})
 }
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
-}
 func (h *Handle) Space() (*discretespace.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*discretespace.Handle, error) {
 
@@ -151,9 +196,9 @@ func (h *Handle) PushBack(value *porttransform.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.Waveform_size(C.WaveformHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.Waveform_size(C.WaveformHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -161,7 +206,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.Waveform_empty(C.WaveformHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.Waveform_erase_at(C.WaveformHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -173,7 +218,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*porttransform.Handle, error) {
+func (h *Handle) At(idx uint64) (*porttransform.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*porttransform.Handle, error) {
 
 		return porttransform.FromCAPI(unsafe.Pointer(C.Waveform_at(C.WaveformHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -190,47 +235,14 @@ func (h *Handle) Contains(value *porttransform.Handle) (bool, error) {
 		return bool(C.Waveform_contains(C.WaveformHandle(h.CAPIHandle()), C.PortTransformHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *porttransform.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.Waveform_index(C.WaveformHandle(h.CAPIHandle()), C.PortTransformHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *porttransform.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.Waveform_index(C.WaveformHandle(h.CAPIHandle()), C.PortTransformHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
 
 		return FromCAPI(unsafe.Pointer(C.Waveform_intersection(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))))
-	})
-}
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.Waveform_equal(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.Waveform_not_equal(C.WaveformHandle(h.CAPIHandle()), C.WaveformHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.Waveform_to_json_string(C.WaveformHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Waveform_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

@@ -45,7 +45,7 @@ func TestListGroup_NewEmptyAndPushBack(t *testing.T) {
 			t.Fatalf("PushBack failed at %d: %v", i, err)
 		}
 	}
-	if sz, err := l.Size(); err != nil || sz != uint32(len(fixtureListData())) {
+	if sz, err := l.Size(); err != nil || sz != uint64(len(fixtureListData())) {
 		t.Errorf("Expected size %d, got %d, err: %v", len(fixtureListData()), sz, err)
 	}
 }

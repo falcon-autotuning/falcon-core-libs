@@ -48,6 +48,18 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AxesControlArray_copy(C.AxesControlArrayHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(items []*controlarray.Handle) (*Handle, error) {
 	list, err := listcontrolarray.New(items)
 	if err != nil {
@@ -79,9 +91,9 @@ func (h *Handle) PushBack(value *controlarray.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.AxesControlArray_size(C.AxesControlArrayHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.AxesControlArray_size(C.AxesControlArrayHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -89,7 +101,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.AxesControlArray_empty(C.AxesControlArrayHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesControlArray_erase_at(C.AxesControlArrayHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -101,7 +113,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*controlarray.Handle, error) {
+func (h *Handle) At(idx uint64) (*controlarray.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*controlarray.Handle, error) {
 
 		return controlarray.FromCAPI(unsafe.Pointer(C.AxesControlArray_at(C.AxesControlArrayHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -137,9 +149,9 @@ func (h *Handle) Contains(value *controlarray.Handle) (bool, error) {
 		return bool(C.AxesControlArray_contains(C.AxesControlArrayHandle(h.CAPIHandle()), C.ControlArrayHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *controlarray.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.AxesControlArray_index(C.AxesControlArrayHandle(h.CAPIHandle()), C.ControlArrayHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *controlarray.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.AxesControlArray_index(C.AxesControlArrayHandle(h.CAPIHandle()), C.ControlArrayHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -148,14 +160,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.AxesControlArray_intersection(C.AxesControlArrayHandle(h.CAPIHandle()), C.AxesControlArrayHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesControlArray_equal(C.AxesControlArrayHandle(h.CAPIHandle()), C.AxesControlArrayHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesControlArray_equal(C.AxesControlArrayHandle(h.CAPIHandle()), C.AxesControlArrayHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesControlArray_not_equal(C.AxesControlArrayHandle(h.CAPIHandle()), C.AxesControlArrayHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesControlArray_not_equal(C.AxesControlArrayHandle(h.CAPIHandle()), C.AxesControlArrayHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

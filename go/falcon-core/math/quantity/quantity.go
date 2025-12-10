@@ -37,6 +37,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Quantity_copy(C.QuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Quantity_equal(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.Quantity_not_equal(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.Quantity_to_json_string(C.QuantityHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Quantity_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(value float64, unit *symbolunit.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(unit, func() (*Handle, error) {
 
@@ -48,10 +97,6 @@ func New(value float64, unit *symbolunit.Handle) (*Handle, error) {
 			destroy,
 		)
 	})
-}
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
 }
 func (h *Handle) Value() (float64, error) {
 	return cmemoryallocation.Read(h, func() (float64, error) {
@@ -88,22 +133,22 @@ func (h *Handle) MultiplyQuantity(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) MultiplyEqualsInt(other int32) (*Handle, error) {
-	return cmemoryallocation.Read(h, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+func (h *Handle) MultiplyEqualsInt(other int32) error {
+	return cmemoryallocation.Write(h, func() error {
+		C.Quantity_multiply_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))
+		return nil
 	})
 }
-func (h *Handle) MultiplyEqualsDouble(other float64) (*Handle, error) {
-	return cmemoryallocation.Read(h, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
+func (h *Handle) MultiplyEqualsDouble(other float64) error {
+	return cmemoryallocation.Write(h, func() error {
+		C.Quantity_multiply_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))
+		return nil
 	})
 }
-func (h *Handle) MultiplyEqualsQuantity(other *Handle) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_multiply_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+func (h *Handle) MultiplyEqualsQuantity(other *Handle) error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
+		C.Quantity_multiply_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))
+		return nil
 	})
 }
 func (h *Handle) DivideInt(other int32) (*Handle, error) {
@@ -124,22 +169,22 @@ func (h *Handle) DivideQuantity(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.Quantity_divide_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) DivideEqualsInt(other int32) (*Handle, error) {
-	return cmemoryallocation.Read(h, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))))
+func (h *Handle) DivideEqualsInt(other int32) error {
+	return cmemoryallocation.Write(h, func() error {
+		C.Quantity_divide_equals_int(C.QuantityHandle(h.CAPIHandle()), C.int(other))
+		return nil
 	})
 }
-func (h *Handle) DivideEqualsDouble(other float64) (*Handle, error) {
-	return cmemoryallocation.Read(h, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))))
+func (h *Handle) DivideEqualsDouble(other float64) error {
+	return cmemoryallocation.Write(h, func() error {
+		C.Quantity_divide_equals_double(C.QuantityHandle(h.CAPIHandle()), C.double(other))
+		return nil
 	})
 }
-func (h *Handle) DivideEqualsQuantity(other *Handle) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_divide_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+func (h *Handle) DivideEqualsQuantity(other *Handle) error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
+		C.Quantity_divide_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))
+		return nil
 	})
 }
 func (h *Handle) Power(other int32) (*Handle, error) {
@@ -154,10 +199,10 @@ func (h *Handle) AddQuantity(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.Quantity_add_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) AddEqualsQuantity(other *Handle) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_add_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+func (h *Handle) AddEqualsQuantity(other *Handle) error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
+		C.Quantity_add_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))
+		return nil
 	})
 }
 func (h *Handle) SubtractQuantity(other *Handle) (*Handle, error) {
@@ -166,10 +211,10 @@ func (h *Handle) SubtractQuantity(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.Quantity_subtract_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) SubtractEqualsQuantity(other *Handle) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
-
-		return FromCAPI(unsafe.Pointer(C.Quantity_subtract_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))))
+func (h *Handle) SubtractEqualsQuantity(other *Handle) error {
+	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
+		C.Quantity_subtract_equals_quantity(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(other.CAPIHandle()))
+		return nil
 	})
 }
 func (h *Handle) Negate() (*Handle, error) {
@@ -182,38 +227,5 @@ func (h *Handle) Abs() (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
 
 		return FromCAPI(unsafe.Pointer(C.Quantity_abs(C.QuantityHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Quantity_equal(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.Quantity_not_equal(C.QuantityHandle(h.CAPIHandle()), C.QuantityHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.Quantity_to_json_string(C.QuantityHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Quantity_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

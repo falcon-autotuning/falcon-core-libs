@@ -37,6 +37,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DotGateWithNeighbors_copy(C.DotGateWithNeighborsHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.DotGateWithNeighbors_equal(C.DotGateWithNeighborsHandle(h.CAPIHandle()), C.DotGateWithNeighborsHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.DotGateWithNeighbors_not_equal(C.DotGateWithNeighborsHandle(h.CAPIHandle()), C.DotGateWithNeighborsHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.DotGateWithNeighbors_to_json_string(C.DotGateWithNeighborsHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.DotGateWithNeighbors_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func NewPlungerGateWithNeighbors(name string, left_neighbor *connection.Handle, right_neighbor *connection.Handle) (*Handle, error) {
 	realname := str.New(name)
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realname, left_neighbor, right_neighbor}, func() (*Handle, error) {
@@ -61,20 +110,6 @@ func NewBarrierGateWithNeighbors(name string, left_neighbor *connection.Handle, 
 			construct,
 			destroy,
 		)
-	})
-}
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
-}
-func (h *Handle) Equal(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.DotGateWithNeighbors_equal(C.DotGateWithNeighborsHandle(h.CAPIHandle()), C.DotGateWithNeighborsHandle(other.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(other *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
-		return bool(C.DotGateWithNeighbors_not_equal(C.DotGateWithNeighborsHandle(h.CAPIHandle()), C.DotGateWithNeighborsHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Name() (string, error) {
@@ -117,28 +152,5 @@ func (h *Handle) IsBarrierGate() (bool, error) {
 func (h *Handle) IsPlungerGate() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
 		return bool(C.DotGateWithNeighbors_is_plunger_gate(C.DotGateWithNeighborsHandle(h.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.DotGateWithNeighbors_to_json_string(C.DotGateWithNeighborsHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.DotGateWithNeighbors_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

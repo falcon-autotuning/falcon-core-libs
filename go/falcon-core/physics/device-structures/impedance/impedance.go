@@ -37,12 +37,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func New(connection *connection.Handle, resistance float64, capacitance float64) (*Handle, error) {
-	return cmemoryallocation.Read(connection, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Impedance_create(C.ConnectionHandle(connection.CAPIHandle()), C.double(resistance), C.double(capacitance))), nil
+				return unsafe.Pointer(C.Impedance_copy(C.ImpedanceHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -52,22 +52,6 @@ func New(connection *connection.Handle, resistance float64, capacitance float64)
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
-}
-func (h *Handle) Connection() (*connection.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
-
-		return connection.FromCAPI(unsafe.Pointer(C.Impedance_connection(C.ImpedanceHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) Resistance() (float64, error) {
-	return cmemoryallocation.Read(h, func() (float64, error) {
-		return float64(C.Impedance_resistance(C.ImpedanceHandle(h.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) Capacitance() (float64, error) {
-	return cmemoryallocation.Read(h, func() (float64, error) {
-		return float64(C.Impedance_capacitance(C.ImpedanceHandle(h.CAPIHandle()))), nil
-	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
@@ -100,5 +84,33 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func New(connection *connection.Handle, resistance float64, capacitance float64) (*Handle, error) {
+	return cmemoryallocation.Read(connection, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.Impedance_create(C.ConnectionHandle(connection.CAPIHandle()), C.double(resistance), C.double(capacitance))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Connection() (*connection.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
+
+		return connection.FromCAPI(unsafe.Pointer(C.Impedance_connection(C.ImpedanceHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Resistance() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.Impedance_resistance(C.ImpedanceHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) Capacitance() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.Impedance_capacitance(C.ImpedanceHandle(h.CAPIHandle()))), nil
 	})
 }

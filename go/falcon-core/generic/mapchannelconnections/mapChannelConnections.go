@@ -52,14 +52,44 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.MapChannelConnections_copy(C.MapChannelConnectionsHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(data []*pairchannelconnections.Handle) (*Handle, error) {
-	list := make([]C.PairChannelConnectionsHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairChannelConnectionsHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairChannelConnectionsHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairChannelConnectionsHandle(v)
+		slice[i] = C.PairChannelConnectionsHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.MapChannelConnections_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.MapChannelConnections_create((*C.PairChannelConnectionsHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -93,9 +123,9 @@ func (h *Handle) Erase(key *channel.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.MapChannelConnections_size(C.MapChannelConnectionsHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.MapChannelConnections_size(C.MapChannelConnectionsHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -132,14 +162,14 @@ func (h *Handle) Items() (*listpairchannelconnections.Handle, error) {
 		return listpairchannelconnections.FromCAPI(unsafe.Pointer(C.MapChannelConnections_items(C.MapChannelConnectionsHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapChannelConnections_equal(C.MapChannelConnectionsHandle(h.CAPIHandle()), C.MapChannelConnectionsHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapChannelConnections_equal(C.MapChannelConnectionsHandle(h.CAPIHandle()), C.MapChannelConnectionsHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapChannelConnections_not_equal(C.MapChannelConnectionsHandle(h.CAPIHandle()), C.MapChannelConnectionsHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapChannelConnections_not_equal(C.MapChannelConnectionsHandle(h.CAPIHandle()), C.MapChannelConnectionsHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

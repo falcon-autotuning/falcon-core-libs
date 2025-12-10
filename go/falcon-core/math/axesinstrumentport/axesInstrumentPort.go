@@ -48,6 +48,18 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AxesInstrumentPort_copy(C.AxesInstrumentPortHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(items []*instrumentport.Handle) (*Handle, error) {
 	list, err := listinstrumentport.New(items)
 	if err != nil {
@@ -79,9 +91,9 @@ func (h *Handle) PushBack(value *instrumentport.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.AxesInstrumentPort_size(C.AxesInstrumentPortHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.AxesInstrumentPort_size(C.AxesInstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -89,7 +101,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.AxesInstrumentPort_empty(C.AxesInstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesInstrumentPort_erase_at(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -101,7 +113,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*instrumentport.Handle, error) {
+func (h *Handle) At(idx uint64) (*instrumentport.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*instrumentport.Handle, error) {
 
 		return instrumentport.FromCAPI(unsafe.Pointer(C.AxesInstrumentPort_at(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -137,9 +149,9 @@ func (h *Handle) Contains(value *instrumentport.Handle) (bool, error) {
 		return bool(C.AxesInstrumentPort_contains(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *instrumentport.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.AxesInstrumentPort_index(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *instrumentport.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.AxesInstrumentPort_index(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.InstrumentPortHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -148,14 +160,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.AxesInstrumentPort_intersection(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesInstrumentPort_equal(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesInstrumentPort_equal(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesInstrumentPort_not_equal(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesInstrumentPort_not_equal(C.AxesInstrumentPortHandle(h.CAPIHandle()), C.AxesInstrumentPortHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

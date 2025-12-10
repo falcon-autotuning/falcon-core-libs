@@ -47,7 +47,19 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func FillValue(count uint32, value *mapstringbool.Handle) (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.ListMapStringBool_copy(C.ListMapStringBoolHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func FillValue(count uint64, value *mapstringbool.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(value, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -60,13 +72,31 @@ func FillValue(count uint32, value *mapstringbool.Handle) (*Handle, error) {
 	})
 }
 func New(data []*mapstringbool.Handle) (*Handle, error) {
-	list := make([]C.MapStringBoolHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.MapStringBoolHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.MapStringBoolHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.MapStringBoolHandle(v)
+		slice[i] = C.MapStringBoolHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ListMapStringBool_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.ListMapStringBool_create((*C.MapStringBoolHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -82,9 +112,9 @@ func (h *Handle) PushBack(value *mapstringbool.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.ListMapStringBool_size(C.ListMapStringBoolHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.ListMapStringBool_size(C.ListMapStringBoolHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -92,7 +122,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.ListMapStringBool_empty(C.ListMapStringBoolHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.ListMapStringBool_erase_at(C.ListMapStringBoolHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -104,7 +134,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*mapstringbool.Handle, error) {
+func (h *Handle) At(idx uint64) (*mapstringbool.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*mapstringbool.Handle, error) {
 
 		return mapstringbool.FromCAPI(unsafe.Pointer(C.ListMapStringBool_at(C.ListMapStringBoolHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -140,9 +170,9 @@ func (h *Handle) Contains(value *mapstringbool.Handle) (bool, error) {
 		return bool(C.ListMapStringBool_contains(C.ListMapStringBoolHandle(h.CAPIHandle()), C.MapStringBoolHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *mapstringbool.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.ListMapStringBool_index(C.ListMapStringBoolHandle(h.CAPIHandle()), C.MapStringBoolHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *mapstringbool.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.ListMapStringBool_index(C.ListMapStringBoolHandle(h.CAPIHandle()), C.MapStringBoolHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -151,14 +181,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.ListMapStringBool_intersection(C.ListMapStringBoolHandle(h.CAPIHandle()), C.ListMapStringBoolHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListMapStringBool_equal(C.ListMapStringBoolHandle(h.CAPIHandle()), C.ListMapStringBoolHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListMapStringBool_equal(C.ListMapStringBoolHandle(h.CAPIHandle()), C.ListMapStringBoolHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListMapStringBool_not_equal(C.ListMapStringBoolHandle(h.CAPIHandle()), C.ListMapStringBoolHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListMapStringBool_not_equal(C.ListMapStringBoolHandle(h.CAPIHandle()), C.ListMapStringBoolHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

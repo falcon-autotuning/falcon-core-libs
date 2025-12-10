@@ -1,5 +1,5 @@
 REPO = falcon-autotuning/falcon-core
-RELEASE_TAG = v0.0.1
+RELEASE_TAG = v0.0.2
 TMPDIR = /tmp/falcon-core-install
 LIBDIR = /usr/local/lib
 INCLUDEDIR = /usr/local/include

@@ -37,12 +37,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func New(arrays *labelledarrayslabelledmeasuredarray.Handle) (*Handle, error) {
-	return cmemoryallocation.Read(arrays, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.MeasurementResponse_create(C.LabelledArraysLabelledMeasuredArrayHandle(arrays.CAPIHandle()))), nil
+				return unsafe.Pointer(C.MeasurementResponse_copy(C.MeasurementResponseHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -52,22 +52,6 @@ func New(arrays *labelledarrayslabelledmeasuredarray.Handle) (*Handle, error) {
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
-}
-func (h *Handle) Arrays() (*labelledarrayslabelledmeasuredarray.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*labelledarrayslabelledmeasuredarray.Handle, error) {
-
-		return labelledarrayslabelledmeasuredarray.FromCAPI(unsafe.Pointer(C.MeasurementResponse_arrays(C.MeasurementResponseHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) Message() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.MeasurementResponse_message(C.MeasurementResponseHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("Message:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
@@ -100,5 +84,33 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func New(arrays *labelledarrayslabelledmeasuredarray.Handle) (*Handle, error) {
+	return cmemoryallocation.Read(arrays, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.MeasurementResponse_create(C.LabelledArraysLabelledMeasuredArrayHandle(arrays.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Arrays() (*labelledarrayslabelledmeasuredarray.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*labelledarrayslabelledmeasuredarray.Handle, error) {
+
+		return labelledarrayslabelledmeasuredarray.FromCAPI(unsafe.Pointer(C.MeasurementResponse_arrays(C.MeasurementResponseHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Message() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.MeasurementResponse_message(C.MeasurementResponseHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Message:" + err.Error())
+		}
+		return strObj.ToGoString()
 	})
 }

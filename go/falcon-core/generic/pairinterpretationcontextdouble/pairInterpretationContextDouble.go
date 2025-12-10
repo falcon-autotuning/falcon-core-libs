@@ -49,6 +49,18 @@ func New(first *interpretationcontext.Handle, second float64) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInterpretationContextDouble_copy(C.PairInterpretationContextDoubleHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -64,14 +76,14 @@ func (h *Handle) Second() (float64, error) {
 		return float64(C.PairInterpretationContextDouble_second(C.PairInterpretationContextDoubleHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInterpretationContextDouble_equal(C.PairInterpretationContextDoubleHandle(h.CAPIHandle()), C.PairInterpretationContextDoubleHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInterpretationContextDouble_equal(C.PairInterpretationContextDoubleHandle(h.CAPIHandle()), C.PairInterpretationContextDoubleHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInterpretationContextDouble_not_equal(C.PairInterpretationContextDoubleHandle(h.CAPIHandle()), C.PairInterpretationContextDoubleHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInterpretationContextDouble_not_equal(C.PairInterpretationContextDoubleHandle(h.CAPIHandle()), C.PairInterpretationContextDoubleHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

@@ -47,7 +47,19 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func FillValue(count uint32, value *measurementcontext.Handle) (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.ListMeasurementContext_copy(C.ListMeasurementContextHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func FillValue(count uint64, value *measurementcontext.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(value, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -60,13 +72,31 @@ func FillValue(count uint32, value *measurementcontext.Handle) (*Handle, error) 
 	})
 }
 func New(data []*measurementcontext.Handle) (*Handle, error) {
-	list := make([]C.MeasurementContextHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.MeasurementContextHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.MeasurementContextHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.MeasurementContextHandle(v)
+		slice[i] = C.MeasurementContextHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ListMeasurementContext_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.ListMeasurementContext_create((*C.MeasurementContextHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -82,9 +112,9 @@ func (h *Handle) PushBack(value *measurementcontext.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.ListMeasurementContext_size(C.ListMeasurementContextHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.ListMeasurementContext_size(C.ListMeasurementContextHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -92,7 +122,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.ListMeasurementContext_empty(C.ListMeasurementContextHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.ListMeasurementContext_erase_at(C.ListMeasurementContextHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -104,7 +134,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*measurementcontext.Handle, error) {
+func (h *Handle) At(idx uint64) (*measurementcontext.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*measurementcontext.Handle, error) {
 
 		return measurementcontext.FromCAPI(unsafe.Pointer(C.ListMeasurementContext_at(C.ListMeasurementContextHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -140,9 +170,9 @@ func (h *Handle) Contains(value *measurementcontext.Handle) (bool, error) {
 		return bool(C.ListMeasurementContext_contains(C.ListMeasurementContextHandle(h.CAPIHandle()), C.MeasurementContextHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *measurementcontext.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.ListMeasurementContext_index(C.ListMeasurementContextHandle(h.CAPIHandle()), C.MeasurementContextHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *measurementcontext.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.ListMeasurementContext_index(C.ListMeasurementContextHandle(h.CAPIHandle()), C.MeasurementContextHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -151,14 +181,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.ListMeasurementContext_intersection(C.ListMeasurementContextHandle(h.CAPIHandle()), C.ListMeasurementContextHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListMeasurementContext_equal(C.ListMeasurementContextHandle(h.CAPIHandle()), C.ListMeasurementContextHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListMeasurementContext_equal(C.ListMeasurementContextHandle(h.CAPIHandle()), C.ListMeasurementContextHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListMeasurementContext_not_equal(C.ListMeasurementContextHandle(h.CAPIHandle()), C.ListMeasurementContextHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListMeasurementContext_not_equal(C.ListMeasurementContextHandle(h.CAPIHandle()), C.ListMeasurementContextHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

@@ -51,14 +51,44 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.MapConnectionDouble_copy(C.MapConnectionDoubleHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(data []*pairconnectiondouble.Handle) (*Handle, error) {
-	list := make([]C.PairConnectionDoubleHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairConnectionDoubleHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairConnectionDoubleHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairConnectionDoubleHandle(v)
+		slice[i] = C.PairConnectionDoubleHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.MapConnectionDouble_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.MapConnectionDouble_create((*C.PairConnectionDoubleHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -91,9 +121,9 @@ func (h *Handle) Erase(key *connection.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.MapConnectionDouble_size(C.MapConnectionDoubleHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.MapConnectionDouble_size(C.MapConnectionDoubleHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -130,14 +160,14 @@ func (h *Handle) Items() (*listpairconnectiondouble.Handle, error) {
 		return listpairconnectiondouble.FromCAPI(unsafe.Pointer(C.MapConnectionDouble_items(C.MapConnectionDoubleHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapConnectionDouble_equal(C.MapConnectionDoubleHandle(h.CAPIHandle()), C.MapConnectionDoubleHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapConnectionDouble_equal(C.MapConnectionDoubleHandle(h.CAPIHandle()), C.MapConnectionDoubleHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.MapConnectionDouble_not_equal(C.MapConnectionDoubleHandle(h.CAPIHandle()), C.MapConnectionDoubleHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.MapConnectionDouble_not_equal(C.MapConnectionDoubleHandle(h.CAPIHandle()), C.MapConnectionDoubleHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

@@ -50,6 +50,18 @@ func New(first *connection.Handle, second *pairquantityquantity.Handle) (*Handle
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairConnectionPairQuantityQuantity_copy(C.PairConnectionPairQuantityQuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -66,14 +78,14 @@ func (h *Handle) Second() (*pairquantityquantity.Handle, error) {
 		return pairquantityquantity.FromCAPI(unsafe.Pointer(C.PairConnectionPairQuantityQuantity_second(C.PairConnectionPairQuantityQuantityHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairConnectionPairQuantityQuantity_equal(C.PairConnectionPairQuantityQuantityHandle(h.CAPIHandle()), C.PairConnectionPairQuantityQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairConnectionPairQuantityQuantity_equal(C.PairConnectionPairQuantityQuantityHandle(h.CAPIHandle()), C.PairConnectionPairQuantityQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairConnectionPairQuantityQuantity_not_equal(C.PairConnectionPairQuantityQuantityHandle(h.CAPIHandle()), C.PairConnectionPairQuantityQuantityHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairConnectionPairQuantityQuantity_not_equal(C.PairConnectionPairQuantityQuantityHandle(h.CAPIHandle()), C.PairConnectionPairQuantityQuantityHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

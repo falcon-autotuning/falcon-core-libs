@@ -47,10 +47,10 @@ func (h *Handle) CheckCapiError() error {
 
 // ResetError clears the last error code and message.
 func (h *Handle) ResetError() {
-	h.set_last_error(0, "")
+	h.setLastError(0, "")
 }
 
-func (h *Handle) set_last_error(code int, msg string) {
+func (h *Handle) setLastError(code int, msg string) {
 	h.mu.Lock()
 	defer h.mu.Unlock()
 	cmsg := C.CString(msg)

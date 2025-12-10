@@ -50,6 +50,18 @@ func New(first *interpretationcontext.Handle, second string) (*Handle, error) {
 		)
 	})
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInterpretationContextString_copy(C.PairInterpretationContextStringHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
@@ -70,14 +82,14 @@ func (h *Handle) Second() (string, error) {
 		return strObj.ToGoString()
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInterpretationContextString_equal(C.PairInterpretationContextStringHandle(h.CAPIHandle()), C.PairInterpretationContextStringHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInterpretationContextString_equal(C.PairInterpretationContextStringHandle(h.CAPIHandle()), C.PairInterpretationContextStringHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.PairInterpretationContextString_not_equal(C.PairInterpretationContextStringHandle(h.CAPIHandle()), C.PairInterpretationContextStringHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInterpretationContextString_not_equal(C.PairInterpretationContextStringHandle(h.CAPIHandle()), C.PairInterpretationContextStringHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

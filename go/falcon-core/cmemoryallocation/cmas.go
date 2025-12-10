@@ -16,113 +16,15 @@ package cmemoryallocation
 
 import (
 	"errors"
-	"fmt"
 	"runtime"
-	"sort"
-	"sync"
-	"time"
 	"unsafe"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 )
 
-/*
-CMAS is the central memory allocation system
-
-This controls the access to all the memory stacks and ensures thread safety
-Memory stacks are identified by a unique uint32 number (mNum)
-This pointer used by the CPP implementation to uniquely identify memory resources
-
-  - cacheMu: mutex to protect the cache. Hold this mutex only when accessing the cache.
-  - cacheCond: condition variable to signal cache changes
-  - memoryStacks: map of memory stacks
-  - usageStacks: map of usage counts for each memory stack. The usage count indicates how many active references exist to a memory stack
-  - cache: sorted slice of mNums currently being accessed
-  - stopCleaner: channel to stop the cleaner goroutine
-*/
-type CMAS struct {
-	cacheMu      sync.Mutex
-	cacheCond    *sync.Cond
-	memoryStacks map[uint32]*MemoryStack
-	usageStacks  map[uint32]int
-	cache        []uint32
-	stopCleaner  chan struct{}
-}
-
-/*
-MemoryStack represents a single chunk of memory allocated to the C-API.
-
-This single chunk of memory can be accessed concurrently and thread-safely.
-
-  - mu: mutex to protect access to the memory stack
-  - deleted: flag indicating if the memory stack has been deleted
-*/
-type MemoryStack struct {
-	mu      sync.RWMutex
-	deleted bool
-}
-
 type HasCAPIHandle interface {
 	CAPIHandle() unsafe.Pointer // a method to get the C-API handle
 	ResetHandle()               // a method to reset the C-API handle
-}
-
-func NewCMAS() *CMAS {
-	cmas := &CMAS{
-		memoryStacks: make(map[uint32]*MemoryStack),
-		usageStacks:  make(map[uint32]int),
-		cache:        make([]uint32, 0),
-		stopCleaner:  make(chan struct{}),
-	}
-	cmas.cacheCond = sync.NewCond(&cmas.cacheMu)
-	go cmas.cleaner()
-	return cmas
-}
-
-// binary search for mNum in cache
-func (cmas *CMAS) cacheHas(mNum uint32) bool {
-	i := sort.Search(len(cmas.cache), func(i int) bool { return cmas.cache[i] >= mNum })
-	return i < len(cmas.cache) && cmas.cache[i] == mNum
-}
-
-// insert mNum into cache (sorted)
-func (cmas *CMAS) cacheInsert(mNum uint32) {
-	i := sort.Search(len(cmas.cache), func(i int) bool { return cmas.cache[i] >= mNum })
-	if i < len(cmas.cache) && cmas.cache[i] == mNum {
-		return // already present
-	}
-	cmas.cache = append(cmas.cache, 0)
-	copy(cmas.cache[i+1:], cmas.cache[i:])
-	cmas.cache[i] = mNum
-}
-
-// remove mNum from cache
-func (cmas *CMAS) cacheDelete(mNum uint32) {
-	i := sort.Search(len(cmas.cache), func(i int) bool { return cmas.cache[i] >= mNum })
-	if i < len(cmas.cache) && cmas.cache[i] == mNum {
-		cmas.cache = append(cmas.cache[:i], cmas.cache[i+1:]...)
-	}
-}
-
-// wait until mNum not present, then insert
-func (cmas *CMAS) waitAndInsertCache(mNum uint32) {
-	cmas.cacheMu.Lock()
-	for {
-		if !cmas.cacheHas(mNum) {
-			cmas.cacheInsert(mNum)
-			break
-		}
-		cmas.cacheCond.Wait()
-	}
-	cmas.cacheMu.Unlock()
-}
-
-// remove mNum from cache and broadcast
-func (cmas *CMAS) removeCacheAndBroadcast(mNum uint32) {
-	cmas.cacheMu.Lock()
-	cmas.cacheDelete(mNum)
-	cmas.cacheCond.Broadcast()
-	cmas.cacheMu.Unlock()
 }
 
 /*
@@ -147,25 +49,6 @@ func FromCAPI[T any, PT interface {
 	if p == nil {
 		return zero, errors.New(`FromCAPI: the pointer is null`)
 	}
-	mNum := uint32(uintptr(p))
-	cmas := GetCMAS()
-	cmas.waitAndInsertCache(mNum)
-
-	stack, exists := cmas.memoryStacks[mNum]
-	if !exists {
-		cmas.memoryStacks[mNum] = &MemoryStack{mu: sync.RWMutex{}, deleted: false}
-		cmas.usageStacks[mNum] = 1
-	} else {
-		stack.mu.Lock()
-		if stack.deleted {
-			stack.mu.Unlock()
-			cmas.removeCacheAndBroadcast(mNum)
-			return zero, errors.Join(fmt.Errorf(`FromCAPI: memory address  %x was found to be deleted: `, mNum), ErrStackDeleted)
-		}
-		cmas.usageStacks[mNum]++
-		stack.mu.Unlock()
-	}
-	cmas.removeCacheAndBroadcast(mNum)
 	obj := constructHandle(p)
 	// NOTE: The following AddCleanup/finalizer is not covered by tests because
 	// Go's garbage collector does not guarantee finalizer execution during tests.
@@ -207,12 +90,6 @@ func NewAllocation[T any, PT interface {
 	// Go's garbage collector does not guarantee finalizer execution during tests.
 	// This is a known limitation of Go's coverage tooling and is safe to ignore.
 	runtime.AddCleanup(obj, func(_ any) { CloseAllocation(obj, deallocMem) }, true)
-	mNum := uint32(uintptr(obj.CAPIHandle()))
-	cmas := GetCMAS()
-	cmas.waitAndInsertCache(mNum)
-	cmas.memoryStacks[mNum] = &MemoryStack{mu: sync.RWMutex{}, deleted: false}
-	cmas.usageStacks[mNum] = 1
-	cmas.removeCacheAndBroadcast(mNum)
 	return obj, nil
 }
 
@@ -236,27 +113,6 @@ func CloseAllocation(
 	if obj.CAPIHandle() == nil {
 		return errors.New(`CloseAllocation: the object contains nil`)
 	}
-	mNum := uint32(uintptr(obj.CAPIHandle()))
-	cmas := GetCMAS()
-	stack, exists := cmas.memoryStacks[mNum]
-	if !exists {
-		return ErrStackNotFound
-	}
-
-	stack.mu.Lock()
-	defer stack.mu.Unlock()
-
-	cmas.waitAndInsertCache(mNum)
-
-	if cmas.usageStacks[mNum] >= 1 {
-		cmas.usageStacks[mNum]--
-	}
-	if cmas.usageStacks[mNum] == 0 {
-		stack.deleted = true
-	}
-
-	cmas.removeCacheAndBroadcast(mNum)
-
 	deallocMem(obj.CAPIHandle())
 	err := errorhandling.ErrorHandler.CheckCapiError()
 	if err != nil {
@@ -285,19 +141,6 @@ func Read[T any](obj HasCAPIHandle, fn func() (T, error)) (T, error) {
 		var zero T
 		return zero, errors.New(`Read: the object contains nil`)
 	}
-	mNum := uint32(uintptr(obj.CAPIHandle()))
-	cmas := GetCMAS()
-	stack, exists := cmas.memoryStacks[mNum]
-	if !exists {
-		var zero T
-		return zero, ErrStackNotFound
-	}
-	stack.mu.RLock()
-	defer stack.mu.RUnlock()
-	if stack.deleted {
-		var zero T
-		return zero, ErrStackDeleted
-	}
 	out, err := fn()
 	if err != nil {
 		var zero T
@@ -322,13 +165,7 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns the output of the read function and an error if any.
 */
 func MultiRead[T any](objs []HasCAPIHandle, fn func() (T, error)) (T, error) {
-	type lockInfo struct {
-		stack *MemoryStack
-		mNum  uint32
-	}
-	cmas := GetCMAS()
-	infos := make([]lockInfo, len(objs))
-	for i, obj := range objs {
+	for _, obj := range objs {
 		if obj == nil {
 			var zero T
 			return zero, errors.New(`MultiRead: the object is nil`)
@@ -336,21 +173,6 @@ func MultiRead[T any](objs []HasCAPIHandle, fn func() (T, error)) (T, error) {
 		if obj.CAPIHandle() == nil {
 			var zero T
 			return zero, errors.New(`MultiRead: the object contains nil`)
-		}
-		mNum := uint32(uintptr(obj.CAPIHandle()))
-		stack, exists := cmas.memoryStacks[mNum]
-		if !exists {
-			var zero T
-			return zero, ErrStackNotFound
-		}
-		infos[i] = lockInfo{stack, mNum}
-	}
-	for _, info := range infos {
-		info.stack.mu.RLock()
-		defer info.stack.mu.RUnlock()
-		if info.stack.deleted {
-			var zero T
-			return zero, ErrStackDeleted
 		}
 	}
 	out, err := fn()
@@ -383,17 +205,6 @@ func Write(obj HasCAPIHandle, fn func() error) error {
 	if obj.CAPIHandle() == nil {
 		return errors.New(`Write: the object contains nil`)
 	}
-	mNum := uint32(uintptr(obj.CAPIHandle()))
-	cmas := GetCMAS()
-	stack, exists := cmas.memoryStacks[mNum]
-	if !exists {
-		return ErrStackNotFound
-	}
-	stack.mu.Lock()
-	defer stack.mu.Unlock()
-	if stack.deleted {
-		return ErrStackDeleted
-	}
 	err := fn()
 	if err != nil {
 		return errors.Join(errors.New(`Write function failed`), err)
@@ -412,90 +223,20 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns an error if any.
 */
 func ReadWrite(write HasCAPIHandle, objs []HasCAPIHandle, fn func() error) error {
-	type lockInfo struct {
-		stack *MemoryStack
-		mNum  uint32
-	}
-	cmas := GetCMAS()
-	infos := make([]lockInfo, len(objs))
-	for i, obj := range objs {
+	for _, obj := range objs {
 		if obj == nil {
 			return errors.New(`ReadWrite: the object is nil`)
 		}
 		if obj.CAPIHandle() == nil {
 			return errors.New(`ReadWrite: the object contains nil`)
 		}
-		mNum := uint32(uintptr(obj.CAPIHandle()))
-		stack, exists := cmas.memoryStacks[mNum]
-		if !exists {
-			return ErrStackNotFound
-		}
-		infos[i] = lockInfo{stack, mNum}
-	}
-	for _, info := range infos {
-		info.stack.mu.RLock()
-		defer info.stack.mu.RUnlock()
-		if info.stack.deleted {
-			return ErrStackDeleted
-		}
 	}
 	if write == nil || write.CAPIHandle() == nil {
 		return errors.New(`ReadWrite: the write object is nil`)
-	}
-	mNum := uint32(uintptr(write.CAPIHandle()))
-	stack, exists := cmas.memoryStacks[mNum]
-	if !exists {
-		return ErrStackNotFound
-	}
-	stack.mu.Lock()
-	defer stack.mu.Unlock()
-	if stack.deleted {
-		return ErrStackDeleted
 	}
 	err := fn()
 	if err != nil {
 		return errors.Join(errors.New(`ReadWrite function failed`), err)
 	}
 	return errorhandling.ErrorHandler.CheckCapiError()
-}
-
-// Cleaner goroutine: periodically removes deleted stacks with zero usage
-func (cmas *CMAS) cleaner() {
-	ticker := time.NewTicker(1 * time.Second)
-	defer ticker.Stop()
-	for {
-		select {
-		case <-ticker.C:
-			cmas.cacheMu.Lock()
-			for mNum, stack := range cmas.memoryStacks {
-				if stack.deleted && cmas.usageStacks[mNum] == 0 {
-					fmt.Printf("D:qeleting stack mNum=%x\n", mNum)
-					delete(cmas.memoryStacks, mNum)
-					delete(cmas.usageStacks, mNum)
-				}
-			}
-			cmas.cacheMu.Unlock()
-		case <-cmas.stopCleaner:
-			return
-		}
-	}
-}
-
-// StopCleaner stop the cleaner goroutine
-func (cmas *CMAS) StopCleaner() {
-	close(cmas.stopCleaner)
-}
-
-// Error definitions
-var (
-	ErrStackNotFound = &StackError{"stack not found"}
-	ErrStackDeleted  = &StackError{"stack deleted"}
-)
-
-type StackError struct {
-	msg string
-}
-
-func (e *StackError) Error() string {
-	return e.msg
 }

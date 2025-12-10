@@ -10,8 +10,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
-func mustLabelledDomain(minVal, maxVal float64, instrumentType string, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
-	h, err := labelleddomain.NewFromPort(minVal, maxVal, instrumentType, port, lesserBoundContained, greaterBoundContained)
+func mustLabelledDomain(minVal, maxVal float64, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
+	h, err := labelleddomain.NewFromPort(minVal, maxVal, port, lesserBoundContained, greaterBoundContained)
 	if err != nil {
 		panic(fmt.Errorf("failed to craete a lablled domain: %v", err))
 	}
@@ -46,10 +46,10 @@ func mustVolt() *symbolunit.Handle {
 
 var (
 	defaultListData = []*labelleddomain.Handle{
-		mustLabelledDomain(0.0, 1.0, instrumenttypes.VoltageSource(), mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
-		mustLabelledDomain(0.0, 1.0, instrumenttypes.VoltageSource(), mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
+		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
+		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
 	}
 	otherListData = []*labelleddomain.Handle{
-		mustLabelledDomain(0.0, 1.0, instrumenttypes.VoltageSource(), mustInstrumentPort("P2", mustBarrierGate("P2"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
+		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("P2", mustBarrierGate("P2"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
 	}
 )

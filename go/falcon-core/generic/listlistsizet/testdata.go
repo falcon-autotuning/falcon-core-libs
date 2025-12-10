@@ -4,7 +4,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listsizet"
 )
 
-func mustListSizeT(val ...uint32) *listsizet.Handle {
+func mustListSizeT(val ...uint64) *listsizet.Handle {
 	h, err := listsizet.New(val)
 	if err != nil {
 		panic(err)

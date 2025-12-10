@@ -38,43 +38,30 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func NewEmpty() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
-	return cmemoryallocation.NewAllocation(
-		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.IncreasingAlignment_create_empty()), nil
-		},
-		construct,
-		destroy,
-	)
-}
-func New(alignment bool) (*Handle, error) {
-
-	return cmemoryallocation.NewAllocation(
-		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.IncreasingAlignment_create(C.bool(alignment))), nil
-		},
-		construct,
-		destroy,
-	)
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.IncreasingAlignment_copy(C.IncreasingAlignmentHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
 }
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
-func (h *Handle) Alignment() (int32, error) {
-	return cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.IncreasingAlignment_alignment(C.IncreasingAlignmentHandle(h.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.IncreasingAlignment_equal(C.IncreasingAlignmentHandle(h.CAPIHandle()), C.IncreasingAlignmentHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.IncreasingAlignment_equal(C.IncreasingAlignmentHandle(h.CAPIHandle()), C.IncreasingAlignmentHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.IncreasingAlignment_not_equal(C.IncreasingAlignmentHandle(h.CAPIHandle()), C.IncreasingAlignmentHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.IncreasingAlignment_not_equal(C.IncreasingAlignmentHandle(h.CAPIHandle()), C.IncreasingAlignmentHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {
@@ -98,5 +85,30 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func NewEmpty() (*Handle, error) {
+
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.IncreasingAlignment_create_empty()), nil
+		},
+		construct,
+		destroy,
+	)
+}
+func New(alignment bool) (*Handle, error) {
+
+	return cmemoryallocation.NewAllocation(
+		func() (unsafe.Pointer, error) {
+			return unsafe.Pointer(C.IncreasingAlignment_create(C.bool(alignment))), nil
+		},
+		construct,
+		destroy,
+	)
+}
+func (h *Handle) Alignment() (int32, error) {
+	return cmemoryallocation.Read(h, func() (int32, error) {
+		return int32(C.IncreasingAlignment_alignment(C.IncreasingAlignmentHandle(h.CAPIHandle()))), nil
 	})
 }

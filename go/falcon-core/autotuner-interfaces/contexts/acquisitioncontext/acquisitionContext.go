@@ -39,6 +39,55 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AcquisitionContext_copy(C.AcquisitionContextHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AcquisitionContext_equal(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AcquisitionContext_not_equal(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.AcquisitionContext_to_json_string(C.AcquisitionContextHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AcquisitionContext_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(connection *connection.Handle, instrument_type string, units *symbolunit.Handle) (*Handle, error) {
 	realinstrument_type := str.New(instrument_type)
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{connection, realinstrument_type, units}, func() (*Handle, error) {
@@ -63,10 +112,6 @@ func NewFromPort(port *instrumentport.Handle) (*Handle, error) {
 			destroy,
 		)
 	})
-}
-
-func (h *Handle) Close() error {
-	return cmemoryallocation.CloseAllocation(h, destroy)
 }
 func (h *Handle) Connection() (*connection.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
@@ -111,38 +156,5 @@ func (h *Handle) MatchInstrumentType(other string) (bool, error) {
 	realother := str.New(other)
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, realother}, func() (bool, error) {
 		return bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()), C.StringHandle(realother.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AcquisitionContext_equal(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AcquisitionContext_not_equal(C.AcquisitionContextHandle(h.CAPIHandle()), C.AcquisitionContextHandle(b.CAPIHandle()))), nil
-	})
-}
-func (h *Handle) ToJSON() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.AcquisitionContext_to_json_string(C.AcquisitionContextHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("ToJSON:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func FromJSON(json string) (*Handle, error) {
-	realjson := str.New(json)
-	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.AcquisitionContext_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
-			},
-			construct,
-			destroy,
-		)
 	})
 }

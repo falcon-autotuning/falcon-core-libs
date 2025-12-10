@@ -47,7 +47,19 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
-func FillValue(count uint32, value *pairsizetsizet.Handle) (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.ListPairSizeTSizeT_copy(C.ListPairSizeTSizeTHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func FillValue(count uint64, value *pairsizetsizet.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(value, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
@@ -60,13 +72,31 @@ func FillValue(count uint32, value *pairsizetsizet.Handle) (*Handle, error) {
 	})
 }
 func New(data []*pairsizetsizet.Handle) (*Handle, error) {
-	list := make([]C.PairSizeTSizeTHandle, len(data))
+	n := len(data)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairSizeTSizeTHandle(nil)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.PairSizeTSizeTHandle)(cList)[:n:n]
 	for i, v := range data {
-		list[i] = C.PairSizeTSizeTHandle(v)
+		slice[i] = C.PairSizeTSizeTHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ListPairSizeTSizeT_create(&list[0], C.size_t(len(data)))), nil
+			res := unsafe.Pointer(C.ListPairSizeTSizeT_create((*C.PairSizeTSizeTHandle)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -82,9 +112,9 @@ func (h *Handle) PushBack(value *pairsizetsizet.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.ListPairSizeTSizeT_size(C.ListPairSizeTSizeTHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.ListPairSizeTSizeT_size(C.ListPairSizeTSizeTHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -92,7 +122,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.ListPairSizeTSizeT_empty(C.ListPairSizeTSizeTHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.ListPairSizeTSizeT_erase_at(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -104,7 +134,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*pairsizetsizet.Handle, error) {
+func (h *Handle) At(idx uint64) (*pairsizetsizet.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*pairsizetsizet.Handle, error) {
 
 		return pairsizetsizet.FromCAPI(unsafe.Pointer(C.ListPairSizeTSizeT_at(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -140,9 +170,9 @@ func (h *Handle) Contains(value *pairsizetsizet.Handle) (bool, error) {
 		return bool(C.ListPairSizeTSizeT_contains(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.PairSizeTSizeTHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *pairsizetsizet.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.ListPairSizeTSizeT_index(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.PairSizeTSizeTHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *pairsizetsizet.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.ListPairSizeTSizeT_index(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.PairSizeTSizeTHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -151,14 +181,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.ListPairSizeTSizeT_intersection(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.ListPairSizeTSizeTHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListPairSizeTSizeT_equal(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.ListPairSizeTSizeTHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListPairSizeTSizeT_equal(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.ListPairSizeTSizeTHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.ListPairSizeTSizeT_not_equal(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.ListPairSizeTSizeTHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.ListPairSizeTSizeT_not_equal(C.ListPairSizeTSizeTHandle(h.CAPIHandle()), C.ListPairSizeTSizeTHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

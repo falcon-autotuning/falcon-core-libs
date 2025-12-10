@@ -35,14 +35,14 @@ func TestConnections_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size() error: %v", err)
 		}
-		if sz != uint32(len(conns)) {
+		if sz != uint64(len(conns)) {
 			t.Errorf("Size() = %v, want %v", sz, len(conns))
 		}
 		items, err := c.Items()
 		if err != nil {
 			t.Fatalf("Items() error: %v", err)
 		}
-		if size, _ := items.Size(); size != uint32(len(conns)) {
+		if size, _ := items.Size(); size != uint64(len(conns)) {
 			t.Errorf("Items() length = %v, want %v", size, len(conns))
 		}
 	})
@@ -51,7 +51,7 @@ func TestConnections_SizeAndItems(t *testing.T) {
 func TestConnections_At(t *testing.T) {
 	withConnections(t, func(t *testing.T, c *Handle, conns []*connection.Handle) {
 		for i, want := range conns {
-			got, err := c.At(uint32(i))
+			got, err := c.At(uint64(i))
 			if err != nil {
 				t.Fatalf("At(%d) error: %v", i, err)
 			}
@@ -66,7 +66,7 @@ func TestConnections_At(t *testing.T) {
 func TestConnections_ContainsAndIndex(t *testing.T) {
 	withConnections(t, func(t *testing.T, c *Handle, conns []*connection.Handle) {
 		for i, v := range conns {
-			j := uint32(i)
+			j := uint64(i)
 			ok, err := c.Contains(v)
 			if err != nil {
 				t.Fatalf("Contains(%d) error: %v", i, err)
@@ -95,7 +95,7 @@ func TestConnections_PushBack(t *testing.T) {
 			t.Fatalf("PushBack error: %v", err)
 		}
 		sz, _ := c.Size()
-		if sz != uint32(len(conns)+1) {
+		if sz != uint64(len(conns)+1) {
 			t.Errorf("After PushBack, Size() = %v, want %v", sz, len(conns)+1)
 		}
 	})
@@ -112,7 +112,7 @@ func TestConnections_EraseAtAndClear(t *testing.T) {
 		t.Fatalf("EraseAt error: %v", err)
 	}
 	sz, _ := c2.Size()
-	if sz != uint32(len(conns)-1) {
+	if sz != uint64(len(conns)-1) {
 		t.Errorf("After EraseAt, Size() = %v, want %v", sz, len(conns)-1)
 	}
 	if err := c2.Clear(); err != nil {
@@ -140,7 +140,7 @@ func TestConnections_Intersection(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Intersection Items error: %v", err)
 		}
-		if size, _ := items.Size(); size != uint32(len(conns)) {
+		if size, _ := items.Size(); size != uint64(len(conns)) {
 			t.Errorf("Intersection Items = %v, want %v", size, len(conns))
 		}
 	})

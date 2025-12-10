@@ -155,10 +155,10 @@ func CtoGType(ctype, packagetype string) string {
 		return "*int32"
 	}
 	if ctype == "size_t" {
-		return "uint32"
+		return "uint64"
 	}
 	if ctype == "size_t*" {
-		return "*uint32"
+		return "*uint64"
 	}
 	packageType := strings.ToLower(extractCPrefix(ctype))
 	if packagetype == packageType {
@@ -189,7 +189,7 @@ func extractGoPrefix(s string) string {
 }
 
 func IsPrimitive(gotype string) bool {
-	if gotype == "bool" || gotype == "float64" || gotype == "float32" || gotype == "int32" || gotype == "uint32" || gotype == "*bool" || gotype == "*float64" || gotype == "*float32" || gotype == "*int32" || gotype == "*uint32" || gotype == "int64" || gotype == "int8" {
+	if gotype == "bool" || gotype == "float64" || gotype == "float32" || gotype == "int32" || gotype == "uint64" || gotype == "*bool" || gotype == "*float64" || gotype == "*float32" || gotype == "*int32" || gotype == "*uint64" || gotype == "int64" || gotype == "int8" {
 		return true
 	}
 	return false
@@ -413,10 +413,40 @@ func CountNonPrimitiveParams(params []*GoParameterPair) int {
 	return count
 }
 
+// Strips a block comment from a line, returning the cleaned line and whether we are still in a block comment
+func stripBlockComment(line string, inBlockComment bool) (string, bool) {
+	trimmed := strings.TrimSpace(line)
+	for {
+		if inBlockComment {
+			end := strings.Index(trimmed, "*/")
+			if end == -1 {
+				return "", true
+			}
+			trimmed = trimmed[end+2:]
+			trimmed = strings.TrimSpace(trimmed)
+			inBlockComment = false
+			continue
+		}
+		start := strings.Index(trimmed, "/*")
+		if start == -1 {
+			break
+		}
+		end := strings.Index(trimmed[start+2:], "*/")
+		if end == -1 {
+			trimmed = trimmed[:start]
+			inBlockComment = true
+			break
+		}
+		trimmed = trimmed[:start] + trimmed[start+2+end+2:]
+		trimmed = strings.TrimSpace(trimmed)
+	}
+	return trimmed, inBlockComment
+}
+
 func main() {
-	var currentCategory string = "" // The current selected category for a function
-	var funcLines []string          // All of the lines relevant for a single function
-	var extraImports []string       // Any additional go imports needed for the package
+	currentCategory := ""     // The current selected category for a function
+	var funcLines []string    // All of the lines relevant for a single function
+	var extraImports []string // Any additional go imports needed for the package
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: go run genFile.go <header-file>")
 		return
@@ -492,7 +522,9 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	)
 }
 `, packageName, includePath, watermark, objectName, objectName)
-	var reset bool = false // whether to reser the currentCategory next loop
+	reset := false          // whether to reser the currentCategory next loop
+	inBlockComment := false // if we are in a block comment
+	var line string
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -500,7 +532,11 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 			currentCategory = ""
 			reset = false
 		}
-		line := strings.TrimSpace(scanner.Text())
+		line, inBlockComment = stripBlockComment(scanner.Text(), inBlockComment)
+		if line == "" {
+			continue
+		}
+		line = strings.TrimSpace(line)
 		if cut, exists := strings.CutPrefix(line, "// @category:"); exists {
 			currentCategory = strings.TrimSpace(cut)
 			continue
@@ -578,7 +614,7 @@ func (h *Handle) Close() error {
 				continue
 			}
 			// format used by Adjacency_create
-			if (NumParams-NumNonPrimitiveParams) == 3 && NumNonPrimitiveParams == 1 && strings.Contains(methodArguments, "*uint32") {
+			if (NumParams-NumNonPrimitiveParams) == 3 && NumNonPrimitiveParams == 1 && strings.Contains(methodArguments, "*uint64") {
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
 				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
 				fmt.Fprintf(outFile, `func %s(%s []%s, %s []int, %s %s) (*Handle, error) {
@@ -604,7 +640,7 @@ func (h *Handle) Close() error {
 				continue
 			}
 			// format used by ControlArray_from_data
-			if NumParams == 3 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint32") {
+			if NumParams == 3 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint64") {
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
 				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
 				fmt.Fprintf(outFile, `func %s(%s []%s, %s []int) (*Handle, error) {
@@ -628,7 +664,7 @@ func (h *Handle) Close() error {
 				continue
 			}
 			// format used by FArrayDouble_create_empty
-			if NumParams == 2 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint32") && strings.Contains(methodArguments, "shape") {
+			if NumParams == 2 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint64") && strings.Contains(methodArguments, "shape") {
 				fmt.Fprintf(outFile, `func %s(%s []int) (*Handle, error) {
 	cshape := make([]C.size_t, len(%s))
 	for i, v := range %s {
@@ -646,9 +682,10 @@ func (h *Handle) Close() error {
 				continue
 			}
 			// format used by List_create
-			if NumParams == 2 && strings.Contains(methodArguments, "uint32") && goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map")) {
+			if NumParams == 2 && strings.Contains(methodArguments, "uint64") && goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map")) {
 				var Go0type string
 				var argument string
+				var sizeExpr string
 				if IsString(Goparams[0].Gotype) {
 					Go0type = "string"
 				} else if IsNonPrimitive(Goparams[0].Gotype) {
@@ -657,25 +694,52 @@ func (h *Handle) Close() error {
 					Go0type = Goparams[0].Gotype[1:]
 				}
 				C0type := Cparams[0].Ctype[:strings.Index(Cparams[0].Ctype, "*")]
+				if IsNonPrimitive(Go0type) || IsString(Go0type) {
+					sizeExpr = fmt.Sprintf("unsafe.Sizeof(C.%s(nil))", C0type)
+				} else if Go0type == "bool" {
+					sizeExpr = fmt.Sprintf("unsafe.Sizeof(C.%s(false))", C0type)
+				} else {
+					sizeExpr = fmt.Sprintf("unsafe.Sizeof(C.%s(0))", C0type)
+				}
 				if Go0type == "string" {
 					argument = "str.New(v).CAPIHandle()"
+				} else if IsNonPrimitive(Go0type) {
+					argument = "v.CAPIHandle()"
 				} else {
 					argument = "v"
 				}
 				fmt.Fprintf(outFile, `func New(%s []%s) (*Handle, error) {
-	list:= make([]C.%s, len(%s))
-	for i, v := range %s {
-		list[i] = C.%s(%s)
+	n := len(%s)
+	if n == 0 {
+			return cmemoryallocation.NewAllocation(
+					func() (unsafe.Pointer, error) {
+							return unsafe.Pointer(nil), nil
+					},
+					construct,
+					destroy,
+			)
+	}
+  size := C.size_t(n) * C.size_t(%s)
+	cList := C.malloc(size)
+	if cList == nil {
+			return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.%s)(cList)[:n:n]
+	for i, v := range data {
+			slice[i] = C.%s(%s) 
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.%s(&list[0], C.size_t(len(%s)))), nil
+				res := unsafe.Pointer(C.%s((*C.%s)(cList), C.size_t(n)))
+				C.free(cList)
+				return res, nil
 		},
 		construct,
 		destroy,
 	)
 }
-					`, Goparams[0].Name, Go0type, C0type, Goparams[0].Name, Goparams[0].Name, C0type, argument, methodName, Goparams[0].Name)
+					`, Goparams[0].Name, Go0type, Goparams[0].Name, sizeExpr, C0type, C0type, argument, methodName, C0type)
 				continue
 			}
 			// Listlike_create special case
@@ -735,7 +799,7 @@ func (h *Handle) Close() error {
 
 		if currentCategory == "read" {
 			// special case for reshape of farray
-			if strings.Contains(methodArguments, "shape") && strings.Contains(methodArguments, "*uint32") {
+			if strings.Contains(methodArguments, "shape") && strings.Contains(methodArguments, "*uint64") {
 				fmt.Fprintf(outFile, `func (h *Handle) %s(%s []int32) (*Handle, error) {
 	cshape := make([]C.size_t, len(%s))
 	for i, v := range %s {

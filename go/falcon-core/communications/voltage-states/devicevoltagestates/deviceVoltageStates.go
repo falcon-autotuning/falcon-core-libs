@@ -111,9 +111,9 @@ func (h *Handle) PushBack(value *devicevoltagestate.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.DeviceVoltageStates_size(C.DeviceVoltageStatesHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.DeviceVoltageStates_size(C.DeviceVoltageStatesHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -121,7 +121,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.DeviceVoltageStates_empty(C.DeviceVoltageStatesHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.DeviceVoltageStates_erase_at(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -133,7 +133,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*devicevoltagestate.Handle, error) {
+func (h *Handle) At(idx uint64) (*devicevoltagestate.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*devicevoltagestate.Handle, error) {
 
 		return devicevoltagestate.FromCAPI(unsafe.Pointer(C.DeviceVoltageStates_at(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -150,9 +150,9 @@ func (h *Handle) Contains(value *devicevoltagestate.Handle) (bool, error) {
 		return bool(C.DeviceVoltageStates_contains(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *devicevoltagestate.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.DeviceVoltageStates_index(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *devicevoltagestate.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.DeviceVoltageStates_index(C.DeviceVoltageStatesHandle(h.CAPIHandle()), C.DeviceVoltageStateHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Equal(b *Handle) (bool, error) {

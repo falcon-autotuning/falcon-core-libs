@@ -37,13 +37,12 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func New(message string, states *devicevoltagestates.Handle) (*Handle, error) {
-	realmessage := str.New(message)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realmessage, states}, func() (*Handle, error) {
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.VoltageStatesResponse_create(C.StringHandle(realmessage.CAPIHandle()), C.DeviceVoltageStatesHandle(states.CAPIHandle()))), nil
+				return unsafe.Pointer(C.VoltageStatesResponse_copy(C.VoltageStatesResponseHandle(handle.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -53,22 +52,6 @@ func New(message string, states *devicevoltagestates.Handle) (*Handle, error) {
 
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
-}
-func (h *Handle) Message() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.VoltageStatesResponse_message(C.VoltageStatesResponseHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("Message:" + err.Error())
-		}
-		return strObj.ToGoString()
-	})
-}
-func (h *Handle) States() (*devicevoltagestates.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*devicevoltagestates.Handle, error) {
-
-		return devicevoltagestates.FromCAPI(unsafe.Pointer(C.VoltageStatesResponse_states(C.VoltageStatesResponseHandle(h.CAPIHandle()))))
-	})
 }
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
@@ -101,5 +84,34 @@ func FromJSON(json string) (*Handle, error) {
 			construct,
 			destroy,
 		)
+	})
+}
+func New(message string, states *devicevoltagestates.Handle) (*Handle, error) {
+	realmessage := str.New(message)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realmessage, states}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.VoltageStatesResponse_create(C.StringHandle(realmessage.CAPIHandle()), C.DeviceVoltageStatesHandle(states.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func (h *Handle) Message() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.VoltageStatesResponse_message(C.VoltageStatesResponseHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("Message:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func (h *Handle) States() (*devicevoltagestates.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*devicevoltagestates.Handle, error) {
+
+		return devicevoltagestates.FromCAPI(unsafe.Pointer(C.VoltageStatesResponse_states(C.VoltageStatesResponseHandle(h.CAPIHandle()))))
 	})
 }

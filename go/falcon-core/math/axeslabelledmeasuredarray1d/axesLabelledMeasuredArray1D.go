@@ -48,6 +48,18 @@ func NewEmpty() (*Handle, error) {
 		destroy,
 	)
 }
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.AxesLabelledMeasuredArray1D_copy(C.AxesLabelledMeasuredArray1DHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
 func New(items []*labelledmeasuredarray1d.Handle) (*Handle, error) {
 	list, err := listlabelledmeasuredarray1d.New(items)
 	if err != nil {
@@ -79,9 +91,9 @@ func (h *Handle) PushBack(value *labelledmeasuredarray1d.Handle) error {
 		return nil
 	})
 }
-func (h *Handle) Size() (uint32, error) {
-	return cmemoryallocation.Read(h, func() (uint32, error) {
-		return uint32(C.AxesLabelledMeasuredArray1D_size(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
+func (h *Handle) Size() (uint64, error) {
+	return cmemoryallocation.Read(h, func() (uint64, error) {
+		return uint64(C.AxesLabelledMeasuredArray1D_size(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Empty() (bool, error) {
@@ -89,7 +101,7 @@ func (h *Handle) Empty() (bool, error) {
 		return bool(C.AxesLabelledMeasuredArray1D_empty(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) EraseAt(idx uint32) error {
+func (h *Handle) EraseAt(idx uint64) error {
 	return cmemoryallocation.Write(h, func() error {
 		C.AxesLabelledMeasuredArray1D_erase_at(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.size_t(idx))
 		return nil
@@ -101,7 +113,7 @@ func (h *Handle) Clear() error {
 		return nil
 	})
 }
-func (h *Handle) At(idx uint32) (*labelledmeasuredarray1d.Handle, error) {
+func (h *Handle) At(idx uint64) (*labelledmeasuredarray1d.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*labelledmeasuredarray1d.Handle, error) {
 
 		return labelledmeasuredarray1d.FromCAPI(unsafe.Pointer(C.AxesLabelledMeasuredArray1D_at(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.size_t(idx))))
@@ -137,9 +149,9 @@ func (h *Handle) Contains(value *labelledmeasuredarray1d.Handle) (bool, error) {
 		return bool(C.AxesLabelledMeasuredArray1D_contains(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.LabelledMeasuredArray1DHandle(value.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) Index(value *labelledmeasuredarray1d.Handle) (uint32, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint32, error) {
-		return uint32(C.AxesLabelledMeasuredArray1D_index(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.LabelledMeasuredArray1DHandle(value.CAPIHandle()))), nil
+func (h *Handle) Index(value *labelledmeasuredarray1d.Handle) (uint64, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, value}, func() (uint64, error) {
+		return uint64(C.AxesLabelledMeasuredArray1D_index(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.LabelledMeasuredArray1DHandle(value.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {
@@ -148,14 +160,14 @@ func (h *Handle) Intersection(other *Handle) (*Handle, error) {
 		return FromCAPI(unsafe.Pointer(C.AxesLabelledMeasuredArray1D_intersection(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(other.CAPIHandle()))))
 	})
 }
-func (h *Handle) Equal(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesLabelledMeasuredArray1D_equal(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(b.CAPIHandle()))), nil
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesLabelledMeasuredArray1D_equal(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) NotEqual(b *Handle) (bool, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, b}, func() (bool, error) {
-		return bool(C.AxesLabelledMeasuredArray1D_not_equal(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(b.CAPIHandle()))), nil
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.AxesLabelledMeasuredArray1D_not_equal(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), C.AxesLabelledMeasuredArray1DHandle(other.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) ToJSON() (string, error) {

@@ -33,7 +33,7 @@ gen: gen-files gen-lists gen-pairs gen-farray gen-maps gen-axes gen-labelledarra
 
 gen-files:
 	find /usr/local/include/falcon-core-c-api/falcon_core/ \
-	-name "*_c_api.h" | grep -vE '^.*/InstrumentTypes_c_api\.h$$|^.*/Sign_c_api\.h$$|^.*/ErrorHandling_c_api\.h$$|^.*/String_c_api\.h$$' | while read header; do \
+	-name "*_c_api.h" | grep -vE '^.*/InstrumentTypes_c_api\.h$$|^.*/Sign_c_api\.h$$|^.*/ErrorHandling_c_api\.h$$|^.*/String_c_api\.h$$|Macro|^.*/Precompiled_c_api\.h$$' | while read header; do \
 		go run tools/genFile/main.go "$$header"; \
 	done
 	find ./ -name "*.go" -exec goimports -w {} \;
@@ -44,6 +44,9 @@ build:  gen
 
 func-coverage:
 	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH go test -coverprofile=c.out -covermode=count $(shell go list ./... | grep -v '^./tools') && go tool cover -func=c.out
+
+test:
+	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH go test $(TEST)
 
 line-coverage:
 	go test -coverprofile=c.out -covermode=count ./...
