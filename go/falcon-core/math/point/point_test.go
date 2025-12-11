@@ -215,7 +215,7 @@ func TestPoint_UnitSetUnit(t *testing.T) {
 			t.Fatalf("Unit after SetUnit error: %v", err)
 		}
 		eq2, err := got2.Equal(ohm)
-		if err != nil || eq2 {
+		if err != nil || !eq2 {
 			t.Errorf("Unit after SetUnit = %v, want %v", got2, ohm)
 		}
 	})

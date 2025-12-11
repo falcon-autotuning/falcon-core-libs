@@ -110,7 +110,7 @@ func mustMeasurementRequest(msg, name string) *measurementrequest.Handle {
 	defer pt.Close()
 	port := mustInstrumentPort("A")
 	defer port.Close()
-	meterTransforms, err := mapinstrumentportporttransform.New(nil)
+	meterTransforms, err := mapinstrumentportporttransform.NewEmpty()
 	if err != nil {
 		panic("failed to create mapinstrumentportporttransform: " + err.Error())
 	}

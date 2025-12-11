@@ -33,33 +33,26 @@ func mustMeasurementRequest(msg, name string) *Handle {
 	// --- Setup a minimal but real MeasurementRequest ---
 	// Waveform
 	wf := mustWaveform("A")
-	defer wf.Close()
 	wflist, err := listwaveform.New([]*waveform.Handle{wf})
 	if err != nil {
 		panic("failed to create listwaveform: " + err.Error())
 	}
-	defer wflist.Close()
 	// Getter
 	getter, err := ports.NewEmpty()
 	if err != nil {
 		panic("failed to create ports: " + err.Error())
 	}
-	defer getter.Close()
 	// Meter transform
 	pt := mustPortTransform(mustInstrumentPort("A"), 0.2)
-	defer pt.Close()
 	port := mustInstrumentPort("A")
-	defer port.Close()
-	meterTransforms, err := mapinstrumentportporttransform.New(nil)
+	meterTransforms, err := mapinstrumentportporttransform.NewEmpty()
 	if err != nil {
 		panic("failed to create mapinstrumentportporttransform: " + err.Error())
 	}
-	defer meterTransforms.Close()
 	_ = meterTransforms.Insert(port, pt)
 	// Time domain
 	clock, _ := instrumentport.NewExecutionClock()
-	timeDomain := mustLabelledDomain(0, 1.0, instrumenttypes.Clock(), clock, true, true)
-	defer timeDomain.Close()
+	timeDomain := mustLabelledDomain(0, 1.0, clock, true, true)
 	// Construct
 	h, err := New(msg, name, wflist, getter, meterTransforms, timeDomain)
 	if err != nil {
@@ -184,7 +177,7 @@ func mustInstrumentPort(name string) *instrumentport.Handle {
 	return h
 }
 
-func mustLabelledDomain(minVal, maxVal float64, instrumentType string, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
+func mustLabelledDomain(minVal, maxVal float64, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
 	h, err := labelleddomain.NewFromPort(minVal, maxVal, port, lesserBoundContained, greaterBoundContained)
 	if err != nil {
 		panic(fmt.Errorf("failed to craete a lablled domain: %v", err))
@@ -193,8 +186,7 @@ func mustLabelledDomain(minVal, maxVal float64, instrumentType string, port *ins
 }
 
 func TestMeasurementRequest_CreateDestroy(t *testing.T) {
-	req := mustMeasurementRequest("msg", "measurement")
-	defer req.Close()
+	_ = mustMeasurementRequest("msg", "measurement")
 	// Test error branches for nils
 	_, err := New("", "measurement", nil, nil, nil, nil)
 	if err == nil {

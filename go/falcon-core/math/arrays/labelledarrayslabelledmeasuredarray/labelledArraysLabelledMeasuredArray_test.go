@@ -94,12 +94,10 @@ func TestLabelledArraysLabelledMeasuredArray_EraseAtAndClear(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New list failed: %v", err)
 	}
-	defer list.Close()
 	l, err := NewFromList(list)
 	if err != nil {
 		t.Fatalf("NewFromList failed: %v", err)
 	}
-	defer l.Close()
 	if err := l.EraseAt(1); err != nil {
 		t.Fatalf("EraseAt failed: %v", err)
 	}
@@ -117,12 +115,10 @@ func TestLabelledArraysLabelledMeasuredArray_AtContainsIndex(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New list failed: %v", err)
 	}
-	defer list.Close()
 	l, err := NewFromList(list)
 	if err != nil {
 		t.Fatalf("NewFromList failed: %v", err)
 	}
-	defer l.Close()
 	val, err := l.At(0)
 	if err != nil {
 		t.Fatalf("At(0) failed: %v", err)

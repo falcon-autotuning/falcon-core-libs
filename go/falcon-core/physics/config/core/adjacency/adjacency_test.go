@@ -86,9 +86,16 @@ func TestAdjacency_ShapeDimensionSize(t *testing.T) {
 func TestAdjacency_IndexesAndGetTruePairs(t *testing.T) {
 	conn := makeConnections(t)
 	a, _ := New(defaultData, defaultShape, conn)
-	_, err := a.Indexes()
+	ind, err := a.Indexes()
 	if err != nil {
 		t.Errorf("Indexes failed: %v", err)
+	}
+	ok, err := ind.Equal(conn)
+	if err != nil {
+		t.Errorf("Equality failed: %v", err)
+	}
+	if !ok {
+		t.Errorf("Indexes are not equal coming back from C-API")
 	}
 	_, err = a.GetTruePairs()
 	if err != nil {

@@ -46,7 +46,7 @@ func TestDeviceVoltageStates_SizeAndItems(t *testing.T) {
 			t.Fatalf("Size() error: %v", err)
 		}
 		if sz != uint64(len(states)) {
-			t.Errorf("Items() length = %v, want %v", size, len(states))
+			t.Errorf("Items() length = %v, want %v", sz, len(states))
 		}
 	})
 }

@@ -666,7 +666,7 @@ func (h *Handle) Close() error {
 	return cmemoryallocation.Read(%s, func() (*Handle, error) {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-					res := unsafe.Pointer(C.%s((*C.%s)(cData), (*C.size_t)(cShape), C.size_t(nShape), C.%s(%s)))
+					res := unsafe.Pointer(C.%s((*C.%s)(cData), (*C.size_t)(cShape), C.size_t(nShape), C.%s(%s.CAPIHandle())))
 					C.free(cData)
 					C.free(cShape)
 					return res, nil

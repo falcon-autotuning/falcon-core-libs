@@ -1,6 +1,7 @@
 package connections
 
 import (
+	"sync"
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
@@ -25,7 +26,6 @@ func withConnections(t *testing.T, fn func(t *testing.T, c *Handle, conns []*con
 	if err != nil {
 		t.Fatalf("New error: %v", err)
 	}
-	defer c.Close()
 	fn(t, c, conns)
 }
 
@@ -107,7 +107,6 @@ func TestConnections_EraseAtAndClear(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New error: %v", err)
 	}
-	defer c2.Close()
 	if err := c2.EraseAt(1); err != nil {
 		t.Fatalf("EraseAt error: %v", err)
 	}
@@ -130,12 +129,10 @@ func TestConnections_Intersection(t *testing.T) {
 		if err != nil {
 			t.Fatalf("New error: %v", err)
 		}
-		defer c2.Close()
 		inter, err := c.Intersection(c2)
 		if err != nil {
 			t.Fatalf("Intersection error: %v", err)
 		}
-		defer inter.Close()
 		items, err := inter.Items()
 		if err != nil {
 			t.Fatalf("Intersection Items error: %v", err)
@@ -152,7 +149,6 @@ func TestConnections_EqualAndNotEqual(t *testing.T) {
 		if err != nil {
 			t.Fatalf("New error: %v", err)
 		}
-		defer c2.Close()
 		eq, err := c.Equal(c2)
 		if err != nil || !eq {
 			t.Errorf("Equal = %v, want true, err: %v", eq, err)
@@ -174,7 +170,6 @@ func TestConnections_ToJSONAndFromJSON(t *testing.T) {
 		if err != nil {
 			t.Fatalf("FromJSON error: %v", err)
 		}
-		defer c2.Close()
 		eq, err := c.Equal(c2)
 		if err != nil || !eq {
 			t.Errorf("ToJSON/FromJSON roundtrip not equal: %v, err: %v", eq, err)
@@ -247,5 +242,72 @@ func TestConnections_FromCAPI_Valid(t *testing.T) {
 		if h == nil {
 			t.Fatal("FromCAPI valid: got nil")
 		}
+	})
+}
+
+func TestConnections_NewEmptyAndPushBack(t *testing.T) {
+	c, err := NewEmpty()
+	if err != nil {
+		t.Fatalf("NewEmpty error: %v", err)
+	}
+	sz, err := c.Size()
+	if err != nil {
+		t.Fatalf("Size() error on NewEmpty: %v", err)
+	}
+	if sz != 0 {
+		t.Errorf("NewEmpty Size() = %v, want 0", sz)
+	}
+	empty, err := c.Empty()
+	if err != nil {
+		t.Fatalf("Empty() error on NewEmpty: %v", err)
+	}
+	if !empty {
+		t.Errorf("NewEmpty Empty() = false, want true")
+	}
+
+	// PushBack a few connections and check size increases
+	names := []string{"X", "Y", "Z"}
+	for i, n := range names {
+		conn, err := connection.NewBarrierGate(n)
+		if err != nil {
+			t.Fatalf("NewBarrierGate(%q) error: %v", n, err)
+		}
+		if err := c.PushBack(conn); err != nil {
+			t.Fatalf("PushBack(%q) error: %v", n, err)
+		}
+		sz, err := c.Size()
+		if err != nil {
+			t.Fatalf("Size() error after PushBack: %v", err)
+		}
+		if sz != uint64(i+1) {
+			t.Errorf("After PushBack %d, Size() = %v, want %v", i, sz, i+1)
+		}
+	}
+}
+
+func TestSimultaneousItemsAndClear(t *testing.T) {
+	withConnections(t, func(t *testing.T, c *Handle, conns []*connection.Handle) {
+		var wg sync.WaitGroup
+		start := make(chan struct{})
+		wg.Add(2)
+		go func() {
+			defer wg.Done()
+			<-start
+			val, evalErr := c.Items()
+			if evalErr != nil {
+				t.Errorf("Unexpected error from Items: %v", evalErr)
+			}
+			_ = val
+		}()
+		go func() {
+			defer wg.Done()
+			<-start
+			clearErr := c.Clear()
+			if clearErr != nil {
+				t.Errorf("Unexpected error from Clear: %v", clearErr)
+			}
+		}()
+		close(start) // let both goroutines proceed at the same time
+		wg.Wait()
 	})
 }
