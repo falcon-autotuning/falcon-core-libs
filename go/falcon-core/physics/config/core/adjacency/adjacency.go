@@ -7,6 +7,7 @@ package adjacency
 #include <stdlib.h>
 */
 import "C"
+
 import (
 	"errors"
 	"unsafe"
@@ -41,9 +42,9 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
+
 func Copy(handle *Handle) (*Handle, error) {
 	return cmemoryallocation.Read(handle, func() (*Handle, error) {
-
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(C.Adjacency_copy(C.AdjacencyHandle(handle.CAPIHandle()))), nil
@@ -57,19 +58,21 @@ func Copy(handle *Handle) (*Handle, error) {
 func (h *Handle) Close() error {
 	return cmemoryallocation.CloseAllocation(h, destroy)
 }
+
 func (h *Handle) Equal(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
 		return bool(C.Adjacency_equal(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
 	})
 }
+
 func (h *Handle) NotEqual(other *Handle) (bool, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
 		return bool(C.Adjacency_not_equal(C.AdjacencyHandle(h.CAPIHandle()), C.AdjacencyHandle(other.CAPIHandle()))), nil
 	})
 }
+
 func (h *Handle) ToJSON() (string, error) {
 	return cmemoryallocation.Read(h, func() (string, error) {
-
 		strObj, err := str.FromCAPI(unsafe.Pointer(C.Adjacency_to_json_string(C.AdjacencyHandle(h.CAPIHandle()))))
 		if err != nil {
 			return "", errors.New("ToJSON:" + err.Error())
@@ -77,10 +80,10 @@ func (h *Handle) ToJSON() (string, error) {
 		return strObj.ToGoString()
 	})
 }
+
 func FromJSON(json string) (*Handle, error) {
 	realjson := str.New(json)
 	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
-
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(C.Adjacency_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
@@ -90,47 +93,77 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
+
 func New(data []int32, shape []uint64, indexes *connections.Handle) (*Handle, error) {
-	cshape := make([]C.size_t, len(shape))
-	for i, v := range shape {
-		cshape[i] = C.size_t(v)
+	nShape := len(shape)
+	nData := len(data)
+	if nShape == 0 || nData == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
 	}
-	cdata := make([]C.int, len(data))
+	sizeShape := C.size_t(nShape) * C.size_t(unsafe.Sizeof(C.size_t(0)))
+	cShape := C.malloc(sizeShape)
+	if cShape == nil {
+		return nil, errors.New("C.malloc failed for Shape")
+	}
+	// Copy Go data to C memory
+	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
+	for i, v := range shape {
+		sliceS[i] = C.size_t(v)
+	}
+	sizeData := C.size_t(nData) * C.size_t(unsafe.Sizeof(C.int(0)))
+	cData := C.malloc(sizeData)
+	if cData == nil {
+		return nil, errors.New("C.malloc failed for Data")
+	}
+	// Copy Go data to C memory
+	sliceD := (*[1 << 30]C.int)(cData)[:nData:nData]
 	for i, v := range data {
-		cdata[i] = C.int(v)
+		sliceD[i] = C.int(v)
 	}
 	return cmemoryallocation.Read(indexes, func() (*Handle, error) {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Adjacency_create(&cdata[0], &cshape[0], C.size_t(len(shape)), C.ConnectionsHandle(indexes))), nil
+				res := unsafe.Pointer(C.Adjacency_create((*C.int)(cData), (*C.size_t)(cShape), C.size_t(nShape), C.ConnectionsHandle(indexes)))
+				C.free(cData)
+				C.free(cShape)
+				return res, nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
+
 func (h *Handle) Indexes() (*connections.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*connections.Handle, error) {
-
 		return connections.FromCAPI(unsafe.Pointer(C.Adjacency_indexes(C.AdjacencyHandle(h.CAPIHandle()))))
 	})
 }
+
 func (h *Handle) GetTruePairs() (*listpairsizetsizet.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*listpairsizetsizet.Handle, error) {
-
 		return listpairsizetsizet.FromCAPI(unsafe.Pointer(C.Adjacency_get_true_pairs(C.AdjacencyHandle(h.CAPIHandle()))))
 	})
 }
+
 func (h *Handle) Size() (uint64, error) {
 	return cmemoryallocation.Read(h, func() (uint64, error) {
 		return uint64(C.Adjacency_size(C.AdjacencyHandle(h.CAPIHandle()))), nil
 	})
 }
+
 func (h *Handle) Dimension() (uint64, error) {
 	return cmemoryallocation.Read(h, func() (uint64, error) {
 		return uint64(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
 	})
 }
+
 func (h *Handle) Shape() ([]uint64, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
 		return int32(C.Adjacency_dimension(C.AdjacencyHandle(h.CAPIHandle()))), nil
@@ -149,10 +182,10 @@ func (h *Handle) Shape() ([]uint64, error) {
 	realout := make([]uint64, dim)
 	for i := range out {
 		realout[i] = uint64(out[i])
-
 	}
 	return realout, nil
 }
+
 func (h *Handle) Data() ([]int32, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
 		return int32(C.Adjacency_size(C.AdjacencyHandle(h.CAPIHandle()))), nil
@@ -171,36 +204,37 @@ func (h *Handle) Data() ([]int32, error) {
 	realout := make([]int32, dim)
 	for i := range out {
 		realout[i] = int32(out[i])
-
 	}
 	return realout, nil
 }
+
 func (h *Handle) TimesEqualsFArray(other *farrayint.Handle) error {
 	return cmemoryallocation.ReadWrite(h, []cmemoryallocation.HasCAPIHandle{other}, func() error {
 		C.Adjacency_times_equals_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))
 		return nil
 	})
 }
+
 func (h *Handle) TimesFArray(other *farrayint.Handle) (*Handle, error) {
 	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (*Handle, error) {
-
 		return FromCAPI(unsafe.Pointer(C.Adjacency_times_farray(C.AdjacencyHandle(h.CAPIHandle()), C.FArrayIntHandle(other.CAPIHandle()))))
 	})
 }
+
 func (h *Handle) Sum() (int32, error) {
 	return cmemoryallocation.Read(h, func() (int32, error) {
 		return int32(C.Adjacency_sum(C.AdjacencyHandle(h.CAPIHandle()))), nil
 	})
 }
+
 func (h *Handle) Where(value int32) (*listlistsizet.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*listlistsizet.Handle, error) {
-
 		return listlistsizet.FromCAPI(unsafe.Pointer(C.Adjacency_where(C.AdjacencyHandle(h.CAPIHandle()), C.int(value))))
 	})
 }
+
 func (h *Handle) Flip(axis uint64) (*Handle, error) {
 	return cmemoryallocation.Read(h, func() (*Handle, error) {
-
 		return FromCAPI(unsafe.Pointer(C.Adjacency_flip(C.AdjacencyHandle(h.CAPIHandle()), C.size_t(axis))))
 	})
 }

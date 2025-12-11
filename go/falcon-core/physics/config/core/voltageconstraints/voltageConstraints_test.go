@@ -61,9 +61,7 @@ func makeTestVoltageConstraints(t *testing.T) (*Handle, *adjacency.Handle, *pair
 }
 
 func TestVoltageConstraints_NewAndClose(t *testing.T) {
-	vc, adj, bounds := makeTestVoltageConstraints(t)
-	defer adj.Close()
-	defer bounds.Close()
+	vc, _, _ := makeTestVoltageConstraints(t)
 	if err := vc.Close(); err != nil {
 		t.Fatalf("Close error: %v", err)
 	}
@@ -73,10 +71,7 @@ func TestVoltageConstraints_NewAndClose(t *testing.T) {
 }
 
 func TestVoltageConstraints_Matrix(t *testing.T) {
-	vc, adj, bounds := makeTestVoltageConstraints(t)
-	defer vc.Close()
-	defer adj.Close()
-	defer bounds.Close()
+	vc, _, _ := makeTestVoltageConstraints(t)
 	mat, err := vc.Matrix()
 	if err != nil {
 		t.Fatalf("Matrix error: %v", err)
@@ -84,14 +79,10 @@ func TestVoltageConstraints_Matrix(t *testing.T) {
 	if mat == nil {
 		t.Error("Matrix returned nil")
 	}
-	mat.Close()
 }
 
 func TestVoltageConstraints_Adjacency(t *testing.T) {
-	vc, adj, bounds := makeTestVoltageConstraints(t)
-	defer vc.Close()
-	defer adj.Close()
-	defer bounds.Close()
+	vc, _, _ := makeTestVoltageConstraints(t)
 	a, err := vc.Adjacency()
 	if err != nil {
 		t.Fatalf("Adjacency error: %v", err)
@@ -99,14 +90,10 @@ func TestVoltageConstraints_Adjacency(t *testing.T) {
 	if a == nil {
 		t.Error("Adjacency returned nil")
 	}
-	a.Close()
 }
 
 func TestVoltageConstraints_Limits(t *testing.T) {
-	vc, adj, bounds := makeTestVoltageConstraints(t)
-	defer vc.Close()
-	defer adj.Close()
-	defer bounds.Close()
+	vc, _, _ := makeTestVoltageConstraints(t)
 	lim, err := vc.Limits()
 	if err != nil {
 		t.Fatalf("Limits error: %v", err)
@@ -114,16 +101,11 @@ func TestVoltageConstraints_Limits(t *testing.T) {
 	if lim == nil {
 		t.Error("Limits returned nil")
 	}
-	lim.Close()
 }
 
 func TestVoltageConstraints_EqualAndNotEqual(t *testing.T) {
-	vc1, adj, bounds := makeTestVoltageConstraints(t)
-	defer vc1.Close()
-	defer adj.Close()
-	defer bounds.Close()
+	vc1, _, _ := makeTestVoltageConstraints(t)
 	vc2, _, _ := makeTestVoltageConstraints(t)
-	defer vc2.Close()
 	eq, err := vc1.Equal(vc2)
 	if err != nil || !eq {
 		t.Errorf("Equal = %v, want true, err: %v", eq, err)
@@ -135,10 +117,7 @@ func TestVoltageConstraints_EqualAndNotEqual(t *testing.T) {
 }
 
 func TestVoltageConstraints_ToJSONAndFromJSON(t *testing.T) {
-	vc, adj, bounds := makeTestVoltageConstraints(t)
-	defer vc.Close()
-	defer adj.Close()
-	defer bounds.Close()
+	vc, _, _ := makeTestVoltageConstraints(t)
 	jsonStr, err := vc.ToJSON()
 	if err != nil {
 		t.Fatalf("ToJSON error: %v", err)
@@ -147,7 +126,6 @@ func TestVoltageConstraints_ToJSONAndFromJSON(t *testing.T) {
 	if err != nil {
 		t.Fatalf("FromJSON error: %v", err)
 	}
-	defer vc2.Close()
 	eq, err := vc.Equal(vc2)
 	if err != nil || !eq {
 		t.Errorf("ToJSON/FromJSON roundtrip not equal: %v, err: %v", eq, err)
@@ -193,10 +171,7 @@ func TestVoltageConstraints_FromCAPI_Error(t *testing.T) {
 }
 
 func TestVoltageConstraints_FromCAPI_Valid(t *testing.T) {
-	vc, adj, bounds := makeTestVoltageConstraints(t)
-	defer vc.Close()
-	defer adj.Close()
-	defer bounds.Close()
+	vc, _, _ := makeTestVoltageConstraints(t)
 	capi := vc.CAPIHandle()
 	if capi == nil {
 		t.Fatal("CAPIHandle returned nil")

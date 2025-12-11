@@ -367,6 +367,17 @@ func nonConstructorGoMethodName(methodName, objectName string) string {
 	}
 }
 
+// Selects a default value for a C memory size allocation for malloc
+func memorySize(goType, cType string) string {
+	if IsNonPrimitive(goType) || IsString(goType) {
+		return fmt.Sprintf("unsafe.Sizeof(C.%s(nil))", cType)
+	} else if goType == "bool" {
+		return fmt.Sprintf("unsafe.Sizeof(C.%s(false))", cType)
+	} else {
+		return fmt.Sprintf("unsafe.Sizeof(C.%s(0))", cType)
+	}
+}
+
 func MakeGoArgNames(goparams []*GoParameterPair) string {
 	names := []string{}
 	for _, pair := range goparams {
@@ -617,27 +628,55 @@ func (h *Handle) Close() error {
 			// format used by Adjacency_create
 			if (NumParams-NumNonPrimitiveParams) == 3 && NumNonPrimitiveParams == 1 && strings.Contains(methodArguments, "*uint64") {
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
-				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
+				gtype0 := Goparams[0].Gotype[1:]
+				sizeData := memorySize(gtype0, ctype0)
+				sizeShape := memorySize("uint64", "size_t")
 				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64, %s %s) (*Handle, error) {
-	cshape := make([]C.%s, len(%s))
-	for i, v := range %s {
-		cshape[i] = C.size_t(v)
+	nShape := len(%s)
+	nData := len(%s)
+	if nShape == 0  || nData == 0 {
+			return cmemoryallocation.NewAllocation(
+					func() (unsafe.Pointer, error) {
+							return unsafe.Pointer(nil), nil
+					},
+					construct,
+					destroy,
+			)
 	}
-	cdata := make([]C.%s, len(%s))
-	for i, v := range %s{
-		cdata[i] = C.%s(v)
+  sizeShape := C.size_t(nShape) * C.size_t(%s)
+	cShape := C.malloc(sizeShape)
+	if cShape == nil {
+			return nil, errors.New("C.malloc failed for Shape")
+	}
+	// Copy Go data to C memory
+	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
+	for i, v := range %s {
+			sliceS[i] = C.size_t(v) 
+	}
+  sizeData := C.size_t(nData) * C.size_t(%s)
+	cData:= C.malloc(sizeData)
+	if cData == nil {
+			return nil, errors.New("C.malloc failed for Data")
+	}
+	// Copy Go data to C memory
+	sliceD := (*[1 << 30]C.%s)(cData)[:nData:nData]
+	for i, v := range %s {
+			sliceD[i] = C.%s(v) 
 	}
 	return cmemoryallocation.Read(%s, func() (*Handle, error) {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.%s(&cdata[0], &cshape[0], C.size_t(len(%s)), C.%s(%s))), nil
+					res := unsafe.Pointer(C.%s((*C.%s)(cData), (*C.size_t)(cShape), C.size_t(nShape), C.%s(%s)))
+					C.free(cData)
+					C.free(cShape)
+					return res, nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-					`, goName, Goparams[0].Name, Goparams[0].Gotype[1:], Goparams[1].Name, Goparams[3].Name, Goparams[3].Gotype, ctype1, Goparams[1].Name, Goparams[1].Name, ctype0, Cparams[0].Name, Cparams[0].Name, ctype0, Goparams[3].Name, methodName, Goparams[1].Name, Cparams[3].Ctype, Goparams[3].Name)
+					`, goName, Goparams[0].Name, gtype0, Goparams[1].Name, Goparams[3].Name, Goparams[3].Gotype, Goparams[1].Name, Goparams[0].Name, sizeShape, Goparams[1].Name, sizeData, ctype0, Goparams[0].Name, ctype0, Goparams[3].Name, methodName, ctype0, Cparams[3].Ctype, Goparams[3].Name)
 				continue
 			}
 			// format used by ControlArray_from_data
@@ -695,13 +734,7 @@ func (h *Handle) Close() error {
 					Go0type = Goparams[0].Gotype[1:]
 				}
 				C0type := Cparams[0].Ctype[:strings.Index(Cparams[0].Ctype, "*")]
-				if IsNonPrimitive(Go0type) || IsString(Go0type) {
-					sizeExpr = fmt.Sprintf("unsafe.Sizeof(C.%s(nil))", C0type)
-				} else if Go0type == "bool" {
-					sizeExpr = fmt.Sprintf("unsafe.Sizeof(C.%s(false))", C0type)
-				} else {
-					sizeExpr = fmt.Sprintf("unsafe.Sizeof(C.%s(0))", C0type)
-				}
+				sizeExpr = memorySize(Go0type, C0type)
 				if Go0type == "string" {
 					argument = "str.New(v).CAPIHandle()"
 				} else if IsNonPrimitive(Go0type) {
@@ -727,7 +760,7 @@ func (h *Handle) Close() error {
 	}
 	// Copy Go data to C memory
 	slice := (*[1 << 30]C.%s)(cList)[:n:n]
-	for i, v := range data {
+	for i, v := range %s {
 			slice[i] = C.%s(%s) 
 	}
 	return cmemoryallocation.NewAllocation(
@@ -740,7 +773,7 @@ func (h *Handle) Close() error {
 		destroy,
 	)
 }
-					`, Goparams[0].Name, Go0type, Goparams[0].Name, sizeExpr, C0type, C0type, argument, methodName, C0type)
+					`, Goparams[0].Name, Go0type, Goparams[0].Name, sizeExpr, C0type, Goparams[0].Name, C0type, argument, methodName, C0type)
 				continue
 			}
 			// Listlike_create special case
