@@ -44,7 +44,7 @@ func TestPortTransforms_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size() error: %v", err)
 		}
-		if sz != uint32(len(items)) {
+		if sz != uint64(len(items)) {
 			t.Errorf("Size() = %v, want %v", sz, len(items))
 		}
 		list, err := pt.Items()
@@ -64,7 +64,7 @@ func TestPortTransforms_SizeAndItems(t *testing.T) {
 func TestPortTransforms_At(t *testing.T) {
 	withPortTransforms(t, func(t *testing.T, pt *Handle, items []*porttransform.Handle) {
 		for i, want := range items {
-			got, err := pt.At(uint32(i))
+			got, err := pt.At(uint64(i))
 			if err != nil {
 				t.Fatalf("At(%d) error: %v", i, err)
 			}
@@ -90,7 +90,7 @@ func TestPortTransforms_ContainsAndIndex(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Index(%d) error: %v", i, err)
 			}
-			if idx != uint32(i) {
+			if idx != uint64(i) {
 				t.Errorf("Index(%d) = %v, want %v", i, idx, i)
 			}
 		}
@@ -113,7 +113,7 @@ func TestPortTransforms_PushBack(t *testing.T) {
 			t.Fatalf("PushBack error: %v", err)
 		}
 		sz, _ := pt.Size()
-		if sz != uint32(len(items)+1) {
+		if sz != uint64(len(items)+1) {
 			t.Errorf("After PushBack, Size() = %v, want %v", sz, len(items)+1)
 		}
 	})
@@ -130,7 +130,7 @@ func TestPortTransforms_EraseAtAndClear(t *testing.T) {
 		t.Fatalf("EraseAt error: %v", err)
 	}
 	sz, _ := pt.Size()
-	if sz != uint32(len(items)-1) {
+	if sz != uint64(len(items)-1) {
 		t.Errorf("After EraseAt, Size() = %v, want %v", sz, len(items)-1)
 	}
 	if err := pt.Clear(); err != nil {

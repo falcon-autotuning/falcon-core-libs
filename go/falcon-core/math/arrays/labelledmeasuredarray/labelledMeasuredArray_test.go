@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	defaultShape = []int{2, 2}
+	defaultShape = []uint64{2, 2}
 	defaultData  = []float64{1., .2, 3., .4}
 	defaultVal   = float64(5.2)
 	otherData    = []float64{9., .8, 7., .6}
@@ -58,7 +58,7 @@ func TestLabelledMeasuredArray_ShapeDimensionData(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != uint32(len(defaultShape)) {
+	if dim != uint64(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	data, err := a.Data()
@@ -766,7 +766,7 @@ func TestLabelledMeasuredArray_ErrorBranches(t *testing.T) {
 }
 
 func mustMeasuredArray() *measuredarray.Handle {
-	h, err := measuredarray.FromData([]float64{1, 2, 3, 4}, []int{2, 2})
+	h, err := measuredarray.FromData([]float64{1, 2, 3, 4}, []uint64{2, 2})
 	if err != nil {
 		panic(err)
 	}
@@ -793,8 +793,8 @@ func TestLabelledMeasuredArray_FromMeasuredArray(t *testing.T) {
 	defer lma.Close()
 
 	// CAPIHandle (open)
-	ptr, err := lma.CAPIHandle()
-	if err != nil || ptr == nil {
+	ptr := lma.CAPIHandle()
+	if ptr == nil {
 		t.Errorf("CAPIHandle (open) failed: %v", err)
 	}
 

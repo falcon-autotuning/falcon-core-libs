@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	defaultShape = []int{4}
+	defaultShape = []uint64{4}
 	defaultData  = []float64{1., 2, 3., 4}
 	defaultVal   = float64(5.2)
 )
@@ -57,7 +57,7 @@ func TestLabelledControlArray_ShapeDimensionData(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != uint32(len(defaultShape)) {
+	if dim != uint64(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	data, err := a.Data()

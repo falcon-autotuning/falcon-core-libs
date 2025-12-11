@@ -12,7 +12,7 @@ import (
 func makeTestAdjacency(t *testing.T) *adjacency.Handle {
 	// Minimal 2x2 adjacency matrix: [0,1,1,0] with shape [2,2]
 	data := []int32{0, 1, 1, 0}
-	shape := []int{2, 2}
+	shape := []uint64{2, 2}
 	// Create dummy connections for indexes (must be non-nil)
 	c1, err := connection.NewBarrierGate("A")
 	if err != nil {

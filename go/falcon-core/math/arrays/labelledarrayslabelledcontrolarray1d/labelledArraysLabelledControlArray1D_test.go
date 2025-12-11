@@ -41,7 +41,7 @@ func TestLabelledArraysLabelledControlArray1D_NewFromListAndPushBack(t *testing.
 		t.Fatalf("NewFromList failed: %v", err)
 	}
 	defer l.Close()
-	if sz, err := l.Size(); err != nil || sz != len(defaultListData) {
+	if sz, err := l.Size(); err != nil || sz != uint64(len(defaultListData)) {
 		t.Fatalf("Expected size %d, got %d, err: %v", len(defaultListData), sz, err)
 	}
 	for i, v := range defaultListData {
@@ -49,7 +49,7 @@ func TestLabelledArraysLabelledControlArray1D_NewFromListAndPushBack(t *testing.
 			t.Fatalf("PushBack failed at %d: %v", i, err)
 		}
 	}
-	if sz, err := l.Size(); err != nil || sz != 2*len(defaultListData) {
+	if sz, err := l.Size(); err != nil || sz != 2*uint64(len(defaultListData)) {
 		t.Errorf("Expected size %d, got %d, err: %v", 2*len(defaultListData), sz, err)
 	}
 }
@@ -214,10 +214,7 @@ func TestLabelledArraysLabelledControlArray1D_CAPIHandle(t *testing.T) {
 		t.Fatalf("NewFromList failed: %v", err)
 	}
 	defer l.Close()
-	ptr, err := l.CAPIHandle()
-	if err != nil {
-		t.Errorf("CAPIHandle failed to access capi")
-	}
+	ptr:= l.CAPIHandle()
 	if ptr == nil {
 		t.Errorf("CAPIHandle returned nil")
 	}

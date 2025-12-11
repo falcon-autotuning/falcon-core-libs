@@ -25,3 +25,7 @@ func Construct(ptr unsafe.Pointer) FalconCoreHandle {
 func (h *FalconCoreHandle) ResetHandle() {
 	h.chandle = nil
 }
+
+func (h *FalconCoreHandle) IsNil() bool {
+	return h == nil
+}

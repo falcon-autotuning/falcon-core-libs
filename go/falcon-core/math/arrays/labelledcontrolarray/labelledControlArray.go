@@ -35,6 +35,7 @@ var (
 	}
 )
 
+func (h *Handle) IsNil() bool { return h == nil }
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	return cmemoryallocation.FromCAPI(
 		p,
@@ -155,7 +156,7 @@ func (h *Handle) Dimension() (uint64, error) {
 }
 func (h *Handle) Shape() ([]uint64, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.LabelledControlArray_size(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
+		return int32(C.LabelledControlArray_dimension(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("Shape: size errored"), err)
@@ -422,7 +423,7 @@ func (h *Handle) Flip(axis uint64) (*Handle, error) {
 }
 func (h *Handle) FullGradient() ([]*farraydouble.Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.LabelledControlArray_size(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
+		return int32(C.LabelledControlArray_dimension(C.LabelledControlArrayHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("FullGradient: size errored"), err)

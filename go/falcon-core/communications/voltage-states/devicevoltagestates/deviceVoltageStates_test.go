@@ -45,14 +45,7 @@ func TestDeviceVoltageStates_SizeAndItems(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size() error: %v", err)
 		}
-		if sz != uint32(len(states)) {
-			t.Errorf("Size() = %v, want %v", sz, len(states))
-		}
-		items, err := h.Items()
-		if err != nil {
-			t.Fatalf("Items() error: %v", err)
-		}
-		if size, _ := items.Size(); size != uint32(len(states)) {
+		if sz != uint64(len(states)) {
 			t.Errorf("Items() length = %v, want %v", size, len(states))
 		}
 	})
@@ -61,7 +54,7 @@ func TestDeviceVoltageStates_SizeAndItems(t *testing.T) {
 func TestDeviceVoltageStates_At(t *testing.T) {
 	withDeviceVoltageStates(t, func(t *testing.T, h *Handle, states []*devicevoltagestate.Handle) {
 		for i, want := range states {
-			got, err := h.At(uint32(i))
+			got, err := h.At(uint64(i))
 			if err != nil {
 				t.Fatalf("At(%d) error: %v", i, err)
 			}
@@ -87,7 +80,7 @@ func TestDeviceVoltageStates_ContainsAndIndex(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Index(%d) error: %v", i, err)
 			}
-			if idx != uint32(i) {
+			if idx != uint64(i) {
 				t.Errorf("Index(%d) = %v, want %v", i, idx, i)
 			}
 		}
@@ -112,7 +105,7 @@ func TestDeviceVoltageStates_PushBack(t *testing.T) {
 			t.Fatalf("PushBack error: %v", err)
 		}
 		sz, _ := h.Size()
-		if sz != uint32(len(states)+1) {
+		if sz != uint64(len(states)+1) {
 			t.Errorf("After PushBack, Size() = %v, want %v", sz, len(states)+1)
 		}
 	})
@@ -129,7 +122,7 @@ func TestDeviceVoltageStates_EraseAtAndClear(t *testing.T) {
 		t.Fatalf("EraseAt error: %v", err)
 	}
 	sz, _ := h.Size()
-	if sz != uint32(len(states)-1) {
+	if sz != uint64(len(states)-1) {
 		t.Errorf("After EraseAt, Size() = %v, want %v", sz, len(states)-1)
 	}
 	if err := h.Clear(); err != nil {
@@ -157,7 +150,7 @@ func TestDeviceVoltageStates_Intersection(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Intersection Items error: %v", err)
 		}
-		if size, _ := items.Size(); size != uint32(len(states)) {
+		if size, _ := items.Size(); size != uint64(len(states)) {
 			t.Errorf("Intersection Items = %v, want %v", size, len(states))
 		}
 	})

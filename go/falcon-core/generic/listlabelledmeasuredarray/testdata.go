@@ -44,7 +44,7 @@ func mustInstrumentPort(name string, conn *connection.Handle, insttype string, u
 	return h
 }
 
-func mustmeasuredArray(data []float64, shape []int) *labelledmeasuredarray.Handle {
+func mustmeasuredArray(data []float64, shape []uint64) *labelledmeasuredarray.Handle {
 	f, err := farraydouble.FromData(data, shape)
 	if err != nil {
 		panic(err)
@@ -59,10 +59,10 @@ func mustmeasuredArray(data []float64, shape []int) *labelledmeasuredarray.Handl
 
 var (
 	defaultListData = []*labelledmeasuredarray.Handle{
-		mustmeasuredArray([]float64{0.0, 1.0}, []int{2}),
-		mustmeasuredArray([]float64{0.0, 1.0, 2.0, 3.0}, []int{4}),
+		mustmeasuredArray([]float64{0.0, 1.0}, []uint64{2}),
+		mustmeasuredArray([]float64{0.0, 1.0, 2.0, 3.0}, []uint64{4}),
 	}
 	otherListData = []*labelledmeasuredarray.Handle{
-		mustmeasuredArray([]float64{0.5, 1.0, 2.0, 3.0}, []int{4}),
+		mustmeasuredArray([]float64{0.5, 1.0, 2.0, 3.0}, []uint64{4}),
 	}
 )

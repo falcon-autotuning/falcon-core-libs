@@ -129,7 +129,7 @@ func TestDiscretizer_Polar(t *testing.T) {
 }
 
 func TestDiscretizer_ClosedErrors(t *testing.T) {
-	d, err := NewCartesian(1.0)
+	d, err := NewCartesianDiscretizer(1.0)
 	if err != nil {
 		t.Fatalf("Discretizer NewCartesian error: %v", err)
 	}
@@ -149,7 +149,7 @@ func TestDiscretizer_ClosedErrors(t *testing.T) {
 	if _, err := d.IsPolar(); err == nil {
 		t.Error("IsPolar() on closed discretizer: expected error")
 	}
-	other, err := NewCartesian(2.0)
+	other, err := NewCartesianDiscretizer(2.0)
 	if err != nil {
 		t.Fatalf("Discretizer NewCartesian error: %v", err)
 	}
@@ -179,15 +179,12 @@ func TestDiscretizer_FromCAPI_Error(t *testing.T) {
 }
 
 func TestDiscretizer_FromCAPI_Valid(t *testing.T) {
-	d, err := NewCartesian(1.0)
+	d, err := NewCartesianDiscretizer(1.0)
 	if err != nil {
 		t.Fatalf("Discretizer NewCartesian error: %v", err)
 	}
 	defer d.Close()
-	capi, err := d.CAPIHandle()
-	if err != nil {
-		t.Fatalf("Could not convert discretizer to CAPI: %v", err)
-	}
+	capi := d.CAPIHandle()
 	h, err := FromCAPI(capi)
 	if err != nil {
 		t.Errorf("FromCAPI valid: unexpected error: %v", err)

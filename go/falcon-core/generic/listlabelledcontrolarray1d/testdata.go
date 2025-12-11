@@ -44,7 +44,7 @@ func mustInstrumentPort(name string, conn *connection.Handle, insttype string, u
 	return h
 }
 
-func mustControlArray(data []float64, shape []int) *labelledcontrolarray1d.Handle {
+func mustControlArray(data []float64, shape []uint64) *labelledcontrolarray1d.Handle {
 	f, err := farraydouble.FromData(data, shape)
 	if err != nil {
 		panic(err)
@@ -59,10 +59,10 @@ func mustControlArray(data []float64, shape []int) *labelledcontrolarray1d.Handl
 
 var (
 	defaultListData = []*labelledcontrolarray1d.Handle{
-		mustControlArray([]float64{0.0, 1.0}, []int{2}),
-		mustControlArray([]float64{0.0, 1.0, 2.0, 3.0}, []int{4}),
+		mustControlArray([]float64{0.0, 1.0}, []uint64{2}),
+		mustControlArray([]float64{0.0, 1.0, 2.0, 3.0}, []uint64{4}),
 	}
 	otherListData = []*labelledcontrolarray1d.Handle{
-		mustControlArray([]float64{0.5, 1.0, 2.0, 3.0}, []int{4}),
+		mustControlArray([]float64{0.5, 1.0, 2.0, 3.0}, []uint64{4}),
 	}
 )

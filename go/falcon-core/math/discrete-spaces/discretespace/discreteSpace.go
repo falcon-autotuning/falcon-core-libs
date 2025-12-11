@@ -40,6 +40,7 @@ var (
 	}
 )
 
+func (h *Handle) IsNil() bool { return h == nil }
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	return cmemoryallocation.FromCAPI(
 		p,

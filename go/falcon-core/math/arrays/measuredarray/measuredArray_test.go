@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	defaultShape = []int{2, 2}
+	defaultShape = []uint64{2, 2}
 	defaultData  = []float64{1., .2, 3., .4}
 	defaultVal   = float64(5.2)
 	otherData    = []float64{9., .8, 7., .6}
@@ -60,7 +60,7 @@ func TestMeasuredArray_ShapeDimensionData(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != uint32(len(defaultShape)) {
+	if dim != uint64(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 	data, err := a.Data()

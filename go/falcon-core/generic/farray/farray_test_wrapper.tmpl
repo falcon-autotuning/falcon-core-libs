@@ -109,7 +109,7 @@ func Test{{.Type}}_ShapeDimension(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != uint32(len(defaultShape)) {
+	if dim != uint64(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 }
@@ -139,7 +139,7 @@ func Test{{.Type}}_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("PlusEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] + defaultVal
+		want[i] = defaultData[i] + {{.GoType}}(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -181,7 +181,7 @@ func Test{{.Type}}_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("MinusEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] - defaultVal
+		want[i] = defaultData[i] - {{.GoType}}(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -223,7 +223,7 @@ func Test{{.Type}}_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("TimesEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] * defaultVal
+		want[i] = defaultData[i] * {{.GoType}}(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -265,7 +265,7 @@ func Test{{.Type}}_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("DividesEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] / defaultVal
+		want[i] = defaultData[i] / {{.GoType}}(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -328,7 +328,7 @@ func Test{{.Type}}_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] + defaultVal
+		want[i] = defaultData[i] + {{.GoType}}(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -370,7 +370,7 @@ func Test{{.Type}}_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] - defaultVal
+		want[i] = defaultData[i] - {{.GoType}}(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -426,7 +426,7 @@ func Test{{.Type}}_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] * defaultVal
+		want[i] = defaultData[i] * {{.GoType}}(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -468,7 +468,7 @@ func Test{{.Type}}_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] / defaultVal
+		want[i] = defaultData[i] / {{.GoType}}(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -589,12 +589,12 @@ func Test{{.Type}}_Equal(t *testing.T) {
 func Test{{.Type}}_GreaterLessThan(t *testing.T) {
 	a, _ := FromData(defaultData, defaultShape)
 	defer a.Close()
-	ok, err := a.GreaterThan(defaultVal)
+	ok, err := a.GreaterThan({{.GoType}}(defaultVal))
 	if err != nil {
 		t.Errorf("GreaterThan failed: %v", err)
 	}
 	_ = ok
-	ok, err = a.LessThan(defaultVal)
+	ok, err = a.LessThan({{.GoType}}(defaultVal))
 	if err != nil {
 		t.Errorf("LessThan failed: %v", err)
 	}
@@ -604,7 +604,7 @@ func Test{{.Type}}_GreaterLessThan(t *testing.T) {
 func Test{{.Type}}_RemoveOffsetSum(t *testing.T) {
 	a, _ := FromData(defaultData, defaultShape)
 	defer a.Close()
-	if err := a.RemoveOffset(defaultVal); err != nil {
+	if err := a.RemoveOffset({{.GoType}}(defaultVal)); err != nil {
 		t.Errorf("RemoveOffset failed: %v", err)
 	}
 	_, err := a.Sum()
@@ -620,7 +620,7 @@ func Test{{.Type}}_ReshapeWhereFlip(t *testing.T) {
 	if err != nil {
 		t.Errorf("Reshape failed: %v", err)
 	}
-	_, err = a.Where(defaultVal)
+	_, err = a.Where({{.GoType}}(defaultVal))
 	if err != nil {
 		t.Errorf("Where failed: %v", err)
 	}

@@ -6,7 +6,7 @@ import (
 	"math"
 )
 var (
-	defaultShape = []int{2,2}
+	defaultShape = []uint64{2,2}
 	defaultData  = []float64{1.,.2,3.,.4}
 	defaultVal   = float64(5.2)
 	otherData    = []float64{9.,.8,7.,.6}
@@ -90,7 +90,7 @@ func TestFArrayDouble_ShapeDimension(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Dimension failed: %v", err)
 	}
-	if dim != uint32(len(defaultShape)) {
+	if dim != uint64(len(defaultShape)) {
 		t.Errorf("Expected dimension %d, got %d", len(defaultShape), dim)
 	}
 }
@@ -120,7 +120,7 @@ func TestFArrayDouble_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("PlusEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] + defaultVal
+		want[i] = defaultData[i] + float64(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -162,7 +162,7 @@ func TestFArrayDouble_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("MinusEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] - defaultVal
+		want[i] = defaultData[i] - float64(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -204,7 +204,7 @@ func TestFArrayDouble_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("TimesEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] * defaultVal
+		want[i] = defaultData[i] * float64(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -246,7 +246,7 @@ func TestFArrayDouble_ArithmeticOpsEquals(t *testing.T) {
 		t.Errorf("DividesEqualsDouble failed: %v", err)
 	}
 	for i := range want {
-		want[i] = defaultData[i] / defaultVal
+		want[i] = defaultData[i] / float64(defaultVal)
 	}
 	got, _ = a.Data()
 	if !eqSlice(got, want) {
@@ -309,7 +309,7 @@ func TestFArrayDouble_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] + defaultVal
+		want[i] = defaultData[i] + float64(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -351,7 +351,7 @@ func TestFArrayDouble_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] - defaultVal
+		want[i] = defaultData[i] - float64(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -407,7 +407,7 @@ func TestFArrayDouble_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] * defaultVal
+		want[i] = defaultData[i] * float64(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -449,7 +449,7 @@ func TestFArrayDouble_ArithmeticOpsNonMutating(t *testing.T) {
 	}
 	defer res.Close()
 	for i := range want {
-		want[i] = defaultData[i] / defaultVal
+		want[i] = defaultData[i] / float64(defaultVal)
 	}
 	got, _ = res.Data()
 	if !eqSlice(got, want) {
@@ -558,12 +558,12 @@ func TestFArrayDouble_Equal(t *testing.T) {
 func TestFArrayDouble_GreaterLessThan(t *testing.T) {
 	a, _ := FromData(defaultData, defaultShape)
 	defer a.Close()
-	ok, err := a.GreaterThan(defaultVal)
+	ok, err := a.GreaterThan(float64(defaultVal))
 	if err != nil {
 		t.Errorf("GreaterThan failed: %v", err)
 	}
 	_ = ok
-	ok, err = a.LessThan(defaultVal)
+	ok, err = a.LessThan(float64(defaultVal))
 	if err != nil {
 		t.Errorf("LessThan failed: %v", err)
 	}
@@ -573,7 +573,7 @@ func TestFArrayDouble_GreaterLessThan(t *testing.T) {
 func TestFArrayDouble_RemoveOffsetSum(t *testing.T) {
 	a, _ := FromData(defaultData, defaultShape)
 	defer a.Close()
-	if err := a.RemoveOffset(defaultVal); err != nil {
+	if err := a.RemoveOffset(float64(defaultVal)); err != nil {
 		t.Errorf("RemoveOffset failed: %v", err)
 	}
 	_, err := a.Sum()
@@ -589,7 +589,7 @@ func TestFArrayDouble_ReshapeWhereFlip(t *testing.T) {
 	if err != nil {
 		t.Errorf("Reshape failed: %v", err)
 	}
-	_, err = a.Where(defaultVal)
+	_, err = a.Where(float64(defaultVal))
 	if err != nil {
 		t.Errorf("Where failed: %v", err)
 	}

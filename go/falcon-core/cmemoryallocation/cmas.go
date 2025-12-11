@@ -25,6 +25,30 @@ import (
 type HasCAPIHandle interface {
 	CAPIHandle() unsafe.Pointer // a method to get the C-API handle
 	ResetHandle()               // a method to reset the C-API handle
+	IsNil() bool                // a method to check if the handle is nil
+}
+
+// checkHandleValid checks if a HasCAPIHandle is valid (not nil, not containing nil).
+// Returns nil if valid, otherwise an error with the given name for context.
+func checkHandleValid(obj HasCAPIHandle, name string) error {
+	if obj == nil || obj.IsNil() {
+		return errors.New(name + ": the object is nil")
+	}
+	if obj.CAPIHandle() == nil {
+		return errors.New(name + ": the object contains nil")
+	}
+	return nil
+}
+
+// checkHandlesValid checks a slice of HasCAPIHandle for validity.
+// Returns nil if all are valid, otherwise an error with the given name for context.
+func checkHandlesValid(objs []HasCAPIHandle, name string) error {
+	for _, obj := range objs {
+		if err := checkHandleValid(obj, name); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 /*
@@ -107,11 +131,8 @@ func CloseAllocation(
 	obj HasCAPIHandle,
 	deallocMem func(unsafe.Pointer),
 ) error {
-	if obj == nil {
-		return errors.New(`CloseAllocation: the object is nil`)
-	}
-	if obj.CAPIHandle() == nil {
-		return errors.New(`CloseAllocation: the object contains nil`)
+	if err := checkHandleValid(obj, "CloseAllocation"); err != nil {
+		return err
 	}
 	deallocMem(obj.CAPIHandle())
 	err := errorhandling.ErrorHandler.CheckCapiError()
@@ -133,13 +154,9 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns the output of the read function and an error if any.
 */
 func Read[T any](obj HasCAPIHandle, fn func() (T, error)) (T, error) {
-	if obj == nil {
+	if err := checkHandleValid(obj, "Read"); err != nil {
 		var zero T
-		return zero, errors.New(`Read: the object is nil`)
-	}
-	if obj.CAPIHandle() == nil {
-		var zero T
-		return zero, errors.New(`Read: the object contains nil`)
+		return zero, err
 	}
 	out, err := fn()
 	if err != nil {
@@ -165,15 +182,9 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns the output of the read function and an error if any.
 */
 func MultiRead[T any](objs []HasCAPIHandle, fn func() (T, error)) (T, error) {
-	for _, obj := range objs {
-		if obj == nil {
-			var zero T
-			return zero, errors.New(`MultiRead: the object is nil`)
-		}
-		if obj.CAPIHandle() == nil {
-			var zero T
-			return zero, errors.New(`MultiRead: the object contains nil`)
-		}
+	if err := checkHandlesValid(objs, "MultiRead"); err != nil {
+		var zero T
+		return zero, err
 	}
 	out, err := fn()
 	if err != nil {
@@ -199,11 +210,8 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns an error if any.
 */
 func Write(obj HasCAPIHandle, fn func() error) error {
-	if obj == nil {
-		return errors.New(`Write: the object is nil`)
-	}
-	if obj.CAPIHandle() == nil {
-		return errors.New(`Write: the object contains nil`)
+	if err := checkHandleValid(obj, "Write"); err != nil {
+		return err
 	}
 	err := fn()
 	if err != nil {
@@ -223,16 +231,11 @@ Go does not directly control memory for C resources, so we need to use a factory
 This method returns an error if any.
 */
 func ReadWrite(write HasCAPIHandle, objs []HasCAPIHandle, fn func() error) error {
-	for _, obj := range objs {
-		if obj == nil {
-			return errors.New(`ReadWrite: the object is nil`)
-		}
-		if obj.CAPIHandle() == nil {
-			return errors.New(`ReadWrite: the object contains nil`)
-		}
+	if err := checkHandlesValid(objs, "ReadWrite"); err != nil {
+		return err
 	}
-	if write == nil || write.CAPIHandle() == nil {
-		return errors.New(`ReadWrite: the write object is nil`)
+	if err := checkHandleValid(write, "ReadWrite: the write object"); err != nil {
+		return err
 	}
 	err := fn()
 	if err != nil {

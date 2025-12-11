@@ -82,7 +82,7 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 	defer ld3.Close()
 
 	// NewFromPort
-	ld4, err := NewFromPort(0, 10, "type", port, true, true)
+	ld4, err := NewFromPort(0, 10, port, true, true)
 	if err != nil {
 		t.Fatalf("NewFromPort failed: %v", err)
 	}

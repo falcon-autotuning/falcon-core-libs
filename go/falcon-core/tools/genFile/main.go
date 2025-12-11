@@ -514,6 +514,7 @@ var (
 		C.%s_destroy(C.%sHandle(ptr))
 	}
 )
+func (h *Handle) IsNil() bool { return h == nil }
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	return cmemoryallocation.FromCAPI(
 		p,
@@ -617,7 +618,7 @@ func (h *Handle) Close() error {
 			if (NumParams-NumNonPrimitiveParams) == 3 && NumNonPrimitiveParams == 1 && strings.Contains(methodArguments, "*uint64") {
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
 				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
-				fmt.Fprintf(outFile, `func %s(%s []%s, %s []int, %s %s) (*Handle, error) {
+				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64, %s %s) (*Handle, error) {
 	cshape := make([]C.%s, len(%s))
 	for i, v := range %s {
 		cshape[i] = C.size_t(v)
@@ -643,7 +644,7 @@ func (h *Handle) Close() error {
 			if NumParams == 3 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint64") {
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
 				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
-				fmt.Fprintf(outFile, `func %s(%s []%s, %s []int) (*Handle, error) {
+				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64) (*Handle, error) {
 	cshape := make([]C.%s, len(%s))
 	for i, v := range %s {
 		cshape[i] = C.size_t(v)
@@ -665,7 +666,7 @@ func (h *Handle) Close() error {
 			}
 			// format used by FArrayDouble_create_empty
 			if NumParams == 2 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint64") && strings.Contains(methodArguments, "shape") {
-				fmt.Fprintf(outFile, `func %s(%s []int) (*Handle, error) {
+				fmt.Fprintf(outFile, `func %s(%s []uint64) (*Handle, error) {
 	cshape := make([]C.size_t, len(%s))
 	for i, v := range %s {
 		cshape[i] = C.size_t(v)
@@ -891,9 +892,13 @@ func (h *Handle) Close() error {
 					reconstruction = fmt.Sprintf(`realout[i] = %s(out[i])
 `, bufferGoType)
 				}
+				size := fmt.Sprintf("%s_size", objectName)
+				if strings.Contains(goName, "Gradient") || strings.Contains(goName, "Shape") {
+					size = fmt.Sprintf("%s_dimension", objectName)
+				}
 				fmt.Fprintf(outFile, `func (h *Handle) %s() ([]%s, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.%s_size(C.%sHandle(h.CAPIHandle()))), nil
+		return int32(C.%s(C.%sHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("%s: size errored"), err)
@@ -912,7 +917,7 @@ func (h *Handle) Close() error {
 	}
 	return realout, nil
 }
-	`, goName, bufferGoType, objectName, objectName, goName, bufferCType, methodName, objectName, bufferGoType, reconstruction)
+	`, goName, bufferGoType, size, objectName, goName, bufferCType, methodName, objectName, bufferGoType, reconstruction)
 				continue
 			}
 		}

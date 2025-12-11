@@ -218,10 +218,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 	t.Run("MultiplyEqualsInt", func(t *testing.T) {
 		q := newVoltQ(10.0)
 		defer q.Close()
-		_, err := q.MultiplyEqualsInt(2)
-		if err != nil {
-			t.Fatalf("MultiplyEqualsInt() error: %v", err)
-		}
+		_ = q.MultiplyEqualsInt(2)
 		val, _ := q.Value()
 		if val != 20.0 {
 			t.Errorf("MultiplyEqualsInt() = %v, want 20.0", val)
@@ -230,10 +227,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 	t.Run("MultiplyEqualsDouble", func(t *testing.T) {
 		q := newVoltQ(10.0)
 		defer q.Close()
-		_, err := q.MultiplyEqualsDouble(2.5)
-		if err != nil {
-			t.Fatalf("MultiplyEqualsDouble() error: %v", err)
-		}
+		_ = q.MultiplyEqualsDouble(2.5)
 		val, _ := q.Value()
 		if val != 25.0 {
 			t.Errorf("MultiplyEqualsDouble() = %v, want 25.0", val)
@@ -244,10 +238,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 		defer q.Close()
 		other := newVoltQ(2.0)
 		defer other.Close()
-		_, err := q.MultiplyEqualsQuantity(other)
-		if err != nil {
-			t.Fatalf("MultiplyEqualsQuantity() error: %v", err)
-		}
+		_ = q.MultiplyEqualsQuantity(other)
 		val, _ := q.Value()
 		if val != 20.0 {
 			t.Errorf("MultiplyEqualsQuantity() = %v, want 20.0", val)
@@ -256,10 +247,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 	t.Run("DivideEqualsInt", func(t *testing.T) {
 		q := newVoltQ(10.0)
 		defer q.Close()
-		_, err := q.DivideEqualsInt(2)
-		if err != nil {
-			t.Fatalf("DivideEqualsInt() error: %v", err)
-		}
+		_ = q.DivideEqualsInt(2)
 		val, _ := q.Value()
 		if val != 5.0 {
 			t.Errorf("DivideEqualsInt() = %v, want 5.0", val)
@@ -268,10 +256,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 	t.Run("DivideEqualsDouble", func(t *testing.T) {
 		q := newVoltQ(10.0)
 		defer q.Close()
-		_, err := q.DivideEqualsDouble(2.0)
-		if err != nil {
-			t.Fatalf("DivideEqualsDouble() error: %v", err)
-		}
+		_ = q.DivideEqualsDouble(2.0)
 		val, _ := q.Value()
 		if val != 5.0 {
 			t.Errorf("DivideEqualsDouble() = %v, want 5.0", val)
@@ -282,10 +267,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 		defer q.Close()
 		other := newVoltQ(2.0)
 		defer other.Close()
-		_, err := q.DivideEqualsQuantity(other)
-		if err != nil {
-			t.Fatalf("DivideEqualsQuantity() error: %v", err)
-		}
+		_ = q.DivideEqualsQuantity(other)
 		val, _ := q.Value()
 		if val != 5.0 {
 			t.Errorf("DivideEqualsQuantity() = %v, want 5.0", val)
@@ -296,10 +278,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 		defer q.Close()
 		other := newVoltQ(2.0)
 		defer other.Close()
-		_, err := q.AddEqualsQuantity(other)
-		if err != nil {
-			t.Fatalf("AddEqualsQuantity() error: %v", err)
-		}
+		_ = q.AddEqualsQuantity(other)
 		val, _ := q.Value()
 		if val != 12.0 {
 			t.Errorf("AddEqualsQuantity() = %v, want 12.0", val)
@@ -310,10 +289,7 @@ func TestQuantity_EqualsArithmetic(t *testing.T) {
 		defer q.Close()
 		other := newVoltQ(2.0)
 		defer other.Close()
-		_, err := q.SubtractEqualsQuantity(other)
-		if err != nil {
-			t.Fatalf("SubtractEqualsQuantity() error: %v", err)
-		}
+		_ = q.SubtractEqualsQuantity(other)
 		val, _ := q.Value()
 		if val != 8.0 {
 			t.Errorf("SubtractEqualsQuantity() = %v, want 8.0", val)

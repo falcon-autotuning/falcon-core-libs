@@ -30,6 +30,7 @@ var (
 	}
 )
 
+func (h *Handle) IsNil() bool { return h == nil }
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	return cmemoryallocation.FromCAPI(
 		p,
@@ -37,7 +38,7 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		destroy,
 	)
 }
-func NewEmpty(shape []int) (*Handle, error) {
+func NewEmpty(shape []uint64) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -62,7 +63,7 @@ func Copy(handle *Handle) (*Handle, error) {
 		)
 	})
 }
-func NewZeros(shape []int) (*Handle, error) {
+func NewZeros(shape []uint64) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -75,7 +76,7 @@ func NewZeros(shape []int) (*Handle, error) {
 		destroy,
 	)
 }
-func FromShape(shape []int) (*Handle, error) {
+func FromShape(shape []uint64) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -88,7 +89,7 @@ func FromShape(shape []int) (*Handle, error) {
 		destroy,
 	)
 }
-func FromData(data []float64, shape []int) (*Handle, error) {
+func FromData(data []float64, shape []uint64) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -121,7 +122,7 @@ func (h *Handle) Dimension() (uint64, error) {
 }
 func (h *Handle) Shape() ([]uint64, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.FArrayDouble_size(C.FArrayDoubleHandle(h.CAPIHandle()))), nil
+		return int32(C.FArrayDouble_dimension(C.FArrayDoubleHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("Shape: size errored"), err)
@@ -419,7 +420,7 @@ func (h *Handle) Flip(axis uint64) (*Handle, error) {
 }
 func (h *Handle) FullGradient() ([]*Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.FArrayDouble_size(C.FArrayDoubleHandle(h.CAPIHandle()))), nil
+		return int32(C.FArrayDouble_dimension(C.FArrayDoubleHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("FullGradient: size errored"), err)

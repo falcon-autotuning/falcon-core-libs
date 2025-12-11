@@ -45,7 +45,7 @@ import (
 
 func mustLabelledMeasuredArray(name string) *labelledmeasuredarray.Handle {
 	// Create a simple farraydouble
-	fa, err := farraydouble.FromData([]float64{1.0, 2.0, 3.0}, []int{3})
+	fa, err := farraydouble.FromData([]float64{1.0, 2.0, 3.0}, []uint64{3})
 	if err != nil {
 		panic("failed to create farraydouble: " + err.Error())
 	}
@@ -199,7 +199,7 @@ func mustPortTransform(port *instrumentport.Handle, val float64) *porttransform.
 }
 
 func mustLabelledDomain(minVal, maxVal float64, instrumentType string, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
-	h, err := labelleddomain.NewFromPort(minVal, maxVal, instrumentType, port, lesserBoundContained, greaterBoundContained)
+	h, err := labelleddomain.NewFromPort(minVal, maxVal, port, lesserBoundContained, greaterBoundContained)
 	if err != nil {
 		panic(fmt.Errorf("failed to craete a lablled domain: %v", err))
 	}
@@ -215,7 +215,7 @@ func mustAxesInt() *axesint.Handle {
 }
 
 func mustControlArray() *controlarray.Handle {
-	h, err := controlarray.FromData([]float64{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}, []int{11})
+	h, err := controlarray.FromData([]float64{0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0}, []uint64{11})
 	if err != nil {
 		panic("failed to create controlarray: " + err.Error())
 	}

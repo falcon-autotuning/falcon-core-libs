@@ -28,7 +28,7 @@ func makeTestInstrumentPort(t *testing.T) *instrumentport.Handle {
 }
 
 func makeTestLabelledDomain(t *testing.T, ip *instrumentport.Handle) *labelleddomain.Handle {
-	ld, err := labelleddomain.NewFromPort(0.0, 1.0, instrumenttypes.VoltageSource(), ip, true, false)
+	ld, err := labelleddomain.NewFromPort(0.0, 1.0, ip, true, false)
 	if err != nil {
 		t.Fatalf("labelleddomain.NewFromPort failed: %v", err)
 	}

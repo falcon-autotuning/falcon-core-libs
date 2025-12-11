@@ -4,7 +4,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/controlarray"
 )
 
-func mustControlArray(data []float64, shape []int) *controlarray.Handle {
+func mustControlArray(data []float64, shape []uint64) *controlarray.Handle {
 	h, err := controlarray.FromData(data, shape)
 	if err != nil {
 		panic(err)
@@ -14,10 +14,10 @@ func mustControlArray(data []float64, shape []int) *controlarray.Handle {
 
 var (
 	defaultAxesData = []*controlarray.Handle{
-		mustControlArray([]float64{0.0, 1.0}, []int{2}),
-		mustControlArray([]float64{0.0, 1.0, 0.0, 1.0}, []int{2, 2}),
+		mustControlArray([]float64{0.0, 1.0}, []uint64{2}),
+		mustControlArray([]float64{0.0, 1.0, 0.0, 1.0}, []uint64{2, 2}),
 	}
 	otherAxesData = []*controlarray.Handle{
-		mustControlArray([]float64{2.0, 5.0, 2.0, 5.0}, []int{2, 2}),
+		mustControlArray([]float64{2.0, 5.0, 2.0, 5.0}, []uint64{2, 2}),
 	}
 )

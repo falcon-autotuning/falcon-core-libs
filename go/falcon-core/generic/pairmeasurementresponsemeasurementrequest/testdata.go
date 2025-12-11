@@ -37,7 +37,7 @@ import (
 
 func mustLabelledMeasuredArray(name string) *labelledmeasuredarray.Handle {
 	// Create a simple farraydouble
-	fa, err := farraydouble.FromData([]float64{1.0, 2.0, 3.0}, []int{3})
+	fa, err := farraydouble.FromData([]float64{1.0, 2.0, 3.0}, []uint64{3})
 	if err != nil {
 		panic("failed to create farraydouble: " + err.Error())
 	}

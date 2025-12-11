@@ -32,6 +32,7 @@ var (
 	}
 )
 
+func (h *Handle) IsNil() bool { return h == nil }
 func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	return cmemoryallocation.FromCAPI(
 		p,
@@ -88,7 +89,7 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
-func FromData(data []float64, shape []int) (*Handle, error) {
+func FromData(data []float64, shape []uint64) (*Handle, error) {
 	cshape := make([]C.size_t, len(shape))
 	for i, v := range shape {
 		cshape[i] = C.size_t(v)
@@ -192,7 +193,7 @@ func (h *Handle) Dimension() (uint64, error) {
 }
 func (h *Handle) Shape() ([]uint64, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.MeasuredArray1D_size(C.MeasuredArray1DHandle(h.CAPIHandle()))), nil
+		return int32(C.MeasuredArray1D_dimension(C.MeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("Shape: size errored"), err)
@@ -510,7 +511,7 @@ func (h *Handle) Flip(axis uint64) (*Handle, error) {
 }
 func (h *Handle) FullGradient() ([]*Handle, error) {
 	dim, err := cmemoryallocation.Read(h, func() (int32, error) {
-		return int32(C.MeasuredArray1D_size(C.MeasuredArray1DHandle(h.CAPIHandle()))), nil
+		return int32(C.MeasuredArray1D_dimension(C.MeasuredArray1DHandle(h.CAPIHandle()))), nil
 	})
 	if err != nil {
 		return nil, errors.Join(errors.New("FullGradient: size errored"), err)

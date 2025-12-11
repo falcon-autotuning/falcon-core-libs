@@ -101,7 +101,7 @@ func TestGateGeometryArray1D_AppendCentralGate(t *testing.T) {
 	// Use the same gates as in the config
 	conns := []*connection.Handle{}
 	for i := 0; i < 7; i++ {
-		c, _ := cfg.linear.At(uint32(i))
+		c, _ := cfg.linear.At(uint64(i))
 		conns = append(conns, c)
 	}
 	if err := cfg.gga.AppendCentralGate(conns[2], conns[3], conns[4]); err != nil {
@@ -317,7 +317,7 @@ func TestGateGeometryArray1D_ClosedErrors(t *testing.T) {
 	cfg := setupGateGeometryArray1D(t)
 	conns := []*connection.Handle{}
 	for i := 0; i < 7; i++ {
-		c, _ := cfg.linear.At(uint32(i))
+		c, _ := cfg.linear.At(uint64(i))
 		conns = append(conns, c)
 	}
 	cfg.gga.Close()

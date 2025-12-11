@@ -45,7 +45,7 @@ func TestAxesControlArray_NewEmptyAndPushBack(t *testing.T) {
 			t.Fatalf("PushBack failed at %d: %v", i, err)
 		}
 	}
-	if sz, err := l.Size(); err != nil || sz != uint32(len(fixtureAxesData())) {
+	if sz, err := l.Size(); err != nil || sz != uint64(len(fixtureAxesData())) {
 		t.Errorf("Expected size %d, got %d, err: %v", len(fixtureAxesData()), sz, err)
 	}
 }

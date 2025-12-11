@@ -60,7 +60,7 @@ func TestPoint_SizeAndEmpty(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Size error: %v", err)
 		}
-		if sz != uint32(len(conns)) {
+		if sz != uint64(len(conns)) {
 			t.Errorf("Size = %v, want %v", sz, len(conns))
 		}
 		empty, err := pt.Empty()
@@ -79,7 +79,7 @@ func TestPoint_KeysValuesItemsConnections(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Keys error: %v", err)
 		}
-		if size, _ := keys.Size(); size != uint32(len(conns)) {
+		if size, _ := keys.Size(); size != uint64(len(conns)) {
 			t.Errorf("Keys len = %v, want %v", size, len(conns))
 		}
 		values, err := pt.Values()
@@ -108,7 +108,7 @@ func TestPoint_KeysValuesItemsConnections(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Connections error: %v", err)
 		}
-		if size, _ := connections.Size(); size != uint32(len(conns)) {
+		if size, _ := connections.Size(); size != uint64(len(conns)) {
 			t.Errorf("Connections len = %v, want %v", size, len(conns))
 		}
 	})

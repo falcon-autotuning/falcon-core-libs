@@ -9,7 +9,6 @@ func TestDomain_LifecycleAndAccessors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Domain New error: %v", err)
 	}
-	defer d.Close()
 
 	t.Run("LesserBound", func(t *testing.T) {
 		val, err := d.LesserBound()
@@ -172,17 +171,14 @@ func TestDomain_LifecycleAndAccessors(t *testing.T) {
 		if err != nil {
 			t.Fatalf("Domain New error: %v", err)
 		}
-		defer d2.Close()
-		inter, err := d.Intersection(d2)
+		_, err = d.Intersection(d2)
 		if err != nil {
 			t.Fatalf("Intersection() error: %v", err)
 		}
-		defer inter.Close()
 		union, err := d.Union(d2)
 		if err != nil {
 			t.Fatalf("Union() error: %v", err)
 		}
-		defer union.Close()
 		contains, err := union.ContainsDomain(d)
 		if err != nil {
 			t.Fatalf("ContainsDomain() error: %v", err)
