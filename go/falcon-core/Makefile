@@ -43,7 +43,7 @@ build:  gen
 	go build ./...
 
 func-coverage:
-	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH go test -coverprofile=c.out -covermode=count $(shell go list ./... | grep -v '^./tools') && go tool cover -func=c.out
+	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH go test -coverprofile=c.out -covermode=count $(shell go list ./... | grep -v '/tools/') && go tool cover -func=c.out
 
 test:
 	LD_LIBRARY_PATH=/usr/local/lib:$$LD_LIBRARY_PATH go test $(TEST)

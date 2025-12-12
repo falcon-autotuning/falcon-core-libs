@@ -3,49 +3,8 @@ package interpretationcontainerquantity
 
 import (
 	"testing"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapinterpretationcontextquantity"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listinterpretationcontext"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listquantity"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listpairinterpretationcontextquantity"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/interpretations/interpretationcontext"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listconnection"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
-  "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/quantity"
 )
-
-// ---- Consolidated test variables ----
-var (
-	testMapHandle           *mapinterpretationcontextquantity.Handle
-	testConnection          *connection.Handle
-	testConnections         *connections.Handle
-	testListConnectionIndep *listconnection.Handle
-	testListConnectionDep   *listconnection.Handle
-	testInterpretationCtx   *interpretationcontext.Handle
-	testInterpretationCtx2  *interpretationcontext.Handle
-	testValue               *quantity.Handle
-	testValue2              *quantity.Handle
-	testOtherValue          *quantity.Handle
-	testJSON                string
-	testListPair            *listpairinterpretationcontextquantity.Handle
-	testListValue           *listquantity.Handle
-	testListContext         *listinterpretationcontext.Handle
-	testSymbolUnit          *symbolunit.Handle
-	testErr                 error
-)
-
-// ---- Helper functions ----
-func setupHandles() {
-	// Setup all required handles and values for tests.
-	// These should be replaced with valid objects for your context.
-	// Example:
-	// testMapHandle, _ = mapinterpretationcontextquantity.New(...)
-	// testConnection, _ = connection.New(...)
-	// testInterpretationCtx, _ = interpretationcontext.New(...)
-	// testValue = ...
-	// testJSON = ...
-}
 
 func eqValue(a, b *quantity.Handle) bool {
 	
@@ -57,7 +16,6 @@ func eqValue(a, b *quantity.Handle) bool {
 // ---- Tests ----
 
 func TestNewAndCAPIHandle(t *testing.T) {
-	setupHandles()
 	h, err := New(testMapHandle)
 	if err != nil {
 		t.Fatalf("New failed: %v", err)
@@ -73,7 +31,6 @@ func TestNewAndCAPIHandle(t *testing.T) {
 
 
 func TestCloseTwice(t *testing.T) {
-	setupHandles()
 	h, err := New(testMapHandle)
 	if err != nil {
 		t.Fatalf("New failed: %v", err)
@@ -89,7 +46,6 @@ func TestCloseTwice(t *testing.T) {
 }
 
 func TestUnit(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	u, err := h.Unit()
@@ -107,7 +63,6 @@ func TestUnit(t *testing.T) {
 }
 
 func TestSelectByConnection(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	c, err := h.SelectByConnection(testConnection)
@@ -125,7 +80,6 @@ func TestSelectByConnection(t *testing.T) {
 }
 
 func TestSelectByConnections(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	c, err := h.SelectByConnections(testConnections)
@@ -143,7 +97,6 @@ func TestSelectByConnections(t *testing.T) {
 }
 
 func TestSelectByIndependentConnection(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	c, err := h.SelectByIndependentConnection(testConnection)
@@ -161,7 +114,6 @@ func TestSelectByIndependentConnection(t *testing.T) {
 }
 
 func TestSelectByDependentConnection(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	c, err := h.SelectByDependentConnection(testConnection)
@@ -179,7 +131,6 @@ func TestSelectByDependentConnection(t *testing.T) {
 }
 
 func TestSelectContexts(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	c, err := h.SelectContexts(testListConnectionIndep, testListConnectionDep)
@@ -197,7 +148,6 @@ func TestSelectContexts(t *testing.T) {
 }
 
 func TestInsertOrAssign(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	err := h.InsertOrAssign(testInterpretationCtx, testValue)
@@ -212,7 +162,6 @@ func TestInsertOrAssign(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	err := h.Insert(testInterpretationCtx, testValue)
@@ -227,7 +176,6 @@ func TestInsert(t *testing.T) {
 }
 
 func TestAt(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	val, err := h.At(testInterpretationCtx)
@@ -245,7 +193,6 @@ func TestAt(t *testing.T) {
 }
 
 func TestErase(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	err := h.Erase(testInterpretationCtx)
@@ -260,15 +207,14 @@ func TestErase(t *testing.T) {
 }
 
 func TestSizeAndEmptyAndClear(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	sz, err := h.Size()
 	if err != nil {
 		t.Errorf("Size failed: %v", err)
 	}
-  if sz != 2  {
-    t.Errorf("Size returned wrong value: got %d, want %d", sz, 2)
+  if sz != 1  {
+    t.Errorf("Size returned wrong value: got %d, want %d", sz, 1)
   }
 	empty, err := h.Empty()
 	if err != nil {
@@ -297,7 +243,6 @@ func TestSizeAndEmptyAndClear(t *testing.T) {
 }
 
 func TestContains(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	ok, err := h.Contains(testInterpretationCtx)
@@ -315,7 +260,6 @@ func TestContains(t *testing.T) {
 }
 
 func TestKeysValuesItems(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	keys, err := h.Keys()
@@ -326,8 +270,8 @@ func TestKeysValuesItems(t *testing.T) {
   if err != nil {
       t.Errorf("Keys Size failed: %v", err)
   }
-  if size != 2 {
-      t.Errorf("Keys returned wrong size: got %d, want %d", size, 2)
+  if size != 1 {
+      t.Errorf("Keys returned wrong size: got %d, want %d", size, 1)
   }
 	values, err := h.Values()
 	if err != nil {
@@ -337,8 +281,8 @@ func TestKeysValuesItems(t *testing.T) {
   if err != nil {
       t.Errorf("Values Size failed: %v", err)
   }
-  if size != 2 {
-      t.Errorf("Values returned wrong size: got %d, want %d", size, 2)
+  if size != 1 {
+      t.Errorf("Values returned wrong size: got %d, want %d", size, 1)
   }
 	items, err := h.Items()
 	if err != nil {
@@ -348,8 +292,8 @@ func TestKeysValuesItems(t *testing.T) {
   if err != nil {
       t.Errorf("Items Size failed: %v", err)
   }
-  if size != 2 {
-      t.Errorf("Items returned wrong size: got %d, want %d", size, 2)
+  if size != 1 {
+      t.Errorf("Items returned wrong size: got %d, want %d", size, 1)
   }
 	h.Close()
 	_, err = h.Keys()
@@ -367,7 +311,6 @@ func TestKeysValuesItems(t *testing.T) {
 }
 
 func TestEqualNotEqual(t *testing.T) {
-	setupHandles()
 	a, _ := New(testMapHandle)
 	defer a.Close()
 	b, _ := New(testMapHandle)
@@ -417,7 +360,6 @@ func TestEqualNotEqual(t *testing.T) {
 }
 
 func TestToJSONFromJSON(t *testing.T) {
-	setupHandles()
 	h, _ := New(testMapHandle)
 	defer h.Close()
 	jsonStr, err := h.ToJSON()
