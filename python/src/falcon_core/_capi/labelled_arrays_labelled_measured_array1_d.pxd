@@ -1,0 +1,7 @@
+cimport _c_api
+
+cdef class LabelledArraysLabelledMeasuredArray1D:
+    cdef _c_api.LabelledArraysLabelledMeasuredArray1DHandle handle
+    cdef bint owned
+
+cdef LabelledArraysLabelledMeasuredArray1D _labelled_arrays_labelled_measured_array1_d_from_capi(_c_api.LabelledArraysLabelledMeasuredArray1DHandle h)

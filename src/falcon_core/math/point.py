@@ -1,0 +1,174 @@
+from __future__ import annotations
+from typing import Any, List, Dict, Tuple, Optional
+from falcon_core._capi.point import Point as _CPoint
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.generic.list import List
+from falcon_core.generic.list import List
+from falcon_core.generic.list import List
+from falcon_core.generic.map import Map
+from falcon_core.generic.map import Map
+from falcon_core.math.quantity import Quantity
+from falcon_core.physics.units.symbol_unit import SymbolUnit
+
+class Point:
+    """Python wrapper for Point."""
+
+    def __init__(self, c_obj):
+        self._c = c_obj
+
+    @classmethod
+    def _from_capi(cls, c_obj):
+        if c_obj is None:
+            return None
+        return cls(c_obj)
+
+    @classmethod
+    def new_empty(cls, ) -> Point:
+        return cls(_CPoint.new_empty())
+
+    @classmethod
+    def new(cls, items: Map, unit: SymbolUnit) -> Point:
+        return cls(_CPoint.new(items._c, unit._c))
+
+    @classmethod
+    def new_from_parent(cls, items: Map) -> Point:
+        return cls(_CPoint.new_from_parent(items._c))
+
+    @classmethod
+    def from_json(cls, json: str) -> Point:
+        return cls(_CPoint.from_json(json))
+
+    def unit(self, ) -> SymbolUnit:
+        ret = self._c.unit()
+        if ret is None: return None
+        return SymbolUnit._from_capi(ret)
+
+    def insert_or_assign(self, key: Connection, value: Quantity) -> None:
+        ret = self._c.insert_or_assign(key._c, value._c)
+        return ret
+
+    def insert(self, key: Connection, value: Quantity) -> None:
+        ret = self._c.insert(key._c, value._c)
+        return ret
+
+    def at(self, key: Connection) -> Quantity:
+        ret = self._c.at(key._c)
+        if ret is None: return None
+        return Quantity._from_capi(ret)
+
+    def erase(self, key: Connection) -> None:
+        ret = self._c.erase(key._c)
+        return ret
+
+    def size(self, ) -> None:
+        ret = self._c.size()
+        return ret
+
+    def empty(self, ) -> None:
+        ret = self._c.empty()
+        return ret
+
+    def clear(self, ) -> None:
+        ret = self._c.clear()
+        return ret
+
+    def contains(self, key: Connection) -> None:
+        ret = self._c.contains(key._c)
+        return ret
+
+    def keys(self, ) -> List:
+        ret = self._c.keys()
+        if ret is None: return None
+        return List(ret)
+
+    def values(self, ) -> List:
+        ret = self._c.values()
+        if ret is None: return None
+        return List(ret)
+
+    def items(self, ) -> List:
+        ret = self._c.items()
+        if ret is None: return None
+        return List(ret)
+
+    def coordinates(self, ) -> Map:
+        ret = self._c.coordinates()
+        if ret is None: return None
+        return Map(ret)
+
+    def connections(self, ) -> List:
+        ret = self._c.connections()
+        if ret is None: return None
+        return List(ret)
+
+    def addition(self, other: Point) -> Point:
+        ret = self._c.addition(other._c)
+        return cls._from_capi(ret)
+
+    def subtraction(self, other: Point) -> Point:
+        ret = self._c.subtraction(other._c)
+        return cls._from_capi(ret)
+
+    def multiplication(self, scalar: Any) -> Point:
+        ret = self._c.multiplication(scalar)
+        return cls._from_capi(ret)
+
+    def division(self, scalar: Any) -> Point:
+        ret = self._c.division(scalar)
+        return cls._from_capi(ret)
+
+    def negation(self, ) -> Point:
+        ret = self._c.negation()
+        return cls._from_capi(ret)
+
+    def set_unit(self, unit: SymbolUnit) -> None:
+        ret = self._c.set_unit(unit._c)
+        return ret
+
+    def equal(self, b: Point) -> None:
+        ret = self._c.equal(b._c)
+        return ret
+
+    def not_equal(self, b: Point) -> None:
+        ret = self._c.not_equal(b._c)
+        return ret
+
+    def __add__(self, other):
+        """Operator overload for +"""
+        if isinstance(other, Point):
+            return self.addition(other)
+        return NotImplemented
+
+    def __sub__(self, other):
+        """Operator overload for -"""
+        if isinstance(other, Point):
+            return self.subtraction(other)
+        return NotImplemented
+
+    def __mul__(self, other):
+        """Operator overload for *"""
+        if isinstance(other, (int, float)):
+            return self.multiplication(other)
+        return NotImplemented
+
+    def __truediv__(self, other):
+        """Operator overload for /"""
+        if isinstance(other, (int, float)):
+            return self.division(other)
+        return NotImplemented
+
+    def __neg__(self):
+        """Operator overload for unary -"""
+        return self.negation()
+
+    def __eq__(self, other):
+        """Operator overload for =="""
+        if not isinstance(other, Point):
+            return NotImplemented
+        return self.equal(other)
+
+    def __ne__(self, other):
+        """Operator overload for !="""
+        if not isinstance(other, Point):
+            return NotImplemented
+        return self.not_equal(other)

@@ -1,1 +1,1 @@
-__all__ = ["device_structures"]
+# falcon_core.physics package

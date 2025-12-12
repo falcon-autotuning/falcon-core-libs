@@ -1,0 +1,120 @@
+cimport _c_api
+from cpython.bytes cimport PyBytes_FromStringAndSize
+from libc.stddef cimport size_t
+from . cimport acquisition_context
+
+cdef class ListAcquisitionContext:
+    def __cinit__(self):
+        self.handle = <_c_api.ListAcquisitionContextHandle>0
+        self.owned = False
+
+    def __dealloc__(self):
+        if self.handle != <_c_api.ListAcquisitionContextHandle>0 and self.owned:
+            _c_api.ListAcquisitionContext_destroy(self.handle)
+        self.handle = <_c_api.ListAcquisitionContextHandle>0
+
+
+cdef ListAcquisitionContext _list_acquisition_context_from_capi(_c_api.ListAcquisitionContextHandle h):
+    if h == <_c_api.ListAcquisitionContextHandle>0:
+        return None
+    cdef ListAcquisitionContext obj = ListAcquisitionContext.__new__(ListAcquisitionContext)
+    obj.handle = h
+    obj.owned = True
+    return obj
+
+    @classmethod
+    def new_empty(cls, ):
+        cdef _c_api.ListAcquisitionContextHandle h
+        h = _c_api.ListAcquisitionContext_create_empty()
+        if h == <_c_api.ListAcquisitionContextHandle>0:
+            raise MemoryError("Failed to create ListAcquisitionContext")
+        cdef ListAcquisitionContext obj = <ListAcquisitionContext>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
+    def new(cls, AcquisitionContext data, size_t count):
+        cdef _c_api.ListAcquisitionContextHandle h
+        h = _c_api.ListAcquisitionContext_create(data.handle, count)
+        if h == <_c_api.ListAcquisitionContextHandle>0:
+            raise MemoryError("Failed to create ListAcquisitionContext")
+        cdef ListAcquisitionContext obj = <ListAcquisitionContext>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.ListAcquisitionContextHandle h
+        try:
+            h = _c_api.ListAcquisitionContext_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.ListAcquisitionContextHandle>0:
+            raise MemoryError("Failed to create ListAcquisitionContext")
+        cdef ListAcquisitionContext obj = <ListAcquisitionContext>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @staticmethod
+    def fill_value(size_t count, AcquisitionContext value):
+        cdef _c_api.ListAcquisitionContextHandle h_ret = _c_api.ListAcquisitionContext_fill_value(count, value.handle)
+        if h_ret == <_c_api.ListAcquisitionContextHandle>0:
+            return None
+        return _list_acquisition_context_from_capi(h_ret)
+
+    def push_back(self, AcquisitionContext value):
+        _c_api.ListAcquisitionContext_push_back(self.handle, value.handle)
+
+    def size(self, ):
+        return _c_api.ListAcquisitionContext_size(self.handle)
+
+    def empty(self, ):
+        return _c_api.ListAcquisitionContext_empty(self.handle)
+
+    def erase_at(self, size_t idx):
+        _c_api.ListAcquisitionContext_erase_at(self.handle, idx)
+
+    def clear(self, ):
+        _c_api.ListAcquisitionContext_clear(self.handle)
+
+    def at(self, size_t idx):
+        cdef _c_api.AcquisitionContextHandle h_ret = _c_api.ListAcquisitionContext_at(self.handle, idx)
+        if h_ret == <_c_api.AcquisitionContextHandle>0:
+            return None
+        return acquisition_context._acquisition_context_from_capi(h_ret)
+
+    def items(self, AcquisitionContext out_buffer, size_t buffer_size):
+        return _c_api.ListAcquisitionContext_items(self.handle, out_buffer.handle, buffer_size)
+
+    def contains(self, AcquisitionContext value):
+        return _c_api.ListAcquisitionContext_contains(self.handle, value.handle)
+
+    def index(self, AcquisitionContext value):
+        return _c_api.ListAcquisitionContext_index(self.handle, value.handle)
+
+    def intersection(self, ListAcquisitionContext other):
+        cdef _c_api.ListAcquisitionContextHandle h_ret = _c_api.ListAcquisitionContext_intersection(self.handle, other.handle)
+        if h_ret == <_c_api.ListAcquisitionContextHandle>0:
+            return None
+        return _list_acquisition_context_from_capi(h_ret)
+
+    def equal(self, ListAcquisitionContext b):
+        return _c_api.ListAcquisitionContext_equal(self.handle, b.handle)
+
+    def __eq__(self, ListAcquisitionContext b):
+        if not hasattr(b, "handle"):
+            return NotImplemented
+        return self.equal(b)
+
+    def not_equal(self, ListAcquisitionContext b):
+        return _c_api.ListAcquisitionContext_not_equal(self.handle, b.handle)
+
+    def __ne__(self, ListAcquisitionContext b):
+        if not hasattr(b, "handle"):
+            return NotImplemented
+        return self.not_equal(b)
