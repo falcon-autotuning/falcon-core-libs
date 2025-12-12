@@ -107,7 +107,6 @@ func New(data []int32, shape []uint64, indexes *connections.Handle) (*Handle, er
 	if cShape == nil {
 		return nil, errors.New("C.malloc failed for Shape")
 	}
-	// Copy Go data to C memory
 	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
 	for i, v := range shape {
 		sliceS[i] = C.size_t(v)
@@ -117,7 +116,6 @@ func New(data []int32, shape []uint64, indexes *connections.Handle) (*Handle, er
 	if cData == nil {
 		return nil, errors.New("C.malloc failed for Data")
 	}
-	// Copy Go data to C memory
 	sliceD := (*[1 << 30]C.int)(cData)[:nData:nData]
 	for i, v := range data {
 		sliceD[i] = C.int(v)

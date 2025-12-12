@@ -40,13 +40,31 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	)
 }
 func NewEmpty(shape []uint64) (*Handle, error) {
-	cshape := make([]C.size_t, len(shape))
+	n := len(shape)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.size_t(0)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.size_t)(cList)[:n:n]
 	for i, v := range shape {
-		cshape[i] = C.size_t(v)
+		slice[i] = C.size_t(v)
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.FArrayInt_create_empty(&cshape[0], C.size_t(len(shape)))), nil
+			res := unsafe.Pointer(C.FArrayInt_create_empty((*C.size_t)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
@@ -65,47 +83,109 @@ func Copy(handle *Handle) (*Handle, error) {
 	})
 }
 func NewZeros(shape []uint64) (*Handle, error) {
-	cshape := make([]C.size_t, len(shape))
+	n := len(shape)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.size_t(0)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.size_t)(cList)[:n:n]
 	for i, v := range shape {
-		cshape[i] = C.size_t(v)
+		slice[i] = C.size_t(v)
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.FArrayInt_create_zeros(&cshape[0], C.size_t(len(shape)))), nil
+			res := unsafe.Pointer(C.FArrayInt_create_zeros((*C.size_t)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
 	)
 }
 func FromShape(shape []uint64) (*Handle, error) {
-	cshape := make([]C.size_t, len(shape))
+	n := len(shape)
+	if n == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.size_t(0)))
+	cList := C.malloc(size)
+	if cList == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	// Copy Go data to C memory
+	slice := (*[1 << 30]C.size_t)(cList)[:n:n]
 	for i, v := range shape {
-		cshape[i] = C.size_t(v)
+		slice[i] = C.size_t(v)
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.FArrayInt_from_shape(&cshape[0], C.size_t(len(shape)))), nil
+			res := unsafe.Pointer(C.FArrayInt_from_shape((*C.size_t)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
 	)
 }
 func FromData(data []int32, shape []uint64) (*Handle, error) {
-	cshape := make([]C.size_t, len(shape))
+	nShape := len(shape)
+	nData := len(data)
+	if nShape == 0 || nData == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	sizeShape := C.size_t(nShape) * C.size_t(unsafe.Sizeof(C.size_t(0)))
+	cShape := C.malloc(sizeShape)
+	if cShape == nil {
+		return nil, errors.New("C.malloc failed for Shape")
+	}
+	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
 	for i, v := range shape {
-		cshape[i] = C.size_t(v)
+		sliceS[i] = C.size_t(v)
 	}
-	cdata := make([]C.int, len(data))
+	sizeData := C.size_t(nData) * C.size_t(unsafe.Sizeof(C.int(0)))
+	cData := C.malloc(sizeData)
+	if cData == nil {
+		return nil, errors.New("C.malloc failed for Data")
+	}
+	sliceD := (*[1 << 30]C.int)(cData)[:nData:nData]
 	for i, v := range data {
-		cdata[i] = C.int(v)
+		sliceD[i] = C.int(v)
 	}
+
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.FArrayInt_from_data(&cdata[0], &cshape[0], C.size_t(len(shape)))), nil
+			res := unsafe.Pointer(C.FArrayInt_from_data((*C.int)(cData), (*C.size_t)(cShape), C.size_t(nShape)))
+			C.free(cData)
+			C.free(cShape)
+			return res, nil
 		},
 		construct,
 		destroy,
 	)
+
 }
 
 func (h *Handle) Close() error {

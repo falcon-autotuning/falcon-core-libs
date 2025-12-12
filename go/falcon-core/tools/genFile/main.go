@@ -25,37 +25,37 @@ func findGoImport(headerPath string, extraImport string) (string, error) {
 	var includes []string
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-		if strings.HasPrefix(line, "#include") {
-			start := strings.Index(line, "\"")
-			end := strings.LastIndex(line, "\"")
-			if start == -1 || end == -1 || end <= start {
+		if !strings.HasPrefix(line, "#include") {
+			continue
+		}
+		start := strings.Index(line, "\"")
+		end := strings.LastIndex(line, "\"")
+		if start == -1 || end == -1 || end <= start {
+			continue
+		}
+		includePath := line[start+1 : end]
+		if strings.Contains(line, search) {
+			parts := strings.Split(includePath, "falcon_core/")
+			if len(parts) < 2 {
 				continue
 			}
-			includePath := line[start+1 : end]
-			if strings.Contains(line, search) {
-				parts := strings.Split(includePath, "falcon_core/")
-				if len(parts) < 2 {
-					continue
-				}
-				relPath := parts[1]
-				relPath = strings.Replace(relPath, "_c_api.h", "", 1)
-				segments := strings.Split(relPath, "/")
-				segments[len(segments)-1] = strings.ToLower(segments[len(segments)-1])
-				for i, seg := range segments {
-					segments[i] = strings.ReplaceAll(seg, "_", "-")
-				}
-				goImport := "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/" + strings.Join(segments, "/")
-				return goImport, nil
+			relPath := parts[1]
+			relPath = strings.Replace(relPath, "_c_api.h", "", 1)
+			segments := strings.Split(relPath, "/")
+			segments[len(segments)-1] = strings.ToLower(segments[len(segments)-1])
+			for i, seg := range segments {
+				segments[i] = strings.ReplaceAll(seg, "_", "-")
 			}
-			// Collect all falcon_core includes for recursive search
-			if strings.Contains(includePath, "falcon_core/") {
-				includes = append(includes, includePath)
-			}
+			goImport := "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/" + strings.Join(segments, "/")
+			return goImport, nil
+		}
+		// Collect all falcon_core includes for recursive search
+		if strings.Contains(includePath, "falcon_core/") {
+			includes = append(includes, includePath)
 		}
 	}
 	// Recursive search in included headers
 	for _, inc := range includes {
-		// Build the path to the included header
 		parts := strings.Split(headerPath, "falcon_core/")
 		if len(parts) < 2 {
 			continue
@@ -78,18 +78,18 @@ func insertImports(goFilePath string, imports []string) error {
 	lines := strings.Split(string(content), "\n")
 	var out []string
 	for _, line := range lines {
-		if strings.Contains(line, watermark) {
-			if len(imports) == 0 {
-				out = append(out, "	// no extra imports")
-			} else {
-				for _, imp := range imports {
-					out = append(out, fmt.Sprintf(`	"%s"`, imp))
-				}
-			}
-			// Do NOT append the watermark line itself
+		if !strings.Contains(line, watermark) {
+			out = append(out, line)
 			continue
 		}
-		out = append(out, line)
+		if len(imports) == 0 {
+			out = append(out, "	// no extra imports")
+		} else {
+			for _, imp := range imports {
+				out = append(out, fmt.Sprintf(`	"%s"`, imp))
+			}
+		}
+		// Do NOT append the watermark line itself
 	}
 	return os.WriteFile(goFilePath, []byte(strings.Join(out, "\n")), 0644)
 }
@@ -99,7 +99,7 @@ func IsNonPrimitive(gotype string) bool {
 }
 
 func IsExtraImport(gotype string) bool {
-	return IsNonPrimitive(gotype) && !IsString(gotype) && gotype != "*Handle" && gotype != "*string.Handle" // don't include string since it is already imported
+	return IsNonPrimitive(gotype) && !IsString(gotype) && gotype != "*Handle" && gotype != "*string.Handle"
 }
 
 func uniqueStrings(input []string) []string {
@@ -115,57 +115,43 @@ func uniqueStrings(input []string) []string {
 }
 
 func CtoGType(ctype, packagetype string) string {
-	if ctype == "void" {
+	switch ctype {
+	case "void":
 		return ""
-	}
-	if ctype == "StringHandle" {
+	case "StringHandle":
 		return "string"
-	}
-	if ctype == "StringHandle*" {
+	case "StringHandle*":
 		return "*string"
-	}
-	if ctype == "bool" {
+	case "bool":
 		return "bool"
-	}
-	if ctype == "long long" {
+	case "long long":
 		return "int64"
-	}
-	if ctype == "int8_t" {
+	case "int8_t":
 		return "int8"
-	}
-	if ctype == "bool*" {
+	case "bool*":
 		return "*bool"
-	}
-	if ctype == "double" {
+	case "double":
 		return "float64"
-	}
-	if ctype == "double*" {
+	case "double*":
 		return "*float64"
-	}
-	if ctype == "float" {
+	case "float":
 		return "float32"
-	}
-	if ctype == "float*" {
+	case "float*":
 		return "*float32"
-	}
-	if ctype == "int" {
+	case "int":
 		return "int32"
-	}
-	if ctype == "int*" {
+	case "int*":
 		return "*int32"
-	}
-	if ctype == "size_t" {
+	case "size_t":
 		return "uint64"
-	}
-	if ctype == "size_t*" {
+	case "size_t*":
 		return "*uint64"
 	}
 	packageType := strings.ToLower(extractCPrefix(ctype))
 	if packagetype == packageType {
 		return "*Handle"
-	} else {
-		return "*" + packageType + ".Handle"
 	}
+	return "*" + packageType + ".Handle"
 }
 
 // extracts the header associated with a non primitve handle
@@ -178,8 +164,7 @@ func extractCPrefix(ctype string) string {
 // extracts the package associated with a non primitve handle
 func extractGoPrefix(s string) string {
 	parts := strings.SplitN(s, ".", 2)
-	prefix := parts[0]
-	prefix = strings.TrimSpace(prefix)
+	prefix := strings.TrimSpace(parts[0])
 	prefix = strings.TrimPrefix(prefix, "*")
 	prefix = strings.TrimSuffix(prefix, "*")
 	if prefix != "" {
@@ -189,7 +174,8 @@ func extractGoPrefix(s string) string {
 }
 
 func IsPrimitive(gotype string) bool {
-	if gotype == "bool" || gotype == "float64" || gotype == "float32" || gotype == "int32" || gotype == "uint64" || gotype == "*bool" || gotype == "*float64" || gotype == "*float32" || gotype == "*int32" || gotype == "*uint64" || gotype == "int64" || gotype == "int8" {
+	switch gotype {
+	case "bool", "float64", "float32", "int32", "uint64", "*bool", "*float64", "*float32", "*int32", "*uint64", "int64", "int8":
 		return true
 	}
 	return false
@@ -216,14 +202,15 @@ type CParameterPair struct {
 
 func NewCParameterPair(paramStr string) *CParameterPair {
 	var splits []string
-	if strings.Contains(paramStr, "const ") {
+	switch {
+	case strings.Contains(paramStr, "const "):
 		constSplits := strings.SplitN(paramStr, " ", 3)
 		splits = []string{constSplits[1], constSplits[2]}
-	} else if strings.Contains(paramStr, "long long") {
+	case strings.Contains(paramStr, "long long"):
 		fields := strings.Fields(paramStr)
 		other := strings.Join(fields[2:], " ")
 		splits = []string{"long long", other}
-	} else {
+	default:
 		splits = strings.SplitN(paramStr, " ", 2)
 	}
 	// need to remove any [##] on the right name
@@ -253,7 +240,7 @@ func NewGoParameterPair(pair *CParameterPair, packagetype string) *GoParameterPa
 func flattenGoParameters(p []*GoParameterPair) string {
 	var out string
 	for i, pair := range p {
-		out = out + pair.Name + " " + pair.Gotype
+		out += pair.Name + " " + pair.Gotype
 		if i < len(p)-1 {
 			out += ", "
 		}
@@ -267,8 +254,7 @@ func countParams(funcLine string) (int, []*CParameterPair) {
 	start := strings.Index(funcLine, "(")
 	end := strings.Index(funcLine, ")")
 	if start != -1 && end != -1 && end > start+1 {
-		paramStr := funcLine[start+1 : end]
-		paramStr = strings.TrimSpace(paramStr)
+		paramStr := strings.TrimSpace(funcLine[start+1 : end])
 		if paramStr != "" {
 			rawParams := strings.Split(paramStr, ",")
 			for _, p := range rawParams {
@@ -281,20 +267,17 @@ func countParams(funcLine string) (int, []*CParameterPair) {
 
 // A method to extract method name from C function signature
 func extractMethodName(funcLine, objectName string) string {
-	// Find the first occurrence of objectName followed by an underscore
 	prefix := objectName + "_"
 	start := strings.Index(funcLine, prefix)
 	if start == -1 {
 		return ""
 	}
-	// Find the next space before the prefix to skip the type
 	endOfType := strings.LastIndex(funcLine[:start], " ")
 	if endOfType == -1 {
 		endOfType = 0
 	} else {
-		endOfType += 1 // move past the space
+		endOfType++
 	}
-	// Find the opening parenthesis after the prefix
 	end := strings.Index(funcLine[endOfType:], "(")
 	if end == -1 {
 		return ""
@@ -308,14 +291,11 @@ func extractResultType(funcLine string) string {
 	if parenIdx == -1 {
 		return ""
 	}
-	// Get the substring before '('
 	beforeParen := strings.TrimSpace(funcLine[:parenIdx])
-	// Split by spaces
 	parts := strings.Fields(beforeParen)
 	if len(parts) < 2 {
 		return ""
 	}
-	// The result type is everything except the last part (function name)
 	return strings.Join(parts[:len(parts)-1], " ")
 }
 
@@ -334,20 +314,20 @@ func constructorGoMethodName(methodName, objectName string) string {
 	}
 	if strings.Contains(methodName, "_from_json_string") {
 		return "FromJSON"
-	} else {
-		return nonConstructorGoMethodName(methodName, objectName)
 	}
+	return nonConstructorGoMethodName(methodName, objectName)
 }
 
 // Assigns a go name to any method based on its C method name and category
 func goMethodName(methodName, objectName, currentCategory string) string {
-	if currentCategory == "allocation" {
+	switch currentCategory {
+	case "allocation":
 		return constructorGoMethodName(methodName, objectName)
-	}
-	if currentCategory == "deallocation" {
+	case "deallocation":
 		return "Close"
+	default:
+		return nonConstructorGoMethodName(methodName, objectName)
 	}
-	return nonConstructorGoMethodName(methodName, objectName)
 }
 
 // Assigns a go name to a non-constructor method based on its C method name
@@ -362,24 +342,24 @@ func nonConstructorGoMethodName(methodName, objectName string) string {
 	out = strings.ReplaceAll(out, "Farray", "FArray")
 	if out == "ToJsonString" {
 		return "ToJSON"
-	} else {
-		return out
 	}
+	return out
 }
 
 // Selects a default value for a C memory size allocation for malloc
 func memorySize(goType, cType string) string {
-	if IsNonPrimitive(goType) || IsString(goType) {
+	switch {
+	case IsNonPrimitive(goType) || IsString(goType):
 		return fmt.Sprintf("unsafe.Sizeof(C.%s(nil))", cType)
-	} else if goType == "bool" {
+	case goType == "bool":
 		return fmt.Sprintf("unsafe.Sizeof(C.%s(false))", cType)
-	} else {
+	default:
 		return fmt.Sprintf("unsafe.Sizeof(C.%s(0))", cType)
 	}
 }
 
 func MakeGoArgNames(goparams []*GoParameterPair) string {
-	names := []string{}
+	var names []string
 	for _, pair := range goparams {
 		if IsNonPrimitive(pair.Gotype) {
 			names = append(names, pair.Name)
@@ -398,8 +378,8 @@ func MakeCArgs(goparams []*GoParameterPair, cparams []*CParameterPair) string {
 		} else {
 			goParamHandle = pair.Name + ".CAPIHandle()"
 		}
-		ctype = strings.ReplaceAll(ctype, " ", "") // Removing spaces for long long case
-		ctype = strings.ReplaceAll(ctype, "*", "") // Removing asterisk for pointer case
+		ctype = strings.ReplaceAll(ctype, " ", "")
+		ctype = strings.ReplaceAll(ctype, "*", "")
 		cargs[i] = fmt.Sprintf("C.%s(%s)", ctype, goParamHandle)
 	}
 	return strings.Join(cargs, ",")
@@ -407,7 +387,7 @@ func MakeCArgs(goparams []*GoParameterPair, cparams []*CParameterPair) string {
 
 // Converts a sequence of Cparams to Gparams
 func toGoParams(params []*CParameterPair, packagetype string) []*GoParameterPair {
-	var out []*GoParameterPair
+	out := make([]*GoParameterPair, 0, len(params))
 	for _, pair := range params {
 		out = append(out, NewGoParameterPair(pair, packagetype))
 	}
@@ -433,8 +413,7 @@ func stripBlockComment(line string, inBlockComment bool) (string, bool) {
 			if end == -1 {
 				return "", true
 			}
-			trimmed = trimmed[end+2:]
-			trimmed = strings.TrimSpace(trimmed)
+			trimmed = strings.TrimSpace(trimmed[end+2:])
 			inBlockComment = false
 			continue
 		}
@@ -448,16 +427,15 @@ func stripBlockComment(line string, inBlockComment bool) (string, bool) {
 			inBlockComment = true
 			break
 		}
-		trimmed = trimmed[:start] + trimmed[start+2+end+2:]
-		trimmed = strings.TrimSpace(trimmed)
+		trimmed = strings.TrimSpace(trimmed[:start] + trimmed[start+2+end+2:])
 	}
 	return trimmed, inBlockComment
 }
 
 func main() {
-	currentCategory := ""     // The current selected category for a function
-	var funcLines []string    // All of the lines relevant for a single function
-	var extraImports []string // Any additional go imports needed for the package
+	currentCategory := ""
+	var funcLines []string
+	var extraImports []string
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: go run genFile.go <header-file>")
 		return
@@ -469,26 +447,18 @@ func main() {
 		panic(err)
 	}
 	defer f.Close()
-
-	// for storing long output for debug
 	manifest, err := os.OpenFile("manifest.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		panic(err)
 	}
 	defer manifest.Close()
-
 	fmt.Fprintln(manifest, "Generating", headerPath)
 
-	// Extract the include path (after "falcon_core/")
 	parts := strings.Split(headerPath, "falcon_core/")
 	includePath := "falcon_core/" + parts[1]
-
-	// Extract the object name ("Connection") from the filename
-	base := filepath.Base(headerPath)         // "Connection_c_api.h"
-	objectName := strings.Split(base, "_")[0] // "Connection"
+	base := filepath.Base(headerPath)
+	objectName := strings.Split(base, "_")[0]
 	packageName := strings.ToLower(objectName)
-
-	// Prepare the output file
 	dir := filepath.Dir(parts[1])
 	dir = strings.ReplaceAll(dir, "_", "-")
 	goFileName := strings.ReplaceAll(
@@ -499,7 +469,6 @@ func main() {
 		panic(err)
 	}
 
-	// Imports for the file and preamble
 	fmt.Fprintf(outFile, `package %s
 /*
 #cgo pkg-config: falcon_core_c_api
@@ -534,10 +503,10 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 	)
 }
 `, packageName, includePath, watermark, objectName, objectName)
-	reset := false          // whether to reser the currentCategory next loop
-	inBlockComment := false // if we are in a block comment
-	var line string
 
+	reset := false
+	inBlockComment := false
+	var line string
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		if reset {
@@ -626,154 +595,130 @@ func (h *Handle) Close() error {
 				continue
 			}
 			// format used by Adjacency_create
-			if (NumParams-NumNonPrimitiveParams) == 3 && NumNonPrimitiveParams == 1 && strings.Contains(methodArguments, "*uint64") {
+			if strings.Contains(methodArguments, "*uint64") &&
+				NumParams-NumNonPrimitiveParams == 3 &&
+				(NumNonPrimitiveParams == 1 || NumNonPrimitiveParams == 0) {
+
 				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
 				gtype0 := Goparams[0].Gotype[1:]
 				sizeData := memorySize(gtype0, ctype0)
 				sizeShape := memorySize("uint64", "size_t")
-				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64, %s %s) (*Handle, error) {
+
+				hasExtraParam := NumNonPrimitiveParams == 1
+				var extraParamDecl, extraParamCall, wrapperStart, wrapperEnd string
+				if hasExtraParam {
+					extraParamDecl = fmt.Sprintf(", %s %s", Goparams[3].Name, Goparams[3].Gotype)
+					extraParamCall = fmt.Sprintf(", C.%s(%s.CAPIHandle())", Cparams[3].Ctype, Goparams[3].Name)
+					wrapperStart = fmt.Sprintf("return cmemoryallocation.Read(%s, func() (*Handle, error) {", Goparams[3].Name)
+					wrapperEnd = "})"
+				}
+
+				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64%s) (*Handle, error) {
 	nShape := len(%s)
-	nData := len(%s)
-	if nShape == 0  || nData == 0 {
-			return cmemoryallocation.NewAllocation(
-					func() (unsafe.Pointer, error) {
-							return unsafe.Pointer(nil), nil
-					},
-					construct,
-					destroy,
-			)
-	}
-  sizeShape := C.size_t(nShape) * C.size_t(%s)
-	cShape := C.malloc(sizeShape)
-	if cShape == nil {
-			return nil, errors.New("C.malloc failed for Shape")
-	}
-	// Copy Go data to C memory
-	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
-	for i, v := range %s {
-			sliceS[i] = C.size_t(v) 
-	}
-  sizeData := C.size_t(nData) * C.size_t(%s)
-	cData:= C.malloc(sizeData)
-	if cData == nil {
-			return nil, errors.New("C.malloc failed for Data")
-	}
-	// Copy Go data to C memory
-	sliceD := (*[1 << 30]C.%s)(cData)[:nData:nData]
-	for i, v := range %s {
-			sliceD[i] = C.%s(v) 
-	}
-	return cmemoryallocation.Read(%s, func() (*Handle, error) {
+	if nShape == 0  {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-					res := unsafe.Pointer(C.%s((*C.%s)(cData), (*C.size_t)(cShape), C.size_t(nShape), C.%s(%s.CAPIHandle())))
-					C.free(cData)
-					C.free(cShape)
-					return res, nil
+				return unsafe.Pointer(nil), nil
 			},
 			construct,
 			destroy,
 		)
-	})
-}
-					`, goName, Goparams[0].Name, gtype0, Goparams[1].Name, Goparams[3].Name, Goparams[3].Gotype, Goparams[1].Name, Goparams[0].Name, sizeShape, Goparams[1].Name, sizeData, ctype0, Goparams[0].Name, ctype0, Goparams[3].Name, methodName, ctype0, Cparams[3].Ctype, Goparams[3].Name)
-				continue
-			}
-			// format used by ControlArray_from_data
-			if NumParams == 3 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint64") {
-				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
-				ctype1 := strings.TrimSpace(strings.TrimSuffix(Cparams[1].Ctype, "*"))
-				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64) (*Handle, error) {
-	cshape := make([]C.%s, len(%s))
+	}
+	sizeShape := C.size_t(nShape) * C.size_t(%s)
+	cShape := C.malloc(sizeShape)
+	if cShape == nil {
+		return nil, errors.New("C.malloc failed for Shape")
+	}
+	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
 	for i, v := range %s {
-		cshape[i] = C.size_t(v)
+		sliceS[i] = C.size_t(v)
 	}
-	cdata := make([]C.%s, len(%s))
-	for i, v := range %s{
-		cdata[i] = C.%s(v)
+	nData := len(%s)
+	if nData == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
 	}
-	return cmemoryallocation.NewAllocation(
-		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.%s(&cdata[0], &cshape[0], C.size_t(len(%s)))), nil
-		},
-		construct,
-		destroy,
-	)
+	sizeData := C.size_t(nData) * C.size_t(%s)
+	cData := C.malloc(sizeData)
+	if cData == nil {
+		return nil, errors.New("C.malloc failed for Data")
+	}
+	sliceD := (*[1 << 30]C.%s)(cData)[:nData:nData]
+	for i, v := range %s {
+		sliceD[i] = C.%s(v)
+	}
+	%s
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				res := unsafe.Pointer(C.%s((*C.%s)(cData), (*C.size_t)(cShape), C.size_t(nShape)%s))
+				C.free(cData)
+				C.free(cShape)
+				return res, nil
+			},
+			construct,
+			destroy,
+		)
+	%s
 }
-					`, goName, Goparams[0].Name, Goparams[0].Gotype[1:], Goparams[1].Name, ctype1, Goparams[1].Name, Goparams[1].Name, ctype0, Cparams[0].Name, Cparams[0].Name, ctype0, methodName, Goparams[1].Name)
+`, goName, Goparams[0].Name, gtype0, Goparams[1].Name, extraParamDecl, Goparams[1].Name, Goparams[0].Name, sizeShape, Goparams[1].Name, sizeData, ctype0, Goparams[0].Name, ctype0, wrapperStart, methodName, ctype0, extraParamCall, wrapperEnd)
 				continue
 			}
 			// format used by FArrayDouble_create_empty
-			if NumParams == 2 && NumNonPrimitiveParams == 0 && strings.Contains(methodArguments, "*uint64") && strings.Contains(methodArguments, "shape") {
-				fmt.Fprintf(outFile, `func %s(%s []uint64) (*Handle, error) {
-	cshape := make([]C.size_t, len(%s))
-	for i, v := range %s {
-		cshape[i] = C.size_t(v)
-	}
-	return cmemoryallocation.NewAllocation(
-		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.%s(&cshape[0], C.size_t(len(%s)))), nil
-		},
-		construct,
-		destroy,
-	)
-}
-					`, goName, Goparams[0].Name, Goparams[0].Name, Cparams[0].Name, methodName, Goparams[0].Name)
-				continue
-			}
-			// format used by List_create
-			if NumParams == 2 && strings.Contains(methodArguments, "uint64") && goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map")) {
-				var Go0type string
-				var argument string
-				var sizeExpr string
+			if NumParams == 2 && strings.Contains(methodArguments, "uint64") &&
+				(strings.Contains(methodArguments, "*uint64") && strings.Contains(methodArguments, "shape") ||
+					(goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map")))) {
+
+				var Go0type, argument, sizeExpr, C0type string
 				if IsString(Goparams[0].Gotype) {
 					Go0type = "string"
+					argument = "str.New(v).CAPIHandle()"
 				} else if IsNonPrimitive(Goparams[0].Gotype) {
 					Go0type = Goparams[0].Gotype
-				} else {
-					Go0type = Goparams[0].Gotype[1:]
-				}
-				C0type := Cparams[0].Ctype[:strings.Index(Cparams[0].Ctype, "*")]
-				sizeExpr = memorySize(Go0type, C0type)
-				if Go0type == "string" {
-					argument = "str.New(v).CAPIHandle()"
-				} else if IsNonPrimitive(Go0type) {
 					argument = "v.CAPIHandle()"
 				} else {
+					Go0type = Goparams[0].Gotype[1:]
 					argument = "v"
 				}
-				fmt.Fprintf(outFile, `func New(%s []%s) (*Handle, error) {
+				C0type = Cparams[0].Ctype[:strings.Index(Cparams[0].Ctype, "*")]
+				sizeExpr = memorySize(Go0type, C0type)
+
+				fmt.Fprintf(outFile, `func %s(%s []%s) (*Handle, error) {
 	n := len(%s)
 	if n == 0 {
-			return cmemoryallocation.NewAllocation(
-					func() (unsafe.Pointer, error) {
-							return unsafe.Pointer(nil), nil
-					},
-					construct,
-					destroy,
-			)
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
 	}
-  size := C.size_t(n) * C.size_t(%s)
+	size := C.size_t(n) * C.size_t(%s)
 	cList := C.malloc(size)
 	if cList == nil {
-			return nil, errors.New("C.malloc failed")
+		return nil, errors.New("C.malloc failed")
 	}
 	// Copy Go data to C memory
 	slice := (*[1 << 30]C.%s)(cList)[:n:n]
 	for i, v := range %s {
-			slice[i] = C.%s(%s) 
+		slice[i] = C.%s(%s)
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-				res := unsafe.Pointer(C.%s((*C.%s)(cList), C.size_t(n)))
-				C.free(cList)
-				return res, nil
+			res := unsafe.Pointer(C.%s((*C.%s)(cList), C.size_t(n)))
+			C.free(cList)
+			return res, nil
 		},
 		construct,
 		destroy,
 	)
 }
-					`, Goparams[0].Name, Go0type, Goparams[0].Name, sizeExpr, C0type, Goparams[0].Name, C0type, argument, methodName, C0type)
+`, goName, Goparams[0].Name, Go0type, Goparams[0].Name, sizeExpr, C0type, Goparams[0].Name, C0type, argument, methodName, C0type)
 				continue
 			}
 			// Listlike_create special case

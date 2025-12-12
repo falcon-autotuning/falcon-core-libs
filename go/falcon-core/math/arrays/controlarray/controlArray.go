@@ -89,21 +89,47 @@ func FromJSON(json string) (*Handle, error) {
 	})
 }
 func FromData(data []float64, shape []uint64) (*Handle, error) {
-	cshape := make([]C.size_t, len(shape))
+	nShape := len(shape)
+	nData := len(data)
+	if nShape == 0 || nData == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	sizeShape := C.size_t(nShape) * C.size_t(unsafe.Sizeof(C.size_t(0)))
+	cShape := C.malloc(sizeShape)
+	if cShape == nil {
+		return nil, errors.New("C.malloc failed for Shape")
+	}
+	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
 	for i, v := range shape {
-		cshape[i] = C.size_t(v)
+		sliceS[i] = C.size_t(v)
 	}
-	cdata := make([]C.double, len(data))
+	sizeData := C.size_t(nData) * C.size_t(unsafe.Sizeof(C.double(0)))
+	cData := C.malloc(sizeData)
+	if cData == nil {
+		return nil, errors.New("C.malloc failed for Data")
+	}
+	sliceD := (*[1 << 30]C.double)(cData)[:nData:nData]
 	for i, v := range data {
-		cdata[i] = C.double(v)
+		sliceD[i] = C.double(v)
 	}
+
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			return unsafe.Pointer(C.ControlArray_from_data(&cdata[0], &cshape[0], C.size_t(len(shape)))), nil
+			res := unsafe.Pointer(C.ControlArray_from_data((*C.double)(cData), (*C.size_t)(cShape), C.size_t(nShape)))
+			C.free(cData)
+			C.free(cShape)
+			return res, nil
 		},
 		construct,
 		destroy,
 	)
+
 }
 func FromFArray(farray *farraydouble.Handle) (*Handle, error) {
 	return cmemoryallocation.Read(farray, func() (*Handle, error) {
