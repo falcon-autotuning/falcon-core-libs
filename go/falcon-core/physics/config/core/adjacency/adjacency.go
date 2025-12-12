@@ -91,9 +91,8 @@ func FromJSON(json string) (*Handle, error) {
 	})
 }
 func New(data []int32, shape []uint64, indexes *connections.Handle) (*Handle, error) {
-	nShape := len(shape)
 	nData := len(data)
-	if nShape == 0 || nData == 0 {
+	if nData == 0 {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(nil), nil
@@ -102,23 +101,31 @@ func New(data []int32, shape []uint64, indexes *connections.Handle) (*Handle, er
 			destroy,
 		)
 	}
-	sizeShape := C.size_t(nShape) * C.size_t(unsafe.Sizeof(C.size_t(0)))
-	cShape := C.malloc(sizeShape)
-	if cShape == nil {
-		return nil, errors.New("C.malloc failed for Shape")
-	}
-	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
-	for i, v := range shape {
-		sliceS[i] = C.size_t(v)
-	}
-	sizeData := C.size_t(nData) * C.size_t(unsafe.Sizeof(C.int(0)))
-	cData := C.malloc(sizeData)
+	cData := C.malloc(C.size_t(nData) * C.size_t(unsafe.Sizeof(C.int(0))))
 	if cData == nil {
-		return nil, errors.New("C.malloc failed for Data")
+		return nil, errors.New("C.malloc failed")
 	}
-	sliceD := (*[1 << 30]C.int)(cData)[:nData:nData]
+	slicecData := (*[1 << 30]C.int)(cData)[:nData:nData]
 	for i, v := range data {
-		sliceD[i] = C.int(v)
+		slicecData[i] = C.int(v)
+	}
+	nShape := len(shape)
+	if nShape == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	cShape := C.malloc(C.size_t(nShape) * C.size_t(unsafe.Sizeof(C.size_t(0))))
+	if cShape == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	slicecShape := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
+	for i, v := range shape {
+		slicecShape[i] = C.size_t(v)
 	}
 	return cmemoryallocation.Read(indexes, func() (*Handle, error) {
 		return cmemoryallocation.NewAllocation(

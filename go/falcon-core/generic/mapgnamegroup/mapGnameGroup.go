@@ -66,8 +66,8 @@ func Copy(handle *Handle) (*Handle, error) {
 	})
 }
 func New(data []*pairgnamegroup.Handle) (*Handle, error) {
-	n := len(data)
-	if n == 0 {
+	nData := len(data)
+	if nData == 0 {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(nil), nil
@@ -76,20 +76,18 @@ func New(data []*pairgnamegroup.Handle) (*Handle, error) {
 			destroy,
 		)
 	}
-	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairGnameGroupHandle(nil)))
-	cList := C.malloc(size)
-	if cList == nil {
+	cData := C.malloc(C.size_t(nData) * C.size_t(unsafe.Sizeof(C.PairGnameGroupHandle(nil))))
+	if cData == nil {
 		return nil, errors.New("C.malloc failed")
 	}
-	// Copy Go data to C memory
-	slice := (*[1 << 30]C.PairGnameGroupHandle)(cList)[:n:n]
+	slicecData := (*[1 << 30]C.PairGnameGroupHandle)(cData)[:nData:nData]
 	for i, v := range data {
-		slice[i] = C.PairGnameGroupHandle(v.CAPIHandle())
+		slicecData[i] = C.PairGnameGroupHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			res := unsafe.Pointer(C.MapGnameGroup_create((*C.PairGnameGroupHandle)(cList), C.size_t(n)))
-			C.free(cList)
+			res := unsafe.Pointer(C.MapGnameGroup_create((*C.PairGnameGroupHandle)(cData), C.size_t(nData)))
+			C.free(cData)
 			return res, nil
 		},
 		construct,

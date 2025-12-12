@@ -358,6 +358,37 @@ func memorySize(goType, cType string) string {
 	}
 }
 
+// A whole malloc method for proper c types
+func emitGoMallocBlock(
+	outFile *os.File,
+	goVar string, // e.g. "cList"
+	goLenVar string, // e.g. "n"
+	goSliceVar string, // e.g. "Goparams[0].Name"
+	cType string, // e.g. "size_t"
+	sizeExpr string, // e.g. memorySize(goType, cType)
+	convertExpr string, // e.g. "C.size_t(v)"
+) {
+	fmt.Fprintf(outFile, `	%s := len(%s)
+	if %s == 0 {
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(nil), nil
+			},
+			construct,
+			destroy,
+		)
+	}
+	%s := C.malloc(C.size_t(%s) * C.size_t(%s))
+	if %s == nil {
+		return nil, errors.New("C.malloc failed")
+	}
+	slice%s := (*[1 << 30]C.%s)(%s)[:%s:%s]
+	for i, v := range %s {
+		slice%s[i] = %s
+	}
+`, goLenVar, goSliceVar, goLenVar, goVar, goLenVar, sizeExpr, goVar, goVar, cType, goVar, goLenVar, goLenVar, goSliceVar, goVar, convertExpr)
+}
+
 func MakeGoArgNames(goparams []*GoParameterPair) string {
 	var names []string
 	for _, pair := range goparams {
@@ -596,63 +627,41 @@ func (h *Handle) Close() error {
 			}
 			// format used by Adjacency_create
 			if strings.Contains(methodArguments, "*uint64") &&
-				NumParams-NumNonPrimitiveParams == 3 &&
-				(NumNonPrimitiveParams == 1 || NumNonPrimitiveParams == 0) {
+				(NumParams-NumNonPrimitiveParams == 3 &&
+					(NumNonPrimitiveParams == 1 || NumNonPrimitiveParams == 0)) ||
+				(NumParams == 2 &&
+					(strings.Contains(methodArguments, "shape") ||
+						(goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map"))))) {
 
-				ctype0 := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
-				gtype0 := Goparams[0].Gotype[1:]
-				sizeData := memorySize(gtype0, ctype0)
-				sizeShape := memorySize("uint64", "size_t")
-
-				hasExtraParam := NumNonPrimitiveParams == 1
-				var extraParamDecl, extraParamCall, wrapperStart, wrapperEnd string
-				if hasExtraParam {
-					extraParamDecl = fmt.Sprintf(", %s %s", Goparams[3].Name, Goparams[3].Gotype)
-					extraParamCall = fmt.Sprintf(", C.%s(%s.CAPIHandle())", Cparams[3].Ctype, Goparams[3].Name)
-					wrapperStart = fmt.Sprintf("return cmemoryallocation.Read(%s, func() (*Handle, error) {", Goparams[3].Name)
-					wrapperEnd = "})"
+				C0type := strings.TrimSpace(strings.TrimSuffix(Cparams[0].Ctype, "*"))
+				var Go0type, argument string
+				if IsString(Goparams[0].Gotype) {
+					Go0type = "string"
+					argument = fmt.Sprintf("C.%s(str.New(v).CAPIHandle())", C0type)
+				} else if IsNonPrimitive(Goparams[0].Gotype) {
+					Go0type = Goparams[0].Gotype
+					argument = fmt.Sprintf("C.%s(v.CAPIHandle())", C0type)
+				} else {
+					Go0type = Goparams[0].Gotype[1:]
+					argument = fmt.Sprintf("C.%s(v)", C0type)
 				}
+				sizeData := memorySize(Go0type, C0type)
 
-				fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64%s) (*Handle, error) {
-	nShape := len(%s)
-	if nShape == 0  {
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(nil), nil
-			},
-			construct,
-			destroy,
-		)
-	}
-	sizeShape := C.size_t(nShape) * C.size_t(%s)
-	cShape := C.malloc(sizeShape)
-	if cShape == nil {
-		return nil, errors.New("C.malloc failed for Shape")
-	}
-	sliceS := (*[1 << 30]C.size_t)(cShape)[:nShape:nShape]
-	for i, v := range %s {
-		sliceS[i] = C.size_t(v)
-	}
-	nData := len(%s)
-	if nData == 0 {
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(nil), nil
-			},
-			construct,
-			destroy,
-		)
-	}
-	sizeData := C.size_t(nData) * C.size_t(%s)
-	cData := C.malloc(sizeData)
-	if cData == nil {
-		return nil, errors.New("C.malloc failed for Data")
-	}
-	sliceD := (*[1 << 30]C.%s)(cData)[:nData:nData]
-	for i, v := range %s {
-		sliceD[i] = C.%s(v)
-	}
-	%s
+				if NumParams > 2 {
+					hasExtraParam := NumNonPrimitiveParams == 1
+					var extraParamDecl, extraParamCall, wrapperStart, wrapperEnd string
+					if hasExtraParam {
+						extraParamDecl = fmt.Sprintf(", %s %s", Goparams[3].Name, Goparams[3].Gotype)
+						extraParamCall = fmt.Sprintf(", C.%s(%s.CAPIHandle())", Cparams[3].Ctype, Goparams[3].Name)
+						wrapperStart = fmt.Sprintf("return cmemoryallocation.Read(%s, func() (*Handle, error) {", Goparams[3].Name)
+						wrapperEnd = "})"
+					}
+					fmt.Fprintf(outFile, `func %s(%s []%s, %s []uint64%s) (*Handle, error) {
+`, goName, Goparams[0].Name, Go0type, Goparams[1].Name, extraParamDecl)
+					emitGoMallocBlock(outFile, "cData", "nData", Goparams[0].Name, C0type, sizeData, argument)
+					sizeShape := memorySize("uint64", "size_t")
+					emitGoMallocBlock(outFile, "cShape", "nShape", Goparams[1].Name, "size_t", sizeShape, "C.size_t(v)")
+					fmt.Fprintf(outFile, `%s
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				res := unsafe.Pointer(C.%s((*C.%s)(cData), (*C.size_t)(cShape), C.size_t(nShape)%s))
@@ -665,60 +674,23 @@ func (h *Handle) Close() error {
 		)
 	%s
 }
-`, goName, Goparams[0].Name, gtype0, Goparams[1].Name, extraParamDecl, Goparams[1].Name, Goparams[0].Name, sizeShape, Goparams[1].Name, sizeData, ctype0, Goparams[0].Name, ctype0, wrapperStart, methodName, ctype0, extraParamCall, wrapperEnd)
-				continue
-			}
-			// format used by FArrayDouble_create_empty
-			if NumParams == 2 && strings.Contains(methodArguments, "uint64") &&
-				(strings.Contains(methodArguments, "*uint64") && strings.Contains(methodArguments, "shape") ||
-					(goName == "New" && (strings.Contains(packageName, "list") || strings.Contains(packageName, "map")))) {
-
-				var Go0type, argument, sizeExpr, C0type string
-				if IsString(Goparams[0].Gotype) {
-					Go0type = "string"
-					argument = "str.New(v).CAPIHandle()"
-				} else if IsNonPrimitive(Goparams[0].Gotype) {
-					Go0type = Goparams[0].Gotype
-					argument = "v.CAPIHandle()"
+`, wrapperStart, methodName, C0type, extraParamCall, wrapperEnd)
 				} else {
-					Go0type = Goparams[0].Gotype[1:]
-					argument = "v"
-				}
-				C0type = Cparams[0].Ctype[:strings.Index(Cparams[0].Ctype, "*")]
-				sizeExpr = memorySize(Go0type, C0type)
-
-				fmt.Fprintf(outFile, `func %s(%s []%s) (*Handle, error) {
-	n := len(%s)
-	if n == 0 {
-		return cmemoryallocation.NewAllocation(
-			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(nil), nil
-			},
-			construct,
-			destroy,
-		)
-	}
-	size := C.size_t(n) * C.size_t(%s)
-	cList := C.malloc(size)
-	if cList == nil {
-		return nil, errors.New("C.malloc failed")
-	}
-	// Copy Go data to C memory
-	slice := (*[1 << 30]C.%s)(cList)[:n:n]
-	for i, v := range %s {
-		slice[i] = C.%s(%s)
-	}
-	return cmemoryallocation.NewAllocation(
+					fmt.Fprintf(outFile, `func %s(%s []%s) (*Handle, error) {
+`, goName, Goparams[0].Name, Go0type)
+					emitGoMallocBlock(outFile, "cData", "nData", Goparams[0].Name, C0type, sizeData, argument)
+					fmt.Fprintf(outFile, `return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			res := unsafe.Pointer(C.%s((*C.%s)(cList), C.size_t(n)))
-			C.free(cList)
+			res := unsafe.Pointer(C.%s((*C.%s)(cData), C.size_t(nData)))
+			C.free(cData)
 			return res, nil
 		},
 		construct,
 		destroy,
 	)
 }
-`, goName, Goparams[0].Name, Go0type, Goparams[0].Name, sizeExpr, C0type, Goparams[0].Name, C0type, argument, methodName, C0type)
+`, methodName, C0type)
+				}
 				continue
 			}
 			// Listlike_create special case

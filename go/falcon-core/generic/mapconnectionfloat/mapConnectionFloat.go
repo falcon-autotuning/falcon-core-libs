@@ -65,8 +65,8 @@ func Copy(handle *Handle) (*Handle, error) {
 	})
 }
 func New(data []*pairconnectionfloat.Handle) (*Handle, error) {
-	n := len(data)
-	if n == 0 {
+	nData := len(data)
+	if nData == 0 {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(nil), nil
@@ -75,20 +75,18 @@ func New(data []*pairconnectionfloat.Handle) (*Handle, error) {
 			destroy,
 		)
 	}
-	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairConnectionFloatHandle(nil)))
-	cList := C.malloc(size)
-	if cList == nil {
+	cData := C.malloc(C.size_t(nData) * C.size_t(unsafe.Sizeof(C.PairConnectionFloatHandle(nil))))
+	if cData == nil {
 		return nil, errors.New("C.malloc failed")
 	}
-	// Copy Go data to C memory
-	slice := (*[1 << 30]C.PairConnectionFloatHandle)(cList)[:n:n]
+	slicecData := (*[1 << 30]C.PairConnectionFloatHandle)(cData)[:nData:nData]
 	for i, v := range data {
-		slice[i] = C.PairConnectionFloatHandle(v.CAPIHandle())
+		slicecData[i] = C.PairConnectionFloatHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			res := unsafe.Pointer(C.MapConnectionFloat_create((*C.PairConnectionFloatHandle)(cList), C.size_t(n)))
-			C.free(cList)
+			res := unsafe.Pointer(C.MapConnectionFloat_create((*C.PairConnectionFloatHandle)(cData), C.size_t(nData)))
+			C.free(cData)
 			return res, nil
 		},
 		construct,

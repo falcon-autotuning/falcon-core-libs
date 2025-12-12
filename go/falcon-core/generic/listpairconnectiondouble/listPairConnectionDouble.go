@@ -73,8 +73,8 @@ func FillValue(count uint64, value *pairconnectiondouble.Handle) (*Handle, error
 	})
 }
 func New(data []*pairconnectiondouble.Handle) (*Handle, error) {
-	n := len(data)
-	if n == 0 {
+	nData := len(data)
+	if nData == 0 {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(nil), nil
@@ -83,20 +83,18 @@ func New(data []*pairconnectiondouble.Handle) (*Handle, error) {
 			destroy,
 		)
 	}
-	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.PairConnectionDoubleHandle(nil)))
-	cList := C.malloc(size)
-	if cList == nil {
+	cData := C.malloc(C.size_t(nData) * C.size_t(unsafe.Sizeof(C.PairConnectionDoubleHandle(nil))))
+	if cData == nil {
 		return nil, errors.New("C.malloc failed")
 	}
-	// Copy Go data to C memory
-	slice := (*[1 << 30]C.PairConnectionDoubleHandle)(cList)[:n:n]
+	slicecData := (*[1 << 30]C.PairConnectionDoubleHandle)(cData)[:nData:nData]
 	for i, v := range data {
-		slice[i] = C.PairConnectionDoubleHandle(v.CAPIHandle())
+		slicecData[i] = C.PairConnectionDoubleHandle(v.CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			res := unsafe.Pointer(C.ListPairConnectionDouble_create((*C.PairConnectionDoubleHandle)(cList), C.size_t(n)))
-			C.free(cList)
+			res := unsafe.Pointer(C.ListPairConnectionDouble_create((*C.PairConnectionDoubleHandle)(cData), C.size_t(nData)))
+			C.free(cData)
 			return res, nil
 		},
 		construct,

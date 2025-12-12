@@ -85,8 +85,8 @@ func FillValue(count uint64, value string) (*Handle, error) {
 	})
 }
 func New(data []string) (*Handle, error) {
-	n := len(data)
-	if n == 0 {
+	nData := len(data)
+	if nData == 0 {
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
 				return unsafe.Pointer(nil), nil
@@ -95,20 +95,18 @@ func New(data []string) (*Handle, error) {
 			destroy,
 		)
 	}
-	size := C.size_t(n) * C.size_t(unsafe.Sizeof(C.StringHandle(nil)))
-	cList := C.malloc(size)
-	if cList == nil {
+	cData := C.malloc(C.size_t(nData) * C.size_t(unsafe.Sizeof(C.StringHandle(nil))))
+	if cData == nil {
 		return nil, errors.New("C.malloc failed")
 	}
-	// Copy Go data to C memory
-	slice := (*[1 << 30]C.StringHandle)(cList)[:n:n]
+	slicecData := (*[1 << 30]C.StringHandle)(cData)[:nData:nData]
 	for i, v := range data {
-		slice[i] = C.StringHandle(str.New(v).CAPIHandle())
+		slicecData[i] = C.StringHandle(str.New(v).CAPIHandle())
 	}
 	return cmemoryallocation.NewAllocation(
 		func() (unsafe.Pointer, error) {
-			res := unsafe.Pointer(C.ListString_create((*C.StringHandle)(cList), C.size_t(n)))
-			C.free(cList)
+			res := unsafe.Pointer(C.ListString_create((*C.StringHandle)(cData), C.size_t(nData)))
+			C.free(cData)
 			return res, nil
 		},
 		construct,
