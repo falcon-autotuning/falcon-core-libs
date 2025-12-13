@@ -44,7 +44,7 @@ jobs:
           pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc cmake lld github-cli
 
       - name: Install falcon-core-cpp and falcon-core-cpp
-        run: make install
+        run: make install SUDO=
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set clang as default compiler for makepkg
