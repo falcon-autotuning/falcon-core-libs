@@ -127,7 +127,7 @@ jobs:
           mkdir -p coverage
           make func-coverage > coverage/falcon-core-go.txt
           install -d /usr/include/falcon-core-go
-          install -d /usr/include/falcon-core-go/coverage
+          install -d /usr/share/falcon-core-go/coverage
           cp -r coverage/* /usr/share/falcon-core-go/coverage/
       - name: Check go coverage report
         run: |
