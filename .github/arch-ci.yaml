@@ -1,0 +1,136 @@
+name: Arch Linux CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test-arch:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build user
+        run: |
+          useradd -m builduser
+          echo "builduser ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          chown -R builduser:builduser .
+
+      - name: Cache pacman packages
+        uses: actions/cache@v4
+        with:
+          path: /var/cache/pacman/pkg
+          key: ${{ runner.os }}-pacman-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-pacman-
+
+      - name: Cache AUR packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            packaging/highfive/*.pkg.tar.zst
+            packaging/exprtk/*.pkg.tar.zst
+          key: ${{ runner.os }}-aur-${{ github.ref }}
+          restore-keys: |
+            ${{ runner.os }}-aur-
+
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc cmake lld
+
+      - name: Install falcon-core-cpp and falcon-core-cpp
+        run: make install
+      - name: Set clang as default compiler for makepkg
+        run: |
+          grep -q '^CC=' /etc/makepkg.conf && \
+          sed -i 's|^CC=.*|CC=/usr/bin/clang|' /etc/makepkg.conf || \
+          echo 'CC=/usr/bin/clang' >> /etc/makepkg.conf
+
+          grep -q '^CXX=' /etc/makepkg.conf && \
+          sed -i 's|^CXX=.*|CXX=/usr/bin/clang++|' /etc/makepkg.conf || \
+          echo 'CXX=/usr/bin/clang++' >> /etc/makepkg.conf
+
+          grep -E '^CC=|^CXX=' /etc/makepkg.conf
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: ~/.ccache
+          key: ${{ runner.os }}-ccache-${{ github.ref }}-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-ccache-${{ github.ref }}-
+            ${{ runner.os }}-ccache-
+      - name: Install AUR packages
+        run: |
+          mkdir -p packaging
+          chown builduser:builduser packaging
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
+              if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
+              cd packaging/highfive
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
+              fi
+              cd ../exprtk
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
+              fi
+            "
+      - name: Build and test PKGBUILDs
+        run: |
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io
+            makepkg -si --noconfirm --syncdeps --cleanbuild
+          "
+      - name: Build falcon-core-cpp
+        run: |
+          cd go/falcon-core 
+          CC=/usr/bin/clang CXX=/usr/bin/clang++ make build
+
+      - name: Run function coverage
+        run: |
+          cd go/falcon-core 
+          mkdir -p coverage
+          make func-coverage > coverage/falcon-core-go.txt
+          install -d /usr/include/falcon-core-go
+          install -d /usr/include/falcon-core-go/coverage
+          cp -r coverage/* /usr/share/falcon-core-go/coverage/
+      - name: Check go coverage report
+        run: |
+          report="go/falcon-core/coverage/falcon-core-go.txt"
+
+          # Extract all percentages in the file
+          percentages=($(grep -oE '[0-9]+\.[0-9]+%' "$report"))
+
+          # Check if any percentages were found
+          if [ ${#percentages[@]} -eq 0 ]; then
+            echo "❌ No percentages found in $report"
+            exit 1
+          fi
+
+          # Get the last percentage (final one in the file)
+          final_pct="${percentages[-1]}"
+          final_num=$(echo "$final_pct" | tr -d '%')
+
+          # Check if the final percentage is >= 80.0
+          if (( $(echo "$final_num < 80.0" | bc -l) )); then
+            echo "❌ Final coverage percent $final_pct is less than 80%"
+            exit 1
+          fi
+
+          echo "✅ Final coverage check passed: $final_pct"
+        shell: bash
