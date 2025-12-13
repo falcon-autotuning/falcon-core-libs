@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc cmake lld github-cli
+          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc cmake lld github-cli unzip
 
       - name: Install falcon-core-cpp and falcon-core-cpp
         run: make install SUDO=
