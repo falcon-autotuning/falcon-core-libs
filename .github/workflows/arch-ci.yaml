@@ -95,6 +95,7 @@ jobs:
         run: |
           cd falcon-core
           mkdir -p /tmp/build /tmp/pkgdest
+          chown -R builduser:builduser /tmp/build /tmp/pkgdest
           runuser -u builduser -- env PATH=/usr/bin:$PATH BUILDDIR=/tmp/build PKGDEST=/tmp/pkgdest bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
