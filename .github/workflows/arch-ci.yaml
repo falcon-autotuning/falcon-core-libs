@@ -45,6 +45,8 @@ jobs:
 
       - name: Install falcon-core-cpp and falcon-core-cpp
         run: make install
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set clang as default compiler for makepkg
         run: |
           grep -q '^CC=' /etc/makepkg.conf && \
