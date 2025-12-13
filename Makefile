@@ -82,3 +82,7 @@ uninstall:
 
 clean:
 	rm -rf $(TMPDIR)
+
+prepare-go-release:
+	rm -rf out && mkdir -p out
+	cd go && zip -r ../out/falcon-core-go.zip falcon-core -x "falcon-core/.git/*" "falcon-core/.cache/*" "falcon-core/vendor/*" "falcon-core/testdata/*"
