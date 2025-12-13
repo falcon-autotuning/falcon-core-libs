@@ -86,8 +86,14 @@ jobs:
                 PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
               fi
             "
+      - name: Checkout falcon-core-c-api
+        uses: actions/checkout@v3
+        with:
+          repository: falcon-autotuning/falcon-core
+          path: falcon-core
       - name: Build and test PKGBUILDs
         run: |
+          cd falcon-core
           runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
