@@ -94,7 +94,9 @@ jobs:
       - name: Build and test PKGBUILDs
         run: |
           cd falcon-core
-          runuser -u builduser -- env PATH=/usr/bin:$PATH BUILDDIR=/tmp/build bash -c "
+          sudo mkdir -p /tmp/build /tmp/pkgdest
+          sudo chown builduser /tmp/build /tmp/pkgdest
+          runuser -u builduser -- env PATH=/usr/bin:$PATH BUILDDIR=/tmp/build PKGDEST=/tmp/pkgdest bash -c "
             cd packaging/xtl
             makepkg -si --noconfirm --syncdeps --cleanbuild
             cd ../xsimd
