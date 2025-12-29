@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.communications.messages.standard_request import StandardRequest
 
 class TestStandardRequest:

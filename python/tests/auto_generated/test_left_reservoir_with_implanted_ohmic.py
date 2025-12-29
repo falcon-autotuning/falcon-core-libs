@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.geometries.left_reservoir_with_implanted_ohmic import LeftReservoirWithImplantedOhmic
 
 class TestLeftReservoirWithImplantedOhmic:
@@ -6,7 +8,7 @@ class TestLeftReservoirWithImplantedOhmic:
         self.obj = None
         try:
             # Found constructor: LeftReservoirWithImplantedOhmic_create
-            self.obj = LeftReservoirWithImplantedOhmic.new("test_string", None, None)
+            self.obj = LeftReservoirWithImplantedOhmic.new("test_string", Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Setup failed: {e}')
 

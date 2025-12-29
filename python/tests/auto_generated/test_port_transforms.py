@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.instrument_interfaces.port_transforms.port_transforms import PortTransforms
 
 class TestPortTransforms:

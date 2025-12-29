@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.generic.map import Map
 from falcon_core.autotuner_interfaces.names.channel import Channel
 from falcon_core.physics.device_structures.connections import Connections

@@ -51,14 +51,12 @@ def test_constructors_and_accessors():
 
 def test__equality():
     screening = Connection.new_screening("S1")
-    with pytest.raises(TypeError):
-        screening == 4
+    assert not (screening == 4)
     plunger = Connection.new_plunger("P1")
     other_plunger = Connection.new_plunger("P1")
     assert plunger == other_plunger
     assert plunger != screening
-    with pytest.raises(TypeError):
-        screening != 4
+    assert screening != 4
 
 
 def test_serialization_roundtrip():

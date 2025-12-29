@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.discrete_spaces.discretizer import Discretizer
 
 class TestDiscretizer:

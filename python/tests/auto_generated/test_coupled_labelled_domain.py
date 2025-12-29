@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 
 class TestCoupledLabelledDomain:
@@ -30,7 +32,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_domain(None)
+            self.obj.get_domain(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

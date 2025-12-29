@@ -1,4 +1,7 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.instrument_interfaces.names.ports import Ports
 
 class TestPorts:
@@ -54,7 +57,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj._get_psuedoname_matching_port(None)
+            self.obj._get_psuedoname_matching_port(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -94,7 +97,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -130,14 +133,6 @@ class TestPorts:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_const_at(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.const_at(0)
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
     def test_at(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -158,7 +153,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -166,7 +161,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport port_transform
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .port_transform cimport PortTransform, _port_transform_from_capi
 
 cdef class ListPortTransform:
     def __cinit__(self):
@@ -13,14 +15,6 @@ cdef class ListPortTransform:
             _c_api.ListPortTransform_destroy(self.handle)
         self.handle = <_c_api.ListPortTransformHandle>0
 
-
-cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHandle h):
-    if h == <_c_api.ListPortTransformHandle>0:
-        return None
-    cdef ListPortTransform obj = ListPortTransform.__new__(ListPortTransform)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -34,9 +28,9 @@ cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHa
         return obj
 
     @classmethod
-    def new(cls, PortTransform data, size_t count):
+    def new(cls, size_t[:] data, size_t count):
         cdef _c_api.ListPortTransformHandle h
-        h = _c_api.ListPortTransform_create(data.handle, count)
+        h = _c_api.ListPortTransform_create(<_c_api.PortTransformHandle*>&data[0], count)
         if h == <_c_api.ListPortTransformHandle>0:
             raise MemoryError("Failed to create ListPortTransform")
         cdef ListPortTransform obj = <ListPortTransform>cls.__new__(cls)
@@ -47,7 +41,7 @@ cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHa
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ListPortTransformHandle h
         try:
             h = _c_api.ListPortTransform_from_json_string(s_json)
@@ -62,13 +56,13 @@ cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHa
 
     @staticmethod
     def fill_value(size_t count, PortTransform value):
-        cdef _c_api.ListPortTransformHandle h_ret = _c_api.ListPortTransform_fill_value(count, value.handle)
+        cdef _c_api.ListPortTransformHandle h_ret = _c_api.ListPortTransform_fill_value(count, value.handle if value is not None else <_c_api.PortTransformHandle>0)
         if h_ret == <_c_api.ListPortTransformHandle>0:
             return None
         return _list_port_transform_from_capi(h_ret)
 
     def push_back(self, PortTransform value):
-        _c_api.ListPortTransform_push_back(self.handle, value.handle)
+        _c_api.ListPortTransform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
 
     def size(self, ):
         return _c_api.ListPortTransform_size(self.handle)
@@ -86,25 +80,25 @@ cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHa
         cdef _c_api.PortTransformHandle h_ret = _c_api.ListPortTransform_at(self.handle, idx)
         if h_ret == <_c_api.PortTransformHandle>0:
             return None
-        return port_transform._port_transform_from_capi(h_ret)
+        return _port_transform_from_capi(h_ret, owned=False)
 
-    def items(self, PortTransform out_buffer, size_t buffer_size):
-        return _c_api.ListPortTransform_items(self.handle, out_buffer.handle, buffer_size)
+    def items(self, size_t[:] out_buffer, size_t buffer_size):
+        return _c_api.ListPortTransform_items(self.handle, <_c_api.PortTransformHandle*>&out_buffer[0], buffer_size)
 
     def contains(self, PortTransform value):
-        return _c_api.ListPortTransform_contains(self.handle, value.handle)
+        return _c_api.ListPortTransform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
 
     def index(self, PortTransform value):
-        return _c_api.ListPortTransform_index(self.handle, value.handle)
+        return _c_api.ListPortTransform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
 
     def intersection(self, ListPortTransform other):
-        cdef _c_api.ListPortTransformHandle h_ret = _c_api.ListPortTransform_intersection(self.handle, other.handle)
+        cdef _c_api.ListPortTransformHandle h_ret = _c_api.ListPortTransform_intersection(self.handle, other.handle if other is not None else <_c_api.ListPortTransformHandle>0)
         if h_ret == <_c_api.ListPortTransformHandle>0:
             return None
         return _list_port_transform_from_capi(h_ret)
 
     def equal(self, ListPortTransform b):
-        return _c_api.ListPortTransform_equal(self.handle, b.handle)
+        return _c_api.ListPortTransform_equal(self.handle, b.handle if b is not None else <_c_api.ListPortTransformHandle>0)
 
     def __eq__(self, ListPortTransform b):
         if not hasattr(b, "handle"):
@@ -112,9 +106,48 @@ cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHa
         return self.equal(b)
 
     def not_equal(self, ListPortTransform b):
-        return _c_api.ListPortTransform_not_equal(self.handle, b.handle)
+        return _c_api.ListPortTransform_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPortTransformHandle>0)
 
     def __ne__(self, ListPortTransform b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.ListPortTransform_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef ListPortTransform obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef ListPortTransform _list_port_transform_from_capi(_c_api.ListPortTransformHandle h, bint owned=True):
+    if h == <_c_api.ListPortTransformHandle>0:
+        return None
+    cdef ListPortTransform obj = ListPortTransform.__new__(ListPortTransform)
+    obj.handle = h
+    obj.owned = owned
+    return obj

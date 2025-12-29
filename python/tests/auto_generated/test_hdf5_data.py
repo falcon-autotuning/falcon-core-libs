@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.communications.hdf5_data import HDF5Data
 
 class TestHDF5Data:

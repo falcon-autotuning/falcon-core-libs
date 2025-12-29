@@ -25,27 +25,27 @@ class GateRelations:
 
     @classmethod
     def new(cls, items: List) -> GateRelations:
-        return cls(_CGateRelations.new(items._c))
+        return cls(_CGateRelations.new(items._c if items is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> GateRelations:
         return cls(_CGateRelations.from_json(json))
 
     def insert_or_assign(self, key: Connection, value: Connections) -> None:
-        ret = self._c.insert_or_assign(key._c, value._c)
+        ret = self._c.insert_or_assign(key._c if key is not None else None, value._c if value is not None else None)
         return ret
 
     def insert(self, key: Connection, value: Connections) -> None:
-        ret = self._c.insert(key._c, value._c)
+        ret = self._c.insert(key._c if key is not None else None, value._c if value is not None else None)
         return ret
 
     def at(self, key: Connection) -> Connections:
-        ret = self._c.at(key._c)
+        ret = self._c.at(key._c if key is not None else None)
         if ret is None: return None
         return Connections._from_capi(ret)
 
     def erase(self, key: Connection) -> None:
-        ret = self._c.erase(key._c)
+        ret = self._c.erase(key._c if key is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -61,7 +61,7 @@ class GateRelations:
         return ret
 
     def contains(self, key: Connection) -> None:
-        ret = self._c.contains(key._c)
+        ret = self._c.contains(key._c if key is not None else None)
         return ret
 
     def keys(self, ) -> List:
@@ -79,12 +79,25 @@ class GateRelations:
         if ret is None: return None
         return List(ret)
 
-    def equal(self, b: GateRelations) -> None:
-        ret = self._c.equal(b._c)
+    def equal(self, other: GateRelations) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, b: GateRelations) -> None:
-        ret = self._c.not_equal(b._c)
+    def not_equal(self, other: GateRelations) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
         return ret
 
     def __eq__(self, other):

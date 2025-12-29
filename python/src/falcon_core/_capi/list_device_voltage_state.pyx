@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport device_voltage_state
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .device_voltage_state cimport DeviceVoltageState, _device_voltage_state_from_capi
 
 cdef class ListDeviceVoltageState:
     def __cinit__(self):
@@ -13,14 +15,6 @@ cdef class ListDeviceVoltageState:
             _c_api.ListDeviceVoltageState_destroy(self.handle)
         self.handle = <_c_api.ListDeviceVoltageStateHandle>0
 
-
-cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDeviceVoltageStateHandle h):
-    if h == <_c_api.ListDeviceVoltageStateHandle>0:
-        return None
-    cdef ListDeviceVoltageState obj = ListDeviceVoltageState.__new__(ListDeviceVoltageState)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -34,9 +28,9 @@ cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDevi
         return obj
 
     @classmethod
-    def new(cls, DeviceVoltageState data, size_t count):
+    def new(cls, size_t[:] data, size_t count):
         cdef _c_api.ListDeviceVoltageStateHandle h
-        h = _c_api.ListDeviceVoltageState_create(data.handle, count)
+        h = _c_api.ListDeviceVoltageState_create(<_c_api.DeviceVoltageStateHandle*>&data[0], count)
         if h == <_c_api.ListDeviceVoltageStateHandle>0:
             raise MemoryError("Failed to create ListDeviceVoltageState")
         cdef ListDeviceVoltageState obj = <ListDeviceVoltageState>cls.__new__(cls)
@@ -47,7 +41,7 @@ cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDevi
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ListDeviceVoltageStateHandle h
         try:
             h = _c_api.ListDeviceVoltageState_from_json_string(s_json)
@@ -62,13 +56,13 @@ cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDevi
 
     @staticmethod
     def fill_value(size_t count, DeviceVoltageState value):
-        cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_fill_value(count, value.handle)
+        cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_fill_value(count, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
             return None
         return _list_device_voltage_state_from_capi(h_ret)
 
     def push_back(self, DeviceVoltageState value):
-        _c_api.ListDeviceVoltageState_push_back(self.handle, value.handle)
+        _c_api.ListDeviceVoltageState_push_back(self.handle, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)
 
     def size(self, ):
         return _c_api.ListDeviceVoltageState_size(self.handle)
@@ -86,25 +80,25 @@ cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDevi
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_at(self.handle, idx)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return device_voltage_state._device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=False)
 
-    def items(self, DeviceVoltageState out_buffer, size_t buffer_size):
-        return _c_api.ListDeviceVoltageState_items(self.handle, out_buffer.handle, buffer_size)
+    def items(self, size_t[:] out_buffer, size_t buffer_size):
+        return _c_api.ListDeviceVoltageState_items(self.handle, <_c_api.DeviceVoltageStateHandle*>&out_buffer[0], buffer_size)
 
     def contains(self, DeviceVoltageState value):
-        return _c_api.ListDeviceVoltageState_contains(self.handle, value.handle)
+        return _c_api.ListDeviceVoltageState_contains(self.handle, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)
 
     def index(self, DeviceVoltageState value):
-        return _c_api.ListDeviceVoltageState_index(self.handle, value.handle)
+        return _c_api.ListDeviceVoltageState_index(self.handle, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)
 
     def intersection(self, ListDeviceVoltageState other):
-        cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_intersection(self.handle, other.handle)
+        cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_intersection(self.handle, other.handle if other is not None else <_c_api.ListDeviceVoltageStateHandle>0)
         if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
             return None
         return _list_device_voltage_state_from_capi(h_ret)
 
     def equal(self, ListDeviceVoltageState b):
-        return _c_api.ListDeviceVoltageState_equal(self.handle, b.handle)
+        return _c_api.ListDeviceVoltageState_equal(self.handle, b.handle if b is not None else <_c_api.ListDeviceVoltageStateHandle>0)
 
     def __eq__(self, ListDeviceVoltageState b):
         if not hasattr(b, "handle"):
@@ -112,9 +106,48 @@ cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDevi
         return self.equal(b)
 
     def not_equal(self, ListDeviceVoltageState b):
-        return _c_api.ListDeviceVoltageState_not_equal(self.handle, b.handle)
+        return _c_api.ListDeviceVoltageState_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDeviceVoltageStateHandle>0)
 
     def __ne__(self, ListDeviceVoltageState b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.ListDeviceVoltageState_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef ListDeviceVoltageState obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef ListDeviceVoltageState _list_device_voltage_state_from_capi(_c_api.ListDeviceVoltageStateHandle h, bint owned=True):
+    if h == <_c_api.ListDeviceVoltageStateHandle>0:
+        return None
+    cdef ListDeviceVoltageState obj = ListDeviceVoltageState.__new__(ListDeviceVoltageState)
+    obj.handle = h
+    obj.owned = owned
+    return obj

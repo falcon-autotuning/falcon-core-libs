@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.communications.messages.voltage_states_response import VoltageStatesResponse
 
 class TestVoltageStatesResponse:

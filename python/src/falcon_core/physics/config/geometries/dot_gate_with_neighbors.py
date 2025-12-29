@@ -16,23 +16,23 @@ class DotGateWithNeighbors:
         return cls(c_obj)
 
     @classmethod
-    def new_plungergatewithneighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.new_plungergatewithneighbors(name, left_neighbor._c, right_neighbor._c))
+    def new_plunger_gate_with_neighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
+        return cls(_CDotGateWithNeighbors.new_plunger_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
 
     @classmethod
-    def new_barriergatewithneighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.new_barriergatewithneighbors(name, left_neighbor._c, right_neighbor._c))
+    def new_barrier_gate_with_neighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
+        return cls(_CDotGateWithNeighbors.new_barrier_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> DotGateWithNeighbors:
         return cls(_CDotGateWithNeighbors.from_json(json))
 
     def equal(self, other: DotGateWithNeighbors) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: DotGateWithNeighbors) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
     def name(self, ) -> str:
@@ -59,6 +59,10 @@ class DotGateWithNeighbors:
 
     def is_plunger_gate(self, ) -> None:
         ret = self._c.is_plunger_gate()
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

@@ -1,12 +1,14 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.geometries.dot_gate_with_neighbors import DotGateWithNeighbors
 
 class TestDotGateWithNeighbors:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: DotGateWithNeighbors_create_plungergatewithneighbors
-            self.obj = DotGateWithNeighbors.new_plungergatewithneighbors("test_string", None, None)
+            # Found constructor: DotGateWithNeighbors_create_plunger_gate_with_neighbors
+            self.obj = DotGateWithNeighbors.new_plunger_gate_with_neighbors("test_string", Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Setup failed: {e}')
 

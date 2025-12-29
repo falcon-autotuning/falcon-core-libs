@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.generic.map import Map
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
@@ -17,7 +18,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, None)
+            self.obj.insert_or_assign(InstrumentPort.new_timer(), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +26,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, None)
+            self.obj.insert(InstrumentPort.new_timer(), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +34,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -41,7 +42,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +74,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

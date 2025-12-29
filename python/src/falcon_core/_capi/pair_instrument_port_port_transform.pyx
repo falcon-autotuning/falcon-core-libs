@@ -1,8 +1,10 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport instrument_port
-from . cimport port_transform
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .instrument_port cimport InstrumentPort, _instrument_port_from_capi
+from .port_transform cimport PortTransform, _port_transform_from_capi
 
 cdef class PairInstrumentPortPortTransform:
     def __cinit__(self):
@@ -15,18 +17,10 @@ cdef class PairInstrumentPortPortTransform:
         self.handle = <_c_api.PairInstrumentPortPortTransformHandle>0
 
 
-cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_capi(_c_api.PairInstrumentPortPortTransformHandle h):
-    if h == <_c_api.PairInstrumentPortPortTransformHandle>0:
-        return None
-    cdef PairInstrumentPortPortTransform obj = PairInstrumentPortPortTransform.__new__(PairInstrumentPortPortTransform)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, InstrumentPort first, PortTransform second):
         cdef _c_api.PairInstrumentPortPortTransformHandle h
-        h = _c_api.PairInstrumentPortPortTransform_create(first.handle, second.handle)
+        h = _c_api.PairInstrumentPortPortTransform_create(first.handle if first is not None else <_c_api.InstrumentPortHandle>0, second.handle if second is not None else <_c_api.PortTransformHandle>0)
         if h == <_c_api.PairInstrumentPortPortTransformHandle>0:
             raise MemoryError("Failed to create PairInstrumentPortPortTransform")
         cdef PairInstrumentPortPortTransform obj = <PairInstrumentPortPortTransform>cls.__new__(cls)
@@ -37,7 +31,7 @@ cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_c
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairInstrumentPortPortTransformHandle h
         try:
             h = _c_api.PairInstrumentPortPortTransform_from_json_string(s_json)
@@ -54,16 +48,16 @@ cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_c
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.PairInstrumentPortPortTransform_first(self.handle)
         if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return instrument_port._instrument_port_from_capi(h_ret)
+        return _instrument_port_from_capi(h_ret)
 
     def second(self, ):
         cdef _c_api.PortTransformHandle h_ret = _c_api.PairInstrumentPortPortTransform_second(self.handle)
         if h_ret == <_c_api.PortTransformHandle>0:
             return None
-        return port_transform._port_transform_from_capi(h_ret)
+        return _port_transform_from_capi(h_ret)
 
     def equal(self, PairInstrumentPortPortTransform b):
-        return _c_api.PairInstrumentPortPortTransform_equal(self.handle, b.handle)
+        return _c_api.PairInstrumentPortPortTransform_equal(self.handle, b.handle if b is not None else <_c_api.PairInstrumentPortPortTransformHandle>0)
 
     def __eq__(self, PairInstrumentPortPortTransform b):
         if not hasattr(b, "handle"):
@@ -71,9 +65,27 @@ cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_c
         return self.equal(b)
 
     def not_equal(self, PairInstrumentPortPortTransform b):
-        return _c_api.PairInstrumentPortPortTransform_not_equal(self.handle, b.handle)
+        return _c_api.PairInstrumentPortPortTransform_not_equal(self.handle, b.handle if b is not None else <_c_api.PairInstrumentPortPortTransformHandle>0)
 
     def __ne__(self, PairInstrumentPortPortTransform b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PairInstrumentPortPortTransform_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef PairInstrumentPortPortTransform _pair_instrument_port_port_transform_from_capi(_c_api.PairInstrumentPortPortTransformHandle h, bint owned=True):
+    if h == <_c_api.PairInstrumentPortPortTransformHandle>0:
+        return None
+    cdef PairInstrumentPortPortTransform obj = PairInstrumentPortPortTransform.__new__(PairInstrumentPortPortTransform)
+    obj.handle = h
+    obj.owned = owned
+    return obj

@@ -1,4 +1,7 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.vector import Vector
 
 class TestVector:
@@ -10,19 +13,19 @@ class TestVector:
         except Exception as e:
             print(f'Setup failed: {e}')
 
-    def test_endPoint(self):
+    def test_end_point(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.endPoint()
+            self.obj.end_point()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_startPoint(self):
+    def test_start_point(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.startPoint()
+            self.obj.start_point()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -94,7 +97,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, None)
+            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -102,7 +105,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, None)
+            self.obj.insert(Connection.new_barrier('test_conn'), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -110,7 +113,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -118,7 +121,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -150,7 +153,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -246,7 +249,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.translate_doubles(None, None)
+            self.obj.translate_doubles(None, SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -334,7 +337,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.update_unit(None)
+            self.obj.update_unit(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -20,27 +20,27 @@ class LabelledDomain:
 
     @classmethod
     def new_primitive_knob(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_primitive_knob(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
+        return cls(_CLabelledDomain.new_primitive_knob(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
 
     @classmethod
     def new_primitive_meter(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_primitive_meter(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
+        return cls(_CLabelledDomain.new_primitive_meter(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
 
     @classmethod
     def new_primitive_port(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_primitive_port(default_name, min_val, max_val, psuedo_name._c, instrument_type, lesser_bound_contained, greater_bound_contained, units._c, description))
+        return cls(_CLabelledDomain.new_primitive_port(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
 
     @classmethod
     def new_from_port(cls, min_val: Any, max_val: Any, instrument_type: str, port: InstrumentPort, lesser_bound_contained: Any, greater_bound_contained: Any) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_from_port(min_val, max_val, instrument_type, port._c, lesser_bound_contained, greater_bound_contained))
+        return cls(_CLabelledDomain.new_from_port(min_val, max_val, instrument_type, port._c if port is not None else None, lesser_bound_contained, greater_bound_contained))
 
     @classmethod
     def new_from_port_and_domain(cls, port: InstrumentPort, domain: Domain) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_from_port_and_domain(port._c, domain._c))
+        return cls(_CLabelledDomain.new_from_port_and_domain(port._c if port is not None else None, domain._c if domain is not None else None))
 
     @classmethod
     def new_from_domain(cls, domain: Domain, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_from_domain(domain._c, default_name, psuedo_name._c, instrument_type, units._c, description))
+        return cls(_CLabelledDomain.new_from_domain(domain._c if domain is not None else None, default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
 
     @classmethod
     def from_json(cls, json: str) -> LabelledDomain:
@@ -57,7 +57,7 @@ class LabelledDomain:
         return Domain._from_capi(ret)
 
     def matching_port(self, port: InstrumentPort) -> None:
-        ret = self._c.matching_port(port._c)
+        ret = self._c.matching_port(port._c if port is not None else None)
         return ret
 
     def lesser_bound(self, ) -> None:
@@ -89,39 +89,43 @@ class LabelledDomain:
         return ret
 
     def intersection(self, other: LabelledDomain) -> LabelledDomain:
-        ret = self._c.intersection(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.intersection(other._c if other is not None else None)
+        return LabelledDomain._from_capi(ret)
 
     def union(self, other: LabelledDomain) -> LabelledDomain:
-        ret = self._c.union(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.union(other._c if other is not None else None)
+        return LabelledDomain._from_capi(ret)
 
     def is_empty(self, ) -> None:
         ret = self._c.is_empty()
         return ret
 
     def contains_domain(self, other: LabelledDomain) -> None:
-        ret = self._c.contains_domain(other._c)
+        ret = self._c.contains_domain(other._c if other is not None else None)
         return ret
 
     def shift(self, offset: Any) -> LabelledDomain:
         ret = self._c.shift(offset)
-        return cls._from_capi(ret)
+        return LabelledDomain._from_capi(ret)
 
     def scale(self, scale: Any) -> LabelledDomain:
         ret = self._c.scale(scale)
-        return cls._from_capi(ret)
+        return LabelledDomain._from_capi(ret)
 
     def transform(self, other: LabelledDomain, value: Any) -> None:
-        ret = self._c.transform(other._c, value)
+        ret = self._c.transform(other._c if other is not None else None, value)
         return ret
 
     def equal(self, other: LabelledDomain) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: LabelledDomain) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

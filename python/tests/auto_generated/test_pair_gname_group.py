@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.generic.pair import Pair
 from falcon_core.autotuner_interfaces.names.gname import Gname
 from falcon_core.physics.config.core.group import Group

@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.generic.pair import Pair
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.math.quantity import Quantity
@@ -9,7 +10,7 @@ class TestPairConnectionQuantity:
         self.obj = None
         try:
             # Found constructor: PairConnectionQuantity_create
-            self.obj = Pair[Connection, Quantity](None, None)
+            self.obj = Pair[Connection, Quantity](Connection.new_barrier('test_conn'), None)
         except Exception as e:
             print(f'Setup failed: {e}')
 

@@ -1,6 +1,8 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
 
 cdef class SymbolUnit:
     def __cinit__(self):
@@ -12,14 +14,6 @@ cdef class SymbolUnit:
             _c_api.SymbolUnit_destroy(self.handle)
         self.handle = <_c_api.SymbolUnitHandle>0
 
-
-cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
-    if h == <_c_api.SymbolUnitHandle>0:
-        return None
-    cdef SymbolUnit obj = SymbolUnit.__new__(SymbolUnit)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_meter(cls, ):
@@ -640,7 +634,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.SymbolUnitHandle h
         try:
             h = _c_api.SymbolUnit_from_json_string(s_json)
@@ -654,9 +648,9 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return obj
 
     def symbol(self, ):
-        cdef StringHandle s_ret
+        cdef _c_api.StringHandle s_ret
         s_ret = _c_api.SymbolUnit_symbol(self.handle)
-        if s_ret == <StringHandle>0:
+        if s_ret == <_c_api.StringHandle>0:
             return ""
         try:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
@@ -664,9 +658,9 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
             _c_api.String_destroy(s_ret)
 
     def name(self, ):
-        cdef StringHandle s_ret
+        cdef _c_api.StringHandle s_ret
         s_ret = _c_api.SymbolUnit_name(self.handle)
-        if s_ret == <StringHandle>0:
+        if s_ret == <_c_api.StringHandle>0:
             return ""
         try:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
@@ -674,7 +668,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
             _c_api.String_destroy(s_ret)
 
     def multiplication(self, SymbolUnit other):
-        cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_multiplication(self.handle, other.handle)
+        cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_multiplication(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
         return _symbol_unit_from_capi(h_ret)
@@ -683,7 +677,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return self.multiplication(other)
 
     def division(self, SymbolUnit other):
-        cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_division(self.handle, other.handle)
+        cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_division(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
         return _symbol_unit_from_capi(h_ret)
@@ -699,7 +693,7 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
 
     def with_prefix(self, str prefix):
         cdef bytes b_prefix = prefix.encode("utf-8")
-        cdef StringHandle s_prefix = _c_api.String_create(b_prefix, len(b_prefix))
+        cdef _c_api.StringHandle s_prefix = _c_api.String_create(b_prefix, len(b_prefix))
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_with_prefix(self.handle, s_prefix)
         _c_api.String_destroy(s_prefix)
         if h_ret == <_c_api.SymbolUnitHandle>0:
@@ -707,13 +701,13 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return _symbol_unit_from_capi(h_ret)
 
     def convert_value_to(self, double value, SymbolUnit target):
-        return _c_api.SymbolUnit_convert_value_to(self.handle, value, target.handle)
+        return _c_api.SymbolUnit_convert_value_to(self.handle, value, target.handle if target is not None else <_c_api.SymbolUnitHandle>0)
 
     def is_compatible_with(self, SymbolUnit other):
-        return _c_api.SymbolUnit_is_compatible_with(self.handle, other.handle)
+        return _c_api.SymbolUnit_is_compatible_with(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
 
     def equal(self, SymbolUnit other):
-        return _c_api.SymbolUnit_equal(self.handle, other.handle)
+        return _c_api.SymbolUnit_equal(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
 
     def __eq__(self, SymbolUnit other):
         if not hasattr(other, "handle"):
@@ -721,9 +715,27 @@ cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h):
         return self.equal(other)
 
     def not_equal(self, SymbolUnit other):
-        return _c_api.SymbolUnit_not_equal(self.handle, other.handle)
+        return _c_api.SymbolUnit_not_equal(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
 
     def __ne__(self, SymbolUnit other):
         if not hasattr(other, "handle"):
             return NotImplemented
         return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.SymbolUnit_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef SymbolUnit _symbol_unit_from_capi(_c_api.SymbolUnitHandle h, bint owned=True):
+    if h == <_c_api.SymbolUnitHandle>0:
+        return None
+    cdef SymbolUnit obj = SymbolUnit.__new__(SymbolUnit)
+    obj.handle = h
+    obj.owned = owned
+    return obj

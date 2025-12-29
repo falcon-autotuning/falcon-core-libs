@@ -1,8 +1,10 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport channel
-from . cimport connections
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .channel cimport Channel, _channel_from_capi
+from .connections cimport Connections, _connections_from_capi
 
 cdef class PairChannelConnections:
     def __cinit__(self):
@@ -15,18 +17,10 @@ cdef class PairChannelConnections:
         self.handle = <_c_api.PairChannelConnectionsHandle>0
 
 
-cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChannelConnectionsHandle h):
-    if h == <_c_api.PairChannelConnectionsHandle>0:
-        return None
-    cdef PairChannelConnections obj = PairChannelConnections.__new__(PairChannelConnections)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, Channel first, Connections second):
         cdef _c_api.PairChannelConnectionsHandle h
-        h = _c_api.PairChannelConnections_create(first.handle, second.handle)
+        h = _c_api.PairChannelConnections_create(first.handle if first is not None else <_c_api.ChannelHandle>0, second.handle if second is not None else <_c_api.ConnectionsHandle>0)
         if h == <_c_api.PairChannelConnectionsHandle>0:
             raise MemoryError("Failed to create PairChannelConnections")
         cdef PairChannelConnections obj = <PairChannelConnections>cls.__new__(cls)
@@ -37,7 +31,7 @@ cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChann
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairChannelConnectionsHandle h
         try:
             h = _c_api.PairChannelConnections_from_json_string(s_json)
@@ -54,16 +48,16 @@ cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChann
         cdef _c_api.ChannelHandle h_ret = _c_api.PairChannelConnections_first(self.handle)
         if h_ret == <_c_api.ChannelHandle>0:
             return None
-        return channel._channel_from_capi(h_ret)
+        return _channel_from_capi(h_ret)
 
     def second(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.PairChannelConnections_second(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return connections._connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret)
 
     def equal(self, PairChannelConnections b):
-        return _c_api.PairChannelConnections_equal(self.handle, b.handle)
+        return _c_api.PairChannelConnections_equal(self.handle, b.handle if b is not None else <_c_api.PairChannelConnectionsHandle>0)
 
     def __eq__(self, PairChannelConnections b):
         if not hasattr(b, "handle"):
@@ -71,9 +65,27 @@ cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChann
         return self.equal(b)
 
     def not_equal(self, PairChannelConnections b):
-        return _c_api.PairChannelConnections_not_equal(self.handle, b.handle)
+        return _c_api.PairChannelConnections_not_equal(self.handle, b.handle if b is not None else <_c_api.PairChannelConnectionsHandle>0)
 
     def __ne__(self, PairChannelConnections b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PairChannelConnections_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef PairChannelConnections _pair_channel_connections_from_capi(_c_api.PairChannelConnectionsHandle h, bint owned=True):
+    if h == <_c_api.PairChannelConnectionsHandle>0:
+        return None
+    cdef PairChannelConnections obj = PairChannelConnections.__new__(PairChannelConnections)
+    obj.handle = h
+    obj.owned = owned
+    return obj

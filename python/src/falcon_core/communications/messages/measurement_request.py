@@ -20,7 +20,7 @@ class MeasurementRequest:
 
     @classmethod
     def new(cls, message: str, measurement_name: str, waveforms: List, getters: Ports, meter_transforms: Map, time_domain: LabelledDomain) -> MeasurementRequest:
-        return cls(_CMeasurementRequest.new(message, measurement_name, waveforms._c, getters._c, meter_transforms._c, time_domain._c))
+        return cls(_CMeasurementRequest.new(message, measurement_name, waveforms._c if waveforms is not None else None, getters._c if getters is not None else None, meter_transforms._c if meter_transforms is not None else None, time_domain._c if time_domain is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> MeasurementRequest:
@@ -55,11 +55,15 @@ class MeasurementRequest:
         return ret
 
     def equal(self, other: MeasurementRequest) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: MeasurementRequest) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

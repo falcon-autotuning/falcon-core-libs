@@ -1,6 +1,8 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
 
 cdef class PairDoubleDouble:
     def __cinit__(self):
@@ -12,14 +14,6 @@ cdef class PairDoubleDouble:
             _c_api.PairDoubleDouble_destroy(self.handle)
         self.handle = <_c_api.PairDoubleDoubleHandle>0
 
-
-cdef PairDoubleDouble _pair_double_double_from_capi(_c_api.PairDoubleDoubleHandle h):
-    if h == <_c_api.PairDoubleDoubleHandle>0:
-        return None
-    cdef PairDoubleDouble obj = PairDoubleDouble.__new__(PairDoubleDouble)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new(cls, double first, double second):
@@ -35,7 +29,7 @@ cdef PairDoubleDouble _pair_double_double_from_capi(_c_api.PairDoubleDoubleHandl
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairDoubleDoubleHandle h
         try:
             h = _c_api.PairDoubleDouble_from_json_string(s_json)
@@ -55,7 +49,7 @@ cdef PairDoubleDouble _pair_double_double_from_capi(_c_api.PairDoubleDoubleHandl
         return _c_api.PairDoubleDouble_second(self.handle)
 
     def equal(self, PairDoubleDouble b):
-        return _c_api.PairDoubleDouble_equal(self.handle, b.handle)
+        return _c_api.PairDoubleDouble_equal(self.handle, b.handle if b is not None else <_c_api.PairDoubleDoubleHandle>0)
 
     def __eq__(self, PairDoubleDouble b):
         if not hasattr(b, "handle"):
@@ -63,9 +57,27 @@ cdef PairDoubleDouble _pair_double_double_from_capi(_c_api.PairDoubleDoubleHandl
         return self.equal(b)
 
     def not_equal(self, PairDoubleDouble b):
-        return _c_api.PairDoubleDouble_not_equal(self.handle, b.handle)
+        return _c_api.PairDoubleDouble_not_equal(self.handle, b.handle if b is not None else <_c_api.PairDoubleDoubleHandle>0)
 
     def __ne__(self, PairDoubleDouble b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PairDoubleDouble_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef PairDoubleDouble _pair_double_double_from_capi(_c_api.PairDoubleDoubleHandle h, bint owned=True):
+    if h == <_c_api.PairDoubleDoubleHandle>0:
+        return None
+    cdef PairDoubleDouble obj = PairDoubleDouble.__new__(PairDoubleDouble)
+    obj.handle = h
+    obj.owned = owned
+    return obj

@@ -28,11 +28,11 @@ class Point:
 
     @classmethod
     def new(cls, items: Map, unit: SymbolUnit) -> Point:
-        return cls(_CPoint.new(items._c, unit._c))
+        return cls(_CPoint.new(items._c if items is not None else None, unit._c if unit is not None else None))
 
     @classmethod
     def new_from_parent(cls, items: Map) -> Point:
-        return cls(_CPoint.new_from_parent(items._c))
+        return cls(_CPoint.new_from_parent(items._c if items is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Point:
@@ -44,20 +44,20 @@ class Point:
         return SymbolUnit._from_capi(ret)
 
     def insert_or_assign(self, key: Connection, value: Quantity) -> None:
-        ret = self._c.insert_or_assign(key._c, value._c)
+        ret = self._c.insert_or_assign(key._c if key is not None else None, value._c if value is not None else None)
         return ret
 
     def insert(self, key: Connection, value: Quantity) -> None:
-        ret = self._c.insert(key._c, value._c)
+        ret = self._c.insert(key._c if key is not None else None, value._c if value is not None else None)
         return ret
 
     def at(self, key: Connection) -> Quantity:
-        ret = self._c.at(key._c)
+        ret = self._c.at(key._c if key is not None else None)
         if ret is None: return None
         return Quantity._from_capi(ret)
 
     def erase(self, key: Connection) -> None:
-        ret = self._c.erase(key._c)
+        ret = self._c.erase(key._c if key is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -73,7 +73,7 @@ class Point:
         return ret
 
     def contains(self, key: Connection) -> None:
-        ret = self._c.contains(key._c)
+        ret = self._c.contains(key._c if key is not None else None)
         return ret
 
     def keys(self, ) -> List:
@@ -102,35 +102,48 @@ class Point:
         return List(ret)
 
     def addition(self, other: Point) -> Point:
-        ret = self._c.addition(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.addition(other._c if other is not None else None)
+        return Point._from_capi(ret)
 
     def subtraction(self, other: Point) -> Point:
-        ret = self._c.subtraction(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.subtraction(other._c if other is not None else None)
+        return Point._from_capi(ret)
 
     def multiplication(self, scalar: Any) -> Point:
         ret = self._c.multiplication(scalar)
-        return cls._from_capi(ret)
+        return Point._from_capi(ret)
 
     def division(self, scalar: Any) -> Point:
         ret = self._c.division(scalar)
-        return cls._from_capi(ret)
+        return Point._from_capi(ret)
 
     def negation(self, ) -> Point:
         ret = self._c.negation()
-        return cls._from_capi(ret)
+        return Point._from_capi(ret)
 
     def set_unit(self, unit: SymbolUnit) -> None:
-        ret = self._c.set_unit(unit._c)
+        ret = self._c.set_unit(unit._c if unit is not None else None)
         return ret
 
     def equal(self, b: Point) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: Point) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
         return ret
 
     def __add__(self, other):

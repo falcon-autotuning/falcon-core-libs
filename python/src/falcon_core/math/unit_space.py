@@ -23,27 +23,27 @@ class UnitSpace:
 
     @classmethod
     def new(cls, axes: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new(axes._c, domain._c))
+        return cls(_CUnitSpace.new(axes._c if axes is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_rayspace(cls, dr: Any, dtheta: Any, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_rayspace(dr, dtheta, domain._c))
+    def new_ray_space(cls, dr: Any, dtheta: Any, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_ray_space(dr, dtheta, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesianspace(cls, deltas: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_cartesianspace(deltas._c, domain._c))
+    def new_cartesian_space(cls, deltas: Axes, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_cartesian_space(deltas._c if deltas is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesian1Dspace(cls, delta: Any, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_cartesian1Dspace(delta, domain._c))
+    def new_cartesian_1D_space(cls, delta: Any, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_cartesian_1D_space(delta, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesian2Dspace(cls, deltas: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_cartesian2Dspace(deltas._c, domain._c))
+    def new_cartesian_2D_space(cls, deltas: Axes, domain: Domain) -> UnitSpace:
+        return cls(_CUnitSpace.new_cartesian_2D_space(deltas._c if deltas is not None else None, domain._c if domain is not None else None))
 
     @classmethod
     def new_array(cls, handle: UnitSpace, axes: Axes) -> UnitSpace:
-        return cls(_CUnitSpace.new_array(handle._c, axes._c))
+        return cls(_CUnitSpace.new_array(handle._c if handle is not None else None, axes._c if axes is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> UnitSpace:
@@ -78,7 +78,7 @@ class UnitSpace:
         return ret
 
     def push_back(self, value: Discretizer) -> None:
-        ret = self._c.push_back(value._c)
+        ret = self._c.push_back(value._c if value is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -103,28 +103,48 @@ class UnitSpace:
         return Discretizer._from_capi(ret)
 
     def items(self, out_buffer: Discretizer, buffer_size: Any) -> None:
-        ret = self._c.items(out_buffer._c, buffer_size)
+        ret = self._c.items(out_buffer._c if out_buffer is not None else None, buffer_size)
         return ret
 
     def contains(self, value: Discretizer) -> None:
-        ret = self._c.contains(value._c)
+        ret = self._c.contains(value._c if value is not None else None)
         return ret
 
     def index(self, value: Discretizer) -> None:
-        ret = self._c.index(value._c)
+        ret = self._c.index(value._c if value is not None else None)
         return ret
 
     def intersection(self, other: UnitSpace) -> UnitSpace:
-        ret = self._c.intersection(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.intersection(other._c if other is not None else None)
+        return UnitSpace._from_capi(ret)
 
     def equal(self, b: UnitSpace) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: UnitSpace) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        return self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        return cls(_CUnitSpace.from_list(items))
 
     def __eq__(self, other):
         """Operator overload for =="""

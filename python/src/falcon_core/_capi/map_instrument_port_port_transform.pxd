@@ -4,4 +4,4 @@ cdef class MapInstrumentPortPortTransform:
     cdef _c_api.MapInstrumentPortPortTransformHandle handle
     cdef bint owned
 
-cdef MapInstrumentPortPortTransform _map_instrument_port_port_transform_from_capi(_c_api.MapInstrumentPortPortTransformHandle h)
+cdef MapInstrumentPortPortTransform _map_instrument_port_port_transform_from_capi(_c_api.MapInstrumentPortPortTransformHandle h, bint owned=*)

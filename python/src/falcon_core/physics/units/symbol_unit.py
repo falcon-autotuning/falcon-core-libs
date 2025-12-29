@@ -251,35 +251,39 @@ class SymbolUnit:
         return ret
 
     def multiplication(self, other: SymbolUnit) -> SymbolUnit:
-        ret = self._c.multiplication(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.multiplication(other._c if other is not None else None)
+        return SymbolUnit._from_capi(ret)
 
     def division(self, other: SymbolUnit) -> SymbolUnit:
-        ret = self._c.division(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.division(other._c if other is not None else None)
+        return SymbolUnit._from_capi(ret)
 
     def power(self, power: Any) -> SymbolUnit:
         ret = self._c.power(power)
-        return cls._from_capi(ret)
+        return SymbolUnit._from_capi(ret)
 
     def with_prefix(self, prefix: str) -> SymbolUnit:
         ret = self._c.with_prefix(prefix)
-        return cls._from_capi(ret)
+        return SymbolUnit._from_capi(ret)
 
     def convert_value_to(self, value: Any, target: SymbolUnit) -> None:
-        ret = self._c.convert_value_to(value, target._c)
+        ret = self._c.convert_value_to(value, target._c if target is not None else None)
         return ret
 
     def is_compatible_with(self, other: SymbolUnit) -> None:
-        ret = self._c.is_compatible_with(other._c)
+        ret = self._c.is_compatible_with(other._c if other is not None else None)
         return ret
 
     def equal(self, other: SymbolUnit) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: SymbolUnit) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __mul__(self, other):

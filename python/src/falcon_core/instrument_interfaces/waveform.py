@@ -25,31 +25,31 @@ class Waveform:
 
     @classmethod
     def new(cls, space: DiscreteSpace, transforms: List) -> Waveform:
-        return cls(_CWaveform.new(space._c, transforms._c))
+        return cls(_CWaveform.new(space._c if space is not None else None, transforms._c if transforms is not None else None))
 
     @classmethod
-    def new_cartesianwaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesianwaveform(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
+    def new_cartesian_waveform(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesian_waveform(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesianidentitywaveform(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesianidentitywaveform(divisions._c, axes._c, increasing._c, domain._c))
+    def new_cartesian_identity_waveform(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesian_identity_waveform(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesianwaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesianwaveform2D(divisions._c, axes._c, increasing._c, transforms._c, domain._c))
+    def new_cartesian_waveform_2D(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesian_waveform_2D(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesianidentitywaveform2D(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesianidentitywaveform2D(divisions._c, axes._c, increasing._c, domain._c))
+    def new_cartesian_identity_waveform_2D(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesian_identity_waveform_2D(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesianwaveform1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesianwaveform1D(division, shared_domain._c, increasing._c, transforms._c, domain._c))
+    def new_cartesian_waveform_1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, transforms: List, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesian_waveform_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesianidentitywaveform1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesianidentitywaveform1D(division, shared_domain._c, increasing._c, domain._c))
+    def new_cartesian_identity_waveform_1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> Waveform:
+        return cls(_CWaveform.new_cartesian_identity_waveform_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Waveform:
@@ -66,7 +66,7 @@ class Waveform:
         return List(ret)
 
     def push_back(self, value: PortTransform) -> None:
-        ret = self._c.push_back(value._c)
+        ret = self._c.push_back(value._c if value is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -96,24 +96,44 @@ class Waveform:
         return List(ret)
 
     def contains(self, value: PortTransform) -> None:
-        ret = self._c.contains(value._c)
+        ret = self._c.contains(value._c if value is not None else None)
         return ret
 
     def index(self, value: PortTransform) -> None:
-        ret = self._c.index(value._c)
+        ret = self._c.index(value._c if value is not None else None)
         return ret
 
     def intersection(self, other: Waveform) -> Waveform:
-        ret = self._c.intersection(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.intersection(other._c if other is not None else None)
+        return Waveform._from_capi(ret)
 
     def equal(self, other: Waveform) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: Waveform) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        return self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        return cls(_CWaveform.from_list(items))
 
     def __eq__(self, other):
         """Operator overload for =="""

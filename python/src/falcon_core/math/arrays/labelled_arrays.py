@@ -203,3 +203,21 @@ class LabelledArrays:
 
     def __repr__(self):
         return f"LabelledArrays[{self._element_type}]({self._c})"
+
+    def __len__(self):
+        if hasattr(self._c, '__len__'):
+            return len(self._c)
+        if hasattr(self._c, 'size'):
+            return self._c.size()
+        raise TypeError(f'Underlying object {type(self._c)} does not support length')
+
+    def __getitem__(self, key):
+        if hasattr(self._c, '__getitem__'):
+            return self._c[key]
+        if hasattr(self._c, 'at'):
+            return self._c.at(key)
+        raise TypeError(f'Underlying object {type(self._c)} does not support indexing')
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]

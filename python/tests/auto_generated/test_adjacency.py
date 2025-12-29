@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.physics.config.core.adjacency import Adjacency
 
 class TestAdjacency:
@@ -6,9 +7,17 @@ class TestAdjacency:
         self.obj = None
         try:
             # Found constructor: Adjacency_create
-            self.obj = Adjacency.new(0, 0, 0, None)
+            self.obj = Adjacency.new(array.array('i', [0]), array.array('L', [0]), 0, None)
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_indexes(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.indexes()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_indexes(self):
         if self.obj is None:
@@ -46,7 +55,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.shape(0, 0)
+            self.obj.shape(array.array('L', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -54,15 +63,15 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.data(0, 0)
+            self.obj.data(array.array('i', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_timesequals_farray(self):
+    def test_times_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.timesequals_farray(None)
+            self.obj.times_equals_farray(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -74,19 +83,19 @@ class TestAdjacency:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_equality(self):
+    def test_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equality(None)
+            self.obj.equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_notequality(self):
+    def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.notequality(None)
+            self.obj.not_equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

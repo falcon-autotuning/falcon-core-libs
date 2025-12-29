@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport config
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .config cimport Config, _config_from_capi
 
 cdef class Loader:
     def __cinit__(self):
@@ -14,18 +16,10 @@ cdef class Loader:
         self.handle = <_c_api.LoaderHandle>0
 
 
-cdef Loader _loader_from_capi(_c_api.LoaderHandle h):
-    if h == <_c_api.LoaderHandle>0:
-        return None
-    cdef Loader obj = Loader.__new__(Loader)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, str config_path):
         cdef bytes b_config_path = config_path.encode("utf-8")
-        cdef StringHandle s_config_path = _c_api.String_create(b_config_path, len(b_config_path))
+        cdef _c_api.StringHandle s_config_path = _c_api.String_create(b_config_path, len(b_config_path))
         cdef _c_api.LoaderHandle h
         try:
             h = _c_api.Loader_create(s_config_path)
@@ -42,4 +36,12 @@ cdef Loader _loader_from_capi(_c_api.LoaderHandle h):
         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
         if h_ret == <_c_api.ConfigHandle>0:
             return None
-        return config._config_from_capi(h_ret)
+        return _config_from_capi(h_ret)
+
+cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):
+    if h == <_c_api.LoaderHandle>0:
+        return None
+    cdef Loader obj = Loader.__new__(Loader)
+    obj.handle = h
+    obj.owned = owned
+    return obj

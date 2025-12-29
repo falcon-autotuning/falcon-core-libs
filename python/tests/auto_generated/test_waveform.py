@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.instrument_interfaces.waveform import Waveform
 
 class TestWaveform:

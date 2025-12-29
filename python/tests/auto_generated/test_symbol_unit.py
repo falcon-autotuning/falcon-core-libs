@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 
 class TestSymbolUnit:
@@ -30,7 +32,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiplication(None)
+            self.obj.multiplication(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -38,7 +40,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.division(None)
+            self.obj.division(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -62,7 +64,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.convert_value_to(0.0, None)
+            self.obj.convert_value_to(0.0, SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -70,7 +72,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.is_compatible_with(None)
+            self.obj.is_compatible_with(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -78,7 +80,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -86,7 +88,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

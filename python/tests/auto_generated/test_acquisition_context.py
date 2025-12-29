@@ -1,4 +1,8 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
 
 class TestAcquisitionContext:
@@ -6,7 +10,7 @@ class TestAcquisitionContext:
         self.obj = None
         try:
             # Found constructor: AcquisitionContext_create
-            self.obj = AcquisitionContext.new(None, "test_string", None)
+            self.obj = AcquisitionContext.new(Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -38,7 +42,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.division_unit(None)
+            self.obj.division_unit(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -54,7 +58,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.match_connection(None)
+            self.obj.match_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

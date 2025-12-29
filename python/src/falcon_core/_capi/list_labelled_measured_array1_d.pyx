@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport labelled_measured_array1_d
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .labelled_measured_array1_d cimport LabelledMeasuredArray1D, _labelled_measured_array1_d_from_capi
 
 cdef class ListLabelledMeasuredArray1D:
     def __cinit__(self):
@@ -13,14 +15,6 @@ cdef class ListLabelledMeasuredArray1D:
             _c_api.ListLabelledMeasuredArray1D_destroy(self.handle)
         self.handle = <_c_api.ListLabelledMeasuredArray1DHandle>0
 
-
-cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_api.ListLabelledMeasuredArray1DHandle h):
-    if h == <_c_api.ListLabelledMeasuredArray1DHandle>0:
-        return None
-    cdef ListLabelledMeasuredArray1D obj = ListLabelledMeasuredArray1D.__new__(ListLabelledMeasuredArray1D)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -34,9 +28,9 @@ cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_a
         return obj
 
     @classmethod
-    def new(cls, LabelledMeasuredArray1D data, size_t count):
+    def new(cls, size_t[:] data, size_t count):
         cdef _c_api.ListLabelledMeasuredArray1DHandle h
-        h = _c_api.ListLabelledMeasuredArray1D_create(data.handle, count)
+        h = _c_api.ListLabelledMeasuredArray1D_create(<_c_api.LabelledMeasuredArray1DHandle*>&data[0], count)
         if h == <_c_api.ListLabelledMeasuredArray1DHandle>0:
             raise MemoryError("Failed to create ListLabelledMeasuredArray1D")
         cdef ListLabelledMeasuredArray1D obj = <ListLabelledMeasuredArray1D>cls.__new__(cls)
@@ -47,7 +41,7 @@ cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_a
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ListLabelledMeasuredArray1DHandle h
         try:
             h = _c_api.ListLabelledMeasuredArray1D_from_json_string(s_json)
@@ -62,13 +56,13 @@ cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_a
 
     @staticmethod
     def fill_value(size_t count, LabelledMeasuredArray1D value):
-        cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_fill_value(count, value.handle)
+        cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_fill_value(count, value.handle if value is not None else <_c_api.LabelledMeasuredArray1DHandle>0)
         if h_ret == <_c_api.ListLabelledMeasuredArray1DHandle>0:
             return None
         return _list_labelled_measured_array1_d_from_capi(h_ret)
 
     def push_back(self, LabelledMeasuredArray1D value):
-        _c_api.ListLabelledMeasuredArray1D_push_back(self.handle, value.handle)
+        _c_api.ListLabelledMeasuredArray1D_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledMeasuredArray1DHandle>0)
 
     def size(self, ):
         return _c_api.ListLabelledMeasuredArray1D_size(self.handle)
@@ -86,25 +80,25 @@ cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_a
         cdef _c_api.LabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_at(self.handle, idx)
         if h_ret == <_c_api.LabelledMeasuredArray1DHandle>0:
             return None
-        return labelled_measured_array1_d._labelled_measured_array1_d_from_capi(h_ret)
+        return _labelled_measured_array1_d_from_capi(h_ret, owned=False)
 
-    def items(self, LabelledMeasuredArray1D out_buffer, size_t buffer_size):
-        return _c_api.ListLabelledMeasuredArray1D_items(self.handle, out_buffer.handle, buffer_size)
+    def items(self, size_t[:] out_buffer, size_t buffer_size):
+        return _c_api.ListLabelledMeasuredArray1D_items(self.handle, <_c_api.LabelledMeasuredArray1DHandle*>&out_buffer[0], buffer_size)
 
     def contains(self, LabelledMeasuredArray1D value):
-        return _c_api.ListLabelledMeasuredArray1D_contains(self.handle, value.handle)
+        return _c_api.ListLabelledMeasuredArray1D_contains(self.handle, value.handle if value is not None else <_c_api.LabelledMeasuredArray1DHandle>0)
 
     def index(self, LabelledMeasuredArray1D value):
-        return _c_api.ListLabelledMeasuredArray1D_index(self.handle, value.handle)
+        return _c_api.ListLabelledMeasuredArray1D_index(self.handle, value.handle if value is not None else <_c_api.LabelledMeasuredArray1DHandle>0)
 
     def intersection(self, ListLabelledMeasuredArray1D other):
-        cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_intersection(self.handle, other.handle)
+        cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.ListLabelledMeasuredArray1DHandle>0)
         if h_ret == <_c_api.ListLabelledMeasuredArray1DHandle>0:
             return None
         return _list_labelled_measured_array1_d_from_capi(h_ret)
 
     def equal(self, ListLabelledMeasuredArray1D b):
-        return _c_api.ListLabelledMeasuredArray1D_equal(self.handle, b.handle)
+        return _c_api.ListLabelledMeasuredArray1D_equal(self.handle, b.handle if b is not None else <_c_api.ListLabelledMeasuredArray1DHandle>0)
 
     def __eq__(self, ListLabelledMeasuredArray1D b):
         if not hasattr(b, "handle"):
@@ -112,9 +106,48 @@ cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_a
         return self.equal(b)
 
     def not_equal(self, ListLabelledMeasuredArray1D b):
-        return _c_api.ListLabelledMeasuredArray1D_not_equal(self.handle, b.handle)
+        return _c_api.ListLabelledMeasuredArray1D_not_equal(self.handle, b.handle if b is not None else <_c_api.ListLabelledMeasuredArray1DHandle>0)
 
     def __ne__(self, ListLabelledMeasuredArray1D b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.ListLabelledMeasuredArray1D_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef ListLabelledMeasuredArray1D obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef ListLabelledMeasuredArray1D _list_labelled_measured_array1_d_from_capi(_c_api.ListLabelledMeasuredArray1DHandle h, bint owned=True):
+    if h == <_c_api.ListLabelledMeasuredArray1DHandle>0:
+        return None
+    cdef ListLabelledMeasuredArray1D obj = ListLabelledMeasuredArray1D.__new__(ListLabelledMeasuredArray1D)
+    obj.handle = h
+    obj.owned = owned
+    return obj

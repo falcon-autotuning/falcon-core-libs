@@ -1,3 +1,4 @@
+LICENSE.txt
 pyproject.toml
 setup.py
 /workdir/python/src/falcon_core/_capi/acquisition_context.cpp

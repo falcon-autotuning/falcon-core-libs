@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.autotuner_interfaces.names.channels import Channels
 
 class TestChannels:

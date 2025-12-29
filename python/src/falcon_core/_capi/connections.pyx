@@ -1,8 +1,10 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport connection
-from . cimport list_connection
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .connection cimport Connection, _connection_from_capi
+from .list_connection cimport ListConnection, _list_connection_from_capi
 
 cdef class Connections:
     def __cinit__(self):
@@ -14,14 +16,6 @@ cdef class Connections:
             _c_api.Connections_destroy(self.handle)
         self.handle = <_c_api.ConnectionsHandle>0
 
-
-cdef Connections _connections_from_capi(_c_api.ConnectionsHandle h):
-    if h == <_c_api.ConnectionsHandle>0:
-        return None
-    cdef Connections obj = Connections.__new__(Connections)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -37,7 +31,7 @@ cdef Connections _connections_from_capi(_c_api.ConnectionsHandle h):
     @classmethod
     def new(cls, ListConnection items):
         cdef _c_api.ConnectionsHandle h
-        h = _c_api.Connections_create(items.handle)
+        h = _c_api.Connections_create(items.handle if items is not None else <_c_api.ListConnectionHandle>0)
         if h == <_c_api.ConnectionsHandle>0:
             raise MemoryError("Failed to create Connections")
         cdef Connections obj = <Connections>cls.__new__(cls)
@@ -48,7 +42,7 @@ cdef Connections _connections_from_capi(_c_api.ConnectionsHandle h):
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ConnectionsHandle h
         try:
             h = _c_api.Connections_from_json_string(s_json)
@@ -83,13 +77,13 @@ cdef Connections _connections_from_capi(_c_api.ConnectionsHandle h):
         return _c_api.Connections_is_screening_gates(self.handle)
 
     def intersection(self, Connections other):
-        cdef _c_api.ConnectionsHandle h_ret = _c_api.Connections_intersection(self.handle, other.handle)
+        cdef _c_api.ConnectionsHandle h_ret = _c_api.Connections_intersection(self.handle, other.handle if other is not None else <_c_api.ConnectionsHandle>0)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
         return _connections_from_capi(h_ret)
 
     def push_back(self, Connection value):
-        _c_api.Connections_push_back(self.handle, value.handle)
+        _c_api.Connections_push_back(self.handle, value.handle if value is not None else <_c_api.ConnectionHandle>0)
 
     def size(self, ):
         return _c_api.Connections_size(self.handle)
@@ -103,42 +97,75 @@ cdef Connections _connections_from_capi(_c_api.ConnectionsHandle h):
     def clear(self, ):
         _c_api.Connections_clear(self.handle)
 
-    def const_at(self, size_t idx):
-        cdef _c_api.ConnectionHandle h_ret = _c_api.Connections_const_at(self.handle, idx)
-        if h_ret == <_c_api.ConnectionHandle>0:
-            return None
-        return connection._connection_from_capi(h_ret)
-
     def at(self, size_t idx):
         cdef _c_api.ConnectionHandle h_ret = _c_api.Connections_at(self.handle, idx)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return connection._connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Connections_items(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return list_connection._list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret)
 
     def contains(self, Connection value):
-        return _c_api.Connections_contains(self.handle, value.handle)
+        return _c_api.Connections_contains(self.handle, value.handle if value is not None else <_c_api.ConnectionHandle>0)
 
     def index(self, Connection value):
-        return _c_api.Connections_index(self.handle, value.handle)
+        return _c_api.Connections_index(self.handle, value.handle if value is not None else <_c_api.ConnectionHandle>0)
 
-    def equal(self, Connections b):
-        return _c_api.Connections_equal(self.handle, b.handle)
+    def equal(self, Connections other):
+        return _c_api.Connections_equal(self.handle, other.handle if other is not None else <_c_api.ConnectionsHandle>0)
 
-    def __eq__(self, Connections b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, Connections other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, Connections b):
-        return _c_api.Connections_not_equal(self.handle, b.handle)
+    def not_equal(self, Connections other):
+        return _c_api.Connections_not_equal(self.handle, other.handle if other is not None else <_c_api.ConnectionsHandle>0)
 
-    def __ne__(self, Connections b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, Connections other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Connections_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef Connections obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef Connections _connections_from_capi(_c_api.ConnectionsHandle h, bint owned=True):
+    if h == <_c_api.ConnectionsHandle>0:
+        return None
+    cdef Connections obj = Connections.__new__(Connections)
+    obj.handle = h
+    obj.owned = owned
+    return obj

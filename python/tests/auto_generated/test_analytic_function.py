@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.analytic_function import AnalyticFunction
 
 class TestAnalyticFunction:

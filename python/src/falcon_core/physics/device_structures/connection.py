@@ -74,12 +74,16 @@ class Connection:
         ret = self._c.is_gate()
         return ret
 
-    def equal(self, b: Connection) -> None:
-        ret = self._c.equal(b._c)
+    def equal(self, other: Connection) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, b: Connection) -> None:
-        ret = self._c.not_equal(b._c)
+    def not_equal(self, other: Connection) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

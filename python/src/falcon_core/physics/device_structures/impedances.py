@@ -22,14 +22,14 @@ class Impedances:
 
     @classmethod
     def new(cls, items: List) -> Impedances:
-        return cls(_CImpedances.new(items._c))
+        return cls(_CImpedances.new(items._c if items is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Impedances:
         return cls(_CImpedances.from_json(json))
 
     def push_back(self, value: Impedance) -> None:
-        ret = self._c.push_back(value._c)
+        ret = self._c.push_back(value._c if value is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -48,39 +48,55 @@ class Impedances:
         ret = self._c.clear()
         return ret
 
-    def const_at(self, idx: Any) -> Impedance:
-        ret = self._c.const_at(idx)
-        if ret is None: return None
-        return Impedance._from_capi(ret)
-
     def at(self, idx: Any) -> Impedance:
         ret = self._c.at(idx)
         if ret is None: return None
         return Impedance._from_capi(ret)
 
-    def items(self, out_buffer: Impedance, buffer_size: Any) -> None:
-        ret = self._c.items(out_buffer._c, buffer_size)
-        return ret
+    def items(self, ) -> List:
+        ret = self._c.items()
+        if ret is None: return None
+        return List(ret)
 
     def contains(self, value: Impedance) -> None:
-        ret = self._c.contains(value._c)
+        ret = self._c.contains(value._c if value is not None else None)
         return ret
 
-    def intersection(self, b: Impedances) -> Impedances:
-        ret = self._c.intersection(b._c)
-        return cls._from_capi(ret)
+    def intersection(self, other: Impedances) -> Impedances:
+        ret = self._c.intersection(other._c if other is not None else None)
+        return Impedances._from_capi(ret)
 
     def index(self, value: Impedance) -> None:
-        ret = self._c.index(value._c)
+        ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, b: Impedances) -> None:
-        ret = self._c.equal(b._c)
+    def equal(self, other: Impedances) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, b: Impedances) -> None:
-        ret = self._c.not_equal(b._c)
+    def not_equal(self, other: Impedances) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        return self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        return cls(_CImpedances.from_list(items))
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -4,4 +4,4 @@ cdef class MapStringBool:
     cdef _c_api.MapStringBoolHandle handle
     cdef bint owned
 
-cdef MapStringBool _map_string_bool_from_capi(_c_api.MapStringBoolHandle h)
+cdef MapStringBool _map_string_bool_from_capi(_c_api.MapStringBoolHandle h, bint owned=*)

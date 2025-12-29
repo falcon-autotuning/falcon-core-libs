@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport interpretation_context
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .interpretation_context cimport InterpretationContext, _interpretation_context_from_capi
 
 cdef class ListInterpretationContext:
     def __cinit__(self):
@@ -13,14 +15,6 @@ cdef class ListInterpretationContext:
             _c_api.ListInterpretationContext_destroy(self.handle)
         self.handle = <_c_api.ListInterpretationContextHandle>0
 
-
-cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h):
-    if h == <_c_api.ListInterpretationContextHandle>0:
-        return None
-    cdef ListInterpretationContext obj = ListInterpretationContext.__new__(ListInterpretationContext)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -34,9 +28,9 @@ cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.Lis
         return obj
 
     @classmethod
-    def new(cls, InterpretationContext data, size_t count):
+    def new(cls, size_t[:] data, size_t count):
         cdef _c_api.ListInterpretationContextHandle h
-        h = _c_api.ListInterpretationContext_create(data.handle, count)
+        h = _c_api.ListInterpretationContext_create(<_c_api.InterpretationContextHandle*>&data[0], count)
         if h == <_c_api.ListInterpretationContextHandle>0:
             raise MemoryError("Failed to create ListInterpretationContext")
         cdef ListInterpretationContext obj = <ListInterpretationContext>cls.__new__(cls)
@@ -47,7 +41,7 @@ cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.Lis
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ListInterpretationContextHandle h
         try:
             h = _c_api.ListInterpretationContext_from_json_string(s_json)
@@ -62,13 +56,13 @@ cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.Lis
 
     @staticmethod
     def fill_value(size_t count, InterpretationContext value):
-        cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle)
+        cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
         return _list_interpretation_context_from_capi(h_ret)
 
     def push_back(self, InterpretationContext value):
-        _c_api.ListInterpretationContext_push_back(self.handle, value.handle)
+        _c_api.ListInterpretationContext_push_back(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
 
     def size(self, ):
         return _c_api.ListInterpretationContext_size(self.handle)
@@ -86,25 +80,25 @@ cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.Lis
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.ListInterpretationContext_at(self.handle, idx)
         if h_ret == <_c_api.InterpretationContextHandle>0:
             return None
-        return interpretation_context._interpretation_context_from_capi(h_ret)
+        return _interpretation_context_from_capi(h_ret, owned=False)
 
-    def items(self, InterpretationContext out_buffer, size_t buffer_size):
-        return _c_api.ListInterpretationContext_items(self.handle, out_buffer.handle, buffer_size)
+    def items(self, size_t[:] out_buffer, size_t buffer_size):
+        return _c_api.ListInterpretationContext_items(self.handle, <_c_api.InterpretationContextHandle*>&out_buffer[0], buffer_size)
 
     def contains(self, InterpretationContext value):
-        return _c_api.ListInterpretationContext_contains(self.handle, value.handle)
+        return _c_api.ListInterpretationContext_contains(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
 
     def index(self, InterpretationContext value):
-        return _c_api.ListInterpretationContext_index(self.handle, value.handle)
+        return _c_api.ListInterpretationContext_index(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
 
     def intersection(self, ListInterpretationContext other):
-        cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle)
+        cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
         return _list_interpretation_context_from_capi(h_ret)
 
     def equal(self, ListInterpretationContext b):
-        return _c_api.ListInterpretationContext_equal(self.handle, b.handle)
+        return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
 
     def __eq__(self, ListInterpretationContext b):
         if not hasattr(b, "handle"):
@@ -112,9 +106,48 @@ cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.Lis
         return self.equal(b)
 
     def not_equal(self, ListInterpretationContext b):
-        return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle)
+        return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
 
     def __ne__(self, ListInterpretationContext b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.ListInterpretationContext_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef ListInterpretationContext obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h, bint owned=True):
+    if h == <_c_api.ListInterpretationContextHandle>0:
+        return None
+    cdef ListInterpretationContext obj = ListInterpretationContext.__new__(ListInterpretationContext)
+    obj.handle = h
+    obj.owned = owned
+    return obj

@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
 
 class TestDeviceVoltageStates:
@@ -30,7 +32,7 @@ class TestDeviceVoltageStates:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.find_state(None)
+            self.obj.find_state(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -87,14 +89,6 @@ class TestDeviceVoltageStates:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
             self.obj.clear()
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_const_at(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.const_at(0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

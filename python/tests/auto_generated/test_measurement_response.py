@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.communications.messages.measurement_response import MeasurementResponse
 
 class TestMeasurementResponse:

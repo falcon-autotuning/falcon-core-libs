@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.arrays.labelled_arrays import LabelledArrays
 from falcon_core.math.arrays.labelled_measured_array import LabelledMeasuredArray
 from falcon_core.math.arrays.labelled_arrays import LabelledArrays
@@ -28,19 +29,19 @@ class TestLabelledArraysLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_isControlArrays(self):
+    def test_is_control_arrays(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.isControlArrays()
+            self.obj.is_control_arrays()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_isMeasuredArrays(self):
+    def test_is_measured_arrays(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.isMeasuredArrays()
+            self.obj.is_measured_arrays()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

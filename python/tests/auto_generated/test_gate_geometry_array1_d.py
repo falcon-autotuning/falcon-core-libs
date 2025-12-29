@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.geometries.gate_geometry_array1_d import GateGeometryArray1D
 
 class TestGateGeometryArray1D:
@@ -14,7 +16,7 @@ class TestGateGeometryArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.append_central_gate(None, None, None)
+            self.obj.append_central_gate(Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -30,7 +32,7 @@ class TestGateGeometryArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.query_neighbors(None)
+            self.obj.query_neighbors(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -66,11 +68,11 @@ class TestGateGeometryArray1D:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_lineararray(self):
+    def test_linear_array(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.lineararray()
+            self.obj.linear_array()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

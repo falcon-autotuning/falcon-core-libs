@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.arrays.increasing_alignment import IncreasingAlignment
 
 class TestIncreasingAlignment:

@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.core.config import Config
 
 class TestConfig:
@@ -54,7 +56,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_impedance(None)
+            self.obj.get_impedance(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -118,7 +120,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.ohmic_in_charge_sensor(None)
+            self.obj.ohmic_in_charge_sensor(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -126,7 +128,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_associated_ohmic(None)
+            self.obj.get_associated_ohmic(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -270,7 +272,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.return_channels_from_gate(None)
+            self.obj.return_channels_from_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -278,7 +280,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.return_channel_from_gate(None)
+            self.obj.return_channel_from_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -286,7 +288,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.ohmic_in_channel(None, None)
+            self.obj.ohmic_in_channel(Connection.new_barrier('test_conn'), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -294,7 +296,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_dot_channel_neighbors(None)
+            self.obj.get_dot_channel_neighbors(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -718,7 +720,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_ohmic(None)
+            self.obj.has_ohmic(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -726,7 +728,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_gate(None)
+            self.obj.has_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -734,7 +736,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_barrier_gate(None)
+            self.obj.has_barrier_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -742,7 +744,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_plunger_gate(None)
+            self.obj.has_plunger_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -750,7 +752,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_reservoir_gate(None)
+            self.obj.has_reservoir_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -758,7 +760,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_screening_gate(None)
+            self.obj.has_screening_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

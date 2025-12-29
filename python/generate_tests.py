@@ -2,9 +2,20 @@ import os
 from typing import List, Dict, Any, Tuple
 from generate_wrappers import ClassDef, Function, Argument, to_snake_case, is_template_type, classify_template_type, TEMPLATE_LOCATIONS, get_python_type_from_suffix, PYTHON_KEYWORD_RENAMES
 
+RECIPES = {
+    # type_name: (instantiation_expression, [imports])
+    "Connection": ("Connection.new_barrier('test_conn')", ["from falcon_core.physics.device_structures.connection import Connection"]),
+    "SymbolUnit": ("SymbolUnit.new_meter()", ["from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "InstrumentPort": ("InstrumentPort.new_timer()", ["from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
+}
+
 def get_dummy_value(type_name: str) -> str:
     """Return a dummy value string for a given type."""
     type_name = type_name.strip()
+    
+    if type_name in RECIPES:
+        return RECIPES[type_name][0]
+        
     if type_name in ["int", "size_t", "int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"]:
         return "0"
     elif type_name in ["double", "float"]:
@@ -14,6 +25,9 @@ def get_dummy_value(type_name: str) -> str:
     elif type_name == "StringHandle" or type_name == "str":
         return '"test_string"'
     elif type_name.endswith("Handle"):
+        wrapper_type = type_name[:-6]
+        if wrapper_type in RECIPES:
+             return RECIPES[wrapper_type][0]
         # For handles, we ideally want a valid object, but for now None might have to do
         # or we can try to instantiate a dummy if we knew how.
         # However, passing None to C API expecting a handle often crashes if not checked.
@@ -25,8 +39,12 @@ def get_dummy_value(type_name: str) -> str:
         return "None"
     elif type_name == "list":
         return "[]"
+    elif type_name == "dict":
+        return "{}"
     elif "*" in type_name:
-        return "[]" # Treat pointers as lists for now
+        return "None" # Will be handled by memoryview check
+    elif type_name == "Quantity":
+        return "Quantity(0.0, SymbolUnit.new_meter())"
     else:
         return "None"
 
@@ -109,10 +127,34 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
     """Generate the content of a test file for a given class."""
     lines = []
     lines.append("import pytest")
+    lines.append("import array")
     # lines.append("from falcon_core.physics.device_structures.connection import Connection") # Common import - now handled dynamically
     
     if extra_imports:
         for imp in extra_imports:
+            lines.append(imp)
+
+    # Collect imports from RECIPES based on usage in constructors and methods
+    recipe_imports = set()
+    all_args = []
+    for ctor in cls.constructors:
+        all_args.extend(ctor.args)
+    for method in cls.methods:
+        all_args.extend(method.args)
+        
+    for arg in all_args:
+        t = arg.type_name.strip()
+        if t in RECIPES:
+            for imp in RECIPES[t][1]:
+                recipe_imports.add(imp)
+        elif t.endswith("Handle"):
+            wrapper = t[:-6]
+            if wrapper in RECIPES:
+                for imp in RECIPES[wrapper][1]:
+                    recipe_imports.add(imp)
+                    
+    for imp in sorted(list(recipe_imports)):
+        if imp not in lines:
             lines.append(imp)
 
     # Import the class under test
@@ -126,8 +168,6 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
     lines.append("        self.obj = None")
     lines.append("        try:")
     
-    # Determine the class to instantiate
-    # If it's a template, we need to use the generic syntax
     # Determine the class to instantiate
     # If it's a template, we need to use the generic syntax
     if instantiation_class is None:
@@ -167,7 +207,18 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
                              "_create_" in name or "_from_" in name)
             
             if is_valid_ctor: 
-                args = [get_dummy_value(arg.type_name) for arg in ctor.args]
+                args = []
+                for arg in ctor.args:
+                    if arg.is_ptr:
+                        # Use array.array for memoryviews
+                        type_code = 'i'
+                        if arg.type_name in ['double', 'float']: type_code = 'd'
+                        elif arg.type_name == 'bool': type_code = 'B'
+                        elif arg.type_name == 'size_t' or arg.type_name.endswith('Handle'): type_code = 'L'
+                        args.append(f"array.array('{type_code}', [0])")
+                    else:
+                        args.append(get_dummy_value(arg.type_name))
+                
                 lines.append(f"            # Found constructor: {ctor.name}")
                 
                 if is_template_type(cls.name):
@@ -187,6 +238,8 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
                             suffix = suffix[:-5]
                         method_name = "new_" + suffix
                     elif method_name == "from_json_string":
+                        method_name = "from_json"
+                    elif method_name == "from_json":
                         method_name = "from_json"
                         
                     lines.append(f"            self.obj = {cls.name}.{method_name}({', '.join(args)})")
@@ -219,7 +272,18 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
         lines.append("        if self.obj is None:")
         lines.append("            pytest.skip('Skipping test because object could not be instantiated')")
         
-        args = [get_dummy_value(arg.type_name) for arg in method.args]
+        args = []
+        for arg in method.args:
+            if arg.is_ptr:
+                # Use array.array for memoryviews
+                type_code = 'i'
+                if arg.type_name in ['double', 'float']: type_code = 'd'
+                elif arg.type_name == 'bool': type_code = 'B'
+                elif arg.type_name == 'size_t' or arg.type_name.endswith('Handle'): type_code = 'L'
+                args.append(f"array.array('{type_code}', [0])")
+            else:
+                args.append(get_dummy_value(arg.type_name))
+                
         if args and (method.args[0].type_name == cls.handle_type or method.args[0].name == "handle"):
             args = args[1:]
             

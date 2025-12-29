@@ -4,4 +4,4 @@ cdef class MapConnectionQuantity:
     cdef _c_api.MapConnectionQuantityHandle handle
     cdef bint owned
 
-cdef MapConnectionQuantity _map_connection_quantity_from_capi(_c_api.MapConnectionQuantityHandle h)
+cdef MapConnectionQuantity _map_connection_quantity_from_capi(_c_api.MapConnectionQuantityHandle h, bint owned=*)

@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
 
 class TestVoltageConstraints:

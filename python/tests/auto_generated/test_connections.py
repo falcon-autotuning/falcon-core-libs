@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 
 class TestConnections:
@@ -78,7 +80,7 @@ class TestConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -114,14 +116,6 @@ class TestConnections:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_const_at(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.const_at(0)
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
     def test_at(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -142,7 +136,7 @@ class TestConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -150,7 +144,7 @@ class TestConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

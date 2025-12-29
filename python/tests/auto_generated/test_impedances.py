@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.physics.device_structures.impedances import Impedances
 
 class TestImpedances:
@@ -50,14 +51,6 @@ class TestImpedances:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_const_at(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.const_at(0)
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
     def test_at(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -70,7 +63,7 @@ class TestImpedances:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(None, 0)
+            self.obj.items()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

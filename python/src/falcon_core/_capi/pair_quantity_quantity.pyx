@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport quantity
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .quantity cimport Quantity, _quantity_from_capi
 
 cdef class PairQuantityQuantity:
     def __cinit__(self):
@@ -14,18 +16,10 @@ cdef class PairQuantityQuantity:
         self.handle = <_c_api.PairQuantityQuantityHandle>0
 
 
-cdef PairQuantityQuantity _pair_quantity_quantity_from_capi(_c_api.PairQuantityQuantityHandle h):
-    if h == <_c_api.PairQuantityQuantityHandle>0:
-        return None
-    cdef PairQuantityQuantity obj = PairQuantityQuantity.__new__(PairQuantityQuantity)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, Quantity first, Quantity second):
         cdef _c_api.PairQuantityQuantityHandle h
-        h = _c_api.PairQuantityQuantity_create(first.handle, second.handle)
+        h = _c_api.PairQuantityQuantity_create(first.handle if first is not None else <_c_api.QuantityHandle>0, second.handle if second is not None else <_c_api.QuantityHandle>0)
         if h == <_c_api.PairQuantityQuantityHandle>0:
             raise MemoryError("Failed to create PairQuantityQuantity")
         cdef PairQuantityQuantity obj = <PairQuantityQuantity>cls.__new__(cls)
@@ -36,7 +30,7 @@ cdef PairQuantityQuantity _pair_quantity_quantity_from_capi(_c_api.PairQuantityQ
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairQuantityQuantityHandle h
         try:
             h = _c_api.PairQuantityQuantity_from_json_string(s_json)
@@ -53,16 +47,16 @@ cdef PairQuantityQuantity _pair_quantity_quantity_from_capi(_c_api.PairQuantityQ
         cdef _c_api.QuantityHandle h_ret = _c_api.PairQuantityQuantity_first(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return quantity._quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret)
 
     def second(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.PairQuantityQuantity_second(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return quantity._quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret)
 
     def equal(self, PairQuantityQuantity b):
-        return _c_api.PairQuantityQuantity_equal(self.handle, b.handle)
+        return _c_api.PairQuantityQuantity_equal(self.handle, b.handle if b is not None else <_c_api.PairQuantityQuantityHandle>0)
 
     def __eq__(self, PairQuantityQuantity b):
         if not hasattr(b, "handle"):
@@ -70,9 +64,27 @@ cdef PairQuantityQuantity _pair_quantity_quantity_from_capi(_c_api.PairQuantityQ
         return self.equal(b)
 
     def not_equal(self, PairQuantityQuantity b):
-        return _c_api.PairQuantityQuantity_not_equal(self.handle, b.handle)
+        return _c_api.PairQuantityQuantity_not_equal(self.handle, b.handle if b is not None else <_c_api.PairQuantityQuantityHandle>0)
 
     def __ne__(self, PairQuantityQuantity b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PairQuantityQuantity_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef PairQuantityQuantity _pair_quantity_quantity_from_capi(_c_api.PairQuantityQuantityHandle h, bint owned=True):
+    if h == <_c_api.PairQuantityQuantityHandle>0:
+        return None
+    cdef PairQuantityQuantity obj = PairQuantityQuantity.__new__(PairQuantityQuantity)
+    obj.handle = h
+    obj.owned = owned
+    return obj

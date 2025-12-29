@@ -51,39 +51,43 @@ class Domain:
         return ret
 
     def intersection(self, other: Domain) -> Domain:
-        ret = self._c.intersection(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.intersection(other._c if other is not None else None)
+        return Domain._from_capi(ret)
 
     def union(self, other: Domain) -> Domain:
-        ret = self._c.union(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.union(other._c if other is not None else None)
+        return Domain._from_capi(ret)
 
     def is_empty(self, ) -> None:
         ret = self._c.is_empty()
         return ret
 
     def contains_domain(self, other: Domain) -> None:
-        ret = self._c.contains_domain(other._c)
+        ret = self._c.contains_domain(other._c if other is not None else None)
         return ret
 
     def shift(self, offset: Any) -> Domain:
         ret = self._c.shift(offset)
-        return cls._from_capi(ret)
+        return Domain._from_capi(ret)
 
     def scale(self, scale: Any) -> Domain:
         ret = self._c.scale(scale)
-        return cls._from_capi(ret)
+        return Domain._from_capi(ret)
 
     def transform(self, other: Domain, value: Any) -> None:
-        ret = self._c.transform(other._c, value)
+        ret = self._c.transform(other._c if other is not None else None, value)
         return ret
 
     def equal(self, other: Domain) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: Domain) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

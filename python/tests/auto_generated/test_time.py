@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.communications.time import Time
 
 class TestTime:

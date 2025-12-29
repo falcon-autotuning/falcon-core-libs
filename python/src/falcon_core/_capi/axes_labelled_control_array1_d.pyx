@@ -1,8 +1,10 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport labelled_control_array1_d
-from . cimport list_labelled_control_array1_d
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .labelled_control_array1_d cimport LabelledControlArray1D, _labelled_control_array1_d_from_capi
+from .list_labelled_control_array1_d cimport ListLabelledControlArray1D, _list_labelled_control_array1_d_from_capi
 
 cdef class AxesLabelledControlArray1D:
     def __cinit__(self):
@@ -14,14 +16,6 @@ cdef class AxesLabelledControlArray1D:
             _c_api.AxesLabelledControlArray1D_destroy(self.handle)
         self.handle = <_c_api.AxesLabelledControlArray1DHandle>0
 
-
-cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api.AxesLabelledControlArray1DHandle h):
-    if h == <_c_api.AxesLabelledControlArray1DHandle>0:
-        return None
-    cdef AxesLabelledControlArray1D obj = AxesLabelledControlArray1D.__new__(AxesLabelledControlArray1D)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -35,20 +29,9 @@ cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api
         return obj
 
     @classmethod
-    def new_raw(cls, LabelledControlArray1D data, size_t count):
-        cdef _c_api.AxesLabelledControlArray1DHandle h
-        h = _c_api.AxesLabelledControlArray1D_create_raw(data.handle, count)
-        if h == <_c_api.AxesLabelledControlArray1DHandle>0:
-            raise MemoryError("Failed to create AxesLabelledControlArray1D")
-        cdef AxesLabelledControlArray1D obj = <AxesLabelledControlArray1D>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def new(cls, ListLabelledControlArray1D data):
         cdef _c_api.AxesLabelledControlArray1DHandle h
-        h = _c_api.AxesLabelledControlArray1D_create(data.handle)
+        h = _c_api.AxesLabelledControlArray1D_create(data.handle if data is not None else <_c_api.ListLabelledControlArray1DHandle>0)
         if h == <_c_api.AxesLabelledControlArray1DHandle>0:
             raise MemoryError("Failed to create AxesLabelledControlArray1D")
         cdef AxesLabelledControlArray1D obj = <AxesLabelledControlArray1D>cls.__new__(cls)
@@ -59,7 +42,7 @@ cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.AxesLabelledControlArray1DHandle h
         try:
             h = _c_api.AxesLabelledControlArray1D_from_json_string(s_json)
@@ -73,7 +56,7 @@ cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api
         return obj
 
     def push_back(self, LabelledControlArray1D value):
-        _c_api.AxesLabelledControlArray1D_push_back(self.handle, value.handle)
+        _c_api.AxesLabelledControlArray1D_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledControlArray1DHandle>0)
 
     def size(self, ):
         return _c_api.AxesLabelledControlArray1D_size(self.handle)
@@ -91,25 +74,25 @@ cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api
         cdef _c_api.LabelledControlArray1DHandle h_ret = _c_api.AxesLabelledControlArray1D_at(self.handle, idx)
         if h_ret == <_c_api.LabelledControlArray1DHandle>0:
             return None
-        return labelled_control_array1_d._labelled_control_array1_d_from_capi(h_ret)
+        return _labelled_control_array1_d_from_capi(h_ret, owned=False)
 
-    def items(self, LabelledControlArray1D out_buffer, size_t buffer_size):
-        return _c_api.AxesLabelledControlArray1D_items(self.handle, out_buffer.handle, buffer_size)
+    def items(self, size_t[:] out_buffer, size_t buffer_size):
+        return _c_api.AxesLabelledControlArray1D_items(self.handle, <_c_api.LabelledControlArray1DHandle*>&out_buffer[0], buffer_size)
 
     def contains(self, LabelledControlArray1D value):
-        return _c_api.AxesLabelledControlArray1D_contains(self.handle, value.handle)
+        return _c_api.AxesLabelledControlArray1D_contains(self.handle, value.handle if value is not None else <_c_api.LabelledControlArray1DHandle>0)
 
     def index(self, LabelledControlArray1D value):
-        return _c_api.AxesLabelledControlArray1D_index(self.handle, value.handle)
+        return _c_api.AxesLabelledControlArray1D_index(self.handle, value.handle if value is not None else <_c_api.LabelledControlArray1DHandle>0)
 
     def intersection(self, AxesLabelledControlArray1D other):
-        cdef _c_api.AxesLabelledControlArray1DHandle h_ret = _c_api.AxesLabelledControlArray1D_intersection(self.handle, other.handle)
+        cdef _c_api.AxesLabelledControlArray1DHandle h_ret = _c_api.AxesLabelledControlArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
         if h_ret == <_c_api.AxesLabelledControlArray1DHandle>0:
             return None
         return _axes_labelled_control_array1_d_from_capi(h_ret)
 
     def equal(self, AxesLabelledControlArray1D b):
-        return _c_api.AxesLabelledControlArray1D_equal(self.handle, b.handle)
+        return _c_api.AxesLabelledControlArray1D_equal(self.handle, b.handle if b is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
 
     def __eq__(self, AxesLabelledControlArray1D b):
         if not hasattr(b, "handle"):
@@ -117,9 +100,48 @@ cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api
         return self.equal(b)
 
     def not_equal(self, AxesLabelledControlArray1D b):
-        return _c_api.AxesLabelledControlArray1D_not_equal(self.handle, b.handle)
+        return _c_api.AxesLabelledControlArray1D_not_equal(self.handle, b.handle if b is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
 
     def __ne__(self, AxesLabelledControlArray1D b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.AxesLabelledControlArray1D_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef AxesLabelledControlArray1D obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef AxesLabelledControlArray1D _axes_labelled_control_array1_d_from_capi(_c_api.AxesLabelledControlArray1DHandle h, bint owned=True):
+    if h == <_c_api.AxesLabelledControlArray1DHandle>0:
+        return None
+    cdef AxesLabelledControlArray1D obj = AxesLabelledControlArray1D.__new__(AxesLabelledControlArray1D)
+    obj.handle = h
+    obj.owned = owned
+    return obj

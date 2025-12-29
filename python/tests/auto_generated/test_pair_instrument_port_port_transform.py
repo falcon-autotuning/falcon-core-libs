@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.generic.pair import Pair
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
@@ -9,7 +10,7 @@ class TestPairInstrumentPortPortTransform:
         self.obj = None
         try:
             # Found constructor: PairInstrumentPortPortTransform_create
-            self.obj = Pair[InstrumentPort, PortTransform](None, None)
+            self.obj = Pair[InstrumentPort, PortTransform](InstrumentPort.new_timer(), None)
         except Exception as e:
             print(f'Setup failed: {e}')
 

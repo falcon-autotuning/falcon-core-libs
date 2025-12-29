@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
 
 class TestPortTransform:
@@ -6,7 +8,7 @@ class TestPortTransform:
         self.obj = None
         try:
             # Found constructor: PortTransform_create
-            self.obj = PortTransform.new(None, None)
+            self.obj = PortTransform.new(InstrumentPort.new_timer(), None)
         except Exception as e:
             print(f'Setup failed: {e}')
 

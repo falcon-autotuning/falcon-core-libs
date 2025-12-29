@@ -19,7 +19,7 @@ class AnalyticFunction:
 
     @classmethod
     def new(cls, labels: List, expression: str) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.new(labels._c, expression))
+        return cls(_CAnalyticFunction.new(labels._c if labels is not None else None, expression))
 
     @classmethod
     def new_identity(cls, ) -> AnalyticFunction:
@@ -39,20 +39,24 @@ class AnalyticFunction:
         return List(ret)
 
     def evaluate(self, args: Map, time: Any) -> None:
-        ret = self._c.evaluate(args._c, time)
+        ret = self._c.evaluate(args._c if args is not None else None, time)
         return ret
 
     def evaluate_arraywise(self, args: Map, deltaT: Any, maxTime: Any) -> FArray:
-        ret = self._c.evaluate_arraywise(args._c, deltaT, maxTime)
+        ret = self._c.evaluate_arraywise(args._c if args is not None else None, deltaT, maxTime)
         if ret is None: return None
         return FArray(ret)
 
     def equal(self, b: AnalyticFunction) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: AnalyticFunction) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

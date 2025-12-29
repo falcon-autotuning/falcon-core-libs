@@ -1,15 +1,17 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport axes_control_array
-from . cimport axes_coupled_labelled_domain
-from . cimport axes_int
-from . cimport device_voltage_states
-from . cimport labelled_arrays_labelled_measured_array
-from . cimport map_string_string
-from . cimport measurement_request
-from . cimport measurement_response
-from . cimport pair_measurement_response_measurement_request
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .axes_control_array cimport AxesControlArray, _axes_control_array_from_capi
+from .axes_coupled_labelled_domain cimport AxesCoupledLabelledDomain, _axes_coupled_labelled_domain_from_capi
+from .axes_int cimport AxesInt, _axes_int_from_capi
+from .device_voltage_states cimport DeviceVoltageStates, _device_voltage_states_from_capi
+from .labelled_arrays_labelled_measured_array cimport LabelledArraysLabelledMeasuredArray, _labelled_arrays_labelled_measured_array_from_capi
+from .map_string_string cimport MapStringString, _map_string_string_from_capi
+from .measurement_request cimport MeasurementRequest, _measurement_request_from_capi
+from .measurement_response cimport MeasurementResponse, _measurement_response_from_capi
+from .pair_measurement_response_measurement_request cimport PairMeasurementResponseMeasurementRequest, _pair_measurement_response_measurement_request_from_capi
 
 cdef class HDF5Data:
     def __cinit__(self):
@@ -22,21 +24,13 @@ cdef class HDF5Data:
         self.handle = <_c_api.HDF5DataHandle>0
 
 
-cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
-    if h == <_c_api.HDF5DataHandle>0:
-        return None
-    cdef HDF5Data obj = HDF5Data.__new__(HDF5Data)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, AxesInt shape, AxesControlArray unit_domain, AxesCoupledLabelledDomain domain_labels, LabelledArraysLabelledMeasuredArray ranges, MapStringString metadata, str measurement_title, int unique_id, int timestamp):
         cdef bytes b_measurement_title = measurement_title.encode("utf-8")
-        cdef StringHandle s_measurement_title = _c_api.String_create(b_measurement_title, len(b_measurement_title))
+        cdef _c_api.StringHandle s_measurement_title = _c_api.String_create(b_measurement_title, len(b_measurement_title))
         cdef _c_api.HDF5DataHandle h
         try:
-            h = _c_api.HDF5Data_create(shape.handle, unit_domain.handle, domain_labels.handle, ranges.handle, metadata.handle, s_measurement_title, unique_id, timestamp)
+            h = _c_api.HDF5Data_create(shape.handle if shape is not None else <_c_api.AxesIntHandle>0, unit_domain.handle if unit_domain is not None else <_c_api.AxesControlArrayHandle>0, domain_labels.handle if domain_labels is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, ranges.handle if ranges is not None else <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0, metadata.handle if metadata is not None else <_c_api.MapStringStringHandle>0, s_measurement_title, unique_id, timestamp)
         finally:
             _c_api.String_destroy(s_measurement_title)
         if h == <_c_api.HDF5DataHandle>0:
@@ -49,7 +43,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
     @classmethod
     def new_from_file(cls, str path):
         cdef bytes b_path = path.encode("utf-8")
-        cdef StringHandle s_path = _c_api.String_create(b_path, len(b_path))
+        cdef _c_api.StringHandle s_path = _c_api.String_create(b_path, len(b_path))
         cdef _c_api.HDF5DataHandle h
         try:
             h = _c_api.HDF5Data_create_from_file(s_path)
@@ -63,12 +57,12 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
         return obj
 
     @classmethod
-    def new_from_communications(cls, MeasurementRequest request, MeasurementResponse response, DeviceVoltageStates device_voltage_states, int8_t session_id[16], str measurement_title, int unique_id, int timestamp):
+    def new_from_communications(cls, MeasurementRequest request, MeasurementResponse response, DeviceVoltageStates device_voltage_states, int8_t[:] session_id, str measurement_title, int unique_id, int timestamp):
         cdef bytes b_measurement_title = measurement_title.encode("utf-8")
-        cdef StringHandle s_measurement_title = _c_api.String_create(b_measurement_title, len(b_measurement_title))
+        cdef _c_api.StringHandle s_measurement_title = _c_api.String_create(b_measurement_title, len(b_measurement_title))
         cdef _c_api.HDF5DataHandle h
         try:
-            h = _c_api.HDF5Data_create_from_communications(request.handle, response.handle, device_voltage_states.handle, session_id[16], s_measurement_title, unique_id, timestamp)
+            h = _c_api.HDF5Data_create_from_communications(request.handle if request is not None else <_c_api.MeasurementRequestHandle>0, response.handle if response is not None else <_c_api.MeasurementResponseHandle>0, device_voltage_states.handle if device_voltage_states is not None else <_c_api.DeviceVoltageStatesHandle>0, &session_id[0], s_measurement_title, unique_id, timestamp)
         finally:
             _c_api.String_destroy(s_measurement_title)
         if h == <_c_api.HDF5DataHandle>0:
@@ -81,7 +75,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.HDF5DataHandle h
         try:
             h = _c_api.HDF5Data_from_json_string(s_json)
@@ -96,7 +90,7 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
 
     def to_file(self, str path):
         cdef bytes b_path = path.encode("utf-8")
-        cdef StringHandle s_path = _c_api.String_create(b_path, len(b_path))
+        cdef _c_api.StringHandle s_path = _c_api.String_create(b_path, len(b_path))
         _c_api.HDF5Data_to_file(self.handle, s_path)
         _c_api.String_destroy(s_path)
 
@@ -104,10 +98,10 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
         cdef _c_api.PairMeasurementResponseMeasurementRequestHandle h_ret = _c_api.HDF5Data_to_communications(self.handle)
         if h_ret == <_c_api.PairMeasurementResponseMeasurementRequestHandle>0:
             return None
-        return pair_measurement_response_measurement_request._pair_measurement_response_measurement_request_from_capi(h_ret)
+        return _pair_measurement_response_measurement_request_from_capi(h_ret)
 
     def equal(self, HDF5Data other):
-        return _c_api.HDF5Data_equal(self.handle, other.handle)
+        return _c_api.HDF5Data_equal(self.handle, other.handle if other is not None else <_c_api.HDF5DataHandle>0)
 
     def __eq__(self, HDF5Data other):
         if not hasattr(other, "handle"):
@@ -115,9 +109,27 @@ cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h):
         return self.equal(other)
 
     def not_equal(self, HDF5Data other):
-        return _c_api.HDF5Data_not_equal(self.handle, other.handle)
+        return _c_api.HDF5Data_not_equal(self.handle, other.handle if other is not None else <_c_api.HDF5DataHandle>0)
 
     def __ne__(self, HDF5Data other):
         if not hasattr(other, "handle"):
             return NotImplemented
         return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.HDF5Data_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h, bint owned=True):
+    if h == <_c_api.HDF5DataHandle>0:
+        return None
+    cdef HDF5Data obj = HDF5Data.__new__(HDF5Data)
+    obj.handle = h
+    obj.owned = owned
+    return obj

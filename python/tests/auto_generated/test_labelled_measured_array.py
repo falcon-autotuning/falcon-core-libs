@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.arrays.labelled_measured_array import LabelledMeasuredArray
 
 class TestLabelledMeasuredArray:
@@ -78,7 +79,7 @@ class TestLabelledMeasuredArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.shape(0, 0)
+            self.obj.shape(array.array('L', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -86,31 +87,31 @@ class TestLabelledMeasuredArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.data(0.0, 0)
+            self.obj.data(array.array('d', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_plusequals_farray(self):
+    def test_plus_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plusequals_farray(None)
+            self.obj.plus_equals_farray(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_plusequals_double(self):
+    def test_plus_equals_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plusequals_double(0.0)
+            self.obj.plus_equals_double(0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_plusequals_int(self):
+    def test_plus_equals_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plusequals_int(0)
+            self.obj.plus_equals_int(0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -146,35 +147,35 @@ class TestLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_minusequals_measured_array(self):
+    def test_minus_equals_measured_array(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minusequals_measured_array(None)
+            self.obj.minus_equals_measured_array(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_minusequals_farray(self):
+    def test_minus_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minusequals_farray(None)
+            self.obj.minus_equals_farray(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_minusequals_double(self):
+    def test_minus_equals_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minusequals_double(0.0)
+            self.obj.minus_equals_double(0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_minusequals_int(self):
+    def test_minus_equals_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minusequals_int(0)
+            self.obj.minus_equals_int(0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -218,35 +219,35 @@ class TestLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_timesequals_measured_array(self):
+    def test_times_equals_measured_array(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.timesequals_measured_array(None)
+            self.obj.times_equals_measured_array(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_timesequals_farray(self):
+    def test_times_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.timesequals_farray(None)
+            self.obj.times_equals_farray(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_timesequals_double(self):
+    def test_times_equals_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.timesequals_double(0.0)
+            self.obj.times_equals_double(0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_timesequals_int(self):
+    def test_times_equals_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.timesequals_int(0)
+            self.obj.times_equals_int(0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -282,35 +283,35 @@ class TestLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_dividesequals_measured_array(self):
+    def test_divides_equals_measured_array(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.dividesequals_measured_array(None)
+            self.obj.divides_equals_measured_array(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_dividesequals_farray(self):
+    def test_divides_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.dividesequals_farray(None)
+            self.obj.divides_equals_farray(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_dividesequals_double(self):
+    def test_divides_equals_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.dividesequals_double(0.0)
+            self.obj.divides_equals_double(0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_dividesequals_int(self):
+    def test_divides_equals_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.dividesequals_int(0)
+            self.obj.divides_equals_int(0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -362,6 +363,14 @@ class TestLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_min(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.min()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
     def test_min_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -375,6 +384,14 @@ class TestLabelledMeasuredArray:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
             self.obj.min_measured_array(None)
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_max(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.max()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -394,35 +411,35 @@ class TestLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_equality(self):
+    def test_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equality(None)
+            self.obj.equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_notequality(self):
+    def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.notequality(None)
+            self.obj.not_equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_greaterthan(self):
+    def test_greater_than(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.greaterthan(0.0)
+            self.obj.greater_than(0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_lessthan(self):
+    def test_less_than(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.lessthan(0.0)
+            self.obj.less_than(0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -446,7 +463,7 @@ class TestLabelledMeasuredArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.reshape(0, 0)
+            self.obj.reshape(array.array('L', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -470,7 +487,7 @@ class TestLabelledMeasuredArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.full_gradient(None, 0)
+            self.obj.full_gradient(array.array('L', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

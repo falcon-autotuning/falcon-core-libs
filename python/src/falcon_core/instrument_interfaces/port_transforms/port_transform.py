@@ -21,15 +21,15 @@ class PortTransform:
 
     @classmethod
     def new(cls, port: InstrumentPort, transform: AnalyticFunction) -> PortTransform:
-        return cls(_CPortTransform.new(port._c, transform._c))
+        return cls(_CPortTransform.new(port._c if port is not None else None, transform._c if transform is not None else None))
 
     @classmethod
     def new_constant_transform(cls, port: InstrumentPort, value: Any) -> PortTransform:
-        return cls(_CPortTransform.new_constant_transform(port._c, value))
+        return cls(_CPortTransform.new_constant_transform(port._c if port is not None else None, value))
 
     @classmethod
     def new_identity_transform(cls, port: InstrumentPort) -> PortTransform:
-        return cls(_CPortTransform.new_identity_transform(port._c))
+        return cls(_CPortTransform.new_identity_transform(port._c if port is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> PortTransform:
@@ -46,20 +46,24 @@ class PortTransform:
         return List(ret)
 
     def evaluate(self, args: Map, time: Any) -> None:
-        ret = self._c.evaluate(args._c, time)
+        ret = self._c.evaluate(args._c if args is not None else None, time)
         return ret
 
     def evaluate_arraywise(self, args: Map, deltaT: Any, maxTime: Any) -> FArray:
-        ret = self._c.evaluate_arraywise(args._c, deltaT, maxTime)
+        ret = self._c.evaluate_arraywise(args._c if args is not None else None, deltaT, maxTime)
         if ret is None: return None
         return FArray(ret)
 
     def equal(self, b: PortTransform) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: PortTransform) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

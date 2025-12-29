@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.impedance import Impedance
 
 class TestImpedance:
@@ -6,7 +8,7 @@ class TestImpedance:
         self.obj = None
         try:
             # Found constructor: Impedance_create
-            self.obj = Impedance.new(None, 0.0, 0.0)
+            self.obj = Impedance.new(Connection.new_barrier('test_conn'), 0.0, 0.0)
         except Exception as e:
             print(f'Setup failed: {e}')
 

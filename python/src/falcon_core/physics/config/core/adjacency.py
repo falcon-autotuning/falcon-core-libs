@@ -20,11 +20,16 @@ class Adjacency:
 
     @classmethod
     def new(cls, data: Any, shape: Any, ndim: Any, indexes: Connections) -> Adjacency:
-        return cls(_CAdjacency.new(data, shape, ndim, indexes._c))
+        return cls(_CAdjacency.new(data, shape, ndim, indexes._c if indexes is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Adjacency:
         return cls(_CAdjacency.from_json(json))
+
+    def indexes(self, ) -> Connections:
+        ret = self._c.indexes()
+        if ret is None: return None
+        return Connections._from_capi(ret)
 
     def indexes(self, ) -> Connections:
         ret = self._c.indexes()
@@ -52,20 +57,20 @@ class Adjacency:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
-    def timesequals_farray(self, other: FArray) -> None:
-        ret = self._c.timesequals_farray(other._c)
+    def times_equals_farray(self, other: FArray) -> None:
+        ret = self._c.times_equals_farray(other._c if other is not None else None)
         return ret
 
     def times_farray(self, other: FArray) -> Adjacency:
-        ret = self._c.times_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.times_farray(other._c if other is not None else None)
+        return Adjacency._from_capi(ret)
 
-    def equality(self, other: Adjacency) -> None:
-        ret = self._c.equality(other._c)
+    def equal(self, other: Adjacency) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def notequality(self, other: Adjacency) -> None:
-        ret = self._c.notequality(other._c)
+    def not_equal(self, other: Adjacency) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
     def sum(self, ) -> None:
@@ -79,10 +84,19 @@ class Adjacency:
 
     def flip(self, axis: Any) -> Adjacency:
         ret = self._c.flip(axis)
-        return cls._from_capi(ret)
+        return Adjacency._from_capi(ret)
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
 
     def __mul__(self, other):
         """Operator overload for *"""
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.times_equals_farray(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
             return self.times_farray(other)
         return NotImplemented
@@ -91,10 +105,10 @@ class Adjacency:
         """Operator overload for =="""
         if not isinstance(other, Adjacency):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, Adjacency):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

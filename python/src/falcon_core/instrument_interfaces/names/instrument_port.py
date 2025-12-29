@@ -18,15 +18,15 @@ class InstrumentPort:
 
     @classmethod
     def new_port(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.new_port(default_name, psuedo_name._c, instrument_type, units._c, description))
+        return cls(_CInstrumentPort.new_port(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
 
     @classmethod
     def new_knob(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.new_knob(default_name, psuedo_name._c, instrument_type, units._c, description))
+        return cls(_CInstrumentPort.new_knob(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
 
     @classmethod
     def new_meter(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.new_meter(default_name, psuedo_name._c, instrument_type, units._c, description))
+        return cls(_CInstrumentPort.new_meter(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
 
     @classmethod
     def new_timer(cls, ) -> InstrumentPort:
@@ -79,11 +79,15 @@ class InstrumentPort:
         return ret
 
     def equal(self, other: InstrumentPort) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: InstrumentPort) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

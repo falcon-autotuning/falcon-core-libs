@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.autotuner_interfaces.names.gname import Gname
 
 class TestGname:

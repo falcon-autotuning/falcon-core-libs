@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.axes import Axes
 from falcon_core.math.axes import Axes
 
@@ -63,7 +64,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(0, 0)
+            self.obj.items(array.array('i', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

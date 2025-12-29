@@ -21,12 +21,8 @@ class PortTransforms:
         return cls(_CPortTransforms.new_empty())
 
     @classmethod
-    def new_raw(cls, data: PortTransform, count: Any) -> PortTransforms:
-        return cls(_CPortTransforms.new_raw(data._c, count))
-
-    @classmethod
     def new(cls, handle: List) -> PortTransforms:
-        return cls(_CPortTransforms.new(handle._c))
+        return cls(_CPortTransforms.new(handle._c if handle is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> PortTransforms:
@@ -38,7 +34,7 @@ class PortTransforms:
         return List(ret)
 
     def push_back(self, value: PortTransform) -> None:
-        ret = self._c.push_back(value._c)
+        ret = self._c.push_back(value._c if value is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -68,24 +64,44 @@ class PortTransforms:
         return List(ret)
 
     def contains(self, value: PortTransform) -> None:
-        ret = self._c.contains(value._c)
+        ret = self._c.contains(value._c if value is not None else None)
         return ret
 
     def index(self, value: PortTransform) -> None:
-        ret = self._c.index(value._c)
+        ret = self._c.index(value._c if value is not None else None)
         return ret
 
     def intersection(self, other: PortTransforms) -> PortTransforms:
-        ret = self._c.intersection(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.intersection(other._c if other is not None else None)
+        return PortTransforms._from_capi(ret)
 
     def equal(self, b: PortTransforms) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: PortTransforms) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        return self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        return cls(_CPortTransforms.from_list(items))
 
     def __eq__(self, other):
         """Operator overload for =="""

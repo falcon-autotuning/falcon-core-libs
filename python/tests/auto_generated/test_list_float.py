@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.generic.list import List
 from falcon_core.generic.list import List
 
@@ -79,7 +80,7 @@ class TestListFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(0.0, 0)
+            self.obj.items(array.array('d', [0]), 0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

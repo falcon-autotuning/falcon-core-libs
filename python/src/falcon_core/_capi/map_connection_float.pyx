@@ -1,11 +1,13 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport connection
-from . cimport list_connection
-from . cimport list_float
-from . cimport list_pair_connection_float
-from . cimport pair_connection_float
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .connection cimport Connection, _connection_from_capi
+from .list_connection cimport ListConnection, _list_connection_from_capi
+from .list_float cimport ListFloat, _list_float_from_capi
+from .list_pair_connection_float cimport ListPairConnectionFloat, _list_pair_connection_float_from_capi
+from .pair_connection_float cimport PairConnectionFloat, _pair_connection_float_from_capi
 
 cdef class MapConnectionFloat:
     def __cinit__(self):
@@ -17,14 +19,6 @@ cdef class MapConnectionFloat:
             _c_api.MapConnectionFloat_destroy(self.handle)
         self.handle = <_c_api.MapConnectionFloatHandle>0
 
-
-cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloatHandle h):
-    if h == <_c_api.MapConnectionFloatHandle>0:
-        return None
-    cdef MapConnectionFloat obj = MapConnectionFloat.__new__(MapConnectionFloat)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new_empty(cls, ):
@@ -38,9 +32,9 @@ cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloa
         return obj
 
     @classmethod
-    def new(cls, PairConnectionFloat data, size_t count):
+    def new(cls, size_t[:] data, size_t count):
         cdef _c_api.MapConnectionFloatHandle h
-        h = _c_api.MapConnectionFloat_create(data.handle, count)
+        h = _c_api.MapConnectionFloat_create(<_c_api.PairConnectionFloatHandle*>&data[0], count)
         if h == <_c_api.MapConnectionFloatHandle>0:
             raise MemoryError("Failed to create MapConnectionFloat")
         cdef MapConnectionFloat obj = <MapConnectionFloat>cls.__new__(cls)
@@ -51,7 +45,7 @@ cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloa
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.MapConnectionFloatHandle h
         try:
             h = _c_api.MapConnectionFloat_from_json_string(s_json)
@@ -65,16 +59,16 @@ cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloa
         return obj
 
     def insert_or_assign(self, Connection key, float value):
-        _c_api.MapConnectionFloat_insert_or_assign(self.handle, key.handle, value)
+        _c_api.MapConnectionFloat_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value)
 
     def insert(self, Connection key, float value):
-        _c_api.MapConnectionFloat_insert(self.handle, key.handle, value)
+        _c_api.MapConnectionFloat_insert(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value)
 
     def at(self, Connection key):
-        return _c_api.MapConnectionFloat_at(self.handle, key.handle)
+        return _c_api.MapConnectionFloat_at(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0)
 
     def erase(self, Connection key):
-        _c_api.MapConnectionFloat_erase(self.handle, key.handle)
+        _c_api.MapConnectionFloat_erase(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0)
 
     def size(self, ):
         return _c_api.MapConnectionFloat_size(self.handle)
@@ -86,28 +80,28 @@ cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloa
         _c_api.MapConnectionFloat_clear(self.handle)
 
     def contains(self, Connection key):
-        return _c_api.MapConnectionFloat_contains(self.handle, key.handle)
+        return _c_api.MapConnectionFloat_contains(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0)
 
     def keys(self, ):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.MapConnectionFloat_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return list_connection._list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret)
 
     def values(self, ):
         cdef _c_api.ListFloatHandle h_ret = _c_api.MapConnectionFloat_values(self.handle)
         if h_ret == <_c_api.ListFloatHandle>0:
             return None
-        return list_float._list_float_from_capi(h_ret)
+        return _list_float_from_capi(h_ret)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionFloatHandle h_ret = _c_api.MapConnectionFloat_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionFloatHandle>0:
             return None
-        return list_pair_connection_float._list_pair_connection_float_from_capi(h_ret)
+        return _list_pair_connection_float_from_capi(h_ret)
 
     def equal(self, MapConnectionFloat b):
-        return _c_api.MapConnectionFloat_equal(self.handle, b.handle)
+        return _c_api.MapConnectionFloat_equal(self.handle, b.handle if b is not None else <_c_api.MapConnectionFloatHandle>0)
 
     def __eq__(self, MapConnectionFloat b):
         if not hasattr(b, "handle"):
@@ -115,9 +109,36 @@ cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloa
         return self.equal(b)
 
     def not_equal(self, MapConnectionFloat b):
-        return _c_api.MapConnectionFloat_not_equal(self.handle, b.handle)
+        return _c_api.MapConnectionFloat_not_equal(self.handle, b.handle if b is not None else <_c_api.MapConnectionFloatHandle>0)
 
     def __ne__(self, MapConnectionFloat b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.MapConnectionFloat_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+cdef MapConnectionFloat _map_connection_float_from_capi(_c_api.MapConnectionFloatHandle h, bint owned=True):
+    if h == <_c_api.MapConnectionFloatHandle>0:
+        return None
+    cdef MapConnectionFloat obj = MapConnectionFloat.__new__(MapConnectionFloat)
+    obj.handle = h
+    obj.owned = owned
+    return obj

@@ -4,7 +4,8 @@ import sys
 from collections import defaultdict
 from generate_wrappers import (parse_header, generate_pxd, generate_pyx, generate_wrapper_pxd, generate_registry_entry, 
                                 generate_python_class, is_template_type, classify_template_type,
-                                TEMPLATE_PATTERNS)
+                                TEMPLATE_PATTERNS, to_snake_case)
+from generate_tests import generate_tests
 
 def to_snake_case(name):
     import re
@@ -13,7 +14,9 @@ def to_snake_case(name):
 
 def main():
     # Real header location
-    headers_root = os.path.expanduser("~/work/wisc/playground/falcon-core/c-api/include")
+    headers_root = "/usr/local/include/falcon-core-c-api"
+    if not os.path.exists(headers_root):
+        headers_root = os.path.expanduser("~/work/wisc/playground/falcon-core/c-api/include")
     falcon_core_root = os.path.join(headers_root, "falcon_core")
     
     if not os.path.exists(headers_root):
@@ -153,7 +156,11 @@ def main():
     print("Generating template registries and generic wrappers...")
     generate_template_wrappers(template_instances, class_metadata, python_root)
     
-    print("\\nGeneration complete!")
+    # Generate tests
+    print("Generating tests...")
+    generate_tests(all_classes, "tests/auto_generated", type_map)
+    
+    print("\nGeneration complete!")
 
 def generate_template_wrappers(template_instances, class_metadata, python_root):
     """Generate generic wrapper classes and registries for template types."""
@@ -264,6 +271,11 @@ def generate_template_registry(base, instances):
         if complex_type in type_to_module:
             module = type_to_module[complex_type]
             lines.append(f"from {module} import {complex_type}")
+        else:
+            # Check if it's a generated template type (e.g. PairSizeTSizeT)
+            # We assume these are in _capi
+            snake_type = to_snake_case(complex_type)
+            lines.append(f"from falcon_core._capi.{snake_type} import {complex_type}")
     
     if complex_types_needed:
         lines.append("")
@@ -497,6 +509,28 @@ def generate_generic_wrapper(base, instances):
     # Add __repr__
     lines.append(f"    def __repr__(self):")
     lines.append(f'        return f"{base}[{{self._element_type}}]({{self._c}})"')
+    lines.append("")
+
+    # Add iteration methods
+    lines.append(f"    def __len__(self):")
+    lines.append(f"        if hasattr(self._c, '__len__'):")
+    lines.append(f"            return len(self._c)")
+    lines.append(f"        if hasattr(self._c, 'size'):")
+    lines.append(f"            return self._c.size()")
+    lines.append(f"        raise TypeError(f'Underlying object {{type(self._c)}} does not support length')")
+    lines.append("")
+    
+    lines.append(f"    def __getitem__(self, key):")
+    lines.append(f"        if hasattr(self._c, '__getitem__'):")
+    lines.append(f"            return self._c[key]")
+    lines.append(f"        if hasattr(self._c, 'at'):")
+    lines.append(f"            return self._c.at(key)")
+    lines.append(f"        raise TypeError(f'Underlying object {{type(self._c)}} does not support indexing')")
+    lines.append("")
+
+    lines.append(f"    def __iter__(self):")
+    lines.append(f"        for i in range(len(self)):")
+    lines.append(f"            yield self[i]")
     lines.append("")
     
     return "\n".join(lines)

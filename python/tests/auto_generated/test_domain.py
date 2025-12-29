@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.math.domains.domain import Domain
 
 class TestDomain:

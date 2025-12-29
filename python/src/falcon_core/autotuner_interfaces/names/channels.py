@@ -23,18 +23,18 @@ class Channels:
 
     @classmethod
     def new(cls, items: List) -> Channels:
-        return cls(_CChannels.new(items._c))
+        return cls(_CChannels.new(items._c if items is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Channels:
         return cls(_CChannels.from_json(json))
 
     def intersection(self, other: Channels) -> Channels:
-        ret = self._c.intersection(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.intersection(other._c if other is not None else None)
+        return Channels._from_capi(ret)
 
     def push_back(self, value: Channel) -> None:
-        ret = self._c.push_back(value._c)
+        ret = self._c.push_back(value._c if value is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -64,20 +64,40 @@ class Channels:
         return List(ret)
 
     def contains(self, value: Channel) -> None:
-        ret = self._c.contains(value._c)
+        ret = self._c.contains(value._c if value is not None else None)
         return ret
 
     def index(self, value: Channel) -> None:
-        ret = self._c.index(value._c)
+        ret = self._c.index(value._c if value is not None else None)
         return ret
 
     def equal(self, b: Channels) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: Channels) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        return self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        return cls(_CChannels.from_list(items))
 
     def __eq__(self, other):
         """Operator overload for =="""

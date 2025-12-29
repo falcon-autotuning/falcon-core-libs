@@ -26,43 +26,43 @@ class Vector:
 
     @classmethod
     def new(cls, start: Point, end: Point) -> Vector:
-        return cls(_CVector.new(start._c, end._c))
+        return cls(_CVector.new(start._c if start is not None else None, end._c if end is not None else None))
 
     @classmethod
     def new_from_end(cls, end: Point) -> Vector:
-        return cls(_CVector.new_from_end(end._c))
+        return cls(_CVector.new_from_end(end._c if end is not None else None))
 
     @classmethod
     def new_from_quantities(cls, start: Map, end: Map) -> Vector:
-        return cls(_CVector.new_from_quantities(start._c, end._c))
+        return cls(_CVector.new_from_quantities(start._c if start is not None else None, end._c if end is not None else None))
 
     @classmethod
     def new_from_end_quantities(cls, end: Map) -> Vector:
-        return cls(_CVector.new_from_end_quantities(end._c))
+        return cls(_CVector.new_from_end_quantities(end._c if end is not None else None))
 
     @classmethod
     def new_from_doubles(cls, start: Map, end: Map, unit: SymbolUnit) -> Vector:
-        return cls(_CVector.new_from_doubles(start._c, end._c, unit._c))
+        return cls(_CVector.new_from_doubles(start._c if start is not None else None, end._c if end is not None else None, unit._c if unit is not None else None))
 
     @classmethod
     def new_from_end_doubles(cls, end: Map, unit: SymbolUnit) -> Vector:
-        return cls(_CVector.new_from_end_doubles(end._c, unit._c))
+        return cls(_CVector.new_from_end_doubles(end._c if end is not None else None, unit._c if unit is not None else None))
 
     @classmethod
     def new_from_parent(cls, items: Map) -> Vector:
-        return cls(_CVector.new_from_parent(items._c))
+        return cls(_CVector.new_from_parent(items._c if items is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Vector:
         return cls(_CVector.from_json(json))
 
-    def endPoint(self, ) -> Point:
-        ret = self._c.endPoint()
+    def end_point(self, ) -> Point:
+        ret = self._c.end_point()
         if ret is None: return None
         return Point._from_capi(ret)
 
-    def startPoint(self, ) -> Point:
-        ret = self._c.startPoint()
+    def start_point(self, ) -> Point:
+        ret = self._c.start_point()
         if ret is None: return None
         return Point._from_capi(ret)
 
@@ -106,20 +106,20 @@ class Vector:
         return ret
 
     def insert_or_assign(self, key: Connection, value: Pair) -> None:
-        ret = self._c.insert_or_assign(key._c, value._c)
+        ret = self._c.insert_or_assign(key._c if key is not None else None, value._c if value is not None else None)
         return ret
 
     def insert(self, key: Connection, value: Pair) -> None:
-        ret = self._c.insert(key._c, value._c)
+        ret = self._c.insert(key._c if key is not None else None, value._c if value is not None else None)
         return ret
 
     def at(self, key: Connection) -> Pair:
-        ret = self._c.at(key._c)
+        ret = self._c.at(key._c if key is not None else None)
         if ret is None: return None
         return Pair(ret)
 
     def erase(self, key: Connection) -> None:
-        ret = self._c.erase(key._c)
+        ret = self._c.erase(key._c if key is not None else None)
         return ret
 
     def size(self, ) -> None:
@@ -135,7 +135,7 @@ class Vector:
         return ret
 
     def contains(self, key: Connection) -> None:
-        ret = self._c.contains(key._c)
+        ret = self._c.contains(key._c if key is not None else None)
         return ret
 
     def keys(self, ) -> List:
@@ -154,91 +154,104 @@ class Vector:
         return List(ret)
 
     def addition(self, other: Vector) -> Vector:
-        ret = self._c.addition(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.addition(other._c if other is not None else None)
+        return Vector._from_capi(ret)
 
     def subtraction(self, other: Vector) -> Vector:
-        ret = self._c.subtraction(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.subtraction(other._c if other is not None else None)
+        return Vector._from_capi(ret)
 
     def double_multiplication(self, scalar: Any) -> Vector:
         ret = self._c.double_multiplication(scalar)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def int_multiplication(self, scalar: Any) -> Vector:
         ret = self._c.int_multiplication(scalar)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def double_division(self, scalar: Any) -> Vector:
         ret = self._c.double_division(scalar)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def int_division(self, scalar: Any) -> Vector:
         ret = self._c.int_division(scalar)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def negation(self, ) -> Vector:
         ret = self._c.negation()
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def update_start_from_states(self, state: DeviceVoltageStates) -> Vector:
-        ret = self._c.update_start_from_states(state._c)
-        return cls._from_capi(ret)
+        ret = self._c.update_start_from_states(state._c if state is not None else None)
+        return Vector._from_capi(ret)
 
     def translate_doubles(self, point: Map, unit: SymbolUnit) -> Vector:
-        ret = self._c.translate_doubles(point._c, unit._c)
-        return cls._from_capi(ret)
+        ret = self._c.translate_doubles(point._c if point is not None else None, unit._c if unit is not None else None)
+        return Vector._from_capi(ret)
 
     def translate_quantities(self, point: Map) -> Vector:
-        ret = self._c.translate_quantities(point._c)
-        return cls._from_capi(ret)
+        ret = self._c.translate_quantities(point._c if point is not None else None)
+        return Vector._from_capi(ret)
 
     def translate(self, point: Point) -> Vector:
-        ret = self._c.translate(point._c)
-        return cls._from_capi(ret)
+        ret = self._c.translate(point._c if point is not None else None)
+        return Vector._from_capi(ret)
 
     def translate_to_origin(self, ) -> Vector:
         ret = self._c.translate_to_origin()
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def double_extend(self, extension: Any) -> Vector:
         ret = self._c.double_extend(extension)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def int_extend(self, extension: Any) -> Vector:
         ret = self._c.int_extend(extension)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def double_shrink(self, extension: Any) -> Vector:
         ret = self._c.double_shrink(extension)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def int_shrink(self, extension: Any) -> Vector:
         ret = self._c.int_shrink(extension)
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def unit_vector(self, ) -> Vector:
         ret = self._c.unit_vector()
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def normalize(self, ) -> Vector:
         ret = self._c.normalize()
-        return cls._from_capi(ret)
+        return Vector._from_capi(ret)
 
     def project(self, other: Vector) -> Vector:
-        ret = self._c.project(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.project(other._c if other is not None else None)
+        return Vector._from_capi(ret)
 
     def update_unit(self, unit: SymbolUnit) -> None:
-        ret = self._c.update_unit(unit._c)
+        ret = self._c.update_unit(unit._c if unit is not None else None)
         return ret
 
     def equal(self, b: Vector) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: Vector) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
         return ret
 
     def __add__(self, other):

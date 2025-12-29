@@ -1,4 +1,8 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 
 class TestInstrumentPort:
@@ -6,7 +10,7 @@ class TestInstrumentPort:
         self.obj = None
         try:
             # Found constructor: InstrumentPort_create_port
-            self.obj = InstrumentPort.new_port("test_string", None, "test_string", None, "test_string")
+            self.obj = InstrumentPort.new_port("test_string", Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter(), "test_string")
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -86,7 +90,7 @@ class TestInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -94,7 +98,7 @@ class TestInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

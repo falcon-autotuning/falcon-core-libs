@@ -22,14 +22,14 @@ class GateGeometryArray1D:
 
     @classmethod
     def new(cls, lineararray: Connections, screening_gates: Connections) -> GateGeometryArray1D:
-        return cls(_CGateGeometryArray1D.new(lineararray._c, screening_gates._c))
+        return cls(_CGateGeometryArray1D.new(lineararray._c if lineararray is not None else None, screening_gates._c if screening_gates is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> GateGeometryArray1D:
         return cls(_CGateGeometryArray1D.from_json(json))
 
     def append_central_gate(self, left_neighbor: Connection, selected_gate: Connection, right_neighbor: Connection) -> None:
-        ret = self._c.append_central_gate(left_neighbor._c, selected_gate._c, right_neighbor._c)
+        ret = self._c.append_central_gate(left_neighbor._c if left_neighbor is not None else None, selected_gate._c if selected_gate is not None else None, right_neighbor._c if right_neighbor is not None else None)
         return ret
 
     def all_dot_gates(self, ) -> DotGatesWithNeighbors:
@@ -38,7 +38,7 @@ class GateGeometryArray1D:
         return DotGatesWithNeighbors._from_capi(ret)
 
     def query_neighbors(self, gate: Connection) -> Connections:
-        ret = self._c.query_neighbors(gate._c)
+        ret = self._c.query_neighbors(gate._c if gate is not None else None)
         if ret is None: return None
         return Connections._from_capi(ret)
 
@@ -62,8 +62,8 @@ class GateGeometryArray1D:
         if ret is None: return None
         return DotGateWithNeighbors._from_capi(ret)
 
-    def lineararray(self, ) -> Connections:
-        ret = self._c.lineararray()
+    def linear_array(self, ) -> Connections:
+        ret = self._c.linear_array()
         if ret is None: return None
         return Connections._from_capi(ret)
 
@@ -88,11 +88,15 @@ class GateGeometryArray1D:
         return Connections._from_capi(ret)
 
     def equal(self, other: GateGeometryArray1D) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: GateGeometryArray1D) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

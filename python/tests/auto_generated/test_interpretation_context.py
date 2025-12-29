@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
 
 class TestInterpretationContext:
@@ -6,7 +8,7 @@ class TestInterpretationContext:
         self.obj = None
         try:
             # Found constructor: InterpretationContext_create
-            self.obj = InterpretationContext.new(None, None, None)
+            self.obj = InterpretationContext.new(None, None, SymbolUnit.new_meter())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -42,11 +44,11 @@ class TestInterpretationContext:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_dependent_variable(self):
+    def test_add_dependent_variable(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.dependent_variable(None)
+            self.obj.add_dependent_variable(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -70,7 +72,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.with_unit(None)
+            self.obj.with_unit(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

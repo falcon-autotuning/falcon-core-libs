@@ -17,7 +17,7 @@ class RightReservoirWithImplantedOhmic:
 
     @classmethod
     def new(cls, name: str, left_neighbor: Connection, ohmic: Connection) -> RightReservoirWithImplantedOhmic:
-        return cls(_CRightReservoirWithImplantedOhmic.new(name, left_neighbor._c, ohmic._c))
+        return cls(_CRightReservoirWithImplantedOhmic.new(name, left_neighbor._c if left_neighbor is not None else None, ohmic._c if ohmic is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> RightReservoirWithImplantedOhmic:
@@ -41,12 +41,16 @@ class RightReservoirWithImplantedOhmic:
         if ret is None: return None
         return Connection._from_capi(ret)
 
-    def equal(self, b: RightReservoirWithImplantedOhmic) -> None:
-        ret = self._c.equal(b._c)
+    def equal(self, other: RightReservoirWithImplantedOhmic) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, b: RightReservoirWithImplantedOhmic) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

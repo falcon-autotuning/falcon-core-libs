@@ -4,4 +4,4 @@ cdef class ListPairInterpretationContextQuantity:
     cdef _c_api.ListPairInterpretationContextQuantityHandle handle
     cdef bint owned
 
-cdef ListPairInterpretationContextQuantity _list_pair_interpretation_context_quantity_from_capi(_c_api.ListPairInterpretationContextQuantityHandle h)
+cdef ListPairInterpretationContextQuantity _list_pair_interpretation_context_quantity_from_capi(_c_api.ListPairInterpretationContextQuantityHandle h, bint owned=*)

@@ -17,7 +17,7 @@ class Quantity:
 
     @classmethod
     def new(cls, value: Any, unit: SymbolUnit) -> Quantity:
-        return cls(_CQuantity.new(value, unit._c))
+        return cls(_CQuantity.new(value, unit._c if unit is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> Quantity:
@@ -33,91 +33,95 @@ class Quantity:
         return SymbolUnit._from_capi(ret)
 
     def convert_to(self, target_unit: SymbolUnit) -> None:
-        ret = self._c.convert_to(target_unit._c)
+        ret = self._c.convert_to(target_unit._c if target_unit is not None else None)
         return ret
 
     def multiply_int(self, other: Any) -> Quantity:
         ret = self._c.multiply_int(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def multiply_double(self, other: Any) -> Quantity:
         ret = self._c.multiply_double(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def multiply_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.multiply_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.multiply_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def multiply_equals_int(self, other: Any) -> Quantity:
         ret = self._c.multiply_equals_int(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def multiply_equals_double(self, other: Any) -> Quantity:
         ret = self._c.multiply_equals_double(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def multiply_equals_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.multiply_equals_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.multiply_equals_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def divide_int(self, other: Any) -> Quantity:
         ret = self._c.divide_int(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def divide_double(self, other: Any) -> Quantity:
         ret = self._c.divide_double(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def divide_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.divide_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.divide_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def divide_equals_int(self, other: Any) -> Quantity:
         ret = self._c.divide_equals_int(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def divide_equals_double(self, other: Any) -> Quantity:
         ret = self._c.divide_equals_double(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def divide_equals_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.divide_equals_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.divide_equals_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def power(self, other: Any) -> Quantity:
         ret = self._c.power(other)
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def add_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.add_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.add_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def add_equals_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.add_equals_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.add_equals_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def subtract_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.subtract_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.subtract_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def subtract_equals_quantity(self, other: Quantity) -> Quantity:
-        ret = self._c.subtract_equals_quantity(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.subtract_equals_quantity(other._c if other is not None else None)
+        return Quantity._from_capi(ret)
 
     def negate(self, ) -> Quantity:
         ret = self._c.negate()
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def abs(self, ) -> Quantity:
         ret = self._c.abs()
-        return cls._from_capi(ret)
+        return Quantity._from_capi(ret)
 
     def equal(self, b: Quantity) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: Quantity) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __add__(self, other):

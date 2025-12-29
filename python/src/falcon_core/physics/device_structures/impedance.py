@@ -17,7 +17,7 @@ class Impedance:
 
     @classmethod
     def new(cls, connection: Connection, resistance: Any, capacitance: Any) -> Impedance:
-        return cls(_CImpedance.new(connection._c, resistance, capacitance))
+        return cls(_CImpedance.new(connection._c if connection is not None else None, resistance, capacitance))
 
     @classmethod
     def from_json(cls, json: str) -> Impedance:
@@ -36,12 +36,16 @@ class Impedance:
         ret = self._c.capacitance()
         return ret
 
-    def equal(self, b: Impedance) -> None:
-        ret = self._c.equal(b._c)
+    def equal(self, other: Impedance) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, b: Impedance) -> None:
-        ret = self._c.not_equal(b._c)
+    def not_equal(self, other: Impedance) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

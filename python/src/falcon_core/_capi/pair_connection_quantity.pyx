@@ -1,8 +1,10 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport connection
-from . cimport quantity
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .connection cimport Connection, _connection_from_capi
+from .quantity cimport Quantity, _quantity_from_capi
 
 cdef class PairConnectionQuantity:
     def __cinit__(self):
@@ -15,18 +17,10 @@ cdef class PairConnectionQuantity:
         self.handle = <_c_api.PairConnectionQuantityHandle>0
 
 
-cdef PairConnectionQuantity _pair_connection_quantity_from_capi(_c_api.PairConnectionQuantityHandle h):
-    if h == <_c_api.PairConnectionQuantityHandle>0:
-        return None
-    cdef PairConnectionQuantity obj = PairConnectionQuantity.__new__(PairConnectionQuantity)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, Connection first, Quantity second):
         cdef _c_api.PairConnectionQuantityHandle h
-        h = _c_api.PairConnectionQuantity_create(first.handle, second.handle)
+        h = _c_api.PairConnectionQuantity_create(first.handle if first is not None else <_c_api.ConnectionHandle>0, second.handle if second is not None else <_c_api.QuantityHandle>0)
         if h == <_c_api.PairConnectionQuantityHandle>0:
             raise MemoryError("Failed to create PairConnectionQuantity")
         cdef PairConnectionQuantity obj = <PairConnectionQuantity>cls.__new__(cls)
@@ -37,7 +31,7 @@ cdef PairConnectionQuantity _pair_connection_quantity_from_capi(_c_api.PairConne
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairConnectionQuantityHandle h
         try:
             h = _c_api.PairConnectionQuantity_from_json_string(s_json)
@@ -54,16 +48,16 @@ cdef PairConnectionQuantity _pair_connection_quantity_from_capi(_c_api.PairConne
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionQuantity_first(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return connection._connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret)
 
     def second(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.PairConnectionQuantity_second(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return quantity._quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret)
 
     def equal(self, PairConnectionQuantity b):
-        return _c_api.PairConnectionQuantity_equal(self.handle, b.handle)
+        return _c_api.PairConnectionQuantity_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionQuantityHandle>0)
 
     def __eq__(self, PairConnectionQuantity b):
         if not hasattr(b, "handle"):
@@ -71,9 +65,27 @@ cdef PairConnectionQuantity _pair_connection_quantity_from_capi(_c_api.PairConne
         return self.equal(b)
 
     def not_equal(self, PairConnectionQuantity b):
-        return _c_api.PairConnectionQuantity_not_equal(self.handle, b.handle)
+        return _c_api.PairConnectionQuantity_not_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionQuantityHandle>0)
 
     def __ne__(self, PairConnectionQuantity b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PairConnectionQuantity_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef PairConnectionQuantity _pair_connection_quantity_from_capi(_c_api.PairConnectionQuantityHandle h, bint owned=True):
+    if h == <_c_api.PairConnectionQuantityHandle>0:
+        return None
+    cdef PairConnectionQuantity obj = PairConnectionQuantity.__new__(PairConnectionQuantity)
+    obj.handle = h
+    obj.owned = owned
+    return obj

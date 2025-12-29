@@ -71,6 +71,15 @@ echo "/usr/local/lib" > /etc/ld.so.conf.d/99-local.conf
 ldconfig
 echo "falcon-core C-API library and headers installed."
 
+# Create symlinks for HDF5 compatibility (libfalcon_core_cpp.so expects .310, we have .320)
+if [ -f /usr/lib/libhdf5_cpp.so.320 ]; then
+    ln -sf /usr/lib/libhdf5_cpp.so.320 /usr/lib/libhdf5_cpp.so.310
+    ln -sf /usr/lib/libhdf5.so.320 /usr/lib/libhdf5.so.310
+    ln -sf /usr/lib/libhdf5_hl_cpp.so.320 /usr/lib/libhdf5_hl_cpp.so.310
+    ln -sf /usr/lib/libhdf5_hl.so.320 /usr/lib/libhdf5_hl.so.310
+    echo "Created HDF5 compatibility symlinks."
+fi
+
 # 5. Set correct ownership for the work directory
 chown -R daniel:daniel /workdir
 
@@ -79,4 +88,13 @@ echo "--- Setup complete. Dropping into shell as user 'daniel' ---"
 # 6. Switch to the 'daniel' user and start a login shell
 # Using 'exec' replaces the current process with the new one.
 # 'su -l' ensures a clean login environment, including sourcing profile scripts.
-exec su -l daniel
+# 6. Switch to the 'daniel' user and start a login shell
+# Using 'exec' replaces the current process with the new one.
+# 'su -l' ensures a clean login environment, including sourcing profile scripts.
+if [ "$#" -gt 0 ]; then
+    # If arguments are provided, execute them as the user
+    exec su -l daniel -c "$*"
+else
+    # Otherwise, start an interactive shell
+    exec su -l daniel
+fi

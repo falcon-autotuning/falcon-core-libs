@@ -1,7 +1,9 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport symbol_unit
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .symbol_unit cimport SymbolUnit, _symbol_unit_from_capi
 
 cdef class Quantity:
     def __cinit__(self):
@@ -14,18 +16,10 @@ cdef class Quantity:
         self.handle = <_c_api.QuantityHandle>0
 
 
-cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
-    if h == <_c_api.QuantityHandle>0:
-        return None
-    cdef Quantity obj = Quantity.__new__(Quantity)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, double value, SymbolUnit unit):
         cdef _c_api.QuantityHandle h
-        h = _c_api.Quantity_create(value, unit.handle)
+        h = _c_api.Quantity_create(value, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
         if h == <_c_api.QuantityHandle>0:
             raise MemoryError("Failed to create Quantity")
         cdef Quantity obj = <Quantity>cls.__new__(cls)
@@ -36,7 +30,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.QuantityHandle h
         try:
             h = _c_api.Quantity_from_json_string(s_json)
@@ -56,10 +50,10 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return symbol_unit._symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret)
 
     def convert_to(self, SymbolUnit target_unit):
-        _c_api.Quantity_convert_to(self.handle, target_unit.handle)
+        _c_api.Quantity_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)
 
     def multiply_int(self, int other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
@@ -74,7 +68,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return _quantity_from_capi(h_ret)
 
     def multiply_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
@@ -92,7 +86,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return _quantity_from_capi(h_ret)
 
     def multiply_equals_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
@@ -110,7 +104,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return _quantity_from_capi(h_ret)
 
     def divide_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
@@ -128,7 +122,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return _quantity_from_capi(h_ret)
 
     def divide_equals_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
@@ -140,25 +134,25 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return _quantity_from_capi(h_ret)
 
     def add_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
 
     def add_equals_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
 
     def subtract_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
 
     def subtract_equals_quantity(self, Quantity other):
-        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle)
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
@@ -176,7 +170,7 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return _quantity_from_capi(h_ret)
 
     def equal(self, Quantity b):
-        return _c_api.Quantity_equal(self.handle, b.handle)
+        return _c_api.Quantity_equal(self.handle, b.handle if b is not None else <_c_api.QuantityHandle>0)
 
     def __eq__(self, Quantity b):
         if not hasattr(b, "handle"):
@@ -184,9 +178,27 @@ cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h):
         return self.equal(b)
 
     def not_equal(self, Quantity b):
-        return _c_api.Quantity_not_equal(self.handle, b.handle)
+        return _c_api.Quantity_not_equal(self.handle, b.handle if b is not None else <_c_api.QuantityHandle>0)
 
     def __ne__(self, Quantity b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Quantity_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
+    if h == <_c_api.QuantityHandle>0:
+        return None
+    cdef Quantity obj = Quantity.__new__(Quantity)
+    obj.handle = h
+    obj.owned = owned
+    return obj

@@ -19,11 +19,11 @@ class AcquisitionContext:
 
     @classmethod
     def new(cls, connection: Connection, instrument_type: str, units: SymbolUnit) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.new(connection._c, instrument_type, units._c))
+        return cls(_CAcquisitionContext.new(connection._c if connection is not None else None, instrument_type, units._c if units is not None else None))
 
     @classmethod
     def new_from_port(cls, port: InstrumentPort) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.new_from_port(port._c))
+        return cls(_CAcquisitionContext.new_from_port(port._c if port is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> AcquisitionContext:
@@ -44,15 +44,15 @@ class AcquisitionContext:
         return SymbolUnit._from_capi(ret)
 
     def division_unit(self, other: SymbolUnit) -> AcquisitionContext:
-        ret = self._c.division_unit(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.division_unit(other._c if other is not None else None)
+        return AcquisitionContext._from_capi(ret)
 
     def division(self, other: AcquisitionContext) -> AcquisitionContext:
-        ret = self._c.division(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.division(other._c if other is not None else None)
+        return AcquisitionContext._from_capi(ret)
 
     def match_connection(self, other: Connection) -> None:
-        ret = self._c.match_connection(other._c)
+        ret = self._c.match_connection(other._c if other is not None else None)
         return ret
 
     def match_instrument_type(self, other: str) -> None:
@@ -60,11 +60,15 @@ class AcquisitionContext:
         return ret
 
     def equal(self, b: AcquisitionContext) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: AcquisitionContext) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __truediv__(self, other):

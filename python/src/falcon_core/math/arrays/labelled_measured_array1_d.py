@@ -27,13 +27,13 @@ class LabelledMeasuredArray1D:
 
     @classmethod
     def from_farray(cls, farray: FArray, label: AcquisitionContext) -> LabelledMeasuredArray1D:
-        ret = _CLabelledMeasuredArray1D.from_farray(farray._c, label._c)
-        return cls._from_capi(ret)
+        ret = _CLabelledMeasuredArray1D.from_farray(farray._c if farray is not None else None, label._c if label is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     @classmethod
     def from_measured_array(cls, measuredarray: MeasuredArray, label: AcquisitionContext) -> LabelledMeasuredArray1D:
-        ret = _CLabelledMeasuredArray1D.from_measured_array(measuredarray._c, label._c)
-        return cls._from_capi(ret)
+        ret = _CLabelledMeasuredArray1D.from_measured_array(measuredarray._c if measuredarray is not None else None, label._c if label is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def is_1D(self, ) -> None:
         ret = self._c.is_1D()
@@ -120,172 +120,180 @@ class LabelledMeasuredArray1D:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
-    def plusequals_farray(self, other: FArray) -> None:
-        ret = self._c.plusequals_farray(other._c)
+    def plus_equals_farray(self, other: FArray) -> None:
+        ret = self._c.plus_equals_farray(other._c if other is not None else None)
         return ret
 
-    def plusequals_double(self, other: Any) -> None:
-        ret = self._c.plusequals_double(other)
+    def plus_equals_double(self, other: Any) -> None:
+        ret = self._c.plus_equals_double(other)
         return ret
 
-    def plusequals_int(self, other: Any) -> None:
-        ret = self._c.plusequals_int(other)
+    def plus_equals_int(self, other: Any) -> None:
+        ret = self._c.plus_equals_int(other)
         return ret
 
     def plus_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.plus_measured_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.plus_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def plus_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.plus_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.plus_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def plus_double(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.plus_double(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def plus_int(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.plus_int(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def minusequals_measured_array(self, other: LabelledMeasuredArray1D) -> None:
-        ret = self._c.minusequals_measured_array(other._c)
+    def minus_equals_measured_array(self, other: LabelledMeasuredArray1D) -> None:
+        ret = self._c.minus_equals_measured_array(other._c if other is not None else None)
         return ret
 
-    def minusequals_farray(self, other: FArray) -> None:
-        ret = self._c.minusequals_farray(other._c)
+    def minus_equals_farray(self, other: FArray) -> None:
+        ret = self._c.minus_equals_farray(other._c if other is not None else None)
         return ret
 
-    def minusequals_double(self, other: Any) -> None:
-        ret = self._c.minusequals_double(other)
+    def minus_equals_double(self, other: Any) -> None:
+        ret = self._c.minus_equals_double(other)
         return ret
 
-    def minusequals_int(self, other: Any) -> None:
-        ret = self._c.minusequals_int(other)
+    def minus_equals_int(self, other: Any) -> None:
+        ret = self._c.minus_equals_int(other)
         return ret
 
     def minus_measured_array(self, other: MeasuredArray) -> LabelledMeasuredArray1D:
-        ret = self._c.minus_measured_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.minus_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def minus_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.minus_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.minus_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def minus_double(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.minus_double(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def minus_int(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.minus_int(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def negation(self, ) -> LabelledMeasuredArray1D:
         ret = self._c.negation()
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def timesequals_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.timesequals_measured_array(other._c)
-        return cls._from_capi(ret)
+    def times_equals_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
+        ret = self._c.times_equals_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def timesequals_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.timesequals_farray(other._c)
-        return cls._from_capi(ret)
+    def times_equals_farray(self, other: FArray) -> LabelledMeasuredArray1D:
+        ret = self._c.times_equals_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def timesequals_double(self, other: Any) -> None:
-        ret = self._c.timesequals_double(other)
+    def times_equals_double(self, other: Any) -> None:
+        ret = self._c.times_equals_double(other)
         return ret
 
-    def timesequals_int(self, other: Any) -> None:
-        ret = self._c.timesequals_int(other)
+    def times_equals_int(self, other: Any) -> None:
+        ret = self._c.times_equals_int(other)
         return ret
 
     def times_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.times_measured_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.times_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def times_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.times_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.times_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def times_double(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.times_double(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def times_int(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.times_int(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def dividesequals_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.dividesequals_measured_array(other._c)
-        return cls._from_capi(ret)
+    def divides_equals_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
+        ret = self._c.divides_equals_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def dividesequals_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.dividesequals_farray(other._c)
-        return cls._from_capi(ret)
+    def divides_equals_farray(self, other: FArray) -> LabelledMeasuredArray1D:
+        ret = self._c.divides_equals_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def dividesequals_double(self, other: Any) -> None:
-        ret = self._c.dividesequals_double(other)
+    def divides_equals_double(self, other: Any) -> None:
+        ret = self._c.divides_equals_double(other)
         return ret
 
-    def dividesequals_int(self, other: Any) -> None:
-        ret = self._c.dividesequals_int(other)
+    def divides_equals_int(self, other: Any) -> None:
+        ret = self._c.divides_equals_int(other)
         return ret
 
     def divides_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.divides_measured_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.divides_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def divides_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.divides_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.divides_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def divides_double(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.divides_double(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def divides_int(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.divides_int(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def pow(self, other: Any) -> LabelledMeasuredArray1D:
         ret = self._c.pow(other)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def abs(self, ) -> LabelledMeasuredArray1D:
         ret = self._c.abs()
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
+
+    def min(self, ) -> None:
+        ret = self._c.min()
+        return ret
 
     def min_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.min_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.min_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def min_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.min_measured_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.min_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
+
+    def max(self, ) -> None:
+        ret = self._c.max()
+        return ret
 
     def max_farray(self, other: FArray) -> LabelledMeasuredArray1D:
-        ret = self._c.max_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.max_farray(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def max_measured_array(self, other: LabelledMeasuredArray1D) -> LabelledMeasuredArray1D:
-        ret = self._c.max_measured_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.max_measured_array(other._c if other is not None else None)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
-    def equality(self, other: LabelledMeasuredArray1D) -> None:
-        ret = self._c.equality(other._c)
+    def equal(self, other: LabelledMeasuredArray1D) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def notequality(self, other: LabelledMeasuredArray1D) -> None:
-        ret = self._c.notequality(other._c)
+    def not_equal(self, other: LabelledMeasuredArray1D) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
-    def greaterthan(self, value: Any) -> None:
-        ret = self._c.greaterthan(value)
+    def greater_than(self, value: Any) -> None:
+        ret = self._c.greater_than(value)
         return ret
 
-    def lessthan(self, value: Any) -> None:
-        ret = self._c.lessthan(value)
+    def less_than(self, value: Any) -> None:
+        ret = self._c.less_than(value)
         return ret
 
     def remove_offset(self, offset: Any) -> None:
@@ -298,7 +306,7 @@ class LabelledMeasuredArray1D:
 
     def reshape(self, shape: Any, ndims: Any) -> LabelledMeasuredArray1D:
         ret = self._c.reshape(shape, ndims)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def where(self, value: Any) -> List:
         ret = self._c.where(value)
@@ -307,15 +315,15 @@ class LabelledMeasuredArray1D:
 
     def flip(self, axis: Any) -> LabelledMeasuredArray1D:
         ret = self._c.flip(axis)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def full_gradient(self, out_buffer: LabelledMeasuredArray1D, buffer_size: Any) -> None:
-        ret = self._c.full_gradient(out_buffer._c, buffer_size)
+        ret = self._c.full_gradient(out_buffer._c if out_buffer is not None else None, buffer_size)
         return ret
 
     def gradient(self, axis: Any) -> LabelledMeasuredArray1D:
         ret = self._c.gradient(axis)
-        return cls._from_capi(ret)
+        return LabelledMeasuredArray1D._from_capi(ret)
 
     def get_sum_of_squares(self, ) -> None:
         ret = self._c.get_sum_of_squares()
@@ -330,11 +338,24 @@ class LabelledMeasuredArray1D:
         return ret
 
     def get_summed_diff_array_of_squares(self, other: LabelledMeasuredArray1D) -> None:
-        ret = self._c.get_summed_diff_array_of_squares(other._c)
+        ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
 
     def __add__(self, other):
         """Operator overload for +"""
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.plus_equals_farray(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.plus_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.plus_equals_int(other)
         if isinstance(other, LabelledMeasuredArray1D):
             return self.plus_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -348,6 +369,14 @@ class LabelledMeasuredArray1D:
     def __sub__(self, other):
         """Operator overload for -"""
         if isinstance(other, LabelledMeasuredArray1D):
+            return self.minus_equals_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.minus_equals_farray(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.minus_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.minus_equals_int(other)
+        if isinstance(other, LabelledMeasuredArray1D):
             return self.minus_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
             return self.minus_farray(other)
@@ -360,6 +389,14 @@ class LabelledMeasuredArray1D:
     def __mul__(self, other):
         """Operator overload for *"""
         if isinstance(other, LabelledMeasuredArray1D):
+            return self.times_equals_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.times_equals_farray(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.times_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.times_equals_int(other)
+        if isinstance(other, LabelledMeasuredArray1D):
             return self.times_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
             return self.times_farray(other)
@@ -371,6 +408,14 @@ class LabelledMeasuredArray1D:
 
     def __truediv__(self, other):
         """Operator overload for /"""
+        if isinstance(other, LabelledMeasuredArray1D):
+            return self.divides_equals_measured_array(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.divides_equals_farray(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.divides_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.divides_equals_int(other)
         if isinstance(other, LabelledMeasuredArray1D):
             return self.divides_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -389,10 +434,10 @@ class LabelledMeasuredArray1D:
         """Operator overload for =="""
         if not isinstance(other, LabelledMeasuredArray1D):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, LabelledMeasuredArray1D):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

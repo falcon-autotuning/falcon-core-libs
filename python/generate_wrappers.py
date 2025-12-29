@@ -122,6 +122,8 @@ PYTHON_KEYWORD_RENAMES = {
     "not": "not_value",
 }
 
+PRIMITIVE_TYPES = {"int", "long", "float", "double", "size_t", "bool", "bint", "char", "int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"}
+
 
 def parse_header(content: str, include_path: str = "") -> List[ClassDef]:
     """
@@ -196,6 +198,12 @@ def parse_header(content: str, include_path: str = "") -> List[ClassDef]:
                     continue
                 
                 arg_name = parts[-1]
+                is_ptr = False
+                # Handle array [N] syntax
+                if '[' in arg_name and ']' in arg_name:
+                    arg_name = arg_name.split('[')[0]
+                    is_ptr = True # Arrays are pointers
+                
                 # Handle pointer * attached to name
                 if arg_name.startswith('*'):
                     arg_name = arg_name[1:]
@@ -210,7 +218,7 @@ def parse_header(content: str, include_path: str = "") -> List[ClassDef]:
                 arg_type = ' '.join(arg_type_parts)
                 
                 # Refined pointer check
-                is_ptr = '*' in arg_type or '*' in parts[-1] # Check original last part
+                is_ptr = is_ptr or '*' in arg_type or '*' in parts[-1] # Check original last part
                 is_const = 'const' in arg_type
                 
                 # Clean up type
@@ -369,9 +377,7 @@ def generate_pxd(classes: List[ClassDef]) -> str:
                 if t == "bool":
                     t = "bint"
                 
-                if t.endswith("Handle"):
-                    t = t 
-                elif t == "char" and a.is_ptr and a.is_const:
+                if t == "char" and a.is_ptr and a.is_const:
                     t = "const char*"
                 elif t == "char" and a.is_ptr:
                     t = "char*"
@@ -408,6 +414,8 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
     
     lines.append(f'from cpython.bytes cimport PyBytes_FromStringAndSize')
     lines.append(f'from libc.stddef cimport size_t')
+    lines.append(f'from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t')
+    lines.append(f'from libcpp cimport bool')
     
 
     
@@ -442,7 +450,7 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
     # Imports
     for imp in sorted(required_imports):
         snake_imp = to_snake_case(imp)
-        lines.append(f'from . cimport {snake_imp}')
+        lines.append(f'from .{snake_imp} cimport {imp}, _{snake_imp}_from_capi')
         
     lines.append('')
     
@@ -484,15 +492,6 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
         "negation": "__neg__",
     }
 
-    # Factory function for creating from handle
-    lines.append(f'cdef {cls.name} _{to_snake_case(cls.name)}_from_capi(_c_api.{cls.handle_type} h):')
-    lines.append(f'    if h == <_c_api.{cls.handle_type}>0:')
-    lines.append(f'        return None')
-    lines.append(f'    cdef {cls.name} obj = {cls.name}.__new__({cls.name})')
-    lines.append(f'    obj.handle = h')
-    lines.append(f'    obj.owned = True')
-    lines.append(f'    return obj')
-    lines.append(f'')
 
     # Constructors
     for ctor in cls.constructors:
@@ -513,21 +512,44 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
         post_call_lines = []
         
         for arg in ctor.args:
-            if arg.type_name == "StringHandle":
+            if arg.type_name == "StringHandle" and not arg.is_ptr:
                 py_args.append(f'str {arg.name}')
                 # Convert str to StringHandle
                 pre_call_lines.append(f'        cdef bytes b_{arg.name} = {arg.name}.encode("utf-8")')
-                pre_call_lines.append(f'        cdef StringHandle s_{arg.name} = _c_api.String_create(b_{arg.name}, len(b_{arg.name}))')
+                pre_call_lines.append(f'        cdef _c_api.StringHandle s_{arg.name} = _c_api.String_create(b_{arg.name}, len(b_{arg.name}))')
                 call_args.append(f's_{arg.name}')
                 post_call_lines.append(f'_c_api.String_destroy(s_{arg.name})')
-            elif arg.type_name.endswith("Handle"):
+            elif arg.type_name.endswith("Handle") and not arg.is_ptr:
                 # For handles, we expect the wrapper object
                 wrapper_type = arg.type_name[:-6]
                 py_args.append(f'{wrapper_type} {arg.name}')
-                call_args.append(f'{arg.name}.handle')
+                call_args.append(f'{arg.name}.handle if {arg.name} is not None else <_c_api.{arg.type_name}>0')
             else:
-                py_args.append(f'{arg.type_name} {arg.name}')
-                call_args.append(arg.name)
+                type_name = arg.type_name
+                if type_name == "bool":
+                    if arg.is_ptr:
+                        type_name = "uint8_t"
+                    else:
+                        type_name = "bint"
+                if arg.is_ptr and (type_name in PRIMITIVE_TYPES or type_name.endswith("Handle")):
+                    # Use memoryview for primitive pointers or handle arrays
+                    if type_name.endswith("Handle"):
+                        # For handles, Cython doesn't support memoryviews of void*
+                        # Use size_t[:] and cast to the handle pointer type
+                        py_args.append(f'size_t[:] {arg.name}')
+                        call_args.append(f'<_c_api.{type_name}*>&{arg.name}[0]')
+                    else:
+                        py_args.append(f'{type_name}[:] {arg.name}')
+                        if arg.type_name == "bool":
+                            call_args.append(f'<bool*>&{arg.name}[0]')
+                        else:
+                            call_args.append(f'&{arg.name}[0]')
+                elif arg.is_ptr:
+                    py_args.append(f'{type_name}* {arg.name}')
+                    call_args.append(arg.name)
+                else:
+                    py_args.append(f'{type_name} {arg.name}')
+                    call_args.append(arg.name)
             
         lines.append(f'    @classmethod')
         lines.append(f'    def {method_name}(cls, {", ".join(py_args)}):')
@@ -571,7 +593,7 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
             method_name = "contains"
             
         if method_name == "to_json_string":
-            continue
+            method_name = "to_json"
         
         # Determine if static or instance
         is_static = True
@@ -593,21 +615,44 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
         for i in range(start_idx, len(method.args)):
             arg = method.args[i]
             arg_names.append(arg.name)
-            if arg.type_name == "StringHandle":
+            if arg.type_name == "StringHandle" and not arg.is_ptr:
                 py_args.append(f'str {arg.name}')
                 # Convert str to StringHandle
                 pre_call_lines.append(f'        cdef bytes b_{arg.name} = {arg.name}.encode("utf-8")')
-                pre_call_lines.append(f'        cdef StringHandle s_{arg.name} = _c_api.String_create(b_{arg.name}, len(b_{arg.name}))')
+                pre_call_lines.append(f'        cdef _c_api.StringHandle s_{arg.name} = _c_api.String_create(b_{arg.name}, len(b_{arg.name}))')
                 call_args.append(f's_{arg.name}')
                 post_call_lines.append(f'_c_api.String_destroy(s_{arg.name})')
-            elif arg.type_name.endswith("Handle"):
+            elif arg.type_name.endswith("Handle") and not arg.is_ptr:
                 # For handles, we expect the wrapper object
                 wrapper_type = arg.type_name[:-6]
                 py_args.append(f'{wrapper_type} {arg.name}')
-                call_args.append(f'{arg.name}.handle')
+                call_args.append(f'{arg.name}.handle if {arg.name} is not None else <_c_api.{arg.type_name}>0')
             else:
-                py_args.append(f'{arg.type_name} {arg.name}')
-                call_args.append(arg.name)
+                type_name = arg.type_name
+                if type_name == "bool":
+                    if arg.is_ptr:
+                        type_name = "uint8_t"
+                    else:
+                        type_name = "bint"
+                if arg.is_ptr and (type_name in PRIMITIVE_TYPES or type_name.endswith("Handle")):
+                    # Use memoryview for primitive pointers or handle arrays
+                    if type_name.endswith("Handle"):
+                        # For handles, Cython doesn't support memoryviews of void*
+                        # Use size_t[:] and cast to the handle pointer type
+                        py_args.append(f'size_t[:] {arg.name}')
+                        call_args.append(f'<_c_api.{type_name}*>&{arg.name}[0]')
+                    else:
+                        py_args.append(f'{type_name}[:] {arg.name}')
+                        if arg.type_name == "bool":
+                            call_args.append(f'<bool*>&{arg.name}[0]')
+                        else:
+                            call_args.append(f'&{arg.name}[0]')
+                elif arg.is_ptr:
+                    py_args.append(f'{type_name}* {arg.name}')
+                    call_args.append(arg.name)
+                else:
+                    py_args.append(f'{type_name} {arg.name}')
+                    call_args.append(arg.name)
         
         if is_static:
             lines.append(f'    @staticmethod')
@@ -627,7 +672,7 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
                 lines.append(f'        {l}')
         elif ret == "StringHandle":
             # Convert StringHandle to str
-            lines.append(f'        cdef StringHandle s_ret')
+            lines.append(f'        cdef _c_api.StringHandle s_ret')
             if post_call_lines:
                  lines.append(f'        try:')
                  lines.append(f'            s_ret = {call_expr}')
@@ -637,7 +682,7 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
             else:
                  lines.append(f'        s_ret = {call_expr}')
                  
-            lines.append(f'        if s_ret == <StringHandle>0:')
+            lines.append(f'        if s_ret == <_c_api.StringHandle>0:')
             lines.append(f'            return ""')
             lines.append(f'        try:')
             lines.append(f'            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")')
@@ -656,14 +701,20 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
              # Use factory function
              if wrapper_class == cls.name:
                  snake_name = to_snake_case(cls.name)
-                 lines.append(f'        return _{snake_name}_from_capi(h_ret)')
+                 is_accessor = method_name in ["connection", "at", "front", "back"] or method_name.startswith("get_")
+                 owned_arg = ", owned=False" if is_accessor else ""
+                 lines.append(f'        return _{snake_name}_from_capi(h_ret{owned_arg})')
              else:
                  snake_wrapper = to_snake_case(wrapper_class)
-                 lines.append(f'        return {snake_wrapper}._{snake_wrapper}_from_capi(h_ret)')
+                 is_accessor = method_name in ["connection", "at", "front", "back"] or method_name.startswith("get_")
+                 owned_arg = ", owned=False" if is_accessor else ""
+                 lines.append(f'        return _{snake_wrapper}_from_capi(h_ret{owned_arg})')
 
         else:
             if post_call_lines:
-                 lines.append(f'        cdef {ret} ret_val')
+                 ret_type = ret
+                 if ret_type == "bool": ret_type = "bint"
+                 lines.append(f'        cdef {ret_type} ret_val')
                  lines.append(f'        try:')
                  lines.append(f'            ret_val = {call_expr}')
                  lines.append(f'        finally:')
@@ -689,6 +740,59 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
             lines.append(f'        return self.{method_name}({", ".join(arg_names)})')
             lines.append('')
 
+    # Add list-like aliases and factories
+    # Check for methods by suffix (handling class prefix)
+    has_size = any(m.name == "size" or m.name.endswith("_size") for m in cls.methods)
+    has_at = any(m.name == "at" or m.name.endswith("_at") for m in cls.methods)
+    has_push_back = any(m.name == "push_back" or m.name.endswith("_push_back") for m in cls.methods)
+    
+    if has_size:
+        lines.append(f'    def __len__(self):')
+        lines.append(f'        return self.size()')
+        lines.append('')
+        
+    if has_at:
+        lines.append(f'    def __getitem__(self, idx):')
+        lines.append(f'        ret = self.at(idx)')
+        lines.append(f'        if ret is None:')
+        lines.append(f'            raise IndexError("Index out of bounds")')
+        lines.append(f'        return ret')
+        lines.append('')
+        
+    if has_push_back:
+        lines.append(f'    def append(self, value):')
+        lines.append(f'        self.push_back(value)')
+        lines.append('')
+        
+        # Add from_list factory
+        # Find element type from push_back argument
+        pb_method = next(m for m in cls.methods if m.name == "push_back" or m.name.endswith("_push_back"))
+        if pb_method.args:
+            arg_type = pb_method.args[0].type_name
+            # If arg_type is a handle, we need to handle it.
+            # But push_back takes the wrapper or primitive.
+            # In Cython, push_back(self, Type value).
+            
+            lines.append(f'    @classmethod')
+            lines.append(f'    def from_list(cls, items):')
+            lines.append(f'        cdef {cls.name} obj = cls.new_empty()')
+            lines.append(f'        for item in items:')
+            lines.append(f'            if hasattr(item, "_c"):')
+            lines.append(f'                item = item._c')
+            lines.append(f'            obj.push_back(item)')
+            lines.append(f'        return obj')
+            lines.append('')
+
+    # Factory function for creating from handle
+    lines.append(f'cdef {cls.name} _{to_snake_case(cls.name)}_from_capi(_c_api.{cls.handle_type} h, bint owned=True):')
+    lines.append(f'    if h == <_c_api.{cls.handle_type}>0:')
+    lines.append(f'        return None')
+    lines.append(f'    cdef {cls.name} obj = {cls.name}.__new__({cls.name})')
+    lines.append(f'    obj.handle = h')
+    lines.append(f'    obj.owned = owned')
+    lines.append(f'    return obj')
+    lines.append(f'')
+
     return "\n".join(lines)
 
 def generate_wrapper_pxd(cls: ClassDef) -> str:
@@ -699,7 +803,7 @@ def generate_wrapper_pxd(cls: ClassDef) -> str:
     lines.append(f'    cdef _c_api.{cls.handle_type} handle')
     lines.append(f'    cdef bint owned')
     lines.append(f'')
-    lines.append(f'cdef {cls.name} _{to_snake_case(cls.name)}_from_capi(_c_api.{cls.handle_type} h)')
+    lines.append(f'cdef {cls.name} _{to_snake_case(cls.name)}_from_capi(_c_api.{cls.handle_type} h, bint owned=*)')
     
     return "\n".join(lines)
 
@@ -844,7 +948,7 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             
             # Call arg conversion
             if arg_type.endswith("Handle") and arg_type != "StringHandle":
-                 call_args.append(f"{arg_name}._c")
+                 call_args.append(f"{arg_name}._c if {arg_name} is not None else None")
             else:
                 call_args.append(arg_name)
                 
@@ -863,7 +967,7 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
             method_name = PYTHON_KEYWORD_RENAMES[method_name]
 
         if method_name == "to_json_string":
-            continue
+            method_name = "to_json"
         
         # Skip destructor (handled by Cython)
         if method_name == "destroy":
@@ -911,9 +1015,9 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
                 # Check if it's generic
                 base = arg_type[:-6]
                 if classify_template_type(base): # Check if it's a generic type
-                     call_args.append(f"{arg_name}._c")
+                     call_args.append(f"{arg_name}._c if {arg_name} is not None else None")
                 else:
-                     call_args.append(f"{arg_name}._c")
+                     call_args.append(f"{arg_name}._c if {arg_name} is not None else None")
             else:
                 call_args.append(arg_name)
                 
@@ -953,13 +1057,43 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
                 lines.append(f'        if ret is None: return None')
                 lines.append(f'        return {generic_base}(ret)')
             elif base == cls.name:
-                lines.append(f'        return cls._from_capi(ret)')
+                lines.append(f'        return {cls.name}._from_capi(ret)')
             else:
                 lines.append(f'        if ret is None: return None')
                 lines.append(f'        return {base}._from_capi(ret)')
         else:
             lines.append(f'        return ret')
             
+        lines.append('')
+
+    # Add list-like aliases and factories
+    # Check for methods by suffix (handling class prefix)
+    has_size = any(m.name == "size" or m.name.endswith("_size") for m in cls.methods)
+    has_at = any(m.name == "at" or m.name.endswith("_at") for m in cls.methods)
+    has_push_back = any(m.name == "push_back" or m.name.endswith("_push_back") for m in cls.methods)
+    
+    if has_size:
+        lines.append(f'    def __len__(self):')
+        lines.append(f'        return self.size()')
+        lines.append('')
+        
+    if has_at:
+        lines.append(f'    def __getitem__(self, idx):')
+        lines.append(f'        ret = self.at(idx)')
+        lines.append(f'        if ret is None:')
+        lines.append(f'            raise IndexError("Index out of bounds")')
+        lines.append(f'        return ret')
+        lines.append('')
+        
+    if has_push_back:
+        lines.append(f'    def append(self, value):')
+        lines.append(f'        return self.push_back(value)')
+        lines.append('')
+        
+        # Add from_list factory
+        lines.append(f'    @classmethod')
+        lines.append(f'    def from_list(cls, items):')
+        lines.append(f'        return cls(_C{cls.name}.from_list(items))')
         lines.append('')
     
     # After all methods, generate operator overloads

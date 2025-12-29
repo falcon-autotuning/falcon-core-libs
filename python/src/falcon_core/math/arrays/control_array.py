@@ -23,12 +23,12 @@ class ControlArray:
     @classmethod
     def from_data(cls, data: Any, shape: Any, ndim: Any) -> ControlArray:
         ret = _CControlArray.from_data(data, shape, ndim)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     @classmethod
     def from_farray(cls, farray: FArray) -> ControlArray:
-        ret = _CControlArray.from_farray(farray._c)
-        return cls._from_capi(ret)
+        ret = _CControlArray.from_farray(farray._c if farray is not None else None)
+        return ControlArray._from_capi(ret)
 
     def size(self, ) -> None:
         ret = self._c.size()
@@ -46,136 +46,144 @@ class ControlArray:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
-    def plusequals_farray(self, other: FArray) -> None:
-        ret = self._c.plusequals_farray(other._c)
+    def plus_equals_farray(self, other: FArray) -> None:
+        ret = self._c.plus_equals_farray(other._c if other is not None else None)
         return ret
 
-    def plusequals_double(self, other: Any) -> None:
-        ret = self._c.plusequals_double(other)
+    def plus_equals_double(self, other: Any) -> None:
+        ret = self._c.plus_equals_double(other)
         return ret
 
-    def plusequals_int(self, other: Any) -> None:
-        ret = self._c.plusequals_int(other)
+    def plus_equals_int(self, other: Any) -> None:
+        ret = self._c.plus_equals_int(other)
         return ret
 
     def plus_control_array(self, other: ControlArray) -> ControlArray:
-        ret = self._c.plus_control_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.plus_control_array(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
     def plus_farray(self, other: FArray) -> ControlArray:
-        ret = self._c.plus_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.plus_farray(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
     def plus_double(self, other: Any) -> ControlArray:
         ret = self._c.plus_double(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def plus_int(self, other: Any) -> ControlArray:
         ret = self._c.plus_int(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
-    def minusequals_farray(self, other: FArray) -> None:
-        ret = self._c.minusequals_farray(other._c)
+    def minus_equals_farray(self, other: FArray) -> None:
+        ret = self._c.minus_equals_farray(other._c if other is not None else None)
         return ret
 
-    def minusequals_double(self, other: Any) -> None:
-        ret = self._c.minusequals_double(other)
+    def minus_equals_double(self, other: Any) -> None:
+        ret = self._c.minus_equals_double(other)
         return ret
 
-    def minusequals_int(self, other: Any) -> None:
-        ret = self._c.minusequals_int(other)
+    def minus_equals_int(self, other: Any) -> None:
+        ret = self._c.minus_equals_int(other)
         return ret
 
     def minus_control_array(self, other: ControlArray) -> ControlArray:
-        ret = self._c.minus_control_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.minus_control_array(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
     def minus_farray(self, other: FArray) -> ControlArray:
-        ret = self._c.minus_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.minus_farray(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
     def minus_double(self, other: Any) -> ControlArray:
         ret = self._c.minus_double(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def minus_int(self, other: Any) -> ControlArray:
         ret = self._c.minus_int(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def negation(self, ) -> ControlArray:
         ret = self._c.negation()
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
-    def timesequals_double(self, other: Any) -> None:
-        ret = self._c.timesequals_double(other)
+    def times_equals_double(self, other: Any) -> None:
+        ret = self._c.times_equals_double(other)
         return ret
 
-    def timesequals_int(self, other: Any) -> None:
-        ret = self._c.timesequals_int(other)
+    def times_equals_int(self, other: Any) -> None:
+        ret = self._c.times_equals_int(other)
         return ret
 
     def times_double(self, other: Any) -> ControlArray:
         ret = self._c.times_double(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def times_int(self, other: Any) -> ControlArray:
         ret = self._c.times_int(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
-    def dividesequals_double(self, other: Any) -> None:
-        ret = self._c.dividesequals_double(other)
+    def divides_equals_double(self, other: Any) -> None:
+        ret = self._c.divides_equals_double(other)
         return ret
 
-    def dividesequals_int(self, other: Any) -> None:
-        ret = self._c.dividesequals_int(other)
+    def divides_equals_int(self, other: Any) -> None:
+        ret = self._c.divides_equals_int(other)
         return ret
 
     def divides_double(self, other: Any) -> ControlArray:
         ret = self._c.divides_double(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def divides_int(self, other: Any) -> ControlArray:
         ret = self._c.divides_int(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def pow(self, other: Any) -> ControlArray:
         ret = self._c.pow(other)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def abs(self, ) -> ControlArray:
         ret = self._c.abs()
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
+
+    def min(self, ) -> None:
+        ret = self._c.min()
+        return ret
 
     def min_farray(self, other: FArray) -> ControlArray:
-        ret = self._c.min_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.min_farray(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
     def min_control_array(self, other: ControlArray) -> ControlArray:
-        ret = self._c.min_control_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.min_control_array(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
+
+    def max(self, ) -> None:
+        ret = self._c.max()
+        return ret
 
     def max_farray(self, other: FArray) -> ControlArray:
-        ret = self._c.max_farray(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.max_farray(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
     def max_control_array(self, other: ControlArray) -> ControlArray:
-        ret = self._c.max_control_array(other._c)
-        return cls._from_capi(ret)
+        ret = self._c.max_control_array(other._c if other is not None else None)
+        return ControlArray._from_capi(ret)
 
-    def equality(self, other: ControlArray) -> None:
-        ret = self._c.equality(other._c)
+    def equal(self, other: ControlArray) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def notequality(self, other: ControlArray) -> None:
-        ret = self._c.notequality(other._c)
+    def not_equal(self, other: ControlArray) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
-    def greaterthan(self, value: Any) -> None:
-        ret = self._c.greaterthan(value)
+    def greater_than(self, value: Any) -> None:
+        ret = self._c.greater_than(value)
         return ret
 
-    def lessthan(self, value: Any) -> None:
-        ret = self._c.lessthan(value)
+    def less_than(self, value: Any) -> None:
+        ret = self._c.less_than(value)
         return ret
 
     def remove_offset(self, offset: Any) -> None:
@@ -193,10 +201,10 @@ class ControlArray:
 
     def flip(self, axis: Any) -> ControlArray:
         ret = self._c.flip(axis)
-        return cls._from_capi(ret)
+        return ControlArray._from_capi(ret)
 
     def full_gradient(self, out_buffer: FArray, buffer_size: Any) -> None:
-        ret = self._c.full_gradient(out_buffer._c, buffer_size)
+        ret = self._c.full_gradient(out_buffer._c if out_buffer is not None else None, buffer_size)
         return ret
 
     def gradient(self, axis: Any) -> FArray:
@@ -217,11 +225,24 @@ class ControlArray:
         return ret
 
     def get_summed_diff_array_of_squares(self, other: ControlArray) -> None:
-        ret = self._c.get_summed_diff_array_of_squares(other._c)
+        ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __len__(self):
+        return self.size()
 
     def __add__(self, other):
         """Operator overload for +"""
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.plus_equals_farray(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.plus_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.plus_equals_int(other)
         if isinstance(other, ControlArray):
             return self.plus_control_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -234,6 +255,12 @@ class ControlArray:
 
     def __sub__(self, other):
         """Operator overload for -"""
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
+            return self.minus_equals_farray(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.minus_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.minus_equals_int(other)
         if isinstance(other, ControlArray):
             return self.minus_control_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -246,6 +273,10 @@ class ControlArray:
 
     def __mul__(self, other):
         """Operator overload for *"""
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.times_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.times_equals_int(other)
         if isinstance(other, float):
             return self.times_double(other)
         if isinstance(other, int):
@@ -254,6 +285,10 @@ class ControlArray:
 
     def __truediv__(self, other):
         """Operator overload for /"""
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
+            return self.divides_equals_double(other)
+        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
+            return self.divides_equals_int(other)
         if isinstance(other, float):
             return self.divides_double(other)
         if isinstance(other, int):
@@ -268,10 +303,10 @@ class ControlArray:
         """Operator overload for =="""
         if not isinstance(other, ControlArray):
             return NotImplemented
-        return self.equality(other)
+        return self.equal(other)
 
     def __ne__(self, other):
         """Operator overload for !="""
         if not isinstance(other, ControlArray):
             return NotImplemented
-        return self.notequality(other)
+        return self.not_equal(other)

@@ -27,15 +27,15 @@ class DiscreteSpace:
 
     @classmethod
     def new(cls, space: UnitSpace, axes: Axes, increasing: Axes) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.new(space._c, axes._c, increasing._c))
+        return cls(_CDiscreteSpace.new(space._c if space is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None))
 
     @classmethod
-    def new_cartesiandiscretespace(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.new_cartesiandiscretespace(divisions._c, axes._c, increasing._c, domain._c))
+    def new_cartesian_discrete_space(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.new_cartesian_discrete_space(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
 
     @classmethod
-    def new_cartesiandiscretespace1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.new_cartesiandiscretespace1D(division, shared_domain._c, increasing._c, domain._c))
+    def new_cartesian_discrete_space_1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.new_cartesian_discrete_space_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> DiscreteSpace:
@@ -70,25 +70,29 @@ class DiscreteSpace:
         return ret
 
     def get_axis(self, knob: InstrumentPort) -> None:
-        ret = self._c.get_axis(knob._c)
+        ret = self._c.get_axis(knob._c if knob is not None else None)
         return ret
 
     def get_domain(self, knob: InstrumentPort) -> Domain:
-        ret = self._c.get_domain(knob._c)
+        ret = self._c.get_domain(knob._c if knob is not None else None)
         if ret is None: return None
         return Domain._from_capi(ret)
 
     def get_projection(self, projection: Axes) -> Axes:
-        ret = self._c.get_projection(projection._c)
+        ret = self._c.get_projection(projection._c if projection is not None else None)
         if ret is None: return None
         return Axes(ret)
 
     def equal(self, other: DiscreteSpace) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: DiscreteSpace) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

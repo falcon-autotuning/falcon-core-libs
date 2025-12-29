@@ -1,9 +1,11 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport labelled_control_array
-from . cimport list_acquisition_context
-from . cimport list_labelled_control_array
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .labelled_control_array cimport LabelledControlArray, _labelled_control_array_from_capi
+from .list_acquisition_context cimport ListAcquisitionContext, _list_acquisition_context_from_capi
+from .list_labelled_control_array cimport ListLabelledControlArray, _list_labelled_control_array_from_capi
 
 cdef class LabelledArraysLabelledControlArray:
     def __cinit__(self):
@@ -16,18 +18,10 @@ cdef class LabelledArraysLabelledControlArray:
         self.handle = <_c_api.LabelledArraysLabelledControlArrayHandle>0
 
 
-cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_from_capi(_c_api.LabelledArraysLabelledControlArrayHandle h):
-    if h == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
-        return None
-    cdef LabelledArraysLabelledControlArray obj = LabelledArraysLabelledControlArray.__new__(LabelledArraysLabelledControlArray)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def new(cls, ListLabelledControlArray arrays):
         cdef _c_api.LabelledArraysLabelledControlArrayHandle h
-        h = _c_api.LabelledArraysLabelledControlArray_create(arrays.handle)
+        h = _c_api.LabelledArraysLabelledControlArray_create(arrays.handle if arrays is not None else <_c_api.ListLabelledControlArrayHandle>0)
         if h == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
             raise MemoryError("Failed to create LabelledArraysLabelledControlArray")
         cdef LabelledArraysLabelledControlArray obj = <LabelledArraysLabelledControlArray>cls.__new__(cls)
@@ -38,7 +32,7 @@ cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.LabelledArraysLabelledControlArrayHandle h
         try:
             h = _c_api.LabelledArraysLabelledControlArray_from_json_string(s_json)
@@ -55,22 +49,22 @@ cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_
         cdef _c_api.ListLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_arrays(self.handle)
         if h_ret == <_c_api.ListLabelledControlArrayHandle>0:
             return None
-        return list_labelled_control_array._list_labelled_control_array_from_capi(h_ret)
+        return _list_labelled_control_array_from_capi(h_ret)
 
     def labels(self, ):
         cdef _c_api.ListAcquisitionContextHandle h_ret = _c_api.LabelledArraysLabelledControlArray_labels(self.handle)
         if h_ret == <_c_api.ListAcquisitionContextHandle>0:
             return None
-        return list_acquisition_context._list_acquisition_context_from_capi(h_ret)
+        return _list_acquisition_context_from_capi(h_ret)
 
-    def isControlArrays(self, ):
-        return _c_api.LabelledArraysLabelledControlArray_isControlArrays(self.handle)
+    def is_control_arrays(self, ):
+        return _c_api.LabelledArraysLabelledControlArray_is_control_arrays(self.handle)
 
-    def isMeasuredArrays(self, ):
-        return _c_api.LabelledArraysLabelledControlArray_isMeasuredArrays(self.handle)
+    def is_measured_arrays(self, ):
+        return _c_api.LabelledArraysLabelledControlArray_is_measured_arrays(self.handle)
 
     def push_back(self, LabelledControlArray value):
-        _c_api.LabelledArraysLabelledControlArray_push_back(self.handle, value.handle)
+        _c_api.LabelledArraysLabelledControlArray_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledControlArrayHandle>0)
 
     def size(self, ):
         return _c_api.LabelledArraysLabelledControlArray_size(self.handle)
@@ -88,22 +82,22 @@ cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_at(self.handle, idx)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return labelled_control_array._labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=False)
 
     def contains(self, LabelledControlArray value):
-        return _c_api.LabelledArraysLabelledControlArray_contains(self.handle, value.handle)
+        return _c_api.LabelledArraysLabelledControlArray_contains(self.handle, value.handle if value is not None else <_c_api.LabelledControlArrayHandle>0)
 
     def index(self, LabelledControlArray value):
-        return _c_api.LabelledArraysLabelledControlArray_index(self.handle, value.handle)
+        return _c_api.LabelledArraysLabelledControlArray_index(self.handle, value.handle if value is not None else <_c_api.LabelledControlArrayHandle>0)
 
     def intersection(self, LabelledArraysLabelledControlArray other):
-        cdef _c_api.LabelledArraysLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_intersection(self.handle, other.handle)
+        cdef _c_api.LabelledArraysLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_intersection(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArrayHandle>0)
         if h_ret == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
             return None
         return _labelled_arrays_labelled_control_array_from_capi(h_ret)
 
     def equal(self, LabelledArraysLabelledControlArray other):
-        return _c_api.LabelledArraysLabelledControlArray_equal(self.handle, other.handle)
+        return _c_api.LabelledArraysLabelledControlArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArrayHandle>0)
 
     def __eq__(self, LabelledArraysLabelledControlArray other):
         if not hasattr(other, "handle"):
@@ -111,9 +105,48 @@ cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_
         return self.equal(other)
 
     def not_equal(self, LabelledArraysLabelledControlArray other):
-        return _c_api.LabelledArraysLabelledControlArray_not_equal(self.handle, other.handle)
+        return _c_api.LabelledArraysLabelledControlArray_not_equal(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArrayHandle>0)
 
     def __ne__(self, LabelledArraysLabelledControlArray other):
         if not hasattr(other, "handle"):
             return NotImplemented
         return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.LabelledArraysLabelledControlArray_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+    def __getitem__(self, idx):
+        ret = self.at(idx)
+        if ret is None:
+            raise IndexError("Index out of bounds")
+        return ret
+
+    def append(self, value):
+        self.push_back(value)
+
+    @classmethod
+    def from_list(cls, items):
+        cdef LabelledArraysLabelledControlArray obj = cls.new_empty()
+        for item in items:
+            if hasattr(item, "_c"):
+                item = item._c
+            obj.push_back(item)
+        return obj
+
+cdef LabelledArraysLabelledControlArray _labelled_arrays_labelled_control_array_from_capi(_c_api.LabelledArraysLabelledControlArrayHandle h, bint owned=True):
+    if h == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
+        return None
+    cdef LabelledArraysLabelledControlArray obj = LabelledArraysLabelledControlArray.__new__(LabelledArraysLabelledControlArray)
+    obj.handle = h
+    obj.owned = owned
+    return obj

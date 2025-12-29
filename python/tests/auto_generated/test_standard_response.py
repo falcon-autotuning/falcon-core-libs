@@ -1,4 +1,5 @@
 import pytest
+import array
 from falcon_core.communications.messages.standard_response import StandardResponse
 
 class TestStandardResponse:

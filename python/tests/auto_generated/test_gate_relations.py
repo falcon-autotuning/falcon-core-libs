@@ -1,4 +1,6 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.gate_relations import GateRelations
 
 class TestGateRelations:
@@ -14,7 +16,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, None)
+            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -22,7 +24,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, None)
+            self.obj.insert(Connection.new_barrier('test_conn'), None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -30,7 +32,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -38,7 +40,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -70,7 +72,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

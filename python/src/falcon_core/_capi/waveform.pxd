@@ -4,4 +4,4 @@ cdef class Waveform:
     cdef _c_api.WaveformHandle handle
     cdef bint owned
 
-cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h)
+cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=*)

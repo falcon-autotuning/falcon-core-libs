@@ -4,4 +4,4 @@ cdef class ListDiscretizer:
     cdef _c_api.ListDiscretizerHandle handle
     cdef bint owned
 
-cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h)
+cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h, bint owned=*)

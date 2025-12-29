@@ -1,8 +1,10 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
-from . cimport f_array_double
-from . cimport list_list_size_t
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
+from .f_array_double cimport FArrayDouble, _f_array_double_from_capi
+from .list_list_size_t cimport ListListSizeT, _list_list_size_t_from_capi
 
 cdef class ControlArray:
     def __cinit__(self):
@@ -15,18 +17,10 @@ cdef class ControlArray:
         self.handle = <_c_api.ControlArrayHandle>0
 
 
-cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
-    if h == <_c_api.ControlArrayHandle>0:
-        return None
-    cdef ControlArray obj = ControlArray.__new__(ControlArray)
-    obj.handle = h
-    obj.owned = True
-    return obj
-
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.ControlArrayHandle h
         try:
             h = _c_api.ControlArray_from_json_string(s_json)
@@ -40,15 +34,15 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
         return obj
 
     @staticmethod
-    def from_data(double data, size_t shape, size_t ndim):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_from_data(data, shape, ndim)
+    def from_data(double[:] data, size_t[:] shape, size_t ndim):
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_from_data(&data[0], &shape[0], ndim)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
     @staticmethod
     def from_farray(FArrayDouble farray):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_from_farray(farray.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_from_farray(farray.handle if farray is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
@@ -59,29 +53,29 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
     def dimension(self, ):
         return _c_api.ControlArray_dimension(self.handle)
 
-    def shape(self, size_t out_buffer, size_t ndim):
-        return _c_api.ControlArray_shape(self.handle, out_buffer, ndim)
+    def shape(self, size_t[:] out_buffer, size_t ndim):
+        return _c_api.ControlArray_shape(self.handle, &out_buffer[0], ndim)
 
-    def data(self, double out_buffer, size_t numdata):
-        return _c_api.ControlArray_data(self.handle, out_buffer, numdata)
+    def data(self, double[:] out_buffer, size_t numdata):
+        return _c_api.ControlArray_data(self.handle, &out_buffer[0], numdata)
 
-    def plusequals_farray(self, FArrayDouble other):
-        _c_api.ControlArray_plusequals_farray(self.handle, other.handle)
+    def plus_equals_farray(self, FArrayDouble other):
+        _c_api.ControlArray_plus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
 
-    def plusequals_double(self, double other):
-        _c_api.ControlArray_plusequals_double(self.handle, other)
+    def plus_equals_double(self, double other):
+        _c_api.ControlArray_plus_equals_double(self.handle, other)
 
-    def plusequals_int(self, int other):
-        _c_api.ControlArray_plusequals_int(self.handle, other)
+    def plus_equals_int(self, int other):
+        _c_api.ControlArray_plus_equals_int(self.handle, other)
 
     def plus_control_array(self, ControlArray other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_plus_control_array(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_plus_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
     def plus_farray(self, FArrayDouble other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_plus_farray(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
@@ -98,23 +92,23 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
             return None
         return _control_array_from_capi(h_ret)
 
-    def minusequals_farray(self, FArrayDouble other):
-        _c_api.ControlArray_minusequals_farray(self.handle, other.handle)
+    def minus_equals_farray(self, FArrayDouble other):
+        _c_api.ControlArray_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
 
-    def minusequals_double(self, double other):
-        _c_api.ControlArray_minusequals_double(self.handle, other)
+    def minus_equals_double(self, double other):
+        _c_api.ControlArray_minus_equals_double(self.handle, other)
 
-    def minusequals_int(self, int other):
-        _c_api.ControlArray_minusequals_int(self.handle, other)
+    def minus_equals_int(self, int other):
+        _c_api.ControlArray_minus_equals_int(self.handle, other)
 
     def minus_control_array(self, ControlArray other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_minus_control_array(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_minus_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
     def minus_farray(self, FArrayDouble other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_minus_farray(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
@@ -140,11 +134,11 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
     def __neg__(self):
         return self.negation()
 
-    def timesequals_double(self, double other):
-        _c_api.ControlArray_timesequals_double(self.handle, other)
+    def times_equals_double(self, double other):
+        _c_api.ControlArray_times_equals_double(self.handle, other)
 
-    def timesequals_int(self, int other):
-        _c_api.ControlArray_timesequals_int(self.handle, other)
+    def times_equals_int(self, int other):
+        _c_api.ControlArray_times_equals_int(self.handle, other)
 
     def times_double(self, double other):
         cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_times_double(self.handle, other)
@@ -158,11 +152,11 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
             return None
         return _control_array_from_capi(h_ret)
 
-    def dividesequals_double(self, double other):
-        _c_api.ControlArray_dividesequals_double(self.handle, other)
+    def divides_equals_double(self, double other):
+        _c_api.ControlArray_divides_equals_double(self.handle, other)
 
-    def dividesequals_int(self, int other):
-        _c_api.ControlArray_dividesequals_int(self.handle, other)
+    def divides_equals_int(self, int other):
+        _c_api.ControlArray_divides_equals_int(self.handle, other)
 
     def divides_double(self, double other):
         cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_divides_double(self.handle, other)
@@ -188,41 +182,63 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
             return None
         return _control_array_from_capi(h_ret)
 
+    def min(self, ):
+        return _c_api.ControlArray_min(self.handle)
+
     def min_farray(self, FArrayDouble other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_min_farray(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_min_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
     def min_control_array(self, ControlArray other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_min_control_array(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_min_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
+    def max(self, ):
+        return _c_api.ControlArray_max(self.handle)
+
     def max_farray(self, FArrayDouble other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_max_farray(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_max_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
     def max_control_array(self, ControlArray other):
-        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_max_control_array(self.handle, other.handle)
+        cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_max_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
         if h_ret == <_c_api.ControlArrayHandle>0:
             return None
         return _control_array_from_capi(h_ret)
 
-    def equality(self, ControlArray other):
-        return _c_api.ControlArray_equality(self.handle, other.handle)
+    def equal(self, ControlArray other):
+        return _c_api.ControlArray_equal(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
 
-    def notequality(self, ControlArray other):
-        return _c_api.ControlArray_notequality(self.handle, other.handle)
+    def __eq__(self, ControlArray other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
 
-    def greaterthan(self, double value):
-        return _c_api.ControlArray_greaterthan(self.handle, value)
+    def not_equal(self, ControlArray other):
+        return _c_api.ControlArray_not_equal(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
 
-    def lessthan(self, double value):
-        return _c_api.ControlArray_lessthan(self.handle, value)
+    def __ne__(self, ControlArray other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def greater_than(self, double value):
+        return _c_api.ControlArray_greater_than(self.handle, value)
+
+    def __gt__(self, double value):
+        return self.greater_than(value)
+
+    def less_than(self, double value):
+        return _c_api.ControlArray_less_than(self.handle, value)
+
+    def __lt__(self, double value):
+        return self.less_than(value)
 
     def remove_offset(self, double offset):
         _c_api.ControlArray_remove_offset(self.handle, offset)
@@ -234,7 +250,7 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.ControlArray_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return list_list_size_t._list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret)
 
     def flip(self, size_t axis):
         cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_flip(self.handle, axis)
@@ -242,14 +258,14 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
             return None
         return _control_array_from_capi(h_ret)
 
-    def full_gradient(self, FArrayDouble out_buffer, size_t buffer_size):
-        return _c_api.ControlArray_full_gradient(self.handle, out_buffer.handle, buffer_size)
+    def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
+        return _c_api.ControlArray_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)
 
     def gradient(self, size_t axis):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.ControlArray_gradient(self.handle, axis)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return f_array_double._f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret)
 
     def get_sum_of_squares(self, ):
         return _c_api.ControlArray_get_sum_of_squares(self.handle)
@@ -261,4 +277,25 @@ cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h):
         return _c_api.ControlArray_get_summed_diff_double_of_squares(self.handle, other)
 
     def get_summed_diff_array_of_squares(self, ControlArray other):
-        return _c_api.ControlArray_get_summed_diff_array_of_squares(self.handle, other.handle)
+        return _c_api.ControlArray_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.ControlArrayHandle>0)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.ControlArray_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def __len__(self):
+        return self.size()
+
+cdef ControlArray _control_array_from_capi(_c_api.ControlArrayHandle h, bint owned=True):
+    if h == <_c_api.ControlArrayHandle>0:
+        return None
+    cdef ControlArray obj = ControlArray.__new__(ControlArray)
+    obj.handle = h
+    obj.owned = owned
+    return obj

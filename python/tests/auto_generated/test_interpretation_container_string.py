@@ -1,5 +1,7 @@
 import pytest
+import array
 from falcon_core.autotuner_interfaces.interpretations.interpretation_container import InterpretationContainer
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.autotuner_interfaces.interpretations.interpretation_container import InterpretationContainer
 
 class TestInterpretationContainerString:
@@ -23,7 +25,7 @@ class TestInterpretationContainerString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.select_by_connection(None)
+            self.obj.select_by_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -39,7 +41,7 @@ class TestInterpretationContainerString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.select_by_independent_connection(None)
+            self.obj.select_by_independent_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -47,7 +49,7 @@ class TestInterpretationContainerString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.select_by_dependent_connection(None)
+            self.obj.select_by_dependent_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

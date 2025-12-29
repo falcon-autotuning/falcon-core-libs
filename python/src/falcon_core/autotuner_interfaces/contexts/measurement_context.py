@@ -18,11 +18,11 @@ class MeasurementContext:
 
     @classmethod
     def new(cls, connection: Connection, instrument_type: str) -> MeasurementContext:
-        return cls(_CMeasurementContext.new(connection._c, instrument_type))
+        return cls(_CMeasurementContext.new(connection._c if connection is not None else None, instrument_type))
 
     @classmethod
     def new_from_port(cls, port: InstrumentPort) -> MeasurementContext:
-        return cls(_CMeasurementContext.new_from_port(port._c))
+        return cls(_CMeasurementContext.new_from_port(port._c if port is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> MeasurementContext:
@@ -38,11 +38,15 @@ class MeasurementContext:
         return ret
 
     def equal(self, b: MeasurementContext) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: MeasurementContext) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

@@ -1,4 +1,8 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.domains.labelled_domain import LabelledDomain
 
 class TestLabelledDomain:
@@ -6,7 +10,7 @@ class TestLabelledDomain:
         self.obj = None
         try:
             # Found constructor: LabelledDomain_create_primitive_knob
-            self.obj = LabelledDomain.new_primitive_knob("test_string", 0.0, 0.0, None, "test_string", False, False, None, "test_string")
+            self.obj = LabelledDomain.new_primitive_knob("test_string", 0.0, 0.0, Connection.new_barrier('test_conn'), "test_string", False, False, SymbolUnit.new_meter(), "test_string")
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -30,7 +34,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.matching_port(None)
+            self.obj.matching_port(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -1,6 +1,8 @@
 cimport _c_api
 from cpython.bytes cimport PyBytes_FromStringAndSize
 from libc.stddef cimport size_t
+from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
+from libcpp cimport bool
 
 cdef class PairSizeTSizeT:
     def __cinit__(self):
@@ -12,14 +14,6 @@ cdef class PairSizeTSizeT:
             _c_api.PairSizeTSizeT_destroy(self.handle)
         self.handle = <_c_api.PairSizeTSizeTHandle>0
 
-
-cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h):
-    if h == <_c_api.PairSizeTSizeTHandle>0:
-        return None
-    cdef PairSizeTSizeT obj = PairSizeTSizeT.__new__(PairSizeTSizeT)
-    obj.handle = h
-    obj.owned = True
-    return obj
 
     @classmethod
     def new(cls, size_t first, size_t second):
@@ -35,7 +29,7 @@ cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h)
     @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
-        cdef StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
         cdef _c_api.PairSizeTSizeTHandle h
         try:
             h = _c_api.PairSizeTSizeT_from_json_string(s_json)
@@ -55,7 +49,7 @@ cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h)
         return _c_api.PairSizeTSizeT_second(self.handle)
 
     def equal(self, PairSizeTSizeT b):
-        return _c_api.PairSizeTSizeT_equal(self.handle, b.handle)
+        return _c_api.PairSizeTSizeT_equal(self.handle, b.handle if b is not None else <_c_api.PairSizeTSizeTHandle>0)
 
     def __eq__(self, PairSizeTSizeT b):
         if not hasattr(b, "handle"):
@@ -63,9 +57,27 @@ cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h)
         return self.equal(b)
 
     def not_equal(self, PairSizeTSizeT b):
-        return _c_api.PairSizeTSizeT_not_equal(self.handle, b.handle)
+        return _c_api.PairSizeTSizeT_not_equal(self.handle, b.handle if b is not None else <_c_api.PairSizeTSizeTHandle>0)
 
     def __ne__(self, PairSizeTSizeT b):
         if not hasattr(b, "handle"):
             return NotImplemented
         return self.not_equal(b)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PairSizeTSizeT_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+cdef PairSizeTSizeT _pair_size_t_size_t_from_capi(_c_api.PairSizeTSizeTHandle h, bint owned=True):
+    if h == <_c_api.PairSizeTSizeTHandle>0:
+        return None
+    cdef PairSizeTSizeT obj = PairSizeTSizeT.__new__(PairSizeTSizeT)
+    obj.handle = h
+    obj.owned = owned
+    return obj

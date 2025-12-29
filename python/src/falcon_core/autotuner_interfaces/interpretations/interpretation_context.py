@@ -20,7 +20,7 @@ class InterpretationContext:
 
     @classmethod
     def new(cls, independant_variables: Axes, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
-        return cls(_CInterpretationContext.new(independant_variables._c, dependant_variables._c, unit._c))
+        return cls(_CInterpretationContext.new(independant_variables._c if independant_variables is not None else None, dependant_variables._c if dependant_variables is not None else None, unit._c if unit is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> InterpretationContext:
@@ -45,12 +45,12 @@ class InterpretationContext:
         ret = self._c.dimension()
         return ret
 
-    def dependent_variable(self, variable: MeasurementContext) -> None:
-        ret = self._c.dependent_variable(variable._c)
+    def add_dependent_variable(self, variable: MeasurementContext) -> None:
+        ret = self._c.add_dependent_variable(variable._c if variable is not None else None)
         return ret
 
     def replace_dependent_variable(self, index: Any, variable: MeasurementContext) -> None:
-        ret = self._c.replace_dependent_variable(index, variable._c)
+        ret = self._c.replace_dependent_variable(index, variable._c if variable is not None else None)
         return ret
 
     def get_independent_variables(self, index: Any) -> MeasurementContext:
@@ -59,16 +59,26 @@ class InterpretationContext:
         return MeasurementContext._from_capi(ret)
 
     def with_unit(self, unit: SymbolUnit) -> InterpretationContext:
-        ret = self._c.with_unit(unit._c)
-        return cls._from_capi(ret)
+        ret = self._c.with_unit(unit._c if unit is not None else None)
+        return InterpretationContext._from_capi(ret)
 
     def equal(self, b: InterpretationContext) -> None:
-        ret = self._c.equal(b._c)
+        ret = self._c.equal(b._c if b is not None else None)
         return ret
 
     def not_equal(self, b: InterpretationContext) -> None:
-        ret = self._c.not_equal(b._c)
+        ret = self._c.not_equal(b._c if b is not None else None)
         return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
+    def __add__(self, other):
+        """Operator overload for +"""
+        if hasattr(other, "_c") and type(other).__name__ == "DependentVariable":
+            return self.add_dependent_variable(other)
+        return NotImplemented
 
     def __eq__(self, other):
         """Operator overload for =="""

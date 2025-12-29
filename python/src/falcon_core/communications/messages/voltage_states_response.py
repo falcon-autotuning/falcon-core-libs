@@ -17,7 +17,7 @@ class VoltageStatesResponse:
 
     @classmethod
     def new(cls, message: str, states: DeviceVoltageStates) -> VoltageStatesResponse:
-        return cls(_CVoltageStatesResponse.new(message, states._c))
+        return cls(_CVoltageStatesResponse.new(message, states._c if states is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> VoltageStatesResponse:
@@ -33,11 +33,15 @@ class VoltageStatesResponse:
         return DeviceVoltageStates._from_capi(ret)
 
     def equal(self, other: VoltageStatesResponse) -> None:
-        ret = self._c.equal(other._c)
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
     def not_equal(self, other: VoltageStatesResponse) -> None:
-        ret = self._c.not_equal(other._c)
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

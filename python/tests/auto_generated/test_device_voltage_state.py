@@ -1,4 +1,7 @@
 import pytest
+import array
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.communications.voltage_states.device_voltage_state import DeviceVoltageState
 
 class TestDeviceVoltageState:
@@ -6,7 +9,7 @@ class TestDeviceVoltageState:
         self.obj = None
         try:
             # Found constructor: DeviceVoltageState_create
-            self.obj = DeviceVoltageState.new(None, 0.0, None)
+            self.obj = DeviceVoltageState.new(Connection.new_barrier('test_conn'), 0.0, SymbolUnit.new_meter())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -46,7 +49,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.convert_to(None)
+            self.obj.convert_to(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

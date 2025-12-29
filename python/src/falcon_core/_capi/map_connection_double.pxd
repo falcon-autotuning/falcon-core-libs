@@ -4,4 +4,4 @@ cdef class MapConnectionDouble:
     cdef _c_api.MapConnectionDoubleHandle handle
     cdef bint owned
 
-cdef MapConnectionDouble _map_connection_double_from_capi(_c_api.MapConnectionDoubleHandle h)
+cdef MapConnectionDouble _map_connection_double_from_capi(_c_api.MapConnectionDoubleHandle h, bint owned=*)

@@ -19,7 +19,7 @@ class VoltageConstraints:
 
     @classmethod
     def new(cls, adjacency: Adjacency, max_safe_diff: Any, bounds: Pair) -> VoltageConstraints:
-        return cls(_CVoltageConstraints.new(adjacency._c, max_safe_diff, bounds._c))
+        return cls(_CVoltageConstraints.new(adjacency._c if adjacency is not None else None, max_safe_diff, bounds._c if bounds is not None else None))
 
     @classmethod
     def from_json(cls, json: str) -> VoltageConstraints:
@@ -40,12 +40,16 @@ class VoltageConstraints:
         if ret is None: return None
         return FArray(ret)
 
-    def equal(self, b: VoltageConstraints) -> None:
-        ret = self._c.equal(b._c)
+    def equal(self, other: VoltageConstraints) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, b: VoltageConstraints) -> None:
-        ret = self._c.not_equal(b._c)
+    def not_equal(self, other: VoltageConstraints) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def __eq__(self, other):

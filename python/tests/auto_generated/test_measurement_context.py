@@ -1,4 +1,7 @@
 import pytest
+import array
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
 
 class TestMeasurementContext:
@@ -6,7 +9,7 @@ class TestMeasurementContext:
         self.obj = None
         try:
             # Found constructor: MeasurementContext_create
-            self.obj = MeasurementContext.new(None, "test_string")
+            self.obj = MeasurementContext.new(Connection.new_barrier('test_conn'), "test_string")
         except Exception as e:
             print(f'Setup failed: {e}')
 
