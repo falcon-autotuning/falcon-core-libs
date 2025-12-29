@@ -1,5 +1,7 @@
 import pytest
 import array
+from falcon_core.math.axes import Axes
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.communications.hdf5_data import HDF5Data
 
 class TestHDF5Data:
@@ -7,7 +9,7 @@ class TestHDF5Data:
         self.obj = None
         try:
             # Found constructor: HDF5Data_create
-            self.obj = HDF5Data.new(None, None, None, None, None, "test_string", 0, 0)
+            self.obj = HDF5Data.new(Axes[int]([1]), None, Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), None, None, "test_string", 0, 0)
         except Exception as e:
             print(f'Setup failed: {e}')
 

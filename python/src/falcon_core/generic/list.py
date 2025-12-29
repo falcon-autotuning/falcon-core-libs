@@ -27,7 +27,7 @@ class _ListFactory:
         if len(args) == 1 and not kwargs:
             arg = args[0]
             # List from iterable
-            if "List" == "List" and hasattr(self._c_class, 'from_list'):
+            if ("List" == "List" or "List" == "Axes") and hasattr(self._c_class, 'from_list'):
                 return List(self._c_class.from_list(arg), self.element_type)
             # Map from dict
             elif "List" == "Map" and hasattr(self._c_class, 'from_map'):

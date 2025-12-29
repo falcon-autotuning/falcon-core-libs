@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 
 class TestCoupledLabelledDomain:
     def setup_method(self):
@@ -40,7 +41,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -128,7 +129,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -136,7 +137,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

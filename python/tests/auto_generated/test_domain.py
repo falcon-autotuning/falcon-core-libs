@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.math.domains.domain import Domain
+from falcon_core.math.domains.domain import Domain
 
 class TestDomain:
     def setup_method(self):
@@ -71,7 +72,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -79,7 +80,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.union(None)
+            self.obj.union(Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -95,7 +96,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains_domain(None)
+            self.obj.contains_domain(Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -119,7 +120,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.transform(None, 0.0)
+            self.obj.transform(Domain.new(0.0, 1.0, True, True), 0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -127,7 +128,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -135,7 +136,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

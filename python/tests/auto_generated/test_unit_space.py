@@ -1,5 +1,9 @@
 import pytest
 import array
+from falcon_core.math.axes import Axes
+from falcon_core.math.discrete_spaces.discretizer import Discretizer
+from falcon_core.math.domains.domain import Domain
+from falcon_core.math.unit_space import UnitSpace
 from falcon_core.math.unit_space import UnitSpace
 
 class TestUnitSpace:
@@ -7,7 +11,7 @@ class TestUnitSpace:
         self.obj = None
         try:
             # Found constructor: UnitSpace_create
-            self.obj = UnitSpace.new(None, None)
+            self.obj = UnitSpace.new(Axes[Discretizer]([Discretizer.new_cartesian_discretizer(1.0)]), Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -63,7 +67,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Discretizer.new_cartesian_discretizer(1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -119,7 +123,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Discretizer.new_cartesian_discretizer(1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -127,7 +131,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Discretizer.new_cartesian_discretizer(1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -135,7 +139,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -143,7 +147,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -151,7 +155,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

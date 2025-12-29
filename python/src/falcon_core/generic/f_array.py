@@ -27,7 +27,7 @@ class _FArrayFactory:
         if len(args) == 1 and not kwargs:
             arg = args[0]
             # List from iterable
-            if "FArray" == "List" and hasattr(self._c_class, 'from_list'):
+            if ("FArray" == "List" or "FArray" == "Axes") and hasattr(self._c_class, 'from_list'):
                 return FArray(self._c_class.from_list(arg), self.element_type)
             # Map from dict
             elif "FArray" == "Map" and hasattr(self._c_class, 'from_map'):

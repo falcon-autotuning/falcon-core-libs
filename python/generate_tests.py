@@ -7,6 +7,22 @@ RECIPES = {
     "Connection": ("Connection.new_barrier('test_conn')", ["from falcon_core.physics.device_structures.connection import Connection"]),
     "SymbolUnit": ("SymbolUnit.new_meter()", ["from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
     "InstrumentPort": ("InstrumentPort.new_timer()", ["from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
+    "Waveform": ("Waveform.from_list([])", ["from falcon_core.instrument_interfaces.waveform import Waveform"]),
+    "Domain": ("Domain.new(0.0, 1.0, True, True)", ["from falcon_core.math.domains.domain import Domain"]),
+    "UnitSpace": ("UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True))", ["from falcon_core.math.unit_space import UnitSpace", "from falcon_core.math.domains.domain import Domain"]),
+    "Axes": ("Axes[float]([])", ["from falcon_core.math.axes import Axes"]),
+    "DiscreteSpace": ("DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[InstrumentPort]([InstrumentPort.new_timer()]), Axes[InstrumentPort]([InstrumentPort.new_timer()]))", ["from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace", "from falcon_core.math.unit_space import UnitSpace", "from falcon_core.math.axes import Axes", "from falcon_core.math.domains.domain import Domain", "from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
+    "AxesDouble": ("Axes[float]([1.0])", ["from falcon_core.math.axes import Axes"]),
+    "AxesInt": ("Axes[int]([1])", ["from falcon_core.math.axes import Axes"]),
+    "Discretizer": ("Discretizer.new_cartesian_discretizer(1.0)", ["from falcon_core.math.discrete_spaces.discretizer import Discretizer"]),
+    "AxesDiscretizer": ("Axes[Discretizer]([Discretizer.new_cartesian_discretizer(1.0)])", ["from falcon_core.math.axes import Axes", "from falcon_core.math.discrete_spaces.discretizer import Discretizer"]),
+    "AxesInstrumentPort": ("Axes[InstrumentPort]([InstrumentPort.new_timer()])", ["from falcon_core.math.axes import Axes", "from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
+    
+    # Dependencies for DiscreteSpace constructors (implied by debug logs)
+    "CoupledLabelledDomain": ("CoupledLabelledDomain.new_empty()", ["from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain"]),
+    "MapStringBool": ("Map[str, bool]()", ["from falcon_core.generic.map import Map"]),
+    "AxesCoupledLabelledDomain": ("Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()])", ["from falcon_core.math.axes import Axes", "from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain"]),
+    "AxesMapStringBool": ("Axes[MapStringBool]([Map[str, bool]()])", ["from falcon_core.math.axes import Axes", "from falcon_core._capi.map_string_bool import MapStringBool", "from falcon_core.generic.map import Map"]),
 }
 
 def get_dummy_value(type_name: str) -> str:
@@ -15,6 +31,11 @@ def get_dummy_value(type_name: str) -> str:
     
     if type_name in RECIPES:
         return RECIPES[type_name][0]
+
+    if type_name.endswith("Handle"):
+        wrapper_type = type_name[:-6]
+        if wrapper_type in RECIPES:
+            return RECIPES[wrapper_type][0]
         
     if type_name in ["int", "size_t", "int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"]:
         return "0"
@@ -28,14 +49,6 @@ def get_dummy_value(type_name: str) -> str:
         wrapper_type = type_name[:-6]
         if wrapper_type in RECIPES:
              return RECIPES[wrapper_type][0]
-        # For handles, we ideally want a valid object, but for now None might have to do
-        # or we can try to instantiate a dummy if we knew how.
-        # However, passing None to C API expecting a handle often crashes if not checked.
-        # But the python wrappers usually check for None or we can pass a mock?
-        # The Python wrappers usually expect a Python object which has a .handle attribute.
-        # So we should pass None and expect the wrapper to handle it or raise TypeError.
-        # BUT, to get coverage, we want to pass something that passes type checks if possible.
-        # For now, let's use None and catch the exception.
         return "None"
     elif type_name == "list":
         return "[]"
@@ -148,11 +161,11 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
             for imp in RECIPES[t][1]:
                 recipe_imports.add(imp)
         elif t.endswith("Handle"):
-            wrapper = t[:-6]
-            if wrapper in RECIPES:
-                for imp in RECIPES[wrapper][1]:
-                    recipe_imports.add(imp)
-                    
+             wrapper_type = t[:-6]
+             if wrapper_type in RECIPES:
+                 for imp in RECIPES[wrapper_type][1]:
+                     recipe_imports.add(imp)
+                     
     for imp in sorted(list(recipe_imports)):
         if imp not in lines:
             lines.append(imp)

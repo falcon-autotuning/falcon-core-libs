@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.math.domains.domain import Domain
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.domains.labelled_domain import LabelledDomain

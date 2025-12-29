@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.math.axes import Axes
 from falcon_core.generic.map import Map
+from falcon_core._capi.map_string_bool import MapStringBool
 from falcon_core.math.axes import Axes
 
 class TestAxesMapStringBool:
@@ -17,7 +18,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Map[str, bool]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +74,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Map[str, bool]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +82,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Map[str, bool]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +90,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Axes[MapStringBool]([Map[str, bool]()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +98,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Axes[MapStringBool]([Map[str, bool]()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -105,7 +106,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Axes[MapStringBool]([Map[str, bool]()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

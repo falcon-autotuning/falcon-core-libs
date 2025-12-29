@@ -89,7 +89,7 @@ class TestAxesInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +97,7 @@ class TestAxesInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -105,7 +105,7 @@ class TestAxesInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

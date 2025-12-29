@@ -27,7 +27,7 @@ class _LabelledArraysFactory:
         if len(args) == 1 and not kwargs:
             arg = args[0]
             # List from iterable
-            if "LabelledArrays" == "List" and hasattr(self._c_class, 'from_list'):
+            if ("LabelledArrays" == "List" or "LabelledArrays" == "Axes") and hasattr(self._c_class, 'from_list'):
                 return LabelledArrays(self._c_class.from_list(arg), self.element_type)
             # Map from dict
             elif "LabelledArrays" == "Map" and hasattr(self._c_class, 'from_map'):

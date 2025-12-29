@@ -88,7 +88,7 @@ class TestAxesDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Axes[float]([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -96,7 +96,7 @@ class TestAxesDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Axes[float]([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -104,7 +104,7 @@ class TestAxesDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Axes[float]([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

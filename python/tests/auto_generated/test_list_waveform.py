@@ -17,7 +17,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, None)
+            self.obj.fill_value(0, Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +25,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +81,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +89,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

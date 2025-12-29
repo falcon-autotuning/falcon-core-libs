@@ -27,7 +27,7 @@ class _AxesFactory:
         if len(args) == 1 and not kwargs:
             arg = args[0]
             # List from iterable
-            if "Axes" == "List" and hasattr(self._c_class, 'from_list'):
+            if ("Axes" == "List" or "Axes" == "Axes") and hasattr(self._c_class, 'from_list'):
                 return Axes(self._c_class.from_list(arg), self.element_type)
             # Map from dict
             elif "Axes" == "Map" and hasattr(self._c_class, 'from_map'):

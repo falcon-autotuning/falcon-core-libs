@@ -17,7 +17,7 @@ class TestAxesCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +73,7 @@ class TestAxesCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +81,7 @@ class TestAxesCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +89,7 @@ class TestAxesCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +97,7 @@ class TestAxesCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -105,7 +105,7 @@ class TestAxesCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

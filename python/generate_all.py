@@ -352,7 +352,7 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"        if len(args) == 1 and not kwargs:")
     lines.append(f"            arg = args[0]")
     lines.append(f"            # List from iterable")
-    lines.append(f"            if \"{base}\" == \"List\" and hasattr(self._c_class, 'from_list'):")
+    lines.append(f"            if (\"{base}\" == \"List\" or \"{base}\" == \"Axes\") and hasattr(self._c_class, 'from_list'):")
     lines.append(f"                return {base}(self._c_class.from_list(arg), self.element_type)")
     lines.append(f"            # Map from dict")
     lines.append(f"            elif \"{base}\" == \"Map\" and hasattr(self._c_class, 'from_map'):")

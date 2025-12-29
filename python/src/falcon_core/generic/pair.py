@@ -28,7 +28,7 @@ class _PairFactory:
         if len(args) == 1 and not kwargs:
             arg = args[0]
             # List from iterable
-            if "Pair" == "List" and hasattr(self._c_class, 'from_list'):
+            if ("Pair" == "List" or "Pair" == "Axes") and hasattr(self._c_class, 'from_list'):
                 return Pair(self._c_class.from_list(arg), self.element_type)
             # Map from dict
             elif "Pair" == "Map" and hasattr(self._c_class, 'from_map'):

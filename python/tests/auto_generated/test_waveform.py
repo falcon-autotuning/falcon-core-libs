@@ -1,5 +1,14 @@
 import pytest
 import array
+from falcon_core._capi.map_string_bool import MapStringBool
+from falcon_core.generic.map import Map
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.instrument_interfaces.waveform import Waveform
+from falcon_core.math.axes import Axes
+from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+from falcon_core.math.domains.domain import Domain
+from falcon_core.math.unit_space import UnitSpace
 from falcon_core.instrument_interfaces.waveform import Waveform
 
 class TestWaveform:
@@ -7,7 +16,7 @@ class TestWaveform:
         self.obj = None
         try:
             # Found constructor: Waveform_create
-            self.obj = Waveform.new(None, None)
+            self.obj = Waveform.new(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[InstrumentPort]([InstrumentPort.new_timer()]), Axes[InstrumentPort]([InstrumentPort.new_timer()])), None)
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -103,7 +112,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -111,7 +120,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -119,7 +128,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Waveform.from_list([]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
