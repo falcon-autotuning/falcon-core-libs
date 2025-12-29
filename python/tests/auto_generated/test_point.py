@@ -1,5 +1,7 @@
 import pytest
 import array
+from falcon_core.math.point import Point
+from falcon_core.math.quantity import Quantity
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.point import Point
@@ -25,7 +27,7 @@ class TestPoint:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), None)
+            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +35,7 @@ class TestPoint:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(Connection.new_barrier('test_conn'), None)
+            self.obj.insert(Connection.new_barrier('test_conn'), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -129,7 +131,7 @@ class TestPoint:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.addition(None)
+            self.obj.addition(Point.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -137,7 +139,7 @@ class TestPoint:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.subtraction(None)
+            self.obj.subtraction(Point.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -177,7 +179,7 @@ class TestPoint:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Point.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -185,7 +187,7 @@ class TestPoint:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Point.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

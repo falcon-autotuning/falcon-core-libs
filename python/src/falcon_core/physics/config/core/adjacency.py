@@ -20,7 +20,9 @@ class Adjacency:
 
     @classmethod
     def new(cls, data: Any, shape: Any, ndim: Any, indexes: Connections) -> Adjacency:
-        return cls(_CAdjacency.new(data, shape, ndim, indexes._c if indexes is not None else None))
+        obj = cls(_CAdjacency.new(data, shape, ndim, indexes._c if indexes is not None else None))
+        obj._ref_indexes = indexes  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Adjacency:

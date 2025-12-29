@@ -10,7 +10,7 @@ class TestPairMeasurementResponseMeasurementRequest:
         self.obj = None
         try:
             # Found constructor: PairMeasurementResponseMeasurementRequest_create
-            self.obj = Pair[MeasurementResponse, MeasurementRequest](None, None)
+            self.obj = Pair[MeasurementResponse, MeasurementRequest](MeasurementResponse.from_json('{}'), MeasurementRequest.from_json('{}'))
         except Exception as e:
             print(f'Setup failed: {e}')
 

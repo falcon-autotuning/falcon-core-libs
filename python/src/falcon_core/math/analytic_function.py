@@ -19,7 +19,9 @@ class AnalyticFunction:
 
     @classmethod
     def new(cls, labels: List, expression: str) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.new(labels._c if labels is not None else None, expression))
+        obj = cls(_CAnalyticFunction.new(labels._c if labels is not None else None, expression))
+        obj._ref_labels = labels  # Keep reference alive
+        return obj
 
     @classmethod
     def new_identity(cls, ) -> AnalyticFunction:

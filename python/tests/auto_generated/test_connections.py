@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
+from falcon_core.physics.device_structures.connections import Connections
 
 class TestConnections:
     def setup_method(self):
@@ -72,7 +73,7 @@ class TestConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -152,7 +153,7 @@ class TestConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -160,7 +161,7 @@ class TestConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

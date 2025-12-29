@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.generic.list import List
 
 class TestListPortTransform:
@@ -17,7 +18,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, None)
+            self.obj.fill_value(0, PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +26,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +82,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +90,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

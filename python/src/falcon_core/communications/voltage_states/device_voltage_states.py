@@ -24,7 +24,9 @@ class DeviceVoltageStates:
 
     @classmethod
     def new(cls, items: List) -> DeviceVoltageStates:
-        return cls(_CDeviceVoltageStates.new(items._c if items is not None else None))
+        obj = cls(_CDeviceVoltageStates.new(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> DeviceVoltageStates:

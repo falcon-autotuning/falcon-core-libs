@@ -1,13 +1,16 @@
 import pytest
 import array
 from falcon_core.communications.messages.measurement_request import MeasurementRequest
+from falcon_core.instrument_interfaces.names.ports import Ports
+from falcon_core.math.domains.labelled_domain import LabelledDomain
+from falcon_core.communications.messages.measurement_request import MeasurementRequest
 
 class TestMeasurementRequest:
     def setup_method(self):
         self.obj = None
         try:
             # Found constructor: MeasurementRequest_create
-            self.obj = MeasurementRequest.new("test_string", "test_string", None, None, None, None)
+            self.obj = MeasurementRequest.new("test_string", "test_string", None, Ports.new_empty(), None, LabelledDomain.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -63,7 +66,7 @@ class TestMeasurementRequest:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(MeasurementRequest.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -71,7 +74,7 @@ class TestMeasurementRequest:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(MeasurementRequest.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

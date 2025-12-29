@@ -22,7 +22,9 @@ class Connections:
 
     @classmethod
     def new(cls, items: List) -> Connections:
-        return cls(_CConnections.new(items._c if items is not None else None))
+        obj = cls(_CConnections.new(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Connections:

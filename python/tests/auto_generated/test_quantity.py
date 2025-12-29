@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.math.quantity import Quantity
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.quantity import Quantity
 
@@ -56,7 +57,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_quantity(None)
+            self.obj.multiply_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -80,7 +81,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_equals_quantity(None)
+            self.obj.multiply_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -104,7 +105,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_quantity(None)
+            self.obj.divide_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -128,7 +129,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_equals_quantity(None)
+            self.obj.divide_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -144,7 +145,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.add_quantity(None)
+            self.obj.add_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -152,7 +153,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.add_equals_quantity(None)
+            self.obj.add_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -160,7 +161,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.subtract_quantity(None)
+            self.obj.subtract_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -168,7 +169,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.subtract_equals_quantity(None)
+            self.obj.subtract_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -192,7 +193,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -200,7 +201,7 @@ class TestQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

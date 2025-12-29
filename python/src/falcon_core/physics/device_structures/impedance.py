@@ -17,7 +17,9 @@ class Impedance:
 
     @classmethod
     def new(cls, connection: Connection, resistance: Any, capacitance: Any) -> Impedance:
-        return cls(_CImpedance.new(connection._c if connection is not None else None, resistance, capacitance))
+        obj = cls(_CImpedance.new(connection._c if connection is not None else None, resistance, capacitance))
+        obj._ref_connection = connection  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Impedance:

@@ -3,6 +3,7 @@ import array
 from falcon_core.generic.pair import Pair
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
 from falcon_core.math.quantity import Quantity
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.pair import Pair
 
 class TestPairInterpretationContextQuantity:
@@ -10,7 +11,7 @@ class TestPairInterpretationContextQuantity:
         self.obj = None
         try:
             # Found constructor: PairInterpretationContextQuantity_create
-            self.obj = Pair[InterpretationContext, Quantity](None, None)
+            self.obj = Pair[InterpretationContext, Quantity](InterpretationContext.from_json('{}'), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Setup failed: {e}')
 

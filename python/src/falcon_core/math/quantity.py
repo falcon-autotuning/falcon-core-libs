@@ -17,7 +17,9 @@ class Quantity:
 
     @classmethod
     def new(cls, value: Any, unit: SymbolUnit) -> Quantity:
-        return cls(_CQuantity.new(value, unit._c if unit is not None else None))
+        obj = cls(_CQuantity.new(value, unit._c if unit is not None else None))
+        obj._ref_unit = unit  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Quantity:

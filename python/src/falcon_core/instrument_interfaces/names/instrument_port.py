@@ -18,15 +18,24 @@ class InstrumentPort:
 
     @classmethod
     def new_port(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.new_port(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj = cls(_CInstrumentPort.new_port(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_knob(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.new_knob(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj = cls(_CInstrumentPort.new_knob(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_meter(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.new_meter(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj = cls(_CInstrumentPort.new_meter(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_timer(cls, ) -> InstrumentPort:

@@ -3,6 +3,8 @@ import array
 from falcon_core.generic.pair import Pair
 from falcon_core.autotuner_interfaces.names.gname import Gname
 from falcon_core.physics.config.core.group import Group
+from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.generic.pair import Pair
 
 class TestPairGnameGroup:
@@ -10,7 +12,7 @@ class TestPairGnameGroup:
         self.obj = None
         try:
             # Found constructor: PairGnameGroup_create
-            self.obj = Pair[Gname, Group](None, None)
+            self.obj = Pair[Gname, Group](Gname.new('test_gname'), Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
         except Exception as e:
             print(f'Setup failed: {e}')
 

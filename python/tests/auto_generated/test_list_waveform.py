@@ -2,6 +2,14 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.instrument_interfaces.waveform import Waveform
+from falcon_core._capi.map_string_bool import MapStringBool
+from falcon_core.generic.map import Map
+from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
+from falcon_core.math.axes import Axes
+from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+from falcon_core.math.domains.domain import Domain
+from falcon_core.math.unit_space import UnitSpace
 from falcon_core.generic.list import List
 
 class TestListWaveform:
@@ -17,7 +25,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, Waveform.from_list([]))
+            self.obj.fill_value(0, Waveform.new(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])), List[PortTransform]([])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +33,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(Waveform.from_list([]))
+            self.obj.push_back(Waveform.new(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])), List[PortTransform]([])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +89,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(Waveform.from_list([]))
+            self.obj.contains(Waveform.new(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])), List[PortTransform]([])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +97,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(Waveform.from_list([]))
+            self.obj.index(Waveform.new(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])), List[PortTransform]([])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -25,7 +25,9 @@ class GateRelations:
 
     @classmethod
     def new(cls, items: List) -> GateRelations:
-        return cls(_CGateRelations.new(items._c if items is not None else None))
+        obj = cls(_CGateRelations.new(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> GateRelations:

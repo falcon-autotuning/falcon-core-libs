@@ -19,7 +19,10 @@ class VoltageConstraints:
 
     @classmethod
     def new(cls, adjacency: Adjacency, max_safe_diff: Any, bounds: Pair) -> VoltageConstraints:
-        return cls(_CVoltageConstraints.new(adjacency._c if adjacency is not None else None, max_safe_diff, bounds._c if bounds is not None else None))
+        obj = cls(_CVoltageConstraints.new(adjacency._c if adjacency is not None else None, max_safe_diff, bounds._c if bounds is not None else None))
+        obj._ref_adjacency = adjacency  # Keep reference alive
+        obj._ref_bounds = bounds  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> VoltageConstraints:

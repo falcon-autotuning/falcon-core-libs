@@ -10,7 +10,7 @@ class TestPairChannelConnections:
         self.obj = None
         try:
             # Found constructor: PairChannelConnections_create
-            self.obj = Pair[Channel, Connections](None, None)
+            self.obj = Pair[Channel, Connections](Channel.new('test_channel'), Connections.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 

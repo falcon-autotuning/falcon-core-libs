@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.autotuner_interfaces.names.channel import Channel
 
 class TestChannel:
     def setup_method(self):
@@ -23,7 +24,7 @@ class TestChannel:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -31,7 +32,7 @@ class TestChannel:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -17,7 +17,10 @@ class LeftReservoirWithImplantedOhmic:
 
     @classmethod
     def new(cls, name: str, right_neighbor: Connection, ohmic: Connection) -> LeftReservoirWithImplantedOhmic:
-        return cls(_CLeftReservoirWithImplantedOhmic.new(name, right_neighbor._c if right_neighbor is not None else None, ohmic._c if ohmic is not None else None))
+        obj = cls(_CLeftReservoirWithImplantedOhmic.new(name, right_neighbor._c if right_neighbor is not None else None, ohmic._c if ohmic is not None else None))
+        obj._ref_right_neighbor = right_neighbor  # Keep reference alive
+        obj._ref_ohmic = ohmic  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> LeftReservoirWithImplantedOhmic:

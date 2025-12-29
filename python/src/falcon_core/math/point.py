@@ -28,11 +28,16 @@ class Point:
 
     @classmethod
     def new(cls, items: Map, unit: SymbolUnit) -> Point:
-        return cls(_CPoint.new(items._c if items is not None else None, unit._c if unit is not None else None))
+        obj = cls(_CPoint.new(items._c if items is not None else None, unit._c if unit is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        obj._ref_unit = unit  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_parent(cls, items: Map) -> Point:
-        return cls(_CPoint.new_from_parent(items._c if items is not None else None))
+        obj = cls(_CPoint.new_from_parent(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Point:

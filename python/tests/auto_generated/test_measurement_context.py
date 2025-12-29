@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
@@ -33,7 +34,7 @@ class TestMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -41,7 +42,7 @@ class TestMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

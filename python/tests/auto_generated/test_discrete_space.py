@@ -95,7 +95,7 @@ class TestDiscreteSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[InstrumentPort]([InstrumentPort.new_timer()]), Axes[InstrumentPort]([InstrumentPort.new_timer()])))
+            self.obj.equal(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -103,7 +103,7 @@ class TestDiscreteSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[InstrumentPort]([InstrumentPort.new_timer()]), Axes[InstrumentPort]([InstrumentPort.new_timer()])))
+            self.obj.not_equal(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

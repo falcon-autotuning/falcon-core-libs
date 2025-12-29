@@ -1,5 +1,9 @@
 import pytest
 import array
+from falcon_core.communications.hdf5_data import HDF5Data
+from falcon_core.communications.messages.measurement_request import MeasurementRequest
+from falcon_core.communications.messages.measurement_response import MeasurementResponse
+from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
 from falcon_core.math.axes import Axes
 from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.communications.hdf5_data import HDF5Data
@@ -33,7 +37,7 @@ class TestHDF5Data:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(HDF5Data.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -41,7 +45,7 @@ class TestHDF5Data:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(HDF5Data.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

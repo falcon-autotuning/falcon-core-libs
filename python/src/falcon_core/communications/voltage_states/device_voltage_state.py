@@ -18,7 +18,10 @@ class DeviceVoltageState:
 
     @classmethod
     def new(cls, connection: Connection, voltage: Any, unit: SymbolUnit) -> DeviceVoltageState:
-        return cls(_CDeviceVoltageState.new(connection._c if connection is not None else None, voltage, unit._c if unit is not None else None))
+        obj = cls(_CDeviceVoltageState.new(connection._c if connection is not None else None, voltage, unit._c if unit is not None else None))
+        obj._ref_connection = connection  # Keep reference alive
+        obj._ref_unit = unit  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> DeviceVoltageState:

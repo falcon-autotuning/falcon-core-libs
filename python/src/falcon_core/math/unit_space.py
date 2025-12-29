@@ -23,27 +23,43 @@ class UnitSpace:
 
     @classmethod
     def new(cls, axes: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new(axes._c if axes is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CUnitSpace.new(axes._c if axes is not None else None, domain._c if domain is not None else None))
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_ray_space(cls, dr: Any, dtheta: Any, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_ray_space(dr, dtheta, domain._c if domain is not None else None))
+        obj = cls(_CUnitSpace.new_ray_space(dr, dtheta, domain._c if domain is not None else None))
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_space(cls, deltas: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_cartesian_space(deltas._c if deltas is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CUnitSpace.new_cartesian_space(deltas._c if deltas is not None else None, domain._c if domain is not None else None))
+        obj._ref_deltas = deltas  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_1D_space(cls, delta: Any, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_cartesian_1D_space(delta, domain._c if domain is not None else None))
+        obj = cls(_CUnitSpace.new_cartesian_1D_space(delta, domain._c if domain is not None else None))
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_2D_space(cls, deltas: Axes, domain: Domain) -> UnitSpace:
-        return cls(_CUnitSpace.new_cartesian_2D_space(deltas._c if deltas is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CUnitSpace.new_cartesian_2D_space(deltas._c if deltas is not None else None, domain._c if domain is not None else None))
+        obj._ref_deltas = deltas  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_array(cls, handle: UnitSpace, axes: Axes) -> UnitSpace:
-        return cls(_CUnitSpace.new_array(handle._c if handle is not None else None, axes._c if axes is not None else None))
+        obj = cls(_CUnitSpace.new_array(handle._c if handle is not None else None, axes._c if axes is not None else None))
+        obj._ref_handle = handle  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> UnitSpace:

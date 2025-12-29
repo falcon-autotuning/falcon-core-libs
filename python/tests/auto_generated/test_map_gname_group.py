@@ -3,6 +3,8 @@ import array
 from falcon_core.generic.map import Map
 from falcon_core.autotuner_interfaces.names.gname import Gname
 from falcon_core.physics.config.core.group import Group
+from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.generic.map import Map
 
 class TestMapGnameGroup:
@@ -18,7 +20,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, None)
+            self.obj.insert_or_assign(Gname.new('test_gname'), Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -26,7 +28,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, None)
+            self.obj.insert(Gname.new('test_gname'), Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -34,7 +36,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -42,7 +44,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -74,7 +76,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -106,7 +108,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Map[Gname, Group]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -114,7 +116,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Map[Gname, Group]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

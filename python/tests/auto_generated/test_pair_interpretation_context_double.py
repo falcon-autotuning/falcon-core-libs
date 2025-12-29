@@ -9,7 +9,7 @@ class TestPairInterpretationContextDouble:
         self.obj = None
         try:
             # Found constructor: PairInterpretationContextDouble_create
-            self.obj = Pair[InterpretationContext, float](None, 0.0)
+            self.obj = Pair[InterpretationContext, float](InterpretationContext.from_json('{}'), 0.0)
         except Exception as e:
             print(f'Setup failed: {e}')
 

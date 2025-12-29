@@ -10,7 +10,7 @@ class TestPairInstrumentPortPortTransform:
         self.obj = None
         try:
             # Found constructor: PairInstrumentPortPortTransform_create
-            self.obj = Pair[InstrumentPort, PortTransform](InstrumentPort.new_timer(), None)
+            self.obj = Pair[InstrumentPort, PortTransform](InstrumentPort.new_timer(), PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Setup failed: {e}')
 

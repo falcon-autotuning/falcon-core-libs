@@ -1,5 +1,8 @@
 import pytest
 import array
+from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
+from falcon_core.math.point import Point
+from falcon_core.math.vector import Vector
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.vector import Vector
@@ -9,7 +12,7 @@ class TestVector:
         self.obj = None
         try:
             # Found constructor: Vector_create
-            self.obj = Vector.new(None, None)
+            self.obj = Vector.new(Point.new_empty(), Point.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -185,7 +188,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.addition(None)
+            self.obj.addition(Vector.new(Point.new_empty(), Point.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -193,7 +196,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.subtraction(None)
+            self.obj.subtraction(Vector.new(Point.new_empty(), Point.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -241,7 +244,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.update_start_from_states(None)
+            self.obj.update_start_from_states(DeviceVoltageStates.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -265,7 +268,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.translate(None)
+            self.obj.translate(Point.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -329,7 +332,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.project(None)
+            self.obj.project(Vector.new(Point.new_empty(), Point.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -345,7 +348,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Vector.new(Point.new_empty(), Point.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -353,7 +356,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Vector.new(Point.new_empty(), Point.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

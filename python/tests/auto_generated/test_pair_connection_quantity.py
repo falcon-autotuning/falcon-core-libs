@@ -3,6 +3,7 @@ import array
 from falcon_core.generic.pair import Pair
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.math.quantity import Quantity
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.pair import Pair
 
 class TestPairConnectionQuantity:
@@ -10,7 +11,7 @@ class TestPairConnectionQuantity:
         self.obj = None
         try:
             # Found constructor: PairConnectionQuantity_create
-            self.obj = Pair[Connection, Quantity](Connection.new_barrier('test_conn'), None)
+            self.obj = Pair[Connection, Quantity](Connection.new_barrier('test_conn'), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Setup failed: {e}')
 

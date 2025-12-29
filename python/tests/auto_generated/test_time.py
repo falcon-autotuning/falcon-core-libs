@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.communications.time import Time
+from falcon_core.communications.time import Time
 
 class TestTime:
     def setup_method(self):
@@ -39,7 +40,7 @@ class TestTime:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Time.new(0, 0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -47,7 +48,7 @@ class TestTime:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Time.new(0, 0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

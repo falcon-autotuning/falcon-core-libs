@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.instrument_interfaces.names.ports import Ports
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.instrument_interfaces.names.ports import Ports
 
@@ -89,7 +90,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Ports.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -169,7 +170,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Ports.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -177,7 +178,7 @@ class TestPorts:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Ports.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

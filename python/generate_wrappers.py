@@ -925,6 +925,7 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         # Args
         py_args = []
         call_args = []
+        handle_refs = []  # Track handle args that need to be stored as refs
         
         for arg in ctor.args:
             arg_name = arg.name
@@ -943,6 +944,8 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
                     py_type = classification[0] # Use generic base name
                 else:
                     py_type = base
+                # Track this as a handle ref to store
+                handle_refs.append(arg_name)
             
             py_args.append(f"{arg_name}: {py_type}")
             
@@ -954,7 +957,15 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
                 
         lines.append(f'    @classmethod')
         lines.append(f'    def {py_name}(cls, {", ".join(py_args)}) -> {cls.name}:')
-        lines.append(f'        return cls(_C{cls.name}.{py_name}({", ".join(call_args)}))')
+        
+        # If we have handle refs, create object and store them
+        if handle_refs:
+            lines.append(f'        obj = cls(_C{cls.name}.{py_name}({", ".join(call_args)}))')
+            for ref_name in handle_refs:
+                lines.append(f'        obj._ref_{ref_name} = {ref_name}  # Keep reference alive')
+            lines.append(f'        return obj')
+        else:
+            lines.append(f'        return cls(_C{cls.name}.{py_name}({", ".join(call_args)}))')
         lines.append('')
 
     # Methods

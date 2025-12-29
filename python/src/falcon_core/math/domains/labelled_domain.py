@@ -20,27 +20,45 @@ class LabelledDomain:
 
     @classmethod
     def new_primitive_knob(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_primitive_knob(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
+        obj = cls(_CLabelledDomain.new_primitive_knob(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_primitive_meter(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_primitive_meter(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
+        obj = cls(_CLabelledDomain.new_primitive_meter(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_primitive_port(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_primitive_port(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
+        obj = cls(_CLabelledDomain.new_primitive_port(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_port(cls, min_val: Any, max_val: Any, instrument_type: str, port: InstrumentPort, lesser_bound_contained: Any, greater_bound_contained: Any) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_from_port(min_val, max_val, instrument_type, port._c if port is not None else None, lesser_bound_contained, greater_bound_contained))
+        obj = cls(_CLabelledDomain.new_from_port(min_val, max_val, instrument_type, port._c if port is not None else None, lesser_bound_contained, greater_bound_contained))
+        obj._ref_port = port  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_port_and_domain(cls, port: InstrumentPort, domain: Domain) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_from_port_and_domain(port._c if port is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CLabelledDomain.new_from_port_and_domain(port._c if port is not None else None, domain._c if domain is not None else None))
+        obj._ref_port = port  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_domain(cls, domain: Domain, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.new_from_domain(domain._c if domain is not None else None, default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj = cls(_CLabelledDomain.new_from_domain(domain._c if domain is not None else None, default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
+        obj._ref_domain = domain  # Keep reference alive
+        obj._ref_psuedo_name = psuedo_name  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> LabelledDomain:

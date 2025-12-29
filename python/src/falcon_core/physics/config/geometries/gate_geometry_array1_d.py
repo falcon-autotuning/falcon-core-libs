@@ -22,7 +22,10 @@ class GateGeometryArray1D:
 
     @classmethod
     def new(cls, lineararray: Connections, screening_gates: Connections) -> GateGeometryArray1D:
-        return cls(_CGateGeometryArray1D.new(lineararray._c if lineararray is not None else None, screening_gates._c if screening_gates is not None else None))
+        obj = cls(_CGateGeometryArray1D.new(lineararray._c if lineararray is not None else None, screening_gates._c if screening_gates is not None else None))
+        obj._ref_lineararray = lineararray  # Keep reference alive
+        obj._ref_screening_gates = screening_gates  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> GateGeometryArray1D:

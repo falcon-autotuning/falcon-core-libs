@@ -2,6 +2,9 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.list import List
 
 class TestListAcquisitionContext:
@@ -17,7 +20,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, None)
+            self.obj.fill_value(0, AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +28,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +84,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +92,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

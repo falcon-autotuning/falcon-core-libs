@@ -19,11 +19,16 @@ class AcquisitionContext:
 
     @classmethod
     def new(cls, connection: Connection, instrument_type: str, units: SymbolUnit) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.new(connection._c if connection is not None else None, instrument_type, units._c if units is not None else None))
+        obj = cls(_CAcquisitionContext.new(connection._c if connection is not None else None, instrument_type, units._c if units is not None else None))
+        obj._ref_connection = connection  # Keep reference alive
+        obj._ref_units = units  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_port(cls, port: InstrumentPort) -> AcquisitionContext:
-        return cls(_CAcquisitionContext.new_from_port(port._c if port is not None else None))
+        obj = cls(_CAcquisitionContext.new_from_port(port._c if port is not None else None))
+        obj._ref_port = port  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> AcquisitionContext:

@@ -25,7 +25,9 @@ class Ports:
 
     @classmethod
     def new(cls, items: List) -> Ports:
-        return cls(_CPorts.new(items._c if items is not None else None))
+        obj = cls(_CPorts.new(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Ports:

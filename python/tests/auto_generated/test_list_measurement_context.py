@@ -17,7 +17,7 @@ class TestListMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, None)
+            self.obj.fill_value(0, MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +25,7 @@ class TestListMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +81,7 @@ class TestListMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +89,7 @@ class TestListMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

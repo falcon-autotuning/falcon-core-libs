@@ -18,7 +18,7 @@ class TestMapChannelConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, None)
+            self.obj.insert_or_assign(Channel.new('test_channel'), Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -26,7 +26,7 @@ class TestMapChannelConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, None)
+            self.obj.insert(Channel.new('test_channel'), Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -34,7 +34,7 @@ class TestMapChannelConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -42,7 +42,7 @@ class TestMapChannelConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -74,7 +74,7 @@ class TestMapChannelConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

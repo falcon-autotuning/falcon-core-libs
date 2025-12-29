@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.config.geometries.gate_geometry_array1_d import GateGeometryArray1D
 
 class TestGateGeometryArray1D:
@@ -8,7 +9,7 @@ class TestGateGeometryArray1D:
         self.obj = None
         try:
             # Found constructor: GateGeometryArray1D_create
-            self.obj = GateGeometryArray1D.new(None, None)
+            self.obj = GateGeometryArray1D.new(Connections.new_empty(), Connections.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 

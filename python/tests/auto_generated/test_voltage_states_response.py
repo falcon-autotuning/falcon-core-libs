@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
 from falcon_core.communications.messages.voltage_states_response import VoltageStatesResponse
 
 class TestVoltageStatesResponse:
@@ -7,7 +8,7 @@ class TestVoltageStatesResponse:
         self.obj = None
         try:
             # Found constructor: VoltageStatesResponse_create
-            self.obj = VoltageStatesResponse.new("test_string", None)
+            self.obj = VoltageStatesResponse.new("test_string", DeviceVoltageStates.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 

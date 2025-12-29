@@ -18,11 +18,15 @@ class MeasurementContext:
 
     @classmethod
     def new(cls, connection: Connection, instrument_type: str) -> MeasurementContext:
-        return cls(_CMeasurementContext.new(connection._c if connection is not None else None, instrument_type))
+        obj = cls(_CMeasurementContext.new(connection._c if connection is not None else None, instrument_type))
+        obj._ref_connection = connection  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_port(cls, port: InstrumentPort) -> MeasurementContext:
-        return cls(_CMeasurementContext.new_from_port(port._c if port is not None else None))
+        obj = cls(_CMeasurementContext.new_from_port(port._c if port is not None else None))
+        obj._ref_port = port  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> MeasurementContext:

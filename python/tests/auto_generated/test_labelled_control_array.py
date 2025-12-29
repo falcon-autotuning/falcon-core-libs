@@ -1,5 +1,10 @@
 import pytest
 import array
+from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
+from falcon_core.generic.f_array import FArray
+from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.arrays.labelled_control_array import LabelledControlArray
 
 class TestLabelledControlArray:
@@ -15,7 +20,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.from_farray(None, None)
+            self.obj.from_farray(FArray[float].from_list([1.0]), AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -23,7 +28,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.from_control_array(None, None)
+            self.obj.from_control_array(None, AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -95,7 +100,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_equals_farray(None)
+            self.obj.plus_equals_farray(FArray[float].from_list([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -127,7 +132,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_farray(None)
+            self.obj.plus_farray(FArray[float].from_list([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -159,7 +164,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_equals_farray(None)
+            self.obj.minus_equals_farray(FArray[float].from_list([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -191,7 +196,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_farray(None)
+            self.obj.minus_farray(FArray[float].from_list([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -311,7 +316,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.min_farray(None)
+            self.obj.min_farray(FArray[float].from_list([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -335,7 +340,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.max_farray(None)
+            self.obj.max_farray(FArray[float].from_list([1.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -25,31 +25,65 @@ class Waveform:
 
     @classmethod
     def new(cls, space: DiscreteSpace, transforms: List) -> Waveform:
-        return cls(_CWaveform.new(space._c if space is not None else None, transforms._c if transforms is not None else None))
+        obj = cls(_CWaveform.new(space._c if space is not None else None, transforms._c if transforms is not None else None))
+        obj._ref_space = space  # Keep reference alive
+        obj._ref_transforms = transforms  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_waveform(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesian_waveform(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CWaveform.new_cartesian_waveform(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
+        obj._ref_divisions = divisions  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_transforms = transforms  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_identity_waveform(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesian_identity_waveform(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CWaveform.new_cartesian_identity_waveform(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj._ref_divisions = divisions  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_waveform_2D(cls, divisions: Axes, axes: Axes, increasing: Axes, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesian_waveform_2D(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CWaveform.new_cartesian_waveform_2D(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
+        obj._ref_divisions = divisions  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_transforms = transforms  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_identity_waveform_2D(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesian_identity_waveform_2D(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CWaveform.new_cartesian_identity_waveform_2D(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj._ref_divisions = divisions  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_waveform_1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, transforms: List, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesian_waveform_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CWaveform.new_cartesian_waveform_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, transforms._c if transforms is not None else None, domain._c if domain is not None else None))
+        obj._ref_shared_domain = shared_domain  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_transforms = transforms  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_identity_waveform_1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> Waveform:
-        return cls(_CWaveform.new_cartesian_identity_waveform_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CWaveform.new_cartesian_identity_waveform_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj._ref_shared_domain = shared_domain  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Waveform:

@@ -17,7 +17,9 @@ class VoltageStatesResponse:
 
     @classmethod
     def new(cls, message: str, states: DeviceVoltageStates) -> VoltageStatesResponse:
-        return cls(_CVoltageStatesResponse.new(message, states._c if states is not None else None))
+        obj = cls(_CVoltageStatesResponse.new(message, states._c if states is not None else None))
+        obj._ref_states = states  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> VoltageStatesResponse:

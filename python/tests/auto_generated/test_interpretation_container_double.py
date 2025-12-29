@@ -1,7 +1,9 @@
 import pytest
 import array
 from falcon_core.autotuner_interfaces.interpretations.interpretation_container import InterpretationContainer
+from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.autotuner_interfaces.interpretations.interpretation_container import InterpretationContainer
 
 class TestInterpretationContainerDouble:
@@ -33,7 +35,7 @@ class TestInterpretationContainerDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.select_by_connections(None)
+            self.obj.select_by_connections(Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -65,7 +67,7 @@ class TestInterpretationContainerDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, 0.0)
+            self.obj.insert_or_assign(InterpretationContext.from_json('{}'), 0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +75,7 @@ class TestInterpretationContainerDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, 0.0)
+            self.obj.insert(InterpretationContext.from_json('{}'), 0.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +83,7 @@ class TestInterpretationContainerDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +91,7 @@ class TestInterpretationContainerDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -121,7 +123,7 @@ class TestInterpretationContainerDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

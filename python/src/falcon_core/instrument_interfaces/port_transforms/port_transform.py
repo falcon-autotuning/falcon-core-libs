@@ -21,15 +21,22 @@ class PortTransform:
 
     @classmethod
     def new(cls, port: InstrumentPort, transform: AnalyticFunction) -> PortTransform:
-        return cls(_CPortTransform.new(port._c if port is not None else None, transform._c if transform is not None else None))
+        obj = cls(_CPortTransform.new(port._c if port is not None else None, transform._c if transform is not None else None))
+        obj._ref_port = port  # Keep reference alive
+        obj._ref_transform = transform  # Keep reference alive
+        return obj
 
     @classmethod
     def new_constant_transform(cls, port: InstrumentPort, value: Any) -> PortTransform:
-        return cls(_CPortTransform.new_constant_transform(port._c if port is not None else None, value))
+        obj = cls(_CPortTransform.new_constant_transform(port._c if port is not None else None, value))
+        obj._ref_port = port  # Keep reference alive
+        return obj
 
     @classmethod
     def new_identity_transform(cls, port: InstrumentPort) -> PortTransform:
-        return cls(_CPortTransform.new_identity_transform(port._c if port is not None else None))
+        obj = cls(_CPortTransform.new_identity_transform(port._c if port is not None else None))
+        obj._ref_port = port  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> PortTransform:

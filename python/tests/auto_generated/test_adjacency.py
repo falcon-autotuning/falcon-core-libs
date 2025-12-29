@@ -1,5 +1,8 @@
 import pytest
 import array
+from falcon_core.generic.f_array import FArray
+from falcon_core.physics.config.core.adjacency import Adjacency
+from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.config.core.adjacency import Adjacency
 
 class TestAdjacency:
@@ -7,7 +10,7 @@ class TestAdjacency:
         self.obj = None
         try:
             # Found constructor: Adjacency_create
-            self.obj = Adjacency.new(array.array('i', [0]), array.array('L', [0]), 0, None)
+            self.obj = Adjacency.new(array.array('i', [0]), array.array('L', [0]), 0, Connections.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -71,7 +74,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_equals_farray(None)
+            self.obj.times_equals_farray(FArray[int].from_list([1]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -79,7 +82,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_farray(None)
+            self.obj.times_farray(FArray[int].from_list([1]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -87,7 +90,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Adjacency.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -95,7 +98,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Adjacency.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

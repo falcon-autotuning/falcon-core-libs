@@ -1,6 +1,9 @@
 import pytest
 import array
+from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.physics.config.core.group import Group
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.config.core.group import Group
 
 class TestGroup:
@@ -8,7 +11,7 @@ class TestGroup:
         self.obj = None
         try:
             # Found constructor: Group_create
-            self.obj = Group.new(None, 0, None, None, None, None, None)
+            self.obj = Group.new(Channel.new('test_channel'), 0, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -40,7 +43,7 @@ class TestGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_channel(None)
+            self.obj.has_channel(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -232,7 +235,7 @@ class TestGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -240,7 +243,7 @@ class TestGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

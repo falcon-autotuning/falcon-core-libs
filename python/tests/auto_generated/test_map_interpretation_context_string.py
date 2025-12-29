@@ -17,7 +17,7 @@ class TestMapInterpretationContextString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(None, "test_string")
+            self.obj.insert_or_assign(InterpretationContext.from_json('{}'), "test_string")
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +25,7 @@ class TestMapInterpretationContextString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(None, "test_string")
+            self.obj.insert(InterpretationContext.from_json('{}'), "test_string")
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +33,7 @@ class TestMapInterpretationContextString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(None)
+            self.obj.at(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -41,7 +41,7 @@ class TestMapInterpretationContextString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(None)
+            self.obj.erase(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +73,7 @@ class TestMapInterpretationContextString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

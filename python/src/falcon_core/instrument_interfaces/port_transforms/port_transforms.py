@@ -22,7 +22,9 @@ class PortTransforms:
 
     @classmethod
     def new(cls, handle: List) -> PortTransforms:
-        return cls(_CPortTransforms.new(handle._c if handle is not None else None))
+        obj = cls(_CPortTransforms.new(handle._c if handle is not None else None))
+        obj._ref_handle = handle  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> PortTransforms:

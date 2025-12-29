@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.impedance import Impedance
+from falcon_core.physics.device_structures.impedance import Impedance
 
 class TestImpedance:
     def setup_method(self):
@@ -40,7 +41,7 @@ class TestImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +49,7 @@ class TestImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -17,7 +17,9 @@ class MeasurementResponse:
 
     @classmethod
     def new(cls, arrays: LabelledArrays) -> MeasurementResponse:
-        return cls(_CMeasurementResponse.new(arrays._c if arrays is not None else None))
+        obj = cls(_CMeasurementResponse.new(arrays._c if arrays is not None else None))
+        obj._ref_arrays = arrays  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> MeasurementResponse:

@@ -20,7 +20,12 @@ class MeasurementRequest:
 
     @classmethod
     def new(cls, message: str, measurement_name: str, waveforms: List, getters: Ports, meter_transforms: Map, time_domain: LabelledDomain) -> MeasurementRequest:
-        return cls(_CMeasurementRequest.new(message, measurement_name, waveforms._c if waveforms is not None else None, getters._c if getters is not None else None, meter_transforms._c if meter_transforms is not None else None, time_domain._c if time_domain is not None else None))
+        obj = cls(_CMeasurementRequest.new(message, measurement_name, waveforms._c if waveforms is not None else None, getters._c if getters is not None else None, meter_transforms._c if meter_transforms is not None else None, time_domain._c if time_domain is not None else None))
+        obj._ref_waveforms = waveforms  # Keep reference alive
+        obj._ref_getters = getters  # Keep reference alive
+        obj._ref_meter_transforms = meter_transforms  # Keep reference alive
+        obj._ref_time_domain = time_domain  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> MeasurementRequest:

@@ -26,31 +26,50 @@ class Vector:
 
     @classmethod
     def new(cls, start: Point, end: Point) -> Vector:
-        return cls(_CVector.new(start._c if start is not None else None, end._c if end is not None else None))
+        obj = cls(_CVector.new(start._c if start is not None else None, end._c if end is not None else None))
+        obj._ref_start = start  # Keep reference alive
+        obj._ref_end = end  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_end(cls, end: Point) -> Vector:
-        return cls(_CVector.new_from_end(end._c if end is not None else None))
+        obj = cls(_CVector.new_from_end(end._c if end is not None else None))
+        obj._ref_end = end  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_quantities(cls, start: Map, end: Map) -> Vector:
-        return cls(_CVector.new_from_quantities(start._c if start is not None else None, end._c if end is not None else None))
+        obj = cls(_CVector.new_from_quantities(start._c if start is not None else None, end._c if end is not None else None))
+        obj._ref_start = start  # Keep reference alive
+        obj._ref_end = end  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_end_quantities(cls, end: Map) -> Vector:
-        return cls(_CVector.new_from_end_quantities(end._c if end is not None else None))
+        obj = cls(_CVector.new_from_end_quantities(end._c if end is not None else None))
+        obj._ref_end = end  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_doubles(cls, start: Map, end: Map, unit: SymbolUnit) -> Vector:
-        return cls(_CVector.new_from_doubles(start._c if start is not None else None, end._c if end is not None else None, unit._c if unit is not None else None))
+        obj = cls(_CVector.new_from_doubles(start._c if start is not None else None, end._c if end is not None else None, unit._c if unit is not None else None))
+        obj._ref_start = start  # Keep reference alive
+        obj._ref_end = end  # Keep reference alive
+        obj._ref_unit = unit  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_end_doubles(cls, end: Map, unit: SymbolUnit) -> Vector:
-        return cls(_CVector.new_from_end_doubles(end._c if end is not None else None, unit._c if unit is not None else None))
+        obj = cls(_CVector.new_from_end_doubles(end._c if end is not None else None, unit._c if unit is not None else None))
+        obj._ref_end = end  # Keep reference alive
+        obj._ref_unit = unit  # Keep reference alive
+        return obj
 
     @classmethod
     def new_from_parent(cls, items: Map) -> Vector:
-        return cls(_CVector.new_from_parent(items._c if items is not None else None))
+        obj = cls(_CVector.new_from_parent(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Vector:

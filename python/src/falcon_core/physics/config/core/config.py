@@ -31,7 +31,16 @@ class Config:
 
     @classmethod
     def new(cls, screening_gates: Connections, plunger_gates: Connections, ohmics: Connections, barrier_gates: Connections, reservoir_gates: Connections, groups: Map, wiring_DC: Impedances, constraints: VoltageConstraints) -> Config:
-        return cls(_CConfig.new(screening_gates._c if screening_gates is not None else None, plunger_gates._c if plunger_gates is not None else None, ohmics._c if ohmics is not None else None, barrier_gates._c if barrier_gates is not None else None, reservoir_gates._c if reservoir_gates is not None else None, groups._c if groups is not None else None, wiring_DC._c if wiring_DC is not None else None, constraints._c if constraints is not None else None))
+        obj = cls(_CConfig.new(screening_gates._c if screening_gates is not None else None, plunger_gates._c if plunger_gates is not None else None, ohmics._c if ohmics is not None else None, barrier_gates._c if barrier_gates is not None else None, reservoir_gates._c if reservoir_gates is not None else None, groups._c if groups is not None else None, wiring_DC._c if wiring_DC is not None else None, constraints._c if constraints is not None else None))
+        obj._ref_screening_gates = screening_gates  # Keep reference alive
+        obj._ref_plunger_gates = plunger_gates  # Keep reference alive
+        obj._ref_ohmics = ohmics  # Keep reference alive
+        obj._ref_barrier_gates = barrier_gates  # Keep reference alive
+        obj._ref_reservoir_gates = reservoir_gates  # Keep reference alive
+        obj._ref_groups = groups  # Keep reference alive
+        obj._ref_wiring_DC = wiring_DC  # Keep reference alive
+        obj._ref_constraints = constraints  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Config:

@@ -20,7 +20,11 @@ class InterpretationContext:
 
     @classmethod
     def new(cls, independant_variables: Axes, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
-        return cls(_CInterpretationContext.new(independant_variables._c if independant_variables is not None else None, dependant_variables._c if dependant_variables is not None else None, unit._c if unit is not None else None))
+        obj = cls(_CInterpretationContext.new(independant_variables._c if independant_variables is not None else None, dependant_variables._c if dependant_variables is not None else None, unit._c if unit is not None else None))
+        obj._ref_independant_variables = independant_variables  # Keep reference alive
+        obj._ref_dependant_variables = dependant_variables  # Keep reference alive
+        obj._ref_unit = unit  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> InterpretationContext:

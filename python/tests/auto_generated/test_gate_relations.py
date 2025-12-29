@@ -1,6 +1,8 @@
 import pytest
 import array
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.device_structures.connections import Connections
+from falcon_core.physics.device_structures.gate_relations import GateRelations
 from falcon_core.physics.device_structures.gate_relations import GateRelations
 
 class TestGateRelations:
@@ -16,7 +18,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), None)
+            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -24,7 +26,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(Connection.new_barrier('test_conn'), None)
+            self.obj.insert(Connection.new_barrier('test_conn'), Connections.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -104,7 +106,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(GateRelations.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -112,7 +114,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(GateRelations.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

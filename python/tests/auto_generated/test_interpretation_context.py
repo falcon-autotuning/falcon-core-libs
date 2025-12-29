@@ -1,5 +1,7 @@
 import pytest
 import array
+from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
 
@@ -48,7 +50,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.add_dependent_variable(None)
+            self.obj.add_dependent_variable(MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -56,7 +58,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.replace_dependent_variable(0, None)
+            self.obj.replace_dependent_variable(0, MeasurementContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -80,7 +82,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -88,7 +90,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(InterpretationContext.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

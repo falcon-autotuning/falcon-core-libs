@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.communications.voltage_states.device_voltage_state import DeviceVoltageState
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.communications.voltage_states.device_voltage_state import DeviceVoltageState
@@ -73,7 +74,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_quantity(None)
+            self.obj.multiply_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +98,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_equals_quantity(None)
+            self.obj.multiply_equals_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -121,7 +122,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_quantity(None)
+            self.obj.divide_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -145,7 +146,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_equals_quantity(None)
+            self.obj.divide_equals_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -161,7 +162,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.add_quantity(None)
+            self.obj.add_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -169,7 +170,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.add_equals_quantity(None)
+            self.obj.add_equals_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -177,7 +178,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.subtract_quantity(None)
+            self.obj.subtract_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -185,7 +186,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.subtract_equals_quantity(None)
+            self.obj.subtract_equals_quantity(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -209,7 +210,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -217,7 +218,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(DeviceVoltageState.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

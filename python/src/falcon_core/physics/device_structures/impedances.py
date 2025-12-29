@@ -22,7 +22,9 @@ class Impedances:
 
     @classmethod
     def new(cls, items: List) -> Impedances:
-        return cls(_CImpedances.new(items._c if items is not None else None))
+        obj = cls(_CImpedances.new(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Impedances:

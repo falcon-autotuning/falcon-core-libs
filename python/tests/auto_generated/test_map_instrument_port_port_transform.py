@@ -18,7 +18,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(InstrumentPort.new_timer(), None)
+            self.obj.insert_or_assign(InstrumentPort.new_timer(), PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -26,7 +26,7 @@ class TestMapInstrumentPortPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(InstrumentPort.new_timer(), None)
+            self.obj.insert(InstrumentPort.new_timer(), PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

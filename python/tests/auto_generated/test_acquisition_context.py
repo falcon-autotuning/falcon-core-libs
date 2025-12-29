@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
@@ -50,7 +51,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.division(None)
+            self.obj.division(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -74,7 +75,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -82,7 +83,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

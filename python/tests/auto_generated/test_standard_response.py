@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.communications.messages.standard_response import StandardResponse
+from falcon_core.communications.messages.standard_response import StandardResponse
 
 class TestStandardResponse:
     def setup_method(self):
@@ -23,7 +24,7 @@ class TestStandardResponse:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(StandardResponse.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -31,7 +32,7 @@ class TestStandardResponse:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(StandardResponse.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

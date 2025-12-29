@@ -27,15 +27,28 @@ class DiscreteSpace:
 
     @classmethod
     def new(cls, space: UnitSpace, axes: Axes, increasing: Axes) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.new(space._c if space is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None))
+        obj = cls(_CDiscreteSpace.new(space._c if space is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None))
+        obj._ref_space = space  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_discrete_space(cls, divisions: Axes, axes: Axes, increasing: Axes, domain: Domain) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.new_cartesian_discrete_space(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CDiscreteSpace.new_cartesian_discrete_space(divisions._c if divisions is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj._ref_divisions = divisions  # Keep reference alive
+        obj._ref_axes = axes  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def new_cartesian_discrete_space_1D(cls, division: Any, shared_domain: CoupledLabelledDomain, increasing: Map, domain: Domain) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.new_cartesian_discrete_space_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj = cls(_CDiscreteSpace.new_cartesian_discrete_space_1D(division, shared_domain._c if shared_domain is not None else None, increasing._c if increasing is not None else None, domain._c if domain is not None else None))
+        obj._ref_shared_domain = shared_domain  # Keep reference alive
+        obj._ref_increasing = increasing  # Keep reference alive
+        obj._ref_domain = domain  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> DiscreteSpace:

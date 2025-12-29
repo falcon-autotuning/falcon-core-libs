@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.physics.device_structures.impedance import Impedance
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.generic.list import List
 
 class TestListImpedance:
@@ -17,7 +18,7 @@ class TestListImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, None)
+            self.obj.fill_value(0, Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -25,7 +26,7 @@ class TestListImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +82,7 @@ class TestListImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +90,7 @@ class TestListImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

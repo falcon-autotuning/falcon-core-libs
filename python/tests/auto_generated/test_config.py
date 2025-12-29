@@ -1,6 +1,14 @@
 import pytest
 import array
+from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.autotuner_interfaces.names.gname import Gname
+from falcon_core.generic.map import Map
+from falcon_core.physics.config.core.config import Config
+from falcon_core.physics.config.core.group import Group
+from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.device_structures.connections import Connections
+from falcon_core.physics.device_structures.impedances import Impedances
 from falcon_core.physics.config.core.config import Config
 
 class TestConfig:
@@ -8,7 +16,7 @@ class TestConfig:
         self.obj = None
         try:
             # Found constructor: Config_create
-            self.obj = Config.new(None, None, None, None, None, None, None, None)
+            self.obj = Config.new(Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Map[Gname, Group](), Impedances.new_empty(), VoltageConstraints.from_json('{}'))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -80,7 +88,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_channel(None)
+            self.obj.has_channel(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -88,7 +96,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.has_gname(None)
+            self.obj.has_gname(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -96,7 +104,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.select_group(None)
+            self.obj.select_group(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -104,7 +112,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_dot_number(None)
+            self.obj.get_dot_number(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -144,7 +152,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_gname(None)
+            self.obj.get_gname(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -152,7 +160,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_group_barrier_gates(None)
+            self.obj.get_group_barrier_gates(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -160,7 +168,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_group_plunger_gates(None)
+            self.obj.get_group_plunger_gates(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -168,7 +176,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_group_reservoir_gates(None)
+            self.obj.get_group_reservoir_gates(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -176,7 +184,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_group_screening_gates(None)
+            self.obj.get_group_screening_gates(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -184,7 +192,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_group_dot_gates(None)
+            self.obj.get_group_dot_gates(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -192,7 +200,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_group_gates(None)
+            self.obj.get_group_gates(Gname.new('test_gname'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -200,7 +208,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_barrier_gates(None)
+            self.obj.get_channel_barrier_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -208,7 +216,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_plunger_gates(None)
+            self.obj.get_channel_plunger_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -216,7 +224,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_reservoir_gates(None)
+            self.obj.get_channel_reservoir_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -224,7 +232,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_screening_gates(None)
+            self.obj.get_channel_screening_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -232,7 +240,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_dot_gates(None)
+            self.obj.get_channel_dot_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -240,7 +248,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_gates(None)
+            self.obj.get_channel_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -248,7 +256,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_ohmics(None)
+            self.obj.get_channel_ohmics(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -256,7 +264,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_channel_order_no_ohmics(None)
+            self.obj.get_channel_order_no_ohmics(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -288,7 +296,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.ohmic_in_channel(Connection.new_barrier('test_conn'), None)
+            self.obj.ohmic_in_channel(Connection.new_barrier('test_conn'), Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -448,7 +456,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_channel_barrier_gates(None)
+            self.obj.get_shared_channel_barrier_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -456,7 +464,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_channel_plunger_gates(None)
+            self.obj.get_shared_channel_plunger_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -464,7 +472,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_channel_reservoir_gates(None)
+            self.obj.get_shared_channel_reservoir_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -472,7 +480,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_channel_screening_gates(None)
+            self.obj.get_shared_channel_screening_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -480,7 +488,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_channel_dot_gates(None)
+            self.obj.get_shared_channel_dot_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -488,7 +496,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_channel_gates(None)
+            self.obj.get_shared_channel_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -496,7 +504,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_channel_barrier_gates(None)
+            self.obj.get_isolated_channel_barrier_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -504,7 +512,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_channel_plunger_gates(None)
+            self.obj.get_isolated_channel_plunger_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -512,7 +520,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_channel_reservoir_gates(None)
+            self.obj.get_isolated_channel_reservoir_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -520,7 +528,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_channel_screening_gates(None)
+            self.obj.get_isolated_channel_screening_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -528,7 +536,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_channel_dot_gates(None)
+            self.obj.get_isolated_channel_dot_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -536,7 +544,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_channel_gates(None)
+            self.obj.get_isolated_channel_gates(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -768,7 +776,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Config.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -776,7 +784,7 @@ class TestConfig:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Config.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

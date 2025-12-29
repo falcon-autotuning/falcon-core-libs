@@ -17,11 +17,17 @@ class DotGateWithNeighbors:
 
     @classmethod
     def new_plunger_gate_with_neighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.new_plunger_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
+        obj = cls(_CDotGateWithNeighbors.new_plunger_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
+        obj._ref_left_neighbor = left_neighbor  # Keep reference alive
+        obj._ref_right_neighbor = right_neighbor  # Keep reference alive
+        return obj
 
     @classmethod
     def new_barrier_gate_with_neighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.new_barrier_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
+        obj = cls(_CDotGateWithNeighbors.new_barrier_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
+        obj._ref_left_neighbor = left_neighbor  # Keep reference alive
+        obj._ref_right_neighbor = right_neighbor  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> DotGateWithNeighbors:

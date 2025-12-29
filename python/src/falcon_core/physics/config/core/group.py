@@ -20,7 +20,14 @@ class Group:
 
     @classmethod
     def new(cls, name: Channel, num_dots: Any, screening_gates: Connections, reservoir_gates: Connections, plunger_gates: Connections, barrier_gates: Connections, order: Connections) -> Group:
-        return cls(_CGroup.new(name._c if name is not None else None, num_dots, screening_gates._c if screening_gates is not None else None, reservoir_gates._c if reservoir_gates is not None else None, plunger_gates._c if plunger_gates is not None else None, barrier_gates._c if barrier_gates is not None else None, order._c if order is not None else None))
+        obj = cls(_CGroup.new(name._c if name is not None else None, num_dots, screening_gates._c if screening_gates is not None else None, reservoir_gates._c if reservoir_gates is not None else None, plunger_gates._c if plunger_gates is not None else None, barrier_gates._c if barrier_gates is not None else None, order._c if order is not None else None))
+        obj._ref_name = name  # Keep reference alive
+        obj._ref_screening_gates = screening_gates  # Keep reference alive
+        obj._ref_reservoir_gates = reservoir_gates  # Keep reference alive
+        obj._ref_plunger_gates = plunger_gates  # Keep reference alive
+        obj._ref_barrier_gates = barrier_gates  # Keep reference alive
+        obj._ref_order = order  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Group:

@@ -23,7 +23,9 @@ class Channels:
 
     @classmethod
     def new(cls, items: List) -> Channels:
-        return cls(_CChannels.new(items._c if items is not None else None))
+        obj = cls(_CChannels.new(items._c if items is not None else None))
+        obj._ref_items = items  # Keep reference alive
+        return obj
 
     @classmethod
     def from_json(cls, json: str) -> Channels:

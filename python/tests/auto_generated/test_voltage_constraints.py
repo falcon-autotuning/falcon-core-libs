@@ -1,5 +1,8 @@
 import pytest
 import array
+from falcon_core.generic.pair import Pair
+from falcon_core.physics.config.core.adjacency import Adjacency
+from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
 from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
 
 class TestVoltageConstraints:
@@ -7,7 +10,7 @@ class TestVoltageConstraints:
         self.obj = None
         try:
             # Found constructor: VoltageConstraints_create
-            self.obj = VoltageConstraints.new(None, 0.0, None)
+            self.obj = VoltageConstraints.new(Adjacency.from_json('{}'), 0.0, Pair[float, float](0.0, 1.0))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -39,7 +42,7 @@ class TestVoltageConstraints:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(VoltageConstraints.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -47,7 +50,7 @@ class TestVoltageConstraints:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(VoltageConstraints.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

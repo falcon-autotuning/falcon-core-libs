@@ -10,7 +10,7 @@ class TestPairConnectionConnections:
         self.obj = None
         try:
             # Found constructor: PairConnectionConnections_create
-            self.obj = Pair[Connection, Connections](Connection.new_barrier('test_conn'), None)
+            self.obj = Pair[Connection, Connections](Connection.new_barrier('test_conn'), Connections.new_empty())
         except Exception as e:
             print(f'Setup failed: {e}')
 
