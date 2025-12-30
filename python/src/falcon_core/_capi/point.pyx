@@ -76,7 +76,7 @@ cdef class Point:
         cdef _c_api.PointHandle h_ret = _c_api.Point_copy(self.handle)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def equal(self, Point other):
         return _c_api.Point_equal(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
@@ -171,7 +171,7 @@ cdef class Point:
         cdef _c_api.PointHandle h_ret = _c_api.Point_addition(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __add__(self, Point other):
         return self.addition(other)
@@ -180,7 +180,7 @@ cdef class Point:
         cdef _c_api.PointHandle h_ret = _c_api.Point_subtraction(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __sub__(self, Point other):
         return self.subtraction(other)
@@ -189,7 +189,7 @@ cdef class Point:
         cdef _c_api.PointHandle h_ret = _c_api.Point_multiplication(self.handle, scalar)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __mul__(self, double scalar):
         return self.multiplication(scalar)
@@ -198,7 +198,7 @@ cdef class Point:
         cdef _c_api.PointHandle h_ret = _c_api.Point_division(self.handle, scalar)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __truediv__(self, double scalar):
         return self.division(scalar)
@@ -207,7 +207,7 @@ cdef class Point:
         cdef _c_api.PointHandle h_ret = _c_api.Point_negation(self.handle)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __neg__(self):
         return self.negation()

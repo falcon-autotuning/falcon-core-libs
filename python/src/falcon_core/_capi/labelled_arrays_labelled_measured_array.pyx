@@ -49,7 +49,7 @@ cdef class LabelledArraysLabelledMeasuredArray:
         cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray_copy(self.handle)
         if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+        return _labelled_arrays_labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledArraysLabelledMeasuredArrayHandle>self.handle))
 
     def arrays(self, ):
         cdef _c_api.ListLabelledMeasuredArrayHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray_arrays(self.handle)
@@ -100,7 +100,7 @@ cdef class LabelledArraysLabelledMeasuredArray:
         cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray_intersection(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+        return _labelled_arrays_labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledArraysLabelledMeasuredArrayHandle>self.handle))
 
     def equal(self, LabelledArraysLabelledMeasuredArray other):
         return _c_api.LabelledArraysLabelledMeasuredArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0)

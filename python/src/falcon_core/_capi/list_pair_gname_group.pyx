@@ -58,7 +58,7 @@ cdef class ListPairGnameGroup:
         cdef _c_api.ListPairGnameGroupHandle h_ret = _c_api.ListPairGnameGroup_copy(self.handle)
         if h_ret == <_c_api.ListPairGnameGroupHandle>0:
             return None
-        return _list_pair_gname_group_from_capi(h_ret)
+        return _list_pair_gname_group_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairGnameGroupHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairGnameGroup value):
@@ -101,7 +101,7 @@ cdef class ListPairGnameGroup:
         cdef _c_api.ListPairGnameGroupHandle h_ret = _c_api.ListPairGnameGroup_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairGnameGroupHandle>0)
         if h_ret == <_c_api.ListPairGnameGroupHandle>0:
             return None
-        return _list_pair_gname_group_from_capi(h_ret)
+        return _list_pair_gname_group_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairGnameGroupHandle>self.handle))
 
     def equal(self, ListPairGnameGroup other):
         return _c_api.ListPairGnameGroup_equal(self.handle, other.handle if other is not None else <_c_api.ListPairGnameGroupHandle>0)

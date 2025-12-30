@@ -51,7 +51,7 @@ cdef class StandardRequest:
         cdef _c_api.StandardRequestHandle h_ret = _c_api.StandardRequest_copy(self.handle)
         if h_ret == <_c_api.StandardRequestHandle>0:
             return None
-        return _standard_request_from_capi(h_ret)
+        return _standard_request_from_capi(h_ret, owned=(h_ret != <_c_api.StandardRequestHandle>self.handle))
 
     def equal(self, StandardRequest other):
         return _c_api.StandardRequest_equal(self.handle, other.handle if other is not None else <_c_api.StandardRequestHandle>0)

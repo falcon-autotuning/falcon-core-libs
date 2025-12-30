@@ -59,7 +59,7 @@ cdef class AxesDiscretizer:
         cdef _c_api.AxesDiscretizerHandle h_ret = _c_api.AxesDiscretizer_copy(self.handle)
         if h_ret == <_c_api.AxesDiscretizerHandle>0:
             return None
-        return _axes_discretizer_from_capi(h_ret)
+        return _axes_discretizer_from_capi(h_ret, owned=(h_ret != <_c_api.AxesDiscretizerHandle>self.handle))
 
     def push_back(self, Discretizer value):
         _c_api.AxesDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesDiscretizer:
         cdef _c_api.AxesDiscretizerHandle h_ret = _c_api.AxesDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.AxesDiscretizerHandle>0)
         if h_ret == <_c_api.AxesDiscretizerHandle>0:
             return None
-        return _axes_discretizer_from_capi(h_ret)
+        return _axes_discretizer_from_capi(h_ret, owned=(h_ret != <_c_api.AxesDiscretizerHandle>self.handle))
 
     def equal(self, AxesDiscretizer other):
         return _c_api.AxesDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.AxesDiscretizerHandle>0)

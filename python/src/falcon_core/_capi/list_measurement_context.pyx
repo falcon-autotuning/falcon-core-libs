@@ -58,7 +58,7 @@ cdef class ListMeasurementContext:
         cdef _c_api.ListMeasurementContextHandle h_ret = _c_api.ListMeasurementContext_copy(self.handle)
         if h_ret == <_c_api.ListMeasurementContextHandle>0:
             return None
-        return _list_measurement_context_from_capi(h_ret)
+        return _list_measurement_context_from_capi(h_ret, owned=(h_ret != <_c_api.ListMeasurementContextHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, MeasurementContext value):
@@ -101,7 +101,7 @@ cdef class ListMeasurementContext:
         cdef _c_api.ListMeasurementContextHandle h_ret = _c_api.ListMeasurementContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListMeasurementContextHandle>0)
         if h_ret == <_c_api.ListMeasurementContextHandle>0:
             return None
-        return _list_measurement_context_from_capi(h_ret)
+        return _list_measurement_context_from_capi(h_ret, owned=(h_ret != <_c_api.ListMeasurementContextHandle>self.handle))
 
     def equal(self, ListMeasurementContext other):
         return _c_api.ListMeasurementContext_equal(self.handle, other.handle if other is not None else <_c_api.ListMeasurementContextHandle>0)

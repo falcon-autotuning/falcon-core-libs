@@ -52,7 +52,7 @@ cdef class GateGeometryArray1D:
         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
             return None
-        return _gate_geometry_array1_d_from_capi(h_ret)
+        return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
 
     def equal(self, GateGeometryArray1D other):
         return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)

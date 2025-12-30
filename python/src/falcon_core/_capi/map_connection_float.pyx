@@ -62,7 +62,7 @@ cdef class MapConnectionFloat:
         cdef _c_api.MapConnectionFloatHandle h_ret = _c_api.MapConnectionFloat_copy(self.handle)
         if h_ret == <_c_api.MapConnectionFloatHandle>0:
             return None
-        return _map_connection_float_from_capi(h_ret)
+        return _map_connection_float_from_capi(h_ret, owned=(h_ret != <_c_api.MapConnectionFloatHandle>self.handle))
 
     def insert_or_assign(self, Connection key, float value):
         _c_api.MapConnectionFloat_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value)

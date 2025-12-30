@@ -58,7 +58,7 @@ cdef class ListCoupledLabelledDomain:
         cdef _c_api.ListCoupledLabelledDomainHandle h_ret = _c_api.ListCoupledLabelledDomain_copy(self.handle)
         if h_ret == <_c_api.ListCoupledLabelledDomainHandle>0:
             return None
-        return _list_coupled_labelled_domain_from_capi(h_ret)
+        return _list_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.ListCoupledLabelledDomainHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, CoupledLabelledDomain value):
@@ -101,7 +101,7 @@ cdef class ListCoupledLabelledDomain:
         cdef _c_api.ListCoupledLabelledDomainHandle h_ret = _c_api.ListCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.ListCoupledLabelledDomainHandle>0)
         if h_ret == <_c_api.ListCoupledLabelledDomainHandle>0:
             return None
-        return _list_coupled_labelled_domain_from_capi(h_ret)
+        return _list_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.ListCoupledLabelledDomainHandle>self.handle))
 
     def equal(self, ListCoupledLabelledDomain other):
         return _c_api.ListCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.ListCoupledLabelledDomainHandle>0)

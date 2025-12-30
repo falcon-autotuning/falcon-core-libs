@@ -63,7 +63,7 @@ cdef class MapInterpretationContextQuantity:
         cdef _c_api.MapInterpretationContextQuantityHandle h_ret = _c_api.MapInterpretationContextQuantity_copy(self.handle)
         if h_ret == <_c_api.MapInterpretationContextQuantityHandle>0:
             return None
-        return _map_interpretation_context_quantity_from_capi(h_ret)
+        return _map_interpretation_context_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.MapInterpretationContextQuantityHandle>self.handle))
 
     def insert_or_assign(self, InterpretationContext key, Quantity value):
         _c_api.MapInterpretationContextQuantity_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0, value.handle if value is not None else <_c_api.QuantityHandle>0)

@@ -59,7 +59,7 @@ cdef class PortTransforms:
         cdef _c_api.PortTransformsHandle h_ret = _c_api.PortTransforms_copy(self.handle)
         if h_ret == <_c_api.PortTransformsHandle>0:
             return None
-        return _port_transforms_from_capi(h_ret)
+        return _port_transforms_from_capi(h_ret, owned=(h_ret != <_c_api.PortTransformsHandle>self.handle))
 
     def equal(self, PortTransforms other):
         return _c_api.PortTransforms_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
@@ -130,7 +130,7 @@ cdef class PortTransforms:
         cdef _c_api.PortTransformsHandle h_ret = _c_api.PortTransforms_intersection(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
         if h_ret == <_c_api.PortTransformsHandle>0:
             return None
-        return _port_transforms_from_capi(h_ret)
+        return _port_transforms_from_capi(h_ret, owned=(h_ret != <_c_api.PortTransformsHandle>self.handle))
 
     def __len__(self):
         return self.size()

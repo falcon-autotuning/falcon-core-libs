@@ -62,7 +62,7 @@ cdef class MapInterpretationContextString:
         cdef _c_api.MapInterpretationContextStringHandle h_ret = _c_api.MapInterpretationContextString_copy(self.handle)
         if h_ret == <_c_api.MapInterpretationContextStringHandle>0:
             return None
-        return _map_interpretation_context_string_from_capi(h_ret)
+        return _map_interpretation_context_string_from_capi(h_ret, owned=(h_ret != <_c_api.MapInterpretationContextStringHandle>self.handle))
 
     def insert_or_assign(self, InterpretationContext key, str value):
         cdef bytes b_value = value.encode("utf-8")

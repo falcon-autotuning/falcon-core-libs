@@ -115,7 +115,7 @@ cdef class Connection:
         cdef _c_api.ConnectionHandle h_ret = _c_api.Connection_copy(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=(h_ret != <_c_api.ConnectionHandle>self.handle))
 
     def equal(self, Connection other):
         return _c_api.Connection_equal(self.handle, other.handle if other is not None else <_c_api.ConnectionHandle>0)

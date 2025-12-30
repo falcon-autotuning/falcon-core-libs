@@ -58,7 +58,7 @@ cdef class ListPairQuantityQuantity:
         cdef _c_api.ListPairQuantityQuantityHandle h_ret = _c_api.ListPairQuantityQuantity_copy(self.handle)
         if h_ret == <_c_api.ListPairQuantityQuantityHandle>0:
             return None
-        return _list_pair_quantity_quantity_from_capi(h_ret)
+        return _list_pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairQuantityQuantityHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairQuantityQuantity value):
@@ -101,7 +101,7 @@ cdef class ListPairQuantityQuantity:
         cdef _c_api.ListPairQuantityQuantityHandle h_ret = _c_api.ListPairQuantityQuantity_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairQuantityQuantityHandle>0)
         if h_ret == <_c_api.ListPairQuantityQuantityHandle>0:
             return None
-        return _list_pair_quantity_quantity_from_capi(h_ret)
+        return _list_pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairQuantityQuantityHandle>self.handle))
 
     def equal(self, ListPairQuantityQuantity other):
         return _c_api.ListPairQuantityQuantity_equal(self.handle, other.handle if other is not None else <_c_api.ListPairQuantityQuantityHandle>0)

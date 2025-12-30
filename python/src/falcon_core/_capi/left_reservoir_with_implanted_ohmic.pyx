@@ -52,7 +52,7 @@ cdef class LeftReservoirWithImplantedOhmic:
         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
             return None
-        return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
+        return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=(h_ret != <_c_api.LeftReservoirWithImplantedOhmicHandle>self.handle))
 
     def equal(self, LeftReservoirWithImplantedOhmic other):
         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)

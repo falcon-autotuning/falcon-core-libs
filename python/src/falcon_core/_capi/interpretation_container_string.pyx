@@ -55,7 +55,7 @@ cdef class InterpretationContainerString:
         cdef _c_api.InterpretationContainerStringHandle h_ret = _c_api.InterpretationContainerString_copy(self.handle)
         if h_ret == <_c_api.InterpretationContainerStringHandle>0:
             return None
-        return _interpretation_container_string_from_capi(h_ret)
+        return _interpretation_container_string_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContainerStringHandle>self.handle))
 
     def unit(self, ):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContainerString_unit(self.handle)

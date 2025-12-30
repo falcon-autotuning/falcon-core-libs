@@ -48,7 +48,7 @@ cdef class PairConnectionConnections:
         cdef _c_api.PairConnectionConnectionsHandle h_ret = _c_api.PairConnectionConnections_copy(self.handle)
         if h_ret == <_c_api.PairConnectionConnectionsHandle>0:
             return None
-        return _pair_connection_connections_from_capi(h_ret)
+        return _pair_connection_connections_from_capi(h_ret, owned=(h_ret != <_c_api.PairConnectionConnectionsHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionConnections_first(self.handle)

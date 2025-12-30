@@ -58,7 +58,7 @@ cdef class ListLabelledControlArray:
         cdef _c_api.ListLabelledControlArrayHandle h_ret = _c_api.ListLabelledControlArray_copy(self.handle)
         if h_ret == <_c_api.ListLabelledControlArrayHandle>0:
             return None
-        return _list_labelled_control_array_from_capi(h_ret)
+        return _list_labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.ListLabelledControlArrayHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, LabelledControlArray value):
@@ -101,7 +101,7 @@ cdef class ListLabelledControlArray:
         cdef _c_api.ListLabelledControlArrayHandle h_ret = _c_api.ListLabelledControlArray_intersection(self.handle, other.handle if other is not None else <_c_api.ListLabelledControlArrayHandle>0)
         if h_ret == <_c_api.ListLabelledControlArrayHandle>0:
             return None
-        return _list_labelled_control_array_from_capi(h_ret)
+        return _list_labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.ListLabelledControlArrayHandle>self.handle))
 
     def equal(self, ListLabelledControlArray other):
         return _c_api.ListLabelledControlArray_equal(self.handle, other.handle if other is not None else <_c_api.ListLabelledControlArrayHandle>0)

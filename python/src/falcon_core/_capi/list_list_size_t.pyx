@@ -58,7 +58,7 @@ cdef class ListListSizeT:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.ListListSizeT_copy(self.handle)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.ListListSizeTHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, ListSizeT value):
@@ -101,7 +101,7 @@ cdef class ListListSizeT:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.ListListSizeT_intersection(self.handle, other.handle if other is not None else <_c_api.ListListSizeTHandle>0)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.ListListSizeTHandle>self.handle))
 
     def equal(self, ListListSizeT other):
         return _c_api.ListListSizeT_equal(self.handle, other.handle if other is not None else <_c_api.ListListSizeTHandle>0)

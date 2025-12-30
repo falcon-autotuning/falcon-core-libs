@@ -59,7 +59,7 @@ cdef class DotGatesWithNeighbors:
         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.DotGatesWithNeighbors_copy(self.handle)
         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
             return None
-        return _dot_gates_with_neighbors_from_capi(h_ret)
+        return _dot_gates_with_neighbors_from_capi(h_ret, owned=(h_ret != <_c_api.DotGatesWithNeighborsHandle>self.handle))
 
     def equal(self, DotGatesWithNeighbors other):
         return _c_api.DotGatesWithNeighbors_equal(self.handle, other.handle if other is not None else <_c_api.DotGatesWithNeighborsHandle>0)
@@ -97,7 +97,7 @@ cdef class DotGatesWithNeighbors:
         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.DotGatesWithNeighbors_intersection(self.handle, other.handle if other is not None else <_c_api.DotGatesWithNeighborsHandle>0)
         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
             return None
-        return _dot_gates_with_neighbors_from_capi(h_ret)
+        return _dot_gates_with_neighbors_from_capi(h_ret, owned=(h_ret != <_c_api.DotGatesWithNeighborsHandle>self.handle))
 
     def push_back(self, DotGateWithNeighbors value):
         _c_api.DotGatesWithNeighbors_push_back(self.handle, value.handle if value is not None else <_c_api.DotGateWithNeighborsHandle>0)

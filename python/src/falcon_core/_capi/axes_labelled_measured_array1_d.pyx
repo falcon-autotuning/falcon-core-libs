@@ -59,7 +59,7 @@ cdef class AxesLabelledMeasuredArray1D:
         cdef _c_api.AxesLabelledMeasuredArray1DHandle h_ret = _c_api.AxesLabelledMeasuredArray1D_copy(self.handle)
         if h_ret == <_c_api.AxesLabelledMeasuredArray1DHandle>0:
             return None
-        return _axes_labelled_measured_array1_d_from_capi(h_ret)
+        return _axes_labelled_measured_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.AxesLabelledMeasuredArray1DHandle>self.handle))
 
     def push_back(self, LabelledMeasuredArray1D value):
         _c_api.AxesLabelledMeasuredArray1D_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledMeasuredArray1DHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesLabelledMeasuredArray1D:
         cdef _c_api.AxesLabelledMeasuredArray1DHandle h_ret = _c_api.AxesLabelledMeasuredArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.AxesLabelledMeasuredArray1DHandle>0)
         if h_ret == <_c_api.AxesLabelledMeasuredArray1DHandle>0:
             return None
-        return _axes_labelled_measured_array1_d_from_capi(h_ret)
+        return _axes_labelled_measured_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.AxesLabelledMeasuredArray1DHandle>self.handle))
 
     def equal(self, AxesLabelledMeasuredArray1D other):
         return _c_api.AxesLabelledMeasuredArray1D_equal(self.handle, other.handle if other is not None else <_c_api.AxesLabelledMeasuredArray1DHandle>0)

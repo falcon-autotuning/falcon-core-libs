@@ -58,7 +58,7 @@ cdef class ListQuantity:
         cdef _c_api.ListQuantityHandle h_ret = _c_api.ListQuantity_copy(self.handle)
         if h_ret == <_c_api.ListQuantityHandle>0:
             return None
-        return _list_quantity_from_capi(h_ret)
+        return _list_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListQuantityHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Quantity value):
@@ -101,7 +101,7 @@ cdef class ListQuantity:
         cdef _c_api.ListQuantityHandle h_ret = _c_api.ListQuantity_intersection(self.handle, other.handle if other is not None else <_c_api.ListQuantityHandle>0)
         if h_ret == <_c_api.ListQuantityHandle>0:
             return None
-        return _list_quantity_from_capi(h_ret)
+        return _list_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListQuantityHandle>self.handle))
 
     def equal(self, ListQuantity other):
         return _c_api.ListQuantity_equal(self.handle, other.handle if other is not None else <_c_api.ListQuantityHandle>0)

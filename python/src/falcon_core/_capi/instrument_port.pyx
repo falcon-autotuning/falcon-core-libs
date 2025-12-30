@@ -125,7 +125,7 @@ cdef class InstrumentPort:
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.InstrumentPort_copy(self.handle)
         if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return _instrument_port_from_capi(h_ret)
+        return _instrument_port_from_capi(h_ret, owned=(h_ret != <_c_api.InstrumentPortHandle>self.handle))
 
     def equal(self, InstrumentPort other):
         return _c_api.InstrumentPort_equal(self.handle, other.handle if other is not None else <_c_api.InstrumentPortHandle>0)

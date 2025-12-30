@@ -58,7 +58,7 @@ cdef class ListDotGateWithNeighbors:
         cdef _c_api.ListDotGateWithNeighborsHandle h_ret = _c_api.ListDotGateWithNeighbors_copy(self.handle)
         if h_ret == <_c_api.ListDotGateWithNeighborsHandle>0:
             return None
-        return _list_dot_gate_with_neighbors_from_capi(h_ret)
+        return _list_dot_gate_with_neighbors_from_capi(h_ret, owned=(h_ret != <_c_api.ListDotGateWithNeighborsHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, DotGateWithNeighbors value):
@@ -101,7 +101,7 @@ cdef class ListDotGateWithNeighbors:
         cdef _c_api.ListDotGateWithNeighborsHandle h_ret = _c_api.ListDotGateWithNeighbors_intersection(self.handle, other.handle if other is not None else <_c_api.ListDotGateWithNeighborsHandle>0)
         if h_ret == <_c_api.ListDotGateWithNeighborsHandle>0:
             return None
-        return _list_dot_gate_with_neighbors_from_capi(h_ret)
+        return _list_dot_gate_with_neighbors_from_capi(h_ret, owned=(h_ret != <_c_api.ListDotGateWithNeighborsHandle>self.handle))
 
     def equal(self, ListDotGateWithNeighbors other):
         return _c_api.ListDotGateWithNeighbors_equal(self.handle, other.handle if other is not None else <_c_api.ListDotGateWithNeighborsHandle>0)

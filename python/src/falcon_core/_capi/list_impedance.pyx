@@ -58,7 +58,7 @@ cdef class ListImpedance:
         cdef _c_api.ListImpedanceHandle h_ret = _c_api.ListImpedance_copy(self.handle)
         if h_ret == <_c_api.ListImpedanceHandle>0:
             return None
-        return _list_impedance_from_capi(h_ret)
+        return _list_impedance_from_capi(h_ret, owned=(h_ret != <_c_api.ListImpedanceHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Impedance value):
@@ -101,7 +101,7 @@ cdef class ListImpedance:
         cdef _c_api.ListImpedanceHandle h_ret = _c_api.ListImpedance_intersection(self.handle, other.handle if other is not None else <_c_api.ListImpedanceHandle>0)
         if h_ret == <_c_api.ListImpedanceHandle>0:
             return None
-        return _list_impedance_from_capi(h_ret)
+        return _list_impedance_from_capi(h_ret, owned=(h_ret != <_c_api.ListImpedanceHandle>self.handle))
 
     def equal(self, ListImpedance other):
         return _c_api.ListImpedance_equal(self.handle, other.handle if other is not None else <_c_api.ListImpedanceHandle>0)

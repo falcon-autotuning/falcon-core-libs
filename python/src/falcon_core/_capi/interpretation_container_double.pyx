@@ -55,7 +55,7 @@ cdef class InterpretationContainerDouble:
         cdef _c_api.InterpretationContainerDoubleHandle h_ret = _c_api.InterpretationContainerDouble_copy(self.handle)
         if h_ret == <_c_api.InterpretationContainerDoubleHandle>0:
             return None
-        return _interpretation_container_double_from_capi(h_ret)
+        return _interpretation_container_double_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContainerDoubleHandle>self.handle))
 
     def unit(self, ):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContainerDouble_unit(self.handle)

@@ -41,7 +41,7 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_copy(self.handle)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def equal(self, LabelledControlArray other):
         return _c_api.LabelledControlArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledControlArrayHandle>0)
@@ -136,25 +136,25 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_plus_control_array(self.handle, other.handle if other is not None else <_c_api.LabelledControlArrayHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def plus_farray(self, FArrayDouble other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def plus_double(self, double other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_plus_double(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def plus_int(self, int other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_plus_int(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def minus_equals_control_array(self, LabelledControlArray other):
         _c_api.LabelledControlArray_minus_equals_control_array(self.handle, other.handle if other is not None else <_c_api.LabelledControlArrayHandle>0)
@@ -172,31 +172,31 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_minus_control_array(self.handle, other.handle if other is not None else <_c_api.LabelledControlArrayHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def minus_farray(self, FArrayDouble other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def minus_double(self, double other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_minus_double(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def minus_int(self, int other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_minus_int(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def negation(self, ):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_negation(self.handle)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def __neg__(self):
         return self.negation()
@@ -211,13 +211,13 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_times_double(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def times_int(self, int other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_times_int(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def divides_equals_double(self, double other):
         _c_api.LabelledControlArray_divides_equals_double(self.handle, other)
@@ -229,25 +229,25 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_divides_double(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def divides_int(self, int other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_divides_int(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def pow(self, double other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_pow(self.handle, other)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def abs(self, ):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_abs(self.handle)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def min(self, ):
         return _c_api.LabelledControlArray_min(self.handle)
@@ -256,13 +256,13 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_min_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def min_control_array(self, LabelledControlArray other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_min_control_array(self.handle, other.handle if other is not None else <_c_api.LabelledControlArrayHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def max(self, ):
         return _c_api.LabelledControlArray_max(self.handle)
@@ -271,13 +271,13 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_max_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def max_control_array(self, LabelledControlArray other):
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_max_control_array(self.handle, other.handle if other is not None else <_c_api.LabelledControlArrayHandle>0)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def greater_than(self, double value):
         return _c_api.LabelledControlArray_greater_than(self.handle, value)
@@ -307,7 +307,7 @@ cdef class LabelledControlArray:
         cdef _c_api.LabelledControlArrayHandle h_ret = _c_api.LabelledControlArray_flip(self.handle, axis)
         if h_ret == <_c_api.LabelledControlArrayHandle>0:
             return None
-        return _labelled_control_array_from_capi(h_ret)
+        return _labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledControlArrayHandle>self.handle))
 
     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
         return _c_api.LabelledControlArray_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)

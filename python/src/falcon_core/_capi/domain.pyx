@@ -46,7 +46,7 @@ cdef class Domain:
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_copy(self.handle)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def equal(self, Domain other):
         return _c_api.Domain_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
@@ -99,13 +99,13 @@ cdef class Domain:
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_intersection(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def union(self, Domain other):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_union(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def is_empty(self, ):
         return _c_api.Domain_is_empty(self.handle)
@@ -117,13 +117,13 @@ cdef class Domain:
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_shift(self.handle, offset)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def scale(self, double scale):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_scale(self.handle, scale)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def transform(self, Domain other, double value):
         return _c_api.Domain_transform(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0, value)

@@ -76,7 +76,7 @@ cdef class AnalyticFunction:
         cdef _c_api.AnalyticFunctionHandle h_ret = _c_api.AnalyticFunction_copy(self.handle)
         if h_ret == <_c_api.AnalyticFunctionHandle>0:
             return None
-        return _analytic_function_from_capi(h_ret)
+        return _analytic_function_from_capi(h_ret, owned=(h_ret != <_c_api.AnalyticFunctionHandle>self.handle))
 
     def equal(self, AnalyticFunction other):
         return _c_api.AnalyticFunction_equal(self.handle, other.handle if other is not None else <_c_api.AnalyticFunctionHandle>0)

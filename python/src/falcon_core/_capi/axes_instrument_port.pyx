@@ -59,7 +59,7 @@ cdef class AxesInstrumentPort:
         cdef _c_api.AxesInstrumentPortHandle h_ret = _c_api.AxesInstrumentPort_copy(self.handle)
         if h_ret == <_c_api.AxesInstrumentPortHandle>0:
             return None
-        return _axes_instrument_port_from_capi(h_ret)
+        return _axes_instrument_port_from_capi(h_ret, owned=(h_ret != <_c_api.AxesInstrumentPortHandle>self.handle))
 
     def push_back(self, InstrumentPort value):
         _c_api.AxesInstrumentPort_push_back(self.handle, value.handle if value is not None else <_c_api.InstrumentPortHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesInstrumentPort:
         cdef _c_api.AxesInstrumentPortHandle h_ret = _c_api.AxesInstrumentPort_intersection(self.handle, other.handle if other is not None else <_c_api.AxesInstrumentPortHandle>0)
         if h_ret == <_c_api.AxesInstrumentPortHandle>0:
             return None
-        return _axes_instrument_port_from_capi(h_ret)
+        return _axes_instrument_port_from_capi(h_ret, owned=(h_ret != <_c_api.AxesInstrumentPortHandle>self.handle))
 
     def equal(self, AxesInstrumentPort other):
         return _c_api.AxesInstrumentPort_equal(self.handle, other.handle if other is not None else <_c_api.AxesInstrumentPortHandle>0)

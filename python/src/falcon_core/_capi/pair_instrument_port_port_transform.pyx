@@ -48,7 +48,7 @@ cdef class PairInstrumentPortPortTransform:
         cdef _c_api.PairInstrumentPortPortTransformHandle h_ret = _c_api.PairInstrumentPortPortTransform_copy(self.handle)
         if h_ret == <_c_api.PairInstrumentPortPortTransformHandle>0:
             return None
-        return _pair_instrument_port_port_transform_from_capi(h_ret)
+        return _pair_instrument_port_port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.PairInstrumentPortPortTransformHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.PairInstrumentPortPortTransform_first(self.handle)

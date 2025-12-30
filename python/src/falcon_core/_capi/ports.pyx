@@ -62,7 +62,7 @@ cdef class Ports:
         cdef _c_api.PortsHandle h_ret = _c_api.Ports_copy(self.handle)
         if h_ret == <_c_api.PortsHandle>0:
             return None
-        return _ports_from_capi(h_ret)
+        return _ports_from_capi(h_ret, owned=(h_ret != <_c_api.PortsHandle>self.handle))
 
     def equal(self, Ports other):
         return _c_api.Ports_equal(self.handle, other.handle if other is not None else <_c_api.PortsHandle>0)
@@ -145,7 +145,7 @@ cdef class Ports:
         cdef _c_api.PortsHandle h_ret = _c_api.Ports_intersection(self.handle, other.handle if other is not None else <_c_api.PortsHandle>0)
         if h_ret == <_c_api.PortsHandle>0:
             return None
-        return _ports_from_capi(h_ret)
+        return _ports_from_capi(h_ret, owned=(h_ret != <_c_api.PortsHandle>self.handle))
 
     def push_back(self, InstrumentPort value):
         _c_api.Ports_push_back(self.handle, value.handle if value is not None else <_c_api.InstrumentPortHandle>0)

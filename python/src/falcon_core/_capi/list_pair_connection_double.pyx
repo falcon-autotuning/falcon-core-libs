@@ -58,7 +58,7 @@ cdef class ListPairConnectionDouble:
         cdef _c_api.ListPairConnectionDoubleHandle h_ret = _c_api.ListPairConnectionDouble_copy(self.handle)
         if h_ret == <_c_api.ListPairConnectionDoubleHandle>0:
             return None
-        return _list_pair_connection_double_from_capi(h_ret)
+        return _list_pair_connection_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairConnectionDoubleHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairConnectionDouble value):
@@ -101,7 +101,7 @@ cdef class ListPairConnectionDouble:
         cdef _c_api.ListPairConnectionDoubleHandle h_ret = _c_api.ListPairConnectionDouble_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionDoubleHandle>0)
         if h_ret == <_c_api.ListPairConnectionDoubleHandle>0:
             return None
-        return _list_pair_connection_double_from_capi(h_ret)
+        return _list_pair_connection_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairConnectionDoubleHandle>self.handle))
 
     def equal(self, ListPairConnectionDouble other):
         return _c_api.ListPairConnectionDouble_equal(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionDoubleHandle>0)

@@ -59,7 +59,7 @@ cdef class AxesMeasurementContext:
         cdef _c_api.AxesMeasurementContextHandle h_ret = _c_api.AxesMeasurementContext_copy(self.handle)
         if h_ret == <_c_api.AxesMeasurementContextHandle>0:
             return None
-        return _axes_measurement_context_from_capi(h_ret)
+        return _axes_measurement_context_from_capi(h_ret, owned=(h_ret != <_c_api.AxesMeasurementContextHandle>self.handle))
 
     def push_back(self, MeasurementContext value):
         _c_api.AxesMeasurementContext_push_back(self.handle, value.handle if value is not None else <_c_api.MeasurementContextHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesMeasurementContext:
         cdef _c_api.AxesMeasurementContextHandle h_ret = _c_api.AxesMeasurementContext_intersection(self.handle, other.handle if other is not None else <_c_api.AxesMeasurementContextHandle>0)
         if h_ret == <_c_api.AxesMeasurementContextHandle>0:
             return None
-        return _axes_measurement_context_from_capi(h_ret)
+        return _axes_measurement_context_from_capi(h_ret, owned=(h_ret != <_c_api.AxesMeasurementContextHandle>self.handle))
 
     def equal(self, AxesMeasurementContext other):
         return _c_api.AxesMeasurementContext_equal(self.handle, other.handle if other is not None else <_c_api.AxesMeasurementContextHandle>0)

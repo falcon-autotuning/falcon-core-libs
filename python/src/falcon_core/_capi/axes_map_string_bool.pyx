@@ -59,7 +59,7 @@ cdef class AxesMapStringBool:
         cdef _c_api.AxesMapStringBoolHandle h_ret = _c_api.AxesMapStringBool_copy(self.handle)
         if h_ret == <_c_api.AxesMapStringBoolHandle>0:
             return None
-        return _axes_map_string_bool_from_capi(h_ret)
+        return _axes_map_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.AxesMapStringBoolHandle>self.handle))
 
     def push_back(self, MapStringBool value):
         _c_api.AxesMapStringBool_push_back(self.handle, value.handle if value is not None else <_c_api.MapStringBoolHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesMapStringBool:
         cdef _c_api.AxesMapStringBoolHandle h_ret = _c_api.AxesMapStringBool_intersection(self.handle, other.handle if other is not None else <_c_api.AxesMapStringBoolHandle>0)
         if h_ret == <_c_api.AxesMapStringBoolHandle>0:
             return None
-        return _axes_map_string_bool_from_capi(h_ret)
+        return _axes_map_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.AxesMapStringBoolHandle>self.handle))
 
     def equal(self, AxesMapStringBool other):
         return _c_api.AxesMapStringBool_equal(self.handle, other.handle if other is not None else <_c_api.AxesMapStringBoolHandle>0)

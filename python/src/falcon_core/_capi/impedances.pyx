@@ -59,7 +59,7 @@ cdef class Impedances:
         cdef _c_api.ImpedancesHandle h_ret = _c_api.Impedances_copy(self.handle)
         if h_ret == <_c_api.ImpedancesHandle>0:
             return None
-        return _impedances_from_capi(h_ret)
+        return _impedances_from_capi(h_ret, owned=(h_ret != <_c_api.ImpedancesHandle>self.handle))
 
     def equal(self, Impedances other):
         return _c_api.Impedances_equal(self.handle, other.handle if other is not None else <_c_api.ImpedancesHandle>0)
@@ -121,7 +121,7 @@ cdef class Impedances:
         cdef _c_api.ImpedancesHandle h_ret = _c_api.Impedances_intersection(self.handle, other.handle if other is not None else <_c_api.ImpedancesHandle>0)
         if h_ret == <_c_api.ImpedancesHandle>0:
             return None
-        return _impedances_from_capi(h_ret)
+        return _impedances_from_capi(h_ret, owned=(h_ret != <_c_api.ImpedancesHandle>self.handle))
 
     def index(self, Impedance value):
         return _c_api.Impedances_index(self.handle, value.handle if value is not None else <_c_api.ImpedanceHandle>0)

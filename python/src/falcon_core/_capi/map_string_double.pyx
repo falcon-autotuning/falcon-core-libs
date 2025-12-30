@@ -61,7 +61,7 @@ cdef class MapStringDouble:
         cdef _c_api.MapStringDoubleHandle h_ret = _c_api.MapStringDouble_copy(self.handle)
         if h_ret == <_c_api.MapStringDoubleHandle>0:
             return None
-        return _map_string_double_from_capi(h_ret)
+        return _map_string_double_from_capi(h_ret, owned=(h_ret != <_c_api.MapStringDoubleHandle>self.handle))
 
     def insert_or_assign(self, str key, double value):
         cdef bytes b_key = key.encode("utf-8")

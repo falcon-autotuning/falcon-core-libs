@@ -51,7 +51,7 @@ cdef class StandardResponse:
         cdef _c_api.StandardResponseHandle h_ret = _c_api.StandardResponse_copy(self.handle)
         if h_ret == <_c_api.StandardResponseHandle>0:
             return None
-        return _standard_response_from_capi(h_ret)
+        return _standard_response_from_capi(h_ret, owned=(h_ret != <_c_api.StandardResponseHandle>self.handle))
 
     def equal(self, StandardResponse other):
         return _c_api.StandardResponse_equal(self.handle, other.handle if other is not None else <_c_api.StandardResponseHandle>0)

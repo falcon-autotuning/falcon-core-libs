@@ -59,7 +59,7 @@ cdef class Connections:
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Connections_copy(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=(h_ret != <_c_api.ConnectionsHandle>self.handle))
 
     def equal(self, Connections other):
         return _c_api.Connections_equal(self.handle, other.handle if other is not None else <_c_api.ConnectionsHandle>0)
@@ -112,7 +112,7 @@ cdef class Connections:
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Connections_intersection(self.handle, other.handle if other is not None else <_c_api.ConnectionsHandle>0)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=(h_ret != <_c_api.ConnectionsHandle>self.handle))
 
     def push_back(self, Connection value):
         _c_api.Connections_push_back(self.handle, value.handle if value is not None else <_c_api.ConnectionHandle>0)

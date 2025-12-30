@@ -651,7 +651,7 @@ cdef class SymbolUnit:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_copy(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=(h_ret != <_c_api.SymbolUnitHandle>self.handle))
 
     def equal(self, SymbolUnit other):
         return _c_api.SymbolUnit_equal(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
@@ -703,7 +703,7 @@ cdef class SymbolUnit:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_multiplication(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=(h_ret != <_c_api.SymbolUnitHandle>self.handle))
 
     def __mul__(self, SymbolUnit other):
         return self.multiplication(other)
@@ -712,7 +712,7 @@ cdef class SymbolUnit:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_division(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=(h_ret != <_c_api.SymbolUnitHandle>self.handle))
 
     def __truediv__(self, SymbolUnit other):
         return self.division(other)
@@ -721,7 +721,7 @@ cdef class SymbolUnit:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.SymbolUnit_power(self.handle, power)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=(h_ret != <_c_api.SymbolUnitHandle>self.handle))
 
     def with_prefix(self, str prefix):
         cdef bytes b_prefix = prefix.encode("utf-8")
@@ -730,7 +730,7 @@ cdef class SymbolUnit:
         _c_api.String_destroy(s_prefix)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=(h_ret != <_c_api.SymbolUnitHandle>self.handle))
 
     def convert_value_to(self, double value, SymbolUnit target):
         return _c_api.SymbolUnit_convert_value_to(self.handle, value, target.handle if target is not None else <_c_api.SymbolUnitHandle>0)

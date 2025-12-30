@@ -58,7 +58,7 @@ cdef class ListPairInterpretationContextDouble:
         cdef _c_api.ListPairInterpretationContextDoubleHandle h_ret = _c_api.ListPairInterpretationContextDouble_copy(self.handle)
         if h_ret == <_c_api.ListPairInterpretationContextDoubleHandle>0:
             return None
-        return _list_pair_interpretation_context_double_from_capi(h_ret)
+        return _list_pair_interpretation_context_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairInterpretationContextDoubleHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairInterpretationContextDouble value):
@@ -101,7 +101,7 @@ cdef class ListPairInterpretationContextDouble:
         cdef _c_api.ListPairInterpretationContextDoubleHandle h_ret = _c_api.ListPairInterpretationContextDouble_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairInterpretationContextDoubleHandle>0)
         if h_ret == <_c_api.ListPairInterpretationContextDoubleHandle>0:
             return None
-        return _list_pair_interpretation_context_double_from_capi(h_ret)
+        return _list_pair_interpretation_context_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairInterpretationContextDoubleHandle>self.handle))
 
     def equal(self, ListPairInterpretationContextDouble other):
         return _c_api.ListPairInterpretationContextDouble_equal(self.handle, other.handle if other is not None else <_c_api.ListPairInterpretationContextDoubleHandle>0)

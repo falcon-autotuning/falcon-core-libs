@@ -73,7 +73,7 @@ cdef class PortTransform:
         cdef _c_api.PortTransformHandle h_ret = _c_api.PortTransform_copy(self.handle)
         if h_ret == <_c_api.PortTransformHandle>0:
             return None
-        return _port_transform_from_capi(h_ret)
+        return _port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.PortTransformHandle>self.handle))
 
     def equal(self, PortTransform other):
         return _c_api.PortTransform_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformHandle>0)

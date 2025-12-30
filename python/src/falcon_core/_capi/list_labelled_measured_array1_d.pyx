@@ -58,7 +58,7 @@ cdef class ListLabelledMeasuredArray1D:
         cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_copy(self.handle)
         if h_ret == <_c_api.ListLabelledMeasuredArray1DHandle>0:
             return None
-        return _list_labelled_measured_array1_d_from_capi(h_ret)
+        return _list_labelled_measured_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ListLabelledMeasuredArray1DHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, LabelledMeasuredArray1D value):
@@ -101,7 +101,7 @@ cdef class ListLabelledMeasuredArray1D:
         cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.ListLabelledMeasuredArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.ListLabelledMeasuredArray1DHandle>0)
         if h_ret == <_c_api.ListLabelledMeasuredArray1DHandle>0:
             return None
-        return _list_labelled_measured_array1_d_from_capi(h_ret)
+        return _list_labelled_measured_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ListLabelledMeasuredArray1DHandle>self.handle))
 
     def equal(self, ListLabelledMeasuredArray1D other):
         return _c_api.ListLabelledMeasuredArray1D_equal(self.handle, other.handle if other is not None else <_c_api.ListLabelledMeasuredArray1DHandle>0)

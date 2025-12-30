@@ -65,7 +65,7 @@ cdef class AcquisitionContext:
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_copy(self.handle)
         if h_ret == <_c_api.AcquisitionContextHandle>0:
             return None
-        return _acquisition_context_from_capi(h_ret)
+        return _acquisition_context_from_capi(h_ret, owned=(h_ret != <_c_api.AcquisitionContextHandle>self.handle))
 
     def equal(self, AcquisitionContext other):
         return _c_api.AcquisitionContext_equal(self.handle, other.handle if other is not None else <_c_api.AcquisitionContextHandle>0)
@@ -119,13 +119,13 @@ cdef class AcquisitionContext:
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_division_unit(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.AcquisitionContextHandle>0:
             return None
-        return _acquisition_context_from_capi(h_ret)
+        return _acquisition_context_from_capi(h_ret, owned=(h_ret != <_c_api.AcquisitionContextHandle>self.handle))
 
     def division(self, AcquisitionContext other):
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_division(self.handle, other.handle if other is not None else <_c_api.AcquisitionContextHandle>0)
         if h_ret == <_c_api.AcquisitionContextHandle>0:
             return None
-        return _acquisition_context_from_capi(h_ret)
+        return _acquisition_context_from_capi(h_ret, owned=(h_ret != <_c_api.AcquisitionContextHandle>self.handle))
 
     def __truediv__(self, AcquisitionContext other):
         return self.division(other)

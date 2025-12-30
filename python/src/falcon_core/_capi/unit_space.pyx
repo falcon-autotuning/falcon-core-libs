@@ -108,7 +108,7 @@ cdef class UnitSpace:
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.UnitSpace_copy(self.handle)
         if h_ret == <_c_api.UnitSpaceHandle>0:
             return None
-        return _unit_space_from_capi(h_ret)
+        return _unit_space_from_capi(h_ret, owned=(h_ret != <_c_api.UnitSpaceHandle>self.handle))
 
     def equal(self, UnitSpace other):
         return _c_api.UnitSpace_equal(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
@@ -200,7 +200,7 @@ cdef class UnitSpace:
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.UnitSpace_intersection(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
         if h_ret == <_c_api.UnitSpaceHandle>0:
             return None
-        return _unit_space_from_capi(h_ret)
+        return _unit_space_from_capi(h_ret, owned=(h_ret != <_c_api.UnitSpaceHandle>self.handle))
 
     def __len__(self):
         return self.size()

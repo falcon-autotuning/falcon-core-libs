@@ -58,7 +58,7 @@ cdef class ListPairStringDouble:
         cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.ListPairStringDouble_copy(self.handle)
         if h_ret == <_c_api.ListPairStringDoubleHandle>0:
             return None
-        return _list_pair_string_double_from_capi(h_ret)
+        return _list_pair_string_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairStringDoubleHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairStringDouble value):
@@ -101,7 +101,7 @@ cdef class ListPairStringDouble:
         cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.ListPairStringDouble_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairStringDoubleHandle>0)
         if h_ret == <_c_api.ListPairStringDoubleHandle>0:
             return None
-        return _list_pair_string_double_from_capi(h_ret)
+        return _list_pair_string_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairStringDoubleHandle>self.handle))
 
     def equal(self, ListPairStringDouble other):
         return _c_api.ListPairStringDouble_equal(self.handle, other.handle if other is not None else <_c_api.ListPairStringDoubleHandle>0)

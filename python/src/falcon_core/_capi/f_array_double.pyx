@@ -58,7 +58,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     @staticmethod
     def from_shape(size_t[:] shape, size_t ndim):
@@ -99,19 +99,19 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def plus_double(self, double other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def plus_int(self, int other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def minus_equals_farray(self, FArrayDouble other):
         _c_api.FArrayDouble_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
@@ -126,25 +126,25 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def minus_double(self, double other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def minus_int(self, int other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def negation(self, ):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def __neg__(self):
         return self.negation()
@@ -162,19 +162,19 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def times_double(self, double other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def times_int(self, int other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def divides_equals_farray(self, FArrayDouble other):
         _c_api.FArrayDouble_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
@@ -189,31 +189,31 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def divides_double(self, double other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def divides_int(self, int other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def pow(self, double other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def double_pow(self, double other):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def pow_inplace(self, double other):
         _c_api.FArrayDouble_pow_inplace(self.handle, other)
@@ -222,7 +222,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def min(self, ):
         return _c_api.FArrayDouble_min(self.handle)
@@ -231,7 +231,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def max(self, ):
         return _c_api.FArrayDouble_max(self.handle)
@@ -240,7 +240,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def equal(self, FArrayDouble other):
         return _c_api.FArrayDouble_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
@@ -280,7 +280,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def where(self, double value):
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
@@ -292,7 +292,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
         return _c_api.FArrayDouble_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)
@@ -301,7 +301,7 @@ cdef class FArrayDouble:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 
     def get_sum_of_squares(self, ):
         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)

@@ -63,7 +63,7 @@ cdef class MapConnectionQuantity:
         cdef _c_api.MapConnectionQuantityHandle h_ret = _c_api.MapConnectionQuantity_copy(self.handle)
         if h_ret == <_c_api.MapConnectionQuantityHandle>0:
             return None
-        return _map_connection_quantity_from_capi(h_ret)
+        return _map_connection_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.MapConnectionQuantityHandle>self.handle))
 
     def insert_or_assign(self, Connection key, Quantity value):
         _c_api.MapConnectionQuantity_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value.handle if value is not None else <_c_api.QuantityHandle>0)

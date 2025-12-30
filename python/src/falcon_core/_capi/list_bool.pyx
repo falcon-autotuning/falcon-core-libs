@@ -57,7 +57,7 @@ cdef class ListBool:
         cdef _c_api.ListBoolHandle h_ret = _c_api.ListBool_copy(self.handle)
         if h_ret == <_c_api.ListBoolHandle>0:
             return None
-        return _list_bool_from_capi(h_ret)
+        return _list_bool_from_capi(h_ret, owned=(h_ret != <_c_api.ListBoolHandle>self.handle))
 
     @staticmethod
     def allocate(size_t count):
@@ -104,7 +104,7 @@ cdef class ListBool:
         cdef _c_api.ListBoolHandle h_ret = _c_api.ListBool_intersection(self.handle, other.handle if other is not None else <_c_api.ListBoolHandle>0)
         if h_ret == <_c_api.ListBoolHandle>0:
             return None
-        return _list_bool_from_capi(h_ret)
+        return _list_bool_from_capi(h_ret, owned=(h_ret != <_c_api.ListBoolHandle>self.handle))
 
     def equal(self, ListBool other):
         return _c_api.ListBool_equal(self.handle, other.handle if other is not None else <_c_api.ListBoolHandle>0)

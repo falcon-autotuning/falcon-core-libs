@@ -58,7 +58,7 @@ cdef class ListControlArray1D:
         cdef _c_api.ListControlArray1DHandle h_ret = _c_api.ListControlArray1D_copy(self.handle)
         if h_ret == <_c_api.ListControlArray1DHandle>0:
             return None
-        return _list_control_array1_d_from_capi(h_ret)
+        return _list_control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ListControlArray1DHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, ControlArray1D value):
@@ -101,7 +101,7 @@ cdef class ListControlArray1D:
         cdef _c_api.ListControlArray1DHandle h_ret = _c_api.ListControlArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.ListControlArray1DHandle>0)
         if h_ret == <_c_api.ListControlArray1DHandle>0:
             return None
-        return _list_control_array1_d_from_capi(h_ret)
+        return _list_control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ListControlArray1DHandle>self.handle))
 
     def equal(self, ListControlArray1D other):
         return _c_api.ListControlArray1D_equal(self.handle, other.handle if other is not None else <_c_api.ListControlArray1DHandle>0)

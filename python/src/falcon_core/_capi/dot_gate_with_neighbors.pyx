@@ -68,7 +68,7 @@ cdef class DotGateWithNeighbors:
         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.DotGateWithNeighbors_copy(self.handle)
         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
             return None
-        return _dot_gate_with_neighbors_from_capi(h_ret)
+        return _dot_gate_with_neighbors_from_capi(h_ret, owned=(h_ret != <_c_api.DotGateWithNeighborsHandle>self.handle))
 
     def equal(self, DotGateWithNeighbors other):
         return _c_api.DotGateWithNeighbors_equal(self.handle, other.handle if other is not None else <_c_api.DotGateWithNeighborsHandle>0)

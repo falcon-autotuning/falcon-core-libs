@@ -70,7 +70,7 @@ cdef class DeviceVoltageStates:
         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.DeviceVoltageStates_find_state(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
             return None
-        return _device_voltage_states_from_capi(h_ret)
+        return _device_voltage_states_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStatesHandle>self.handle))
 
     def to_point(self, ):
         cdef _c_api.PointHandle h_ret = _c_api.DeviceVoltageStates_to_point(self.handle)
@@ -82,7 +82,7 @@ cdef class DeviceVoltageStates:
         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.DeviceVoltageStates_intersection(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStatesHandle>0)
         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
             return None
-        return _device_voltage_states_from_capi(h_ret)
+        return _device_voltage_states_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStatesHandle>self.handle))
 
     def push_back(self, DeviceVoltageState value):
         _c_api.DeviceVoltageStates_push_back(self.handle, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)

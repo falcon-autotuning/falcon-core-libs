@@ -60,7 +60,7 @@ cdef class Channels:
         cdef _c_api.ChannelsHandle h_ret = _c_api.Channels_copy(self.handle)
         if h_ret == <_c_api.ChannelsHandle>0:
             return None
-        return _channels_from_capi(h_ret)
+        return _channels_from_capi(h_ret, owned=(h_ret != <_c_api.ChannelsHandle>self.handle))
 
     def equal(self, Channels other):
         return _c_api.Channels_equal(self.handle, other.handle if other is not None else <_c_api.ChannelsHandle>0)
@@ -92,7 +92,7 @@ cdef class Channels:
         cdef _c_api.ChannelsHandle h_ret = _c_api.Channels_intersection(self.handle, other.handle if other is not None else <_c_api.ChannelsHandle>0)
         if h_ret == <_c_api.ChannelsHandle>0:
             return None
-        return _channels_from_capi(h_ret)
+        return _channels_from_capi(h_ret, owned=(h_ret != <_c_api.ChannelsHandle>self.handle))
 
     def push_back(self, Channel value):
         _c_api.Channels_push_back(self.handle, value.handle if value is not None else <_c_api.ChannelHandle>0)

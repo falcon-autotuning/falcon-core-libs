@@ -58,7 +58,7 @@ cdef class ListDeviceVoltageState:
         cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_copy(self.handle)
         if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
             return None
-        return _list_device_voltage_state_from_capi(h_ret)
+        return _list_device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.ListDeviceVoltageStateHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, DeviceVoltageState value):
@@ -101,7 +101,7 @@ cdef class ListDeviceVoltageState:
         cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.ListDeviceVoltageState_intersection(self.handle, other.handle if other is not None else <_c_api.ListDeviceVoltageStateHandle>0)
         if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
             return None
-        return _list_device_voltage_state_from_capi(h_ret)
+        return _list_device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.ListDeviceVoltageStateHandle>self.handle))
 
     def equal(self, ListDeviceVoltageState other):
         return _c_api.ListDeviceVoltageState_equal(self.handle, other.handle if other is not None else <_c_api.ListDeviceVoltageStateHandle>0)

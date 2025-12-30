@@ -69,115 +69,115 @@ cdef class DeviceVoltageState:
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_multiply_int(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def multiply_double(self, double other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_multiply_double(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def multiply_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def multiply_equals_int(self, int other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_multiply_equals_int(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def multiply_equals_double(self, double other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_multiply_equals_double(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def multiply_equals_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def divide_int(self, int other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_divide_int(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def divide_double(self, double other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_divide_double(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def divide_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_divide_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def divide_equals_int(self, int other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_divide_equals_int(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def divide_equals_double(self, double other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_divide_equals_double(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def divide_equals_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def power(self, int other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_power(self.handle, other)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def add_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_add_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def add_equals_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def subtract_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def subtract_equals_quantity(self, DeviceVoltageState other):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStateHandle>0)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def negate(self, ):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_negate(self.handle)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def abs(self, ):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageState_abs(self.handle)
         if h_ret == <_c_api.DeviceVoltageStateHandle>0:
             return None
-        return _device_voltage_state_from_capi(h_ret)
+        return _device_voltage_state_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStateHandle>self.handle))
 
     def equal(self, DeviceVoltageState b):
         return _c_api.DeviceVoltageState_equal(self.handle, b.handle if b is not None else <_c_api.DeviceVoltageStateHandle>0)

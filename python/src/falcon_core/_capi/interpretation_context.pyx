@@ -50,7 +50,7 @@ cdef class InterpretationContext:
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.InterpretationContext_copy(self.handle)
         if h_ret == <_c_api.InterpretationContextHandle>0:
             return None
-        return _interpretation_context_from_capi(h_ret)
+        return _interpretation_context_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContextHandle>self.handle))
 
     def equal(self, InterpretationContext other):
         return _c_api.InterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.InterpretationContextHandle>0)
@@ -115,7 +115,7 @@ cdef class InterpretationContext:
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.InterpretationContext_with_unit(self.handle, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.InterpretationContextHandle>0:
             return None
-        return _interpretation_context_from_capi(h_ret)
+        return _interpretation_context_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContextHandle>self.handle))
 
 cdef InterpretationContext _interpretation_context_from_capi(_c_api.InterpretationContextHandle h, bint owned=True):
     if h == <_c_api.InterpretationContextHandle>0:

@@ -59,7 +59,7 @@ cdef class AxesCoupledLabelledDomain:
         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
             return None
-        return _axes_coupled_labelled_domain_from_capi(h_ret)
+        return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
 
     def push_back(self, CoupledLabelledDomain value):
         _c_api.AxesCoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesCoupledLabelledDomain:
         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
             return None
-        return _axes_coupled_labelled_domain_from_capi(h_ret)
+        return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
 
     def equal(self, AxesCoupledLabelledDomain other):
         return _c_api.AxesCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)

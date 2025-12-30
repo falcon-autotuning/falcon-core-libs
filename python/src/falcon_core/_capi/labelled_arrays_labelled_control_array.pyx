@@ -49,7 +49,7 @@ cdef class LabelledArraysLabelledControlArray:
         cdef _c_api.LabelledArraysLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_copy(self.handle)
         if h_ret == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
             return None
-        return _labelled_arrays_labelled_control_array_from_capi(h_ret)
+        return _labelled_arrays_labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledArraysLabelledControlArrayHandle>self.handle))
 
     def arrays(self, ):
         cdef _c_api.ListLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_arrays(self.handle)
@@ -100,7 +100,7 @@ cdef class LabelledArraysLabelledControlArray:
         cdef _c_api.LabelledArraysLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_intersection(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArrayHandle>0)
         if h_ret == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
             return None
-        return _labelled_arrays_labelled_control_array_from_capi(h_ret)
+        return _labelled_arrays_labelled_control_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledArraysLabelledControlArrayHandle>self.handle))
 
     def equal(self, LabelledArraysLabelledControlArray other):
         return _c_api.LabelledArraysLabelledControlArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArrayHandle>0)

@@ -47,7 +47,7 @@ cdef class Quantity:
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def equal(self, Quantity other):
         return _c_api.Quantity_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
@@ -91,115 +91,115 @@ cdef class Quantity:
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def multiply_double(self, double other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def multiply_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def multiply_equals_int(self, int other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def multiply_equals_double(self, double other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def multiply_equals_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def divide_int(self, int other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def divide_double(self, double other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def divide_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def divide_equals_int(self, int other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def divide_equals_double(self, double other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def divide_equals_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def power(self, int other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def add_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def add_equals_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def subtract_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def subtract_equals_quantity(self, Quantity other):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def negate(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
     def abs(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 
 cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
     if h == <_c_api.QuantityHandle>0:

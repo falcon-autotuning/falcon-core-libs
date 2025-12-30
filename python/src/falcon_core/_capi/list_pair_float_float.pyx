@@ -58,7 +58,7 @@ cdef class ListPairFloatFloat:
         cdef _c_api.ListPairFloatFloatHandle h_ret = _c_api.ListPairFloatFloat_copy(self.handle)
         if h_ret == <_c_api.ListPairFloatFloatHandle>0:
             return None
-        return _list_pair_float_float_from_capi(h_ret)
+        return _list_pair_float_float_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairFloatFloatHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairFloatFloat value):
@@ -101,7 +101,7 @@ cdef class ListPairFloatFloat:
         cdef _c_api.ListPairFloatFloatHandle h_ret = _c_api.ListPairFloatFloat_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairFloatFloatHandle>0)
         if h_ret == <_c_api.ListPairFloatFloatHandle>0:
             return None
-        return _list_pair_float_float_from_capi(h_ret)
+        return _list_pair_float_float_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairFloatFloatHandle>self.handle))
 
     def equal(self, ListPairFloatFloat other):
         return _c_api.ListPairFloatFloat_equal(self.handle, other.handle if other is not None else <_c_api.ListPairFloatFloatHandle>0)

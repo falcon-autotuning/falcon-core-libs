@@ -58,7 +58,7 @@ cdef class AxesInt:
         cdef _c_api.AxesIntHandle h_ret = _c_api.AxesInt_copy(self.handle)
         if h_ret == <_c_api.AxesIntHandle>0:
             return None
-        return _axes_int_from_capi(h_ret)
+        return _axes_int_from_capi(h_ret, owned=(h_ret != <_c_api.AxesIntHandle>self.handle))
 
     def push_back(self, int value):
         _c_api.AxesInt_push_back(self.handle, value)
@@ -91,7 +91,7 @@ cdef class AxesInt:
         cdef _c_api.AxesIntHandle h_ret = _c_api.AxesInt_intersection(self.handle, other.handle if other is not None else <_c_api.AxesIntHandle>0)
         if h_ret == <_c_api.AxesIntHandle>0:
             return None
-        return _axes_int_from_capi(h_ret)
+        return _axes_int_from_capi(h_ret, owned=(h_ret != <_c_api.AxesIntHandle>self.handle))
 
     def equal(self, AxesInt other):
         return _c_api.AxesInt_equal(self.handle, other.handle if other is not None else <_c_api.AxesIntHandle>0)

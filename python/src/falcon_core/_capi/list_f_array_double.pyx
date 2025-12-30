@@ -58,7 +58,7 @@ cdef class ListFArrayDouble:
         cdef _c_api.ListFArrayDoubleHandle h_ret = _c_api.ListFArrayDouble_copy(self.handle)
         if h_ret == <_c_api.ListFArrayDoubleHandle>0:
             return None
-        return _list_f_array_double_from_capi(h_ret)
+        return _list_f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListFArrayDoubleHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, FArrayDouble value):
@@ -101,7 +101,7 @@ cdef class ListFArrayDouble:
         cdef _c_api.ListFArrayDoubleHandle h_ret = _c_api.ListFArrayDouble_intersection(self.handle, other.handle if other is not None else <_c_api.ListFArrayDoubleHandle>0)
         if h_ret == <_c_api.ListFArrayDoubleHandle>0:
             return None
-        return _list_f_array_double_from_capi(h_ret)
+        return _list_f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListFArrayDoubleHandle>self.handle))
 
     def equal(self, ListFArrayDouble other):
         return _c_api.ListFArrayDouble_equal(self.handle, other.handle if other is not None else <_c_api.ListFArrayDoubleHandle>0)

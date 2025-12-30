@@ -47,7 +47,7 @@ cdef class PairInterpretationContextDouble:
         cdef _c_api.PairInterpretationContextDoubleHandle h_ret = _c_api.PairInterpretationContextDouble_copy(self.handle)
         if h_ret == <_c_api.PairInterpretationContextDoubleHandle>0:
             return None
-        return _pair_interpretation_context_double_from_capi(h_ret)
+        return _pair_interpretation_context_double_from_capi(h_ret, owned=(h_ret != <_c_api.PairInterpretationContextDoubleHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.PairInterpretationContextDouble_first(self.handle)

@@ -58,7 +58,7 @@ cdef class ListGname:
         cdef _c_api.ListGnameHandle h_ret = _c_api.ListGname_copy(self.handle)
         if h_ret == <_c_api.ListGnameHandle>0:
             return None
-        return _list_gname_from_capi(h_ret)
+        return _list_gname_from_capi(h_ret, owned=(h_ret != <_c_api.ListGnameHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Gname value):
@@ -101,7 +101,7 @@ cdef class ListGname:
         cdef _c_api.ListGnameHandle h_ret = _c_api.ListGname_intersection(self.handle, other.handle if other is not None else <_c_api.ListGnameHandle>0)
         if h_ret == <_c_api.ListGnameHandle>0:
             return None
-        return _list_gname_from_capi(h_ret)
+        return _list_gname_from_capi(h_ret, owned=(h_ret != <_c_api.ListGnameHandle>self.handle))
 
     def equal(self, ListGname other):
         return _c_api.ListGname_equal(self.handle, other.handle if other is not None else <_c_api.ListGnameHandle>0)

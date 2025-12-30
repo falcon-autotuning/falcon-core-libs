@@ -58,7 +58,7 @@ cdef class ListDiscretizer:
         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
         if h_ret == <_c_api.ListDiscretizerHandle>0:
             return None
-        return _list_discretizer_from_capi(h_ret)
+        return _list_discretizer_from_capi(h_ret, owned=(h_ret != <_c_api.ListDiscretizerHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Discretizer value):
@@ -101,7 +101,7 @@ cdef class ListDiscretizer:
         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
         if h_ret == <_c_api.ListDiscretizerHandle>0:
             return None
-        return _list_discretizer_from_capi(h_ret)
+        return _list_discretizer_from_capi(h_ret, owned=(h_ret != <_c_api.ListDiscretizerHandle>self.handle))
 
     def equal(self, ListDiscretizer other):
         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)

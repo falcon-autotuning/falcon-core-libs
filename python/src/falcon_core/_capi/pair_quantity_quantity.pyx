@@ -47,7 +47,7 @@ cdef class PairQuantityQuantity:
         cdef _c_api.PairQuantityQuantityHandle h_ret = _c_api.PairQuantityQuantity_copy(self.handle)
         if h_ret == <_c_api.PairQuantityQuantityHandle>0:
             return None
-        return _pair_quantity_quantity_from_capi(h_ret)
+        return _pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.PairQuantityQuantityHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.PairQuantityQuantity_first(self.handle)

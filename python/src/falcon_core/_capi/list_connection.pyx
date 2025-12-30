@@ -58,7 +58,7 @@ cdef class ListConnection:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.ListConnection_copy(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=(h_ret != <_c_api.ListConnectionHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Connection value):
@@ -101,7 +101,7 @@ cdef class ListConnection:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.ListConnection_intersection(self.handle, other.handle if other is not None else <_c_api.ListConnectionHandle>0)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=(h_ret != <_c_api.ListConnectionHandle>self.handle))
 
     def equal(self, ListConnection other):
         return _c_api.ListConnection_equal(self.handle, other.handle if other is not None else <_c_api.ListConnectionHandle>0)

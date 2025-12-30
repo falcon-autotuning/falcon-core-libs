@@ -51,7 +51,7 @@ cdef class Channel:
         cdef _c_api.ChannelHandle h_ret = _c_api.Channel_copy(self.handle)
         if h_ret == <_c_api.ChannelHandle>0:
             return None
-        return _channel_from_capi(h_ret)
+        return _channel_from_capi(h_ret, owned=(h_ret != <_c_api.ChannelHandle>self.handle))
 
     def equal(self, Channel other):
         return _c_api.Channel_equal(self.handle, other.handle if other is not None else <_c_api.ChannelHandle>0)

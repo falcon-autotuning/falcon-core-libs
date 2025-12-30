@@ -61,7 +61,7 @@ cdef class Config:
         cdef _c_api.ConfigHandle h_ret = _c_api.Config_copy(self.handle)
         if h_ret == <_c_api.ConfigHandle>0:
             return None
-        return _config_from_capi(h_ret)
+        return _config_from_capi(h_ret, owned=(h_ret != <_c_api.ConfigHandle>self.handle))
 
     def equal(self, Config other):
         return _c_api.Config_equal(self.handle, other.handle if other is not None else <_c_api.ConfigHandle>0)

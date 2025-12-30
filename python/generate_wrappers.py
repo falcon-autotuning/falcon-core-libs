@@ -725,14 +725,18 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
              lines.append(f'            return None')
              
              # Use factory function
+             is_accessor = method_name in ["connection", "at", "front", "back"] or method_name.startswith("get_")
              if wrapper_class == cls.name:
                  snake_name = to_snake_case(cls.name)
-                 is_accessor = method_name in ["connection", "at", "front", "back"] or method_name.startswith("get_")
-                 owned_arg = ", owned=False" if is_accessor else ""
+                 if is_accessor:
+                     owned_arg = ", owned=False"
+                 elif not is_static:
+                     owned_arg = ", owned=(h_ret != <_c_api.{}Handle>self.handle)".format(cls.name)
+                 else:
+                     owned_arg = "" # Default is True for static methods (factories)
                  lines.append(f'        return _{snake_name}_from_capi(h_ret{owned_arg})')
              else:
                  snake_wrapper = to_snake_case(wrapper_class)
-                 is_accessor = method_name in ["connection", "at", "front", "back"] or method_name.startswith("get_")
                  owned_arg = ", owned=False" if is_accessor else ""
                  lines.append(f'        return _{snake_wrapper}_from_capi(h_ret{owned_arg})')
 

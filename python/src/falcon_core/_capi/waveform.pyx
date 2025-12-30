@@ -121,7 +121,7 @@ cdef class Waveform:
         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
         if h_ret == <_c_api.WaveformHandle>0:
             return None
-        return _waveform_from_capi(h_ret)
+        return _waveform_from_capi(h_ret, owned=(h_ret != <_c_api.WaveformHandle>self.handle))
 
     def equal(self, Waveform other):
         return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
@@ -198,7 +198,7 @@ cdef class Waveform:
         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
         if h_ret == <_c_api.WaveformHandle>0:
             return None
-        return _waveform_from_capi(h_ret)
+        return _waveform_from_capi(h_ret, owned=(h_ret != <_c_api.WaveformHandle>self.handle))
 
     def __len__(self):
         return self.size()

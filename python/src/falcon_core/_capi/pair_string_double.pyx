@@ -51,7 +51,7 @@ cdef class PairStringDouble:
         cdef _c_api.PairStringDoubleHandle h_ret = _c_api.PairStringDouble_copy(self.handle)
         if h_ret == <_c_api.PairStringDoubleHandle>0:
             return None
-        return _pair_string_double_from_capi(h_ret)
+        return _pair_string_double_from_capi(h_ret, owned=(h_ret != <_c_api.PairStringDoubleHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.StringHandle s_ret

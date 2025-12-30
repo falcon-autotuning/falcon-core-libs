@@ -60,7 +60,7 @@ cdef class MapFloatFloat:
         cdef _c_api.MapFloatFloatHandle h_ret = _c_api.MapFloatFloat_copy(self.handle)
         if h_ret == <_c_api.MapFloatFloatHandle>0:
             return None
-        return _map_float_float_from_capi(h_ret)
+        return _map_float_float_from_capi(h_ret, owned=(h_ret != <_c_api.MapFloatFloatHandle>self.handle))
 
     def insert_or_assign(self, float key, float value):
         _c_api.MapFloatFloat_insert_or_assign(self.handle, key, value)

@@ -63,7 +63,7 @@ cdef class MapChannelConnections:
         cdef _c_api.MapChannelConnectionsHandle h_ret = _c_api.MapChannelConnections_copy(self.handle)
         if h_ret == <_c_api.MapChannelConnectionsHandle>0:
             return None
-        return _map_channel_connections_from_capi(h_ret)
+        return _map_channel_connections_from_capi(h_ret, owned=(h_ret != <_c_api.MapChannelConnectionsHandle>self.handle))
 
     def insert_or_assign(self, Channel key, Connections value):
         _c_api.MapChannelConnections_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ChannelHandle>0, value.handle if value is not None else <_c_api.ConnectionsHandle>0)

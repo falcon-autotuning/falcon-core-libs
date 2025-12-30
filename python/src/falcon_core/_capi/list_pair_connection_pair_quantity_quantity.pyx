@@ -58,7 +58,7 @@ cdef class ListPairConnectionPairQuantityQuantity:
         cdef _c_api.ListPairConnectionPairQuantityQuantityHandle h_ret = _c_api.ListPairConnectionPairQuantityQuantity_copy(self.handle)
         if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:
             return None
-        return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret)
+        return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairConnectionPairQuantityQuantityHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairConnectionPairQuantityQuantity value):
@@ -101,7 +101,7 @@ cdef class ListPairConnectionPairQuantityQuantity:
         cdef _c_api.ListPairConnectionPairQuantityQuantityHandle h_ret = _c_api.ListPairConnectionPairQuantityQuantity_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionPairQuantityQuantityHandle>0)
         if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:
             return None
-        return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret)
+        return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairConnectionPairQuantityQuantityHandle>self.handle))
 
     def equal(self, ListPairConnectionPairQuantityQuantity other):
         return _c_api.ListPairConnectionPairQuantityQuantity_equal(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionPairQuantityQuantityHandle>0)

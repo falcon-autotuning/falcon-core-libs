@@ -58,7 +58,7 @@ cdef class ListInterpretationContext:
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=(h_ret != <_c_api.ListInterpretationContextHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, InterpretationContext value):
@@ -101,7 +101,7 @@ cdef class ListInterpretationContext:
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=(h_ret != <_c_api.ListInterpretationContextHandle>self.handle))
 
     def equal(self, ListInterpretationContext other):
         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)

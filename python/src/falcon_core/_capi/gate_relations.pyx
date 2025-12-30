@@ -62,7 +62,7 @@ cdef class GateRelations:
         cdef _c_api.GateRelationsHandle h_ret = _c_api.GateRelations_copy(self.handle)
         if h_ret == <_c_api.GateRelationsHandle>0:
             return None
-        return _gate_relations_from_capi(h_ret)
+        return _gate_relations_from_capi(h_ret, owned=(h_ret != <_c_api.GateRelationsHandle>self.handle))
 
     def equal(self, GateRelations other):
         return _c_api.GateRelations_equal(self.handle, other.handle if other is not None else <_c_api.GateRelationsHandle>0)

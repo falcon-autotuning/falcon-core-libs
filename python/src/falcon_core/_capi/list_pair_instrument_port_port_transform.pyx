@@ -58,7 +58,7 @@ cdef class ListPairInstrumentPortPortTransform:
         cdef _c_api.ListPairInstrumentPortPortTransformHandle h_ret = _c_api.ListPairInstrumentPortPortTransform_copy(self.handle)
         if h_ret == <_c_api.ListPairInstrumentPortPortTransformHandle>0:
             return None
-        return _list_pair_instrument_port_port_transform_from_capi(h_ret)
+        return _list_pair_instrument_port_port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairInstrumentPortPortTransformHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairInstrumentPortPortTransform value):
@@ -101,7 +101,7 @@ cdef class ListPairInstrumentPortPortTransform:
         cdef _c_api.ListPairInstrumentPortPortTransformHandle h_ret = _c_api.ListPairInstrumentPortPortTransform_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairInstrumentPortPortTransformHandle>0)
         if h_ret == <_c_api.ListPairInstrumentPortPortTransformHandle>0:
             return None
-        return _list_pair_instrument_port_port_transform_from_capi(h_ret)
+        return _list_pair_instrument_port_port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairInstrumentPortPortTransformHandle>self.handle))
 
     def equal(self, ListPairInstrumentPortPortTransform other):
         return _c_api.ListPairInstrumentPortPortTransform_equal(self.handle, other.handle if other is not None else <_c_api.ListPairInstrumentPortPortTransformHandle>0)

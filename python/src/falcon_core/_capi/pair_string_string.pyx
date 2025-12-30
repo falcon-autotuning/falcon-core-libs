@@ -54,7 +54,7 @@ cdef class PairStringString:
         cdef _c_api.PairStringStringHandle h_ret = _c_api.PairStringString_copy(self.handle)
         if h_ret == <_c_api.PairStringStringHandle>0:
             return None
-        return _pair_string_string_from_capi(h_ret)
+        return _pair_string_string_from_capi(h_ret, owned=(h_ret != <_c_api.PairStringStringHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.StringHandle s_ret

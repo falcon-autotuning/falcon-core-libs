@@ -57,7 +57,7 @@ cdef class IncreasingAlignment:
         cdef _c_api.IncreasingAlignmentHandle h_ret = _c_api.IncreasingAlignment_copy(self.handle)
         if h_ret == <_c_api.IncreasingAlignmentHandle>0:
             return None
-        return _increasing_alignment_from_capi(h_ret)
+        return _increasing_alignment_from_capi(h_ret, owned=(h_ret != <_c_api.IncreasingAlignmentHandle>self.handle))
 
     def equal(self, IncreasingAlignment other):
         return _c_api.IncreasingAlignment_equal(self.handle, other.handle if other is not None else <_c_api.IncreasingAlignmentHandle>0)

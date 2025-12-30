@@ -57,7 +57,7 @@ cdef class ListFloat:
         cdef _c_api.ListFloatHandle h_ret = _c_api.ListFloat_copy(self.handle)
         if h_ret == <_c_api.ListFloatHandle>0:
             return None
-        return _list_float_from_capi(h_ret)
+        return _list_float_from_capi(h_ret, owned=(h_ret != <_c_api.ListFloatHandle>self.handle))
 
     @staticmethod
     def allocate(size_t count):
@@ -104,7 +104,7 @@ cdef class ListFloat:
         cdef _c_api.ListFloatHandle h_ret = _c_api.ListFloat_intersection(self.handle, other.handle if other is not None else <_c_api.ListFloatHandle>0)
         if h_ret == <_c_api.ListFloatHandle>0:
             return None
-        return _list_float_from_capi(h_ret)
+        return _list_float_from_capi(h_ret, owned=(h_ret != <_c_api.ListFloatHandle>self.handle))
 
     def equal(self, ListFloat other):
         return _c_api.ListFloat_equal(self.handle, other.handle if other is not None else <_c_api.ListFloatHandle>0)

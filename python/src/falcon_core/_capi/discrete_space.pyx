@@ -79,7 +79,7 @@ cdef class DiscreteSpace:
         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.DiscreteSpace_copy(self.handle)
         if h_ret == <_c_api.DiscreteSpaceHandle>0:
             return None
-        return _discrete_space_from_capi(h_ret)
+        return _discrete_space_from_capi(h_ret, owned=(h_ret != <_c_api.DiscreteSpaceHandle>self.handle))
 
     def equal(self, DiscreteSpace other):
         return _c_api.DiscreteSpace_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)

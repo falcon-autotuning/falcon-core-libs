@@ -62,7 +62,7 @@ cdef class MapConnectionDouble:
         cdef _c_api.MapConnectionDoubleHandle h_ret = _c_api.MapConnectionDouble_copy(self.handle)
         if h_ret == <_c_api.MapConnectionDoubleHandle>0:
             return None
-        return _map_connection_double_from_capi(h_ret)
+        return _map_connection_double_from_capi(h_ret, owned=(h_ret != <_c_api.MapConnectionDoubleHandle>self.handle))
 
     def insert_or_assign(self, Connection key, double value):
         _c_api.MapConnectionDouble_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value)

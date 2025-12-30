@@ -57,7 +57,7 @@ cdef class ListDouble:
         cdef _c_api.ListDoubleHandle h_ret = _c_api.ListDouble_copy(self.handle)
         if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return _list_double_from_capi(h_ret)
+        return _list_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListDoubleHandle>self.handle))
 
     @staticmethod
     def allocate(size_t count):
@@ -104,7 +104,7 @@ cdef class ListDouble:
         cdef _c_api.ListDoubleHandle h_ret = _c_api.ListDouble_intersection(self.handle, other.handle if other is not None else <_c_api.ListDoubleHandle>0)
         if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return _list_double_from_capi(h_ret)
+        return _list_double_from_capi(h_ret, owned=(h_ret != <_c_api.ListDoubleHandle>self.handle))
 
     def equal(self, ListDouble other):
         return _c_api.ListDouble_equal(self.handle, other.handle if other is not None else <_c_api.ListDoubleHandle>0)

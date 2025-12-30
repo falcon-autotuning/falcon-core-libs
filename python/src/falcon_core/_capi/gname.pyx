@@ -62,7 +62,7 @@ cdef class Gname:
         cdef _c_api.GnameHandle h_ret = _c_api.Gname_copy(self.handle)
         if h_ret == <_c_api.GnameHandle>0:
             return None
-        return _gname_from_capi(h_ret)
+        return _gname_from_capi(h_ret, owned=(h_ret != <_c_api.GnameHandle>self.handle))
 
     def equal(self, Gname other):
         return _c_api.Gname_equal(self.handle, other.handle if other is not None else <_c_api.GnameHandle>0)

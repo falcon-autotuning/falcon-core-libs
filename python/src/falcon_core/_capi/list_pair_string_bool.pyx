@@ -58,7 +58,7 @@ cdef class ListPairStringBool:
         cdef _c_api.ListPairStringBoolHandle h_ret = _c_api.ListPairStringBool_copy(self.handle)
         if h_ret == <_c_api.ListPairStringBoolHandle>0:
             return None
-        return _list_pair_string_bool_from_capi(h_ret)
+        return _list_pair_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairStringBoolHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairStringBool value):
@@ -101,7 +101,7 @@ cdef class ListPairStringBool:
         cdef _c_api.ListPairStringBoolHandle h_ret = _c_api.ListPairStringBool_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairStringBoolHandle>0)
         if h_ret == <_c_api.ListPairStringBoolHandle>0:
             return None
-        return _list_pair_string_bool_from_capi(h_ret)
+        return _list_pair_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairStringBoolHandle>self.handle))
 
     def equal(self, ListPairStringBool other):
         return _c_api.ListPairStringBool_equal(self.handle, other.handle if other is not None else <_c_api.ListPairStringBoolHandle>0)

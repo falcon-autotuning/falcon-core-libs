@@ -46,7 +46,7 @@ cdef class PairIntInt:
         cdef _c_api.PairIntIntHandle h_ret = _c_api.PairIntInt_copy(self.handle)
         if h_ret == <_c_api.PairIntIntHandle>0:
             return None
-        return _pair_int_int_from_capi(h_ret)
+        return _pair_int_int_from_capi(h_ret, owned=(h_ret != <_c_api.PairIntIntHandle>self.handle))
 
     def first(self, ):
         return _c_api.PairIntInt_first(self.handle)

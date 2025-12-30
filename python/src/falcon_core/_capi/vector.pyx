@@ -122,7 +122,7 @@ cdef class Vector:
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_copy(self.handle)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def equal(self, Vector other):
         return _c_api.Vector_equal(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)
@@ -256,7 +256,7 @@ cdef class Vector:
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_addition(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def __add__(self, Vector other):
         return self.addition(other)
@@ -265,7 +265,7 @@ cdef class Vector:
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_subtraction(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def __sub__(self, Vector other):
         return self.subtraction(other)
@@ -274,31 +274,31 @@ cdef class Vector:
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_double_multiplication(self.handle, scalar)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def int_multiplication(self, int scalar):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_int_multiplication(self.handle, scalar)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def double_division(self, double scalar):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_double_division(self.handle, scalar)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def int_division(self, int scalar):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_int_division(self.handle, scalar)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def negation(self, ):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_negation(self.handle)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def __neg__(self):
         return self.negation()
@@ -307,73 +307,73 @@ cdef class Vector:
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_update_start_from_states(self.handle, state.handle if state is not None else <_c_api.DeviceVoltageStatesHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def translate_doubles(self, MapConnectionDouble point, SymbolUnit unit):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_translate_doubles(self.handle, point.handle if point is not None else <_c_api.MapConnectionDoubleHandle>0, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def translate_quantities(self, MapConnectionQuantity point):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_translate_quantities(self.handle, point.handle if point is not None else <_c_api.MapConnectionQuantityHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def translate(self, Point point):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_translate(self.handle, point.handle if point is not None else <_c_api.PointHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def translate_to_origin(self, ):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_translate_to_origin(self.handle)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def double_extend(self, double extension):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_double_extend(self.handle, extension)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def int_extend(self, int extension):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_int_extend(self.handle, extension)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def double_shrink(self, double extension):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_double_shrink(self.handle, extension)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def int_shrink(self, int extension):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_int_shrink(self.handle, extension)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def unit_vector(self, ):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_unit_vector(self.handle)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def normalize(self, ):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_normalize(self.handle)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def project(self, Vector other):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_project(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)
         if h_ret == <_c_api.VectorHandle>0:
             return None
-        return _vector_from_capi(h_ret)
+        return _vector_from_capi(h_ret, owned=(h_ret != <_c_api.VectorHandle>self.handle))
 
     def update_unit(self, SymbolUnit unit):
         _c_api.Vector_update_unit(self.handle, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)

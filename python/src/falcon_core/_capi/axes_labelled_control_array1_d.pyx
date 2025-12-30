@@ -59,7 +59,7 @@ cdef class AxesLabelledControlArray1D:
         cdef _c_api.AxesLabelledControlArray1DHandle h_ret = _c_api.AxesLabelledControlArray1D_copy(self.handle)
         if h_ret == <_c_api.AxesLabelledControlArray1DHandle>0:
             return None
-        return _axes_labelled_control_array1_d_from_capi(h_ret)
+        return _axes_labelled_control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.AxesLabelledControlArray1DHandle>self.handle))
 
     def push_back(self, LabelledControlArray1D value):
         _c_api.AxesLabelledControlArray1D_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledControlArray1DHandle>0)
@@ -95,7 +95,7 @@ cdef class AxesLabelledControlArray1D:
         cdef _c_api.AxesLabelledControlArray1DHandle h_ret = _c_api.AxesLabelledControlArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
         if h_ret == <_c_api.AxesLabelledControlArray1DHandle>0:
             return None
-        return _axes_labelled_control_array1_d_from_capi(h_ret)
+        return _axes_labelled_control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.AxesLabelledControlArray1DHandle>self.handle))
 
     def equal(self, AxesLabelledControlArray1D other):
         return _c_api.AxesLabelledControlArray1D_equal(self.handle, other.handle if other is not None else <_c_api.AxesLabelledControlArray1DHandle>0)

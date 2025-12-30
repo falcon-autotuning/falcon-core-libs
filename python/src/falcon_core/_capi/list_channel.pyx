@@ -58,7 +58,7 @@ cdef class ListChannel:
         cdef _c_api.ListChannelHandle h_ret = _c_api.ListChannel_copy(self.handle)
         if h_ret == <_c_api.ListChannelHandle>0:
             return None
-        return _list_channel_from_capi(h_ret)
+        return _list_channel_from_capi(h_ret, owned=(h_ret != <_c_api.ListChannelHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Channel value):
@@ -101,7 +101,7 @@ cdef class ListChannel:
         cdef _c_api.ListChannelHandle h_ret = _c_api.ListChannel_intersection(self.handle, other.handle if other is not None else <_c_api.ListChannelHandle>0)
         if h_ret == <_c_api.ListChannelHandle>0:
             return None
-        return _list_channel_from_capi(h_ret)
+        return _list_channel_from_capi(h_ret, owned=(h_ret != <_c_api.ListChannelHandle>self.handle))
 
     def equal(self, ListChannel other):
         return _c_api.ListChannel_equal(self.handle, other.handle if other is not None else <_c_api.ListChannelHandle>0)

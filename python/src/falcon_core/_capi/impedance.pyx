@@ -47,7 +47,7 @@ cdef class Impedance:
         cdef _c_api.ImpedanceHandle h_ret = _c_api.Impedance_copy(self.handle)
         if h_ret == <_c_api.ImpedanceHandle>0:
             return None
-        return _impedance_from_capi(h_ret)
+        return _impedance_from_capi(h_ret, owned=(h_ret != <_c_api.ImpedanceHandle>self.handle))
 
     def equal(self, Impedance other):
         return _c_api.Impedance_equal(self.handle, other.handle if other is not None else <_c_api.ImpedanceHandle>0)

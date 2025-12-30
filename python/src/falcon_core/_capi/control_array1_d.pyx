@@ -38,7 +38,7 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_copy(self.handle)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def equal(self, ControlArray1D other):
         return _c_api.ControlArray1D_equal(self.handle, other.handle if other is not None else <_c_api.ControlArray1DHandle>0)
@@ -147,25 +147,25 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_plus_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArray1DHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def plus_farray(self, FArrayDouble other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def plus_double(self, double other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_plus_double(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def plus_int(self, int other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_plus_int(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def minus_equals_farray(self, FArrayDouble other):
         _c_api.ControlArray1D_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
@@ -180,31 +180,31 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_minus_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArray1DHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def minus_farray(self, FArrayDouble other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def minus_double(self, double other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_minus_double(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def minus_int(self, int other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_minus_int(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def negation(self, ):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_negation(self.handle)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def __neg__(self):
         return self.negation()
@@ -219,13 +219,13 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_times_double(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def times_int(self, int other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_times_int(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def divides_equals_double(self, double other):
         _c_api.ControlArray1D_divides_equals_double(self.handle, other)
@@ -237,25 +237,25 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_divides_double(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def divides_int(self, int other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_divides_int(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def pow(self, double other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_pow(self.handle, other)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def abs(self, ):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_abs(self.handle)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def min(self, ):
         return _c_api.ControlArray1D_min(self.handle)
@@ -264,13 +264,13 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_min_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def min_control_array(self, ControlArray1D other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_min_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArray1DHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def max(self, ):
         return _c_api.ControlArray1D_max(self.handle)
@@ -279,13 +279,13 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_max_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def max_control_array(self, ControlArray1D other):
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_max_control_array(self.handle, other.handle if other is not None else <_c_api.ControlArray1DHandle>0)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def greater_than(self, double value):
         return _c_api.ControlArray1D_greater_than(self.handle, value)
@@ -315,7 +315,7 @@ cdef class ControlArray1D:
         cdef _c_api.ControlArray1DHandle h_ret = _c_api.ControlArray1D_flip(self.handle, axis)
         if h_ret == <_c_api.ControlArray1DHandle>0:
             return None
-        return _control_array1_d_from_capi(h_ret)
+        return _control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.ControlArray1DHandle>self.handle))
 
     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
         return _c_api.ControlArray1D_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)

@@ -49,7 +49,7 @@ cdef class VoltageConstraints:
         cdef _c_api.VoltageConstraintsHandle h_ret = _c_api.VoltageConstraints_copy(self.handle)
         if h_ret == <_c_api.VoltageConstraintsHandle>0:
             return None
-        return _voltage_constraints_from_capi(h_ret)
+        return _voltage_constraints_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageConstraintsHandle>self.handle))
 
     def equal(self, VoltageConstraints other):
         return _c_api.VoltageConstraints_equal(self.handle, other.handle if other is not None else <_c_api.VoltageConstraintsHandle>0)

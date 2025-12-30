@@ -41,7 +41,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_copy(self.handle)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def equal(self, LabelledMeasuredArray other):
         return _c_api.LabelledMeasuredArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
@@ -136,25 +136,25 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_plus_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def plus_farray(self, FArrayDouble other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def plus_double(self, double other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_plus_double(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def plus_int(self, int other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_plus_int(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def minus_equals_measured_array(self, LabelledMeasuredArray other):
         _c_api.LabelledMeasuredArray_minus_equals_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
@@ -172,31 +172,31 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_minus_measured_array(self.handle, other.handle if other is not None else <_c_api.MeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def minus_farray(self, FArrayDouble other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def minus_double(self, double other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_minus_double(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def minus_int(self, int other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_minus_int(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def negation(self, ):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_negation(self.handle)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def __neg__(self):
         return self.negation()
@@ -205,13 +205,13 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_times_equals_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def times_equals_farray(self, FArrayDouble other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_times_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def times_equals_double(self, double other):
         _c_api.LabelledMeasuredArray_times_equals_double(self.handle, other)
@@ -223,37 +223,37 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_times_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def times_farray(self, FArrayDouble other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def times_double(self, double other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_times_double(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def times_int(self, int other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_times_int(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def divides_equals_measured_array(self, LabelledMeasuredArray other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_divides_equals_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def divides_equals_farray(self, FArrayDouble other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def divides_equals_double(self, double other):
         _c_api.LabelledMeasuredArray_divides_equals_double(self.handle, other)
@@ -265,37 +265,37 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_divides_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def divides_farray(self, FArrayDouble other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def divides_double(self, double other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_divides_double(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def divides_int(self, int other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_divides_int(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def pow(self, double other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_pow(self.handle, other)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def abs(self, ):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_abs(self.handle)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def min(self, ):
         return _c_api.LabelledMeasuredArray_min(self.handle)
@@ -304,13 +304,13 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_min_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def min_measured_array(self, LabelledMeasuredArray other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_min_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def max(self, ):
         return _c_api.LabelledMeasuredArray_max(self.handle)
@@ -319,13 +319,13 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_max_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def max_measured_array(self, LabelledMeasuredArray other):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_max_measured_array(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def greater_than(self, double value):
         return _c_api.LabelledMeasuredArray_greater_than(self.handle, value)
@@ -349,7 +349,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_reshape(self.handle, &shape[0], ndims)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def where(self, double value):
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.LabelledMeasuredArray_where(self.handle, value)
@@ -361,7 +361,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_flip(self.handle, axis)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
         return _c_api.LabelledMeasuredArray_full_gradient(self.handle, <_c_api.LabelledMeasuredArrayHandle*>&out_buffer[0], buffer_size)
@@ -370,7 +370,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_gradient(self.handle, axis)
         if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_measured_array_from_capi(h_ret)
+        return _labelled_measured_array_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledMeasuredArrayHandle>self.handle))
 
     def get_sum_of_squares(self, ):
         return _c_api.LabelledMeasuredArray_get_sum_of_squares(self.handle)

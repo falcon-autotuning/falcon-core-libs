@@ -46,7 +46,7 @@ cdef class PairDoubleDouble:
         cdef _c_api.PairDoubleDoubleHandle h_ret = _c_api.PairDoubleDouble_copy(self.handle)
         if h_ret == <_c_api.PairDoubleDoubleHandle>0:
             return None
-        return _pair_double_double_from_capi(h_ret)
+        return _pair_double_double_from_capi(h_ret, owned=(h_ret != <_c_api.PairDoubleDoubleHandle>self.handle))
 
     def first(self, ):
         return _c_api.PairDoubleDouble_first(self.handle)

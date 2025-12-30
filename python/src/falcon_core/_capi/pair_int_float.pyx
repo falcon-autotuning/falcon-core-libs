@@ -46,7 +46,7 @@ cdef class PairIntFloat:
         cdef _c_api.PairIntFloatHandle h_ret = _c_api.PairIntFloat_copy(self.handle)
         if h_ret == <_c_api.PairIntFloatHandle>0:
             return None
-        return _pair_int_float_from_capi(h_ret)
+        return _pair_int_float_from_capi(h_ret, owned=(h_ret != <_c_api.PairIntFloatHandle>self.handle))
 
     def first(self, ):
         return _c_api.PairIntFloat_first(self.handle)

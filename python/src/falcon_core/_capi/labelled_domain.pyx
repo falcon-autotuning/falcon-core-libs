@@ -149,7 +149,7 @@ cdef class LabelledDomain:
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.LabelledDomain_copy(self.handle)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledDomainHandle>self.handle))
 
     def equal(self, LabelledDomain other):
         return _c_api.LabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
@@ -217,13 +217,13 @@ cdef class LabelledDomain:
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.LabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledDomainHandle>self.handle))
 
     def union(self, LabelledDomain other):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.LabelledDomain_union(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledDomainHandle>self.handle))
 
     def is_empty(self, ):
         return _c_api.LabelledDomain_is_empty(self.handle)
@@ -235,13 +235,13 @@ cdef class LabelledDomain:
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.LabelledDomain_shift(self.handle, offset)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledDomainHandle>self.handle))
 
     def scale(self, double scale):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.LabelledDomain_scale(self.handle, scale)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledDomainHandle>self.handle))
 
     def transform(self, LabelledDomain other, double value):
         return _c_api.LabelledDomain_transform(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0, value)

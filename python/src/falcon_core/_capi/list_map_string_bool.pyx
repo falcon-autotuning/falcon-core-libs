@@ -58,7 +58,7 @@ cdef class ListMapStringBool:
         cdef _c_api.ListMapStringBoolHandle h_ret = _c_api.ListMapStringBool_copy(self.handle)
         if h_ret == <_c_api.ListMapStringBoolHandle>0:
             return None
-        return _list_map_string_bool_from_capi(h_ret)
+        return _list_map_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.ListMapStringBoolHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, MapStringBool value):
@@ -101,7 +101,7 @@ cdef class ListMapStringBool:
         cdef _c_api.ListMapStringBoolHandle h_ret = _c_api.ListMapStringBool_intersection(self.handle, other.handle if other is not None else <_c_api.ListMapStringBoolHandle>0)
         if h_ret == <_c_api.ListMapStringBoolHandle>0:
             return None
-        return _list_map_string_bool_from_capi(h_ret)
+        return _list_map_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.ListMapStringBoolHandle>self.handle))
 
     def equal(self, ListMapStringBool other):
         return _c_api.ListMapStringBool_equal(self.handle, other.handle if other is not None else <_c_api.ListMapStringBoolHandle>0)

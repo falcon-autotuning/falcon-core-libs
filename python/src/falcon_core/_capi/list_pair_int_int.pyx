@@ -58,7 +58,7 @@ cdef class ListPairIntInt:
         cdef _c_api.ListPairIntIntHandle h_ret = _c_api.ListPairIntInt_copy(self.handle)
         if h_ret == <_c_api.ListPairIntIntHandle>0:
             return None
-        return _list_pair_int_int_from_capi(h_ret)
+        return _list_pair_int_int_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairIntIntHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairIntInt value):
@@ -101,7 +101,7 @@ cdef class ListPairIntInt:
         cdef _c_api.ListPairIntIntHandle h_ret = _c_api.ListPairIntInt_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairIntIntHandle>0)
         if h_ret == <_c_api.ListPairIntIntHandle>0:
             return None
-        return _list_pair_int_int_from_capi(h_ret)
+        return _list_pair_int_int_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairIntIntHandle>self.handle))
 
     def equal(self, ListPairIntInt other):
         return _c_api.ListPairIntInt_equal(self.handle, other.handle if other is not None else <_c_api.ListPairIntIntHandle>0)

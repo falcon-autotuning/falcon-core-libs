@@ -58,7 +58,7 @@ cdef class ListPairChannelConnections:
         cdef _c_api.ListPairChannelConnectionsHandle h_ret = _c_api.ListPairChannelConnections_copy(self.handle)
         if h_ret == <_c_api.ListPairChannelConnectionsHandle>0:
             return None
-        return _list_pair_channel_connections_from_capi(h_ret)
+        return _list_pair_channel_connections_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairChannelConnectionsHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairChannelConnections value):
@@ -101,7 +101,7 @@ cdef class ListPairChannelConnections:
         cdef _c_api.ListPairChannelConnectionsHandle h_ret = _c_api.ListPairChannelConnections_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairChannelConnectionsHandle>0)
         if h_ret == <_c_api.ListPairChannelConnectionsHandle>0:
             return None
-        return _list_pair_channel_connections_from_capi(h_ret)
+        return _list_pair_channel_connections_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairChannelConnectionsHandle>self.handle))
 
     def equal(self, ListPairChannelConnections other):
         return _c_api.ListPairChannelConnections_equal(self.handle, other.handle if other is not None else <_c_api.ListPairChannelConnectionsHandle>0)

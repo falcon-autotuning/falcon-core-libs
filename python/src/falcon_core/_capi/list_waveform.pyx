@@ -58,7 +58,7 @@ cdef class ListWaveform:
         cdef _c_api.ListWaveformHandle h_ret = _c_api.ListWaveform_copy(self.handle)
         if h_ret == <_c_api.ListWaveformHandle>0:
             return None
-        return _list_waveform_from_capi(h_ret)
+        return _list_waveform_from_capi(h_ret, owned=(h_ret != <_c_api.ListWaveformHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, Waveform value):
@@ -101,7 +101,7 @@ cdef class ListWaveform:
         cdef _c_api.ListWaveformHandle h_ret = _c_api.ListWaveform_intersection(self.handle, other.handle if other is not None else <_c_api.ListWaveformHandle>0)
         if h_ret == <_c_api.ListWaveformHandle>0:
             return None
-        return _list_waveform_from_capi(h_ret)
+        return _list_waveform_from_capi(h_ret, owned=(h_ret != <_c_api.ListWaveformHandle>self.handle))
 
     def equal(self, ListWaveform other):
         return _c_api.ListWaveform_equal(self.handle, other.handle if other is not None else <_c_api.ListWaveformHandle>0)

@@ -60,7 +60,7 @@ cdef class MapStringString:
         cdef _c_api.MapStringStringHandle h_ret = _c_api.MapStringString_copy(self.handle)
         if h_ret == <_c_api.MapStringStringHandle>0:
             return None
-        return _map_string_string_from_capi(h_ret)
+        return _map_string_string_from_capi(h_ret, owned=(h_ret != <_c_api.MapStringStringHandle>self.handle))
 
     def insert_or_assign(self, str key, str value):
         cdef bytes b_key = key.encode("utf-8")

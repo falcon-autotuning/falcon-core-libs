@@ -63,7 +63,7 @@ cdef class MapInstrumentPortPortTransform:
         cdef _c_api.MapInstrumentPortPortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_copy(self.handle)
         if h_ret == <_c_api.MapInstrumentPortPortTransformHandle>0:
             return None
-        return _map_instrument_port_port_transform_from_capi(h_ret)
+        return _map_instrument_port_port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.MapInstrumentPortPortTransformHandle>self.handle))
 
     def insert_or_assign(self, InstrumentPort key, PortTransform value):
         _c_api.MapInstrumentPortPortTransform_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.InstrumentPortHandle>0, value.handle if value is not None else <_c_api.PortTransformHandle>0)

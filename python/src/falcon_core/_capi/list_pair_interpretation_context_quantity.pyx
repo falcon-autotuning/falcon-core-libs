@@ -58,7 +58,7 @@ cdef class ListPairInterpretationContextQuantity:
         cdef _c_api.ListPairInterpretationContextQuantityHandle h_ret = _c_api.ListPairInterpretationContextQuantity_copy(self.handle)
         if h_ret == <_c_api.ListPairInterpretationContextQuantityHandle>0:
             return None
-        return _list_pair_interpretation_context_quantity_from_capi(h_ret)
+        return _list_pair_interpretation_context_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairInterpretationContextQuantityHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairInterpretationContextQuantity value):
@@ -101,7 +101,7 @@ cdef class ListPairInterpretationContextQuantity:
         cdef _c_api.ListPairInterpretationContextQuantityHandle h_ret = _c_api.ListPairInterpretationContextQuantity_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairInterpretationContextQuantityHandle>0)
         if h_ret == <_c_api.ListPairInterpretationContextQuantityHandle>0:
             return None
-        return _list_pair_interpretation_context_quantity_from_capi(h_ret)
+        return _list_pair_interpretation_context_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairInterpretationContextQuantityHandle>self.handle))
 
     def equal(self, ListPairInterpretationContextQuantity other):
         return _c_api.ListPairInterpretationContextQuantity_equal(self.handle, other.handle if other is not None else <_c_api.ListPairInterpretationContextQuantityHandle>0)

@@ -58,7 +58,7 @@ cdef class ListPairSizeTSizeT:
         cdef _c_api.ListPairSizeTSizeTHandle h_ret = _c_api.ListPairSizeTSizeT_copy(self.handle)
         if h_ret == <_c_api.ListPairSizeTSizeTHandle>0:
             return None
-        return _list_pair_size_t_size_t_from_capi(h_ret)
+        return _list_pair_size_t_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairSizeTSizeTHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairSizeTSizeT value):
@@ -101,7 +101,7 @@ cdef class ListPairSizeTSizeT:
         cdef _c_api.ListPairSizeTSizeTHandle h_ret = _c_api.ListPairSizeTSizeT_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairSizeTSizeTHandle>0)
         if h_ret == <_c_api.ListPairSizeTSizeTHandle>0:
             return None
-        return _list_pair_size_t_size_t_from_capi(h_ret)
+        return _list_pair_size_t_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairSizeTSizeTHandle>self.handle))
 
     def equal(self, ListPairSizeTSizeT other):
         return _c_api.ListPairSizeTSizeT_equal(self.handle, other.handle if other is not None else <_c_api.ListPairSizeTSizeTHandle>0)

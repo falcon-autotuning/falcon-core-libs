@@ -57,7 +57,7 @@ cdef class ListSizeT:
         cdef _c_api.ListSizeTHandle h_ret = _c_api.ListSizeT_copy(self.handle)
         if h_ret == <_c_api.ListSizeTHandle>0:
             return None
-        return _list_size_t_from_capi(h_ret)
+        return _list_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.ListSizeTHandle>self.handle))
 
     @staticmethod
     def allocate(size_t count):
@@ -104,7 +104,7 @@ cdef class ListSizeT:
         cdef _c_api.ListSizeTHandle h_ret = _c_api.ListSizeT_intersection(self.handle, other.handle if other is not None else <_c_api.ListSizeTHandle>0)
         if h_ret == <_c_api.ListSizeTHandle>0:
             return None
-        return _list_size_t_from_capi(h_ret)
+        return _list_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.ListSizeTHandle>self.handle))
 
     def equal(self, ListSizeT other):
         return _c_api.ListSizeT_equal(self.handle, other.handle if other is not None else <_c_api.ListSizeTHandle>0)

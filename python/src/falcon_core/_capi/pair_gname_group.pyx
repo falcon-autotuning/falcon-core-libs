@@ -48,7 +48,7 @@ cdef class PairGnameGroup:
         cdef _c_api.PairGnameGroupHandle h_ret = _c_api.PairGnameGroup_copy(self.handle)
         if h_ret == <_c_api.PairGnameGroupHandle>0:
             return None
-        return _pair_gname_group_from_capi(h_ret)
+        return _pair_gname_group_from_capi(h_ret, owned=(h_ret != <_c_api.PairGnameGroupHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.GnameHandle h_ret = _c_api.PairGnameGroup_first(self.handle)

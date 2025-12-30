@@ -46,7 +46,7 @@ cdef class PairSizeTSizeT:
         cdef _c_api.PairSizeTSizeTHandle h_ret = _c_api.PairSizeTSizeT_copy(self.handle)
         if h_ret == <_c_api.PairSizeTSizeTHandle>0:
             return None
-        return _pair_size_t_size_t_from_capi(h_ret)
+        return _pair_size_t_size_t_from_capi(h_ret, owned=(h_ret != <_c_api.PairSizeTSizeTHandle>self.handle))
 
     def first(self, ):
         return _c_api.PairSizeTSizeT_first(self.handle)

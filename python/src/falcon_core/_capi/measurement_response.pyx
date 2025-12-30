@@ -47,7 +47,7 @@ cdef class MeasurementResponse:
         cdef _c_api.MeasurementResponseHandle h_ret = _c_api.MeasurementResponse_copy(self.handle)
         if h_ret == <_c_api.MeasurementResponseHandle>0:
             return None
-        return _measurement_response_from_capi(h_ret)
+        return _measurement_response_from_capi(h_ret, owned=(h_ret != <_c_api.MeasurementResponseHandle>self.handle))
 
     def equal(self, MeasurementResponse other):
         return _c_api.MeasurementResponse_equal(self.handle, other.handle if other is not None else <_c_api.MeasurementResponseHandle>0)

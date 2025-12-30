@@ -58,7 +58,7 @@ cdef class ListLabelledDomain:
         cdef _c_api.ListLabelledDomainHandle h_ret = _c_api.ListLabelledDomain_copy(self.handle)
         if h_ret == <_c_api.ListLabelledDomainHandle>0:
             return None
-        return _list_labelled_domain_from_capi(h_ret)
+        return _list_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.ListLabelledDomainHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, LabelledDomain value):
@@ -101,7 +101,7 @@ cdef class ListLabelledDomain:
         cdef _c_api.ListLabelledDomainHandle h_ret = _c_api.ListLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.ListLabelledDomainHandle>0)
         if h_ret == <_c_api.ListLabelledDomainHandle>0:
             return None
-        return _list_labelled_domain_from_capi(h_ret)
+        return _list_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.ListLabelledDomainHandle>self.handle))
 
     def equal(self, ListLabelledDomain other):
         return _c_api.ListLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.ListLabelledDomainHandle>0)

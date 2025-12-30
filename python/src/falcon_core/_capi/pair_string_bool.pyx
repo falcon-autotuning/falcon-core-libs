@@ -51,7 +51,7 @@ cdef class PairStringBool:
         cdef _c_api.PairStringBoolHandle h_ret = _c_api.PairStringBool_copy(self.handle)
         if h_ret == <_c_api.PairStringBoolHandle>0:
             return None
-        return _pair_string_bool_from_capi(h_ret)
+        return _pair_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.PairStringBoolHandle>self.handle))
 
     def first(self, ):
         cdef _c_api.StringHandle s_ret

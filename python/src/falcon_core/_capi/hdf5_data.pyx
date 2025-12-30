@@ -92,7 +92,7 @@ cdef class HDF5Data:
         cdef _c_api.HDF5DataHandle h_ret = _c_api.HDF5Data_copy(self.handle)
         if h_ret == <_c_api.HDF5DataHandle>0:
             return None
-        return _hdf5_data_from_capi(h_ret)
+        return _hdf5_data_from_capi(h_ret, owned=(h_ret != <_c_api.HDF5DataHandle>self.handle))
 
     def equal(self, HDF5Data other):
         return _c_api.HDF5Data_equal(self.handle, other.handle if other is not None else <_c_api.HDF5DataHandle>0)

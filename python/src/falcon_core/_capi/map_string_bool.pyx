@@ -61,7 +61,7 @@ cdef class MapStringBool:
         cdef _c_api.MapStringBoolHandle h_ret = _c_api.MapStringBool_copy(self.handle)
         if h_ret == <_c_api.MapStringBoolHandle>0:
             return None
-        return _map_string_bool_from_capi(h_ret)
+        return _map_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.MapStringBoolHandle>self.handle))
 
     def insert_or_assign(self, str key, bint value):
         cdef bytes b_key = key.encode("utf-8")

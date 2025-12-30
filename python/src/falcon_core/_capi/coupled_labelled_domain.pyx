@@ -61,7 +61,7 @@ cdef class CoupledLabelledDomain:
         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_copy(self.handle)
         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
             return None
-        return _coupled_labelled_domain_from_capi(h_ret)
+        return _coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.CoupledLabelledDomainHandle>self.handle))
 
     def equal(self, CoupledLabelledDomain other):
         return _c_api.CoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.CoupledLabelledDomainHandle>0)
@@ -111,7 +111,7 @@ cdef class CoupledLabelledDomain:
         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.CoupledLabelledDomainHandle>0)
         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
             return None
-        return _coupled_labelled_domain_from_capi(h_ret)
+        return _coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.CoupledLabelledDomainHandle>self.handle))
 
     def push_back(self, LabelledDomain value):
         _c_api.CoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledDomainHandle>0)
