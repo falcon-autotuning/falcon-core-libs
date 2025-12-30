@@ -12,8 +12,8 @@ class TestInterpretationContainerQuantity:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: InterpretationContainerQuantity_create
-            self.obj = InterpretationContainer[Quantity](None)
+            # Found from_json constructor
+            self.obj = InterpretationContainer[Quantity].from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

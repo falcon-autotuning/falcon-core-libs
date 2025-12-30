@@ -3,6 +3,7 @@ import array
 from falcon_core.generic.map import Map
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.math.quantity import Quantity
+from falcon_core.generic.pair import Pair
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.map import Map
 

@@ -28,7 +28,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
+            self.obj.fill_value(1, Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -60,7 +60,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -76,7 +76,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -84,7 +84,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(array.array('L', [0]), 0)
+            self.obj.items(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

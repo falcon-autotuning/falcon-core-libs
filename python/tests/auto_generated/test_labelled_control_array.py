@@ -2,7 +2,8 @@ import pytest
 import array
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
 from falcon_core.generic.f_array import FArray
-from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+from falcon_core.math.arrays.control_array import ControlArray
+from falcon_core.math.arrays.labelled_control_array import LabelledControlArray
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.arrays.labelled_control_array import LabelledControlArray
@@ -11,8 +12,8 @@ class TestLabelledControlArray:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: LabelledControlArray_from_json_string
-            self.obj = LabelledControlArray.from_json("test_string")
+            # Using recipe for LabelledControlArray
+            self.obj = LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -28,7 +29,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +37,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -52,7 +53,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.from_farray(FArray[float].from_list([0.0]), AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
+            self.obj.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -60,7 +61,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.from_control_array(None, AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
+            self.obj.from_control_array(ControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0])), AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -116,7 +117,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.shape(array.array('L', [0]), 0)
+            self.obj.shape(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -124,7 +125,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.data(array.array('d', [0]), 0)
+            self.obj.data(array.array('d', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -132,7 +133,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_equals_farray(FArray[float].from_list([0.0]))
+            self.obj.plus_equals_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -140,7 +141,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_equals_double(0.0)
+            self.obj.plus_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -148,7 +149,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_equals_int(0)
+            self.obj.plus_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -156,7 +157,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_control_array(None)
+            self.obj.plus_control_array(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -164,7 +165,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_farray(FArray[float].from_list([0.0]))
+            self.obj.plus_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -172,7 +173,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_double(0.0)
+            self.obj.plus_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -180,7 +181,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_int(0)
+            self.obj.plus_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -188,7 +189,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_equals_control_array(None)
+            self.obj.minus_equals_control_array(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -196,7 +197,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_equals_farray(FArray[float].from_list([0.0]))
+            self.obj.minus_equals_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -204,7 +205,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_equals_double(0.0)
+            self.obj.minus_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -212,7 +213,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_equals_int(0)
+            self.obj.minus_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -220,7 +221,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_control_array(None)
+            self.obj.minus_control_array(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -228,7 +229,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_farray(FArray[float].from_list([0.0]))
+            self.obj.minus_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -236,7 +237,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_double(0.0)
+            self.obj.minus_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -244,7 +245,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_int(0)
+            self.obj.minus_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -260,7 +261,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_equals_double(0.0)
+            self.obj.times_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -268,7 +269,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_equals_int(0)
+            self.obj.times_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -276,7 +277,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_double(0.0)
+            self.obj.times_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -284,7 +285,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_int(0)
+            self.obj.times_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -292,7 +293,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divides_equals_double(0.0)
+            self.obj.divides_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -300,7 +301,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divides_equals_int(0)
+            self.obj.divides_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -308,7 +309,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divides_double(0.0)
+            self.obj.divides_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -316,7 +317,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divides_int(0)
+            self.obj.divides_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -324,7 +325,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.pow(0.0)
+            self.obj.pow(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -348,7 +349,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.min_farray(FArray[float].from_list([0.0]))
+            self.obj.min_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -356,7 +357,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.min_control_array(None)
+            self.obj.min_control_array(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -372,7 +373,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.max_farray(FArray[float].from_list([0.0]))
+            self.obj.max_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -380,7 +381,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.max_control_array(None)
+            self.obj.max_control_array(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -388,7 +389,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.greater_than(0.0)
+            self.obj.greater_than(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -396,7 +397,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.less_than(0.0)
+            self.obj.less_than(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -404,7 +405,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.remove_offset(0.0)
+            self.obj.remove_offset(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -420,7 +421,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.where(0.0)
+            self.obj.where(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -428,7 +429,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.flip(0)
+            self.obj.flip(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -436,7 +437,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.full_gradient(array.array('L', [0]), 0)
+            self.obj.full_gradient(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -444,7 +445,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.gradient(0)
+            self.obj.gradient(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -460,7 +461,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_summed_diff_int_of_squares(0)
+            self.obj.get_summed_diff_int_of_squares(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -468,7 +469,7 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_summed_diff_double_of_squares(0.0)
+            self.obj.get_summed_diff_double_of_squares(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -476,6 +477,6 @@ class TestLabelledControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_summed_diff_array_of_squares(None)
+            self.obj.get_summed_diff_array_of_squares(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')

@@ -7,8 +7,8 @@ class TestVoltageStatesResponse:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: VoltageStatesResponse_from_json_string
-            self.obj = VoltageStatesResponse.from_json("test_string")
+            # Found from_json constructor
+            self.obj = VoltageStatesResponse.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

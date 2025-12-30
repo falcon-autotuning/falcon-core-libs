@@ -8,8 +8,8 @@ class TestPairConnectionDouble:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairConnectionDouble_create
-            self.obj = Pair[Connection, float](Connection.new_barrier('test_conn'), 0.0)
+            # Using recipe for PairConnectionDouble
+            self.obj = Pair[Connection, float](Connection.new_barrier('test'), 1.0)
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -41,7 +41,7 @@ class TestPairConnectionDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Pair[Connection, float](Connection.new_barrier('test'), 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -49,7 +49,7 @@ class TestPairConnectionDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Pair[Connection, float](Connection.new_barrier('test'), 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

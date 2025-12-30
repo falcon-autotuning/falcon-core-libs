@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.generic.map import Map
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.generic.pair import Pair
 from falcon_core.generic.map import Map
 
 class TestMapConnectionFloat:
@@ -25,7 +26,7 @@ class TestMapConnectionFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), 0.0)
+            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +34,7 @@ class TestMapConnectionFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(Connection.new_barrier('test_conn'), 0.0)
+            self.obj.insert(Connection.new_barrier('test_conn'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

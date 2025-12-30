@@ -81,7 +81,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(LabelledDomain.new_empty())
+            self.obj.push_back(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -105,7 +105,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -121,7 +121,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.const_at(0)
+            self.obj.const_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -129,7 +129,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -145,7 +145,7 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(LabelledDomain.new_empty())
+            self.obj.contains(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -153,6 +153,6 @@ class TestCoupledLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(LabelledDomain.new_empty())
+            self.obj.index(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')

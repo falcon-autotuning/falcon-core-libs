@@ -4,6 +4,7 @@ from falcon_core.generic.map import Map
 from falcon_core.autotuner_interfaces.names.gname import Gname
 from falcon_core.physics.config.core.group import Group
 from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.generic.pair import Pair
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.generic.map import Map

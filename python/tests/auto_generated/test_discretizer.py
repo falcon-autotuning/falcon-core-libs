@@ -6,8 +6,8 @@ class TestDiscretizer:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: Discretizer_from_json_string
-            self.obj = Discretizer.from_json("test_string")
+            # Found from_json constructor
+            self.obj = Discretizer.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -55,7 +55,7 @@ class TestDiscretizer:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.set_delta(0.0)
+            self.obj.set_delta(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

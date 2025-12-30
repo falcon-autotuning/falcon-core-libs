@@ -7,8 +7,8 @@ class TestPairStringString:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairStringString_create
-            self.obj = Pair[str, str]("test_string", "test_string")
+            # Using recipe for PairStringString
+            self.obj = Pair[str, str]('test', 'value')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -40,7 +40,7 @@ class TestPairStringString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Pair[str, str]('test', 'value'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +48,7 @@ class TestPairStringString:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Pair[str, str]('test', 'value'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

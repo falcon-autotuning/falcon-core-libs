@@ -8,8 +8,8 @@ class TestGateGeometryArray1D:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: GateGeometryArray1D_from_json_string
-            self.obj = GateGeometryArray1D.from_json("test_string")
+            # Found from_json constructor
+            self.obj = GateGeometryArray1D.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

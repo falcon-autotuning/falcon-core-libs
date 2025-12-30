@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.math.axes import Axes
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.math.axes import Axes
 
 class TestAxesMeasurementContext:
@@ -25,7 +26,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(MeasurementContext.from_json('{}'))
+            self.obj.push_back(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -49,7 +50,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -65,7 +66,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +74,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(array.array('L', [0]), 0)
+            self.obj.items(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +82,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(MeasurementContext.from_json('{}'))
+            self.obj.contains(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +90,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(MeasurementContext.from_json('{}'))
+            self.obj.index(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.generic.map import Map
+from falcon_core.generic.pair import Pair
 from falcon_core.generic.map import Map
 
 class TestMapStringDouble:
@@ -24,7 +25,7 @@ class TestMapStringDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign("test_string", 0.0)
+            self.obj.insert_or_assign("test_string", 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +33,7 @@ class TestMapStringDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert("test_string", 0.0)
+            self.obj.insert("test_string", 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

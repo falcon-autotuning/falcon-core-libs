@@ -58,7 +58,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_int(0)
+            self.obj.multiply_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -66,7 +66,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_double(0.0)
+            self.obj.multiply_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -82,7 +82,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_equals_int(0)
+            self.obj.multiply_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -90,7 +90,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.multiply_equals_double(0.0)
+            self.obj.multiply_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -106,7 +106,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_int(0)
+            self.obj.divide_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -114,7 +114,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_double(0.0)
+            self.obj.divide_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -130,7 +130,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_equals_int(0)
+            self.obj.divide_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -138,7 +138,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divide_equals_double(0.0)
+            self.obj.divide_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -154,7 +154,7 @@ class TestDeviceVoltageState:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.power(0)
+            self.obj.power(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

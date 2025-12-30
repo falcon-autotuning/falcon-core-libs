@@ -8,7 +8,7 @@ class TestPairDoubleDouble:
         self.obj = None
         try:
             # Using recipe for PairDoubleDouble
-            self.obj = Pair[float, float](0.0, 0.0)
+            self.obj = Pair[float, float](1.0, 1.0)
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -40,7 +40,7 @@ class TestPairDoubleDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(Pair[float, float](0.0, 0.0))
+            self.obj.equal(Pair[float, float](1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +48,7 @@ class TestPairDoubleDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(Pair[float, float](0.0, 0.0))
+            self.obj.not_equal(Pair[float, float](1.0, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

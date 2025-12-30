@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.generic.map import Map
+from falcon_core.generic.pair import Pair
 from falcon_core.generic.map import Map
 
 class TestMapFloatFloat:
@@ -24,7 +25,7 @@ class TestMapFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(0.0, 0.0)
+            self.obj.insert_or_assign(1.0, 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +33,7 @@ class TestMapFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(0.0, 0.0)
+            self.obj.insert(1.0, 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -40,7 +41,7 @@ class TestMapFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0.0)
+            self.obj.at(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +49,7 @@ class TestMapFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(0.0)
+            self.obj.erase(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -80,7 +81,7 @@ class TestMapFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(0.0)
+            self.obj.contains(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

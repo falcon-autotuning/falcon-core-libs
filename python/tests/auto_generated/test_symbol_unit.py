@@ -80,7 +80,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.power(0)
+            self.obj.power(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -96,7 +96,7 @@ class TestSymbolUnit:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.convert_value_to(0.0, SymbolUnit.new_meter())
+            self.obj.convert_value_to(1.0, SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

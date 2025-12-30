@@ -12,7 +12,7 @@ class TestLabelledDomain:
         self.obj = None
         try:
             # Using recipe for LabelledDomain
-            self.obj = LabelledDomain.new_empty()
+            self.obj = LabelledDomain.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -28,7 +28,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(LabelledDomain.new_empty())
+            self.obj.equal(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +36,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(LabelledDomain.new_empty())
+            self.obj.not_equal(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -108,7 +108,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(0.0)
+            self.obj.contains(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -132,7 +132,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(LabelledDomain.new_empty())
+            self.obj.intersection(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -140,7 +140,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.union(LabelledDomain.new_empty())
+            self.obj.union(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -156,7 +156,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains_domain(LabelledDomain.new_empty())
+            self.obj.contains_domain(LabelledDomain.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -164,7 +164,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.shift(0.0)
+            self.obj.shift(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -172,7 +172,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.scale(0.0)
+            self.obj.scale(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -180,6 +180,6 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.transform(LabelledDomain.new_empty(), 0.0)
+            self.obj.transform(LabelledDomain.from_json('{}'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')

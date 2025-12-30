@@ -7,8 +7,8 @@ class TestPairStringDouble:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairStringDouble_create
-            self.obj = Pair[str, float]("test_string", 0.0)
+            # Using recipe for PairStringDouble
+            self.obj = Pair[str, float]('test', 1.0)
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -40,7 +40,7 @@ class TestPairStringDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Pair[str, float]('test', 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +48,7 @@ class TestPairStringDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Pair[str, float]('test', 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

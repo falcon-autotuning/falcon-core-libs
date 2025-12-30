@@ -12,7 +12,7 @@ class TestWaveform:
         self.obj = None
         try:
             # Using recipe for Waveform
-            self.obj = Waveform.new_empty() if hasattr(Waveform, 'new_empty') else Waveform.from_json('{}')
+            self.obj = Waveform.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -28,7 +28,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(Waveform.new_empty() if hasattr(Waveform, 'new_empty') else Waveform.from_json('{}'))
+            self.obj.equal(Waveform.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +36,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(Waveform.new_empty() if hasattr(Waveform, 'new_empty') else Waveform.from_json('{}'))
+            self.obj.not_equal(Waveform.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -92,7 +92,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -108,7 +108,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -140,6 +140,6 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(Waveform.new_empty() if hasattr(Waveform, 'new_empty') else Waveform.from_json('{}'))
+            self.obj.intersection(Waveform.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')

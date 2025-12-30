@@ -1,6 +1,7 @@
 import pytest
 import array
 from falcon_core.generic.map import Map
+from falcon_core.generic.pair import Pair
 from falcon_core.generic.map import Map
 
 class TestMapStringString:

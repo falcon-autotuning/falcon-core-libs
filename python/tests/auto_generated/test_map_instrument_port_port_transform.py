@@ -3,6 +3,7 @@ import array
 from falcon_core.generic.map import Map
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
+from falcon_core.generic.pair import Pair
 from falcon_core.generic.map import Map
 
 class TestMapInstrumentPortPortTransform:

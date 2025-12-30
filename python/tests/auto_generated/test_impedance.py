@@ -2,13 +2,14 @@ import pytest
 import array
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.impedance import Impedance
+from falcon_core.physics.device_structures.impedance import Impedance
 
 class TestImpedance:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: Impedance_from_json_string
-            self.obj = Impedance.from_json("test_string")
+            # Using recipe for Impedance
+            self.obj = Impedance.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -24,7 +25,7 @@ class TestImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Impedance.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +33,7 @@ class TestImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Impedance.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

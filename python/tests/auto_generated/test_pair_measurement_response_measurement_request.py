@@ -9,8 +9,8 @@ class TestPairMeasurementResponseMeasurementRequest:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairMeasurementResponseMeasurementRequest_create
-            self.obj = Pair[MeasurementResponse, MeasurementRequest](MeasurementResponse.from_json('{}'), MeasurementRequest.from_json('{}'))
+            # Found from_json constructor
+            self.obj = Pair[MeasurementResponse, MeasurementRequest].from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

@@ -24,7 +24,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(0)
+            self.obj.push_back(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +48,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -64,7 +64,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -72,7 +72,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(array.array('i', [0]), 0)
+            self.obj.items(array.array('i', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -80,7 +80,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(0)
+            self.obj.contains(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -88,7 +88,7 @@ class TestAxesInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(0)
+            self.obj.index(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

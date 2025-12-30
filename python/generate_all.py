@@ -356,15 +356,14 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"            elif hasattr(self._c_class, 'new'):")
     lines.append(f"                return {base}(self._c_class.new(), self.element_type)")
     lines.append(f"        ")
-    lines.append(f"        # Single argument constructor")
     lines.append(f"        if len(args) == 1 and not kwargs:")
     lines.append(f"            arg = args[0]")
-    lines.append(f"            # List from iterable")
-    lines.append(f"            if (\"{base}\" == \"List\" or \"{base}\" == \"Axes\") and hasattr(self._c_class, 'from_list'):")
-    lines.append(f"                return {base}(self._c_class.from_list(arg), self.element_type)")
-    lines.append(f"            # Map from dict")
-    lines.append(f"            elif \"{base}\" == \"Map\" and hasattr(self._c_class, 'from_map'):")
-    lines.append(f"                return {base}(self._c_class.from_map(arg), self.element_type)")
+    lines.append(f"            # List-like from iterable")
+    lines.append(f"            if hasattr(self, 'from_list') and not isinstance(arg, dict):")
+    lines.append(f"                return self.from_list(arg)")
+    lines.append(f"            # Map-like from dict")
+    lines.append(f"            elif hasattr(self, 'from_dict') and isinstance(arg, dict):")
+    lines.append(f"                return self.from_dict(arg)")
     lines.append(f"            # Copy constructor or similar")
     lines.append(f"            elif hasattr(self._c_class, 'new'):")
     lines.append(f"                return {base}(self._c_class.new(arg), self.element_type)")
@@ -378,21 +377,47 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"        raise TypeError(f'No suitable constructor found for {base}[{{self.element_type}}] with args={{args}}')")
     lines.append("")
     
-    if base == "Map":
+    # Support from_dict for map-like types
+    if base in ["Map", "Pair"]:
         lines.append(f"    def from_dict(self, data):")
         lines.append(f'        """Create a {base} from a Python dictionary."""')
+        lines.append(f"        if \"{base}\" == \"Pair\":")
+        lines.append(f"             if len(data) != 2:")
+        lines.append(f"                 raise ValueError('Pair requires exactly 2 elements')")
+        lines.append(f"             items = list(data.values())")
+        lines.append(f"             return self(*items)")
         lines.append(f"        instance = self()")
         lines.append(f"        for k, v in data.items():")
         lines.append(f"            instance.insert(k, v)")
         lines.append(f"        return instance")
         lines.append("")
-    elif base == "List":
+
+    # Support from_list for list-like types
+    if base in ["List", "FArray", "Axes", "Vector"]:
         lines.append(f"    def from_list(self, data):")
         lines.append(f'        """Create a {base} from a Python list."""')
-        lines.append(f"        instance = self()")
-        lines.append(f"        for item in data:")
-        lines.append(f"            instance.push_back(item)")
-        lines.append(f"        return instance")
+        if base == "FArray":
+            lines.append(f"        import array")
+            lines.append(f"        if hasattr(self._c_class, 'from_data'):")
+            lines.append(f"            type_code = 'i' if self.element_type == int else 'd'")
+            lines.append(f"            data_arr = array.array(type_code, data)")
+            lines.append(f"            shape_arr = array.array('L', [len(data)])")
+            lines.append(f"            return {base}(self._c_class.from_data(data_arr, shape_arr, 1), self.element_type)")
+            lines.append(f"        else:")
+            lines.append(f"            raise AttributeError(f'{base}[{{self.element_type}}] has no from_data method')")
+        else:
+            lines.append(f"        instance = self()")
+            lines.append(f"        for item in data:")
+            if base == "List":
+                lines.append(f"            instance.push_back(item)")
+            else:
+                # Fallback for types that might not have push_back but can be created from list
+                # Actually most of these should have push_back if they are list-like
+                lines.append(f"            if hasattr(instance, 'push_back'):")
+                lines.append(f"                instance.push_back(item)")
+                lines.append(f"            else:")
+                lines.append(f"                raise AttributeError(f'{base} has no push_back method')")
+            lines.append(f"        return instance")
         lines.append("")
 
     lines.append(f"    def __getattr__(self, name):")

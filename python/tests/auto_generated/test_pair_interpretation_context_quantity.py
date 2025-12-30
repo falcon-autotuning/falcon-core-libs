@@ -10,8 +10,8 @@ class TestPairInterpretationContextQuantity:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairInterpretationContextQuantity_create
-            self.obj = Pair[InterpretationContext, Quantity](InterpretationContext.from_json('{}'), Quantity.new(1.0, SymbolUnit.new_meter()))
+            # Found from_json constructor
+            self.obj = Pair[InterpretationContext, Quantity].from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

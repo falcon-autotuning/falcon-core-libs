@@ -10,8 +10,8 @@ class TestPairQuantityQuantity:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairQuantityQuantity_create
-            self.obj = Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(1.0, SymbolUnit.new_meter()))
+            # Using recipe for PairQuantityQuantity
+            self.obj = Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -43,7 +43,7 @@ class TestPairQuantityQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -51,7 +51,7 @@ class TestPairQuantityQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

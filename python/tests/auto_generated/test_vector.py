@@ -1,7 +1,9 @@
 import pytest
 import array
 from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
+from falcon_core.generic.pair import Pair
 from falcon_core.math.point import Point
+from falcon_core.math.quantity import Quantity
 from falcon_core.math.vector import Vector
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
@@ -132,7 +134,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), None)
+            self.obj.insert_or_assign(Connection.new_barrier('test_conn'), Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -140,7 +142,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(Connection.new_barrier('test_conn'), None)
+            self.obj.insert(Connection.new_barrier('test_conn'), Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -236,7 +238,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.double_multiplication(0.0)
+            self.obj.double_multiplication(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -244,7 +246,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.int_multiplication(0)
+            self.obj.int_multiplication(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -252,7 +254,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.double_division(0.0)
+            self.obj.double_division(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -260,7 +262,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.int_division(0)
+            self.obj.int_division(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -316,7 +318,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.double_extend(0.0)
+            self.obj.double_extend(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -324,7 +326,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.int_extend(0)
+            self.obj.int_extend(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -332,7 +334,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.double_shrink(0.0)
+            self.obj.double_shrink(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -340,7 +342,7 @@ class TestVector:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.int_shrink(0)
+            self.obj.int_shrink(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

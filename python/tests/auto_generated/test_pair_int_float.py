@@ -7,8 +7,8 @@ class TestPairIntFloat:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairIntFloat_create
-            self.obj = Pair[int, float](0, 0.0)
+            # Using recipe for PairIntFloat
+            self.obj = Pair[int, float](1, 1.0)
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -40,7 +40,7 @@ class TestPairIntFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Pair[int, float](1, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -48,7 +48,7 @@ class TestPairIntFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Pair[int, float](1, 1.0))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

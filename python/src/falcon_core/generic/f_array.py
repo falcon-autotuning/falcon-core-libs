@@ -23,15 +23,14 @@ class _FArrayFactory:
             elif hasattr(self._c_class, 'new'):
                 return FArray(self._c_class.new(), self.element_type)
         
-        # Single argument constructor
         if len(args) == 1 and not kwargs:
             arg = args[0]
-            # List from iterable
-            if ("FArray" == "List" or "FArray" == "Axes") and hasattr(self._c_class, 'from_list'):
-                return FArray(self._c_class.from_list(arg), self.element_type)
-            # Map from dict
-            elif "FArray" == "Map" and hasattr(self._c_class, 'from_map'):
-                return FArray(self._c_class.from_map(arg), self.element_type)
+            # List-like from iterable
+            if hasattr(self, 'from_list') and not isinstance(arg, dict):
+                return self.from_list(arg)
+            # Map-like from dict
+            elif hasattr(self, 'from_dict') and isinstance(arg, dict):
+                return self.from_dict(arg)
             # Copy constructor or similar
             elif hasattr(self._c_class, 'new'):
                 return FArray(self._c_class.new(arg), self.element_type)
@@ -43,6 +42,17 @@ class _FArrayFactory:
 
         # Fallback to raising error if no suitable constructor found
         raise TypeError(f'No suitable constructor found for FArray[{self.element_type}] with args={args}')
+
+    def from_list(self, data):
+        """Create a FArray from a Python list."""
+        import array
+        if hasattr(self._c_class, 'from_data'):
+            type_code = 'i' if self.element_type == int else 'd'
+            data_arr = array.array(type_code, data)
+            shape_arr = array.array('L', [len(data)])
+            return FArray(self._c_class.from_data(data_arr, shape_arr, 1), self.element_type)
+        else:
+            raise AttributeError(f'FArray[{self.element_type}] has no from_data method')
 
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""

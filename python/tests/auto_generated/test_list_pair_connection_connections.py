@@ -27,7 +27,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, None)
+            self.obj.fill_value(1, Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -35,7 +35,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -59,7 +59,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -75,7 +75,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -83,7 +83,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(array.array('L', [0]), 0)
+            self.obj.items(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -91,7 +91,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -99,7 +99,7 @@ class TestListPairConnectionConnections:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

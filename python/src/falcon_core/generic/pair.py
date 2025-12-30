@@ -24,15 +24,14 @@ class _PairFactory:
             elif hasattr(self._c_class, 'new'):
                 return Pair(self._c_class.new(), self.element_type)
         
-        # Single argument constructor
         if len(args) == 1 and not kwargs:
             arg = args[0]
-            # List from iterable
-            if ("Pair" == "List" or "Pair" == "Axes") and hasattr(self._c_class, 'from_list'):
-                return Pair(self._c_class.from_list(arg), self.element_type)
-            # Map from dict
-            elif "Pair" == "Map" and hasattr(self._c_class, 'from_map'):
-                return Pair(self._c_class.from_map(arg), self.element_type)
+            # List-like from iterable
+            if hasattr(self, 'from_list') and not isinstance(arg, dict):
+                return self.from_list(arg)
+            # Map-like from dict
+            elif hasattr(self, 'from_dict') and isinstance(arg, dict):
+                return self.from_dict(arg)
             # Copy constructor or similar
             elif hasattr(self._c_class, 'new'):
                 return Pair(self._c_class.new(arg), self.element_type)
@@ -44,6 +43,18 @@ class _PairFactory:
 
         # Fallback to raising error if no suitable constructor found
         raise TypeError(f'No suitable constructor found for Pair[{self.element_type}] with args={args}')
+
+    def from_dict(self, data):
+        """Create a Pair from a Python dictionary."""
+        if "Pair" == "Pair":
+             if len(data) != 2:
+                 raise ValueError('Pair requires exactly 2 elements')
+             items = list(data.values())
+             return self(*items)
+        instance = self()
+        for k, v in data.items():
+            instance.insert(k, v)
+        return instance
 
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""

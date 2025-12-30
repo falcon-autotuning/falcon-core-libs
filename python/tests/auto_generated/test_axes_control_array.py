@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.math.axes import Axes
 from falcon_core.math.arrays.control_array import ControlArray
+from falcon_core.generic.f_array import FArray
 from falcon_core.math.axes import Axes
 
 class TestAxesControlArray:
@@ -25,7 +26,7 @@ class TestAxesControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(ControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -49,7 +50,7 @@ class TestAxesControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -65,7 +66,7 @@ class TestAxesControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -73,7 +74,7 @@ class TestAxesControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(array.array('L', [0]), 0)
+            self.obj.items(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +82,7 @@ class TestAxesControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(ControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +90,7 @@ class TestAxesControlArray:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(ControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

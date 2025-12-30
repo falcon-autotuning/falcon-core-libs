@@ -7,8 +7,8 @@ class TestRightReservoirWithImplantedOhmic:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: RightReservoirWithImplantedOhmic_from_json_string
-            self.obj = RightReservoirWithImplantedOhmic.from_json("test_string")
+            # Found from_json constructor
+            self.obj = RightReservoirWithImplantedOhmic.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

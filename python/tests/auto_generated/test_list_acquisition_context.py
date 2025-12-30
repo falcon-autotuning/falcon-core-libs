@@ -2,7 +2,6 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
-from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.list import List
@@ -28,7 +27,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(0, AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
+            self.obj.fill_value(1, AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +35,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
+            self.obj.push_back(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -60,7 +59,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase_at(0)
+            self.obj.erase_at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -76,7 +75,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(0)
+            self.obj.at(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -84,7 +83,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.items(array.array('L', [0]), 0)
+            self.obj.items(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -92,7 +91,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
+            self.obj.contains(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -100,7 +99,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer()))
+            self.obj.index(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -80,7 +80,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(0.0)
+            self.obj.contains(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -136,7 +136,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.shift(0.0)
+            self.obj.shift(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -144,7 +144,7 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.scale(0.0)
+            self.obj.scale(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -152,6 +152,6 @@ class TestDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.transform(Domain.new(0.0, 1.0, True, True), 0.0)
+            self.obj.transform(Domain.new(0.0, 1.0, True, True), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')

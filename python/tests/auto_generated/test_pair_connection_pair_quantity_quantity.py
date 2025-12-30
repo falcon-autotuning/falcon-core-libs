@@ -5,14 +5,15 @@ from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.generic.pair import Pair
 from falcon_core.math.quantity import Quantity
 from falcon_core.math.quantity import Quantity
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.pair import Pair
 
 class TestPairConnectionPairQuantityQuantity:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairConnectionPairQuantityQuantity_create
-            self.obj = Pair[Connection, Pair[Quantity, Quantity]](Connection.new_barrier('test_conn'), None)
+            # Found from_json constructor
+            self.obj = Pair[Connection, Pair[Quantity, Quantity]].from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

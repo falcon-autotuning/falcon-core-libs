@@ -12,8 +12,8 @@ class TestPairGnameGroup:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairGnameGroup_create
-            self.obj = Pair[Gname, Group](Gname.new('test_gname'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
+            # Using recipe for PairGnameGroup
+            self.obj = Pair[Gname, Group](Gname.new('test'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1')]), Connections.from_list([Connection.new_reservoir('R1')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1')]), Connections.from_list([Connection.new_ohmic('O1')])))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -45,7 +45,7 @@ class TestPairGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Pair[Gname, Group](Gname.new('test'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1')]), Connections.from_list([Connection.new_reservoir('R1')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1')]), Connections.from_list([Connection.new_ohmic('O1')]))))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -53,7 +53,7 @@ class TestPairGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Pair[Gname, Group](Gname.new('test'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1')]), Connections.from_list([Connection.new_reservoir('R1')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1')]), Connections.from_list([Connection.new_ohmic('O1')]))))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

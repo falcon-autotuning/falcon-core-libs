@@ -25,7 +25,7 @@ class TestMapInterpretationContextDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(InterpretationContext.from_json('{}'), 0.0)
+            self.obj.insert_or_assign(InterpretationContext.from_json('{}'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +33,7 @@ class TestMapInterpretationContextDouble:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(InterpretationContext.from_json('{}'), 0.0)
+            self.obj.insert(InterpretationContext.from_json('{}'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

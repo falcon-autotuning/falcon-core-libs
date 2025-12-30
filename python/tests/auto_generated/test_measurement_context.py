@@ -10,7 +10,7 @@ class TestMeasurementContext:
         self.obj = None
         try:
             # Using recipe for MeasurementContext
-            self.obj = MeasurementContext.from_json('{}')
+            self.obj = MeasurementContext.new(Connection.new_barrier('test'), 'test_instr')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -26,7 +26,7 @@ class TestMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(MeasurementContext.from_json('{}'))
+            self.obj.equal(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -34,7 +34,7 @@ class TestMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(MeasurementContext.from_json('{}'))
+            self.obj.not_equal(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

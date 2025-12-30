@@ -23,15 +23,14 @@ class _ListFactory:
             elif hasattr(self._c_class, 'new'):
                 return List(self._c_class.new(), self.element_type)
         
-        # Single argument constructor
         if len(args) == 1 and not kwargs:
             arg = args[0]
-            # List from iterable
-            if ("List" == "List" or "List" == "Axes") and hasattr(self._c_class, 'from_list'):
-                return List(self._c_class.from_list(arg), self.element_type)
-            # Map from dict
-            elif "List" == "Map" and hasattr(self._c_class, 'from_map'):
-                return List(self._c_class.from_map(arg), self.element_type)
+            # List-like from iterable
+            if hasattr(self, 'from_list') and not isinstance(arg, dict):
+                return self.from_list(arg)
+            # Map-like from dict
+            elif hasattr(self, 'from_dict') and isinstance(arg, dict):
+                return self.from_dict(arg)
             # Copy constructor or similar
             elif hasattr(self._c_class, 'new'):
                 return List(self._c_class.new(arg), self.element_type)

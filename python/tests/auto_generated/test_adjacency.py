@@ -91,7 +91,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.shape(array.array('L', [0]), 0)
+            self.obj.shape(array.array('L', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -99,7 +99,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.data(array.array('i', [0]), 0)
+            self.obj.data(array.array('i', [0]), 1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -107,7 +107,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_equals_farray(FArray[int].from_list([0]))
+            self.obj.times_equals_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -115,7 +115,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_farray(FArray[int].from_list([0]))
+            self.obj.times_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -131,7 +131,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.where(0)
+            self.obj.where(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -139,6 +139,6 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.flip(0)
+            self.obj.flip(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')

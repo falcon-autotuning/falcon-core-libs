@@ -24,15 +24,14 @@ class _MapFactory:
             elif hasattr(self._c_class, 'new'):
                 return Map(self._c_class.new(), self.element_type)
         
-        # Single argument constructor
         if len(args) == 1 and not kwargs:
             arg = args[0]
-            # List from iterable
-            if ("Map" == "List" or "Map" == "Axes") and hasattr(self._c_class, 'from_list'):
-                return Map(self._c_class.from_list(arg), self.element_type)
-            # Map from dict
-            elif "Map" == "Map" and hasattr(self._c_class, 'from_map'):
-                return Map(self._c_class.from_map(arg), self.element_type)
+            # List-like from iterable
+            if hasattr(self, 'from_list') and not isinstance(arg, dict):
+                return self.from_list(arg)
+            # Map-like from dict
+            elif hasattr(self, 'from_dict') and isinstance(arg, dict):
+                return self.from_dict(arg)
             # Copy constructor or similar
             elif hasattr(self._c_class, 'new'):
                 return Map(self._c_class.new(arg), self.element_type)
@@ -47,6 +46,11 @@ class _MapFactory:
 
     def from_dict(self, data):
         """Create a Map from a Python dictionary."""
+        if "Map" == "Pair":
+             if len(data) != 2:
+                 raise ValueError('Pair requires exactly 2 elements')
+             items = list(data.values())
+             return self(*items)
         instance = self()
         for k, v in data.items():
             instance.insert(k, v)

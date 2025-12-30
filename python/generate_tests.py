@@ -26,14 +26,38 @@ RECIPES = {
     "Channel": ("Channel.new('test_channel')", ["from falcon_core.autotuner_interfaces.names.channel import Channel"]),
     "Gname": ("Gname.new('test_gname')", ["from falcon_core.autotuner_interfaces.names.gname import Gname"]),
     "MapGnameGroup": ("Map[Gname, Group]()", ["from falcon_core.generic.map import Map", "from falcon_core.autotuner_interfaces.names.gname import Gname", "from falcon_core.physics.config.core.group import Group"]),
-    "PairDoubleDouble": ("Pair[float, float](0.0, 0.0)", ["from falcon_core.generic.pair import Pair"]),
-    "FArrayInt": ("FArray[int].from_list([0])", ["from falcon_core.generic.f_array import FArray"]),
-    "FArrayDouble": ("FArray[float].from_list([0.0])", ["from falcon_core.generic.f_array import FArray"]),
+    "PairDoubleDouble": ("Pair[float, float](1.0, 1.0)", ["from falcon_core.generic.pair import Pair"]),
+    "PairIntInt": ("Pair[int, int](1, 1)", ["from falcon_core.generic.pair import Pair"]),
+    "PairFloatFloat": ("Pair[float, float](1.0, 1.0)", ["from falcon_core.generic.pair import Pair"]),
+    "PairIntFloat": ("Pair[int, float](1, 1.0)", ["from falcon_core.generic.pair import Pair"]),
+    "PairSizeTSizeT": ("Pair[int, int](1, 1)", ["from falcon_core.generic.pair import Pair"]),
+    "PairStringDouble": ("Pair[str, float]('test', 1.0)", ["from falcon_core.generic.pair import Pair"]),
+    "PairStringBool": ("Pair[str, bool]('test', True)", ["from falcon_core.generic.pair import Pair"]),
+    "PairStringString": ("Pair[str, str]('test', 'value')", ["from falcon_core.generic.pair import Pair"]),
+    "PairConnectionFloat": ("Pair[Connection, float](Connection.new_barrier('test'), 1.0)", ["from falcon_core.generic.pair import Pair", "from falcon_core.physics.device_structures.connection import Connection"]),
+    "PairConnectionDouble": ("Pair[Connection, float](Connection.new_barrier('test'), 1.0)", ["from falcon_core.generic.pair import Pair", "from falcon_core.physics.device_structures.connection import Connection"]),
+    "PairConnectionConnection": ("Pair[Connection, Connection](Connection.new_barrier('test1'), Connection.new_barrier('test2'))", ["from falcon_core.generic.pair import Pair", "from falcon_core.physics.device_structures.connection import Connection"]),
+    "PairConnectionConnections": ("Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty())", ["from falcon_core.generic.pair import Pair", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.device_structures.connections import Connections"]),
+    "PairConnectionQuantity": ("Pair[Connection, Quantity](Connection.new_barrier('test'), Quantity.new(1.0, SymbolUnit.new_meter()))", ["from falcon_core.generic.pair import Pair", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.math.quantity import Quantity", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "PairQuantityQuantity": ("Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter()))", ["from falcon_core.generic.pair import Pair", "from falcon_core.math.quantity import Quantity", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "PairChannelConnections": ("Pair[Channel, Connections](Channel.new('test'), Connections.new_empty())", ["from falcon_core.generic.pair import Pair", "from falcon_core.autotuner_interfaces.names.channel import Channel", "from falcon_core.physics.device_structures.connections import Connections"]),
+    "PairGnameGroup": ("Pair[Gname, Group](Gname.new('test'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1')]), Connections.from_list([Connection.new_reservoir('R1')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1')]), Connections.from_list([Connection.new_ohmic('O1')])))", ["from falcon_core.generic.pair import Pair", "from falcon_core.autotuner_interfaces.names.gname import Gname", "from falcon_core.physics.config.core.group import Group", "from falcon_core.autotuner_interfaces.names.channel import Channel", "from falcon_core.physics.device_structures.connections import Connections", "from falcon_core.physics.device_structures.connection import Connection"]),
+    "PairInstrumentPortPortTransform": ("Pair[InstrumentPort, PortTransform](InstrumentPort.new_timer(), PortTransform.new_identity_transform(InstrumentPort.new_timer()))", ["from falcon_core.generic.pair import Pair", "from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort", "from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform"]),
+    "FArrayInt": ("FArray[int].from_list([1, 2, 3])", ["from falcon_core.generic.f_array import FArray"]),
+    "FArrayDouble": ("FArray[float].from_list([1.0, 2.0, 3.0])", ["from falcon_core.generic.f_array import FArray"]),
     "DiscreteSpace": ("DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}')", ["from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace"]),
     "UnitSpace": ("UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}')", ["from falcon_core.math.unit_space import UnitSpace"]),
     "Domain": ("Domain.new(0.0, 1.0, True, True)", ["from falcon_core.math.domains.domain import Domain"]),
-    "LabelledDomain": ("LabelledDomain.new_empty()", ["from falcon_core.math.domains.labelled_domain import LabelledDomain"]),
-    "Time": ("Time.new(0, 0)", ["from falcon_core.communications.time import Time"]),
+    "LabelledDomain": ("LabelledDomain.from_json('{}')", ["from falcon_core.math.domains.labelled_domain import LabelledDomain"]),
+    "MeasuredArray1D": ("MeasuredArray1D.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]))", ["from falcon_core.math.arrays.measured_array1_d import MeasuredArray1D", "from falcon_core.generic.f_array import FArray"]),
+    "LabelledMeasuredArray1D": ("LabelledMeasuredArray1D.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))", ["from falcon_core.math.arrays.labelled_measured_array1_d import LabelledMeasuredArray1D", "from falcon_core.generic.f_array import FArray", "from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "LabelledMeasuredArray": ("LabelledMeasuredArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))", ["from falcon_core.math.arrays.labelled_measured_array import LabelledMeasuredArray", "from falcon_core.generic.f_array import FArray", "from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "MeasuredArray": ("MeasuredArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]))", ["from falcon_core.math.arrays.measured_array import MeasuredArray", "from falcon_core.generic.f_array import FArray"]),
+    "ControlArray1D": ("ControlArray1D.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]))", ["from falcon_core.math.arrays.control_array1_d import ControlArray1D", "from falcon_core.generic.f_array import FArray"]),
+    "LabelledControlArray1D": ("LabelledControlArray1D.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))", ["from falcon_core.math.arrays.labelled_control_array1_d import LabelledControlArray1D", "from falcon_core.generic.f_array import FArray", "from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "LabelledControlArray": ("LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))", ["from falcon_core.math.arrays.labelled_control_array import LabelledControlArray", "from falcon_core.generic.f_array import FArray", "from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "ControlArray": ("ControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]))", ["from falcon_core.math.arrays.control_array import ControlArray", "from falcon_core.generic.f_array import FArray"]),
+    "Time": ("Time.new(1, 1)", ["from falcon_core.communications.time import Time"]),
     "HDF5Data": ("HDF5Data.from_json('{}')", ["from falcon_core.communications.hdf5_data import HDF5Data"]),
     "MeasurementRequest": ("MeasurementRequest.from_json('{}')", ["from falcon_core.communications.messages.measurement_request import MeasurementRequest"]),
     "MeasurementResponse": ("MeasurementResponse.from_json('{}')", ["from falcon_core.communications.messages.measurement_response import MeasurementResponse"]),
@@ -44,9 +68,11 @@ RECIPES = {
     "PortTransform": ("PortTransform.new_identity_transform(InstrumentPort.new_timer())", ["from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform", "from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
     "PortTransforms": ("PortTransforms.new_empty()", ["from falcon_core.instrument_interfaces.port_transforms.port_transforms import PortTransforms"]),
     "Ports": ("Ports.new_empty()", ["from falcon_core.instrument_interfaces.names.ports import Ports"]),
-    "AcquisitionContext": ("AcquisitionContext.new(Connection.new_barrier('test'), SymbolUnit.new_meter(), InstrumentPort.new_timer())", ["from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit", "from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
-    "MeasurementContext": ("MeasurementContext.from_json('{}')", ["from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext"]),
+    "AcquisitionContext": ("AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter())", ["from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "MeasurementContext": ("MeasurementContext.new(Connection.new_barrier('test'), 'test_instr')", ["from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext", "from falcon_core.physics.device_structures.connection import Connection"]),
     "InterpretationContext": ("InterpretationContext.from_json('{}')", ["from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext"]),
+    "Waveform": ("Waveform.from_json('{}')", ["from falcon_core.instrument_interfaces.waveform import Waveform"]),
+    "Impedance": ("Impedance.from_json('{}')", ["from falcon_core.physics.device_structures.impedance import Impedance"]),
 }
 
 
@@ -64,9 +90,9 @@ def get_dummy_value(type_name: str) -> str:
             return RECIPES[wrapper_type][0]
         
     if type_name in ["int", "size_t", "int8_t", "int16_t", "int32_t", "int64_t", "uint8_t", "uint16_t", "uint32_t", "uint64_t"]:
-        return "0"
+        return "1"  # Use 1 instead of 0 to avoid division-by-zero crashes
     elif type_name in ["double", "float"]:
-        return "0.0"
+        return "1.0"  # Use 1.0 instead of 0.0 to avoid division-by-zero crashes
     elif type_name in ["bool", "bint"]:
         return "False"
     elif type_name == "StringHandle" or type_name == "str":
@@ -260,9 +286,24 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
                 else:
                      lines.append(f"            self.obj = {cls.name}.{py_name}()")
                 constructor_found = True
-                break
             
-    # Priority 2: new() or create() with args
+    # Priority 3: from_json fallback
+    if not constructor_found:
+        has_from_json = False
+        for ctor in cls.constructors:
+            if "from_json" in ctor.name:
+                has_from_json = True
+                break
+        
+        if has_from_json:
+            lines.append(f"            # Found from_json constructor")
+            if is_template_type(cls.name):
+                lines.append(f"            self.obj = {instantiation_class}.from_json('{{}}')")
+            else:
+                lines.append(f"            self.obj = {cls.name}.from_json('{{}}')")
+            constructor_found = True
+
+    # Priority 4: new() or create() with args
     if not constructor_found:
         for ctor in cls.constructors:
             # Check for standard constructor names

@@ -8,8 +8,8 @@ class TestPairInterpretationContextString:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: PairInterpretationContextString_create
-            self.obj = Pair[InterpretationContext, str](InterpretationContext.from_json('{}'), "test_string")
+            # Found from_json constructor
+            self.obj = Pair[InterpretationContext, str].from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 

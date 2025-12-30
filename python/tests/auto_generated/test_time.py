@@ -8,7 +8,7 @@ class TestTime:
         self.obj = None
         try:
             # Using recipe for Time
-            self.obj = Time.new(0, 0)
+            self.obj = Time.new(1, 1)
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -24,7 +24,7 @@ class TestTime:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(Time.new(0, 0))
+            self.obj.equal(Time.new(1, 1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +32,7 @@ class TestTime:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(Time.new(0, 0))
+            self.obj.not_equal(Time.new(1, 1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
