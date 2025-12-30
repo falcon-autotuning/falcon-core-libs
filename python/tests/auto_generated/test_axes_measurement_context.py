@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.math.axes import Axes
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+from falcon_core.generic.list import List
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.math.axes import Axes
 
@@ -9,7 +10,7 @@ class TestAxesMeasurementContext:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: AxesMeasurementContext_create_empty
+            # Using recipe for AxesMeasurementContext
             self.obj = Axes[MeasurementContext]()
         except Exception as e:
             print(f'Setup failed: {e}')
@@ -98,7 +99,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(Axes[MeasurementContext]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -106,7 +107,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(Axes[MeasurementContext]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -114,7 +115,7 @@ class TestAxesMeasurementContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(Axes[MeasurementContext]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

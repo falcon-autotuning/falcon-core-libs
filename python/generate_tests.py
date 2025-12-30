@@ -57,23 +57,56 @@ RECIPES = {
     "LabelledControlArray1D": ("LabelledControlArray1D.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))", ["from falcon_core.math.arrays.labelled_control_array1_d import LabelledControlArray1D", "from falcon_core.generic.f_array import FArray", "from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
     "LabelledControlArray": ("LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter()))", ["from falcon_core.math.arrays.labelled_control_array import LabelledControlArray", "from falcon_core.generic.f_array import FArray", "from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
     "ControlArray": ("ControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]))", ["from falcon_core.math.arrays.control_array import ControlArray", "from falcon_core.generic.f_array import FArray"]),
-    "Time": ("Time.new(1, 1)", ["from falcon_core.communications.time import Time"]),
+    "Time": ("Time.new_now()", ["from falcon_core.communications.time import Time"]),
     "HDF5Data": ("HDF5Data.from_json('{}')", ["from falcon_core.communications.hdf5_data import HDF5Data"]),
     "MeasurementRequest": ("MeasurementRequest.from_json('{}')", ["from falcon_core.communications.messages.measurement_request import MeasurementRequest"]),
     "MeasurementResponse": ("MeasurementResponse.from_json('{}')", ["from falcon_core.communications.messages.measurement_response import MeasurementResponse"]),
     "StandardRequest": ("StandardRequest.from_json('{}')", ["from falcon_core.communications.messages.standard_request import StandardRequest"]),
     "StandardResponse": ("StandardResponse.from_json('{}')", ["from falcon_core.communications.messages.standard_response import StandardResponse"]),
-    "DeviceVoltageState": ("DeviceVoltageState.from_json('{}')", ["from falcon_core.communications.voltage_states.device_voltage_state import DeviceVoltageState"]),
+    "DeviceVoltageState": ("DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())", ["from falcon_core.communications.voltage_states.device_voltage_state import DeviceVoltageState", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
     "DeviceVoltageStates": ("DeviceVoltageStates.new_empty()", ["from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates"]),
     "PortTransform": ("PortTransform.new_identity_transform(InstrumentPort.new_timer())", ["from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform", "from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort"]),
     "PortTransforms": ("PortTransforms.new_empty()", ["from falcon_core.instrument_interfaces.port_transforms.port_transforms import PortTransforms"]),
     "Ports": ("Ports.new_empty()", ["from falcon_core.instrument_interfaces.names.ports import Ports"]),
     "AcquisitionContext": ("AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter())", ["from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
     "MeasurementContext": ("MeasurementContext.new(Connection.new_barrier('test'), 'test_instr')", ["from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext", "from falcon_core.physics.device_structures.connection import Connection"]),
-    "InterpretationContext": ("InterpretationContext.from_json('{}')", ["from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext"]),
-    "Waveform": ("Waveform.from_json('{}')", ["from falcon_core.instrument_interfaces.waveform import Waveform"]),
-    "Impedance": ("Impedance.from_json('{}')", ["from falcon_core.physics.device_structures.impedance import Impedance"]),
+    "InterpretationContext": ("InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter())", ["from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext", "from falcon_core.math.axes import Axes", "from falcon_core.generic.list import List", "from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "AxesMeasurementContext": ("Axes[MeasurementContext]()", ["from falcon_core.math.axes import Axes", "from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext"]),
+    "ListMeasurementContext": ("List[MeasurementContext]()", ["from falcon_core.generic.list import List", "from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext"]),
+    "Waveform": ("_make_test_waveform()", ["from falcon_core.instrument_interfaces.waveform import Waveform", "from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain", "from falcon_core.math.domains.labelled_domain import LabelledDomain", "from falcon_core.math.domains.domain import Domain", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit", "from falcon_core.generic.map import Map"]),
+    "Impedance": ("Impedance.new_empty() if hasattr(Impedance, 'new_empty') else Impedance()", ["from falcon_core.physics.device_structures.impedance import Impedance"]),
+    "AnalyticFunction": ("AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction()", ["from falcon_core.math.analytic_function import AnalyticFunction"]),
+    "ListSizeT": ("List[int]()", ["from falcon_core.generic.list import List"]),
+    "ListListSizeT": ("List[List[int]]()", ["from falcon_core.generic.list import List"]),
+    "LabelledDomain": ("LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')", ["from falcon_core.math.domains.labelled_domain import LabelledDomain", "from falcon_core.math.domains.domain import Domain", "from falcon_core.physics.device_structures.connection import Connection", "from falcon_core.physics.units.symbol_unit import SymbolUnit"]),
+    "UnitSpace": ("UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True))", ["from falcon_core.math.unit_space import UnitSpace", "from falcon_core.math.domains.domain import Domain"]),
+    "CoupledLabelledDomain": ("CoupledLabelledDomain.new_empty()", ["from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain"]),
+    "DiscreteSpace": ("DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True))", ["from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace", "from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain", "from falcon_core.generic.map import Map", "from falcon_core.math.domains.domain import Domain"]),
+    "MapStringBool": ("Map[str, bool]()", ["from falcon_core.generic.map import Map"]),
+    "ListPortTransform": ("List[PortTransform]()", ["from falcon_core.generic.list import List", "from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform"]),
 }
+
+# Helper function for creating Waveform in tests
+def _make_test_waveform_code():
+    """Returns code to create a test waveform."""
+    return '''
+def _make_test_waveform():
+    from falcon_core.instrument_interfaces.waveform import Waveform
+    from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+    from falcon_core.math.domains.labelled_domain import LabelledDomain
+    from falcon_core.math.domains.domain import Domain
+    from falcon_core.physics.device_structures.connection import Connection
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.generic.map import Map
+    
+    domain = Domain.new(0.0, 1.0, True, True)
+    ld = LabelledDomain.new_from_domain(domain, 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')
+    cld = CoupledLabelledDomain.new_empty()
+    cld._c.push_back(ld._c)
+    msb = Map[str, bool]()
+    msb._c.insert('test_name', True)
+    return Waveform.new_cartesian_identity_waveform_1D(10, cld, msb, domain)
+'''
 
 
 
@@ -242,6 +275,11 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
     # Import the class under test
     lines.append(f"from {module_path} import {class_name_to_import}")
     lines.append("")
+    
+    # Inject helper functions for specific classes that need them
+    if cls.name == "Waveform":
+        lines.append(_make_test_waveform_code())
+        lines.append("")
     
     lines.append(f"class Test{cls.name}:")
     

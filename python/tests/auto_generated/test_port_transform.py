@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
+from falcon_core.math.analytic_function import AnalyticFunction
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
 
 class TestPortTransform:

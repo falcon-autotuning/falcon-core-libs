@@ -25,7 +25,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Map[str, bool]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -81,7 +81,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Map[str, bool]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +89,7 @@ class TestAxesMapStringBool:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Map[str, bool]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

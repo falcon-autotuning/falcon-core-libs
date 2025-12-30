@@ -9,7 +9,7 @@ class TestImpedance:
         self.obj = None
         try:
             # Using recipe for Impedance
-            self.obj = Impedance.from_json('{}')
+            self.obj = Impedance.new_empty() if hasattr(Impedance, 'new_empty') else Impedance()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -25,7 +25,7 @@ class TestImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(Impedance.from_json('{}'))
+            self.obj.equal(Impedance.new_empty() if hasattr(Impedance, 'new_empty') else Impedance())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +33,7 @@ class TestImpedance:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(Impedance.from_json('{}'))
+            self.obj.not_equal(Impedance.new_empty() if hasattr(Impedance, 'new_empty') else Impedance())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -1,18 +1,43 @@
 import pytest
 import array
+from falcon_core.generic.list import List
+from falcon_core.generic.map import Map
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
 from falcon_core.instrument_interfaces.waveform import Waveform
 from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.math.domains.domain import Domain
+from falcon_core.math.domains.labelled_domain import LabelledDomain
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.instrument_interfaces.waveform import Waveform
+
+
+def _make_test_waveform():
+    from falcon_core.instrument_interfaces.waveform import Waveform
+    from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+    from falcon_core.math.domains.labelled_domain import LabelledDomain
+    from falcon_core.math.domains.domain import Domain
+    from falcon_core.physics.device_structures.connection import Connection
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.generic.map import Map
+    
+    domain = Domain.new(0.0, 1.0, True, True)
+    ld = LabelledDomain.new_from_domain(domain, 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')
+    cld = CoupledLabelledDomain.new_empty()
+    cld._c.push_back(ld._c)
+    msb = Map[str, bool]()
+    msb._c.insert('test_name', True)
+    return Waveform.new_cartesian_identity_waveform_1D(10, cld, msb, domain)
+
 
 class TestWaveform:
     def setup_method(self):
         self.obj = None
         try:
             # Using recipe for Waveform
-            self.obj = Waveform.from_json('{}')
+            self.obj = _make_test_waveform()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -28,7 +53,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(Waveform.from_json('{}'))
+            self.obj.equal(_make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +61,7 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(Waveform.from_json('{}'))
+            self.obj.not_equal(_make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -140,6 +165,6 @@ class TestWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(Waveform.from_json('{}'))
+            self.obj.intersection(_make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')

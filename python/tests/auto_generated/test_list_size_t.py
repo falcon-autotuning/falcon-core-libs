@@ -7,7 +7,7 @@ class TestListSizeT:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: ListSizeT_create_empty
+            # Using recipe for ListSizeT
             self.obj = List[int]()
         except Exception as e:
             print(f'Setup failed: {e}')
@@ -112,7 +112,7 @@ class TestListSizeT:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(List[int]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -120,7 +120,7 @@ class TestListSizeT:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(List[int]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -128,7 +128,7 @@ class TestListSizeT:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(List[int]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

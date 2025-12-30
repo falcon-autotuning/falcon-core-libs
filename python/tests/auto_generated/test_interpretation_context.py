@@ -2,6 +2,8 @@ import pytest
 import array
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
+from falcon_core.generic.list import List
+from falcon_core.math.axes import Axes
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
@@ -11,7 +13,7 @@ class TestInterpretationContext:
         self.obj = None
         try:
             # Using recipe for InterpretationContext
-            self.obj = InterpretationContext.from_json('{}')
+            self.obj = InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -27,7 +29,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(InterpretationContext.from_json('{}'))
+            self.obj.equal(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -35,7 +37,7 @@ class TestInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(InterpretationContext.from_json('{}'))
+            self.obj.not_equal(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

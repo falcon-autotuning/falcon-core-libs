@@ -1,13 +1,14 @@
 import pytest
 import array
 from falcon_core.math.analytic_function import AnalyticFunction
+from falcon_core.math.analytic_function import AnalyticFunction
 
 class TestAnalyticFunction:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = AnalyticFunction.from_json('{}')
+            # Using recipe for AnalyticFunction
+            self.obj = AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -23,7 +24,7 @@ class TestAnalyticFunction:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -31,7 +32,7 @@ class TestAnalyticFunction:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

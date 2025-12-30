@@ -13,6 +13,12 @@ class _LabelledArraysFactory:
 
     def __call__(self, *args, **kwargs):
         """Construct a new LabelledArrays instance."""
+        # Helper to unwrap wrapper objects to their underlying C objects
+        def unwrap(obj):
+            if hasattr(obj, '_c'):
+                return obj._c
+            return obj
+
         # Try to find a suitable constructor based on arguments
         if not args and not kwargs:
             # Empty constructor
@@ -31,14 +37,15 @@ class _LabelledArraysFactory:
             # Map-like from dict
             elif hasattr(self, 'from_dict') and isinstance(arg, dict):
                 return self.from_dict(arg)
-            # Copy constructor or similar
+            # Copy constructor or similar - unwrap the argument
             elif hasattr(self._c_class, 'new'):
-                return LabelledArrays(self._c_class.new(arg), self.element_type)
+                return LabelledArrays(self._c_class.new(unwrap(arg)), self.element_type)
                 
         # Pair constructor
         if "LabelledArrays" == "Pair" and len(args) == 2:
             if hasattr(self._c_class, 'new'):
-                return LabelledArrays(self._c_class.new(*args), self.element_type)
+                unwrapped_args = [unwrap(a) for a in args]
+                return LabelledArrays(self._c_class.new(*unwrapped_args), self.element_type)
 
         # Fallback to raising error if no suitable constructor found
         raise TypeError(f'No suitable constructor found for LabelledArrays[{self.element_type}] with args={args}')

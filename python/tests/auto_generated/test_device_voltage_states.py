@@ -3,6 +3,7 @@ import array
 from falcon_core.communications.voltage_states.device_voltage_state import DeviceVoltageState
 from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
 from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.communications.voltage_states.device_voltage_states import DeviceVoltageStates
 
 class TestDeviceVoltageStates:
@@ -26,7 +27,7 @@ class TestDeviceVoltageStates:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.add_state(DeviceVoltageState.from_json('{}'))
+            self.obj.add_state(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -58,7 +59,7 @@ class TestDeviceVoltageStates:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(DeviceVoltageState.from_json('{}'))
+            self.obj.push_back(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -114,7 +115,7 @@ class TestDeviceVoltageStates:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(DeviceVoltageState.from_json('{}'))
+            self.obj.contains(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -122,7 +123,7 @@ class TestDeviceVoltageStates:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(DeviceVoltageState.from_json('{}'))
+            self.obj.index(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

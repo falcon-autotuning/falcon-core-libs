@@ -1,7 +1,9 @@
 import pytest
 import array
+from falcon_core.generic.map import Map
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
 from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.math.domains.domain import Domain
 from falcon_core.math.unit_space import UnitSpace
 from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
@@ -11,7 +13,7 @@ class TestDiscreteSpace:
         self.obj = None
         try:
             # Using recipe for DiscreteSpace
-            self.obj = DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}')
+            self.obj = DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -27,7 +29,7 @@ class TestDiscreteSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}'))
+            self.obj.equal(DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -35,7 +37,7 @@ class TestDiscreteSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}'))
+            self.obj.not_equal(DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

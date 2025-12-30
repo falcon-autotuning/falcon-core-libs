@@ -12,7 +12,7 @@ class TestLabelledDomain:
         self.obj = None
         try:
             # Using recipe for LabelledDomain
-            self.obj = LabelledDomain.from_json('{}')
+            self.obj = LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -28,7 +28,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(LabelledDomain.from_json('{}'))
+            self.obj.equal(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +36,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(LabelledDomain.from_json('{}'))
+            self.obj.not_equal(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -132,7 +132,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(LabelledDomain.from_json('{}'))
+            self.obj.intersection(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -140,7 +140,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.union(LabelledDomain.from_json('{}'))
+            self.obj.union(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -156,7 +156,7 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains_domain(LabelledDomain.from_json('{}'))
+            self.obj.contains_domain(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -180,6 +180,6 @@ class TestLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.transform(LabelledDomain.from_json('{}'), 1.0)
+            self.obj.transform(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')

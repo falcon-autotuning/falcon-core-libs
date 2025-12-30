@@ -2,6 +2,9 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
+from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+from falcon_core.math.axes import Axes
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.list import List
 
 class TestListInterpretationContext:
@@ -25,7 +28,7 @@ class TestListInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(1, InterpretationContext.from_json('{}'))
+            self.obj.fill_value(1, InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +36,7 @@ class TestListInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(InterpretationContext.from_json('{}'))
+            self.obj.push_back(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +92,7 @@ class TestListInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(InterpretationContext.from_json('{}'))
+            self.obj.contains(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +100,7 @@ class TestListInterpretationContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(InterpretationContext.from_json('{}'))
+            self.obj.index(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

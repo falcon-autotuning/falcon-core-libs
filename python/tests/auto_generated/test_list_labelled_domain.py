@@ -2,6 +2,9 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.math.domains.labelled_domain import LabelledDomain
+from falcon_core.math.domains.domain import Domain
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.list import List
 
 class TestListLabelledDomain:
@@ -25,7 +28,7 @@ class TestListLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(1, LabelledDomain.from_json('{}'))
+            self.obj.fill_value(1, LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +36,7 @@ class TestListLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(LabelledDomain.from_json('{}'))
+            self.obj.push_back(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +92,7 @@ class TestListLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(LabelledDomain.from_json('{}'))
+            self.obj.contains(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +100,7 @@ class TestListLabelledDomain:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(LabelledDomain.from_json('{}'))
+            self.obj.index(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

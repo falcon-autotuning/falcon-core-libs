@@ -2,6 +2,10 @@ import pytest
 import array
 from falcon_core.generic.pair import Pair
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
+from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+from falcon_core.generic.list import List
+from falcon_core.math.axes import Axes
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.pair import Pair
 
 class TestPairInterpretationContextDouble:

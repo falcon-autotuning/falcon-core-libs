@@ -9,7 +9,7 @@ class TestUnitSpace:
         self.obj = None
         try:
             # Using recipe for UnitSpace
-            self.obj = UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}')
+            self.obj = UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -25,7 +25,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}'))
+            self.obj.equal(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +33,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}'))
+            self.obj.not_equal(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -169,6 +169,6 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}'))
+            self.obj.intersection(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')

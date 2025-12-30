@@ -2,6 +2,12 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.instrument_interfaces.waveform import Waveform
+from falcon_core.generic.map import Map
+from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+from falcon_core.math.domains.domain import Domain
+from falcon_core.math.domains.labelled_domain import LabelledDomain
+from falcon_core.physics.device_structures.connection import Connection
+from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.list import List
 
 class TestListWaveform:
@@ -25,7 +31,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(1, Waveform.from_json('{}'))
+            self.obj.fill_value(1, _make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +39,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(Waveform.from_json('{}'))
+            self.obj.push_back(_make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +95,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(Waveform.from_json('{}'))
+            self.obj.contains(_make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +103,7 @@ class TestListWaveform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(Waveform.from_json('{}'))
+            self.obj.index(_make_test_waveform())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

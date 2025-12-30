@@ -9,7 +9,7 @@ class TestListPortTransform:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: ListPortTransform_create_empty
+            # Using recipe for ListPortTransform
             self.obj = List[PortTransform]()
         except Exception as e:
             print(f'Setup failed: {e}')
@@ -106,7 +106,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(List[PortTransform]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -114,7 +114,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(List[PortTransform]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -122,7 +122,7 @@ class TestListPortTransform:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(List[PortTransform]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
