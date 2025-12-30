@@ -18,6 +18,10 @@ class AnalyticFunction:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> AnalyticFunction:
+        return cls(_CAnalyticFunction.from_json(json))
+
+    @classmethod
     def new(cls, labels: List, expression: str) -> AnalyticFunction:
         obj = cls(_CAnalyticFunction.new(labels._c if labels is not None else None, expression))
         obj._ref_labels = labels  # Keep reference alive
@@ -31,9 +35,21 @@ class AnalyticFunction:
     def new_constant(cls, value: Any) -> AnalyticFunction:
         return cls(_CAnalyticFunction.new_constant(value))
 
-    @classmethod
-    def from_json(cls, json: str) -> AnalyticFunction:
-        return cls(_CAnalyticFunction.from_json(json))
+    def copy(self, ) -> AnalyticFunction:
+        ret = self._c.copy()
+        return AnalyticFunction._from_capi(ret)
+
+    def equal(self, other: AnalyticFunction) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: AnalyticFunction) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def labels(self, ) -> List:
         ret = self._c.labels()
@@ -49,17 +65,9 @@ class AnalyticFunction:
         if ret is None: return None
         return FArray(ret)
 
-    def equal(self, b: AnalyticFunction) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: AnalyticFunction) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -2,6 +2,7 @@ import pytest
 import array
 from falcon_core.generic.f_array import FArray
 from falcon_core.physics.config.core.adjacency import Adjacency
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.config.core.adjacency import Adjacency
 
@@ -9,10 +10,42 @@ class TestAdjacency:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: Adjacency_create
-            self.obj = Adjacency.new(array.array('i', [0]), array.array('L', [0]), 0, Connections.new_empty())
+            # Using recipe for Adjacency
+            self.obj = Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')]))
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_indexes(self):
         if self.obj is None:
@@ -74,7 +107,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_equals_farray(FArray[int].from_list([1]))
+            self.obj.times_equals_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -82,23 +115,7 @@ class TestAdjacency:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_farray(FArray[int].from_list([1]))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(Adjacency.from_json('{}'))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(Adjacency.from_json('{}'))
+            self.obj.times_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -123,13 +140,5 @@ class TestAdjacency:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
             self.obj.flip(0)
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

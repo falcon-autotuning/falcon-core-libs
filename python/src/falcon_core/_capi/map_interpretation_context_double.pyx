@@ -58,6 +58,12 @@ cdef class MapInterpretationContextDouble:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapInterpretationContextDoubleHandle h_ret = _c_api.MapInterpretationContextDouble_copy(self.handle)
+        if h_ret == <_c_api.MapInterpretationContextDoubleHandle>0:
+            return None
+        return _map_interpretation_context_double_from_capi(h_ret)
+
     def insert_or_assign(self, InterpretationContext key, double value):
         _c_api.MapInterpretationContextDouble_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0, value)
 
@@ -100,21 +106,21 @@ cdef class MapInterpretationContextDouble:
             return None
         return _list_pair_interpretation_context_double_from_capi(h_ret)
 
-    def equal(self, MapInterpretationContextDouble b):
-        return _c_api.MapInterpretationContextDouble_equal(self.handle, b.handle if b is not None else <_c_api.MapInterpretationContextDoubleHandle>0)
+    def equal(self, MapInterpretationContextDouble other):
+        return _c_api.MapInterpretationContextDouble_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextDoubleHandle>0)
 
-    def __eq__(self, MapInterpretationContextDouble b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapInterpretationContextDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapInterpretationContextDouble b):
-        return _c_api.MapInterpretationContextDouble_not_equal(self.handle, b.handle if b is not None else <_c_api.MapInterpretationContextDoubleHandle>0)
+    def not_equal(self, MapInterpretationContextDouble other):
+        return _c_api.MapInterpretationContextDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextDoubleHandle>0)
 
-    def __ne__(self, MapInterpretationContextDouble b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapInterpretationContextDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

@@ -15,6 +15,10 @@ class Time:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Time:
+        return cls(_CTime.from_json(json))
+
+    @classmethod
     def new_now(cls, ) -> Time:
         return cls(_CTime.new_now())
 
@@ -22,9 +26,21 @@ class Time:
     def new_at(cls, micro_seconds_since_epoch: Any) -> Time:
         return cls(_CTime.new_at(micro_seconds_since_epoch))
 
-    @classmethod
-    def from_json(cls, json: str) -> Time:
-        return cls(_CTime.from_json(json))
+    def copy(self, ) -> Time:
+        ret = self._c.copy()
+        return Time._from_capi(ret)
+
+    def equal(self, other: Time) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Time) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def micro_seconds_since_epoch(self, ) -> None:
         ret = self._c.micro_seconds_since_epoch()
@@ -38,17 +54,9 @@ class Time:
         ret = self._c.to_string()
         return ret
 
-    def equal(self, b: Time) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Time) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

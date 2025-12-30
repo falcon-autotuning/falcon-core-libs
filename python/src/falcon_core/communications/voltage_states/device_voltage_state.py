@@ -189,6 +189,10 @@ class DeviceVoltageState:
         """Operator overload for unary -"""
         return self.negation()
 
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
+
     def __eq__(self, other):
         """Operator overload for =="""
         if not isinstance(other, DeviceVoltageState):

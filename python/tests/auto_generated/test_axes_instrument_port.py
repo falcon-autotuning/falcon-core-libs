@@ -13,6 +13,14 @@ class TestAxesInstrumentPort:
         except Exception as e:
             print(f'Setup failed: {e}')
 
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
     def test_push_back(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -89,7 +97,7 @@ class TestAxesInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
+            self.obj.intersection(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +105,7 @@ class TestAxesInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
+            self.obj.equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -105,14 +113,14 @@ class TestAxesInstrumentPort:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
+            self.obj.not_equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_to_json_string(self):
+    def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.to_json_string()
+            self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

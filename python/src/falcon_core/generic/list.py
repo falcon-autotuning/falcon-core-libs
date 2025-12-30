@@ -44,6 +44,13 @@ class _ListFactory:
         # Fallback to raising error if no suitable constructor found
         raise TypeError(f'No suitable constructor found for List[{self.element_type}] with args={args}')
 
+    def from_list(self, data):
+        """Create a List from a Python list."""
+        instance = self()
+        for item in data:
+            instance.push_back(item)
+        return instance
+
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""
         attr = getattr(self._c_class, name, None)
@@ -71,9 +78,17 @@ class List:
 
     @classmethod
     def __class_getitem__(cls, types):
-        """Enable List[T] syntax."""
+        def resolve_type(t):
+            if hasattr(t, '_c_class'):
+                return t._c_class
+            if isinstance(t, tuple):
+                return tuple(resolve_type(tt) for tt in t)
+            return t
+        
+        resolved_types = resolve_type(types)
         from ._list_registry import LIST_REGISTRY
-        c_class = LIST_REGISTRY.get(types)
+        """Enable List[T] syntax."""
+        c_class = LIST_REGISTRY.get(resolved_types)
         if c_class is None:
             raise TypeError(f"List does not support type: {types}")
         return _ListFactory(types, c_class)
@@ -93,7 +108,7 @@ class List:
                 # Unwrap List arguments to their Cython objects
                 unwrapped_args = []
                 for arg in args:
-                    if isinstance(arg, List):
+                    if hasattr(arg, '_c'):
                         unwrapped_args.append(arg._c)
                     else:
                         unwrapped_args.append(arg)

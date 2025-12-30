@@ -17,17 +17,6 @@ cdef class Impedance:
 
 
     @classmethod
-    def new(cls, Connection connection, double resistance, double capacitance):
-        cdef _c_api.ImpedanceHandle h
-        h = _c_api.Impedance_create(connection.handle if connection is not None else <_c_api.ConnectionHandle>0, resistance, capacitance)
-        if h == <_c_api.ImpedanceHandle>0:
-            raise MemoryError("Failed to create Impedance")
-        cdef Impedance obj = <Impedance>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -43,17 +32,22 @@ cdef class Impedance:
         obj.owned = True
         return obj
 
-    def connection(self, ):
-        cdef _c_api.ConnectionHandle h_ret = _c_api.Impedance_connection(self.handle)
-        if h_ret == <_c_api.ConnectionHandle>0:
+    @classmethod
+    def new(cls, Connection connection, double resistance, double capacitance):
+        cdef _c_api.ImpedanceHandle h
+        h = _c_api.Impedance_create(connection.handle if connection is not None else <_c_api.ConnectionHandle>0, resistance, capacitance)
+        if h == <_c_api.ImpedanceHandle>0:
+            raise MemoryError("Failed to create Impedance")
+        cdef Impedance obj = <Impedance>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.ImpedanceHandle h_ret = _c_api.Impedance_copy(self.handle)
+        if h_ret == <_c_api.ImpedanceHandle>0:
             return None
-        return _connection_from_capi(h_ret, owned=False)
-
-    def resistance(self, ):
-        return _c_api.Impedance_resistance(self.handle)
-
-    def capacitance(self, ):
-        return _c_api.Impedance_capacitance(self.handle)
+        return _impedance_from_capi(h_ret)
 
     def equal(self, Impedance other):
         return _c_api.Impedance_equal(self.handle, other.handle if other is not None else <_c_api.ImpedanceHandle>0)
@@ -80,6 +74,18 @@ cdef class Impedance:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
             _c_api.String_destroy(s_ret)
+
+    def connection(self, ):
+        cdef _c_api.ConnectionHandle h_ret = _c_api.Impedance_connection(self.handle)
+        if h_ret == <_c_api.ConnectionHandle>0:
+            return None
+        return _connection_from_capi(h_ret, owned=False)
+
+    def resistance(self, ):
+        return _c_api.Impedance_resistance(self.handle)
+
+    def capacitance(self, ):
+        return _c_api.Impedance_capacitance(self.handle)
 
 cdef Impedance _impedance_from_capi(_c_api.ImpedanceHandle h, bint owned=True):
     if h == <_c_api.ImpedanceHandle>0:

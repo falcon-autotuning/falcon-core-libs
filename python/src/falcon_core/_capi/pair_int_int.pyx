@@ -42,27 +42,33 @@ cdef class PairIntInt:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairIntIntHandle h_ret = _c_api.PairIntInt_copy(self.handle)
+        if h_ret == <_c_api.PairIntIntHandle>0:
+            return None
+        return _pair_int_int_from_capi(h_ret)
+
     def first(self, ):
         return _c_api.PairIntInt_first(self.handle)
 
     def second(self, ):
         return _c_api.PairIntInt_second(self.handle)
 
-    def equal(self, PairIntInt b):
-        return _c_api.PairIntInt_equal(self.handle, b.handle if b is not None else <_c_api.PairIntIntHandle>0)
+    def equal(self, PairIntInt other):
+        return _c_api.PairIntInt_equal(self.handle, other.handle if other is not None else <_c_api.PairIntIntHandle>0)
 
-    def __eq__(self, PairIntInt b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairIntInt other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairIntInt b):
-        return _c_api.PairIntInt_not_equal(self.handle, b.handle if b is not None else <_c_api.PairIntIntHandle>0)
+    def not_equal(self, PairIntInt other):
+        return _c_api.PairIntInt_not_equal(self.handle, other.handle if other is not None else <_c_api.PairIntIntHandle>0)
 
-    def __ne__(self, PairIntInt b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairIntInt other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

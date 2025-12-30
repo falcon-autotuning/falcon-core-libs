@@ -44,6 +44,12 @@ cdef class PairMeasurementResponseMeasurementRequest:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairMeasurementResponseMeasurementRequestHandle h_ret = _c_api.PairMeasurementResponseMeasurementRequest_copy(self.handle)
+        if h_ret == <_c_api.PairMeasurementResponseMeasurementRequestHandle>0:
+            return None
+        return _pair_measurement_response_measurement_request_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.MeasurementResponseHandle h_ret = _c_api.PairMeasurementResponseMeasurementRequest_first(self.handle)
         if h_ret == <_c_api.MeasurementResponseHandle>0:
@@ -56,21 +62,21 @@ cdef class PairMeasurementResponseMeasurementRequest:
             return None
         return _measurement_request_from_capi(h_ret)
 
-    def equal(self, PairMeasurementResponseMeasurementRequest b):
-        return _c_api.PairMeasurementResponseMeasurementRequest_equal(self.handle, b.handle if b is not None else <_c_api.PairMeasurementResponseMeasurementRequestHandle>0)
+    def equal(self, PairMeasurementResponseMeasurementRequest other):
+        return _c_api.PairMeasurementResponseMeasurementRequest_equal(self.handle, other.handle if other is not None else <_c_api.PairMeasurementResponseMeasurementRequestHandle>0)
 
-    def __eq__(self, PairMeasurementResponseMeasurementRequest b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairMeasurementResponseMeasurementRequest other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairMeasurementResponseMeasurementRequest b):
-        return _c_api.PairMeasurementResponseMeasurementRequest_not_equal(self.handle, b.handle if b is not None else <_c_api.PairMeasurementResponseMeasurementRequestHandle>0)
+    def not_equal(self, PairMeasurementResponseMeasurementRequest other):
+        return _c_api.PairMeasurementResponseMeasurementRequest_not_equal(self.handle, other.handle if other is not None else <_c_api.PairMeasurementResponseMeasurementRequestHandle>0)
 
-    def __ne__(self, PairMeasurementResponseMeasurementRequest b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairMeasurementResponseMeasurementRequest other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

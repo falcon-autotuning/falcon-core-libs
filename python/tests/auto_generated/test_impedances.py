@@ -1,7 +1,5 @@
 import pytest
 import array
-from falcon_core.physics.device_structures.connection import Connection
-from falcon_core.physics.device_structures.impedance import Impedance
 from falcon_core.physics.device_structures.impedances import Impedances
 from falcon_core.physics.device_structures.impedances import Impedances
 
@@ -9,16 +7,48 @@ class TestImpedances:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: Impedances_create_empty
-            self.obj = Impedances.create_empty()
+            # Using recipe for Impedances
+            self.obj = Impedances.new_empty()
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(Impedances.new_empty())
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(Impedances.new_empty())
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_push_back(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
+            self.obj.push_back(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -74,7 +104,7 @@ class TestImpedances:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
+            self.obj.contains(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -90,30 +120,6 @@ class TestImpedances:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(Impedances.new_empty())
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(Impedances.new_empty())
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
+            self.obj.index(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')

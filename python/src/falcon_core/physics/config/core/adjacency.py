@@ -19,14 +19,30 @@ class Adjacency:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Adjacency:
+        return cls(_CAdjacency.from_json(json))
+
+    @classmethod
     def new(cls, data: Any, shape: Any, ndim: Any, indexes: Connections) -> Adjacency:
         obj = cls(_CAdjacency.new(data, shape, ndim, indexes._c if indexes is not None else None))
         obj._ref_indexes = indexes  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Adjacency:
-        return cls(_CAdjacency.from_json(json))
+    def copy(self, ) -> Adjacency:
+        ret = self._c.copy()
+        return Adjacency._from_capi(ret)
+
+    def equal(self, other: Adjacency) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Adjacency) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def indexes(self, ) -> Connections:
         ret = self._c.indexes()
@@ -67,14 +83,6 @@ class Adjacency:
         ret = self._c.times_farray(other._c if other is not None else None)
         return Adjacency._from_capi(ret)
 
-    def equal(self, other: Adjacency) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Adjacency) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
     def sum(self, ) -> None:
         ret = self._c.sum()
         return ret
@@ -88,10 +96,6 @@ class Adjacency:
         ret = self._c.flip(axis)
         return Adjacency._from_capi(ret)
 
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -102,6 +106,10 @@ class Adjacency:
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
             return self.times_farray(other)
         return NotImplemented
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

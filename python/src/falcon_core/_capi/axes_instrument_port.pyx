@@ -55,6 +55,12 @@ cdef class AxesInstrumentPort:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.AxesInstrumentPortHandle h_ret = _c_api.AxesInstrumentPort_copy(self.handle)
+        if h_ret == <_c_api.AxesInstrumentPortHandle>0:
+            return None
+        return _axes_instrument_port_from_capi(h_ret)
+
     def push_back(self, InstrumentPort value):
         _c_api.AxesInstrumentPort_push_back(self.handle, value.handle if value is not None else <_c_api.InstrumentPortHandle>0)
 
@@ -91,21 +97,21 @@ cdef class AxesInstrumentPort:
             return None
         return _axes_instrument_port_from_capi(h_ret)
 
-    def equal(self, AxesInstrumentPort b):
-        return _c_api.AxesInstrumentPort_equal(self.handle, b.handle if b is not None else <_c_api.AxesInstrumentPortHandle>0)
+    def equal(self, AxesInstrumentPort other):
+        return _c_api.AxesInstrumentPort_equal(self.handle, other.handle if other is not None else <_c_api.AxesInstrumentPortHandle>0)
 
-    def __eq__(self, AxesInstrumentPort b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, AxesInstrumentPort other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, AxesInstrumentPort b):
-        return _c_api.AxesInstrumentPort_not_equal(self.handle, b.handle if b is not None else <_c_api.AxesInstrumentPortHandle>0)
+    def not_equal(self, AxesInstrumentPort other):
+        return _c_api.AxesInstrumentPort_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesInstrumentPortHandle>0)
 
-    def __ne__(self, AxesInstrumentPort b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, AxesInstrumentPort other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

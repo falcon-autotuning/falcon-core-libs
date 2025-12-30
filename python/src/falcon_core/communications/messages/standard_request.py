@@ -15,16 +15,16 @@ class StandardRequest:
         return cls(c_obj)
 
     @classmethod
-    def new(cls, message: str) -> StandardRequest:
-        return cls(_CStandardRequest.new(message))
-
-    @classmethod
     def from_json(cls, json: str) -> StandardRequest:
         return cls(_CStandardRequest.from_json(json))
 
-    def message(self, ) -> str:
-        ret = self._c.message()
-        return ret
+    @classmethod
+    def new(cls, message: str) -> StandardRequest:
+        return cls(_CStandardRequest.new(message))
+
+    def copy(self, ) -> StandardRequest:
+        ret = self._c.copy()
+        return StandardRequest._from_capi(ret)
 
     def equal(self, other: StandardRequest) -> None:
         ret = self._c.equal(other._c if other is not None else None)
@@ -37,6 +37,14 @@ class StandardRequest:
     def to_json(self, ) -> str:
         ret = self._c.to_json()
         return ret
+
+    def message(self, ) -> str:
+        ret = self._c.message()
+        return ret
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

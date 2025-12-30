@@ -54,6 +54,12 @@ cdef class ListPairFloatFloat:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListPairFloatFloatHandle h_ret = _c_api.ListPairFloatFloat_copy(self.handle)
+        if h_ret == <_c_api.ListPairFloatFloatHandle>0:
+            return None
+        return _list_pair_float_float_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, PairFloatFloat value):
         cdef _c_api.ListPairFloatFloatHandle h_ret = _c_api.ListPairFloatFloat_fill_value(count, value.handle if value is not None else <_c_api.PairFloatFloatHandle>0)
@@ -97,21 +103,21 @@ cdef class ListPairFloatFloat:
             return None
         return _list_pair_float_float_from_capi(h_ret)
 
-    def equal(self, ListPairFloatFloat b):
-        return _c_api.ListPairFloatFloat_equal(self.handle, b.handle if b is not None else <_c_api.ListPairFloatFloatHandle>0)
+    def equal(self, ListPairFloatFloat other):
+        return _c_api.ListPairFloatFloat_equal(self.handle, other.handle if other is not None else <_c_api.ListPairFloatFloatHandle>0)
 
-    def __eq__(self, ListPairFloatFloat b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListPairFloatFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListPairFloatFloat b):
-        return _c_api.ListPairFloatFloat_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPairFloatFloatHandle>0)
+    def not_equal(self, ListPairFloatFloat other):
+        return _c_api.ListPairFloatFloat_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPairFloatFloatHandle>0)
 
-    def __ne__(self, ListPairFloatFloat b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListPairFloatFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

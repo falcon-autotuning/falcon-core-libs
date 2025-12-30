@@ -54,6 +54,12 @@ cdef class ListListSizeT:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListListSizeTHandle h_ret = _c_api.ListListSizeT_copy(self.handle)
+        if h_ret == <_c_api.ListListSizeTHandle>0:
+            return None
+        return _list_list_size_t_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, ListSizeT value):
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.ListListSizeT_fill_value(count, value.handle if value is not None else <_c_api.ListSizeTHandle>0)
@@ -97,21 +103,21 @@ cdef class ListListSizeT:
             return None
         return _list_list_size_t_from_capi(h_ret)
 
-    def equal(self, ListListSizeT b):
-        return _c_api.ListListSizeT_equal(self.handle, b.handle if b is not None else <_c_api.ListListSizeTHandle>0)
+    def equal(self, ListListSizeT other):
+        return _c_api.ListListSizeT_equal(self.handle, other.handle if other is not None else <_c_api.ListListSizeTHandle>0)
 
-    def __eq__(self, ListListSizeT b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListListSizeT other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListListSizeT b):
-        return _c_api.ListListSizeT_not_equal(self.handle, b.handle if b is not None else <_c_api.ListListSizeTHandle>0)
+    def not_equal(self, ListListSizeT other):
+        return _c_api.ListListSizeT_not_equal(self.handle, other.handle if other is not None else <_c_api.ListListSizeTHandle>0)
 
-    def __ne__(self, ListListSizeT b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListListSizeT other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

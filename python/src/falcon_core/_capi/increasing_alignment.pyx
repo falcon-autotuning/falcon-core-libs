@@ -16,6 +16,22 @@ cdef class IncreasingAlignment:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.IncreasingAlignmentHandle h
+        try:
+            h = _c_api.IncreasingAlignment_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.IncreasingAlignmentHandle>0:
+            raise MemoryError("Failed to create IncreasingAlignment")
+        cdef IncreasingAlignment obj = <IncreasingAlignment>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new_empty(cls, ):
         cdef _c_api.IncreasingAlignmentHandle h
         h = _c_api.IncreasingAlignment_create_empty()
@@ -37,40 +53,27 @@ cdef class IncreasingAlignment:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.IncreasingAlignmentHandle h
-        try:
-            h = _c_api.IncreasingAlignment_from_json_string(s_json)
-        finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.IncreasingAlignmentHandle>0:
-            raise MemoryError("Failed to create IncreasingAlignment")
-        cdef IncreasingAlignment obj = <IncreasingAlignment>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+    def copy(self, ):
+        cdef _c_api.IncreasingAlignmentHandle h_ret = _c_api.IncreasingAlignment_copy(self.handle)
+        if h_ret == <_c_api.IncreasingAlignmentHandle>0:
+            return None
+        return _increasing_alignment_from_capi(h_ret)
 
-    def alignment(self, ):
-        return _c_api.IncreasingAlignment_alignment(self.handle)
+    def equal(self, IncreasingAlignment other):
+        return _c_api.IncreasingAlignment_equal(self.handle, other.handle if other is not None else <_c_api.IncreasingAlignmentHandle>0)
 
-    def equal(self, IncreasingAlignment b):
-        return _c_api.IncreasingAlignment_equal(self.handle, b.handle if b is not None else <_c_api.IncreasingAlignmentHandle>0)
-
-    def __eq__(self, IncreasingAlignment b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, IncreasingAlignment other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, IncreasingAlignment b):
-        return _c_api.IncreasingAlignment_not_equal(self.handle, b.handle if b is not None else <_c_api.IncreasingAlignmentHandle>0)
+    def not_equal(self, IncreasingAlignment other):
+        return _c_api.IncreasingAlignment_not_equal(self.handle, other.handle if other is not None else <_c_api.IncreasingAlignmentHandle>0)
 
-    def __ne__(self, IncreasingAlignment b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, IncreasingAlignment other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret
@@ -81,6 +84,9 @@ cdef class IncreasingAlignment:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
             _c_api.String_destroy(s_ret)
+
+    def alignment(self, ):
+        return _c_api.IncreasingAlignment_alignment(self.handle)
 
 cdef IncreasingAlignment _increasing_alignment_from_capi(_c_api.IncreasingAlignmentHandle h, bint owned=True):
     if h == <_c_api.IncreasingAlignmentHandle>0:

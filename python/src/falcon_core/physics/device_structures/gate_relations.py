@@ -20,6 +20,10 @@ class GateRelations:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> GateRelations:
+        return cls(_CGateRelations.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> GateRelations:
         return cls(_CGateRelations.new_empty())
 
@@ -29,9 +33,21 @@ class GateRelations:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> GateRelations:
-        return cls(_CGateRelations.from_json(json))
+    def copy(self, ) -> GateRelations:
+        ret = self._c.copy()
+        return GateRelations._from_capi(ret)
+
+    def equal(self, other: GateRelations) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: GateRelations) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def insert_or_assign(self, key: Connection, value: Connections) -> None:
         ret = self._c.insert_or_assign(key._c if key is not None else None, value._c if value is not None else None)
@@ -81,18 +97,6 @@ class GateRelations:
         if ret is None: return None
         return List(ret)
 
-    def equal(self, other: GateRelations) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: GateRelations) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -101,6 +105,10 @@ class GateRelations:
         if ret is None:
             raise IndexError("Index out of bounds")
         return ret
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

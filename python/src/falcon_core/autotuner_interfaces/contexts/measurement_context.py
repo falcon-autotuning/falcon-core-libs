@@ -17,6 +17,10 @@ class MeasurementContext:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> MeasurementContext:
+        return cls(_CMeasurementContext.from_json(json))
+
+    @classmethod
     def new(cls, connection: Connection, instrument_type: str) -> MeasurementContext:
         obj = cls(_CMeasurementContext.new(connection._c if connection is not None else None, instrument_type))
         obj._ref_connection = connection  # Keep reference alive
@@ -28,9 +32,21 @@ class MeasurementContext:
         obj._ref_port = port  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> MeasurementContext:
-        return cls(_CMeasurementContext.from_json(json))
+    def copy(self, ) -> MeasurementContext:
+        ret = self._c.copy()
+        return MeasurementContext._from_capi(ret)
+
+    def equal(self, other: MeasurementContext) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: MeasurementContext) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def connection(self, ) -> Connection:
         ret = self._c.connection()
@@ -41,17 +57,9 @@ class MeasurementContext:
         ret = self._c.instrument_type()
         return ret
 
-    def equal(self, b: MeasurementContext) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: MeasurementContext) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -4,6 +4,7 @@ from falcon_core.generic.map import Map
 from falcon_core.autotuner_interfaces.names.gname import Gname
 from falcon_core.physics.config.core.group import Group
 from falcon_core.autotuner_interfaces.names.channel import Channel
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.generic.map import Map
 
@@ -11,16 +12,24 @@ class TestMapGnameGroup:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: MapGnameGroup_create_empty
+            # Using recipe for MapGnameGroup
             self.obj = Map[Gname, Group]()
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_insert_or_assign(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(Gname.new('test_gname'), Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
+            self.obj.insert_or_assign(Gname.new('test_gname'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -28,7 +37,7 @@ class TestMapGnameGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(Gname.new('test_gname'), Group.new(Channel.new('test'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty()))
+            self.obj.insert(Gname.new('test_gname'), Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -120,10 +129,10 @@ class TestMapGnameGroup:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_to_json_string(self):
+    def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.to_json_string()
+            self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

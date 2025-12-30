@@ -48,6 +48,12 @@ cdef class PairInterpretationContextString:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairInterpretationContextStringHandle h_ret = _c_api.PairInterpretationContextString_copy(self.handle)
+        if h_ret == <_c_api.PairInterpretationContextStringHandle>0:
+            return None
+        return _pair_interpretation_context_string_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.PairInterpretationContextString_first(self.handle)
         if h_ret == <_c_api.InterpretationContextHandle>0:
@@ -64,21 +70,21 @@ cdef class PairInterpretationContextString:
         finally:
             _c_api.String_destroy(s_ret)
 
-    def equal(self, PairInterpretationContextString b):
-        return _c_api.PairInterpretationContextString_equal(self.handle, b.handle if b is not None else <_c_api.PairInterpretationContextStringHandle>0)
+    def equal(self, PairInterpretationContextString other):
+        return _c_api.PairInterpretationContextString_equal(self.handle, other.handle if other is not None else <_c_api.PairInterpretationContextStringHandle>0)
 
-    def __eq__(self, PairInterpretationContextString b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairInterpretationContextString other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairInterpretationContextString b):
-        return _c_api.PairInterpretationContextString_not_equal(self.handle, b.handle if b is not None else <_c_api.PairInterpretationContextStringHandle>0)
+    def not_equal(self, PairInterpretationContextString other):
+        return _c_api.PairInterpretationContextString_not_equal(self.handle, other.handle if other is not None else <_c_api.PairInterpretationContextStringHandle>0)
 
-    def __ne__(self, PairInterpretationContextString b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairInterpretationContextString other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

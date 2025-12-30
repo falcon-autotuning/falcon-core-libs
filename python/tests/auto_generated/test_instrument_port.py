@@ -9,10 +9,42 @@ class TestInstrumentPort:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: InstrumentPort_create_port
-            self.obj = InstrumentPort.new_port("test_string", Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter(), "test_string")
+            # Using recipe for InstrumentPort
+            self.obj = InstrumentPort.new_timer()
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(InstrumentPort.new_timer())
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(InstrumentPort.new_timer())
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_default_name(self):
         if self.obj is None:
@@ -83,29 +115,5 @@ class TestInstrumentPort:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
             self.obj.is_port()
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(InstrumentPort.new_timer())
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(InstrumentPort.new_timer())
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

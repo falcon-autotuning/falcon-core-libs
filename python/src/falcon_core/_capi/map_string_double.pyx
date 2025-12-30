@@ -57,6 +57,12 @@ cdef class MapStringDouble:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapStringDoubleHandle h_ret = _c_api.MapStringDouble_copy(self.handle)
+        if h_ret == <_c_api.MapStringDoubleHandle>0:
+            return None
+        return _map_string_double_from_capi(h_ret)
+
     def insert_or_assign(self, str key, double value):
         cdef bytes b_key = key.encode("utf-8")
         cdef _c_api.StringHandle s_key = _c_api.String_create(b_key, len(b_key))
@@ -122,21 +128,21 @@ cdef class MapStringDouble:
             return None
         return _list_pair_string_double_from_capi(h_ret)
 
-    def equal(self, MapStringDouble b):
-        return _c_api.MapStringDouble_equal(self.handle, b.handle if b is not None else <_c_api.MapStringDoubleHandle>0)
+    def equal(self, MapStringDouble other):
+        return _c_api.MapStringDouble_equal(self.handle, other.handle if other is not None else <_c_api.MapStringDoubleHandle>0)
 
-    def __eq__(self, MapStringDouble b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapStringDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapStringDouble b):
-        return _c_api.MapStringDouble_not_equal(self.handle, b.handle if b is not None else <_c_api.MapStringDoubleHandle>0)
+    def not_equal(self, MapStringDouble other):
+        return _c_api.MapStringDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.MapStringDoubleHandle>0)
 
-    def __ne__(self, MapStringDouble b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapStringDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

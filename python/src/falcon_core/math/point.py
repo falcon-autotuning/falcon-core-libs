@@ -23,6 +23,10 @@ class Point:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Point:
+        return cls(_CPoint.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> Point:
         return cls(_CPoint.new_empty())
 
@@ -39,9 +43,21 @@ class Point:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Point:
-        return cls(_CPoint.from_json(json))
+    def copy(self, ) -> Point:
+        ret = self._c.copy()
+        return Point._from_capi(ret)
+
+    def equal(self, other: Point) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Point) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def unit(self, ) -> SymbolUnit:
         ret = self._c.unit()
@@ -130,18 +146,6 @@ class Point:
         ret = self._c.set_unit(unit._c if unit is not None else None)
         return ret
 
-    def equal(self, b: Point) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Point) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -178,6 +182,10 @@ class Point:
     def __neg__(self):
         """Operator overload for unary -"""
         return self.negation()
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -15,12 +15,28 @@ class Domain:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Domain:
+        return cls(_CDomain.from_json(json))
+
+    @classmethod
     def new(cls, min_val: Any, max_val: Any, lesser_bound_contained: Any, greater_bound_contained: Any) -> Domain:
         return cls(_CDomain.new(min_val, max_val, lesser_bound_contained, greater_bound_contained))
 
-    @classmethod
-    def from_json(cls, json: str) -> Domain:
-        return cls(_CDomain.from_json(json))
+    def copy(self, ) -> Domain:
+        ret = self._c.copy()
+        return Domain._from_capi(ret)
+
+    def equal(self, other: Domain) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Domain) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def lesser_bound(self, ) -> None:
         ret = self._c.lesser_bound()
@@ -78,17 +94,9 @@ class Domain:
         ret = self._c.transform(other._c if other is not None else None, value)
         return ret
 
-    def equal(self, other: Domain) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Domain) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

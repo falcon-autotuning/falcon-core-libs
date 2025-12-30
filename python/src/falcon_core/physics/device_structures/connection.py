@@ -15,6 +15,10 @@ class Connection:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Connection:
+        return cls(_CConnection.from_json(json))
+
+    @classmethod
     def new_barrier(cls, name: str) -> Connection:
         return cls(_CConnection.new_barrier(name))
 
@@ -34,9 +38,21 @@ class Connection:
     def new_ohmic(cls, name: str) -> Connection:
         return cls(_CConnection.new_ohmic(name))
 
-    @classmethod
-    def from_json(cls, json: str) -> Connection:
-        return cls(_CConnection.from_json(json))
+    def copy(self, ) -> Connection:
+        ret = self._c.copy()
+        return Connection._from_capi(ret)
+
+    def equal(self, other: Connection) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Connection) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def name(self, ) -> str:
         ret = self._c.name()
@@ -74,17 +90,9 @@ class Connection:
         ret = self._c.is_gate()
         return ret
 
-    def equal(self, other: Connection) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Connection) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

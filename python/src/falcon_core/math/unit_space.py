@@ -22,6 +22,10 @@ class UnitSpace:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> UnitSpace:
+        return cls(_CUnitSpace.from_json(json))
+
+    @classmethod
     def new(cls, axes: Axes, domain: Domain) -> UnitSpace:
         obj = cls(_CUnitSpace.new(axes._c if axes is not None else None, domain._c if domain is not None else None))
         obj._ref_axes = axes  # Keep reference alive
@@ -61,9 +65,21 @@ class UnitSpace:
         obj._ref_axes = axes  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> UnitSpace:
-        return cls(_CUnitSpace.from_json(json))
+    def copy(self, ) -> UnitSpace:
+        ret = self._c.copy()
+        return UnitSpace._from_capi(ret)
+
+    def equal(self, other: UnitSpace) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: UnitSpace) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def axes(self, ) -> Axes:
         ret = self._c.axes()
@@ -134,18 +150,6 @@ class UnitSpace:
         ret = self._c.intersection(other._c if other is not None else None)
         return UnitSpace._from_capi(ret)
 
-    def equal(self, b: UnitSpace) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: UnitSpace) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -161,6 +165,10 @@ class UnitSpace:
     @classmethod
     def from_list(cls, items):
         return cls(_CUnitSpace.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

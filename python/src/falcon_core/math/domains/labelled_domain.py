@@ -19,6 +19,10 @@ class LabelledDomain:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> LabelledDomain:
+        return cls(_CLabelledDomain.from_json(json))
+
+    @classmethod
     def new_primitive_knob(cls, default_name: str, min_val: Any, max_val: Any, psuedo_name: Connection, instrument_type: str, lesser_bound_contained: Any, greater_bound_contained: Any, units: SymbolUnit, description: str) -> LabelledDomain:
         obj = cls(_CLabelledDomain.new_primitive_knob(default_name, min_val, max_val, psuedo_name._c if psuedo_name is not None else None, instrument_type, lesser_bound_contained, greater_bound_contained, units._c if units is not None else None, description))
         obj._ref_psuedo_name = psuedo_name  # Keep reference alive
@@ -40,8 +44,8 @@ class LabelledDomain:
         return obj
 
     @classmethod
-    def new_from_port(cls, min_val: Any, max_val: Any, instrument_type: str, port: InstrumentPort, lesser_bound_contained: Any, greater_bound_contained: Any) -> LabelledDomain:
-        obj = cls(_CLabelledDomain.new_from_port(min_val, max_val, instrument_type, port._c if port is not None else None, lesser_bound_contained, greater_bound_contained))
+    def new_from_port(cls, min_val: Any, max_val: Any, port: InstrumentPort, lesser_bound_contained: Any, greater_bound_contained: Any) -> LabelledDomain:
+        obj = cls(_CLabelledDomain.new_from_port(min_val, max_val, port._c if port is not None else None, lesser_bound_contained, greater_bound_contained))
         obj._ref_port = port  # Keep reference alive
         return obj
 
@@ -60,9 +64,21 @@ class LabelledDomain:
         obj._ref_units = units  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> LabelledDomain:
-        return cls(_CLabelledDomain.from_json(json))
+    def copy(self, ) -> LabelledDomain:
+        ret = self._c.copy()
+        return LabelledDomain._from_capi(ret)
+
+    def equal(self, other: LabelledDomain) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: LabelledDomain) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def port(self, ) -> InstrumentPort:
         ret = self._c.port()
@@ -134,17 +150,9 @@ class LabelledDomain:
         ret = self._c.transform(other._c if other is not None else None, value)
         return ret
 
-    def equal(self, other: LabelledDomain) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: LabelledDomain) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -16,6 +16,10 @@ class DotGateWithNeighbors:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> DotGateWithNeighbors:
+        return cls(_CDotGateWithNeighbors.from_json(json))
+
+    @classmethod
     def new_plunger_gate_with_neighbors(cls, name: str, left_neighbor: Connection, right_neighbor: Connection) -> DotGateWithNeighbors:
         obj = cls(_CDotGateWithNeighbors.new_plunger_gate_with_neighbors(name, left_neighbor._c if left_neighbor is not None else None, right_neighbor._c if right_neighbor is not None else None))
         obj._ref_left_neighbor = left_neighbor  # Keep reference alive
@@ -29,9 +33,9 @@ class DotGateWithNeighbors:
         obj._ref_right_neighbor = right_neighbor  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> DotGateWithNeighbors:
-        return cls(_CDotGateWithNeighbors.from_json(json))
+    def copy(self, ) -> DotGateWithNeighbors:
+        ret = self._c.copy()
+        return DotGateWithNeighbors._from_capi(ret)
 
     def equal(self, other: DotGateWithNeighbors) -> None:
         ret = self._c.equal(other._c if other is not None else None)
@@ -39,6 +43,10 @@ class DotGateWithNeighbors:
 
     def not_equal(self, other: DotGateWithNeighbors) -> None:
         ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
         return ret
 
     def name(self, ) -> str:
@@ -67,9 +75,9 @@ class DotGateWithNeighbors:
         ret = self._c.is_plunger_gate()
         return ret
 
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

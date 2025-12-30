@@ -25,6 +25,22 @@ cdef class Waveform:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.WaveformHandle h
+        try:
+            h = _c_api.Waveform_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.WaveformHandle>0:
+            raise MemoryError("Failed to create Waveform")
+        cdef Waveform obj = <Waveform>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new(cls, DiscreteSpace space, ListPortTransform transforms):
         cdef _c_api.WaveformHandle h
         h = _c_api.Waveform_create(space.handle if space is not None else <_c_api.DiscreteSpaceHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0)
@@ -101,21 +117,37 @@ cdef class Waveform:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.WaveformHandle h
+    def copy(self, ):
+        cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+        if h_ret == <_c_api.WaveformHandle>0:
+            return None
+        return _waveform_from_capi(h_ret)
+
+    def equal(self, Waveform other):
+        return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+
+    def __eq__(self, Waveform other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Waveform other):
+        return _c_api.Waveform_not_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+
+    def __ne__(self, Waveform other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Waveform_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.Waveform_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.WaveformHandle>0:
-            raise MemoryError("Failed to create Waveform")
-        cdef Waveform obj = <Waveform>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def space(self, ):
         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
@@ -167,32 +199,6 @@ cdef class Waveform:
         if h_ret == <_c_api.WaveformHandle>0:
             return None
         return _waveform_from_capi(h_ret)
-
-    def equal(self, Waveform other):
-        return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
-
-    def __eq__(self, Waveform other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, Waveform other):
-        return _c_api.Waveform_not_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
-
-    def __ne__(self, Waveform other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Waveform_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

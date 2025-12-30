@@ -20,17 +20,6 @@ cdef class Adjacency:
 
 
     @classmethod
-    def new(cls, int[:] data, size_t[:] shape, size_t ndim, Connections indexes):
-        cdef _c_api.AdjacencyHandle h
-        h = _c_api.Adjacency_create(&data[0], &shape[0], ndim, indexes.handle if indexes is not None else <_c_api.ConnectionsHandle>0)
-        if h == <_c_api.AdjacencyHandle>0:
-            raise MemoryError("Failed to create Adjacency")
-        cdef Adjacency obj = <Adjacency>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -45,6 +34,49 @@ cdef class Adjacency:
         obj.handle = h
         obj.owned = True
         return obj
+
+    @classmethod
+    def new(cls, int[:] data, size_t[:] shape, size_t ndim, Connections indexes):
+        cdef _c_api.AdjacencyHandle h
+        h = _c_api.Adjacency_create(&data[0], &shape[0], ndim, indexes.handle if indexes is not None else <_c_api.ConnectionsHandle>0)
+        if h == <_c_api.AdjacencyHandle>0:
+            raise MemoryError("Failed to create Adjacency")
+        cdef Adjacency obj = <Adjacency>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.AdjacencyHandle h_ret = _c_api.Adjacency_copy(self.handle)
+        if h_ret == <_c_api.AdjacencyHandle>0:
+            return None
+        return _adjacency_from_capi(h_ret)
+
+    def equal(self, Adjacency other):
+        return _c_api.Adjacency_equal(self.handle, other.handle if other is not None else <_c_api.AdjacencyHandle>0)
+
+    def __eq__(self, Adjacency other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Adjacency other):
+        return _c_api.Adjacency_not_equal(self.handle, other.handle if other is not None else <_c_api.AdjacencyHandle>0)
+
+    def __ne__(self, Adjacency other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Adjacency_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
 
     def indexes(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Adjacency_indexes(self.handle)
@@ -85,22 +117,6 @@ cdef class Adjacency:
             return None
         return _adjacency_from_capi(h_ret)
 
-    def equal(self, Adjacency other):
-        return _c_api.Adjacency_equal(self.handle, other.handle if other is not None else <_c_api.AdjacencyHandle>0)
-
-    def __eq__(self, Adjacency other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, Adjacency other):
-        return _c_api.Adjacency_not_equal(self.handle, other.handle if other is not None else <_c_api.AdjacencyHandle>0)
-
-    def __ne__(self, Adjacency other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
     def sum(self, ):
         return _c_api.Adjacency_sum(self.handle)
 
@@ -115,16 +131,6 @@ cdef class Adjacency:
         if h_ret == <_c_api.AdjacencyHandle>0:
             return None
         return _adjacency_from_capi(h_ret)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Adjacency_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

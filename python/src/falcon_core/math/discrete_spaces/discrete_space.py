@@ -26,6 +26,10 @@ class DiscreteSpace:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> DiscreteSpace:
+        return cls(_CDiscreteSpace.from_json(json))
+
+    @classmethod
     def new(cls, space: UnitSpace, axes: Axes, increasing: Axes) -> DiscreteSpace:
         obj = cls(_CDiscreteSpace.new(space._c if space is not None else None, axes._c if axes is not None else None, increasing._c if increasing is not None else None))
         obj._ref_space = space  # Keep reference alive
@@ -50,9 +54,21 @@ class DiscreteSpace:
         obj._ref_domain = domain  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> DiscreteSpace:
-        return cls(_CDiscreteSpace.from_json(json))
+    def copy(self, ) -> DiscreteSpace:
+        ret = self._c.copy()
+        return DiscreteSpace._from_capi(ret)
+
+    def equal(self, other: DiscreteSpace) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: DiscreteSpace) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def space(self, ) -> UnitSpace:
         ret = self._c.space()
@@ -96,17 +112,9 @@ class DiscreteSpace:
         if ret is None: return None
         return Axes(ret)
 
-    def equal(self, other: DiscreteSpace) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: DiscreteSpace) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

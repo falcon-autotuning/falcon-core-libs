@@ -56,6 +56,12 @@ cdef class MapFloatFloat:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapFloatFloatHandle h_ret = _c_api.MapFloatFloat_copy(self.handle)
+        if h_ret == <_c_api.MapFloatFloatHandle>0:
+            return None
+        return _map_float_float_from_capi(h_ret)
+
     def insert_or_assign(self, float key, float value):
         _c_api.MapFloatFloat_insert_or_assign(self.handle, key, value)
 
@@ -98,21 +104,21 @@ cdef class MapFloatFloat:
             return None
         return _list_pair_float_float_from_capi(h_ret)
 
-    def equal(self, MapFloatFloat b):
-        return _c_api.MapFloatFloat_equal(self.handle, b.handle if b is not None else <_c_api.MapFloatFloatHandle>0)
+    def equal(self, MapFloatFloat other):
+        return _c_api.MapFloatFloat_equal(self.handle, other.handle if other is not None else <_c_api.MapFloatFloatHandle>0)
 
-    def __eq__(self, MapFloatFloat b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapFloatFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapFloatFloat b):
-        return _c_api.MapFloatFloat_not_equal(self.handle, b.handle if b is not None else <_c_api.MapFloatFloatHandle>0)
+    def not_equal(self, MapFloatFloat other):
+        return _c_api.MapFloatFloat_not_equal(self.handle, other.handle if other is not None else <_c_api.MapFloatFloatHandle>0)
 
-    def __ne__(self, MapFloatFloat b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapFloatFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

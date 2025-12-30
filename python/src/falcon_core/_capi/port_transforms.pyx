@@ -18,6 +18,22 @@ cdef class PortTransforms:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.PortTransformsHandle h
+        try:
+            h = _c_api.PortTransforms_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.PortTransformsHandle>0:
+            raise MemoryError("Failed to create PortTransforms")
+        cdef PortTransforms obj = <PortTransforms>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new_empty(cls, ):
         cdef _c_api.PortTransformsHandle h
         h = _c_api.PortTransforms_create_empty()
@@ -39,21 +55,37 @@ cdef class PortTransforms:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.PortTransformsHandle h
+    def copy(self, ):
+        cdef _c_api.PortTransformsHandle h_ret = _c_api.PortTransforms_copy(self.handle)
+        if h_ret == <_c_api.PortTransformsHandle>0:
+            return None
+        return _port_transforms_from_capi(h_ret)
+
+    def equal(self, PortTransforms other):
+        return _c_api.PortTransforms_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
+
+    def __eq__(self, PortTransforms other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, PortTransforms other):
+        return _c_api.PortTransforms_not_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
+
+    def __ne__(self, PortTransforms other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PortTransforms_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.PortTransforms_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.PortTransformsHandle>0:
-            raise MemoryError("Failed to create PortTransforms")
-        cdef PortTransforms obj = <PortTransforms>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def transforms(self, ):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.PortTransforms_transforms(self.handle)
@@ -99,32 +131,6 @@ cdef class PortTransforms:
         if h_ret == <_c_api.PortTransformsHandle>0:
             return None
         return _port_transforms_from_capi(h_ret)
-
-    def equal(self, PortTransforms b):
-        return _c_api.PortTransforms_equal(self.handle, b.handle if b is not None else <_c_api.PortTransformsHandle>0)
-
-    def __eq__(self, PortTransforms b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, PortTransforms b):
-        return _c_api.PortTransforms_not_equal(self.handle, b.handle if b is not None else <_c_api.PortTransformsHandle>0)
-
-    def __ne__(self, PortTransforms b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.PortTransforms_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

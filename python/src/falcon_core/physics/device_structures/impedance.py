@@ -16,14 +16,30 @@ class Impedance:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Impedance:
+        return cls(_CImpedance.from_json(json))
+
+    @classmethod
     def new(cls, connection: Connection, resistance: Any, capacitance: Any) -> Impedance:
         obj = cls(_CImpedance.new(connection._c if connection is not None else None, resistance, capacitance))
         obj._ref_connection = connection  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Impedance:
-        return cls(_CImpedance.from_json(json))
+    def copy(self, ) -> Impedance:
+        ret = self._c.copy()
+        return Impedance._from_capi(ret)
+
+    def equal(self, other: Impedance) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Impedance) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def connection(self, ) -> Connection:
         ret = self._c.connection()
@@ -38,17 +54,9 @@ class Impedance:
         ret = self._c.capacitance()
         return ret
 
-    def equal(self, other: Impedance) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Impedance) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

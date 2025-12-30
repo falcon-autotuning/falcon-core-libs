@@ -20,6 +20,10 @@ class PortTransform:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> PortTransform:
+        return cls(_CPortTransform.from_json(json))
+
+    @classmethod
     def new(cls, port: InstrumentPort, transform: AnalyticFunction) -> PortTransform:
         obj = cls(_CPortTransform.new(port._c if port is not None else None, transform._c if transform is not None else None))
         obj._ref_port = port  # Keep reference alive
@@ -38,9 +42,21 @@ class PortTransform:
         obj._ref_port = port  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> PortTransform:
-        return cls(_CPortTransform.from_json(json))
+    def copy(self, ) -> PortTransform:
+        ret = self._c.copy()
+        return PortTransform._from_capi(ret)
+
+    def equal(self, other: PortTransform) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: PortTransform) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def port(self, ) -> InstrumentPort:
         ret = self._c.port()
@@ -61,17 +77,9 @@ class PortTransform:
         if ret is None: return None
         return FArray(ret)
 
-    def equal(self, b: PortTransform) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: PortTransform) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

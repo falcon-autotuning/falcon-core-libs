@@ -54,6 +54,12 @@ cdef class ListCoupledLabelledDomain:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListCoupledLabelledDomainHandle h_ret = _c_api.ListCoupledLabelledDomain_copy(self.handle)
+        if h_ret == <_c_api.ListCoupledLabelledDomainHandle>0:
+            return None
+        return _list_coupled_labelled_domain_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, CoupledLabelledDomain value):
         cdef _c_api.ListCoupledLabelledDomainHandle h_ret = _c_api.ListCoupledLabelledDomain_fill_value(count, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
@@ -97,21 +103,21 @@ cdef class ListCoupledLabelledDomain:
             return None
         return _list_coupled_labelled_domain_from_capi(h_ret)
 
-    def equal(self, ListCoupledLabelledDomain b):
-        return _c_api.ListCoupledLabelledDomain_equal(self.handle, b.handle if b is not None else <_c_api.ListCoupledLabelledDomainHandle>0)
+    def equal(self, ListCoupledLabelledDomain other):
+        return _c_api.ListCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.ListCoupledLabelledDomainHandle>0)
 
-    def __eq__(self, ListCoupledLabelledDomain b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListCoupledLabelledDomain other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListCoupledLabelledDomain b):
-        return _c_api.ListCoupledLabelledDomain_not_equal(self.handle, b.handle if b is not None else <_c_api.ListCoupledLabelledDomainHandle>0)
+    def not_equal(self, ListCoupledLabelledDomain other):
+        return _c_api.ListCoupledLabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.ListCoupledLabelledDomainHandle>0)
 
-    def __ne__(self, ListCoupledLabelledDomain b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListCoupledLabelledDomain other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

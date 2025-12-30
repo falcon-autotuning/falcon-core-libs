@@ -20,17 +20,6 @@ cdef class Group:
 
 
     @classmethod
-    def new(cls, Channel name, int num_dots, Connections screening_gates, Connections reservoir_gates, Connections plunger_gates, Connections barrier_gates, Connections order):
-        cdef _c_api.GroupHandle h
-        h = _c_api.Group_create(name.handle if name is not None else <_c_api.ChannelHandle>0, num_dots, screening_gates.handle if screening_gates is not None else <_c_api.ConnectionsHandle>0, reservoir_gates.handle if reservoir_gates is not None else <_c_api.ConnectionsHandle>0, plunger_gates.handle if plunger_gates is not None else <_c_api.ConnectionsHandle>0, barrier_gates.handle if barrier_gates is not None else <_c_api.ConnectionsHandle>0, order.handle if order is not None else <_c_api.ConnectionsHandle>0)
-        if h == <_c_api.GroupHandle>0:
-            raise MemoryError("Failed to create Group")
-        cdef Group obj = <Group>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -45,6 +34,49 @@ cdef class Group:
         obj.handle = h
         obj.owned = True
         return obj
+
+    @classmethod
+    def new(cls, Channel name, int num_dots, Connections screening_gates, Connections reservoir_gates, Connections plunger_gates, Connections barrier_gates, Connections order):
+        cdef _c_api.GroupHandle h
+        h = _c_api.Group_create(name.handle if name is not None else <_c_api.ChannelHandle>0, num_dots, screening_gates.handle if screening_gates is not None else <_c_api.ConnectionsHandle>0, reservoir_gates.handle if reservoir_gates is not None else <_c_api.ConnectionsHandle>0, plunger_gates.handle if plunger_gates is not None else <_c_api.ConnectionsHandle>0, barrier_gates.handle if barrier_gates is not None else <_c_api.ConnectionsHandle>0, order.handle if order is not None else <_c_api.ConnectionsHandle>0)
+        if h == <_c_api.GroupHandle>0:
+            raise MemoryError("Failed to create Group")
+        cdef Group obj = <Group>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.GroupHandle h_ret = _c_api.Group_copy(self.handle)
+        if h_ret == <_c_api.GroupHandle>0:
+            return None
+        return _group_from_capi(h_ret)
+
+    def equal(self, Group other):
+        return _c_api.Group_equal(self.handle, other.handle if other is not None else <_c_api.GroupHandle>0)
+
+    def __eq__(self, Group other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Group other):
+        return _c_api.Group_not_equal(self.handle, other.handle if other is not None else <_c_api.GroupHandle>0)
+
+    def __ne__(self, Group other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Group_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
 
     def name(self, ):
         cdef _c_api.ChannelHandle h_ret = _c_api.Group_name(self.handle)
@@ -180,32 +212,6 @@ cdef class Group:
 
     def has_screening_gate(self, Connection screening_gate):
         return _c_api.Group_has_screening_gate(self.handle, screening_gate.handle if screening_gate is not None else <_c_api.ConnectionHandle>0)
-
-    def equal(self, Group other):
-        return _c_api.Group_equal(self.handle, other.handle if other is not None else <_c_api.GroupHandle>0)
-
-    def __eq__(self, Group other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, Group other):
-        return _c_api.Group_not_equal(self.handle, other.handle if other is not None else <_c_api.GroupHandle>0)
-
-    def __ne__(self, Group other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Group_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef Group _group_from_capi(_c_api.GroupHandle h, bint owned=True):
     if h == <_c_api.GroupHandle>0:

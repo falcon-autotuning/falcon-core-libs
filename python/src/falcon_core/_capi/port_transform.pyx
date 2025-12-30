@@ -21,6 +21,22 @@ cdef class PortTransform:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.PortTransformHandle h
+        try:
+            h = _c_api.PortTransform_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.PortTransformHandle>0:
+            raise MemoryError("Failed to create PortTransform")
+        cdef PortTransform obj = <PortTransform>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new(cls, InstrumentPort port, AnalyticFunction transform):
         cdef _c_api.PortTransformHandle h
         h = _c_api.PortTransform_create(port.handle if port is not None else <_c_api.InstrumentPortHandle>0, transform.handle if transform is not None else <_c_api.AnalyticFunctionHandle>0)
@@ -53,21 +69,37 @@ cdef class PortTransform:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.PortTransformHandle h
+    def copy(self, ):
+        cdef _c_api.PortTransformHandle h_ret = _c_api.PortTransform_copy(self.handle)
+        if h_ret == <_c_api.PortTransformHandle>0:
+            return None
+        return _port_transform_from_capi(h_ret)
+
+    def equal(self, PortTransform other):
+        return _c_api.PortTransform_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformHandle>0)
+
+    def __eq__(self, PortTransform other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, PortTransform other):
+        return _c_api.PortTransform_not_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformHandle>0)
+
+    def __ne__(self, PortTransform other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.PortTransform_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.PortTransform_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.PortTransformHandle>0:
-            raise MemoryError("Failed to create PortTransform")
-        cdef PortTransform obj = <PortTransform>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def port(self, ):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.PortTransform_port(self.handle)
@@ -89,32 +121,6 @@ cdef class PortTransform:
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
         return _f_array_double_from_capi(h_ret)
-
-    def equal(self, PortTransform b):
-        return _c_api.PortTransform_equal(self.handle, b.handle if b is not None else <_c_api.PortTransformHandle>0)
-
-    def __eq__(self, PortTransform b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, PortTransform b):
-        return _c_api.PortTransform_not_equal(self.handle, b.handle if b is not None else <_c_api.PortTransformHandle>0)
-
-    def __ne__(self, PortTransform b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.PortTransform_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h, bint owned=True):
     if h == <_c_api.PortTransformHandle>0:

@@ -57,6 +57,12 @@ cdef class MapStringBool:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapStringBoolHandle h_ret = _c_api.MapStringBool_copy(self.handle)
+        if h_ret == <_c_api.MapStringBoolHandle>0:
+            return None
+        return _map_string_bool_from_capi(h_ret)
+
     def insert_or_assign(self, str key, bint value):
         cdef bytes b_key = key.encode("utf-8")
         cdef _c_api.StringHandle s_key = _c_api.String_create(b_key, len(b_key))
@@ -122,21 +128,21 @@ cdef class MapStringBool:
             return None
         return _list_pair_string_bool_from_capi(h_ret)
 
-    def equal(self, MapStringBool b):
-        return _c_api.MapStringBool_equal(self.handle, b.handle if b is not None else <_c_api.MapStringBoolHandle>0)
+    def equal(self, MapStringBool other):
+        return _c_api.MapStringBool_equal(self.handle, other.handle if other is not None else <_c_api.MapStringBoolHandle>0)
 
-    def __eq__(self, MapStringBool b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapStringBool other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapStringBool b):
-        return _c_api.MapStringBool_not_equal(self.handle, b.handle if b is not None else <_c_api.MapStringBoolHandle>0)
+    def not_equal(self, MapStringBool other):
+        return _c_api.MapStringBool_not_equal(self.handle, other.handle if other is not None else <_c_api.MapStringBoolHandle>0)
 
-    def __ne__(self, MapStringBool b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapStringBool other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

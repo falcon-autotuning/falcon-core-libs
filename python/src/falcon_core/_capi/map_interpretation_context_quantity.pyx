@@ -59,6 +59,12 @@ cdef class MapInterpretationContextQuantity:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapInterpretationContextQuantityHandle h_ret = _c_api.MapInterpretationContextQuantity_copy(self.handle)
+        if h_ret == <_c_api.MapInterpretationContextQuantityHandle>0:
+            return None
+        return _map_interpretation_context_quantity_from_capi(h_ret)
+
     def insert_or_assign(self, InterpretationContext key, Quantity value):
         _c_api.MapInterpretationContextQuantity_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0, value.handle if value is not None else <_c_api.QuantityHandle>0)
 
@@ -104,21 +110,21 @@ cdef class MapInterpretationContextQuantity:
             return None
         return _list_pair_interpretation_context_quantity_from_capi(h_ret)
 
-    def equal(self, MapInterpretationContextQuantity b):
-        return _c_api.MapInterpretationContextQuantity_equal(self.handle, b.handle if b is not None else <_c_api.MapInterpretationContextQuantityHandle>0)
+    def equal(self, MapInterpretationContextQuantity other):
+        return _c_api.MapInterpretationContextQuantity_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextQuantityHandle>0)
 
-    def __eq__(self, MapInterpretationContextQuantity b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapInterpretationContextQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapInterpretationContextQuantity b):
-        return _c_api.MapInterpretationContextQuantity_not_equal(self.handle, b.handle if b is not None else <_c_api.MapInterpretationContextQuantityHandle>0)
+    def not_equal(self, MapInterpretationContextQuantity other):
+        return _c_api.MapInterpretationContextQuantity_not_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextQuantityHandle>0)
 
-    def __ne__(self, MapInterpretationContextQuantity b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapInterpretationContextQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

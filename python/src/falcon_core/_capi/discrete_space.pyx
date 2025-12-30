@@ -27,6 +27,22 @@ cdef class DiscreteSpace:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.DiscreteSpaceHandle h
+        try:
+            h = _c_api.DiscreteSpace_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.DiscreteSpaceHandle>0:
+            raise MemoryError("Failed to create DiscreteSpace")
+        cdef DiscreteSpace obj = <DiscreteSpace>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new(cls, UnitSpace space, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing):
         cdef _c_api.DiscreteSpaceHandle h
         h = _c_api.DiscreteSpace_create(space.handle if space is not None else <_c_api.UnitSpaceHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0)
@@ -59,21 +75,37 @@ cdef class DiscreteSpace:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.DiscreteSpaceHandle h
+    def copy(self, ):
+        cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.DiscreteSpace_copy(self.handle)
+        if h_ret == <_c_api.DiscreteSpaceHandle>0:
+            return None
+        return _discrete_space_from_capi(h_ret)
+
+    def equal(self, DiscreteSpace other):
+        return _c_api.DiscreteSpace_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)
+
+    def __eq__(self, DiscreteSpace other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, DiscreteSpace other):
+        return _c_api.DiscreteSpace_not_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)
+
+    def __ne__(self, DiscreteSpace other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.DiscreteSpace_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.DiscreteSpace_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.DiscreteSpaceHandle>0:
-            raise MemoryError("Failed to create DiscreteSpace")
-        cdef DiscreteSpace obj = <DiscreteSpace>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def space(self, ):
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.DiscreteSpace_space(self.handle)
@@ -119,32 +151,6 @@ cdef class DiscreteSpace:
         if h_ret == <_c_api.AxesLabelledControlArrayHandle>0:
             return None
         return _axes_labelled_control_array_from_capi(h_ret, owned=False)
-
-    def equal(self, DiscreteSpace other):
-        return _c_api.DiscreteSpace_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)
-
-    def __eq__(self, DiscreteSpace other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, DiscreteSpace other):
-        return _c_api.DiscreteSpace_not_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)
-
-    def __ne__(self, DiscreteSpace other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.DiscreteSpace_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef DiscreteSpace _discrete_space_from_capi(_c_api.DiscreteSpaceHandle h, bint owned=True):
     if h == <_c_api.DiscreteSpaceHandle>0:

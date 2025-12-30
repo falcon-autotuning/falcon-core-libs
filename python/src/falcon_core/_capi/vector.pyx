@@ -26,6 +26,22 @@ cdef class Vector:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.VectorHandle h
+        try:
+            h = _c_api.Vector_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.VectorHandle>0:
+            raise MemoryError("Failed to create Vector")
+        cdef Vector obj = <Vector>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new(cls, Point start, Point end):
         cdef _c_api.VectorHandle h
         h = _c_api.Vector_create(start.handle if start is not None else <_c_api.PointHandle>0, end.handle if end is not None else <_c_api.PointHandle>0)
@@ -102,21 +118,37 @@ cdef class Vector:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.VectorHandle h
+    def copy(self, ):
+        cdef _c_api.VectorHandle h_ret = _c_api.Vector_copy(self.handle)
+        if h_ret == <_c_api.VectorHandle>0:
+            return None
+        return _vector_from_capi(h_ret)
+
+    def equal(self, Vector other):
+        return _c_api.Vector_equal(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)
+
+    def __eq__(self, Vector other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Vector other):
+        return _c_api.Vector_not_equal(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)
+
+    def __ne__(self, Vector other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Vector_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.Vector_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.VectorHandle>0:
-            raise MemoryError("Failed to create Vector")
-        cdef Vector obj = <Vector>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def end_point(self, ):
         cdef _c_api.PointHandle h_ret = _c_api.Vector_end_point(self.handle)
@@ -345,32 +377,6 @@ cdef class Vector:
 
     def update_unit(self, SymbolUnit unit):
         _c_api.Vector_update_unit(self.handle, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
-
-    def equal(self, Vector b):
-        return _c_api.Vector_equal(self.handle, b.handle if b is not None else <_c_api.VectorHandle>0)
-
-    def __eq__(self, Vector b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, Vector b):
-        return _c_api.Vector_not_equal(self.handle, b.handle if b is not None else <_c_api.VectorHandle>0)
-
-    def __ne__(self, Vector b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Vector_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

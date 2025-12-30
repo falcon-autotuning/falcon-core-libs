@@ -16,17 +16,6 @@ cdef class Domain:
 
 
     @classmethod
-    def new(cls, double min_val, double max_val, bint lesser_bound_contained, bint greater_bound_contained):
-        cdef _c_api.DomainHandle h
-        h = _c_api.Domain_create(min_val, max_val, lesser_bound_contained, greater_bound_contained)
-        if h == <_c_api.DomainHandle>0:
-            raise MemoryError("Failed to create Domain")
-        cdef Domain obj = <Domain>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -41,6 +30,49 @@ cdef class Domain:
         obj.handle = h
         obj.owned = True
         return obj
+
+    @classmethod
+    def new(cls, double min_val, double max_val, bint lesser_bound_contained, bint greater_bound_contained):
+        cdef _c_api.DomainHandle h
+        h = _c_api.Domain_create(min_val, max_val, lesser_bound_contained, greater_bound_contained)
+        if h == <_c_api.DomainHandle>0:
+            raise MemoryError("Failed to create Domain")
+        cdef Domain obj = <Domain>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.DomainHandle h_ret = _c_api.Domain_copy(self.handle)
+        if h_ret == <_c_api.DomainHandle>0:
+            return None
+        return _domain_from_capi(h_ret)
+
+    def equal(self, Domain other):
+        return _c_api.Domain_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
+
+    def __eq__(self, Domain other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Domain other):
+        return _c_api.Domain_not_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
+
+    def __ne__(self, Domain other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Domain_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
 
     def lesser_bound(self, ):
         return _c_api.Domain_lesser_bound(self.handle)
@@ -95,32 +127,6 @@ cdef class Domain:
 
     def transform(self, Domain other, double value):
         return _c_api.Domain_transform(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0, value)
-
-    def equal(self, Domain other):
-        return _c_api.Domain_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
-
-    def __eq__(self, Domain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, Domain other):
-        return _c_api.Domain_not_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
-
-    def __ne__(self, Domain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Domain_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef Domain _domain_from_capi(_c_api.DomainHandle h, bint owned=True):
     if h == <_c_api.DomainHandle>0:

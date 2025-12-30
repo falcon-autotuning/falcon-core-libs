@@ -43,6 +43,12 @@ cdef class PairConnectionDouble:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairConnectionDoubleHandle h_ret = _c_api.PairConnectionDouble_copy(self.handle)
+        if h_ret == <_c_api.PairConnectionDoubleHandle>0:
+            return None
+        return _pair_connection_double_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionDouble_first(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
@@ -52,21 +58,21 @@ cdef class PairConnectionDouble:
     def second(self, ):
         return _c_api.PairConnectionDouble_second(self.handle)
 
-    def equal(self, PairConnectionDouble b):
-        return _c_api.PairConnectionDouble_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionDoubleHandle>0)
+    def equal(self, PairConnectionDouble other):
+        return _c_api.PairConnectionDouble_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionDoubleHandle>0)
 
-    def __eq__(self, PairConnectionDouble b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairConnectionDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairConnectionDouble b):
-        return _c_api.PairConnectionDouble_not_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionDoubleHandle>0)
+    def not_equal(self, PairConnectionDouble other):
+        return _c_api.PairConnectionDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionDoubleHandle>0)
 
-    def __ne__(self, PairConnectionDouble b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairConnectionDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

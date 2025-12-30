@@ -17,22 +17,6 @@ cdef class VoltageStatesResponse:
 
 
     @classmethod
-    def new(cls, str message, DeviceVoltageStates states):
-        cdef bytes b_message = message.encode("utf-8")
-        cdef _c_api.StringHandle s_message = _c_api.String_create(b_message, len(b_message))
-        cdef _c_api.VoltageStatesResponseHandle h
-        try:
-            h = _c_api.VoltageStatesResponse_create(s_message, states.handle if states is not None else <_c_api.DeviceVoltageStatesHandle>0)
-        finally:
-            _c_api.String_destroy(s_message)
-        if h == <_c_api.VoltageStatesResponseHandle>0:
-            raise MemoryError("Failed to create VoltageStatesResponse")
-        cdef VoltageStatesResponse obj = <VoltageStatesResponse>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -48,21 +32,27 @@ cdef class VoltageStatesResponse:
         obj.owned = True
         return obj
 
-    def message(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.VoltageStatesResponse_message(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
+    @classmethod
+    def new(cls, str message, DeviceVoltageStates states):
+        cdef bytes b_message = message.encode("utf-8")
+        cdef _c_api.StringHandle s_message = _c_api.String_create(b_message, len(b_message))
+        cdef _c_api.VoltageStatesResponseHandle h
         try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+            h = _c_api.VoltageStatesResponse_create(s_message, states.handle if states is not None else <_c_api.DeviceVoltageStatesHandle>0)
         finally:
-            _c_api.String_destroy(s_ret)
+            _c_api.String_destroy(s_message)
+        if h == <_c_api.VoltageStatesResponseHandle>0:
+            raise MemoryError("Failed to create VoltageStatesResponse")
+        cdef VoltageStatesResponse obj = <VoltageStatesResponse>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-    def states(self, ):
-        cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
-        if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
+    def copy(self, ):
+        cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
+        if h_ret == <_c_api.VoltageStatesResponseHandle>0:
             return None
-        return _device_voltage_states_from_capi(h_ret)
+        return _voltage_states_response_from_capi(h_ret)
 
     def equal(self, VoltageStatesResponse other):
         return _c_api.VoltageStatesResponse_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
@@ -89,6 +79,22 @@ cdef class VoltageStatesResponse:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
             _c_api.String_destroy(s_ret)
+
+    def message(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.VoltageStatesResponse_message(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def states(self, ):
+        cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
+        if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
+            return None
+        return _device_voltage_states_from_capi(h_ret)
 
 cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
     if h == <_c_api.VoltageStatesResponseHandle>0:

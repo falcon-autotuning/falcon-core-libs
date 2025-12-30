@@ -30,6 +30,10 @@ class Config:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Config:
+        return cls(_CConfig.from_json(json))
+
+    @classmethod
     def new(cls, screening_gates: Connections, plunger_gates: Connections, ohmics: Connections, barrier_gates: Connections, reservoir_gates: Connections, groups: Map, wiring_DC: Impedances, constraints: VoltageConstraints) -> Config:
         obj = cls(_CConfig.new(screening_gates._c if screening_gates is not None else None, plunger_gates._c if plunger_gates is not None else None, ohmics._c if ohmics is not None else None, barrier_gates._c if barrier_gates is not None else None, reservoir_gates._c if reservoir_gates is not None else None, groups._c if groups is not None else None, wiring_DC._c if wiring_DC is not None else None, constraints._c if constraints is not None else None))
         obj._ref_screening_gates = screening_gates  # Keep reference alive
@@ -42,9 +46,21 @@ class Config:
         obj._ref_constraints = constraints  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Config:
-        return cls(_CConfig.from_json(json))
+    def copy(self, ) -> Config:
+        ret = self._c.copy()
+        return Config._from_capi(ret)
+
+    def equal(self, other: Config) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Config) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def num_unique_channels(self, ) -> None:
         ret = self._c.num_unique_channels()
@@ -503,17 +519,9 @@ class Config:
         ret = self._c.has_screening_gate(screening_gate._c if screening_gate is not None else None)
         return ret
 
-    def equal(self, other: Config) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Config) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

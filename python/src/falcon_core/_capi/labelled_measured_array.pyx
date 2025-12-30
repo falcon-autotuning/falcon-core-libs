@@ -37,6 +37,38 @@ cdef class LabelledMeasuredArray:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_copy(self.handle)
+        if h_ret == <_c_api.LabelledMeasuredArrayHandle>0:
+            return None
+        return _labelled_measured_array_from_capi(h_ret)
+
+    def equal(self, LabelledMeasuredArray other):
+        return _c_api.LabelledMeasuredArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
+
+    def __eq__(self, LabelledMeasuredArray other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, LabelledMeasuredArray other):
+        return _c_api.LabelledMeasuredArray_not_equal(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
+
+    def __ne__(self, LabelledMeasuredArray other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.LabelledMeasuredArray_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
     @staticmethod
     def from_farray(FArrayDouble farray, AcquisitionContext label):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_from_farray(farray.handle if farray is not None else <_c_api.FArrayDoubleHandle>0, label.handle if label is not None else <_c_api.AcquisitionContextHandle>0)
@@ -295,22 +327,6 @@ cdef class LabelledMeasuredArray:
             return None
         return _labelled_measured_array_from_capi(h_ret)
 
-    def equal(self, LabelledMeasuredArray other):
-        return _c_api.LabelledMeasuredArray_equal(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
-
-    def __eq__(self, LabelledMeasuredArray other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, LabelledMeasuredArray other):
-        return _c_api.LabelledMeasuredArray_not_equal(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
-
-    def __ne__(self, LabelledMeasuredArray other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
     def greater_than(self, double value):
         return _c_api.LabelledMeasuredArray_greater_than(self.handle, value)
 
@@ -367,16 +383,6 @@ cdef class LabelledMeasuredArray:
 
     def get_summed_diff_array_of_squares(self, LabelledMeasuredArray other):
         return _c_api.LabelledMeasuredArray_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.LabelledMeasuredArrayHandle>0)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.LabelledMeasuredArray_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

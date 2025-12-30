@@ -17,6 +17,10 @@ class Impedances:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Impedances:
+        return cls(_CImpedances.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> Impedances:
         return cls(_CImpedances.new_empty())
 
@@ -26,9 +30,21 @@ class Impedances:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Impedances:
-        return cls(_CImpedances.from_json(json))
+    def copy(self, ) -> Impedances:
+        ret = self._c.copy()
+        return Impedances._from_capi(ret)
+
+    def equal(self, other: Impedances) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Impedances) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def push_back(self, value: Impedance) -> None:
         ret = self._c.push_back(value._c if value is not None else None)
@@ -72,18 +88,6 @@ class Impedances:
         ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, other: Impedances) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Impedances) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -99,6 +103,10 @@ class Impedances:
     @classmethod
     def from_list(cls, items):
         return cls(_CImpedances.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

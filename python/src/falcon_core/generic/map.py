@@ -45,6 +45,13 @@ class _MapFactory:
         # Fallback to raising error if no suitable constructor found
         raise TypeError(f'No suitable constructor found for Map[{self.element_type}] with args={args}')
 
+    def from_dict(self, data):
+        """Create a Map from a Python dictionary."""
+        instance = self()
+        for k, v in data.items():
+            instance.insert(k, v)
+        return instance
+
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""
         attr = getattr(self._c_class, name, None)
@@ -72,11 +79,19 @@ class Map:
 
     @classmethod
     def __class_getitem__(cls, types):
+        def resolve_type(t):
+            if hasattr(t, '_c_class'):
+                return t._c_class
+            if isinstance(t, tuple):
+                return tuple(resolve_type(tt) for tt in t)
+            return t
+        
+        resolved_types = resolve_type(types)
+        from ._map_registry import MAP_REGISTRY
         """Enable Map[K, V] syntax."""
         if not isinstance(types, tuple) or len(types) != 2:
             raise TypeError(f"Map requires 2 type parameters")
-        from ._map_registry import MAP_REGISTRY
-        c_class = MAP_REGISTRY.get(types)
+        c_class = MAP_REGISTRY.get(resolved_types)
         if c_class is None:
             raise TypeError(f"Map does not support types: {types}")
         return _MapFactory(types, c_class)
@@ -96,7 +111,7 @@ class Map:
                 # Unwrap Map arguments to their Cython objects
                 unwrapped_args = []
                 for arg in args:
-                    if isinstance(arg, Map):
+                    if hasattr(arg, '_c'):
                         unwrapped_args.append(arg._c)
                     else:
                         unwrapped_args.append(arg)

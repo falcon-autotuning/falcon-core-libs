@@ -21,6 +21,22 @@ class MeasuredArray1D:
     def from_json(cls, json: str) -> MeasuredArray1D:
         return cls(_CMeasuredArray1D.from_json(json))
 
+    def copy(self, ) -> MeasuredArray1D:
+        ret = self._c.copy()
+        return MeasuredArray1D._from_capi(ret)
+
+    def equal(self, other: MeasuredArray1D) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: MeasuredArray1D) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
     @classmethod
     def from_data(cls, data: Any, shape: Any, ndim: Any) -> MeasuredArray1D:
         ret = _CMeasuredArray1D.from_data(data, shape, ndim)
@@ -249,14 +265,6 @@ class MeasuredArray1D:
         ret = self._c.max_measured_array(other._c if other is not None else None)
         return MeasuredArray1D._from_capi(ret)
 
-    def equal(self, other: MeasuredArray1D) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: MeasuredArray1D) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
     def greater_than(self, value: Any) -> None:
         ret = self._c.greater_than(value)
         return ret
@@ -308,10 +316,6 @@ class MeasuredArray1D:
 
     def get_summed_diff_array_of_squares(self, other: MeasuredArray1D) -> None:
         ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
         return ret
 
     def __len__(self):
@@ -394,6 +398,10 @@ class MeasuredArray1D:
     def __neg__(self):
         """Operator overload for unary -"""
         return self.negation()
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

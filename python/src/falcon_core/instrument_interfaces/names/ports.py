@@ -20,6 +20,10 @@ class Ports:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Ports:
+        return cls(_CPorts.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> Ports:
         return cls(_CPorts.new_empty())
 
@@ -29,9 +33,21 @@ class Ports:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Ports:
-        return cls(_CPorts.from_json(json))
+    def copy(self, ) -> Ports:
+        ret = self._c.copy()
+        return Ports._from_capi(ret)
+
+    def equal(self, other: Ports) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Ports) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def ports(self, ) -> List:
         ret = self._c.ports()
@@ -118,18 +134,6 @@ class Ports:
         ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, b: Ports) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Ports) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -145,6 +149,10 @@ class Ports:
     @classmethod
     def from_list(cls, items):
         return cls(_CPorts.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

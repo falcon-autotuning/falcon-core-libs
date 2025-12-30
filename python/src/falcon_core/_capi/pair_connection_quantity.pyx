@@ -44,6 +44,12 @@ cdef class PairConnectionQuantity:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairConnectionQuantityHandle h_ret = _c_api.PairConnectionQuantity_copy(self.handle)
+        if h_ret == <_c_api.PairConnectionQuantityHandle>0:
+            return None
+        return _pair_connection_quantity_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionQuantity_first(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
@@ -56,21 +62,21 @@ cdef class PairConnectionQuantity:
             return None
         return _quantity_from_capi(h_ret)
 
-    def equal(self, PairConnectionQuantity b):
-        return _c_api.PairConnectionQuantity_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionQuantityHandle>0)
+    def equal(self, PairConnectionQuantity other):
+        return _c_api.PairConnectionQuantity_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionQuantityHandle>0)
 
-    def __eq__(self, PairConnectionQuantity b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairConnectionQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairConnectionQuantity b):
-        return _c_api.PairConnectionQuantity_not_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionQuantityHandle>0)
+    def not_equal(self, PairConnectionQuantity other):
+        return _c_api.PairConnectionQuantity_not_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionQuantityHandle>0)
 
-    def __ne__(self, PairConnectionQuantity b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairConnectionQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

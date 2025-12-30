@@ -71,9 +71,17 @@ class InterpretationContainer:
 
     @classmethod
     def __class_getitem__(cls, types):
-        """Enable InterpretationContainer[T] syntax."""
+        def resolve_type(t):
+            if hasattr(t, '_c_class'):
+                return t._c_class
+            if isinstance(t, tuple):
+                return tuple(resolve_type(tt) for tt in t)
+            return t
+        
+        resolved_types = resolve_type(types)
         from ._interpretation_container_registry import INTERPRETATIONCONTAINER_REGISTRY
-        c_class = INTERPRETATIONCONTAINER_REGISTRY.get(types)
+        """Enable InterpretationContainer[T] syntax."""
+        c_class = INTERPRETATIONCONTAINER_REGISTRY.get(resolved_types)
         if c_class is None:
             raise TypeError(f"InterpretationContainer does not support type: {types}")
         return _InterpretationContainerFactory(types, c_class)
@@ -93,7 +101,7 @@ class InterpretationContainer:
                 # Unwrap InterpretationContainer arguments to their Cython objects
                 unwrapped_args = []
                 for arg in args:
-                    if isinstance(arg, InterpretationContainer):
+                    if hasattr(arg, '_c'):
                         unwrapped_args.append(arg._c)
                     else:
                         unwrapped_args.append(arg)

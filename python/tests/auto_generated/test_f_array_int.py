@@ -7,10 +7,18 @@ class TestFArrayInt:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: FArrayInt_create_empty
-            self.obj = FArray[int]()
+            # Using recipe for FArrayInt
+            self.obj = FArray[int].from_list([0])
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_from_shape(self):
         if self.obj is None:
@@ -64,7 +72,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_equals_farray(FArray[int].from_list([1]))
+            self.obj.plus_equals_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -88,7 +96,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plus_farray(FArray[int].from_list([1]))
+            self.obj.plus_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -112,7 +120,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_equals_farray(FArray[int].from_list([1]))
+            self.obj.minus_equals_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -136,7 +144,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.minus_farray(FArray[int].from_list([1]))
+            self.obj.minus_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -168,7 +176,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_equals_farray(FArray[int].from_list([1]))
+            self.obj.times_equals_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -192,7 +200,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.times_farray(FArray[int].from_list([1]))
+            self.obj.times_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -216,7 +224,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divides_equals_farray(FArray[int].from_list([1]))
+            self.obj.divides_equals_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -240,7 +248,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.divides_farray(FArray[int].from_list([1]))
+            self.obj.divides_farray(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -304,7 +312,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.min_arraywise(FArray[int].from_list([1]))
+            self.obj.min_arraywise(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -320,7 +328,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.max_arraywise(FArray[int].from_list([1]))
+            self.obj.max_arraywise(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -328,7 +336,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(FArray[int].from_list([1]))
+            self.obj.equal(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -336,7 +344,7 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(FArray[int].from_list([1]))
+            self.obj.not_equal(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -440,14 +448,14 @@ class TestFArrayInt:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_summed_diff_array_of_squares(FArray[int].from_list([1]))
+            self.obj.get_summed_diff_array_of_squares(FArray[int].from_list([0]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_to_json_string(self):
+    def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.to_json_string()
+            self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

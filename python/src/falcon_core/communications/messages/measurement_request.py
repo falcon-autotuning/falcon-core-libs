@@ -19,6 +19,10 @@ class MeasurementRequest:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> MeasurementRequest:
+        return cls(_CMeasurementRequest.from_json(json))
+
+    @classmethod
     def new(cls, message: str, measurement_name: str, waveforms: List, getters: Ports, meter_transforms: Map, time_domain: LabelledDomain) -> MeasurementRequest:
         obj = cls(_CMeasurementRequest.new(message, measurement_name, waveforms._c if waveforms is not None else None, getters._c if getters is not None else None, meter_transforms._c if meter_transforms is not None else None, time_domain._c if time_domain is not None else None))
         obj._ref_waveforms = waveforms  # Keep reference alive
@@ -27,9 +31,21 @@ class MeasurementRequest:
         obj._ref_time_domain = time_domain  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> MeasurementRequest:
-        return cls(_CMeasurementRequest.from_json(json))
+    def copy(self, ) -> MeasurementRequest:
+        ret = self._c.copy()
+        return MeasurementRequest._from_capi(ret)
+
+    def equal(self, other: MeasurementRequest) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: MeasurementRequest) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def measurement_name(self, ) -> str:
         ret = self._c.measurement_name()
@@ -59,17 +75,9 @@ class MeasurementRequest:
         ret = self._c.message()
         return ret
 
-    def equal(self, other: MeasurementRequest) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: MeasurementRequest) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -2,22 +2,53 @@ import pytest
 import array
 from falcon_core.autotuner_interfaces.names.channel import Channel
 from falcon_core.autotuner_interfaces.names.channels import Channels
-from falcon_core.autotuner_interfaces.names.channels import Channels
 
 class TestChannels:
     def setup_method(self):
         self.obj = None
         try:
             # Found empty constructor: Channels_create_empty
-            self.obj = Channels.create_empty()
+            self.obj = Channels.new_empty()
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(None)
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(None)
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_intersection(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(Channels.new_empty())
+            self.obj.intersection(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -90,29 +121,5 @@ class TestChannels:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
             self.obj.index(Channel.new('test_channel'))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(Channels.new_empty())
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(Channels.new_empty())
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

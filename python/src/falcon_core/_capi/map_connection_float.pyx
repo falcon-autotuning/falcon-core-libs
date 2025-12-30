@@ -58,6 +58,12 @@ cdef class MapConnectionFloat:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapConnectionFloatHandle h_ret = _c_api.MapConnectionFloat_copy(self.handle)
+        if h_ret == <_c_api.MapConnectionFloatHandle>0:
+            return None
+        return _map_connection_float_from_capi(h_ret)
+
     def insert_or_assign(self, Connection key, float value):
         _c_api.MapConnectionFloat_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value)
 
@@ -100,21 +106,21 @@ cdef class MapConnectionFloat:
             return None
         return _list_pair_connection_float_from_capi(h_ret)
 
-    def equal(self, MapConnectionFloat b):
-        return _c_api.MapConnectionFloat_equal(self.handle, b.handle if b is not None else <_c_api.MapConnectionFloatHandle>0)
+    def equal(self, MapConnectionFloat other):
+        return _c_api.MapConnectionFloat_equal(self.handle, other.handle if other is not None else <_c_api.MapConnectionFloatHandle>0)
 
-    def __eq__(self, MapConnectionFloat b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapConnectionFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapConnectionFloat b):
-        return _c_api.MapConnectionFloat_not_equal(self.handle, b.handle if b is not None else <_c_api.MapConnectionFloatHandle>0)
+    def not_equal(self, MapConnectionFloat other):
+        return _c_api.MapConnectionFloat_not_equal(self.handle, other.handle if other is not None else <_c_api.MapConnectionFloatHandle>0)
 
-    def __ne__(self, MapConnectionFloat b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapConnectionFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

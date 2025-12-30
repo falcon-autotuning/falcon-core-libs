@@ -45,6 +45,12 @@ cdef class LabelledArraysLabelledMeasuredArray:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray_copy(self.handle)
+        if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
+            return None
+        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+
     def arrays(self, ):
         cdef _c_api.ListLabelledMeasuredArrayHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray_arrays(self.handle)
         if h_ret == <_c_api.ListLabelledMeasuredArrayHandle>0:

@@ -72,11 +72,19 @@ class Pair:
 
     @classmethod
     def __class_getitem__(cls, types):
+        def resolve_type(t):
+            if hasattr(t, '_c_class'):
+                return t._c_class
+            if isinstance(t, tuple):
+                return tuple(resolve_type(tt) for tt in t)
+            return t
+        
+        resolved_types = resolve_type(types)
+        from ._pair_registry import PAIR_REGISTRY
         """Enable Pair[K, V] syntax."""
         if not isinstance(types, tuple) or len(types) != 2:
             raise TypeError(f"Pair requires 2 type parameters")
-        from ._pair_registry import PAIR_REGISTRY
-        c_class = PAIR_REGISTRY.get(types)
+        c_class = PAIR_REGISTRY.get(resolved_types)
         if c_class is None:
             raise TypeError(f"Pair does not support types: {types}")
         return _PairFactory(types, c_class)
@@ -96,7 +104,7 @@ class Pair:
                 # Unwrap Pair arguments to their Cython objects
                 unwrapped_args = []
                 for arg in args:
-                    if isinstance(arg, Pair):
+                    if hasattr(arg, '_c'):
                         unwrapped_args.append(arg._c)
                     else:
                         unwrapped_args.append(arg)

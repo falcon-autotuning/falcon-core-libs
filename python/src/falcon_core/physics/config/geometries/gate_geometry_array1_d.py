@@ -21,15 +21,31 @@ class GateGeometryArray1D:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> GateGeometryArray1D:
+        return cls(_CGateGeometryArray1D.from_json(json))
+
+    @classmethod
     def new(cls, lineararray: Connections, screening_gates: Connections) -> GateGeometryArray1D:
         obj = cls(_CGateGeometryArray1D.new(lineararray._c if lineararray is not None else None, screening_gates._c if screening_gates is not None else None))
         obj._ref_lineararray = lineararray  # Keep reference alive
         obj._ref_screening_gates = screening_gates  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> GateGeometryArray1D:
-        return cls(_CGateGeometryArray1D.from_json(json))
+    def copy(self, ) -> GateGeometryArray1D:
+        ret = self._c.copy()
+        return GateGeometryArray1D._from_capi(ret)
+
+    def equal(self, other: GateGeometryArray1D) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: GateGeometryArray1D) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def append_central_gate(self, left_neighbor: Connection, selected_gate: Connection, right_neighbor: Connection) -> None:
         ret = self._c.append_central_gate(left_neighbor._c if left_neighbor is not None else None, selected_gate._c if selected_gate is not None else None, right_neighbor._c if right_neighbor is not None else None)
@@ -90,17 +106,9 @@ class GateGeometryArray1D:
         if ret is None: return None
         return Connections._from_capi(ret)
 
-    def equal(self, other: GateGeometryArray1D) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: GateGeometryArray1D) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

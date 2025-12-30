@@ -45,6 +45,12 @@ cdef class LabelledArraysLabelledControlArray:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.LabelledArraysLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_copy(self.handle)
+        if h_ret == <_c_api.LabelledArraysLabelledControlArrayHandle>0:
+            return None
+        return _labelled_arrays_labelled_control_array_from_capi(h_ret)
+
     def arrays(self, ):
         cdef _c_api.ListLabelledControlArrayHandle h_ret = _c_api.LabelledArraysLabelledControlArray_arrays(self.handle)
         if h_ret == <_c_api.ListLabelledControlArrayHandle>0:

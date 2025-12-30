@@ -17,6 +17,10 @@ class DotGatesWithNeighbors:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> DotGatesWithNeighbors:
+        return cls(_CDotGatesWithNeighbors.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> DotGatesWithNeighbors:
         return cls(_CDotGatesWithNeighbors.new_empty())
 
@@ -26,9 +30,21 @@ class DotGatesWithNeighbors:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> DotGatesWithNeighbors:
-        return cls(_CDotGatesWithNeighbors.from_json(json))
+    def copy(self, ) -> DotGatesWithNeighbors:
+        ret = self._c.copy()
+        return DotGatesWithNeighbors._from_capi(ret)
+
+    def equal(self, other: DotGatesWithNeighbors) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: DotGatesWithNeighbors) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def is_plunger_gates(self, ) -> None:
         ret = self._c.is_plunger_gates()
@@ -80,18 +96,6 @@ class DotGatesWithNeighbors:
         ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, other: DotGatesWithNeighbors) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: DotGatesWithNeighbors) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -107,6 +111,10 @@ class DotGatesWithNeighbors:
     @classmethod
     def from_list(cls, items):
         return cls(_CDotGatesWithNeighbors.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

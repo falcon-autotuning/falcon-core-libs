@@ -55,6 +55,12 @@ cdef class AxesDiscretizer:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.AxesDiscretizerHandle h_ret = _c_api.AxesDiscretizer_copy(self.handle)
+        if h_ret == <_c_api.AxesDiscretizerHandle>0:
+            return None
+        return _axes_discretizer_from_capi(h_ret)
+
     def push_back(self, Discretizer value):
         _c_api.AxesDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
 
@@ -91,21 +97,21 @@ cdef class AxesDiscretizer:
             return None
         return _axes_discretizer_from_capi(h_ret)
 
-    def equal(self, AxesDiscretizer b):
-        return _c_api.AxesDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.AxesDiscretizerHandle>0)
+    def equal(self, AxesDiscretizer other):
+        return _c_api.AxesDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.AxesDiscretizerHandle>0)
 
-    def __eq__(self, AxesDiscretizer b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, AxesDiscretizer other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, AxesDiscretizer b):
-        return _c_api.AxesDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.AxesDiscretizerHandle>0)
+    def not_equal(self, AxesDiscretizer other):
+        return _c_api.AxesDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesDiscretizerHandle>0)
 
-    def __ne__(self, AxesDiscretizer b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, AxesDiscretizer other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

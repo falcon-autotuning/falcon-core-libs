@@ -54,6 +54,12 @@ cdef class ListPairInterpretationContextQuantity:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListPairInterpretationContextQuantityHandle h_ret = _c_api.ListPairInterpretationContextQuantity_copy(self.handle)
+        if h_ret == <_c_api.ListPairInterpretationContextQuantityHandle>0:
+            return None
+        return _list_pair_interpretation_context_quantity_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, PairInterpretationContextQuantity value):
         cdef _c_api.ListPairInterpretationContextQuantityHandle h_ret = _c_api.ListPairInterpretationContextQuantity_fill_value(count, value.handle if value is not None else <_c_api.PairInterpretationContextQuantityHandle>0)
@@ -97,21 +103,21 @@ cdef class ListPairInterpretationContextQuantity:
             return None
         return _list_pair_interpretation_context_quantity_from_capi(h_ret)
 
-    def equal(self, ListPairInterpretationContextQuantity b):
-        return _c_api.ListPairInterpretationContextQuantity_equal(self.handle, b.handle if b is not None else <_c_api.ListPairInterpretationContextQuantityHandle>0)
+    def equal(self, ListPairInterpretationContextQuantity other):
+        return _c_api.ListPairInterpretationContextQuantity_equal(self.handle, other.handle if other is not None else <_c_api.ListPairInterpretationContextQuantityHandle>0)
 
-    def __eq__(self, ListPairInterpretationContextQuantity b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListPairInterpretationContextQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListPairInterpretationContextQuantity b):
-        return _c_api.ListPairInterpretationContextQuantity_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPairInterpretationContextQuantityHandle>0)
+    def not_equal(self, ListPairInterpretationContextQuantity other):
+        return _c_api.ListPairInterpretationContextQuantity_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPairInterpretationContextQuantityHandle>0)
 
-    def __ne__(self, ListPairInterpretationContextQuantity b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListPairInterpretationContextQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

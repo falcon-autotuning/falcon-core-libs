@@ -20,6 +20,22 @@ class ControlArray:
     def from_json(cls, json: str) -> ControlArray:
         return cls(_CControlArray.from_json(json))
 
+    def copy(self, ) -> ControlArray:
+        ret = self._c.copy()
+        return ControlArray._from_capi(ret)
+
+    def equal(self, other: ControlArray) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: ControlArray) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
     @classmethod
     def from_data(cls, data: Any, shape: Any, ndim: Any) -> ControlArray:
         ret = _CControlArray.from_data(data, shape, ndim)
@@ -170,14 +186,6 @@ class ControlArray:
         ret = self._c.max_control_array(other._c if other is not None else None)
         return ControlArray._from_capi(ret)
 
-    def equal(self, other: ControlArray) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: ControlArray) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
     def greater_than(self, value: Any) -> None:
         ret = self._c.greater_than(value)
         return ret
@@ -226,10 +234,6 @@ class ControlArray:
 
     def get_summed_diff_array_of_squares(self, other: ControlArray) -> None:
         ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
         return ret
 
     def __len__(self):
@@ -298,6 +302,10 @@ class ControlArray:
     def __neg__(self):
         """Operator overload for unary -"""
         return self.negation()
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

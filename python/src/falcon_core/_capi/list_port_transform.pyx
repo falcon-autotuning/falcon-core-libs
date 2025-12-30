@@ -54,6 +54,12 @@ cdef class ListPortTransform:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListPortTransformHandle h_ret = _c_api.ListPortTransform_copy(self.handle)
+        if h_ret == <_c_api.ListPortTransformHandle>0:
+            return None
+        return _list_port_transform_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, PortTransform value):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.ListPortTransform_fill_value(count, value.handle if value is not None else <_c_api.PortTransformHandle>0)
@@ -97,21 +103,21 @@ cdef class ListPortTransform:
             return None
         return _list_port_transform_from_capi(h_ret)
 
-    def equal(self, ListPortTransform b):
-        return _c_api.ListPortTransform_equal(self.handle, b.handle if b is not None else <_c_api.ListPortTransformHandle>0)
+    def equal(self, ListPortTransform other):
+        return _c_api.ListPortTransform_equal(self.handle, other.handle if other is not None else <_c_api.ListPortTransformHandle>0)
 
-    def __eq__(self, ListPortTransform b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListPortTransform other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListPortTransform b):
-        return _c_api.ListPortTransform_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPortTransformHandle>0)
+    def not_equal(self, ListPortTransform other):
+        return _c_api.ListPortTransform_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPortTransformHandle>0)
 
-    def __ne__(self, ListPortTransform b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListPortTransform other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

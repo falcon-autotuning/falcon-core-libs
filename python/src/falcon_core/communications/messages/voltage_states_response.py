@@ -16,23 +16,18 @@ class VoltageStatesResponse:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> VoltageStatesResponse:
+        return cls(_CVoltageStatesResponse.from_json(json))
+
+    @classmethod
     def new(cls, message: str, states: DeviceVoltageStates) -> VoltageStatesResponse:
         obj = cls(_CVoltageStatesResponse.new(message, states._c if states is not None else None))
         obj._ref_states = states  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> VoltageStatesResponse:
-        return cls(_CVoltageStatesResponse.from_json(json))
-
-    def message(self, ) -> str:
-        ret = self._c.message()
-        return ret
-
-    def states(self, ) -> DeviceVoltageStates:
-        ret = self._c.states()
-        if ret is None: return None
-        return DeviceVoltageStates._from_capi(ret)
+    def copy(self, ) -> VoltageStatesResponse:
+        ret = self._c.copy()
+        return VoltageStatesResponse._from_capi(ret)
 
     def equal(self, other: VoltageStatesResponse) -> None:
         ret = self._c.equal(other._c if other is not None else None)
@@ -45,6 +40,19 @@ class VoltageStatesResponse:
     def to_json(self, ) -> str:
         ret = self._c.to_json()
         return ret
+
+    def message(self, ) -> str:
+        ret = self._c.message()
+        return ret
+
+    def states(self, ) -> DeviceVoltageStates:
+        ret = self._c.states()
+        if ret is None: return None
+        return DeviceVoltageStates._from_capi(ret)
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

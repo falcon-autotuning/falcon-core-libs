@@ -16,6 +16,22 @@ cdef class Time:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.TimeHandle h
+        try:
+            h = _c_api.Time_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.TimeHandle>0:
+            raise MemoryError("Failed to create Time")
+        cdef Time obj = <Time>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new_now(cls, ):
         cdef _c_api.TimeHandle h
         h = _c_api.Time_create_now()
@@ -37,21 +53,37 @@ cdef class Time:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.TimeHandle h
+    def copy(self, ):
+        cdef _c_api.TimeHandle h_ret = _c_api.Time_copy(self.handle)
+        if h_ret == <_c_api.TimeHandle>0:
+            return None
+        return _time_from_capi(h_ret)
+
+    def equal(self, Time other):
+        return _c_api.Time_equal(self.handle, other.handle if other is not None else <_c_api.TimeHandle>0)
+
+    def __eq__(self, Time other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Time other):
+        return _c_api.Time_not_equal(self.handle, other.handle if other is not None else <_c_api.TimeHandle>0)
+
+    def __ne__(self, Time other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Time_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.Time_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.TimeHandle>0:
-            raise MemoryError("Failed to create Time")
-        cdef Time obj = <Time>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def micro_seconds_since_epoch(self, ):
         return _c_api.Time_micro_seconds_since_epoch(self.handle)
@@ -62,32 +94,6 @@ cdef class Time:
     def to_string(self, ):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Time_to_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
-
-    def equal(self, Time b):
-        return _c_api.Time_equal(self.handle, b.handle if b is not None else <_c_api.TimeHandle>0)
-
-    def __eq__(self, Time b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, Time b):
-        return _c_api.Time_not_equal(self.handle, b.handle if b is not None else <_c_api.TimeHandle>0)
-
-    def __ne__(self, Time b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Time_to_json_string(self.handle)
         if s_ret == <_c_api.StringHandle>0:
             return ""
         try:

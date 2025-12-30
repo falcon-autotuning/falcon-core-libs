@@ -54,6 +54,12 @@ cdef class ListControlArray:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListControlArrayHandle h_ret = _c_api.ListControlArray_copy(self.handle)
+        if h_ret == <_c_api.ListControlArrayHandle>0:
+            return None
+        return _list_control_array_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, ControlArray value):
         cdef _c_api.ListControlArrayHandle h_ret = _c_api.ListControlArray_fill_value(count, value.handle if value is not None else <_c_api.ControlArrayHandle>0)
@@ -97,21 +103,21 @@ cdef class ListControlArray:
             return None
         return _list_control_array_from_capi(h_ret)
 
-    def equal(self, ListControlArray b):
-        return _c_api.ListControlArray_equal(self.handle, b.handle if b is not None else <_c_api.ListControlArrayHandle>0)
+    def equal(self, ListControlArray other):
+        return _c_api.ListControlArray_equal(self.handle, other.handle if other is not None else <_c_api.ListControlArrayHandle>0)
 
-    def __eq__(self, ListControlArray b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListControlArray other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListControlArray b):
-        return _c_api.ListControlArray_not_equal(self.handle, b.handle if b is not None else <_c_api.ListControlArrayHandle>0)
+    def not_equal(self, ListControlArray other):
+        return _c_api.ListControlArray_not_equal(self.handle, other.handle if other is not None else <_c_api.ListControlArrayHandle>0)
 
-    def __ne__(self, ListControlArray b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListControlArray other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

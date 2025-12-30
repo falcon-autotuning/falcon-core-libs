@@ -53,6 +53,12 @@ cdef class ListFloat:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListFloatHandle h_ret = _c_api.ListFloat_copy(self.handle)
+        if h_ret == <_c_api.ListFloatHandle>0:
+            return None
+        return _list_float_from_capi(h_ret)
+
     @staticmethod
     def allocate(size_t count):
         cdef _c_api.ListFloatHandle h_ret = _c_api.ListFloat_allocate(count)
@@ -100,21 +106,21 @@ cdef class ListFloat:
             return None
         return _list_float_from_capi(h_ret)
 
-    def equal(self, ListFloat b):
-        return _c_api.ListFloat_equal(self.handle, b.handle if b is not None else <_c_api.ListFloatHandle>0)
+    def equal(self, ListFloat other):
+        return _c_api.ListFloat_equal(self.handle, other.handle if other is not None else <_c_api.ListFloatHandle>0)
 
-    def __eq__(self, ListFloat b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListFloat b):
-        return _c_api.ListFloat_not_equal(self.handle, b.handle if b is not None else <_c_api.ListFloatHandle>0)
+    def not_equal(self, ListFloat other):
+        return _c_api.ListFloat_not_equal(self.handle, other.handle if other is not None else <_c_api.ListFloatHandle>0)
 
-    def __ne__(self, ListFloat b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

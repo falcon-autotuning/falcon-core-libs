@@ -15,6 +15,10 @@ class SymbolUnit:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> SymbolUnit:
+        return cls(_CSymbolUnit.from_json(json))
+
+    @classmethod
     def new_meter(cls, ) -> SymbolUnit:
         return cls(_CSymbolUnit.new_meter())
 
@@ -238,9 +242,21 @@ class SymbolUnit:
     def new_watts_per_meter_kelvin(cls, ) -> SymbolUnit:
         return cls(_CSymbolUnit.new_watts_per_meter_kelvin())
 
-    @classmethod
-    def from_json(cls, json: str) -> SymbolUnit:
-        return cls(_CSymbolUnit.from_json(json))
+    def copy(self, ) -> SymbolUnit:
+        ret = self._c.copy()
+        return SymbolUnit._from_capi(ret)
+
+    def equal(self, other: SymbolUnit) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: SymbolUnit) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def symbol(self, ) -> str:
         ret = self._c.symbol()
@@ -274,18 +290,6 @@ class SymbolUnit:
         ret = self._c.is_compatible_with(other._c if other is not None else None)
         return ret
 
-    def equal(self, other: SymbolUnit) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: SymbolUnit) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __mul__(self, other):
         """Operator overload for *"""
         if isinstance(other, (int, float)):
@@ -297,6 +301,10 @@ class SymbolUnit:
         if isinstance(other, (int, float)):
             return self.division(other)
         return NotImplemented
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

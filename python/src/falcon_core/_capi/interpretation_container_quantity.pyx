@@ -52,6 +52,12 @@ cdef class InterpretationContainerQuantity:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.InterpretationContainerQuantityHandle h_ret = _c_api.InterpretationContainerQuantity_copy(self.handle)
+        if h_ret == <_c_api.InterpretationContainerQuantityHandle>0:
+            return None
+        return _interpretation_container_quantity_from_capi(h_ret)
+
     def unit(self, ):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContainerQuantity_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:

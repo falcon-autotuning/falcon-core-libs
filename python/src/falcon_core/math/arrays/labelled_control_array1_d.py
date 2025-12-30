@@ -25,6 +25,22 @@ class LabelledControlArray1D:
     def from_json(cls, json: str) -> LabelledControlArray1D:
         return cls(_CLabelledControlArray1D.from_json(json))
 
+    def copy(self, ) -> LabelledControlArray1D:
+        ret = self._c.copy()
+        return LabelledControlArray1D._from_capi(ret)
+
+    def equal(self, other: LabelledControlArray1D) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: LabelledControlArray1D) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
+
     @classmethod
     def from_farray(cls, farray: FArray, label: AcquisitionContext) -> LabelledControlArray1D:
         ret = _CLabelledControlArray1D.from_farray(farray._c if farray is not None else None, label._c if label is not None else None)
@@ -244,14 +260,6 @@ class LabelledControlArray1D:
         ret = self._c.max_control_array(other._c if other is not None else None)
         return LabelledControlArray1D._from_capi(ret)
 
-    def equal(self, other: LabelledControlArray1D) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: LabelledControlArray1D) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
     def greater_than(self, value: Any) -> None:
         ret = self._c.greater_than(value)
         return ret
@@ -300,10 +308,6 @@ class LabelledControlArray1D:
 
     def get_summed_diff_array_of_squares(self, other: LabelledControlArray1D) -> None:
         ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
         return ret
 
     def __len__(self):
@@ -372,6 +376,10 @@ class LabelledControlArray1D:
     def __neg__(self):
         """Operator overload for unary -"""
         return self.negation()
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

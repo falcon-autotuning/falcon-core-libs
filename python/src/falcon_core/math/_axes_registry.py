@@ -28,17 +28,17 @@ from falcon_core._capi.axes_labelled_measured_array import AxesLabelledMeasuredA
 from falcon_core._capi.axes_labelled_measured_array1_d import AxesLabelledMeasuredArray1D as _CAxesLabelledMeasuredArray1D
 
 AXES_REGISTRY = {
-    float: _CAxesDouble,
-    int: _CAxesInt,
-    Discretizer: _CAxesDiscretizer,
     ControlArray: _CAxesControlArray,
     ControlArray1D: _CAxesControlArray1D,
     CoupledLabelledDomain: _CAxesCoupledLabelledDomain,
+    Discretizer: _CAxesDiscretizer,
     InstrumentPort: _CAxesInstrumentPort,
-    MapStringBool: _CAxesMapStringBool,
-    MeasurementContext: _CAxesMeasurementContext,
     LabelledControlArray: _CAxesLabelledControlArray,
     LabelledControlArray1D: _CAxesLabelledControlArray1D,
     LabelledMeasuredArray: _CAxesLabelledMeasuredArray,
     LabelledMeasuredArray1D: _CAxesLabelledMeasuredArray1D,
+    MapStringBool: _CAxesMapStringBool,
+    MeasurementContext: _CAxesMeasurementContext,
+    float: _CAxesDouble,
+    int: _CAxesInt,
 }

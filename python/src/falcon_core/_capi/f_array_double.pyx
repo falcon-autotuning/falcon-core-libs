@@ -54,6 +54,12 @@ cdef class FArrayDouble:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
+        if h_ret == <_c_api.FArrayDoubleHandle>0:
+            return None
+        return _f_array_double_from_capi(h_ret)
+
     @staticmethod
     def from_shape(size_t[:] shape, size_t ndim):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)

@@ -126,6 +126,10 @@ class DeviceVoltageStates:
             return self.add_state(other)
         return NotImplemented
 
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
+
     def __eq__(self, other):
         """Operator overload for =="""
         if not isinstance(other, DeviceVoltageStates):

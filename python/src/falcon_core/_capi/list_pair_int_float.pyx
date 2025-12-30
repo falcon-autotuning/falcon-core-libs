@@ -54,6 +54,12 @@ cdef class ListPairIntFloat:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListPairIntFloatHandle h_ret = _c_api.ListPairIntFloat_copy(self.handle)
+        if h_ret == <_c_api.ListPairIntFloatHandle>0:
+            return None
+        return _list_pair_int_float_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, PairIntFloat value):
         cdef _c_api.ListPairIntFloatHandle h_ret = _c_api.ListPairIntFloat_fill_value(count, value.handle if value is not None else <_c_api.PairIntFloatHandle>0)
@@ -97,21 +103,21 @@ cdef class ListPairIntFloat:
             return None
         return _list_pair_int_float_from_capi(h_ret)
 
-    def equal(self, ListPairIntFloat b):
-        return _c_api.ListPairIntFloat_equal(self.handle, b.handle if b is not None else <_c_api.ListPairIntFloatHandle>0)
+    def equal(self, ListPairIntFloat other):
+        return _c_api.ListPairIntFloat_equal(self.handle, other.handle if other is not None else <_c_api.ListPairIntFloatHandle>0)
 
-    def __eq__(self, ListPairIntFloat b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListPairIntFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListPairIntFloat b):
-        return _c_api.ListPairIntFloat_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPairIntFloatHandle>0)
+    def not_equal(self, ListPairIntFloat other):
+        return _c_api.ListPairIntFloat_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPairIntFloatHandle>0)
 
-    def __ne__(self, ListPairIntFloat b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListPairIntFloat other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

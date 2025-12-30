@@ -24,6 +24,10 @@ class HDF5Data:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> HDF5Data:
+        return cls(_CHDF5Data.from_json(json))
+
+    @classmethod
     def new(cls, shape: Axes, unit_domain: Axes, domain_labels: Axes, ranges: LabelledArrays, metadata: Map, measurement_title: str, unique_id: Any, timestamp: Any) -> HDF5Data:
         obj = cls(_CHDF5Data.new(shape._c if shape is not None else None, unit_domain._c if unit_domain is not None else None, domain_labels._c if domain_labels is not None else None, ranges._c if ranges is not None else None, metadata._c if metadata is not None else None, measurement_title, unique_id, timestamp))
         obj._ref_shape = shape  # Keep reference alive
@@ -45,18 +49,9 @@ class HDF5Data:
         obj._ref_device_voltage_states = device_voltage_states  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> HDF5Data:
-        return cls(_CHDF5Data.from_json(json))
-
-    def to_file(self, path: str) -> None:
-        ret = self._c.to_file(path)
-        return ret
-
-    def to_communications(self, ) -> Pair:
-        ret = self._c.to_communications()
-        if ret is None: return None
-        return Pair(ret)
+    def copy(self, ) -> HDF5Data:
+        ret = self._c.copy()
+        return HDF5Data._from_capi(ret)
 
     def equal(self, other: HDF5Data) -> None:
         ret = self._c.equal(other._c if other is not None else None)
@@ -69,6 +64,56 @@ class HDF5Data:
     def to_json(self, ) -> str:
         ret = self._c.to_json()
         return ret
+
+    def to_file(self, path: str) -> None:
+        ret = self._c.to_file(path)
+        return ret
+
+    def to_communications(self, ) -> Pair:
+        ret = self._c.to_communications()
+        if ret is None: return None
+        return Pair(ret)
+
+    def shape(self, ) -> Axes:
+        ret = self._c.shape()
+        if ret is None: return None
+        return Axes(ret)
+
+    def unit_domain(self, ) -> Axes:
+        ret = self._c.unit_domain()
+        if ret is None: return None
+        return Axes(ret)
+
+    def domain_labels(self, ) -> Axes:
+        ret = self._c.domain_labels()
+        if ret is None: return None
+        return Axes(ret)
+
+    def ranges(self, ) -> LabelledArrays:
+        ret = self._c.ranges()
+        if ret is None: return None
+        return LabelledArrays(ret)
+
+    def metadata(self, ) -> Map:
+        ret = self._c.metadata()
+        if ret is None: return None
+        return Map(ret)
+
+    def measurement_title(self, ) -> str:
+        ret = self._c.measurement_title()
+        return ret
+
+    def unique_id(self, ) -> None:
+        ret = self._c.unique_id()
+        return ret
+
+    def timestamp(self, ) -> None:
+        ret = self._c.timestamp()
+        return ret
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

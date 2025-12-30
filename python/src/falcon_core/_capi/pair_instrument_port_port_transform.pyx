@@ -44,6 +44,12 @@ cdef class PairInstrumentPortPortTransform:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairInstrumentPortPortTransformHandle h_ret = _c_api.PairInstrumentPortPortTransform_copy(self.handle)
+        if h_ret == <_c_api.PairInstrumentPortPortTransformHandle>0:
+            return None
+        return _pair_instrument_port_port_transform_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.PairInstrumentPortPortTransform_first(self.handle)
         if h_ret == <_c_api.InstrumentPortHandle>0:
@@ -56,21 +62,21 @@ cdef class PairInstrumentPortPortTransform:
             return None
         return _port_transform_from_capi(h_ret)
 
-    def equal(self, PairInstrumentPortPortTransform b):
-        return _c_api.PairInstrumentPortPortTransform_equal(self.handle, b.handle if b is not None else <_c_api.PairInstrumentPortPortTransformHandle>0)
+    def equal(self, PairInstrumentPortPortTransform other):
+        return _c_api.PairInstrumentPortPortTransform_equal(self.handle, other.handle if other is not None else <_c_api.PairInstrumentPortPortTransformHandle>0)
 
-    def __eq__(self, PairInstrumentPortPortTransform b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairInstrumentPortPortTransform other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairInstrumentPortPortTransform b):
-        return _c_api.PairInstrumentPortPortTransform_not_equal(self.handle, b.handle if b is not None else <_c_api.PairInstrumentPortPortTransformHandle>0)
+    def not_equal(self, PairInstrumentPortPortTransform other):
+        return _c_api.PairInstrumentPortPortTransform_not_equal(self.handle, other.handle if other is not None else <_c_api.PairInstrumentPortPortTransformHandle>0)
 
-    def __ne__(self, PairInstrumentPortPortTransform b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairInstrumentPortPortTransform other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

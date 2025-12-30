@@ -19,6 +19,10 @@ class Group:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Group:
+        return cls(_CGroup.from_json(json))
+
+    @classmethod
     def new(cls, name: Channel, num_dots: Any, screening_gates: Connections, reservoir_gates: Connections, plunger_gates: Connections, barrier_gates: Connections, order: Connections) -> Group:
         obj = cls(_CGroup.new(name._c if name is not None else None, num_dots, screening_gates._c if screening_gates is not None else None, reservoir_gates._c if reservoir_gates is not None else None, plunger_gates._c if plunger_gates is not None else None, barrier_gates._c if barrier_gates is not None else None, order._c if order is not None else None))
         obj._ref_name = name  # Keep reference alive
@@ -29,9 +33,21 @@ class Group:
         obj._ref_order = order  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Group:
-        return cls(_CGroup.from_json(json))
+    def copy(self, ) -> Group:
+        ret = self._c.copy()
+        return Group._from_capi(ret)
+
+    def equal(self, other: Group) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Group) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def name(self, ) -> Channel:
         ret = self._c.name()
@@ -159,17 +175,9 @@ class Group:
         ret = self._c.has_screening_gate(screening_gate._c if screening_gate is not None else None)
         return ret
 
-    def equal(self, other: Group) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Group) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

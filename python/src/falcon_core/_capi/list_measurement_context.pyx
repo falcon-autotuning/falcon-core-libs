@@ -54,6 +54,12 @@ cdef class ListMeasurementContext:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListMeasurementContextHandle h_ret = _c_api.ListMeasurementContext_copy(self.handle)
+        if h_ret == <_c_api.ListMeasurementContextHandle>0:
+            return None
+        return _list_measurement_context_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, MeasurementContext value):
         cdef _c_api.ListMeasurementContextHandle h_ret = _c_api.ListMeasurementContext_fill_value(count, value.handle if value is not None else <_c_api.MeasurementContextHandle>0)
@@ -97,21 +103,21 @@ cdef class ListMeasurementContext:
             return None
         return _list_measurement_context_from_capi(h_ret)
 
-    def equal(self, ListMeasurementContext b):
-        return _c_api.ListMeasurementContext_equal(self.handle, b.handle if b is not None else <_c_api.ListMeasurementContextHandle>0)
+    def equal(self, ListMeasurementContext other):
+        return _c_api.ListMeasurementContext_equal(self.handle, other.handle if other is not None else <_c_api.ListMeasurementContextHandle>0)
 
-    def __eq__(self, ListMeasurementContext b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListMeasurementContext other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListMeasurementContext b):
-        return _c_api.ListMeasurementContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListMeasurementContextHandle>0)
+    def not_equal(self, ListMeasurementContext other):
+        return _c_api.ListMeasurementContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListMeasurementContextHandle>0)
 
-    def __ne__(self, ListMeasurementContext b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListMeasurementContext other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

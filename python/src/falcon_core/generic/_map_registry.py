@@ -27,17 +27,17 @@ from falcon_core._capi.map_interpretation_context_string import MapInterpretatio
 from falcon_core._capi.map_interpretation_context_quantity import MapInterpretationContextQuantity as _CMapInterpretationContextQuantity
 
 MAP_REGISTRY = {
-    (str, float): _CMapStringDouble,
-    (int, int): _CMapIntInt,
-    (float, float): _CMapFloatFloat,
-    (Connection, float): _CMapConnectionFloat,
-    (Connection, Quantity): _CMapConnectionQuantity,
-    (str, bool): _CMapStringBool,
     (Channel, Connections): _CMapChannelConnections,
+    (Connection, Quantity): _CMapConnectionQuantity,
+    (Connection, float): _CMapConnectionDouble,
     (Gname, Group): _CMapGnameGroup,
     (InstrumentPort, PortTransform): _CMapInstrumentPortPortTransform,
-    (str, str): _CMapStringString,
+    (InterpretationContext, Quantity): _CMapInterpretationContextQuantity,
     (InterpretationContext, float): _CMapInterpretationContextDouble,
     (InterpretationContext, str): _CMapInterpretationContextString,
-    (InterpretationContext, Quantity): _CMapInterpretationContextQuantity,
+    (float, float): _CMapFloatFloat,
+    (int, int): _CMapIntInt,
+    (str, bool): _CMapStringBool,
+    (str, float): _CMapStringDouble,
+    (str, str): _CMapStringString,
 }

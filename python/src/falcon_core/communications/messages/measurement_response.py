@@ -16,23 +16,18 @@ class MeasurementResponse:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> MeasurementResponse:
+        return cls(_CMeasurementResponse.from_json(json))
+
+    @classmethod
     def new(cls, arrays: LabelledArrays) -> MeasurementResponse:
         obj = cls(_CMeasurementResponse.new(arrays._c if arrays is not None else None))
         obj._ref_arrays = arrays  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> MeasurementResponse:
-        return cls(_CMeasurementResponse.from_json(json))
-
-    def arrays(self, ) -> LabelledArrays:
-        ret = self._c.arrays()
-        if ret is None: return None
-        return LabelledArrays(ret)
-
-    def message(self, ) -> str:
-        ret = self._c.message()
-        return ret
+    def copy(self, ) -> MeasurementResponse:
+        ret = self._c.copy()
+        return MeasurementResponse._from_capi(ret)
 
     def equal(self, other: MeasurementResponse) -> None:
         ret = self._c.equal(other._c if other is not None else None)
@@ -45,6 +40,19 @@ class MeasurementResponse:
     def to_json(self, ) -> str:
         ret = self._c.to_json()
         return ret
+
+    def arrays(self, ) -> LabelledArrays:
+        ret = self._c.arrays()
+        if ret is None: return None
+        return LabelledArrays(ret)
+
+    def message(self, ) -> str:
+        ret = self._c.message()
+        return ret
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

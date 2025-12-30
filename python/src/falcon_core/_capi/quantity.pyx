@@ -17,17 +17,6 @@ cdef class Quantity:
 
 
     @classmethod
-    def new(cls, double value, SymbolUnit unit):
-        cdef _c_api.QuantityHandle h
-        h = _c_api.Quantity_create(value, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
-        if h == <_c_api.QuantityHandle>0:
-            raise MemoryError("Failed to create Quantity")
-        cdef Quantity obj = <Quantity>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -42,6 +31,49 @@ cdef class Quantity:
         obj.handle = h
         obj.owned = True
         return obj
+
+    @classmethod
+    def new(cls, double value, SymbolUnit unit):
+        cdef _c_api.QuantityHandle h
+        h = _c_api.Quantity_create(value, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
+        if h == <_c_api.QuantityHandle>0:
+            raise MemoryError("Failed to create Quantity")
+        cdef Quantity obj = <Quantity>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
+        if h_ret == <_c_api.QuantityHandle>0:
+            return None
+        return _quantity_from_capi(h_ret)
+
+    def equal(self, Quantity other):
+        return _c_api.Quantity_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+
+    def __eq__(self, Quantity other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Quantity other):
+        return _c_api.Quantity_not_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+
+    def __ne__(self, Quantity other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.Quantity_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
 
     def value(self, ):
         return _c_api.Quantity_value(self.handle)
@@ -168,32 +200,6 @@ cdef class Quantity:
         if h_ret == <_c_api.QuantityHandle>0:
             return None
         return _quantity_from_capi(h_ret)
-
-    def equal(self, Quantity b):
-        return _c_api.Quantity_equal(self.handle, b.handle if b is not None else <_c_api.QuantityHandle>0)
-
-    def __eq__(self, Quantity b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, Quantity b):
-        return _c_api.Quantity_not_equal(self.handle, b.handle if b is not None else <_c_api.QuantityHandle>0)
-
-    def __ne__(self, Quantity b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Quantity_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
     if h == <_c_api.QuantityHandle>0:

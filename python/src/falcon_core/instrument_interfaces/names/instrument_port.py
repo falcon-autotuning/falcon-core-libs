@@ -17,6 +17,10 @@ class InstrumentPort:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> InstrumentPort:
+        return cls(_CInstrumentPort.from_json(json))
+
+    @classmethod
     def new_port(cls, default_name: str, psuedo_name: Connection, instrument_type: str, units: SymbolUnit, description: str) -> InstrumentPort:
         obj = cls(_CInstrumentPort.new_port(default_name, psuedo_name._c if psuedo_name is not None else None, instrument_type, units._c if units is not None else None, description))
         obj._ref_psuedo_name = psuedo_name  # Keep reference alive
@@ -45,9 +49,21 @@ class InstrumentPort:
     def new_execution_clock(cls, ) -> InstrumentPort:
         return cls(_CInstrumentPort.new_execution_clock())
 
-    @classmethod
-    def from_json(cls, json: str) -> InstrumentPort:
-        return cls(_CInstrumentPort.from_json(json))
+    def copy(self, ) -> InstrumentPort:
+        ret = self._c.copy()
+        return InstrumentPort._from_capi(ret)
+
+    def equal(self, other: InstrumentPort) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: InstrumentPort) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def default_name(self, ) -> str:
         ret = self._c.default_name()
@@ -87,17 +103,9 @@ class InstrumentPort:
         ret = self._c.is_port()
         return ret
 
-    def equal(self, other: InstrumentPort) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: InstrumentPort) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

@@ -24,6 +24,10 @@ class Waveform:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Waveform:
+        return cls(_CWaveform.from_json(json))
+
+    @classmethod
     def new(cls, space: DiscreteSpace, transforms: List) -> Waveform:
         obj = cls(_CWaveform.new(space._c if space is not None else None, transforms._c if transforms is not None else None))
         obj._ref_space = space  # Keep reference alive
@@ -85,9 +89,21 @@ class Waveform:
         obj._ref_domain = domain  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Waveform:
-        return cls(_CWaveform.from_json(json))
+    def copy(self, ) -> Waveform:
+        ret = self._c.copy()
+        return Waveform._from_capi(ret)
+
+    def equal(self, other: Waveform) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Waveform) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def space(self, ) -> DiscreteSpace:
         ret = self._c.space()
@@ -141,18 +157,6 @@ class Waveform:
         ret = self._c.intersection(other._c if other is not None else None)
         return Waveform._from_capi(ret)
 
-    def equal(self, other: Waveform) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Waveform) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -168,6 +172,10 @@ class Waveform:
     @classmethod
     def from_list(cls, items):
         return cls(_CWaveform.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

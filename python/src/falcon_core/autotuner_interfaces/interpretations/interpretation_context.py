@@ -19,6 +19,10 @@ class InterpretationContext:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> InterpretationContext:
+        return cls(_CInterpretationContext.from_json(json))
+
+    @classmethod
     def new(cls, independant_variables: Axes, dependant_variables: List, unit: SymbolUnit) -> InterpretationContext:
         obj = cls(_CInterpretationContext.new(independant_variables._c if independant_variables is not None else None, dependant_variables._c if dependant_variables is not None else None, unit._c if unit is not None else None))
         obj._ref_independant_variables = independant_variables  # Keep reference alive
@@ -26,9 +30,21 @@ class InterpretationContext:
         obj._ref_unit = unit  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> InterpretationContext:
-        return cls(_CInterpretationContext.from_json(json))
+    def copy(self, ) -> InterpretationContext:
+        ret = self._c.copy()
+        return InterpretationContext._from_capi(ret)
+
+    def equal(self, other: InterpretationContext) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: InterpretationContext) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def independent_variables(self, ) -> Axes:
         ret = self._c.independent_variables()
@@ -66,23 +82,15 @@ class InterpretationContext:
         ret = self._c.with_unit(unit._c if unit is not None else None)
         return InterpretationContext._from_capi(ret)
 
-    def equal(self, b: InterpretationContext) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: InterpretationContext) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __add__(self, other):
         """Operator overload for +"""
         if hasattr(other, "_c") and type(other).__name__ == "DependentVariable":
             return self.add_dependent_variable(other)
         return NotImplemented
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

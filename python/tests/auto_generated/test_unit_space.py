@@ -1,7 +1,5 @@
 import pytest
 import array
-from falcon_core.math.axes import Axes
-from falcon_core.math.discrete_spaces.discretizer import Discretizer
 from falcon_core.math.domains.domain import Domain
 from falcon_core.math.unit_space import UnitSpace
 from falcon_core.math.unit_space import UnitSpace
@@ -10,10 +8,42 @@ class TestUnitSpace:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: UnitSpace_create
-            self.obj = UnitSpace.new(Axes[Discretizer]([Discretizer.new_cartesian_discretizer(1.0)]), Domain.new(0.0, 1.0, True, True))
+            # Using recipe for UnitSpace
+            self.obj = UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}'))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}'))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_axes(self):
         if self.obj is None:
@@ -67,7 +97,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(Discretizer.new_cartesian_discretizer(1.0))
+            self.obj.push_back(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -123,7 +153,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(Discretizer.new_cartesian_discretizer(1.0))
+            self.obj.contains(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -131,7 +161,7 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(Discretizer.new_cartesian_discretizer(1.0))
+            self.obj.index(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -139,30 +169,6 @@ class TestUnitSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
+            self.obj.intersection(UnitSpace.new_empty() if hasattr(UnitSpace, 'new_empty') else UnitSpace.from_json('{}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')

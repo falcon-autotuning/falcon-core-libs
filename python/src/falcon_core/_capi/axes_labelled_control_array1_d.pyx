@@ -55,6 +55,12 @@ cdef class AxesLabelledControlArray1D:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.AxesLabelledControlArray1DHandle h_ret = _c_api.AxesLabelledControlArray1D_copy(self.handle)
+        if h_ret == <_c_api.AxesLabelledControlArray1DHandle>0:
+            return None
+        return _axes_labelled_control_array1_d_from_capi(h_ret)
+
     def push_back(self, LabelledControlArray1D value):
         _c_api.AxesLabelledControlArray1D_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledControlArray1DHandle>0)
 
@@ -91,21 +97,21 @@ cdef class AxesLabelledControlArray1D:
             return None
         return _axes_labelled_control_array1_d_from_capi(h_ret)
 
-    def equal(self, AxesLabelledControlArray1D b):
-        return _c_api.AxesLabelledControlArray1D_equal(self.handle, b.handle if b is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
+    def equal(self, AxesLabelledControlArray1D other):
+        return _c_api.AxesLabelledControlArray1D_equal(self.handle, other.handle if other is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
 
-    def __eq__(self, AxesLabelledControlArray1D b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, AxesLabelledControlArray1D other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, AxesLabelledControlArray1D b):
-        return _c_api.AxesLabelledControlArray1D_not_equal(self.handle, b.handle if b is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
+    def not_equal(self, AxesLabelledControlArray1D other):
+        return _c_api.AxesLabelledControlArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesLabelledControlArray1DHandle>0)
 
-    def __ne__(self, AxesLabelledControlArray1D b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, AxesLabelledControlArray1D other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

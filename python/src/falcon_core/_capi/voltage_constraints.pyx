@@ -19,17 +19,6 @@ cdef class VoltageConstraints:
 
 
     @classmethod
-    def new(cls, Adjacency adjacency, double max_safe_diff, PairDoubleDouble bounds):
-        cdef _c_api.VoltageConstraintsHandle h
-        h = _c_api.VoltageConstraints_create(adjacency.handle if adjacency is not None else <_c_api.AdjacencyHandle>0, max_safe_diff, bounds.handle if bounds is not None else <_c_api.PairDoubleDoubleHandle>0)
-        if h == <_c_api.VoltageConstraintsHandle>0:
-            raise MemoryError("Failed to create VoltageConstraints")
-        cdef VoltageConstraints obj = <VoltageConstraints>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -45,23 +34,22 @@ cdef class VoltageConstraints:
         obj.owned = True
         return obj
 
-    def matrix(self, ):
-        cdef _c_api.FArrayDoubleHandle h_ret = _c_api.VoltageConstraints_matrix(self.handle)
-        if h_ret == <_c_api.FArrayDoubleHandle>0:
-            return None
-        return _f_array_double_from_capi(h_ret)
+    @classmethod
+    def new(cls, Adjacency adjacency, double max_safe_diff, PairDoubleDouble bounds):
+        cdef _c_api.VoltageConstraintsHandle h
+        h = _c_api.VoltageConstraints_create(adjacency.handle if adjacency is not None else <_c_api.AdjacencyHandle>0, max_safe_diff, bounds.handle if bounds is not None else <_c_api.PairDoubleDoubleHandle>0)
+        if h == <_c_api.VoltageConstraintsHandle>0:
+            raise MemoryError("Failed to create VoltageConstraints")
+        cdef VoltageConstraints obj = <VoltageConstraints>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-    def adjacency(self, ):
-        cdef _c_api.AdjacencyHandle h_ret = _c_api.VoltageConstraints_adjacency(self.handle)
-        if h_ret == <_c_api.AdjacencyHandle>0:
+    def copy(self, ):
+        cdef _c_api.VoltageConstraintsHandle h_ret = _c_api.VoltageConstraints_copy(self.handle)
+        if h_ret == <_c_api.VoltageConstraintsHandle>0:
             return None
-        return _adjacency_from_capi(h_ret)
-
-    def limits(self, ):
-        cdef _c_api.FArrayDoubleHandle h_ret = _c_api.VoltageConstraints_limits(self.handle)
-        if h_ret == <_c_api.FArrayDoubleHandle>0:
-            return None
-        return _f_array_double_from_capi(h_ret)
+        return _voltage_constraints_from_capi(h_ret)
 
     def equal(self, VoltageConstraints other):
         return _c_api.VoltageConstraints_equal(self.handle, other.handle if other is not None else <_c_api.VoltageConstraintsHandle>0)
@@ -88,6 +76,24 @@ cdef class VoltageConstraints:
             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
             _c_api.String_destroy(s_ret)
+
+    def matrix(self, ):
+        cdef _c_api.FArrayDoubleHandle h_ret = _c_api.VoltageConstraints_matrix(self.handle)
+        if h_ret == <_c_api.FArrayDoubleHandle>0:
+            return None
+        return _f_array_double_from_capi(h_ret)
+
+    def adjacency(self, ):
+        cdef _c_api.AdjacencyHandle h_ret = _c_api.VoltageConstraints_adjacency(self.handle)
+        if h_ret == <_c_api.AdjacencyHandle>0:
+            return None
+        return _adjacency_from_capi(h_ret)
+
+    def limits(self, ):
+        cdef _c_api.FArrayDoubleHandle h_ret = _c_api.VoltageConstraints_limits(self.handle)
+        if h_ret == <_c_api.FArrayDoubleHandle>0:
+            return None
+        return _f_array_double_from_capi(h_ret)
 
 cdef VoltageConstraints _voltage_constraints_from_capi(_c_api.VoltageConstraintsHandle h, bint owned=True):
     if h == <_c_api.VoltageConstraintsHandle>0:

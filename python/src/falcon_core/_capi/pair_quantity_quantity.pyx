@@ -43,6 +43,12 @@ cdef class PairQuantityQuantity:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairQuantityQuantityHandle h_ret = _c_api.PairQuantityQuantity_copy(self.handle)
+        if h_ret == <_c_api.PairQuantityQuantityHandle>0:
+            return None
+        return _pair_quantity_quantity_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.PairQuantityQuantity_first(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
@@ -55,21 +61,21 @@ cdef class PairQuantityQuantity:
             return None
         return _quantity_from_capi(h_ret)
 
-    def equal(self, PairQuantityQuantity b):
-        return _c_api.PairQuantityQuantity_equal(self.handle, b.handle if b is not None else <_c_api.PairQuantityQuantityHandle>0)
+    def equal(self, PairQuantityQuantity other):
+        return _c_api.PairQuantityQuantity_equal(self.handle, other.handle if other is not None else <_c_api.PairQuantityQuantityHandle>0)
 
-    def __eq__(self, PairQuantityQuantity b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairQuantityQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairQuantityQuantity b):
-        return _c_api.PairQuantityQuantity_not_equal(self.handle, b.handle if b is not None else <_c_api.PairQuantityQuantityHandle>0)
+    def not_equal(self, PairQuantityQuantity other):
+        return _c_api.PairQuantityQuantity_not_equal(self.handle, other.handle if other is not None else <_c_api.PairQuantityQuantityHandle>0)
 
-    def __ne__(self, PairQuantityQuantity b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairQuantityQuantity other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

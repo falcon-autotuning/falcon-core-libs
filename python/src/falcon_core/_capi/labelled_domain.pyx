@@ -20,6 +20,22 @@ cdef class LabelledDomain:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.LabelledDomainHandle h
+        try:
+            h = _c_api.LabelledDomain_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.LabelledDomainHandle>0:
+            raise MemoryError("Failed to create LabelledDomain")
+        cdef LabelledDomain obj = <LabelledDomain>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new_primitive_knob(cls, str default_name, double min_val, double max_val, Connection psuedo_name, str instrument_type, bint lesser_bound_contained, bint greater_bound_contained, SymbolUnit units, str description):
         cdef bytes b_default_name = default_name.encode("utf-8")
         cdef _c_api.StringHandle s_default_name = _c_api.String_create(b_default_name, len(b_default_name))
@@ -86,14 +102,9 @@ cdef class LabelledDomain:
         return obj
 
     @classmethod
-    def new_from_port(cls, double min_val, double max_val, str instrument_type, InstrumentPort port, bint lesser_bound_contained, bint greater_bound_contained):
-        cdef bytes b_instrument_type = instrument_type.encode("utf-8")
-        cdef _c_api.StringHandle s_instrument_type = _c_api.String_create(b_instrument_type, len(b_instrument_type))
+    def new_from_port(cls, double min_val, double max_val, InstrumentPort port, bint lesser_bound_contained, bint greater_bound_contained):
         cdef _c_api.LabelledDomainHandle h
-        try:
-            h = _c_api.LabelledDomain_create_from_port(min_val, max_val, s_instrument_type, port.handle if port is not None else <_c_api.InstrumentPortHandle>0, lesser_bound_contained, greater_bound_contained)
-        finally:
-            _c_api.String_destroy(s_instrument_type)
+        h = _c_api.LabelledDomain_create_from_port(min_val, max_val, port.handle if port is not None else <_c_api.InstrumentPortHandle>0, lesser_bound_contained, greater_bound_contained)
         if h == <_c_api.LabelledDomainHandle>0:
             raise MemoryError("Failed to create LabelledDomain")
         cdef LabelledDomain obj = <LabelledDomain>cls.__new__(cls)
@@ -134,21 +145,37 @@ cdef class LabelledDomain:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.LabelledDomainHandle h
+    def copy(self, ):
+        cdef _c_api.LabelledDomainHandle h_ret = _c_api.LabelledDomain_copy(self.handle)
+        if h_ret == <_c_api.LabelledDomainHandle>0:
+            return None
+        return _labelled_domain_from_capi(h_ret)
+
+    def equal(self, LabelledDomain other):
+        return _c_api.LabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
+
+    def __eq__(self, LabelledDomain other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, LabelledDomain other):
+        return _c_api.LabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
+
+    def __ne__(self, LabelledDomain other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.LabelledDomain_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.LabelledDomain_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.LabelledDomainHandle>0:
-            raise MemoryError("Failed to create LabelledDomain")
-        cdef LabelledDomain obj = <LabelledDomain>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def port(self, ):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.LabelledDomain_port(self.handle)
@@ -218,32 +245,6 @@ cdef class LabelledDomain:
 
     def transform(self, LabelledDomain other, double value):
         return _c_api.LabelledDomain_transform(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0, value)
-
-    def equal(self, LabelledDomain other):
-        return _c_api.LabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
-
-    def __eq__(self, LabelledDomain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, LabelledDomain other):
-        return _c_api.LabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.LabelledDomainHandle>0)
-
-    def __ne__(self, LabelledDomain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.LabelledDomain_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef LabelledDomain _labelled_domain_from_capi(_c_api.LabelledDomainHandle h, bint owned=True):
     if h == <_c_api.LabelledDomainHandle>0:

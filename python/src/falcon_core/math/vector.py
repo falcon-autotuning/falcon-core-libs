@@ -25,6 +25,10 @@ class Vector:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Vector:
+        return cls(_CVector.from_json(json))
+
+    @classmethod
     def new(cls, start: Point, end: Point) -> Vector:
         obj = cls(_CVector.new(start._c if start is not None else None, end._c if end is not None else None))
         obj._ref_start = start  # Keep reference alive
@@ -71,9 +75,21 @@ class Vector:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Vector:
-        return cls(_CVector.from_json(json))
+    def copy(self, ) -> Vector:
+        ret = self._c.copy()
+        return Vector._from_capi(ret)
+
+    def equal(self, other: Vector) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Vector) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def end_point(self, ) -> Point:
         ret = self._c.end_point()
@@ -252,18 +268,6 @@ class Vector:
         ret = self._c.update_unit(unit._c if unit is not None else None)
         return ret
 
-    def equal(self, b: Vector) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Vector) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -304,6 +308,10 @@ class Vector:
     def __neg__(self):
         """Operator overload for unary -"""
         return self.negation()
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

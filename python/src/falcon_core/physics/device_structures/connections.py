@@ -17,6 +17,10 @@ class Connections:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Connections:
+        return cls(_CConnections.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> Connections:
         return cls(_CConnections.new_empty())
 
@@ -26,9 +30,21 @@ class Connections:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Connections:
-        return cls(_CConnections.from_json(json))
+    def copy(self, ) -> Connections:
+        ret = self._c.copy()
+        return Connections._from_capi(ret)
+
+    def equal(self, other: Connections) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Connections) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def is_gates(self, ) -> None:
         ret = self._c.is_gates()
@@ -100,18 +116,6 @@ class Connections:
         ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, other: Connections) -> None:
-        ret = self._c.equal(other._c if other is not None else None)
-        return ret
-
-    def not_equal(self, other: Connections) -> None:
-        ret = self._c.not_equal(other._c if other is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -127,6 +131,10 @@ class Connections:
     @classmethod
     def from_list(cls, items):
         return cls(_CConnections.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

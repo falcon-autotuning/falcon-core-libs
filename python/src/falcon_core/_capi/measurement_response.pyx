@@ -17,17 +17,6 @@ cdef class MeasurementResponse:
 
 
     @classmethod
-    def new(cls, LabelledArraysLabelledMeasuredArray arrays):
-        cdef _c_api.MeasurementResponseHandle h
-        h = _c_api.MeasurementResponse_create(arrays.handle if arrays is not None else <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0)
-        if h == <_c_api.MeasurementResponseHandle>0:
-            raise MemoryError("Failed to create MeasurementResponse")
-        cdef MeasurementResponse obj = <MeasurementResponse>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -43,21 +32,22 @@ cdef class MeasurementResponse:
         obj.owned = True
         return obj
 
-    def arrays(self, ):
-        cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.MeasurementResponse_arrays(self.handle)
-        if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
-            return None
-        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+    @classmethod
+    def new(cls, LabelledArraysLabelledMeasuredArray arrays):
+        cdef _c_api.MeasurementResponseHandle h
+        h = _c_api.MeasurementResponse_create(arrays.handle if arrays is not None else <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0)
+        if h == <_c_api.MeasurementResponseHandle>0:
+            raise MemoryError("Failed to create MeasurementResponse")
+        cdef MeasurementResponse obj = <MeasurementResponse>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
 
-    def message(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.MeasurementResponse_message(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+    def copy(self, ):
+        cdef _c_api.MeasurementResponseHandle h_ret = _c_api.MeasurementResponse_copy(self.handle)
+        if h_ret == <_c_api.MeasurementResponseHandle>0:
+            return None
+        return _measurement_response_from_capi(h_ret)
 
     def equal(self, MeasurementResponse other):
         return _c_api.MeasurementResponse_equal(self.handle, other.handle if other is not None else <_c_api.MeasurementResponseHandle>0)
@@ -78,6 +68,22 @@ cdef class MeasurementResponse:
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MeasurementResponse_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def arrays(self, ):
+        cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.MeasurementResponse_arrays(self.handle)
+        if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
+            return None
+        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+
+    def message(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.MeasurementResponse_message(self.handle)
         if s_ret == <_c_api.StringHandle>0:
             return ""
         try:

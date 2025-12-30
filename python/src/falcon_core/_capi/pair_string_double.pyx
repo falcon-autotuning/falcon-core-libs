@@ -47,6 +47,12 @@ cdef class PairStringDouble:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairStringDoubleHandle h_ret = _c_api.PairStringDouble_copy(self.handle)
+        if h_ret == <_c_api.PairStringDoubleHandle>0:
+            return None
+        return _pair_string_double_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PairStringDouble_first(self.handle)
@@ -60,21 +66,21 @@ cdef class PairStringDouble:
     def second(self, ):
         return _c_api.PairStringDouble_second(self.handle)
 
-    def equal(self, PairStringDouble b):
-        return _c_api.PairStringDouble_equal(self.handle, b.handle if b is not None else <_c_api.PairStringDoubleHandle>0)
+    def equal(self, PairStringDouble other):
+        return _c_api.PairStringDouble_equal(self.handle, other.handle if other is not None else <_c_api.PairStringDoubleHandle>0)
 
-    def __eq__(self, PairStringDouble b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairStringDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairStringDouble b):
-        return _c_api.PairStringDouble_not_equal(self.handle, b.handle if b is not None else <_c_api.PairStringDoubleHandle>0)
+    def not_equal(self, PairStringDouble other):
+        return _c_api.PairStringDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.PairStringDoubleHandle>0)
 
-    def __ne__(self, PairStringDouble b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairStringDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

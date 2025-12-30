@@ -34,6 +34,38 @@ cdef class MeasuredArray1D:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MeasuredArray1DHandle h_ret = _c_api.MeasuredArray1D_copy(self.handle)
+        if h_ret == <_c_api.MeasuredArray1DHandle>0:
+            return None
+        return _measured_array1_d_from_capi(h_ret)
+
+    def equal(self, MeasuredArray1D other):
+        return _c_api.MeasuredArray1D_equal(self.handle, other.handle if other is not None else <_c_api.MeasuredArray1DHandle>0)
+
+    def __eq__(self, MeasuredArray1D other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, MeasuredArray1D other):
+        return _c_api.MeasuredArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.MeasuredArray1DHandle>0)
+
+    def __ne__(self, MeasuredArray1D other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.MeasuredArray1D_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
     @staticmethod
     def from_data(double[:] data, size_t[:] shape, size_t ndim):
         cdef _c_api.MeasuredArray1DHandle h_ret = _c_api.MeasuredArray1D_from_data(&data[0], &shape[0], ndim)
@@ -297,22 +329,6 @@ cdef class MeasuredArray1D:
             return None
         return _measured_array1_d_from_capi(h_ret)
 
-    def equal(self, MeasuredArray1D other):
-        return _c_api.MeasuredArray1D_equal(self.handle, other.handle if other is not None else <_c_api.MeasuredArray1DHandle>0)
-
-    def __eq__(self, MeasuredArray1D other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, MeasuredArray1D other):
-        return _c_api.MeasuredArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.MeasuredArray1DHandle>0)
-
-    def __ne__(self, MeasuredArray1D other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
     def greater_than(self, double value):
         return _c_api.MeasuredArray1D_greater_than(self.handle, value)
 
@@ -369,16 +385,6 @@ cdef class MeasuredArray1D:
 
     def get_summed_diff_array_of_squares(self, MeasuredArray1D other):
         return _c_api.MeasuredArray1D_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.MeasuredArray1DHandle>0)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.MeasuredArray1D_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

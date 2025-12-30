@@ -8,7 +8,7 @@ from falcon_core._capi.interpretation_container_string import InterpretationCont
 from falcon_core._capi.interpretation_container_quantity import InterpretationContainerQuantity as _CInterpretationContainerQuantity
 
 INTERPRETATIONCONTAINER_REGISTRY = {
+    Quantity: _CInterpretationContainerQuantity,
     float: _CInterpretationContainerDouble,
     str: _CInterpretationContainerString,
-    Quantity: _CInterpretationContainerQuantity,
 }

@@ -54,6 +54,12 @@ cdef class ListPairStringDouble:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.ListPairStringDouble_copy(self.handle)
+        if h_ret == <_c_api.ListPairStringDoubleHandle>0:
+            return None
+        return _list_pair_string_double_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, PairStringDouble value):
         cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.ListPairStringDouble_fill_value(count, value.handle if value is not None else <_c_api.PairStringDoubleHandle>0)
@@ -97,21 +103,21 @@ cdef class ListPairStringDouble:
             return None
         return _list_pair_string_double_from_capi(h_ret)
 
-    def equal(self, ListPairStringDouble b):
-        return _c_api.ListPairStringDouble_equal(self.handle, b.handle if b is not None else <_c_api.ListPairStringDoubleHandle>0)
+    def equal(self, ListPairStringDouble other):
+        return _c_api.ListPairStringDouble_equal(self.handle, other.handle if other is not None else <_c_api.ListPairStringDoubleHandle>0)
 
-    def __eq__(self, ListPairStringDouble b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListPairStringDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListPairStringDouble b):
-        return _c_api.ListPairStringDouble_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPairStringDoubleHandle>0)
+    def not_equal(self, ListPairStringDouble other):
+        return _c_api.ListPairStringDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPairStringDoubleHandle>0)
 
-    def __ne__(self, ListPairStringDouble b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListPairStringDouble other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

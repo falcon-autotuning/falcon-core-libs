@@ -44,6 +44,12 @@ cdef class PairConnectionConnections:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairConnectionConnectionsHandle h_ret = _c_api.PairConnectionConnections_copy(self.handle)
+        if h_ret == <_c_api.PairConnectionConnectionsHandle>0:
+            return None
+        return _pair_connection_connections_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionConnections_first(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
@@ -56,21 +62,21 @@ cdef class PairConnectionConnections:
             return None
         return _connections_from_capi(h_ret)
 
-    def equal(self, PairConnectionConnections b):
-        return _c_api.PairConnectionConnections_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionConnectionsHandle>0)
+    def equal(self, PairConnectionConnections other):
+        return _c_api.PairConnectionConnections_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionConnectionsHandle>0)
 
-    def __eq__(self, PairConnectionConnections b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairConnectionConnections other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairConnectionConnections b):
-        return _c_api.PairConnectionConnections_not_equal(self.handle, b.handle if b is not None else <_c_api.PairConnectionConnectionsHandle>0)
+    def not_equal(self, PairConnectionConnections other):
+        return _c_api.PairConnectionConnections_not_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionConnectionsHandle>0)
 
-    def __ne__(self, PairConnectionConnections b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairConnectionConnections other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

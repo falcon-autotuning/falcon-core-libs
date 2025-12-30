@@ -1,11 +1,7 @@
 import pytest
 import array
-from falcon_core._capi.map_string_bool import MapStringBool
-from falcon_core.generic.map import Map
 from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
-from falcon_core.math.axes import Axes
 from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
-from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
 from falcon_core.math.domains.domain import Domain
 from falcon_core.math.unit_space import UnitSpace
 from falcon_core.math.discrete_spaces.discrete_space import DiscreteSpace
@@ -14,10 +10,42 @@ class TestDiscreteSpace:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: DiscreteSpace_create
-            self.obj = DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()]))
+            # Using recipe for DiscreteSpace
+            self.obj = DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}'))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(DiscreteSpace.new_empty() if hasattr(DiscreteSpace, 'new_empty') else DiscreteSpace.from_json('{}'))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_space(self):
         if self.obj is None:
@@ -87,30 +115,6 @@ class TestDiscreteSpace:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_projection(Axes[InstrumentPort]([InstrumentPort.new_timer()]))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True)), Axes[CoupledLabelledDomain]([CoupledLabelledDomain.new_empty()]), Axes[MapStringBool]([Map[str, bool]()])))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
+            self.obj.get_projection(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')

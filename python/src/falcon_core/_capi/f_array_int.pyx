@@ -55,6 +55,12 @@ cdef class FArrayInt:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.FArrayIntHandle h_ret = _c_api.FArrayInt_copy(self.handle)
+        if h_ret == <_c_api.FArrayIntHandle>0:
+            return None
+        return _f_array_int_from_capi(h_ret)
+
     @staticmethod
     def from_shape(size_t[:] shape, size_t ndim):
         cdef _c_api.FArrayIntHandle h_ret = _c_api.FArrayInt_from_shape(&shape[0], ndim)

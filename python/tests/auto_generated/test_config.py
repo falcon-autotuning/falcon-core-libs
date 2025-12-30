@@ -3,6 +3,8 @@ import array
 from falcon_core.autotuner_interfaces.names.channel import Channel
 from falcon_core.autotuner_interfaces.names.gname import Gname
 from falcon_core.generic.map import Map
+from falcon_core.generic.pair import Pair
+from falcon_core.physics.config.core.adjacency import Adjacency
 from falcon_core.physics.config.core.config import Config
 from falcon_core.physics.config.core.group import Group
 from falcon_core.physics.config.core.voltage_constraints import VoltageConstraints
@@ -15,10 +17,42 @@ class TestConfig:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: Config_create
-            self.obj = Config.new(Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Map[Gname, Group](), Impedances.new_empty(), VoltageConstraints.from_json('{}'))
+            # Using recipe for Config
+            self.obj = Config.new(Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_ohmic('O2')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Map[Gname, Group].from_dict({Gname.new('G1'): Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')]))}), Impedances.new_empty(), VoltageConstraints.new(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])), 1.0, Pair[float, float](0.0, 0.0)))
         except Exception as e:
             print(f'Setup failed: {e}')
+
+    def test_copy(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.copy()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.equal(Config.new(Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_ohmic('O2')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Map[Gname, Group].from_dict({Gname.new('G1'): Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')]))}), Impedances.new_empty(), VoltageConstraints.new(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])), 1.0, Pair[float, float](0.0, 0.0))))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_not_equal(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.not_equal(Config.new(Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_ohmic('O2')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Map[Gname, Group].from_dict({Gname.new('G1'): Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')]))}), Impedances.new_empty(), VoltageConstraints.new(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])), 1.0, Pair[float, float](0.0, 0.0))))
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_to_json(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
 
     def test_num_unique_channels(self):
         if self.obj is None:
@@ -769,29 +803,5 @@ class TestConfig:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
             self.obj.has_screening_gate(Connection.new_barrier('test_conn'))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.equal(Config.from_json('{}'))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_not_equal(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.not_equal(Config.from_json('{}'))
-        except Exception as e:
-            print(f'Method call failed as expected: {e}')
-
-    def test_to_json_string(self):
-        if self.obj is None:
-            pytest.skip('Skipping test because object could not be instantiated')
-        try:
-            self.obj.to_json_string()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

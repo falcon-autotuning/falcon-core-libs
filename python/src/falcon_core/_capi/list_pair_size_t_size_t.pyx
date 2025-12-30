@@ -54,6 +54,12 @@ cdef class ListPairSizeTSizeT:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.ListPairSizeTSizeTHandle h_ret = _c_api.ListPairSizeTSizeT_copy(self.handle)
+        if h_ret == <_c_api.ListPairSizeTSizeTHandle>0:
+            return None
+        return _list_pair_size_t_size_t_from_capi(h_ret)
+
     @staticmethod
     def fill_value(size_t count, PairSizeTSizeT value):
         cdef _c_api.ListPairSizeTSizeTHandle h_ret = _c_api.ListPairSizeTSizeT_fill_value(count, value.handle if value is not None else <_c_api.PairSizeTSizeTHandle>0)
@@ -97,21 +103,21 @@ cdef class ListPairSizeTSizeT:
             return None
         return _list_pair_size_t_size_t_from_capi(h_ret)
 
-    def equal(self, ListPairSizeTSizeT b):
-        return _c_api.ListPairSizeTSizeT_equal(self.handle, b.handle if b is not None else <_c_api.ListPairSizeTSizeTHandle>0)
+    def equal(self, ListPairSizeTSizeT other):
+        return _c_api.ListPairSizeTSizeT_equal(self.handle, other.handle if other is not None else <_c_api.ListPairSizeTSizeTHandle>0)
 
-    def __eq__(self, ListPairSizeTSizeT b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, ListPairSizeTSizeT other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, ListPairSizeTSizeT b):
-        return _c_api.ListPairSizeTSizeT_not_equal(self.handle, b.handle if b is not None else <_c_api.ListPairSizeTSizeTHandle>0)
+    def not_equal(self, ListPairSizeTSizeT other):
+        return _c_api.ListPairSizeTSizeT_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPairSizeTSizeTHandle>0)
 
-    def __ne__(self, ListPairSizeTSizeT b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, ListPairSizeTSizeT other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

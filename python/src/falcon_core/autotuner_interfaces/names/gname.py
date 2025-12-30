@@ -15,6 +15,10 @@ class Gname:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Gname:
+        return cls(_CGname.from_json(json))
+
+    @classmethod
     def new_from_num(cls, num: Any) -> Gname:
         return cls(_CGname.new_from_num(num))
 
@@ -22,25 +26,29 @@ class Gname:
     def new(cls, name: str) -> Gname:
         return cls(_CGname.new(name))
 
-    @classmethod
-    def from_json(cls, json: str) -> Gname:
-        return cls(_CGname.from_json(json))
+    def copy(self, ) -> Gname:
+        ret = self._c.copy()
+        return Gname._from_capi(ret)
 
-    def gname(self, ) -> str:
-        ret = self._c.gname()
+    def equal(self, other: Gname) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def equal(self, b: Gname) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Gname) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
+    def not_equal(self, other: Gname) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
     def to_json(self, ) -> str:
         ret = self._c.to_json()
         return ret
+
+    def gname(self, ) -> str:
+        ret = self._c.gname()
+        return ret
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

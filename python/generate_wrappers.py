@@ -1357,6 +1357,13 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         lines.append(f'        return self.negation()')
         lines.append('')
     
+    # Generate __hash__ if we have equality method
+    if operator_methods['equality']:
+        lines.append(f'    def __hash__(self):')
+        lines.append(f'        """Hash based on JSON representation"""')
+        lines.append(f'        return hash(self.to_json())')
+        lines.append('')
+        
     # Generate __eq__ if we have equality method
     if operator_methods['equality']:
         lines.append(f'    def __eq__(self, other):')

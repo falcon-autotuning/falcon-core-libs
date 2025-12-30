@@ -47,6 +47,12 @@ cdef class PairStringBool:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.PairStringBoolHandle h_ret = _c_api.PairStringBool_copy(self.handle)
+        if h_ret == <_c_api.PairStringBoolHandle>0:
+            return None
+        return _pair_string_bool_from_capi(h_ret)
+
     def first(self, ):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PairStringBool_first(self.handle)
@@ -60,21 +66,21 @@ cdef class PairStringBool:
     def second(self, ):
         return _c_api.PairStringBool_second(self.handle)
 
-    def equal(self, PairStringBool b):
-        return _c_api.PairStringBool_equal(self.handle, b.handle if b is not None else <_c_api.PairStringBoolHandle>0)
+    def equal(self, PairStringBool other):
+        return _c_api.PairStringBool_equal(self.handle, other.handle if other is not None else <_c_api.PairStringBoolHandle>0)
 
-    def __eq__(self, PairStringBool b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, PairStringBool other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, PairStringBool b):
-        return _c_api.PairStringBool_not_equal(self.handle, b.handle if b is not None else <_c_api.PairStringBoolHandle>0)
+    def not_equal(self, PairStringBool other):
+        return _c_api.PairStringBool_not_equal(self.handle, other.handle if other is not None else <_c_api.PairStringBoolHandle>0)
 
-    def __ne__(self, PairStringBool b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, PairStringBool other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

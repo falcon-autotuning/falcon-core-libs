@@ -23,6 +23,22 @@ cdef class UnitSpace:
 
 
     @classmethod
+    def from_json(cls, str json):
+        cdef bytes b_json = json.encode("utf-8")
+        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+        cdef _c_api.UnitSpaceHandle h
+        try:
+            h = _c_api.UnitSpace_from_json_string(s_json)
+        finally:
+            _c_api.String_destroy(s_json)
+        if h == <_c_api.UnitSpaceHandle>0:
+            raise MemoryError("Failed to create UnitSpace")
+        cdef UnitSpace obj = <UnitSpace>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    @classmethod
     def new(cls, AxesDiscretizer axes, Domain domain):
         cdef _c_api.UnitSpaceHandle h
         h = _c_api.UnitSpace_create(axes.handle if axes is not None else <_c_api.AxesDiscretizerHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
@@ -88,21 +104,37 @@ cdef class UnitSpace:
         obj.owned = True
         return obj
 
-    @classmethod
-    def from_json(cls, str json):
-        cdef bytes b_json = json.encode("utf-8")
-        cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
-        cdef _c_api.UnitSpaceHandle h
+    def copy(self, ):
+        cdef _c_api.UnitSpaceHandle h_ret = _c_api.UnitSpace_copy(self.handle)
+        if h_ret == <_c_api.UnitSpaceHandle>0:
+            return None
+        return _unit_space_from_capi(h_ret)
+
+    def equal(self, UnitSpace other):
+        return _c_api.UnitSpace_equal(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
+
+    def __eq__(self, UnitSpace other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, UnitSpace other):
+        return _c_api.UnitSpace_not_equal(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
+
+    def __ne__(self, UnitSpace other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.UnitSpace_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
         try:
-            h = _c_api.UnitSpace_from_json_string(s_json)
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
         finally:
-            _c_api.String_destroy(s_json)
-        if h == <_c_api.UnitSpaceHandle>0:
-            raise MemoryError("Failed to create UnitSpace")
-        cdef UnitSpace obj = <UnitSpace>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
+            _c_api.String_destroy(s_ret)
 
     def axes(self, ):
         cdef _c_api.AxesDiscretizerHandle h_ret = _c_api.UnitSpace_axes(self.handle)
@@ -169,32 +201,6 @@ cdef class UnitSpace:
         if h_ret == <_c_api.UnitSpaceHandle>0:
             return None
         return _unit_space_from_capi(h_ret)
-
-    def equal(self, UnitSpace b):
-        return _c_api.UnitSpace_equal(self.handle, b.handle if b is not None else <_c_api.UnitSpaceHandle>0)
-
-    def __eq__(self, UnitSpace b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, UnitSpace b):
-        return _c_api.UnitSpace_not_equal(self.handle, b.handle if b is not None else <_c_api.UnitSpaceHandle>0)
-
-    def __ne__(self, UnitSpace b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.UnitSpace_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
     def __len__(self):
         return self.size()

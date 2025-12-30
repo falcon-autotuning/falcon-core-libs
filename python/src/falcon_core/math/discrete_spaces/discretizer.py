@@ -16,6 +16,10 @@ class Discretizer:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Discretizer:
+        return cls(_CDiscretizer.from_json(json))
+
+    @classmethod
     def new_cartesian_discretizer(cls, delta: Any) -> Discretizer:
         return cls(_CDiscretizer.new_cartesian_discretizer(delta))
 
@@ -23,9 +27,21 @@ class Discretizer:
     def new_polar_discretizer(cls, delta: Any) -> Discretizer:
         return cls(_CDiscretizer.new_polar_discretizer(delta))
 
-    @classmethod
-    def from_json(cls, json: str) -> Discretizer:
-        return cls(_CDiscretizer.from_json(json))
+    def copy(self, ) -> Discretizer:
+        ret = self._c.copy()
+        return Discretizer._from_capi(ret)
+
+    def equal(self, other: Discretizer) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Discretizer) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def delta(self, ) -> None:
         ret = self._c.delta()
@@ -48,17 +64,9 @@ class Discretizer:
         ret = self._c.is_polar()
         return ret
 
-    def equal(self, b: Discretizer) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Discretizer) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

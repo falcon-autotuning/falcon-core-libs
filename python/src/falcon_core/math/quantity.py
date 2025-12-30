@@ -16,14 +16,30 @@ class Quantity:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> Quantity:
+        return cls(_CQuantity.from_json(json))
+
+    @classmethod
     def new(cls, value: Any, unit: SymbolUnit) -> Quantity:
         obj = cls(_CQuantity.new(value, unit._c if unit is not None else None))
         obj._ref_unit = unit  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> Quantity:
-        return cls(_CQuantity.from_json(json))
+    def copy(self, ) -> Quantity:
+        ret = self._c.copy()
+        return Quantity._from_capi(ret)
+
+    def equal(self, other: Quantity) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: Quantity) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def value(self, ) -> None:
         ret = self._c.value()
@@ -114,18 +130,6 @@ class Quantity:
         ret = self._c.abs()
         return Quantity._from_capi(ret)
 
-    def equal(self, b: Quantity) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: Quantity) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __add__(self, other):
         """Operator overload for +"""
         if isinstance(other, Quantity):
@@ -177,6 +181,10 @@ class Quantity:
     def __neg__(self):
         """Operator overload for unary -"""
         return self.negation()
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

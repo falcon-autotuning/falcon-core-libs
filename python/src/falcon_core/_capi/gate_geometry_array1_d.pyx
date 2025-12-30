@@ -22,17 +22,6 @@ cdef class GateGeometryArray1D:
 
 
     @classmethod
-    def new(cls, Connections lineararray, Connections screening_gates):
-        cdef _c_api.GateGeometryArray1DHandle h
-        h = _c_api.GateGeometryArray1D_create(lineararray.handle if lineararray is not None else <_c_api.ConnectionsHandle>0, screening_gates.handle if screening_gates is not None else <_c_api.ConnectionsHandle>0)
-        if h == <_c_api.GateGeometryArray1DHandle>0:
-            raise MemoryError("Failed to create GateGeometryArray1D")
-        cdef GateGeometryArray1D obj = <GateGeometryArray1D>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -47,6 +36,49 @@ cdef class GateGeometryArray1D:
         obj.handle = h
         obj.owned = True
         return obj
+
+    @classmethod
+    def new(cls, Connections lineararray, Connections screening_gates):
+        cdef _c_api.GateGeometryArray1DHandle h
+        h = _c_api.GateGeometryArray1D_create(lineararray.handle if lineararray is not None else <_c_api.ConnectionsHandle>0, screening_gates.handle if screening_gates is not None else <_c_api.ConnectionsHandle>0)
+        if h == <_c_api.GateGeometryArray1DHandle>0:
+            raise MemoryError("Failed to create GateGeometryArray1D")
+        cdef GateGeometryArray1D obj = <GateGeometryArray1D>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
+        if h_ret == <_c_api.GateGeometryArray1DHandle>0:
+            return None
+        return _gate_geometry_array1_d_from_capi(h_ret)
+
+    def equal(self, GateGeometryArray1D other):
+        return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
+
+    def __eq__(self, GateGeometryArray1D other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, GateGeometryArray1D other):
+        return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
+
+    def __ne__(self, GateGeometryArray1D other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
 
     def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):
         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
@@ -116,32 +148,6 @@ cdef class GateGeometryArray1D:
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
         return _connections_from_capi(h_ret)
-
-    def equal(self, GateGeometryArray1D other):
-        return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
-
-    def __eq__(self, GateGeometryArray1D other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.equal(other)
-
-    def not_equal(self, GateGeometryArray1D other):
-        return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
-
-    def __ne__(self, GateGeometryArray1D other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
-        return self.not_equal(other)
-
-    def to_json(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
 
 cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
     if h == <_c_api.GateGeometryArray1DHandle>0:

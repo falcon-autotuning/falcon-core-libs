@@ -17,6 +17,10 @@ class PortTransforms:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> PortTransforms:
+        return cls(_CPortTransforms.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> PortTransforms:
         return cls(_CPortTransforms.new_empty())
 
@@ -26,9 +30,21 @@ class PortTransforms:
         obj._ref_handle = handle  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> PortTransforms:
-        return cls(_CPortTransforms.from_json(json))
+    def copy(self, ) -> PortTransforms:
+        ret = self._c.copy()
+        return PortTransforms._from_capi(ret)
+
+    def equal(self, other: PortTransforms) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: PortTransforms) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def transforms(self, ) -> List:
         ret = self._c.transforms()
@@ -77,18 +93,6 @@ class PortTransforms:
         ret = self._c.intersection(other._c if other is not None else None)
         return PortTransforms._from_capi(ret)
 
-    def equal(self, b: PortTransforms) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: PortTransforms) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -104,6 +108,10 @@ class PortTransforms:
     @classmethod
     def from_list(cls, items):
         return cls(_CPortTransforms.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""

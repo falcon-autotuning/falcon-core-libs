@@ -55,6 +55,12 @@ cdef class AxesControlArray:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.AxesControlArrayHandle h_ret = _c_api.AxesControlArray_copy(self.handle)
+        if h_ret == <_c_api.AxesControlArrayHandle>0:
+            return None
+        return _axes_control_array_from_capi(h_ret)
+
     def push_back(self, ControlArray value):
         _c_api.AxesControlArray_push_back(self.handle, value.handle if value is not None else <_c_api.ControlArrayHandle>0)
 
@@ -91,21 +97,21 @@ cdef class AxesControlArray:
             return None
         return _axes_control_array_from_capi(h_ret)
 
-    def equal(self, AxesControlArray b):
-        return _c_api.AxesControlArray_equal(self.handle, b.handle if b is not None else <_c_api.AxesControlArrayHandle>0)
+    def equal(self, AxesControlArray other):
+        return _c_api.AxesControlArray_equal(self.handle, other.handle if other is not None else <_c_api.AxesControlArrayHandle>0)
 
-    def __eq__(self, AxesControlArray b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, AxesControlArray other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, AxesControlArray b):
-        return _c_api.AxesControlArray_not_equal(self.handle, b.handle if b is not None else <_c_api.AxesControlArrayHandle>0)
+    def not_equal(self, AxesControlArray other):
+        return _c_api.AxesControlArray_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesControlArrayHandle>0)
 
-    def __ne__(self, AxesControlArray b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, AxesControlArray other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

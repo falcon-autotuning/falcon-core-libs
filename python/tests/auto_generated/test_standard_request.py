@@ -7,16 +7,16 @@ class TestStandardRequest:
     def setup_method(self):
         self.obj = None
         try:
-            # Found constructor: StandardRequest_create
-            self.obj = StandardRequest.new("test_string")
+            # Using recipe for StandardRequest
+            self.obj = StandardRequest.from_json('{}')
         except Exception as e:
             print(f'Setup failed: {e}')
 
-    def test_message(self):
+    def test_copy(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.message()
+            self.obj.copy()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,10 +36,18 @@ class TestStandardRequest:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
-    def test_to_json_string(self):
+    def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.to_json_string()
+            self.obj.to_json()
+        except Exception as e:
+            print(f'Method call failed as expected: {e}')
+
+    def test_message(self):
+        if self.obj is None:
+            pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj.message()
         except Exception as e:
             print(f'Method call failed as expected: {e}')

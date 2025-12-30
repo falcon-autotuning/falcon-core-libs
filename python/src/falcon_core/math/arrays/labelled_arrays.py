@@ -71,9 +71,17 @@ class LabelledArrays:
 
     @classmethod
     def __class_getitem__(cls, types):
-        """Enable LabelledArrays[T] syntax."""
+        def resolve_type(t):
+            if hasattr(t, '_c_class'):
+                return t._c_class
+            if isinstance(t, tuple):
+                return tuple(resolve_type(tt) for tt in t)
+            return t
+        
+        resolved_types = resolve_type(types)
         from ._labelled_arrays_registry import LABELLEDARRAYS_REGISTRY
-        c_class = LABELLEDARRAYS_REGISTRY.get(types)
+        """Enable LabelledArrays[T] syntax."""
+        c_class = LABELLEDARRAYS_REGISTRY.get(resolved_types)
         if c_class is None:
             raise TypeError(f"LabelledArrays does not support type: {types}")
         return _LabelledArraysFactory(types, c_class)
@@ -93,7 +101,7 @@ class LabelledArrays:
                 # Unwrap LabelledArrays arguments to their Cython objects
                 unwrapped_args = []
                 for arg in args:
-                    if isinstance(arg, LabelledArrays):
+                    if hasattr(arg, '_c'):
                         unwrapped_args.append(arg._c)
                     else:
                         unwrapped_args.append(arg)

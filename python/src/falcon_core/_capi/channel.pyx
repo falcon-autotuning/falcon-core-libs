@@ -16,22 +16,6 @@ cdef class Channel:
 
 
     @classmethod
-    def new(cls, str name):
-        cdef bytes b_name = name.encode("utf-8")
-        cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))
-        cdef _c_api.ChannelHandle h
-        try:
-            h = _c_api.Channel_create(s_name)
-        finally:
-            _c_api.String_destroy(s_name)
-        if h == <_c_api.ChannelHandle>0:
-            raise MemoryError("Failed to create Channel")
-        cdef Channel obj = <Channel>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -47,9 +31,47 @@ cdef class Channel:
         obj.owned = True
         return obj
 
-    def name(self, ):
+    @classmethod
+    def new(cls, str name):
+        cdef bytes b_name = name.encode("utf-8")
+        cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))
+        cdef _c_api.ChannelHandle h
+        try:
+            h = _c_api.Channel_create(s_name)
+        finally:
+            _c_api.String_destroy(s_name)
+        if h == <_c_api.ChannelHandle>0:
+            raise MemoryError("Failed to create Channel")
+        cdef Channel obj = <Channel>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.ChannelHandle h_ret = _c_api.Channel_copy(self.handle)
+        if h_ret == <_c_api.ChannelHandle>0:
+            return None
+        return _channel_from_capi(h_ret)
+
+    def equal(self, Channel other):
+        return _c_api.Channel_equal(self.handle, other.handle if other is not None else <_c_api.ChannelHandle>0)
+
+    def __eq__(self, Channel other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.equal(other)
+
+    def not_equal(self, Channel other):
+        return _c_api.Channel_not_equal(self.handle, other.handle if other is not None else <_c_api.ChannelHandle>0)
+
+    def __ne__(self, Channel other):
+        if not hasattr(other, "handle"):
+            return NotImplemented
+        return self.not_equal(other)
+
+    def to_json(self, ):
         cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Channel_name(self.handle)
+        s_ret = _c_api.Channel_to_json_string(self.handle)
         if s_ret == <_c_api.StringHandle>0:
             return ""
         try:
@@ -57,25 +79,9 @@ cdef class Channel:
         finally:
             _c_api.String_destroy(s_ret)
 
-    def equal(self, Channel b):
-        return _c_api.Channel_equal(self.handle, b.handle if b is not None else <_c_api.ChannelHandle>0)
-
-    def __eq__(self, Channel b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.equal(b)
-
-    def not_equal(self, Channel b):
-        return _c_api.Channel_not_equal(self.handle, b.handle if b is not None else <_c_api.ChannelHandle>0)
-
-    def __ne__(self, Channel b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
-        return self.not_equal(b)
-
-    def to_json(self, ):
+    def name(self, ):
         cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.Channel_to_json_string(self.handle)
+        s_ret = _c_api.Channel_name(self.handle)
         if s_ret == <_c_api.StringHandle>0:
             return ""
         try:

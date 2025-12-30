@@ -288,6 +288,14 @@ def generate_template_registry(base, instances):
     lines.append("")
     lines.append(f"{base.upper()}_REGISTRY = {{")
     
+    # Sort entries to prioritize certain types (e.g. Double over Float)
+    registry_entries.sort(key=lambda x: (
+        x[0], # key first
+        "Float" in x[1], # Float last
+        "Double" not in x[1], # Double first
+        x[1] # then by cython_ref
+    ))
+
     # Add entries, avoiding duplicates
     seen_keys = set()
     for key_str, cython_ref in registry_entries:
@@ -369,6 +377,24 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"        # Fallback to raising error if no suitable constructor found")
     lines.append(f"        raise TypeError(f'No suitable constructor found for {base}[{{self.element_type}}] with args={{args}}')")
     lines.append("")
+    
+    if base == "Map":
+        lines.append(f"    def from_dict(self, data):")
+        lines.append(f'        """Create a {base} from a Python dictionary."""')
+        lines.append(f"        instance = self()")
+        lines.append(f"        for k, v in data.items():")
+        lines.append(f"            instance.insert(k, v)")
+        lines.append(f"        return instance")
+        lines.append("")
+    elif base == "List":
+        lines.append(f"    def from_list(self, data):")
+        lines.append(f'        """Create a {base} from a Python list."""')
+        lines.append(f"        instance = self()")
+        lines.append(f"        for item in data:")
+        lines.append(f"            instance.push_back(item)")
+        lines.append(f"        return instance")
+        lines.append("")
+
     lines.append(f"    def __getattr__(self, name):")
     lines.append(f'        """Delegate class method calls to the underlying Cython class."""')
     lines.append(f"        attr = getattr(self._c_class, name, None)")
@@ -398,11 +424,19 @@ def generate_generic_wrapper(base, instances):
     lines.append("")
     lines.append(f"    @classmethod")
     lines.append(f"    def __class_getitem__(cls, types):")
+    lines.append(f"        def resolve_type(t):")
+    lines.append(f"            if hasattr(t, '_c_class'):")
+    lines.append(f"                return t._c_class")
+    lines.append(f"            if isinstance(t, tuple):")
+    lines.append(f"                return tuple(resolve_type(tt) for tt in t)")
+    lines.append(f"            return t")
+    lines.append(f"        ")
+    lines.append(f"        resolved_types = resolve_type(types)")
+    lines.append(f"        from ._{to_snake_case(base)}_registry import {base.upper()}_REGISTRY")
     
     if param_count == 1:
         lines.append(f'        """Enable {base}[T] syntax."""')
-        lines.append(f"        from ._{to_snake_case(base)}_registry import {base.upper()}_REGISTRY")
-        lines.append(f"        c_class = {base.upper()}_REGISTRY.get(types)")
+        lines.append(f"        c_class = {base.upper()}_REGISTRY.get(resolved_types)")
         lines.append(f"        if c_class is None:")
         lines.append(f'            raise TypeError(f"{base} does not support type: {{types}}")')
         lines.append(f"        return _{base}Factory(types, c_class)")
@@ -410,8 +444,7 @@ def generate_generic_wrapper(base, instances):
         lines.append(f'        """Enable {base}[K, V] syntax."""')
         lines.append(f"        if not isinstance(types, tuple) or len(types) != {param_count}:")
         lines.append(f'            raise TypeError(f"{base} requires {param_count} type parameters")')
-        lines.append(f"        from ._{to_snake_case(base)}_registry import {base.upper()}_REGISTRY")
-        lines.append(f"        c_class = {base.upper()}_REGISTRY.get(types)")
+        lines.append(f"        c_class = {base.upper()}_REGISTRY.get(resolved_types)")
         lines.append(f"        if c_class is None:")
         lines.append(f'            raise TypeError(f"{base} does not support types: {{types}}")')
         lines.append(f"        return _{base}Factory(types, c_class)")
@@ -437,7 +470,7 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"                # Unwrap {base} arguments to their Cython objects")
     lines.append(f"                unwrapped_args = []")
     lines.append(f"                for arg in args:")
-    lines.append(f"                    if isinstance(arg, {base}):")
+    lines.append(f"                    if hasattr(arg, '_c'):")
     lines.append(f"                        unwrapped_args.append(arg._c)")
     lines.append(f"                    else:")
     lines.append(f"                        unwrapped_args.append(arg)")

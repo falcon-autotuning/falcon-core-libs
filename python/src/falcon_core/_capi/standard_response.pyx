@@ -16,22 +16,6 @@ cdef class StandardResponse:
 
 
     @classmethod
-    def new(cls, str message):
-        cdef bytes b_message = message.encode("utf-8")
-        cdef _c_api.StringHandle s_message = _c_api.String_create(b_message, len(b_message))
-        cdef _c_api.StandardResponseHandle h
-        try:
-            h = _c_api.StandardResponse_create(s_message)
-        finally:
-            _c_api.String_destroy(s_message)
-        if h == <_c_api.StandardResponseHandle>0:
-            raise MemoryError("Failed to create StandardResponse")
-        cdef StandardResponse obj = <StandardResponse>cls.__new__(cls)
-        obj.handle = h
-        obj.owned = True
-        return obj
-
-    @classmethod
     def from_json(cls, str json):
         cdef bytes b_json = json.encode("utf-8")
         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
@@ -47,15 +31,27 @@ cdef class StandardResponse:
         obj.owned = True
         return obj
 
-    def message(self, ):
-        cdef _c_api.StringHandle s_ret
-        s_ret = _c_api.StandardResponse_message(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
+    @classmethod
+    def new(cls, str message):
+        cdef bytes b_message = message.encode("utf-8")
+        cdef _c_api.StringHandle s_message = _c_api.String_create(b_message, len(b_message))
+        cdef _c_api.StandardResponseHandle h
         try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+            h = _c_api.StandardResponse_create(s_message)
         finally:
-            _c_api.String_destroy(s_ret)
+            _c_api.String_destroy(s_message)
+        if h == <_c_api.StandardResponseHandle>0:
+            raise MemoryError("Failed to create StandardResponse")
+        cdef StandardResponse obj = <StandardResponse>cls.__new__(cls)
+        obj.handle = h
+        obj.owned = True
+        return obj
+
+    def copy(self, ):
+        cdef _c_api.StandardResponseHandle h_ret = _c_api.StandardResponse_copy(self.handle)
+        if h_ret == <_c_api.StandardResponseHandle>0:
+            return None
+        return _standard_response_from_capi(h_ret)
 
     def equal(self, StandardResponse other):
         return _c_api.StandardResponse_equal(self.handle, other.handle if other is not None else <_c_api.StandardResponseHandle>0)
@@ -76,6 +72,16 @@ cdef class StandardResponse:
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.StandardResponse_to_json_string(self.handle)
+        if s_ret == <_c_api.StringHandle>0:
+            return ""
+        try:
+            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally:
+            _c_api.String_destroy(s_ret)
+
+    def message(self, ):
+        cdef _c_api.StringHandle s_ret
+        s_ret = _c_api.StandardResponse_message(self.handle)
         if s_ret == <_c_api.StringHandle>0:
             return ""
         try:

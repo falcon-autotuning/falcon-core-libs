@@ -56,6 +56,12 @@ cdef class MapIntInt:
         obj.owned = True
         return obj
 
+    def copy(self, ):
+        cdef _c_api.MapIntIntHandle h_ret = _c_api.MapIntInt_copy(self.handle)
+        if h_ret == <_c_api.MapIntIntHandle>0:
+            return None
+        return _map_int_int_from_capi(h_ret)
+
     def insert_or_assign(self, int key, int value):
         _c_api.MapIntInt_insert_or_assign(self.handle, key, value)
 
@@ -98,21 +104,21 @@ cdef class MapIntInt:
             return None
         return _list_pair_int_int_from_capi(h_ret)
 
-    def equal(self, MapIntInt b):
-        return _c_api.MapIntInt_equal(self.handle, b.handle if b is not None else <_c_api.MapIntIntHandle>0)
+    def equal(self, MapIntInt other):
+        return _c_api.MapIntInt_equal(self.handle, other.handle if other is not None else <_c_api.MapIntIntHandle>0)
 
-    def __eq__(self, MapIntInt b):
-        if not hasattr(b, "handle"):
+    def __eq__(self, MapIntInt other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.equal(b)
+        return self.equal(other)
 
-    def not_equal(self, MapIntInt b):
-        return _c_api.MapIntInt_not_equal(self.handle, b.handle if b is not None else <_c_api.MapIntIntHandle>0)
+    def not_equal(self, MapIntInt other):
+        return _c_api.MapIntInt_not_equal(self.handle, other.handle if other is not None else <_c_api.MapIntIntHandle>0)
 
-    def __ne__(self, MapIntInt b):
-        if not hasattr(b, "handle"):
+    def __ne__(self, MapIntInt other):
+        if not hasattr(other, "handle"):
             return NotImplemented
-        return self.not_equal(b)
+        return self.not_equal(other)
 
     def to_json(self, ):
         cdef _c_api.StringHandle s_ret

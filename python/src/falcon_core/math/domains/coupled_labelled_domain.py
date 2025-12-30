@@ -19,6 +19,10 @@ class CoupledLabelledDomain:
         return cls(c_obj)
 
     @classmethod
+    def from_json(cls, json: str) -> CoupledLabelledDomain:
+        return cls(_CCoupledLabelledDomain.from_json(json))
+
+    @classmethod
     def new_empty(cls, ) -> CoupledLabelledDomain:
         return cls(_CCoupledLabelledDomain.new_empty())
 
@@ -28,9 +32,21 @@ class CoupledLabelledDomain:
         obj._ref_items = items  # Keep reference alive
         return obj
 
-    @classmethod
-    def from_json(cls, json: str) -> CoupledLabelledDomain:
-        return cls(_CCoupledLabelledDomain.from_json(json))
+    def copy(self, ) -> CoupledLabelledDomain:
+        ret = self._c.copy()
+        return CoupledLabelledDomain._from_capi(ret)
+
+    def equal(self, other: CoupledLabelledDomain) -> None:
+        ret = self._c.equal(other._c if other is not None else None)
+        return ret
+
+    def not_equal(self, other: CoupledLabelledDomain) -> None:
+        ret = self._c.not_equal(other._c if other is not None else None)
+        return ret
+
+    def to_json(self, ) -> str:
+        ret = self._c.to_json()
+        return ret
 
     def domains(self, ) -> List:
         ret = self._c.domains()
@@ -94,18 +110,6 @@ class CoupledLabelledDomain:
         ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, b: CoupledLabelledDomain) -> None:
-        ret = self._c.equal(b._c if b is not None else None)
-        return ret
-
-    def not_equal(self, b: CoupledLabelledDomain) -> None:
-        ret = self._c.not_equal(b._c if b is not None else None)
-        return ret
-
-    def to_json(self, ) -> str:
-        ret = self._c.to_json()
-        return ret
-
     def __len__(self):
         return self.size()
 
@@ -121,6 +125,10 @@ class CoupledLabelledDomain:
     @classmethod
     def from_list(cls, items):
         return cls(_CCoupledLabelledDomain.from_list(items))
+
+    def __hash__(self):
+        """Hash based on JSON representation"""
+        return hash(self.to_json())
 
     def __eq__(self, other):
         """Operator overload for =="""
