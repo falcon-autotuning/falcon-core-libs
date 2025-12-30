@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.physics.config.geometries.left_reservoir_with_implanted_ohmic import LeftReservoirWithImplantedOhmic
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.geometries.left_reservoir_with_implanted_ohmic import LeftReservoirWithImplantedOhmic
 
@@ -7,8 +8,8 @@ class TestLeftReservoirWithImplantedOhmic:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = LeftReservoirWithImplantedOhmic.from_json('{}')
+            # Using recipe for LeftReservoirWithImplantedOhmic
+            self.obj = LeftReservoirWithImplantedOhmic.new('test', Connection.new_barrier('right'), Connection.new_ohmic('ohmic'))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -24,7 +25,7 @@ class TestLeftReservoirWithImplantedOhmic:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(LeftReservoirWithImplantedOhmic.new('test', Connection.new_barrier('right'), Connection.new_ohmic('ohmic')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +33,7 @@ class TestLeftReservoirWithImplantedOhmic:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(LeftReservoirWithImplantedOhmic.new('test', Connection.new_barrier('right'), Connection.new_ohmic('ohmic')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

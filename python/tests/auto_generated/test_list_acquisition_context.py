@@ -27,7 +27,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(1, AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.fill_value(1, AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -35,7 +35,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.push_back(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -91,7 +91,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.contains(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -99,7 +99,7 @@ class TestListAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.index(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -134,3 +134,25 @@ class TestListAcquisitionContext:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

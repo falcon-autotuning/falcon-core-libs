@@ -3,12 +3,13 @@ import array
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.device_structures.gate_relations import GateRelations
+from falcon_core.physics.device_structures.gate_relations import GateRelations
 
 class TestGateRelations:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: GateRelations_create_empty
+            # Using recipe for GateRelations
             self.obj = GateRelations.new_empty()
         except Exception as e:
             print(f'Setup failed: {e}')
@@ -25,7 +26,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(GateRelations.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +34,7 @@ class TestGateRelations:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(GateRelations.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -132,3 +133,25 @@ class TestGateRelations:
             self.obj.items()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

@@ -53,7 +53,7 @@ class TestLabelledMeasuredArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -61,7 +61,7 @@ class TestLabelledMeasuredArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.from_measured_array(MeasuredArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0])), AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.from_measured_array(MeasuredArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0])), AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -648,3 +648,10 @@ class TestLabelledMeasuredArray1D:
             self.obj.get_summed_diff_array_of_squares(LabelledMeasuredArray1D.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')

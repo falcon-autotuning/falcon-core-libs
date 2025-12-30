@@ -1,5 +1,6 @@
 import pytest
 import array
+from falcon_core.physics.config.geometries.dot_gate_with_neighbors import DotGateWithNeighbors
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.geometries.dot_gate_with_neighbors import DotGateWithNeighbors
 
@@ -7,8 +8,8 @@ class TestDotGateWithNeighbors:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = DotGateWithNeighbors.from_json('{}')
+            # Using recipe for DotGateWithNeighbors
+            self.obj = DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -24,7 +25,7 @@ class TestDotGateWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +33,7 @@ class TestDotGateWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

@@ -4,6 +4,7 @@ from falcon_core.math.arrays.labelled_arrays import LabelledArrays
 from falcon_core.math.arrays.labelled_measured_array1_d import LabelledMeasuredArray1D
 from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
 from falcon_core.generic.f_array import FArray
+from falcon_core.generic.list import List
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.math.arrays.labelled_arrays import LabelledArrays
@@ -12,8 +13,8 @@ class TestLabelledArraysLabelledMeasuredArray1D:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = LabelledArrays[LabelledMeasuredArray1D].from_json('{}')
+            # Using recipe for LabelledArraysLabelledMeasuredArray1D
+            self.obj = LabelledArrays[LabelledMeasuredArray1D](List[LabelledMeasuredArray1D]())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -125,7 +126,7 @@ class TestLabelledArraysLabelledMeasuredArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(LabelledArrays[LabelledMeasuredArray1D](List[LabelledMeasuredArray1D]()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -133,7 +134,7 @@ class TestLabelledArraysLabelledMeasuredArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(LabelledArrays[LabelledMeasuredArray1D](List[LabelledMeasuredArray1D]()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -141,7 +142,7 @@ class TestLabelledArraysLabelledMeasuredArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(LabelledArrays[LabelledMeasuredArray1D](List[LabelledMeasuredArray1D]()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -152,3 +153,25 @@ class TestLabelledArraysLabelledMeasuredArray1D:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

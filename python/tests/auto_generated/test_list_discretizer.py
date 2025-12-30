@@ -25,7 +25,7 @@ class TestListDiscretizer:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(1, None)
+            self.obj.fill_value(1, Discretizer.new_cartesian_discretizer(0.1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +33,7 @@ class TestListDiscretizer:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(Discretizer.new_cartesian_discretizer(0.1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -89,7 +89,7 @@ class TestListDiscretizer:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(Discretizer.new_cartesian_discretizer(0.1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -97,7 +97,7 @@ class TestListDiscretizer:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(Discretizer.new_cartesian_discretizer(0.1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -132,3 +132,25 @@ class TestListDiscretizer:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

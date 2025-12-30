@@ -8,7 +8,7 @@ class TestStandardResponse:
         self.obj = None
         try:
             # Using recipe for StandardResponse
-            self.obj = StandardResponse.from_json('{}')
+            self.obj = StandardResponse.new('test response')
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -24,7 +24,7 @@ class TestStandardResponse:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(StandardResponse.from_json('{}'))
+            self.obj.equal(StandardResponse.new('test response'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +32,7 @@ class TestStandardResponse:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(StandardResponse.from_json('{}'))
+            self.obj.not_equal(StandardResponse.new('test response'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

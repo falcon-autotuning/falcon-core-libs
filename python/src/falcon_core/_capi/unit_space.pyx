@@ -214,15 +214,6 @@ cdef class UnitSpace:
     def append(self, value):
         self.push_back(value)
 
-    @classmethod
-    def from_list(cls, items):
-        cdef UnitSpace obj = cls.new_empty()
-        for item in items:
-            if hasattr(item, "_c"):
-                item = item._c
-            obj.push_back(item)
-        return obj
-
 cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h, bint owned=True):
     if h == <_c_api.UnitSpaceHandle>0:
         return None

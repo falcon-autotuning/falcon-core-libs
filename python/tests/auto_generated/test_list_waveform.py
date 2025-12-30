@@ -10,6 +10,25 @@ from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.list import List
 
+
+def _make_test_waveform():
+    from falcon_core.instrument_interfaces.waveform import Waveform
+    from falcon_core.math.domains.coupled_labelled_domain import CoupledLabelledDomain
+    from falcon_core.math.domains.labelled_domain import LabelledDomain
+    from falcon_core.math.domains.domain import Domain
+    from falcon_core.physics.device_structures.connection import Connection
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.generic.map import Map
+    
+    domain = Domain.new(0.0, 1.0, True, True)
+    ld = LabelledDomain.new_from_domain(domain, 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')
+    cld = CoupledLabelledDomain.new_empty()
+    cld._c.push_back(ld._c)
+    msb = Map[str, bool]()
+    msb._c.insert('test_name', True)
+    return Waveform.new_cartesian_identity_waveform_1D(10, cld, msb, domain)
+
+
 class TestListWaveform:
     def setup_method(self):
         self.obj = None
@@ -138,3 +157,25 @@ class TestListWaveform:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

@@ -5,15 +5,37 @@ from falcon_core.autotuner_interfaces.interpretations.interpretation_context imp
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
 from falcon_core.generic.list import List
 from falcon_core.math.axes import Axes
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.generic.pair import Pair
+
+
+def _make_test_interpretation_context():
+    from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
+    from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+    from falcon_core.math.axes import Axes
+    from falcon_core.generic.list import List
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.physics.device_structures.connection import Connection
+    
+    conn = Connection.new_plunger('A')
+    unit = SymbolUnit.new_volt()
+    mc1 = MeasurementContext.new(conn, 'oscilloscope')
+    mc2 = MeasurementContext.new(conn, 'multimeter')
+    
+    axes = Axes[MeasurementContext].from_list([mc1, mc2])
+    list_mc = List[MeasurementContext]()
+    list_mc.append(mc2)
+    
+    return InterpretationContext.new(axes, list_mc, unit)
+
 
 class TestPairInterpretationContextString:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = Pair[InterpretationContext, str].from_json('{}')
+            # Found constructor: PairInterpretationContextString_create
+            self.obj = Pair[InterpretationContext, str](_make_test_interpretation_context(), "test_string")
         except Exception as e:
             print(f'Setup failed: {e}')
 

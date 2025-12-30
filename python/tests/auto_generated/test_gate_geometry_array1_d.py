@@ -1,15 +1,38 @@
 import pytest
 import array
+from falcon_core.physics.config.geometries.gate_geometry_array1_d import GateGeometryArray1D
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.config.geometries.gate_geometry_array1_d import GateGeometryArray1D
+
+
+def _make_test_gate_geometry_array_1d():
+    from falcon_core.physics.config.geometries.gate_geometry_array1_d import GateGeometryArray1D
+    from falcon_core.physics.device_structures.connections import Connections
+    from falcon_core.physics.device_structures.connection import Connection
+    
+    linear = Connections.new_empty()
+    linear.append(Connection.new_ohmic("O1"))
+    linear.append(Connection.new_reservoir("R1"))
+    linear.append(Connection.new_barrier("B1"))
+    linear.append(Connection.new_plunger("P1"))
+    linear.append(Connection.new_barrier("B2"))
+    linear.append(Connection.new_reservoir("R2"))
+    linear.append(Connection.new_ohmic("O2"))
+    
+    screening = Connections.new_empty()
+    screening.append(Connection.new_screening("S1"))
+    screening.append(Connection.new_screening("S2"))
+    
+    return GateGeometryArray1D.new(linear, screening)
+
 
 class TestGateGeometryArray1D:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = GateGeometryArray1D.from_json('{}')
+            # Using recipe for GateGeometryArray1D
+            self.obj = _make_test_gate_geometry_array_1d()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -25,7 +48,7 @@ class TestGateGeometryArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(_make_test_gate_geometry_array_1d())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -33,7 +56,7 @@ class TestGateGeometryArray1D:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(_make_test_gate_geometry_array_1d())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

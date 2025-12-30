@@ -394,6 +394,32 @@ def generate_pxd(classes: List[ClassDef]) -> str:
         
     return "\n".join(lines)
 
+def get_python_method_name(cls_name, name):
+    if name.startswith(cls_name + "_"):
+        name = name[len(cls_name)+1:]
+    
+    if name in PYTHON_KEYWORD_RENAMES:
+        name = PYTHON_KEYWORD_RENAMES[name]
+
+    if name == "create":
+        return "new"
+    if name == "create_empty" or name == "new_empty":
+        return "new_empty"
+    if name.startswith("create_"):
+        suffix = name[7:]
+        if suffix.endswith("_gate"): suffix = suffix[:-5]
+        return "new_" + suffix
+    if name.startswith("new_"):
+        suffix = name[4:]
+        if suffix.endswith("_gate"): suffix = suffix[:-5]
+        return "new_" + suffix
+    if name == "from_json_string":
+        return "from_json"
+    if name == "to_json_string":
+        return "to_json"
+        
+    return name
+
 def to_snake_case(name):
     import re
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', name)
@@ -773,15 +799,26 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
             # But push_back takes the wrapper or primitive.
             # In Cython, push_back(self, Type value).
             
-            lines.append(f'    @classmethod')
-            lines.append(f'    def from_list(cls, items):')
-            lines.append(f'        cdef {cls.name} obj = cls.new_empty()')
-            lines.append(f'        for item in items:')
-            lines.append(f'            if hasattr(item, "_c"):')
-            lines.append(f'                item = item._c')
-            lines.append(f'            obj.push_back(item)')
-            lines.append(f'        return obj')
-            lines.append('')
+            # Find an empty constructor or create_empty
+            empty_ctor = None
+            if cls.constructors:
+                for ctor in cls.constructors:
+                    if not ctor.args:
+                        name = get_python_method_name(cls.name, ctor.name)
+                        if name in ["new_empty", "new"]:
+                            empty_ctor = name
+                            break
+            
+            if empty_ctor:
+                lines.append(f'    @classmethod')
+                lines.append(f'    def from_list(cls, items):')
+                lines.append(f'        cdef {cls.name} obj = cls.{empty_ctor}()')
+                lines.append(f'        for item in items:')
+                lines.append(f'            if hasattr(item, "_c"):')
+                lines.append(f'                item = item._c')
+                lines.append(f'            obj.push_back(item)')
+                lines.append(f'        return obj')
+                lines.append('')
 
     # Factory function for creating from handle
     lines.append(f'cdef {cls.name} _{to_snake_case(cls.name)}_from_capi(_c_api.{cls.handle_type} h, bint owned=True):')
@@ -898,30 +935,8 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
     
     # Constructors
     for ctor in cls.constructors:
-        # ctor.name is e.g. "create_barrier_gate" or "create" or "from_json_string"
-        # We want to map it to a classmethod
+        py_name = get_python_method_name(cls.name, ctor.name)
         
-        # If name is "create", map to "new" (or __init__ wrapper? No, __init__ takes c_obj)
-        # If name is "create_X", map to "new_X"
-        # If name is "from_json_string", map to "from_json"
-        
-        method_name = ctor.name
-        # Strip class name prefix if present
-        if method_name.startswith(cls.name + "_"):
-            method_name = method_name[len(cls.name)+1:]
-            
-        if method_name == "create":
-            py_name = "new"
-        elif method_name.startswith("create_"):
-            suffix = method_name[7:]
-            if suffix.endswith("_gate"):
-                suffix = suffix[:-5]
-            py_name = "new_" + suffix
-        elif method_name == "from_json_string":
-            py_name = "from_json"
-        else:
-            py_name = method_name
-            
         # Args
         py_args = []
         call_args = []

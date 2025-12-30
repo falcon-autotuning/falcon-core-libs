@@ -140,15 +140,6 @@ cdef class LabelledArraysLabelledMeasuredArray:
     def append(self, value):
         self.push_back(value)
 
-    @classmethod
-    def from_list(cls, items):
-        cdef LabelledArraysLabelledMeasuredArray obj = cls.new_empty()
-        for item in items:
-            if hasattr(item, "_c"):
-                item = item._c
-            obj.push_back(item)
-        return obj
-
 cdef LabelledArraysLabelledMeasuredArray _labelled_arrays_labelled_measured_array_from_capi(_c_api.LabelledArraysLabelledMeasuredArrayHandle h, bint owned=True):
     if h == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
         return None

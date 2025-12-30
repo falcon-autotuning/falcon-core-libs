@@ -1,13 +1,17 @@
 import pytest
 import array
+from falcon_core.generic.list import List
+from falcon_core.physics.config.geometries.dot_gate_with_neighbors import DotGateWithNeighbors
+from falcon_core.physics.config.geometries.dot_gates_with_neighbors import DotGatesWithNeighbors
+from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.config.geometries.dot_gates_with_neighbors import DotGatesWithNeighbors
 
 class TestDotGatesWithNeighbors:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: DotGatesWithNeighbors_create_empty
-            self.obj = DotGatesWithNeighbors.new_empty()
+            # Using recipe for DotGatesWithNeighbors
+            self.obj = DotGatesWithNeighbors.new(List[DotGateWithNeighbors].from_list([DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))]))
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -23,7 +27,7 @@ class TestDotGatesWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(DotGatesWithNeighbors.new(List[DotGateWithNeighbors].from_list([DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -31,7 +35,7 @@ class TestDotGatesWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(DotGatesWithNeighbors.new(List[DotGateWithNeighbors].from_list([DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -63,7 +67,7 @@ class TestDotGatesWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(DotGatesWithNeighbors.new(List[DotGateWithNeighbors].from_list([DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -71,7 +75,7 @@ class TestDotGatesWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(None)
+            self.obj.push_back(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -127,7 +131,7 @@ class TestDotGatesWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(None)
+            self.obj.contains(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -135,6 +139,28 @@ class TestDotGatesWithNeighbors:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(None)
+            self.obj.index(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

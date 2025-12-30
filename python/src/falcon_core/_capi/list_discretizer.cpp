@@ -1349,9 +1349,9 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
@@ -1359,66 +1359,66 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/communications/Time_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringDouble_c_api.h"
-#include "falcon_core/generic/ListPairStringDouble_c_api.h"
-#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/AnalyticFunction_c_api.h"
-#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
-#include "falcon_core/generic/ListInt_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/math/AxesInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
-#include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/MapStringBool_c_api.h"
-#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
-#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListMapStringBool_c_api.h"
-#include "falcon_core/math/AxesMapStringBool_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
-#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
-#include "falcon_core/generic/ListWaveform_c_api.h"
-#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
-#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
-#include "falcon_core/generic/PairConnectionDouble_c_api.h"
-#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
-#include "falcon_core/generic/MapConnectionDouble_c_api.h"
-#include "falcon_core/math/Point_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/math/AxesInt_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/PairStringDouble_c_api.h"
+#include "falcon_core/generic/ListPairStringDouble_c_api.h"
+#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/math/AnalyticFunction_c_api.h"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/PairStringBool_c_api.h"
+#include "falcon_core/generic/ListPairStringBool_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
+#include "falcon_core/generic/MapStringBool_c_api.h"
+#include "falcon_core/generic/ListMapStringBool_c_api.h"
+#include "falcon_core/math/AxesMapStringBool_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
+#include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
+#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
+#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
+#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
+#include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/generic/PairConnectionDouble_c_api.h"
+#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
+#include "falcon_core/generic/MapConnectionDouble_c_api.h"
+#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
+#include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/PairStringString_c_api.h"
 #include "falcon_core/generic/ListPairStringString_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
@@ -1458,8 +1458,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
-#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"
 #include "falcon_core/physics/config/core/Group_c_api.h"
@@ -1486,8 +1486,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
+#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
 #include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
@@ -4979,28 +4979,29 @@ static void __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_2
 static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_4new_empty(PyTypeObject *__pyx_v_cls); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_6new(PyTypeObject *__pyx_v_cls, __Pyx_memviewslice __pyx_v_data, size_t __pyx_v_count); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_8from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_10fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_12push_back(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_14size(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_16empty(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_18erase_at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_20clear(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_22at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_24items(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_26contains(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_28index(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_30intersection(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_32equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_34__eq__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_36not_equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_38__ne__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_40to_json(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
-static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_42__len__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_46append(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_48from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_50__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_52__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_10copy(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_12fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_14push_back(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_16size(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_18empty(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_20erase_at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_22clear(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_24at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_26items(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_28contains(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_30index(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_32intersection(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_34equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_36__eq__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_38not_equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_40__ne__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_42to_json(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_44__len__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_46__getitem__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_48append(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_50from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_16list_discretizer_ListDiscretizer(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -5043,8 +5044,8 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[2];
-  PyObject *__pyx_codeobj_tab[21];
-  PyObject *__pyx_string_tab[199];
+  PyObject *__pyx_codeobj_tab[22];
+  PyObject *__pyx_string_tab[201];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -5145,31 +5146,31 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_ListDiscretizer_at __pyx_string_tab[56]
 #define __pyx_n_u_ListDiscretizer_clear __pyx_string_tab[57]
 #define __pyx_n_u_ListDiscretizer_contains __pyx_string_tab[58]
-#define __pyx_n_u_ListDiscretizer_empty __pyx_string_tab[59]
-#define __pyx_n_u_ListDiscretizer_equal __pyx_string_tab[60]
-#define __pyx_n_u_ListDiscretizer_erase_at __pyx_string_tab[61]
-#define __pyx_n_u_ListDiscretizer_fill_value __pyx_string_tab[62]
-#define __pyx_n_u_ListDiscretizer_from_json __pyx_string_tab[63]
-#define __pyx_n_u_ListDiscretizer_from_list __pyx_string_tab[64]
-#define __pyx_n_u_ListDiscretizer_index __pyx_string_tab[65]
-#define __pyx_n_u_ListDiscretizer_intersection __pyx_string_tab[66]
-#define __pyx_n_u_ListDiscretizer_items __pyx_string_tab[67]
-#define __pyx_n_u_ListDiscretizer_new __pyx_string_tab[68]
-#define __pyx_n_u_ListDiscretizer_new_empty __pyx_string_tab[69]
-#define __pyx_n_u_ListDiscretizer_not_equal __pyx_string_tab[70]
-#define __pyx_n_u_ListDiscretizer_push_back __pyx_string_tab[71]
-#define __pyx_n_u_ListDiscretizer_size __pyx_string_tab[72]
-#define __pyx_n_u_ListDiscretizer_to_json __pyx_string_tab[73]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[74]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[75]
-#define __pyx_n_u_Sequence __pyx_string_tab[76]
-#define __pyx_n_u_View_MemoryView __pyx_string_tab[77]
-#define __pyx_n_u_abc __pyx_string_tab[78]
-#define __pyx_n_u_allocate_buffer __pyx_string_tab[79]
-#define __pyx_n_u_append __pyx_string_tab[80]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[81]
-#define __pyx_n_u_at __pyx_string_tab[82]
-#define __pyx_n_u_b __pyx_string_tab[83]
+#define __pyx_n_u_ListDiscretizer_copy __pyx_string_tab[59]
+#define __pyx_n_u_ListDiscretizer_empty __pyx_string_tab[60]
+#define __pyx_n_u_ListDiscretizer_equal __pyx_string_tab[61]
+#define __pyx_n_u_ListDiscretizer_erase_at __pyx_string_tab[62]
+#define __pyx_n_u_ListDiscretizer_fill_value __pyx_string_tab[63]
+#define __pyx_n_u_ListDiscretizer_from_json __pyx_string_tab[64]
+#define __pyx_n_u_ListDiscretizer_from_list __pyx_string_tab[65]
+#define __pyx_n_u_ListDiscretizer_index __pyx_string_tab[66]
+#define __pyx_n_u_ListDiscretizer_intersection __pyx_string_tab[67]
+#define __pyx_n_u_ListDiscretizer_items __pyx_string_tab[68]
+#define __pyx_n_u_ListDiscretizer_new __pyx_string_tab[69]
+#define __pyx_n_u_ListDiscretizer_new_empty __pyx_string_tab[70]
+#define __pyx_n_u_ListDiscretizer_not_equal __pyx_string_tab[71]
+#define __pyx_n_u_ListDiscretizer_push_back __pyx_string_tab[72]
+#define __pyx_n_u_ListDiscretizer_size __pyx_string_tab[73]
+#define __pyx_n_u_ListDiscretizer_to_json __pyx_string_tab[74]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[75]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[76]
+#define __pyx_n_u_Sequence __pyx_string_tab[77]
+#define __pyx_n_u_View_MemoryView __pyx_string_tab[78]
+#define __pyx_n_u_abc __pyx_string_tab[79]
+#define __pyx_n_u_allocate_buffer __pyx_string_tab[80]
+#define __pyx_n_u_append __pyx_string_tab[81]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[82]
+#define __pyx_n_u_at __pyx_string_tab[83]
 #define __pyx_n_u_b_json __pyx_string_tab[84]
 #define __pyx_n_u_base __pyx_string_tab[85]
 #define __pyx_n_u_buffer_size __pyx_string_tab[86]
@@ -5181,110 +5182,112 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_cline_in_traceback __pyx_string_tab[92]
 #define __pyx_n_u_cls __pyx_string_tab[93]
 #define __pyx_n_u_contains __pyx_string_tab[94]
-#define __pyx_n_u_count __pyx_string_tab[95]
-#define __pyx_n_u_data __pyx_string_tab[96]
-#define __pyx_n_u_dict __pyx_string_tab[97]
-#define __pyx_n_u_dtype_is_object __pyx_string_tab[98]
-#define __pyx_n_u_empty __pyx_string_tab[99]
-#define __pyx_n_u_encode __pyx_string_tab[100]
-#define __pyx_n_u_enumerate __pyx_string_tab[101]
-#define __pyx_n_u_equal __pyx_string_tab[102]
-#define __pyx_n_u_erase_at __pyx_string_tab[103]
-#define __pyx_n_u_error __pyx_string_tab[104]
-#define __pyx_n_u_falcon_core__capi_list_discretiz __pyx_string_tab[105]
-#define __pyx_n_u_fill_value __pyx_string_tab[106]
-#define __pyx_n_u_flags __pyx_string_tab[107]
-#define __pyx_n_u_format __pyx_string_tab[108]
-#define __pyx_n_u_fortran __pyx_string_tab[109]
-#define __pyx_n_u_from_json __pyx_string_tab[110]
-#define __pyx_n_u_from_list __pyx_string_tab[111]
-#define __pyx_n_u_func __pyx_string_tab[112]
-#define __pyx_n_u_getstate __pyx_string_tab[113]
-#define __pyx_n_u_h __pyx_string_tab[114]
-#define __pyx_n_u_h_ret __pyx_string_tab[115]
-#define __pyx_n_u_handle __pyx_string_tab[116]
-#define __pyx_n_u_id __pyx_string_tab[117]
-#define __pyx_n_u_idx __pyx_string_tab[118]
-#define __pyx_n_u_import __pyx_string_tab[119]
-#define __pyx_n_u_index __pyx_string_tab[120]
-#define __pyx_n_u_intersection __pyx_string_tab[121]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[122]
-#define __pyx_n_u_item __pyx_string_tab[123]
-#define __pyx_n_u_items __pyx_string_tab[124]
-#define __pyx_n_u_itemsize __pyx_string_tab[125]
-#define __pyx_n_u_json __pyx_string_tab[126]
-#define __pyx_n_u_main __pyx_string_tab[127]
-#define __pyx_n_u_memview __pyx_string_tab[128]
-#define __pyx_n_u_mode __pyx_string_tab[129]
-#define __pyx_n_u_module __pyx_string_tab[130]
-#define __pyx_n_u_name __pyx_string_tab[131]
-#define __pyx_n_u_name_2 __pyx_string_tab[132]
-#define __pyx_n_u_ndim __pyx_string_tab[133]
-#define __pyx_n_u_new __pyx_string_tab[134]
-#define __pyx_n_u_new_2 __pyx_string_tab[135]
-#define __pyx_n_u_new_empty __pyx_string_tab[136]
-#define __pyx_n_u_not_equal __pyx_string_tab[137]
-#define __pyx_n_u_obj __pyx_string_tab[138]
-#define __pyx_n_u_other __pyx_string_tab[139]
-#define __pyx_n_u_out_buffer __pyx_string_tab[140]
-#define __pyx_n_u_pack __pyx_string_tab[141]
-#define __pyx_n_u_pop __pyx_string_tab[142]
-#define __pyx_n_u_push_back __pyx_string_tab[143]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[144]
-#define __pyx_n_u_pyx_checksum __pyx_string_tab[145]
-#define __pyx_n_u_pyx_state __pyx_string_tab[146]
-#define __pyx_n_u_pyx_type __pyx_string_tab[147]
-#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[148]
-#define __pyx_n_u_pyx_vtable __pyx_string_tab[149]
-#define __pyx_n_u_qualname __pyx_string_tab[150]
-#define __pyx_n_u_reduce __pyx_string_tab[151]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[152]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[153]
-#define __pyx_n_u_register __pyx_string_tab[154]
-#define __pyx_n_u_s_json __pyx_string_tab[155]
-#define __pyx_n_u_s_ret __pyx_string_tab[156]
-#define __pyx_n_u_self __pyx_string_tab[157]
-#define __pyx_n_u_set_name __pyx_string_tab[158]
-#define __pyx_n_u_setdefault __pyx_string_tab[159]
-#define __pyx_n_u_setstate __pyx_string_tab[160]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[161]
-#define __pyx_n_u_shape __pyx_string_tab[162]
-#define __pyx_n_u_size __pyx_string_tab[163]
-#define __pyx_n_u_start __pyx_string_tab[164]
-#define __pyx_n_u_staticmethod __pyx_string_tab[165]
-#define __pyx_n_u_step __pyx_string_tab[166]
-#define __pyx_n_u_stop __pyx_string_tab[167]
-#define __pyx_n_u_struct __pyx_string_tab[168]
-#define __pyx_n_u_test __pyx_string_tab[169]
-#define __pyx_n_u_to_json __pyx_string_tab[170]
-#define __pyx_n_u_unpack __pyx_string_tab[171]
-#define __pyx_n_u_update __pyx_string_tab[172]
-#define __pyx_n_u_value __pyx_string_tab[173]
-#define __pyx_n_u_values __pyx_string_tab[174]
-#define __pyx_n_u_x __pyx_string_tab[175]
-#define __pyx_kp_b_iso88591_A_1D __pyx_string_tab[176]
-#define __pyx_kp_b_iso88591_A_1D_9TTUU___dde __pyx_string_tab[177]
-#define __pyx_kp_b_iso88591_A_1D_RwjXvvw __pyx_string_tab[178]
-#define __pyx_kp_b_iso88591_A_1D_k_wV_zz __pyx_string_tab[179]
-#define __pyx_kp_b_iso88591_A_3j_HA_wavQ_t1_z_q __pyx_string_tab[180]
-#define __pyx_kp_b_iso88591_A_44Gq_IUV_6_a_1_Qm1 __pyx_string_tab[181]
-#define __pyx_kp_b_iso88591_A_4q __pyx_string_tab[182]
-#define __pyx_kp_b_iso88591_A_5Qd_6_1_AU_XWAQ __pyx_string_tab[183]
-#define __pyx_kp_b_iso88591_A_88SSTT_kkqqx_y_C_C_6_2_1_1 __pyx_string_tab[184]
-#define __pyx_kp_b_iso88591_A_88UUVVZZcchhssy_z_A_A_K_K_i_i __pyx_string_tab[185]
-#define __pyx_kp_b_iso88591_A_AT __pyx_string_tab[186]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_7q_2S_a_Qa_4Cxq_Q __pyx_string_tab[187]
-#define __pyx_kp_b_iso88591_A_EQd_4q_2S_a_Qa_4Cxq_Q_9A_q __pyx_string_tab[188]
-#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[189]
-#define __pyx_kp_b_iso88591_A_Ye_fGS_wwx __pyx_string_tab[190]
-#define __pyx_kp_b_iso88591_A_at9E_FRYYcc __pyx_string_tab[191]
-#define __pyx_kp_b_iso88591_A_q_2S_a_Qa_4Cxq_Q_9A_q __pyx_string_tab[192]
-#define __pyx_kp_b_iso88591_A_q_IQ __pyx_string_tab[193]
-#define __pyx_kp_b_iso88591_A_q_IQk_7R_zz __pyx_string_tab[194]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[195]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[196]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[197]
-#define __pyx_n_b_O __pyx_string_tab[198]
+#define __pyx_n_u_copy __pyx_string_tab[95]
+#define __pyx_n_u_count __pyx_string_tab[96]
+#define __pyx_n_u_data __pyx_string_tab[97]
+#define __pyx_n_u_dict __pyx_string_tab[98]
+#define __pyx_n_u_dtype_is_object __pyx_string_tab[99]
+#define __pyx_n_u_empty __pyx_string_tab[100]
+#define __pyx_n_u_encode __pyx_string_tab[101]
+#define __pyx_n_u_enumerate __pyx_string_tab[102]
+#define __pyx_n_u_equal __pyx_string_tab[103]
+#define __pyx_n_u_erase_at __pyx_string_tab[104]
+#define __pyx_n_u_error __pyx_string_tab[105]
+#define __pyx_n_u_falcon_core__capi_list_discretiz __pyx_string_tab[106]
+#define __pyx_n_u_fill_value __pyx_string_tab[107]
+#define __pyx_n_u_flags __pyx_string_tab[108]
+#define __pyx_n_u_format __pyx_string_tab[109]
+#define __pyx_n_u_fortran __pyx_string_tab[110]
+#define __pyx_n_u_from_json __pyx_string_tab[111]
+#define __pyx_n_u_from_list __pyx_string_tab[112]
+#define __pyx_n_u_func __pyx_string_tab[113]
+#define __pyx_n_u_getstate __pyx_string_tab[114]
+#define __pyx_n_u_h __pyx_string_tab[115]
+#define __pyx_n_u_h_ret __pyx_string_tab[116]
+#define __pyx_n_u_handle __pyx_string_tab[117]
+#define __pyx_n_u_id __pyx_string_tab[118]
+#define __pyx_n_u_idx __pyx_string_tab[119]
+#define __pyx_n_u_import __pyx_string_tab[120]
+#define __pyx_n_u_index __pyx_string_tab[121]
+#define __pyx_n_u_intersection __pyx_string_tab[122]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[123]
+#define __pyx_n_u_item __pyx_string_tab[124]
+#define __pyx_n_u_items __pyx_string_tab[125]
+#define __pyx_n_u_itemsize __pyx_string_tab[126]
+#define __pyx_n_u_json __pyx_string_tab[127]
+#define __pyx_n_u_main __pyx_string_tab[128]
+#define __pyx_n_u_memview __pyx_string_tab[129]
+#define __pyx_n_u_mode __pyx_string_tab[130]
+#define __pyx_n_u_module __pyx_string_tab[131]
+#define __pyx_n_u_name __pyx_string_tab[132]
+#define __pyx_n_u_name_2 __pyx_string_tab[133]
+#define __pyx_n_u_ndim __pyx_string_tab[134]
+#define __pyx_n_u_new __pyx_string_tab[135]
+#define __pyx_n_u_new_2 __pyx_string_tab[136]
+#define __pyx_n_u_new_empty __pyx_string_tab[137]
+#define __pyx_n_u_not_equal __pyx_string_tab[138]
+#define __pyx_n_u_obj __pyx_string_tab[139]
+#define __pyx_n_u_other __pyx_string_tab[140]
+#define __pyx_n_u_out_buffer __pyx_string_tab[141]
+#define __pyx_n_u_pack __pyx_string_tab[142]
+#define __pyx_n_u_pop __pyx_string_tab[143]
+#define __pyx_n_u_push_back __pyx_string_tab[144]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[145]
+#define __pyx_n_u_pyx_checksum __pyx_string_tab[146]
+#define __pyx_n_u_pyx_state __pyx_string_tab[147]
+#define __pyx_n_u_pyx_type __pyx_string_tab[148]
+#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[149]
+#define __pyx_n_u_pyx_vtable __pyx_string_tab[150]
+#define __pyx_n_u_qualname __pyx_string_tab[151]
+#define __pyx_n_u_reduce __pyx_string_tab[152]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[153]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[154]
+#define __pyx_n_u_register __pyx_string_tab[155]
+#define __pyx_n_u_s_json __pyx_string_tab[156]
+#define __pyx_n_u_s_ret __pyx_string_tab[157]
+#define __pyx_n_u_self __pyx_string_tab[158]
+#define __pyx_n_u_set_name __pyx_string_tab[159]
+#define __pyx_n_u_setdefault __pyx_string_tab[160]
+#define __pyx_n_u_setstate __pyx_string_tab[161]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[162]
+#define __pyx_n_u_shape __pyx_string_tab[163]
+#define __pyx_n_u_size __pyx_string_tab[164]
+#define __pyx_n_u_start __pyx_string_tab[165]
+#define __pyx_n_u_staticmethod __pyx_string_tab[166]
+#define __pyx_n_u_step __pyx_string_tab[167]
+#define __pyx_n_u_stop __pyx_string_tab[168]
+#define __pyx_n_u_struct __pyx_string_tab[169]
+#define __pyx_n_u_test __pyx_string_tab[170]
+#define __pyx_n_u_to_json __pyx_string_tab[171]
+#define __pyx_n_u_unpack __pyx_string_tab[172]
+#define __pyx_n_u_update __pyx_string_tab[173]
+#define __pyx_n_u_value __pyx_string_tab[174]
+#define __pyx_n_u_values __pyx_string_tab[175]
+#define __pyx_n_u_x __pyx_string_tab[176]
+#define __pyx_kp_b_iso88591_A_1D __pyx_string_tab[177]
+#define __pyx_kp_b_iso88591_A_1D_9TTUU___dde __pyx_string_tab[178]
+#define __pyx_kp_b_iso88591_A_1D_k_wV __pyx_string_tab[179]
+#define __pyx_kp_b_iso88591_A_1D_k_wV_zz __pyx_string_tab[180]
+#define __pyx_kp_b_iso88591_A_3j_HA_wavQ_t1_z_q __pyx_string_tab[181]
+#define __pyx_kp_b_iso88591_A_44Gq_IUV_6_a_1_Qm1 __pyx_string_tab[182]
+#define __pyx_kp_b_iso88591_A_4q __pyx_string_tab[183]
+#define __pyx_kp_b_iso88591_A_5Qd_6_1_AU_XWAQ __pyx_string_tab[184]
+#define __pyx_kp_b_iso88591_A_88MQdRS_6_2_1_1 __pyx_string_tab[185]
+#define __pyx_kp_b_iso88591_A_88SSTT_kkqqx_y_C_C_6_2_1_1 __pyx_string_tab[186]
+#define __pyx_kp_b_iso88591_A_88UUVVZZcchhssy_z_A_A_K_K_i_i __pyx_string_tab[187]
+#define __pyx_kp_b_iso88591_A_AT __pyx_string_tab[188]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_7q_2S_a_Qa_4Cxq_Q __pyx_string_tab[189]
+#define __pyx_kp_b_iso88591_A_EQd_4q_2S_a_Qa_4Cxq_Q_9A_q __pyx_string_tab[190]
+#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[191]
+#define __pyx_kp_b_iso88591_A_Ye_fGS_wwx __pyx_string_tab[192]
+#define __pyx_kp_b_iso88591_A_at9E_FRYYcc __pyx_string_tab[193]
+#define __pyx_kp_b_iso88591_A_q_2S_a_Qa_4Cxq_Q_9A_q __pyx_string_tab[194]
+#define __pyx_kp_b_iso88591_A_q_IQ __pyx_string_tab[195]
+#define __pyx_kp_b_iso88591_A_q_IU_VSZZd_e_C_C_D __pyx_string_tab[196]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[197]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[198]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[199]
+#define __pyx_n_b_O __pyx_string_tab[200]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_neg_1 __pyx_number_tab[1]
 #define __pyx_int_1 __pyx_number_tab[2]
@@ -5317,8 +5320,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<21; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<199; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<22; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<201; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -5356,8 +5359,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<21; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<199; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<22; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<201; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -19478,7 +19481,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     @staticmethod
+ *     def copy(self, ):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -19510,21 +19513,154 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 /* "falcon_core/_capi/list_discretizer.pyx":57
  *         return obj
  * 
- *     @staticmethod             # <<<<<<<<<<<<<<
- *     def fill_value(size_t count, Discretizer value):
- *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11fill_value = {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11copy = {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11copy(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("copy (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("copy", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("copy", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_10copy(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_10copy(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+  __pyx_t_6_c_api_ListDiscretizerHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("copy", 0);
+
+  /* "falcon_core/_capi/list_discretizer.pyx":58
+ * 
+ *     def copy(self, ):
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = ListDiscretizer_copy(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/list_discretizer.pyx":59
+ *     def copy(self, ):
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_discretizer_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListDiscretizerHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/list_discretizer.pyx":60
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _list_discretizer_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/list_discretizer.pyx":59
+ *     def copy(self, ):
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_discretizer_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/list_discretizer.pyx":61
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:
+ *             return None
+ *         return _list_discretizer_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/list_discretizer.pyx":57
+ *         return obj
+ * 
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.list_discretizer.ListDiscretizer.copy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/list_discretizer.pyx":63
+ *         return _list_discretizer_from_capi(h_ret)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def fill_value(size_t count, Discretizer value):
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13fill_value = {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19555,39 +19691,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_count,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 57, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "fill_value", 0) < (0)) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "fill_value", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, i); __PYX_ERR(0, 57, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, i); __PYX_ERR(0, 63, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 63, __pyx_L3_error)
     }
-    __pyx_v_count = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_count == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_count == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L3_error)
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19598,8 +19734,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 58, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_10fill_value(__pyx_v_count, __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_12fill_value(__pyx_v_count, __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -19618,7 +19754,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_10fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_12fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
   __pyx_t_6_c_api_ListDiscretizerHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -19630,7 +19766,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("fill_value", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":59
+  /* "falcon_core/_capi/list_discretizer.pyx":65
  *     @staticmethod
  *     def fill_value(size_t count, Discretizer value):
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)             # <<<<<<<<<<<<<<
@@ -19645,7 +19781,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   }
   __pyx_v_h_ret = ListDiscretizer_fill_value(__pyx_v_count, __pyx_t_1);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":60
+  /* "falcon_core/_capi/list_discretizer.pyx":66
  *     def fill_value(size_t count, Discretizer value):
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -19655,7 +19791,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListDiscretizerHandle)0));
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":61
+    /* "falcon_core/_capi/list_discretizer.pyx":67
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:
  *             return None             # <<<<<<<<<<<<<<
@@ -19666,7 +19802,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":60
+    /* "falcon_core/_capi/list_discretizer.pyx":66
  *     def fill_value(size_t count, Discretizer value):
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -19675,7 +19811,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":62
+  /* "falcon_core/_capi/list_discretizer.pyx":68
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:
  *             return None
  *         return _list_discretizer_from_capi(h_ret)             # <<<<<<<<<<<<<<
@@ -19683,14 +19819,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
  *     def push_back(self, Discretizer value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":57
- *         return obj
+  /* "falcon_core/_capi/list_discretizer.pyx":63
+ *         return _list_discretizer_from_capi(h_ret)
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def fill_value(size_t count, Discretizer value):
@@ -19708,7 +19844,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":64
+/* "falcon_core/_capi/list_discretizer.pyx":70
  *         return _list_discretizer_from_capi(h_ret)
  * 
  *     def push_back(self, Discretizer value):             # <<<<<<<<<<<<<<
@@ -19717,15 +19853,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13push_back(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15push_back(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13push_back = {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13push_back(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15push_back = {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15push_back(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19755,32 +19891,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 64, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 70, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 64, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 70, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 64, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 70, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 64, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 70, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 64, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 70, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 64, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 70, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19791,8 +19927,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 64, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_12push_back(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_14push_back(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -19811,14 +19947,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_12push_back(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_14push_back(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_DiscretizerHandle __pyx_t_1;
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("push_back", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":65
+  /* "falcon_core/_capi/list_discretizer.pyx":71
  * 
  *     def push_back(self, Discretizer value):
  *         _c_api.ListDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)             # <<<<<<<<<<<<<<
@@ -19833,7 +19969,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   }
   ListDiscretizer_push_back(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":64
+  /* "falcon_core/_capi/list_discretizer.pyx":70
  *         return _list_discretizer_from_capi(h_ret)
  * 
  *     def push_back(self, Discretizer value):             # <<<<<<<<<<<<<<
@@ -19848,7 +19984,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":67
+/* "falcon_core/_capi/list_discretizer.pyx":73
  *         _c_api.ListDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def size(self, ):             # <<<<<<<<<<<<<<
@@ -19857,15 +19993,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15size(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17size(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15size = {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15size(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17size = {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17size(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19891,14 +20027,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("size", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_14size(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_16size(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_14size(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_16size(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19907,7 +20043,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("size", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":68
+  /* "falcon_core/_capi/list_discretizer.pyx":74
  * 
  *     def size(self, ):
  *         return _c_api.ListDiscretizer_size(self.handle)             # <<<<<<<<<<<<<<
@@ -19915,13 +20051,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
  *     def empty(self, ):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_FromSize_t(ListDiscretizer_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_FromSize_t(ListDiscretizer_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":67
+  /* "falcon_core/_capi/list_discretizer.pyx":73
  *         _c_api.ListDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def size(self, ):             # <<<<<<<<<<<<<<
@@ -19940,7 +20076,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":70
+/* "falcon_core/_capi/list_discretizer.pyx":76
  *         return _c_api.ListDiscretizer_size(self.handle)
  * 
  *     def empty(self, ):             # <<<<<<<<<<<<<<
@@ -19949,15 +20085,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17empty(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19empty(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17empty = {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17empty(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19empty = {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19empty(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19983,14 +20119,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("empty", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_16empty(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_18empty(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_16empty(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_18empty(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19999,7 +20135,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("empty", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":71
+  /* "falcon_core/_capi/list_discretizer.pyx":77
  * 
  *     def empty(self, ):
  *         return _c_api.ListDiscretizer_empty(self.handle)             # <<<<<<<<<<<<<<
@@ -20007,13 +20143,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
  *     def erase_at(self, size_t idx):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(ListDiscretizer_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(ListDiscretizer_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":70
+  /* "falcon_core/_capi/list_discretizer.pyx":76
  *         return _c_api.ListDiscretizer_size(self.handle)
  * 
  *     def empty(self, ):             # <<<<<<<<<<<<<<
@@ -20032,7 +20168,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":73
+/* "falcon_core/_capi/list_discretizer.pyx":79
  *         return _c_api.ListDiscretizer_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20041,15 +20177,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19erase_at(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21erase_at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19erase_at = {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19erase_at(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21erase_at = {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21erase_at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20079,32 +20215,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 73, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 79, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 73, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 73, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 79, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 73, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 79, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 73, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
     }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 79, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20115,7 +20251,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_18erase_at(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_idx);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_20erase_at(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_idx);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -20125,12 +20261,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_18erase_at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_20erase_at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("erase_at", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":74
+  /* "falcon_core/_capi/list_discretizer.pyx":80
  * 
  *     def erase_at(self, size_t idx):
  *         _c_api.ListDiscretizer_erase_at(self.handle, idx)             # <<<<<<<<<<<<<<
@@ -20139,7 +20275,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   ListDiscretizer_erase_at(__pyx_v_self->handle, __pyx_v_idx);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":73
+  /* "falcon_core/_capi/list_discretizer.pyx":79
  *         return _c_api.ListDiscretizer_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20154,7 +20290,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":76
+/* "falcon_core/_capi/list_discretizer.pyx":82
  *         _c_api.ListDiscretizer_erase_at(self.handle, idx)
  * 
  *     def clear(self, ):             # <<<<<<<<<<<<<<
@@ -20163,15 +20299,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21clear(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23clear(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21clear = {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21clear(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23clear = {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23clear(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20197,19 +20333,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("clear", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_20clear(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_22clear(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_20clear(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_22clear(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("clear", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":77
+  /* "falcon_core/_capi/list_discretizer.pyx":83
  * 
  *     def clear(self, ):
  *         _c_api.ListDiscretizer_clear(self.handle)             # <<<<<<<<<<<<<<
@@ -20218,7 +20354,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   ListDiscretizer_clear(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":76
+  /* "falcon_core/_capi/list_discretizer.pyx":82
  *         _c_api.ListDiscretizer_erase_at(self.handle, idx)
  * 
  *     def clear(self, ):             # <<<<<<<<<<<<<<
@@ -20233,7 +20369,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":79
+/* "falcon_core/_capi/list_discretizer.pyx":85
  *         _c_api.ListDiscretizer_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20242,15 +20378,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23at(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23at = {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23at(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25at = {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20280,32 +20416,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 79, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 85, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 79, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 85, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 79, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 85, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
     }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L3_error)
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 79, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20316,7 +20452,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_22at(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_idx);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_24at(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_idx);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -20326,7 +20462,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_22at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_24at(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, size_t __pyx_v_idx) {
   __pyx_t_6_c_api_DiscretizerHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -20338,7 +20474,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("at", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":80
+  /* "falcon_core/_capi/list_discretizer.pyx":86
  * 
  *     def at(self, size_t idx):
  *         cdef _c_api.DiscretizerHandle h_ret = _c_api.ListDiscretizer_at(self.handle, idx)             # <<<<<<<<<<<<<<
@@ -20347,7 +20483,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   __pyx_v_h_ret = ListDiscretizer_at(__pyx_v_self->handle, __pyx_v_idx);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":81
+  /* "falcon_core/_capi/list_discretizer.pyx":87
  *     def at(self, size_t idx):
  *         cdef _c_api.DiscretizerHandle h_ret = _c_api.ListDiscretizer_at(self.handle, idx)
  *         if h_ret == <_c_api.DiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -20357,7 +20493,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DiscretizerHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":82
+    /* "falcon_core/_capi/list_discretizer.pyx":88
  *         cdef _c_api.DiscretizerHandle h_ret = _c_api.ListDiscretizer_at(self.handle, idx)
  *         if h_ret == <_c_api.DiscretizerHandle>0:
  *             return None             # <<<<<<<<<<<<<<
@@ -20368,7 +20504,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":81
+    /* "falcon_core/_capi/list_discretizer.pyx":87
  *     def at(self, size_t idx):
  *         cdef _c_api.DiscretizerHandle h_ret = _c_api.ListDiscretizer_at(self.handle, idx)
  *         if h_ret == <_c_api.DiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -20377,7 +20513,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":83
+  /* "falcon_core/_capi/list_discretizer.pyx":89
  *         if h_ret == <_c_api.DiscretizerHandle>0:
  *             return None
  *         return _discretizer_from_capi(h_ret, owned=False)             # <<<<<<<<<<<<<<
@@ -20387,13 +20523,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 0;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11discretizer__discretizer_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11discretizer__discretizer_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":79
+  /* "falcon_core/_capi/list_discretizer.pyx":85
  *         _c_api.ListDiscretizer_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20412,7 +20548,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":85
+/* "falcon_core/_capi/list_discretizer.pyx":91
  *         return _discretizer_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -20421,15 +20557,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25items(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27items(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25items = {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25items(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27items = {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27items(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20460,39 +20596,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_out_buffer,&__pyx_mstate_global->__pyx_n_u_buffer_size,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 85, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 85, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "items", 0) < (0)) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "items", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, i); __PYX_ERR(0, 85, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, i); __PYX_ERR(0, 91, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 91, __pyx_L3_error)
     }
-    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
-    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 91, __pyx_L3_error)
+    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 85, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20504,7 +20640,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_24items(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_out_buffer, __pyx_v_buffer_size);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_26items(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_out_buffer, __pyx_v_buffer_size);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -20515,7 +20651,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_24items(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_26items(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
@@ -20526,7 +20662,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("items", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":86
+  /* "falcon_core/_capi/list_discretizer.pyx":92
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):
  *         return _c_api.ListDiscretizer_items(self.handle, <_c_api.DiscretizerHandle*>&out_buffer[0], buffer_size)             # <<<<<<<<<<<<<<
@@ -20542,15 +20678,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   } else if (unlikely(__pyx_t_1 >= __pyx_v_out_buffer.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 86, __pyx_L1_error)
+    __PYX_ERR(0, 92, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListDiscretizer_items(__pyx_v_self->handle, ((__pyx_t_6_c_api_DiscretizerHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListDiscretizer_items(__pyx_v_self->handle, ((__pyx_t_6_c_api_DiscretizerHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":85
+  /* "falcon_core/_capi/list_discretizer.pyx":91
  *         return _discretizer_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -20569,7 +20705,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":88
+/* "falcon_core/_capi/list_discretizer.pyx":94
  *         return _c_api.ListDiscretizer_items(self.handle, <_c_api.DiscretizerHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, Discretizer value):             # <<<<<<<<<<<<<<
@@ -20578,15 +20714,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27contains(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29contains(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27contains = {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27contains(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29contains = {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29contains(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20616,32 +20752,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 88, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 94, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 88, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 94, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 88, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 94, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 88, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20652,8 +20788,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_26contains(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_28contains(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20672,7 +20808,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_26contains(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_28contains(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_DiscretizerHandle __pyx_t_1;
@@ -20683,7 +20819,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("contains", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":89
+  /* "falcon_core/_capi/list_discretizer.pyx":95
  * 
  *     def contains(self, Discretizer value):
  *         return _c_api.ListDiscretizer_contains(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)             # <<<<<<<<<<<<<<
@@ -20697,13 +20833,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_DiscretizerHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(ListDiscretizer_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(ListDiscretizer_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":88
+  /* "falcon_core/_capi/list_discretizer.pyx":94
  *         return _c_api.ListDiscretizer_items(self.handle, <_c_api.DiscretizerHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, Discretizer value):             # <<<<<<<<<<<<<<
@@ -20722,7 +20858,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":91
+/* "falcon_core/_capi/list_discretizer.pyx":97
  *         return _c_api.ListDiscretizer_contains(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def index(self, Discretizer value):             # <<<<<<<<<<<<<<
@@ -20731,15 +20867,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29index(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31index(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29index = {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29index(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31index = {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31index(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20769,32 +20905,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 97, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 97, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 91, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 97, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 97, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20805,8 +20941,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 91, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_28index(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11discretizer_Discretizer, 1, "value", 0))) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_30index(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20825,7 +20961,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_28index(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_30index(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_DiscretizerHandle __pyx_t_1;
@@ -20836,7 +20972,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("index", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":92
+  /* "falcon_core/_capi/list_discretizer.pyx":98
  * 
  *     def index(self, Discretizer value):
  *         return _c_api.ListDiscretizer_index(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)             # <<<<<<<<<<<<<<
@@ -20850,13 +20986,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_DiscretizerHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListDiscretizer_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListDiscretizer_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":91
+  /* "falcon_core/_capi/list_discretizer.pyx":97
  *         return _c_api.ListDiscretizer_contains(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def index(self, Discretizer value):             # <<<<<<<<<<<<<<
@@ -20875,7 +21011,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":94
+/* "falcon_core/_capi/list_discretizer.pyx":100
  *         return _c_api.ListDiscretizer_index(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def intersection(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
@@ -20884,15 +21020,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31intersection(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33intersection(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31intersection = {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31intersection(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33intersection = {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33intersection(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20922,32 +21058,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 94, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 100, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 94, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 94, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 100, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20958,8 +21094,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "other", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_30intersection(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_other);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "other", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_32intersection(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20978,7 +21114,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_30intersection(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_32intersection(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other) {
   __pyx_t_6_c_api_ListDiscretizerHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -20990,7 +21126,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("intersection", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":95
+  /* "falcon_core/_capi/list_discretizer.pyx":101
  * 
  *     def intersection(self, ListDiscretizer other):
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)             # <<<<<<<<<<<<<<
@@ -21005,7 +21141,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   }
   __pyx_v_h_ret = ListDiscretizer_intersection(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":96
+  /* "falcon_core/_capi/list_discretizer.pyx":102
  *     def intersection(self, ListDiscretizer other):
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -21015,7 +21151,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListDiscretizerHandle)0));
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":97
+    /* "falcon_core/_capi/list_discretizer.pyx":103
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:
  *             return None             # <<<<<<<<<<<<<<
@@ -21026,7 +21162,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":96
+    /* "falcon_core/_capi/list_discretizer.pyx":102
  *     def intersection(self, ListDiscretizer other):
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -21035,21 +21171,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":98
+  /* "falcon_core/_capi/list_discretizer.pyx":104
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:
  *             return None
  *         return _list_discretizer_from_capi(h_ret)             # <<<<<<<<<<<<<<
  * 
- *     def equal(self, ListDiscretizer b):
+ *     def equal(self, ListDiscretizer other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":94
+  /* "falcon_core/_capi/list_discretizer.pyx":100
  *         return _c_api.ListDiscretizer_index(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def intersection(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
@@ -21068,31 +21204,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":100
+/* "falcon_core/_capi/list_discretizer.pyx":106
  *         return _list_discretizer_from_capi(h_ret)
  * 
- *     def equal(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+ *     def equal(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b = 0;
+  struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
@@ -21113,34 +21249,34 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_b,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 100, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 106, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 106, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 106, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 100, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 106, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 106, __pyx_L3_error)
     }
-    __pyx_v_b = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)values[0]);
+    __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 106, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21151,8 +21287,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "b", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_32equal(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_b);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "other", 0))) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_34equal(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -21171,7 +21307,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_32equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_34equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_ListDiscretizerHandle __pyx_t_1;
@@ -21182,31 +21318,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":101
+  /* "falcon_core/_capi/list_discretizer.pyx":107
  * 
- *     def equal(self, ListDiscretizer b):
- *         return _c_api.ListDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)             # <<<<<<<<<<<<<<
+ *     def equal(self, ListDiscretizer other):
+ *         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def __eq__(self, ListDiscretizer b):
+ *     def __eq__(self, ListDiscretizer other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = (((PyObject *)__pyx_v_b) != Py_None);
+  __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_b->handle;
+    __pyx_t_1 = __pyx_v_other->handle;
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_ListDiscretizerHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(ListDiscretizer_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(ListDiscretizer_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":100
+  /* "falcon_core/_capi/list_discretizer.pyx":106
  *         return _list_discretizer_from_capi(h_ret)
  * 
- *     def equal(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+ *     def equal(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
 */
 
@@ -21221,17 +21357,17 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":103
- *         return _c_api.ListDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+/* "falcon_core/_capi/list_discretizer.pyx":109
+ *         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
- *     def __eq__(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __eq__(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_b); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_b) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -21240,8 +21376,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "b", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_34__eq__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_b));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "other", 0))) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_36__eq__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -21254,7 +21390,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_34__eq__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_36__eq__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -21267,22 +21403,22 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":104
+  /* "falcon_core/_capi/list_discretizer.pyx":110
  * 
- *     def __eq__(self, ListDiscretizer b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __eq__(self, ListDiscretizer other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.equal(b)
+ *         return self.equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 110, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":105
- *     def __eq__(self, ListDiscretizer b):
- *         if not hasattr(b, "handle"):
+    /* "falcon_core/_capi/list_discretizer.pyx":111
+ *     def __eq__(self, ListDiscretizer other):
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(b)
+ *         return self.equal(other)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
@@ -21290,42 +21426,42 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":104
+    /* "falcon_core/_capi/list_discretizer.pyx":110
  * 
- *     def __eq__(self, ListDiscretizer b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __eq__(self, ListDiscretizer other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.equal(b)
+ *         return self.equal(other)
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":106
- *         if not hasattr(b, "handle"):
+  /* "falcon_core/_capi/list_discretizer.pyx":112
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
- *         return self.equal(b)             # <<<<<<<<<<<<<<
+ *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
- *     def not_equal(self, ListDiscretizer b):
+ *     def not_equal(self, ListDiscretizer other):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = ((PyObject *)__pyx_v_self);
   __Pyx_INCREF(__pyx_t_4);
   __pyx_t_5 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_b)};
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":103
- *         return _c_api.ListDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+  /* "falcon_core/_capi/list_discretizer.pyx":109
+ *         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
- *     def __eq__(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __eq__(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
@@ -21341,31 +21477,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":108
- *         return self.equal(b)
+/* "falcon_core/_capi/list_discretizer.pyx":114
+ *         return self.equal(other)
  * 
- *     def not_equal(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+ *     def not_equal(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37not_equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37not_equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b = 0;
+  struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
@@ -21386,34 +21522,34 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_b,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 114, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 114, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 108, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 114, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
     }
-    __pyx_v_b = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)values[0]);
+    __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21424,8 +21560,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "b", 0))) __PYX_ERR(0, 108, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_36not_equal(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_b);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "other", 0))) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_38not_equal(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -21444,7 +21580,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_36not_equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_38not_equal(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_ListDiscretizerHandle __pyx_t_1;
@@ -21455,31 +21591,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":109
+  /* "falcon_core/_capi/list_discretizer.pyx":115
  * 
- *     def not_equal(self, ListDiscretizer b):
- *         return _c_api.ListDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)             # <<<<<<<<<<<<<<
+ *     def not_equal(self, ListDiscretizer other):
+ *         return _c_api.ListDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def __ne__(self, ListDiscretizer b):
+ *     def __ne__(self, ListDiscretizer other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = (((PyObject *)__pyx_v_b) != Py_None);
+  __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_b->handle;
+    __pyx_t_1 = __pyx_v_other->handle;
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_ListDiscretizerHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(ListDiscretizer_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(ListDiscretizer_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":108
- *         return self.equal(b)
+  /* "falcon_core/_capi/list_discretizer.pyx":114
+ *         return self.equal(other)
  * 
- *     def not_equal(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+ *     def not_equal(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
 */
 
@@ -21494,17 +21630,17 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":111
- *         return _c_api.ListDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+/* "falcon_core/_capi/list_discretizer.pyx":117
+ *         return _c_api.ListDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
- *     def __ne__(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __ne__(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_b); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_b) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -21513,8 +21649,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "b", 0))) __PYX_ERR(0, 111, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_38__ne__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_b));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, 1, "other", 0))) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_40__ne__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -21527,7 +21663,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_38__ne__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_40__ne__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -21540,22 +21676,22 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":112
+  /* "falcon_core/_capi/list_discretizer.pyx":118
  * 
- *     def __ne__(self, ListDiscretizer b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __ne__(self, ListDiscretizer other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.not_equal(b)
+ *         return self.not_equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 118, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":113
- *     def __ne__(self, ListDiscretizer b):
- *         if not hasattr(b, "handle"):
+    /* "falcon_core/_capi/list_discretizer.pyx":119
+ *     def __ne__(self, ListDiscretizer other):
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(b)
+ *         return self.not_equal(other)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
@@ -21563,19 +21699,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":112
+    /* "falcon_core/_capi/list_discretizer.pyx":118
  * 
- *     def __ne__(self, ListDiscretizer b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __ne__(self, ListDiscretizer other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.not_equal(b)
+ *         return self.not_equal(other)
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":114
- *         if not hasattr(b, "handle"):
+  /* "falcon_core/_capi/list_discretizer.pyx":120
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
- *         return self.not_equal(b)             # <<<<<<<<<<<<<<
+ *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def to_json(self, ):
 */
@@ -21584,21 +21720,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __Pyx_INCREF(__pyx_t_4);
   __pyx_t_5 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_b)};
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":111
- *         return _c_api.ListDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+  /* "falcon_core/_capi/list_discretizer.pyx":117
+ *         return _c_api.ListDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
- *     def __ne__(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __ne__(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
@@ -21614,8 +21750,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":116
- *         return self.not_equal(b)
+/* "falcon_core/_capi/list_discretizer.pyx":122
+ *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
@@ -21623,15 +21759,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41to_json(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41to_json(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -21657,14 +21793,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("to_json", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_40to_json(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_42to_json(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_40to_json(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_42to_json(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
   StringHandle __pyx_v_s_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -21685,7 +21821,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":118
+  /* "falcon_core/_capi/list_discretizer.pyx":124
  *     def to_json(self, ):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListDiscretizer_to_json_string(self.handle)             # <<<<<<<<<<<<<<
@@ -21694,7 +21830,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   __pyx_v_s_ret = ListDiscretizer_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":119
+  /* "falcon_core/_capi/list_discretizer.pyx":125
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListDiscretizer_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -21704,7 +21840,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":120
+    /* "falcon_core/_capi/list_discretizer.pyx":126
  *         s_ret = _c_api.ListDiscretizer_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""             # <<<<<<<<<<<<<<
@@ -21716,7 +21852,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_r = __pyx_mstate_global->__pyx_kp_u__6;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":119
+    /* "falcon_core/_capi/list_discretizer.pyx":125
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListDiscretizer_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -21725,7 +21861,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":121
+  /* "falcon_core/_capi/list_discretizer.pyx":127
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""
  *         try:             # <<<<<<<<<<<<<<
@@ -21734,7 +21870,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   /*try:*/ {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":122
+    /* "falcon_core/_capi/list_discretizer.pyx":128
  *             return ""
  *         try:
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
@@ -21742,13 +21878,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
  *             _c_api.String_destroy(s_ret)
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 122, __pyx_L5_error)
+      __PYX_ERR(0, 128, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -21756,7 +21892,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":124
+  /* "falcon_core/_capi/list_discretizer.pyx":130
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
  *         finally:
  *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
@@ -21805,8 +21941,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     }
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":116
- *         return self.not_equal(b)
+  /* "falcon_core/_capi/list_discretizer.pyx":122
+ *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
@@ -21825,7 +21961,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":126
+/* "falcon_core/_capi/list_discretizer.pyx":132
  *             _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -21834,21 +21970,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static Py_ssize_t __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43__len__(PyObject *__pyx_v_self); /*proto*/
-static Py_ssize_t __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43__len__(PyObject *__pyx_v_self) {
+static Py_ssize_t __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__len__(PyObject *__pyx_v_self); /*proto*/
+static Py_ssize_t __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__len__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__len__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_42__len__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_44__len__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_42__len__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_44__len__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -21860,7 +21996,7 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscret
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":127
+  /* "falcon_core/_capi/list_discretizer.pyx":133
  * 
  *     def __len__(self):
  *         return self.size()             # <<<<<<<<<<<<<<
@@ -21874,15 +22010,15 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscret
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_size, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":126
+  /* "falcon_core/_capi/list_discretizer.pyx":132
  *             _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -21901,7 +22037,7 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscret
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":129
+/* "falcon_core/_capi/list_discretizer.pyx":135
  *         return self.size()
  * 
  *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
@@ -21910,21 +22046,21 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscret
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_44__getitem__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_46__getitem__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_46__getitem__(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_idx) {
   PyObject *__pyx_v_ret = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -21937,7 +22073,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":130
+  /* "falcon_core/_capi/list_discretizer.pyx":136
  * 
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)             # <<<<<<<<<<<<<<
@@ -21951,13 +22087,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_idx};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_at, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ret = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":131
+  /* "falcon_core/_capi/list_discretizer.pyx":137
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)
  *         if ret is None:             # <<<<<<<<<<<<<<
@@ -21967,7 +22103,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_t_4 = (__pyx_v_ret == Py_None);
   if (unlikely(__pyx_t_4)) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":132
+    /* "falcon_core/_capi/list_discretizer.pyx":138
  *         ret = self.at(idx)
  *         if ret is None:
  *             raise IndexError("Index out of bounds")             # <<<<<<<<<<<<<<
@@ -21980,14 +22116,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
       PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_Index_out_of_bounds};
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_IndexError)), __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 132, __pyx_L1_error)
+    __PYX_ERR(0, 138, __pyx_L1_error)
 
-    /* "falcon_core/_capi/list_discretizer.pyx":131
+    /* "falcon_core/_capi/list_discretizer.pyx":137
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)
  *         if ret is None:             # <<<<<<<<<<<<<<
@@ -21996,7 +22132,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":133
+  /* "falcon_core/_capi/list_discretizer.pyx":139
  *         if ret is None:
  *             raise IndexError("Index out of bounds")
  *         return ret             # <<<<<<<<<<<<<<
@@ -22008,7 +22144,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":129
+  /* "falcon_core/_capi/list_discretizer.pyx":135
  *         return self.size()
  * 
  *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
@@ -22029,7 +22165,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":135
+/* "falcon_core/_capi/list_discretizer.pyx":141
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
@@ -22038,15 +22174,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47append(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47append(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22076,32 +22212,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 135, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 141, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 135, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 141, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 135, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 141, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
     }
     __pyx_v_value = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 135, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 141, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22112,7 +22248,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_46append(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_48append(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22122,7 +22258,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_46append(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_48append(struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, PyObject *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -22133,7 +22269,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("append", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":136
+  /* "falcon_core/_capi/list_discretizer.pyx":142
  * 
  *     def append(self, value):
  *         self.push_back(value)             # <<<<<<<<<<<<<<
@@ -22147,12 +22283,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_value};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":135
+  /* "falcon_core/_capi/list_discretizer.pyx":141
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
@@ -22174,7 +22310,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":138
+/* "falcon_core/_capi/list_discretizer.pyx":144
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -22183,15 +22319,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49from_list(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51from_list(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49from_list(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51from_list(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22221,32 +22357,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_items,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 138, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 144, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 144, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 144, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 138, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 144, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 144, __pyx_L3_error)
     }
     __pyx_v_items = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 138, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 144, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22257,7 +22393,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_48from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_50from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22267,7 +22403,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_48from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_50from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
   struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_obj = 0;
   PyObject *__pyx_v_item = NULL;
   PyObject *__pyx_r = NULL;
@@ -22284,7 +22420,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_list", 0);
 
-  /* "falcon_core/_capi/list_discretizer.pyx":140
+  /* "falcon_core/_capi/list_discretizer.pyx":146
  *     @classmethod
  *     def from_list(cls, items):
  *         cdef ListDiscretizer obj = cls.new_empty()             # <<<<<<<<<<<<<<
@@ -22298,14 +22434,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_new_empty, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer))))) __PYX_ERR(0, 140, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer))))) __PYX_ERR(0, 146, __pyx_L1_error)
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":141
+  /* "falcon_core/_capi/list_discretizer.pyx":147
  *     def from_list(cls, items):
  *         cdef ListDiscretizer obj = cls.new_empty()
  *         for item in items:             # <<<<<<<<<<<<<<
@@ -22317,9 +22453,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
@@ -22327,7 +22463,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 147, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
@@ -22337,7 +22473,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 147, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
@@ -22348,13 +22484,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
         #endif
         ++__pyx_t_4;
       }
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
     } else {
       __pyx_t_2 = __pyx_t_5(__pyx_t_1);
       if (unlikely(!__pyx_t_2)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 147, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -22364,29 +22500,29 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
     __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":142
+    /* "falcon_core/_capi/list_discretizer.pyx":148
  *         cdef ListDiscretizer obj = cls.new_empty()
  *         for item in items:
  *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
  *                 item = item._c
  *             obj.push_back(item)
 */
-    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 148, __pyx_L1_error)
     if (__pyx_t_6) {
 
-      /* "falcon_core/_capi/list_discretizer.pyx":143
+      /* "falcon_core/_capi/list_discretizer.pyx":149
  *         for item in items:
  *             if hasattr(item, "_c"):
  *                 item = item._c             # <<<<<<<<<<<<<<
  *             obj.push_back(item)
  *         return obj
 */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "falcon_core/_capi/list_discretizer.pyx":142
+      /* "falcon_core/_capi/list_discretizer.pyx":148
  *         cdef ListDiscretizer obj = cls.new_empty()
  *         for item in items:
  *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
@@ -22395,7 +22531,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
     }
 
-    /* "falcon_core/_capi/list_discretizer.pyx":144
+    /* "falcon_core/_capi/list_discretizer.pyx":150
  *             if hasattr(item, "_c"):
  *                 item = item._c
  *             obj.push_back(item)             # <<<<<<<<<<<<<<
@@ -22409,12 +22545,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_item};
       __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":141
+    /* "falcon_core/_capi/list_discretizer.pyx":147
  *     def from_list(cls, items):
  *         cdef ListDiscretizer obj = cls.new_empty()
  *         for item in items:             # <<<<<<<<<<<<<<
@@ -22424,7 +22560,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":145
+  /* "falcon_core/_capi/list_discretizer.pyx":151
  *                 item = item._c
  *             obj.push_back(item)
  *         return obj             # <<<<<<<<<<<<<<
@@ -22436,7 +22572,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":138
+  /* "falcon_core/_capi/list_discretizer.pyx":144
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -22466,15 +22602,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22500,14 +22636,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_50__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_52__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_50__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -22547,15 +22683,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_55__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_55__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_55__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_55__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22621,7 +22757,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_52__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_54__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22631,7 +22767,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_52__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -22663,7 +22799,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_16list_discretizer_15ListDiscreti
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_discretizer.pyx":147
+/* "falcon_core/_capi/list_discretizer.pyx":153
  *         return obj
  * 
  * cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h, bint owned=True):             # <<<<<<<<<<<<<<
@@ -22688,7 +22824,7 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
     }
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":148
+  /* "falcon_core/_capi/list_discretizer.pyx":154
  * 
  * cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h, bint owned=True):
  *     if h == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -22698,7 +22834,7 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_ListDiscretizerHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/list_discretizer.pyx":149
+    /* "falcon_core/_capi/list_discretizer.pyx":155
  * cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h, bint owned=True):
  *     if h == <_c_api.ListDiscretizerHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -22709,7 +22845,7 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_discretizer.pyx":148
+    /* "falcon_core/_capi/list_discretizer.pyx":154
  * 
  * cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h, bint owned=True):
  *     if h == <_c_api.ListDiscretizerHandle>0:             # <<<<<<<<<<<<<<
@@ -22718,19 +22854,19 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
 */
   }
 
-  /* "falcon_core/_capi/list_discretizer.pyx":150
+  /* "falcon_core/_capi/list_discretizer.pyx":156
  *     if h == <_c_api.ListDiscretizerHandle>0:
  *         return None
  *     cdef ListDiscretizer obj = ListDiscretizer.__new__(ListDiscretizer)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_16list_discretizer_ListDiscretizer(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_16list_discretizer_ListDiscretizer(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":151
+  /* "falcon_core/_capi/list_discretizer.pyx":157
  *         return None
  *     cdef ListDiscretizer obj = ListDiscretizer.__new__(ListDiscretizer)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -22739,7 +22875,7 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":152
+  /* "falcon_core/_capi/list_discretizer.pyx":158
  *     cdef ListDiscretizer obj = ListDiscretizer.__new__(ListDiscretizer)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -22747,7 +22883,7 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":153
+  /* "falcon_core/_capi/list_discretizer.pyx":159
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -22757,7 +22893,7 @@ static struct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer 
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":147
+  /* "falcon_core/_capi/list_discretizer.pyx":153
  *         return obj
  * 
  * cdef ListDiscretizer _list_discretizer_from_capi(_c_api.ListDiscretizerHandle h, bint owned=True):             # <<<<<<<<<<<<<<
@@ -22834,10 +22970,10 @@ static PyObject *__pyx_sq_item_11falcon_core_5_capi_16list_discretizer_ListDiscr
 static PyObject *__pyx_tp_richcompare_11falcon_core_5_capi_16list_discretizer_ListDiscretizer(PyObject *o1, PyObject *o2, int op) {
   switch (op) {
     case Py_EQ: {
-      return __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35__eq__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37__eq__(o1, o2);
     }
     case Py_NE: {
-      return __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39__ne__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41__ne__(o1, o2);
     }
     default: {
       return __Pyx_NewRef(Py_NotImplemented);
@@ -22849,33 +22985,34 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_16list_discretizer_ListDis
   {"new_empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_5new_empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_7new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_9from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_55__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_16list_discretizer_ListDiscretizer_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_16list_discretizer_ListDiscretizer},
-  {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43__len__},
+  {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__len__},
   {Py_sq_item, (void *)__pyx_sq_item_11falcon_core_5_capi_16list_discretizer_ListDiscretizer},
-  {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43__len__},
-  {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__getitem__},
+  {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__len__},
+  {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47__getitem__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_16list_discretizer_ListDiscretizer},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_16list_discretizer_ListDiscretizer},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_16list_discretizer_ListDiscretizer},
@@ -22891,7 +23028,7 @@ static PyType_Spec __pyx_type_11falcon_core_5_capi_16list_discretizer_ListDiscre
 #else
 
 static PySequenceMethods __pyx_tp_as_sequence_ListDiscretizer = {
-  __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43__len__, /*sq_length*/
+  __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__len__, /*sq_length*/
   0, /*sq_concat*/
   0, /*sq_repeat*/
   __pyx_sq_item_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, /*sq_item*/
@@ -22904,8 +23041,8 @@ static PySequenceMethods __pyx_tp_as_sequence_ListDiscretizer = {
 };
 
 static PyMappingMethods __pyx_tp_as_mapping_ListDiscretizer = {
-  __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43__len__, /*mp_length*/
-  __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__getitem__, /*mp_subscript*/
+  __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_45__len__, /*mp_length*/
+  __pyx_pw_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47__getitem__, /*mp_subscript*/
   0, /*mp_ass_subscript*/
 };
 
@@ -24994,19 +25131,34 @@ __Pyx_RefNannySetupContext("PyInit_list_discretizer", 0);
   /* "falcon_core/_capi/list_discretizer.pyx":57
  *         return obj
  * 
- *     @staticmethod             # <<<<<<<<<<<<<<
- *     def fill_value(size_t count, Discretizer value):
- *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_copy(self.handle)
+ *         if h_ret == <_c_api.ListDiscretizerHandle>0:
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11fill_value, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_fill_value, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_11copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "falcon_core/_capi/list_discretizer.pyx":63
+ *         return _list_discretizer_from_capi(h_ret)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def fill_value(size_t count, Discretizer value):
+ *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_fill_value(count, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
+*/
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13fill_value, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_fill_value, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_4 = NULL;
-  __Pyx_GetNameInClass(__pyx_t_9, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_fill_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_9, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_fill_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_6 = 1;
   {
@@ -25014,242 +25166,242 @@ __Pyx_RefNannySetupContext("PyInit_list_discretizer", 0);
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_staticmethod, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":64
+  /* "falcon_core/_capi/list_discretizer.pyx":70
  *         return _list_discretizer_from_capi(h_ret)
  * 
  *     def push_back(self, Discretizer value):             # <<<<<<<<<<<<<<
  *         _c_api.ListDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_13push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_push_back, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_push_back, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_5) < (0)) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":67
+  /* "falcon_core/_capi/list_discretizer.pyx":73
  *         _c_api.ListDiscretizer_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def size(self, ):             # <<<<<<<<<<<<<<
  *         return _c_api.ListDiscretizer_size(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_15size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":70
+  /* "falcon_core/_capi/list_discretizer.pyx":76
  *         return _c_api.ListDiscretizer_size(self.handle)
  * 
  *     def empty(self, ):             # <<<<<<<<<<<<<<
  *         return _c_api.ListDiscretizer_empty(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_17empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_5) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":73
+  /* "falcon_core/_capi/list_discretizer.pyx":79
  *         return _c_api.ListDiscretizer_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         _c_api.ListDiscretizer_erase_at(self.handle, idx)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_19erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_erase_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_erase_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_5) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_5) < (0)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":76
+  /* "falcon_core/_capi/list_discretizer.pyx":82
  *         _c_api.ListDiscretizer_erase_at(self.handle, idx)
  * 
  *     def clear(self, ):             # <<<<<<<<<<<<<<
  *         _c_api.ListDiscretizer_clear(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_21clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_5) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_5) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":79
+  /* "falcon_core/_capi/list_discretizer.pyx":85
  *         _c_api.ListDiscretizer_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DiscretizerHandle h_ret = _c_api.ListDiscretizer_at(self.handle, idx)
  *         if h_ret == <_c_api.DiscretizerHandle>0:
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_23at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_5) < (0)) __PYX_ERR(0, 79, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_5) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":85
+  /* "falcon_core/_capi/list_discretizer.pyx":91
  *         return _discretizer_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
  *         return _c_api.ListDiscretizer_items(self.handle, <_c_api.DiscretizerHandle*>&out_buffer[0], buffer_size)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_25items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_5) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_5) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":88
+  /* "falcon_core/_capi/list_discretizer.pyx":94
  *         return _c_api.ListDiscretizer_items(self.handle, <_c_api.DiscretizerHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, Discretizer value):             # <<<<<<<<<<<<<<
  *         return _c_api.ListDiscretizer_contains(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_27contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_contains, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_contains, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_5) < (0)) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_5) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":91
+  /* "falcon_core/_capi/list_discretizer.pyx":97
  *         return _c_api.ListDiscretizer_contains(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def index(self, Discretizer value):             # <<<<<<<<<<<<<<
  *         return _c_api.ListDiscretizer_index(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_29index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_5) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_5) < (0)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":94
+  /* "falcon_core/_capi/list_discretizer.pyx":100
  *         return _c_api.ListDiscretizer_index(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
  * 
  *     def intersection(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ListDiscretizerHandle h_ret = _c_api.ListDiscretizer_intersection(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  *         if h_ret == <_c_api.ListDiscretizerHandle>0:
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_31intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_intersection, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_intersection, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_5) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_5) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":100
+  /* "falcon_core/_capi/list_discretizer.pyx":106
  *         return _list_discretizer_from_capi(h_ret)
  * 
- *     def equal(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListDiscretizer_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+ *     def equal(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListDiscretizer_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_33equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_35equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":108
- *         return self.equal(b)
+  /* "falcon_core/_capi/list_discretizer.pyx":114
+ *         return self.equal(other)
  * 
- *     def not_equal(self, ListDiscretizer b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListDiscretizer_not_equal(self.handle, b.handle if b is not None else <_c_api.ListDiscretizerHandle>0)
+ *     def not_equal(self, ListDiscretizer other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListDiscretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.ListDiscretizerHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_37not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_39not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":116
- *         return self.not_equal(b)
+  /* "falcon_core/_capi/list_discretizer.pyx":122
+ *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListDiscretizer_to_json_string(self.handle)
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_41to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_43to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":135
+  /* "falcon_core/_capi/list_discretizer.pyx":141
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
  *         self.push_back(value)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_47append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_5) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_5) < (0)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_discretizer.pyx":138
+  /* "falcon_core/_capi/list_discretizer.pyx":144
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def from_list(cls, items):
  *         cdef ListDiscretizer obj = cls.new_empty()
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_49from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_from_list, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer_from_list, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_5) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_5) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetNameInClass(__pyx_t_5, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_5, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = __Pyx_Method_ClassMethod(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_Method_ClassMethod(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_9) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_16list_discretizer_ListDiscretizer, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_9) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
   /* "(tree fragment)":1
@@ -25257,7 +25409,7 @@ __Pyx_RefNannySetupContext("PyInit_list_discretizer", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_51__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_9);
@@ -25271,7 +25423,7 @@ __Pyx_RefNannySetupContext("PyInit_list_discretizer", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_53__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer___setstate_cytho, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_16list_discretizer_15ListDiscretizer_55__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListDiscretizer___setstate_cytho, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_discretiz, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_9);
@@ -25327,8 +25479,8 @@ __Pyx_RefNannySetupContext("PyInit_list_discretizer", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 57, __pyx_L1_error)
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 111, __pyx_L1_error)
   __pyx_builtin___import__ = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_import); if (!__pyx_builtin___import__) __PYX_ERR(1, 101, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 157, __pyx_L1_error)
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_Ellipsis); if (!__pyx_builtin_Ellipsis) __PYX_ERR(1, 409, __pyx_L1_error)
@@ -25422,31 +25574,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{32},{19},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{21},{42},{20},{32},{22},{14},{30},{37},{5},{8},{15},{33},{35},{22},{18},{21},{24},{21},{21},{24},{26},{25},{25},{21},{28},{21},{19},{25},{25},{25},{20},{23},{14},{20},{8},{15},{3},{15},{6},{18},{2},{1},{6},{4},{11},{1},{2},{9},{17},{5},{18},{3},{8},{5},{4},{8},{15},{5},{6},{9},{5},{8},{5},{34},{10},{5},{6},{7},{9},{9},{8},{12},{1},{5},{6},{2},{3},{10},{5},{12},{13},{4},{5},{8},{4},{8},{7},{4},{10},{4},{8},{4},{7},{3},{9},{9},{3},{5},{10},{4},{3},{9},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{12},{4},{4},{6},{8},{7},{6},{6},{5},{6},{1},{14},{32},{30},{31},{50},{46},{14},{63},{74},{81},{11},{102},{79},{11},{28},{32},{66},{13},{31},{9},{253},{225},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2063 bytes) */
-const char* const cstring = "BZh91AY&SYg\347>A\000\001!\377\377\367\375\377\214o\377\377\377\277\377\377\377\377\377\377\373@@@@@@@@@@@@@\000@\000`\007o\275\343r\265\265\336\303q\206\205U\n4<\030e$\323\324\310\032\247\251\341O\t\247\252~\202bjz\231\244\000d=OS!\351=A\223\312\036\246j\017Sh!\247\204\322\037\252x(E\020\023\023\322i\214\210\3010\230\2320 \300\004\300\2320\021\221\202`&F\206L\0010\006\200\204h\247\225=CM\244h4\321\243\324\r\000\006\2004\003@\000\006\200\00044`\200%4Q\2222\"d\0313I\352h\000\000\000\000\000\000\000\000\003@\006\2324\001\006\230\230\000\000\000\000\000\000\000\000\000\000\0020\214\000\000\000\t\"&\215\002h\004\311\2446\211\352i\251\352z\243\320\320\310\320F2\001=@\310\300\004\365\030\2314\302=FF3\222\220\240\r\013\001D\002\201z\363m\363\343.\034c\360\324\370\326\273\277\302\224\271Js.\357+\310C*s\262\022d\310f\312R\266\032\331\n)\0142\207\344\240\034#(\301[\371V[\002\262\222\246\270\356\027\305\376\010\t&i\326\314\344\336Z|H\312\371\231\207\270\214\310\313_\005\027G_6P\353,\262\021\317.\250\3461\007\234\202W\003\006y*!\305\241\005$\231i*\005\350L\"\263}\344\225\235dy\032\033\216\213J\334\230;\264\302&e\223\r[\252.k)\332\034g\351)c\014ket\223\n-]\021\027<\372#RNF\213h\220{\030\321T\0079$\250\216\020\246w[,\315\311\372\215\313\214\206\356^c\221t\303\314\351\007\233GG\251\356\347\220S\335\034\037|\321\220 \354\2440\200\374mg\325*\001\n+\304\017/\341\360\200\303He\225\272a\n\250\220\2031\004\rF\224&\217B\231\351;\320Y\314h\241\231\340\013 \2654\031\000K\233\242X\023w\254\313_\330V~\374\n\354b-\010Q\341L\244j\026\037\335\326\354\246\236S\231\217\203\257\270\\\035\317/\322\242\275{\331\273\235\004\310\010A\002\212\353\376\264\336Q\032\217\242\232If\010$!\006d\000:\274j\271\221\326]\3446\221H2\357i3\262\032\234\007\266\344\347\201\323\271I\212*Z\255\307m^\3550\322\0301\216\204\247r8xL\324\2363{\025\306\276#&b\214\324r\\\307\240\"9\254\340v^\3114\325\017\256OpeJM\365D\231\010\300\030V\022\026\300\246\024M\241\273t/}b8\016\357\0133\230\006\243t \362!\035\320AD6\235H\201WZ\250""\224\017T\334\254z\246!R,\203\001\013\333:@\333\206\312\020\010\327\247\210\3654\320_\3306\241I\036p\317\036\361i?\215\373\301s\266\225p\264\330\020\2613la\363\216G@FLB\233\332\342~^P\344\255\246-&\306\260\232\010\000\302\207b\312\031\313\035,1s\216!]\ny\006\002\017\2224 \242\214)Q\217\t\344\003\205\356?\322\r\002y\001\302\t@BZ\300\330&&\006\n\004\221\253\261\216\244\037\344\214\"\036S\300+A\250cLr\221\t\304\302\203>|\301.\006\260\252q4\330Z5\251\330\264\224\264D\316q\026\26541\343\236\017?\216\2342\332_\246\356S|\274\331\323\024@\202)\250\177_^\026\333%L\035\"jr\225\210\205\225g\253\211\251\222\223I\243\272\303T,\360*\237S\200T\354\362L\305iF0L\204\030\303\022Ec\270\351\212\t\006\016nm\3110\230\312\2518\352\0100\307!_{x\2712\304-2w5\020\005Uj\314d)@\204dc\230\374\3633\004\356NeC1\006X\361\370\0327\330\271V\022\235\324\302\330\255\3273\332)`\305\243\250q\035`\327Jh\240:\034\322\201&`\264\245\001`fg\247y\010\203&\205\013Y\226\370\310\031\305\034E\226\211\226\265\357\346\340\326$-zh\3549\2122i=\366\222\251I\261\037\354e\303\256,\301\014\225b\273\311\312I*hbs\203y\027\234\362a\304\003\022\276\255\024P\327\275!\247f\005\371\014\316\332)\257-+=\375W\022\010;\021\227\002S\006\032\300\314\307@\357\263\364pG\241\243Sb\354\355\010\232R\301\030\233]4\\d\346\313\014\201NVg\342uT9\236\332N\265\241\311U\n\302\343\240\343\2036:,@jb\346\373D\r\177\020y\345\336\301\244La\304\315\322HI\356\324\330X\246-621\350T\323\010o3\260_A+\3616I\223\344\205\352\2440\3159\210\240+\010\330F\324!\230L\202=\364\n\2206\337\253\024\255\315\213\212\313\373$\252\200:\0206\235\310\233c\035\203\316\355\347F\306<c\364j\320\300\306\375\001\001h\2642\035w\331\"\256\030\251SV\013#\225U\214\335\346\016j\355\334r\367+D\325o\201'\016\202\276\246#A\000+\306\310\251\204\304Hi\316\323\323zP\315\254\235\310\002K\036\302\271:Bz/\304DC\260\014\326\236l\210\0311\334\241*:\3154\014^V\024\273\204T\223\334\305V\346\260\036tR\302gb\334\314$\220\220\252\207\235\242aRU\215j\n\"\202\t\360g\264l\234(\255\202\226+.\033\020m3u_""~H\215h&BO[\232\030N\311Hh\010\330)t\212\002)a+\327n\204\357\212\221\254\207$9u'5\336\014\3030\\\300\335}\356\222\235\373\312\342\345\245\253\204j\324\230\352\336<\020\244\357F-\255+*\221-U\347\272\010\2326V\331\371\230\024\223\261\273\321^Wi\370\307\3619W\205\237\232\214,L\231\tfd\035 dk[\332h\220\264\233\353F\360\215\032\031\206\241\250B\006\225\225\005\242v\3524a\302\202\367\200\322L\207\007\241\016\225\207\036'0\004R\356O!I\351\225\031\"(J\225zt\222u[\322\247\246\210a\202\262,i\035\213e3&0\313v\004Th\270Y\260:4>:x\222\256\250\230\n\313\222\024\030My[,\261\272\316\322a\241\377 E\215\366\235\233x9 j6\006\267\322\312\003\004u\345Q\211[:R@\231\344C\2171F6\214\353\2040,qVYa?\017A$\245D \201L\031\221Q7Q\"c\002\276\r\014\351\001|\242\"\344\314\t\246)\023\304\255\260XG\001\351fB\t\240\331m\315\201\030%\312\310\266\252\221)M\rV\247~N,\177\371\026\224\242hldX\345;\354\021\310S\201\307\227\247j\216'\332\272;g\020\314q\277u\202d\315&\3106\361\261U-\272\377\t\202\244a\243\303\340\361\362\367\251V\263kw\022\367\234\337\006\014\374\334\353\237o?\025L6\307\343?lb@j\340\371\331\035\276AIt\252a*\253\222@!tF\021rwj\005^\346\315\006\256\264h\326\034v\022\220\203}lN3\340\302A\343\r\233\240\354\201p\335\002\331\262\337!\315\022\177\355\022a\320\376\256z\361\316\344`\350q7ks\032\315\332\264\320\340\341\023\256\226\007D\004^\236\006&9k\221\367\266$\306\370@P\324\323\026\366\332v_\357\362hpd\362\027\3711\r\271\335\352oq\342}\315\260c\2767D\275\327Ys-\371[xW\203@lg\317\363f\216\274\257\345S\304j\223\034\225F\271i\3278\227\3159\334~\340\2455\027\340ku0\363\356\374\256X>\321+\226n\226\227\231\212\302\305Z\216\205\021\017\000\325)\002xs\021#\"\336\023!*\226!\270\303\016Q\202\000\221\221\014o;\217\370\273\222)\302\204\203?9\362\010";
-    PyObject *data = __Pyx_DecompressString(cstring, 2063, 2);
+    const struct { const unsigned int length: 8; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{32},{19},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{21},{42},{20},{32},{22},{14},{30},{37},{5},{8},{15},{33},{35},{22},{18},{21},{24},{20},{21},{21},{24},{26},{25},{25},{21},{28},{21},{19},{25},{25},{25},{20},{23},{14},{20},{8},{15},{3},{15},{6},{18},{2},{6},{4},{11},{1},{2},{9},{17},{5},{18},{3},{8},{4},{5},{4},{8},{15},{5},{6},{9},{5},{8},{5},{34},{10},{5},{6},{7},{9},{9},{8},{12},{1},{5},{6},{2},{3},{10},{5},{12},{13},{4},{5},{8},{4},{8},{7},{4},{10},{4},{8},{4},{7},{3},{9},{9},{3},{5},{10},{4},{3},{9},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{12},{4},{4},{6},{8},{7},{6},{6},{5},{6},{1},{14},{32},{31},{31},{50},{46},{14},{63},{42},{74},{81},{11},{102},{79},{11},{28},{32},{66},{13},{40},{9},{253},{225},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2072 bytes) */
+const char* const cstring = "BZh91AY&SY\2131\345\277\000\001/\177\377\367\375\377\214o\377\377\377\277\377\377\373\377\377\377\373\300@@@@@@@@@@@@\000@\000`\007\217\234`\353\336\003\326\332\2004\247A\321\200\302I #Q\220\321=1\007\242b\030\223\024\321\246\215\032i\355Q\351?T\365=A\204\364\236\247\251\372P\037\244j1\246\246\365OSh\324\363T2\003#\020\0010&\000\010`\000#\000\010\300\001\030\000\000@\030\t\203@A55OjM\003\324zM\r\000\323@\003F\200\r\000\320\000\000\000\003&\324z\232d\001\240\243Ty\010h\320= h=@\000\000\000\000\006\200\000\000\000\000\000\0104\304\300\000\000\000\000\000\000\000\000\000\000\021\204`\000\000\000H\2212\001\002bh#L)\265=Q\2104=L\020h\000\000\000\0004\000\320\321\351\242\036\246$\020\216ES\304\346f\023\034\234\034\236\317g7By\356\213\273M\301\365`\357_\342\212\"\030\242\352\233'N;\217\373O+I&\230\233\332Uw\216f%0Lj^P\220u\014'%\217\226\362\013\311\225M\243\244~TI\0264\263/J\r\004S\267\204\277\207\262\177\243\014/\341o\037\321E\301\330\277(u\326Y(\347\227j7\230\203\322A+\201\203<\245\020\343M\005D\231i)\214XP\"\263}\244\225\235dy?\255\317I\245fT\035\332\201\022\365\272\006\255\325\026\373)\330\034g`T\306\030\326\335u\023\t\330\271\342.y\323\215\244\244\215\026\301 \366\330\321^\010\0327G\003\371\017E3\037\032\034\266\324\272Y\n\343\326m\\Z\212\300|\262\206\324\032:|9\220\204]\361\300\352\206\205B\207z\022{\023\227\321\213a8:\364\244b\367\233\034\311\237Y\245\226:\243>\350F\013\014\203b\263\222\271\221\262\250\315\316\216\nY\246\216\250\0361U\262\225DiY\320S\325\233\376=)\236\005\034\351\301\3661<\306C\335\211\212\024\317\254\2173\225\312\005\033f\263\037\257f\310\263\357|\233\220M\247\233F\366\202a\014\310-\314&\034\226\244\266k\343\346\255\336\274R\345\244\206ec(5\370\337\2039\2711N\247\033\340\002P\344\002!`Q\037\"\\\320\202\0376d1\240\023\024x\245\300\361!\332\324rq\300\240\010-\344\2042\025l\373\220A#lA\344z\002\275\031U\207{\364\340P:\321\326\334r\354\311\236\262}0\030\3705^U\253i\307\313\001ON\034?\001/\"\307$\220x\302H\017\276\255#\300\204\350\217\030\315\0040\036""\017\252\243\002\264\372\240\262]'\206`[\357\355\252\243\347\237\257\352\343\201LbV\223\nwy\267\207\236O\364\024\"}\330vY\214\360\203v\203\336\222(|\241\304\375\203\022\357\327\036\300e\017z\310[\360\t`\233\346dm \236\340\235\031'X\273\327\362E%\005/h\271\256\\J\260\220\006\271B1\232\203\030o`\3736\205\236\337I\303#w\024`\233\311\331\226\305\364\215\247\362\325\3757`x>\241\211\336\024{\246g~E\323\n#\207\305\325j\017d\234\246\036\264H/A\300f\371\354&\027L\323a\267o\020S\235\340[t\315\370\030\217\025\014\304\2457L\332u\030\272\330\317\021\347y\376%\001v\006[\373\216S#\233\260S\002H\245H\372\274\23290\242\254\241\020\231N\020\241\005\244\264\262\3048\300\240p6\330\320\\Zb\312{, Q\273\2204\201V\242$\364f\246$\032\303JF\004A\r\023*\032\274\236L\350\206\217\343k\202\034\211\010\201\002\234du\352&M\207\010\333l\3240\024\030J\323FA\324\010FF0\333\30730N\344\346Sf \313\036>?\013?\007W\201\264\363\350\311N\352k6k\252s<e+\261h\352\\G\\:\255\302$\026C\302.-\234\311_\027\022\243m\361\331iQ\251\322\351d\327\211\241\270\243\210\262\316\205\210\367(\340\326$-$_!\005\266\201\3014V\204$P;b\3702\327\341M\260\226\273te\327\260\242U\261\227]'\352fz\024d$\003)\235\273\254\261\347\025\r\375\375&z\316({\253~\312\255\271\367BH%\014\235:\022\270\030\360\016&x\017\033\216\235(\371\233\270=\036\237`L\336\226\224h|\225\263#_\235\262Z\302\273\033\2172\025\262\352\214j|\014C\272\333\026\006Gz\010\006\271\231\213\003\272Yz\335\360]\034dW\365s\351\260h\331*\236\223ln3\265k\340p\263\006\215[\225k)q\270a\235\2053\320\365\334]\333,\325\250cw\\\"\300\274'\201<D\206\304\320O\306!T\016\234\370h\246<Z:\260\317\323)l\202\004\201\357\363\021s\324C\017\227\304\216V|C\320\343\332\301\234\226\004\205\267\000\324|(\345\241oD\325+n\205\252\013m\322v|r\016?\233\221\346\374\353\321r\2764\224\200\347Y\332\311\330H\01499\355CD\250*\326\350\263\232\222K\272\271H\000\303\213\004@b\031\203F\247\325Z\004\020\300\006pE\373\002\211Xp\211X\335q\270@fe\341X\200\232\242\214\231m\365z\"\263\261\rB/\251\255\2666;e\025\270\250Z""\336\002\272D\3452J4\270\304z\372\021{\n\262\363!\350\017\000\211L\221XA\247H\007\002\261\035@\362\232\021\233\001(\013Xl\216\032\001[ g;\236a\"\275\003\201c((A\232Prf\r\215\206L\037\243\307\320\256\317\215dd\267\273\345;x&v\346D\220\251\021f\216\227L-\241N\027\355\312H\271\034\327\310\214\313l\n\024\346,\336]\317\215\325\307v--\234\317\202\t\322&L$\262\331\004\240\310\246\270\367\331Ao9V\3561\033\2676;\035\202@\351\205\241\210\241\370\\\345\340A\234HtM\020\021b!,\016\275\020h\031dA^\363\244YI\364\214\233v>z\330R\036\021c\257d\244$\030\022\305P\364\261\245\306\275A\263-$\324\354\310\\ZN\375\221\252\275I_l\315\"\303 JLO2\366\266O,=T\307/nD\331\312\356\303\247\237\266G\003\2309#{R\030O\223b\234\313\334%A\t\305\tu\361\026js\272\245[\005\020\025B\224\023\336i\204\010\240\353\004\n`\314\212tu\022&0+\307\233<P\316EMx0\302<)YU\247A\201=$U\261 \271\00769=$\344\227sF6\332\212R\344;xDv\365j\367Q\211T\\\207\250\233;\217\033\t\353+\244\353\331\331\212\236\210\351]\376\233\246\034G\\}v\027\027\033\316i>3\231[N\025\005`\306\255sT\301\002\230\315E\316\022\276\3434\0302\255\353-m\035ica\251:\251\367?R\001\361\316\221\367e\2626\354\n%\024l%\034\332b\0211\250\321\355w^\221\272_\352\370\250mk\342\247\342{\336\207\014C\227.'\236\223\227\373\022\362\234\353\000\266\321\373,\010\276\276\376~5\323sW\231\245\314\265\353\230\276zk\277P\210\362s\376>\017l|\373\373\365O\343\210\323\300\023\326P7&\230a\237\347\335G\363\302g\322\337\311r\273ip\356U\232\247_\343\316\301\321\266\247ta7{{2{p\372\216\342\245\"\342\3536,\256\236\250\342\340>\274\233&,_\236w\243R\334\371}g\314\036Ut\nI>|+\267\0272\255C\014\336Z}\243GI\237\272Z\365\034\337\247\357\341\r\342\177\242\275\213\030\327\267\274;]\330\213E\r\342\225u\020Y!b0d\266\023\356\007\236UZ\002\303\016Q\202\000\221\231\014\023\306\364@\177\305\334\221N\024$\"\314yo\300";
+    PyObject *data = __Pyx_DecompressString(cstring, 2072, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1829 bytes) */
-const char* const cstring = "x\332\245VKs\033\307\021\026YJB%*\311\224,\345\220\034\206\245(\324\023\022\034Z\226\034\205)\204\244l\304\211,\210\"c\331V\306\203\335\0010\344bf\2613\213\007SN\371\310#\216<\342\210#\2168\342\210\343\034q\324O\360Op\367\354\342A\200Q\034\347\200}\314tOw\177\375\365\267\370\230\344\202\200\370\242\312\245\026Jj\022F\334\343\276\220\345\351\"\271\351\223j\254\r)r\"\244\317\233\334'L\372D*Ct \300\374/q\251\304#R\027\274A|\305\265\333\342\315PiN\264\211\204\317\365\026\223D\311\240E\274\2103\303\t#\305\304\311T\230!B\023OI#\312\261\2125\004!U^UQ+\003^x\024\323Z\224%1\212\200\263\177\337\235\223X`\310\324(=\270\021\t\303\212\001O\r\222\244J\221\252\276\313\327\225E\032\302T\210i\205\234\254\247\353&bR\2732\246.\211\031x\010\200\312\314`\267=\013\230H@H\214v\252\241i\021]ap\264\211CH\256\244\"\342\265LE\311\014\213\"\326z\306D\000\260B\205i\031\177\023\332l\013\roF\034\361(\357\022T\261!\252D\212*\226\276>c\211\334bM\010|\323\277\235_L/\351W\034\206*2\334\317\313:\013\0044V\371\374\036\366\n\214!\201uo\235@j\353\220\037\326\276~\217\224\301kl\234T\000\355qa\236\376\335a\262\217\230@\n\317\025\244\355\272\271\345\nC\010|\036\210\"\217\240 @\035\231\000A\\\313%y\261\363\342\376\306\343\r\307\244\210\037@x\r\331\025\275\000\232\r\014\302\232b\021\030\010\206\035\321\031\222/\221\226\212\211\344\tN!\330\315:\230\n\227Ds\203\017d\335\265\217\031\250\233\202;\320y=m\205\250s\364~\306\002\3153\237\237\002\017RN9\311<\217\3531\232\273\206\207\244\312Z\016?\030\001\350\206\232\002\275'\035\331\260qJ\326y\004\\2\274\212\357\252\210Ee6\327o\377\231\371>\225\010\017\026K\000\241\207MO\005\001\246\003\215\311\260\242\367t\206\376h\224$\2739\277<f\335\246/4\306\345.z\331#\267\260MeG8\254\000\347\2277\r\227\306M\323t\224\205N\\|\314R\003\263\310\323?\221\207\013t\224\nZWbq`\010\245\021\367c\217SJ\374\330\025*\225\274\017\255\254\013\026\300\256'\2440\260\231\224\273\251yP\312HV\345\343\tx\256$\327\221\367\240\304\002(\206z*\342\017\250\307B\361 \000\212S\177\312\361L\330j>M\344\302?""\005\302\342\032rt\202\305\251\375\323\253\262\254U\034y|3\236\264\211\005\201\362\234\002a\241\304g\206e\316\330M\250\216'\246\002\226\311\355n\345\363;A B-\364\334x\316\275f&\240%\240R\272h\000T\325\300\320\377l\302\302\220K\177a\325\314\257x\001g\013\t o\230\220\363yf8*\321\302b-f\301\302b\3044\247\213\341J\"\010(\310A\314\027v@d\351\201V\362\314\r\354\366\374\206\223\335\305E\320\010\235\314\306\302\036\262v~Q\362\306\031K\364\314R\201\221\364\314r\303XWh\221y\207\363\0338$\363kF\271:A\361\362UPs\030.\320NJ_\264\232\360\333\006\221\243\317a\372^\362\322.\304\342\322\343\250\221\231\251\\\302\300\217\211F\023\311I\232\315tKzBA\367\"\320u\001\203\303L\261\350b\025\241\033\211)\305\214<\352\301\350\241\364Q:~(Cv\200\017\276\002#\274\000\374\251\000\375\213\230\307\2612/\320cZx\240x\006\251Oa\000!]\352\243\310R\241i2\306\016;H\034>\016\\\306U\247\340\016\2661+x\024\251hf\2443n\2443\363#=%K)`e\r2Se&\375\266L\3502\241\007\245\245XzXPy<\034\264R\201Q\302\017\206\037p\341\013\277I\251\250\342'\014\356\310\236Y\266`\376\023\350\020\212D\344R\245\303P\224V\241|\270\362*~\312\361\343\007/\312\217\003\270\243jM\256 \231p\005\032\341eB\247\t}\000&\005\037\032\214\225v0\004\204C\025NxD)\310\231C\005\013r\317\025\356\035\352\270\232\274\245\365\341\243\303\336=\3052\024\336!$\263#\307vu\367o\006\317\300\270IvSM^\020\232\311\002o\342c\031`\005|\034\316\032\221D}v\342\223\026\nO\251\322\317H\022=C\236\234 \"\216\260\034\271=\341U\2413\312\207\010\2416\n~Q\214\\2\034[\231\316\010T\004`\304!\220\215;\"\270\213n~\227\033\255\\\263\327\356v\263\335\355\336\322\251\267\013\366\311+\373j\317\356QK\277\261\337\370\326\347\247\367\373\253\375\273\203\227\203\306\360\300~Q\267\365\306\334\356\265\376\341\360\372\260a\367\301\371\310\036\375\353\273\334\333\225\033\235?t\016zK\243\225\213\307\237\266s\243\213\227\217\033m\326\256\237\024F\357\375\272mN\262\270rt\262z\2626Z\271|\\\303\0037\354\306'\203\332\360\3740o\367\366G+\277:~\324\276j\337\317t\331\350\342\325v\026\314\354\345\233""\235B\247\332\313\246\341\357t\327\272\033\335\032F\273n\257\177\330+\364\374\376\332\304\361vw5u\274\000w{\365^7\327\335\353\375\276\377\263\376\027\203\177\014s\303\302\333+k\235\325\316\032\272?\266\217w\355.`\360\225\375\nj8\264\2075[k~\177\356\\kik\031n[\313o\360\366f\371\237\313\223\363?\350\255M\023\303T\\Zp\022\340\270o\367\277\264_z\326\253\330\212\266\272\005\276GK9<\"\267\374\031\336>[\026x\023\313\007\377\345\300K\277\353\344:\257\272\253\230\345oO\266;\277\350\324\272\000\352\303\336\245>\3537\007z\2706\314\276\305\n\001\201\217z\265\376RZ\025\236\372\301\361\256}\317\341w\245}\367\244p\302F+7\354\215\215\336V\257\331\257\r\226\320\344\343v\001oO\240CI\033\276\377\371\271\013W\355\025\000\317\336\331\031\024\006>\004\330\030\326~\352q\330\376\277B\337\361\361\322\255\356R\367\375\356\353\036\357\377qP\032~bw\337\3307\r\333\0303\023\216\356\232\336\223\376\316\3407\303g\366\345k\373\032\000\374\326~\373\357IV\017\272?=\221K\353\200\334\371n\276WH\303\301a\275\363\275|\277\000\344\2752\374\310\276\374\332~\355\310\2734:\377\313\343\273\355B2]$\021\005\220\037\232\315\316\350/\3750\221\232\354\243y\t\236\377_A\356\334JU\207>\202\217\010:\315Y|\352\304\366\0369\03514\224Ee\375\243\303\322\205\025\247\363hN\356L\316\004\325f\201;\370\366\271wx\374\310\342\263\263\316\357\256\371\377\254\367T\244\377\255\3123\215?\377\001\327\260\026V";
-    PyObject *data = __Pyx_DecompressString(cstring, 1829, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1841 bytes) */
+const char* const cstring = "x\332\245V\315w\033\267\021\267\364\334Vn\375\354\330\216\335C{\200\236\353\322\237\264\231*\256\235\272\352c%9a\3238\246i\251u\362\\\004\334\005IXK`\271\300J\244\372\342\372\250#\217:\362\310#\217<\362\310#\216<\372O\310\237\320\031\354\362C\244\252|\364 \356\356`\200\231\371\315o~\320'$\037\004\304\027u.\265PR\2230\342\036\367\205\254N\215\344\206O\352\2616\244\314\211\220>or\2370\351\023\251\014\321\201\000\367\277\306\225\n\217\310\236\340\373\304W\\\273%\336\014\225\346D\233H\370\\o0I\224\014Z\304\21383\2340RN6\231\0323Dh\342)iD5V\261\206 \244\316\353*jea\027\036\305\264\026UI\214\"\260\331\277\347\316I<0d\352\224\036\274\037\t\303\312\001O\035\222\244*\221\252\237\266\327\225E\366\205\251\021\323\n9\311\244v\0231\251]\031\323-\211\033\354\020\000\225\231\301ns\0260\221\200\2208m\325C\323\"\272\306\340h\023\207\220\\EE\304k\231\232\222Y\026E\254\365\224\211\000`\205\n\3232\376.\264\331\024\032\276\2148\340Q\301%\250bCT\205\224U,}}\202\211\334dM\010|\303\277UXL/\351W\034\206*2\334/\310=\026\010h\254\362\371]\354\0258C\002\031/C \265\014\344\207\265g\356\222*\354\032;'\025@{\\\230'_8Lv\020\023H\341\231\202\264]77\\a\010\201\317\003Q\346\021\024\004\250#\023 \210k\271$\317\267\236\337[{\264\346\230\024\3617\020^Cve/\200f\003\203\260\246X\004\006\202aGt\226\024*\244\245b\"y\202S\010~\263\033L\215K\242\271\301\027\222q\355c\006\352\246\260\035\350\234I[!\3668\356~\312\002\315\263_\036\003\017RN9\311<\217\3531\232%\303CRg-\207\037\214\000tCM\201\336\226\216l\3308%\367x\004\\2\274\216\337\252\214Ee\3273\267\376\302|\237J\204\007\213%\200\320\203\246\247\202\000\323\201\306dY\331{2C\177tJ\222]\2377\217Y\267\356\013\215q\271\213^\365\310MlS\325\021\016+\300\371\345M\303\245q\3234\035e\241\223->f\251\201Y\344\311\237\311\203\005:J\005\255\253\26080\204\322\210\373\261\307)%~\354\n\225J\336\203V\356\t\026\300\252'\2440\260\230\224\273\256yP\311JV\347\343\tx\246$\327\221w\277\302\002(\206z*\342\367\251\307Bq?\000\212S\177\312\361l\330j>I\344\302?\006\302\242\r9:\301\342""\330\372q\253\254j\025G\036_\217'mbA\240<\247@X(\361\231a\331\023V\023\252\343\211\251\200e\363\245\215Ba+\010D\250\205\236\033\317\271\317\354\004\264\004TJ\027\035\200\252\032\030\372\277]X\030r\351/X\315\274\305\0138[H\000y\303\204\324\213\366\2605o\343\250N\013\306F\314\202\005c\3044\247\213)TD\020P\220\210\230/\254\200\360\3227Z\311\023\027\220\001\363\013N\212\027\215\240\033:\231\227\2055d\362\274Q\362\375\023L\364\304R\201\245\364\304r\303X\327h\231y\273\363\01388\3636\243\\\235\240\202\205:(<\014\034\350)\245\317[M\370\333\004\341\243\317`\"_\360J\tbq\351q\324\315\354TBA\004\306\344\243\211\014%\004`\272%=\241\240s\021h\275\200ab\246\354B\225\241\031\211'\305\204<\352\3014\242\032R:~\251Br\000\017~\002I\274\000\266S\001\222\0301\217ca^\240\307LAfx \204\006'\202\302\\B\306\324G\355\245B\323d\272\035|\220;\334\031\\\306u'\354\016\27111x\024\251hf\322\263n\322\263\363\223>\345K%`U\r\352Sg&\275r&\214\2310\204\322J,=,\252:\236\031Z\253\301\204\341=\342\007\\\370\302oR*\352x\263\301\023\t4K\030\314\177\202\036\302\221h_*\200\030\212\322:@\000\277\274\2167<\336\211\360\241\3748\200'\212\331\344\027\224\024~\201I\3703a\324\204A\000\223\202\373\007c\245M\014\001\345P\205\023*Q\n*\347P\301\202\334{\215{\273:\256'_i}\370\352\260wo\261\014\205\267\013\311l\311\261\337\236\373'\007\317\300\270IvS\251^\320\237\211\2017\361\265\n\260\002>\016g\215H\242l;MJ\013\205\267\364\002\230Q*z\202j9\235D\034\301\034\2715\341\325\2413\312\207\010\2416\n\376\242\030\271d8\2662\035\023\250\010\300\210C \033wDp?\272\371.?Z\271j\257\336\351\346\272\233\275\245c_\347\354\343\227\366\345\266\335\246\226~c\277\361\255\317\217\257\367\257\366w\207\327\206\373v\007\226\337\332\267\3779e\371\300\036\374\373]\376\375\312\365\316\037:ozK\243\225\363\207\237\265\363\243\363\027\017\367\333\254\275wT\034}\360\353\2669\312\241\345\340\350\322\321\352h\345\342a\003\017\\\263k\237\016\032\303\263\303\202\335\336\031\255\374\352\360a\373\212\3750\333e\243\363W\3329p\263\027ot\212\235z/\227\206\277""\335]\355\256u\033\030\355\232\275\366q\257\330\363\373\253\223\215\267\272\227\322\215\347\340i\257\334\355\346\273\333\275\337\367\177\326\377\347\340\037\303\374\260\370\376\362j\347Rg\025\017{d\037}1,\016}\373\2424\331\377Qou\032\030C\3450\020x\226l\t\340\372\332~\r\325\356\332\335\206m4\277;s\246\265\264\261\014\217\215\345\327\370x\275\374\257\345SOr1\001\362\035\273\363\225\375\312\263^\315\326\264\325-\330{\260\224\307#\362\313\237\343\343\363e\201\017\261\374\346{\016\274\360\273N\276\363\262{\t\263\374\355\321f\347\027\235F\027\340\177\320\273\320g\375\346@\017W\207\271\367\210\005`\365\307^\243\277\224\326\217\247~tX\262\0378\244/\267\357\034\025\217\330h\345\272\275\276\326\333\3505\373\215\301\022\272|\322.\342\3431\3642i\330w\077\077s\356\212\275\0140\333\333[\203\342\300\207\000k\303\306O=\016\211\3627`\010\276^\270\331]\352~\330}\325\343\375?\r*\303Om\351\265}\275o\367\307$\206\243\273\246\367\270\2775\370\315\360\251}\361\312\276\002\000\277\265\337\276\235du\277\373\323\023\271\220\001\344\316v\013\275b\032\016\016\353\235\355\025\372\333\203;\303\035[\202~\371\320\021>n\370\346\362\273\245\321\331_\036\336i\027\223\211$\211\220\200d\321\\nF\263\351\307\211<\345\036\316\313\366\374\277(\344\366\315T\251\350C\270|p\323\234\307gN\240\357\222\343\021CCYT\325?8,]\260\270\273\001\335\311\355\311\231\240\364,p\007\337:s\312\216\037X|nv\363\3515\377\237\365\036\213\364\343\252<\321\371\313\377\002\316\2570\376";
+    PyObject *data = __Pyx_DecompressString(cstring, 1841, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3977 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create ListDiscretizerIndex out of boundsIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>self.name is not Nonesrc/falcon_core/_capi/list_discretizer.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisListDiscretizerListDiscretizer.__reduce_cython__ListDiscretizer.__setstate_cython__ListDiscretizer.appendListDiscretizer.atListDiscretizer.clearListDiscretizer.containsListDiscretizer.emptyListDiscretizer.equalListDiscretizer.erase_atListDiscretizer.fill_valueListDiscretizer.from_jsonListDiscretizer.from_listListDiscretizer.indexListDiscretizer.intersectionListDiscretizer.itemsListDiscretizer.newListDiscretizer.new_emptyListDiscretizer.not_equalListDiscretizer.push_backListDiscretizer.sizeListDiscretizer.to_jsonNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferappendasyncio.coroutinesatbb_jsonbasebuffer_sizec_c__class____class_geti""tem__clearcline_in_tracebackclscontainscountdata__dict__dtype_is_objectemptyencodeenumerateequalerase_aterrorfalcon_core._capi.list_discretizerfill_valueflagsformatfortranfrom_jsonfrom_list__func____getstate__hh_rethandleididx__import__indexintersection_is_coroutineitemitemsitemsizejson__main__memviewmode__module__name__name__ndim__new__newnew_emptynot_equalobjotherout_bufferpackpoppush_back__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registers_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstaticmethodstepstopstruct__test__to_jsonunpackupdatevaluevaluesx\200A\330\010\025\320\025+\2501\250D\260\001\200A\330\010\025\320\025+\2501\250D\260\t\3209T\320TU\320U_\320_`\320`d\320de\200A\330\010\025\320\025+\2501\250D\260\t\270\021\270+\300R\300w\310j\320Xv\320vw\200A\330\010\025\320\025+\2501\250D\260\t\270\025\270k\310\026\310w\320V`\320`z\320z{\200A\340\010#\2403\240j\260\001\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\330\0104\3204G\300q\310\004\310I\320UV\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\010\025\320\025*\250!\2504\250q\200A\340\010\026\320\0265\260Q\260d\270!\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\340\0108\3208S\320ST\320T[\320[`\320`k\320kq\320qx\360\000\000y\001C\002\360\000\000C\002]\002\360\000\000]\002^\002\330\010\013\2106\220\023\320\0242\260!\330\014\023\2201\330\010\017\320\017*\250!\2501\200A\330\0108\3208U\320UV\320VZ\320Zc\320ch\320hs\320sy\360\000\000z\001A\002\360\000\000A\002K\002\360\000\000K\002i\002\360\000\000i\002j\002\330\010\013\2106\220\023\320\0242\260!\330\014\023\2201\330\010\017\320\017*\250!\2501\200A\330\016$\240A\240T\250\021\200A\340\010\034\230D\240""\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0267\260q\270\001\340\022!\240\021\240!\330\010\013\2102\210S\320\020.\250a\330\014\022\220+\230Q\230a\330\010#\320#4\260C\260x\270q\300\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022)\250\021\320*E\300Q\300d\310!\3104\310q\330\010\013\2102\210S\320\020.\250a\330\014\022\220+\230Q\230a\330\010#\320#4\260C\260x\270q\300\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\330\016(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]w\320wx\200A\330\010\025\320\025.\250a\250t\2609\270E\300\033\310F\320RY\320Yc\320c}\320}~\200A\360\006\000\t\023\320\022/\250q\330\010\013\2102\210S\320\020.\250a\330\014\022\220+\230Q\230a\330\010#\320#4\260C\260x\270q\300\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\016'\240q\250\004\250I\260Q\200A\330\010\025\320\025/\250q\260\004\260I\270Q\270k\310\022\3107\320R\\\320\\z\320z{\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *(__pyx_t_6_c_api_ListDiscretizerHandle, struct __pyx_opt_args_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi *__pyx_optional_args)\000_list_discretizer_from_capistruct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *(__pyx_t_6_c_api_DiscretizerHandle, struct __pyx_opt_args_11falcon_core_5_capi_11discretizer__discretizer_from_capi *__pyx_optional_args)\000_discretizer_from_capiO";
+    #else /* compression: none (4052 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create ListDiscretizerIndex out of boundsIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>self.name is not Nonesrc/falcon_core/_capi/list_discretizer.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisListDiscretizerListDiscretizer.__reduce_cython__ListDiscretizer.__setstate_cython__ListDiscretizer.appendListDiscretizer.atListDiscretizer.clearListDiscretizer.containsListDiscretizer.copyListDiscretizer.emptyListDiscretizer.equalListDiscretizer.erase_atListDiscretizer.fill_valueListDiscretizer.from_jsonListDiscretizer.from_listListDiscretizer.indexListDiscretizer.intersectionListDiscretizer.itemsListDiscretizer.newListDiscretizer.new_emptyListDiscretizer.not_equalListDiscretizer.push_backListDiscretizer.sizeListDiscretizer.to_jsonNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferappendasyncio.coroutinesatb_jsonbasebuffer_sizec_c__""class____class_getitem__clearcline_in_tracebackclscontainscopycountdata__dict__dtype_is_objectemptyencodeenumerateequalerase_aterrorfalcon_core._capi.list_discretizerfill_valueflagsformatfortranfrom_jsonfrom_list__func____getstate__hh_rethandleididx__import__indexintersection_is_coroutineitemitemsitemsizejson__main__memviewmode__module__name__name__ndim__new__newnew_emptynot_equalobjotherout_bufferpackpoppush_back__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registers_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstaticmethodstepstopstruct__test__to_jsonunpackupdatevaluevaluesx\200A\330\010\025\320\025+\2501\250D\260\001\200A\330\010\025\320\025+\2501\250D\260\t\3209T\320TU\320U_\320_`\320`d\320de\200A\330\010\025\320\025+\2501\250D\260\t\270\025\270k\310\026\310w\320V`\320`~\320~\177\200A\330\010\025\320\025+\2501\250D\260\t\270\025\270k\310\026\310w\320V`\320`z\320z{\200A\340\010#\2403\240j\260\001\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\330\0104\3204G\300q\310\004\310I\320UV\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\010\025\320\025*\250!\2504\250q\200A\340\010\026\320\0265\260Q\260d\270!\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\0108\3208M\310Q\310d\320RS\330\010\013\2106\220\023\320\0242\260!\330\014\023\2201\330\010\017\320\017*\250!\2501\200A\340\0108\3208S\320ST\320T[\320[`\320`k\320kq\320qx\360\000\000y\001C\002\360\000\000C\002]\002\360\000\000]\002^\002\330\010\013\2106\220\023\320\0242\260!\330\014\023\2201\330\010\017\320\017*\250!\2501\200A\330\0108\3208U\320UV\320VZ\320Zc\320ch\320hs\320sy\360\000\000z\001A\002\360\000\000A\002K\002\360\000\000K\002i\002\360\000\000i""\002j\002\330\010\013\2106\220\023\320\0242\260!\330\014\023\2201\330\010\017\320\017*\250!\2501\200A\330\016$\240A\240T\250\021\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0267\260q\270\001\340\022!\240\021\240!\330\010\013\2102\210S\320\020.\250a\330\014\022\220+\230Q\230a\330\010#\320#4\260C\260x\270q\300\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022)\250\021\320*E\300Q\300d\310!\3104\310q\330\010\013\2102\210S\320\020.\250a\330\014\022\220+\230Q\230a\330\010#\320#4\260C\260x\270q\300\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\330\016(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]w\320wx\200A\330\010\025\320\025.\250a\250t\2609\270E\300\033\310F\320RY\320Yc\320c}\320}~\200A\360\006\000\t\023\320\022/\250q\330\010\013\2102\210S\320\020.\250a\330\014\022\220+\230Q\230a\330\010#\320#4\260C\260x\270q\300\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\016'\240q\250\004\250I\260Q\200A\330\010\025\320\025/\250q\260\004\260I\270U\300+\310V\320SZ\320Zd\360\000\000e\001C\002\360\000\000C\002D\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_16list_discretizer_ListDiscretizer *(__pyx_t_6_c_api_ListDiscretizerHandle, struct __pyx_opt_args_11falcon_core_5_capi_16list_discretizer__list_discretizer_from_capi *__pyx_optional_args)\000_list_discretizer_from_capistruct __pyx_obj_11falcon_core_5_capi_11discretizer_Discretizer *(__pyx_t_6_c_api_DiscretizerHandle, struct __pyx_opt_args_11falcon_core_5_capi_11discretizer__discretizer_from_capi *__pyx_optional_args)\000_discretizer_from_capiO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 176; i++) {
+    for (int i = 0; i < 177; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 50) PyUnicode_InternInPlace(&string);
@@ -25457,7 +25609,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 176; i < 199; i++) {
+    for (int i = 177; i < 201; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -25468,15 +25620,15 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 199; i++) {
+    for (Py_ssize_t i = 0; i < 201; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 176;
-      for (Py_ssize_t i=0; i<23; ++i) {
+      PyObject **table = stringtab + 177;
+      for (Py_ssize_t i=0; i<24; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
         #else
@@ -25550,94 +25702,99 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_7q_2S_a_Qa_4Cxq_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_88MQdRS_6_2_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_count, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_fill_value, __pyx_mstate->__pyx_kp_b_iso88591_A_88SSTT_kkqqx_y_C_C_6_2_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_fill_value, __pyx_mstate->__pyx_kp_b_iso88591_A_88SSTT_kkqqx_y_C_C_6_2_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 64};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_Ye_fGS_wwx, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_Ye_fGS_wwx, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 67};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_4q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_1D, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_4q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 76};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_1D, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 79};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 79};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 82};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 85};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_44Gq_IUV_6_a_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_44Gq_IUV_6_a_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 85};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_out_buffer, __pyx_mstate->__pyx_n_u_buffer_size};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_9TTUU___dde, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_9TTUU___dde, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 88};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 94};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_at9E_FRYYcc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_at9E_FRYYcc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 97};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_k_wV_zz, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_k_wV_zz, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 94};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_88UUVVZZcchhssy_z_A_A_K_K_i_i, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_88UUVVZZcchhssy_z_A_A_K_K_i_i, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_b};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_RwjXvvw, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 106};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_k_wV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 108};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_b};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQk_7R_zz, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 114};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IU_VSZZd_e_C_C_D, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 122};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 135};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 141};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 138};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 144};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_n_u_obj, __pyx_mstate->__pyx_n_u_item};
-    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_3j_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_discr, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_3j_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_pyx_state};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

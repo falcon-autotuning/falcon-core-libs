@@ -7,6 +7,42 @@ from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.generic.list import List
 
+
+def _make_test_group():
+    from falcon_core.physics.config.core.group import Group
+    from falcon_core.autotuner_interfaces.names.channel import Channel
+    from falcon_core.physics.device_structures.connections import Connections
+    from falcon_core.physics.device_structures.connection import Connection
+    
+    channel = Channel.new("test")
+    num_dots = 2
+    screening = Connections.new_empty()
+    screening.append(Connection.new_screening("s1"))
+    screening.append(Connection.new_screening("s2"))
+    
+    reservoir = Connections.new_empty()
+    reservoir.append(Connection.new_reservoir("R1"))
+    reservoir.append(Connection.new_reservoir("R2"))
+    
+    plunger = Connections.new_empty()
+    plunger.append(Connection.new_plunger("P1"))
+    
+    barrier = Connections.new_empty()
+    barrier.append(Connection.new_barrier("B1"))
+    barrier.append(Connection.new_barrier("B2"))
+    
+    order = Connections.new_empty()
+    order.append(Connection.new_ohmic("O1"))
+    order.append(Connection.new_reservoir("R1"))
+    order.append(Connection.new_barrier("B1"))
+    order.append(Connection.new_plunger("P1"))
+    order.append(Connection.new_barrier("B2"))
+    order.append(Connection.new_reservoir("R2"))
+    order.append(Connection.new_ohmic("O2"))
+    
+    return Group.new(channel, num_dots, screening, reservoir, plunger, barrier, order)
+
+
 class TestListGroup:
     def setup_method(self):
         self.obj = None
@@ -28,7 +64,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.fill_value(1, Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
+            self.obj.fill_value(1, _make_test_group())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -36,7 +72,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.push_back(Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
+            self.obj.push_back(_make_test_group())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -92,7 +128,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
+            self.obj.contains(_make_test_group())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -100,7 +136,7 @@ class TestListGroup:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.index(Group.new(Channel.new('C1'), 1, Connections.from_list([Connection.new_screening('SG1'), Connection.new_screening('SG2')]), Connections.from_list([Connection.new_reservoir('R1'), Connection.new_reservoir('R2')]), Connections.from_list([Connection.new_plunger('P1')]), Connections.from_list([Connection.new_barrier('B1'), Connection.new_barrier('B2')]), Connections.from_list([Connection.new_ohmic('O1'), Connection.new_reservoir('R1'), Connection.new_barrier('B1'), Connection.new_plunger('P1'), Connection.new_barrier('B2'), Connection.new_reservoir('R2'), Connection.new_ohmic('O2')])))
+            self.obj.index(_make_test_group())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -135,3 +171,25 @@ class TestListGroup:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

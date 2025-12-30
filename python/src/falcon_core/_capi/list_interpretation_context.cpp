@@ -1349,9 +1349,9 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
@@ -1359,66 +1359,66 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/communications/Time_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringDouble_c_api.h"
-#include "falcon_core/generic/ListPairStringDouble_c_api.h"
-#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/AnalyticFunction_c_api.h"
-#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
-#include "falcon_core/generic/ListInt_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/math/AxesInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
-#include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/MapStringBool_c_api.h"
-#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
-#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListMapStringBool_c_api.h"
-#include "falcon_core/math/AxesMapStringBool_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
-#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
-#include "falcon_core/generic/ListWaveform_c_api.h"
-#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
-#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
-#include "falcon_core/generic/PairConnectionDouble_c_api.h"
-#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
-#include "falcon_core/generic/MapConnectionDouble_c_api.h"
-#include "falcon_core/math/Point_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/math/AxesInt_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/PairStringDouble_c_api.h"
+#include "falcon_core/generic/ListPairStringDouble_c_api.h"
+#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/math/AnalyticFunction_c_api.h"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/PairStringBool_c_api.h"
+#include "falcon_core/generic/ListPairStringBool_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
+#include "falcon_core/generic/MapStringBool_c_api.h"
+#include "falcon_core/generic/ListMapStringBool_c_api.h"
+#include "falcon_core/math/AxesMapStringBool_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
+#include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
+#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
+#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
+#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
+#include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/generic/PairConnectionDouble_c_api.h"
+#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
+#include "falcon_core/generic/MapConnectionDouble_c_api.h"
+#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
+#include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/PairStringString_c_api.h"
 #include "falcon_core/generic/ListPairStringString_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
@@ -1458,8 +1458,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
-#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"
 #include "falcon_core/physics/config/core/Group_c_api.h"
@@ -1486,8 +1486,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
+#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
 #include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
@@ -4979,28 +4979,29 @@ static void __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListIn
 static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_4new_empty(PyTypeObject *__pyx_v_cls); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_6new(PyTypeObject *__pyx_v_cls, __Pyx_memviewslice __pyx_v_data, size_t __pyx_v_count); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_8from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_10fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_12push_back(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_14size(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_16empty(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_18erase_at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_20clear(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_22at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_24items(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_26contains(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_28index(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_30intersection(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_32equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_34__eq__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_36not_equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_38__ne__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_40to_json(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
-static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_42__len__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_46append(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_48from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_50__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_52__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_10copy(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_12fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_14push_back(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_16size(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_18empty(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_20erase_at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_22clear(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_24at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_26items(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_28contains(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_30index(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_32intersection(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_34equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_36__eq__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_38not_equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_40__ne__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_42to_json(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_44__len__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_46__getitem__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_48append(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_50from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -5043,8 +5044,8 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[2];
-  PyObject *__pyx_codeobj_tab[21];
-  PyObject *__pyx_string_tab[199];
+  PyObject *__pyx_codeobj_tab[22];
+  PyObject *__pyx_string_tab[201];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -5145,31 +5146,31 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_ListInterpretationContext_at __pyx_string_tab[56]
 #define __pyx_n_u_ListInterpretationContext_clear __pyx_string_tab[57]
 #define __pyx_n_u_ListInterpretationContext_contai __pyx_string_tab[58]
-#define __pyx_n_u_ListInterpretationContext_empty __pyx_string_tab[59]
-#define __pyx_n_u_ListInterpretationContext_equal __pyx_string_tab[60]
-#define __pyx_n_u_ListInterpretationContext_erase __pyx_string_tab[61]
-#define __pyx_n_u_ListInterpretationContext_fill_v __pyx_string_tab[62]
-#define __pyx_n_u_ListInterpretationContext_from_j __pyx_string_tab[63]
-#define __pyx_n_u_ListInterpretationContext_from_l __pyx_string_tab[64]
-#define __pyx_n_u_ListInterpretationContext_index __pyx_string_tab[65]
-#define __pyx_n_u_ListInterpretationContext_inters __pyx_string_tab[66]
-#define __pyx_n_u_ListInterpretationContext_items __pyx_string_tab[67]
-#define __pyx_n_u_ListInterpretationContext_new __pyx_string_tab[68]
-#define __pyx_n_u_ListInterpretationContext_new_em __pyx_string_tab[69]
-#define __pyx_n_u_ListInterpretationContext_not_eq __pyx_string_tab[70]
-#define __pyx_n_u_ListInterpretationContext_push_b __pyx_string_tab[71]
-#define __pyx_n_u_ListInterpretationContext_size __pyx_string_tab[72]
-#define __pyx_n_u_ListInterpretationContext_to_jso __pyx_string_tab[73]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[74]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[75]
-#define __pyx_n_u_Sequence __pyx_string_tab[76]
-#define __pyx_n_u_View_MemoryView __pyx_string_tab[77]
-#define __pyx_n_u_abc __pyx_string_tab[78]
-#define __pyx_n_u_allocate_buffer __pyx_string_tab[79]
-#define __pyx_n_u_append __pyx_string_tab[80]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[81]
-#define __pyx_n_u_at __pyx_string_tab[82]
-#define __pyx_n_u_b __pyx_string_tab[83]
+#define __pyx_n_u_ListInterpretationContext_copy __pyx_string_tab[59]
+#define __pyx_n_u_ListInterpretationContext_empty __pyx_string_tab[60]
+#define __pyx_n_u_ListInterpretationContext_equal __pyx_string_tab[61]
+#define __pyx_n_u_ListInterpretationContext_erase __pyx_string_tab[62]
+#define __pyx_n_u_ListInterpretationContext_fill_v __pyx_string_tab[63]
+#define __pyx_n_u_ListInterpretationContext_from_j __pyx_string_tab[64]
+#define __pyx_n_u_ListInterpretationContext_from_l __pyx_string_tab[65]
+#define __pyx_n_u_ListInterpretationContext_index __pyx_string_tab[66]
+#define __pyx_n_u_ListInterpretationContext_inters __pyx_string_tab[67]
+#define __pyx_n_u_ListInterpretationContext_items __pyx_string_tab[68]
+#define __pyx_n_u_ListInterpretationContext_new __pyx_string_tab[69]
+#define __pyx_n_u_ListInterpretationContext_new_em __pyx_string_tab[70]
+#define __pyx_n_u_ListInterpretationContext_not_eq __pyx_string_tab[71]
+#define __pyx_n_u_ListInterpretationContext_push_b __pyx_string_tab[72]
+#define __pyx_n_u_ListInterpretationContext_size __pyx_string_tab[73]
+#define __pyx_n_u_ListInterpretationContext_to_jso __pyx_string_tab[74]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[75]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[76]
+#define __pyx_n_u_Sequence __pyx_string_tab[77]
+#define __pyx_n_u_View_MemoryView __pyx_string_tab[78]
+#define __pyx_n_u_abc __pyx_string_tab[79]
+#define __pyx_n_u_allocate_buffer __pyx_string_tab[80]
+#define __pyx_n_u_append __pyx_string_tab[81]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[82]
+#define __pyx_n_u_at __pyx_string_tab[83]
 #define __pyx_n_u_b_json __pyx_string_tab[84]
 #define __pyx_n_u_base __pyx_string_tab[85]
 #define __pyx_n_u_buffer_size __pyx_string_tab[86]
@@ -5181,110 +5182,112 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_cline_in_traceback __pyx_string_tab[92]
 #define __pyx_n_u_cls __pyx_string_tab[93]
 #define __pyx_n_u_contains __pyx_string_tab[94]
-#define __pyx_n_u_count __pyx_string_tab[95]
-#define __pyx_n_u_data __pyx_string_tab[96]
-#define __pyx_n_u_dict __pyx_string_tab[97]
-#define __pyx_n_u_dtype_is_object __pyx_string_tab[98]
-#define __pyx_n_u_empty __pyx_string_tab[99]
-#define __pyx_n_u_encode __pyx_string_tab[100]
-#define __pyx_n_u_enumerate __pyx_string_tab[101]
-#define __pyx_n_u_equal __pyx_string_tab[102]
-#define __pyx_n_u_erase_at __pyx_string_tab[103]
-#define __pyx_n_u_error __pyx_string_tab[104]
-#define __pyx_n_u_falcon_core__capi_list_interpret __pyx_string_tab[105]
-#define __pyx_n_u_fill_value __pyx_string_tab[106]
-#define __pyx_n_u_flags __pyx_string_tab[107]
-#define __pyx_n_u_format __pyx_string_tab[108]
-#define __pyx_n_u_fortran __pyx_string_tab[109]
-#define __pyx_n_u_from_json __pyx_string_tab[110]
-#define __pyx_n_u_from_list __pyx_string_tab[111]
-#define __pyx_n_u_func __pyx_string_tab[112]
-#define __pyx_n_u_getstate __pyx_string_tab[113]
-#define __pyx_n_u_h __pyx_string_tab[114]
-#define __pyx_n_u_h_ret __pyx_string_tab[115]
-#define __pyx_n_u_handle __pyx_string_tab[116]
-#define __pyx_n_u_id __pyx_string_tab[117]
-#define __pyx_n_u_idx __pyx_string_tab[118]
-#define __pyx_n_u_import __pyx_string_tab[119]
-#define __pyx_n_u_index __pyx_string_tab[120]
-#define __pyx_n_u_intersection __pyx_string_tab[121]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[122]
-#define __pyx_n_u_item __pyx_string_tab[123]
-#define __pyx_n_u_items __pyx_string_tab[124]
-#define __pyx_n_u_itemsize __pyx_string_tab[125]
-#define __pyx_n_u_json __pyx_string_tab[126]
-#define __pyx_n_u_main __pyx_string_tab[127]
-#define __pyx_n_u_memview __pyx_string_tab[128]
-#define __pyx_n_u_mode __pyx_string_tab[129]
-#define __pyx_n_u_module __pyx_string_tab[130]
-#define __pyx_n_u_name __pyx_string_tab[131]
-#define __pyx_n_u_name_2 __pyx_string_tab[132]
-#define __pyx_n_u_ndim __pyx_string_tab[133]
-#define __pyx_n_u_new __pyx_string_tab[134]
-#define __pyx_n_u_new_2 __pyx_string_tab[135]
-#define __pyx_n_u_new_empty __pyx_string_tab[136]
-#define __pyx_n_u_not_equal __pyx_string_tab[137]
-#define __pyx_n_u_obj __pyx_string_tab[138]
-#define __pyx_n_u_other __pyx_string_tab[139]
-#define __pyx_n_u_out_buffer __pyx_string_tab[140]
-#define __pyx_n_u_pack __pyx_string_tab[141]
-#define __pyx_n_u_pop __pyx_string_tab[142]
-#define __pyx_n_u_push_back __pyx_string_tab[143]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[144]
-#define __pyx_n_u_pyx_checksum __pyx_string_tab[145]
-#define __pyx_n_u_pyx_state __pyx_string_tab[146]
-#define __pyx_n_u_pyx_type __pyx_string_tab[147]
-#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[148]
-#define __pyx_n_u_pyx_vtable __pyx_string_tab[149]
-#define __pyx_n_u_qualname __pyx_string_tab[150]
-#define __pyx_n_u_reduce __pyx_string_tab[151]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[152]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[153]
-#define __pyx_n_u_register __pyx_string_tab[154]
-#define __pyx_n_u_s_json __pyx_string_tab[155]
-#define __pyx_n_u_s_ret __pyx_string_tab[156]
-#define __pyx_n_u_self __pyx_string_tab[157]
-#define __pyx_n_u_set_name __pyx_string_tab[158]
-#define __pyx_n_u_setdefault __pyx_string_tab[159]
-#define __pyx_n_u_setstate __pyx_string_tab[160]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[161]
-#define __pyx_n_u_shape __pyx_string_tab[162]
-#define __pyx_n_u_size __pyx_string_tab[163]
-#define __pyx_n_u_start __pyx_string_tab[164]
-#define __pyx_n_u_staticmethod __pyx_string_tab[165]
-#define __pyx_n_u_step __pyx_string_tab[166]
-#define __pyx_n_u_stop __pyx_string_tab[167]
-#define __pyx_n_u_struct __pyx_string_tab[168]
-#define __pyx_n_u_test __pyx_string_tab[169]
-#define __pyx_n_u_to_json __pyx_string_tab[170]
-#define __pyx_n_u_unpack __pyx_string_tab[171]
-#define __pyx_n_u_update __pyx_string_tab[172]
-#define __pyx_n_u_value __pyx_string_tab[173]
-#define __pyx_n_u_values __pyx_string_tab[174]
-#define __pyx_n_u_x __pyx_string_tab[175]
-#define __pyx_kp_b_iso88591_A_1_iq __pyx_string_tab[176]
-#define __pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M __pyx_string_tab[177]
-#define __pyx_kp_b_iso88591_A_314YYZZ___ccd_2S_8_Qa_H_8STTU __pyx_string_tab[178]
-#define __pyx_kp_b_iso88591_A_4AT __pyx_string_tab[179]
-#define __pyx_kp_b_iso88591_A_5Qd __pyx_string_tab[180]
-#define __pyx_kp_b_iso88591_A_5Qd_1KrQXXb_c_K_K_L __pyx_string_tab[181]
+#define __pyx_n_u_copy __pyx_string_tab[95]
+#define __pyx_n_u_count __pyx_string_tab[96]
+#define __pyx_n_u_data __pyx_string_tab[97]
+#define __pyx_n_u_dict __pyx_string_tab[98]
+#define __pyx_n_u_dtype_is_object __pyx_string_tab[99]
+#define __pyx_n_u_empty __pyx_string_tab[100]
+#define __pyx_n_u_encode __pyx_string_tab[101]
+#define __pyx_n_u_enumerate __pyx_string_tab[102]
+#define __pyx_n_u_equal __pyx_string_tab[103]
+#define __pyx_n_u_erase_at __pyx_string_tab[104]
+#define __pyx_n_u_error __pyx_string_tab[105]
+#define __pyx_n_u_falcon_core__capi_list_interpret __pyx_string_tab[106]
+#define __pyx_n_u_fill_value __pyx_string_tab[107]
+#define __pyx_n_u_flags __pyx_string_tab[108]
+#define __pyx_n_u_format __pyx_string_tab[109]
+#define __pyx_n_u_fortran __pyx_string_tab[110]
+#define __pyx_n_u_from_json __pyx_string_tab[111]
+#define __pyx_n_u_from_list __pyx_string_tab[112]
+#define __pyx_n_u_func __pyx_string_tab[113]
+#define __pyx_n_u_getstate __pyx_string_tab[114]
+#define __pyx_n_u_h __pyx_string_tab[115]
+#define __pyx_n_u_h_ret __pyx_string_tab[116]
+#define __pyx_n_u_handle __pyx_string_tab[117]
+#define __pyx_n_u_id __pyx_string_tab[118]
+#define __pyx_n_u_idx __pyx_string_tab[119]
+#define __pyx_n_u_import __pyx_string_tab[120]
+#define __pyx_n_u_index __pyx_string_tab[121]
+#define __pyx_n_u_intersection __pyx_string_tab[122]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[123]
+#define __pyx_n_u_item __pyx_string_tab[124]
+#define __pyx_n_u_items __pyx_string_tab[125]
+#define __pyx_n_u_itemsize __pyx_string_tab[126]
+#define __pyx_n_u_json __pyx_string_tab[127]
+#define __pyx_n_u_main __pyx_string_tab[128]
+#define __pyx_n_u_memview __pyx_string_tab[129]
+#define __pyx_n_u_mode __pyx_string_tab[130]
+#define __pyx_n_u_module __pyx_string_tab[131]
+#define __pyx_n_u_name __pyx_string_tab[132]
+#define __pyx_n_u_name_2 __pyx_string_tab[133]
+#define __pyx_n_u_ndim __pyx_string_tab[134]
+#define __pyx_n_u_new __pyx_string_tab[135]
+#define __pyx_n_u_new_2 __pyx_string_tab[136]
+#define __pyx_n_u_new_empty __pyx_string_tab[137]
+#define __pyx_n_u_not_equal __pyx_string_tab[138]
+#define __pyx_n_u_obj __pyx_string_tab[139]
+#define __pyx_n_u_other __pyx_string_tab[140]
+#define __pyx_n_u_out_buffer __pyx_string_tab[141]
+#define __pyx_n_u_pack __pyx_string_tab[142]
+#define __pyx_n_u_pop __pyx_string_tab[143]
+#define __pyx_n_u_push_back __pyx_string_tab[144]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[145]
+#define __pyx_n_u_pyx_checksum __pyx_string_tab[146]
+#define __pyx_n_u_pyx_state __pyx_string_tab[147]
+#define __pyx_n_u_pyx_type __pyx_string_tab[148]
+#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[149]
+#define __pyx_n_u_pyx_vtable __pyx_string_tab[150]
+#define __pyx_n_u_qualname __pyx_string_tab[151]
+#define __pyx_n_u_reduce __pyx_string_tab[152]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[153]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[154]
+#define __pyx_n_u_register __pyx_string_tab[155]
+#define __pyx_n_u_s_json __pyx_string_tab[156]
+#define __pyx_n_u_s_ret __pyx_string_tab[157]
+#define __pyx_n_u_self __pyx_string_tab[158]
+#define __pyx_n_u_set_name __pyx_string_tab[159]
+#define __pyx_n_u_setdefault __pyx_string_tab[160]
+#define __pyx_n_u_setstate __pyx_string_tab[161]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[162]
+#define __pyx_n_u_shape __pyx_string_tab[163]
+#define __pyx_n_u_size __pyx_string_tab[164]
+#define __pyx_n_u_start __pyx_string_tab[165]
+#define __pyx_n_u_staticmethod __pyx_string_tab[166]
+#define __pyx_n_u_step __pyx_string_tab[167]
+#define __pyx_n_u_stop __pyx_string_tab[168]
+#define __pyx_n_u_struct __pyx_string_tab[169]
+#define __pyx_n_u_test __pyx_string_tab[170]
+#define __pyx_n_u_to_json __pyx_string_tab[171]
+#define __pyx_n_u_unpack __pyx_string_tab[172]
+#define __pyx_n_u_update __pyx_string_tab[173]
+#define __pyx_n_u_value __pyx_string_tab[174]
+#define __pyx_n_u_values __pyx_string_tab[175]
+#define __pyx_n_u_x __pyx_string_tab[176]
+#define __pyx_kp_b_iso88591_A_1_iq __pyx_string_tab[177]
+#define __pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M __pyx_string_tab[178]
+#define __pyx_kp_b_iso88591_A_314YYZZ___ccd_2S_8_Qa_H_8STTU __pyx_string_tab[179]
+#define __pyx_kp_b_iso88591_A_4AT __pyx_string_tab[180]
+#define __pyx_kp_b_iso88591_A_5Qd __pyx_string_tab[181]
 #define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P __pyx_string_tab[182]
-#define __pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy __pyx_string_tab[183]
-#define __pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S __pyx_string_tab[184]
-#define __pyx_kp_b_iso88591_A_9_2S_8_Qa_H_8STTU_Q_9A_q __pyx_string_tab[185]
-#define __pyx_kp_b_iso88591_A_9_iq_SUU_f_g_O_O_P __pyx_string_tab[186]
-#define __pyx_kp_b_iso88591_A_BBgghhoott_F_F_M_M_W_W_6_A_1_5 __pyx_string_tab[187]
-#define __pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G __pyx_string_tab[188]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU __pyx_string_tab[189]
-#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[190]
-#define __pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q __pyx_string_tab[191]
-#define __pyx_kp_b_iso88591_A_at1 __pyx_string_tab[192]
-#define __pyx_kp_b_iso88591_A_iij_6_8_1_0_a __pyx_string_tab[193]
-#define __pyx_kp_b_iso88591_A_q_A_6_1_AU_XWAQ __pyx_string_tab[194]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[195]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[196]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[197]
-#define __pyx_n_b_O __pyx_string_tab[198]
+#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_S_S_T __pyx_string_tab[183]
+#define __pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy __pyx_string_tab[184]
+#define __pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S __pyx_string_tab[185]
+#define __pyx_kp_b_iso88591_A_9_2S_8_Qa_H_8STTU_Q_9A_q __pyx_string_tab[186]
+#define __pyx_kp_b_iso88591_A_9_iuKW_ddn_o_W_W_X __pyx_string_tab[187]
+#define __pyx_kp_b_iso88591_A_BBaabbffg_6_A_1_5Qa __pyx_string_tab[188]
+#define __pyx_kp_b_iso88591_A_BBgghhoott_F_F_M_M_W_W_6_A_1_5 __pyx_string_tab[189]
+#define __pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G __pyx_string_tab[190]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU __pyx_string_tab[191]
+#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[192]
+#define __pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q __pyx_string_tab[193]
+#define __pyx_kp_b_iso88591_A_at1 __pyx_string_tab[194]
+#define __pyx_kp_b_iso88591_A_iij_6_8_1_0_a __pyx_string_tab[195]
+#define __pyx_kp_b_iso88591_A_q_A_6_1_AU_XWAQ __pyx_string_tab[196]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[197]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[198]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[199]
+#define __pyx_n_b_O __pyx_string_tab[200]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_neg_1 __pyx_number_tab[1]
 #define __pyx_int_1 __pyx_number_tab[2]
@@ -5317,8 +5320,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<2; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<21; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<199; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<22; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<201; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -5356,8 +5359,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<2; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<21; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<199; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<22; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<201; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -19478,7 +19481,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     @staticmethod
+ *     def copy(self, ):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -19510,21 +19513,154 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 /* "falcon_core/_capi/list_interpretation_context.pyx":57
  *         return obj
  * 
- *     @staticmethod             # <<<<<<<<<<<<<<
- *     def fill_value(size_t count, InterpretationContext value):
- *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11fill_value = {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11copy = {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11copy(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("copy (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("copy", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("copy", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_10copy(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_10copy(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+  __pyx_t_6_c_api_ListInterpretationContextHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("copy", 0);
+
+  /* "falcon_core/_capi/list_interpretation_context.pyx":58
+ * 
+ *     def copy(self, ):
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = ListInterpretationContext_copy(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/list_interpretation_context.pyx":59
+ *     def copy(self, ):
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_interpretation_context_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListInterpretationContextHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/list_interpretation_context.pyx":60
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _list_interpretation_context_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/list_interpretation_context.pyx":59
+ *     def copy(self, ):
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_interpretation_context_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/list_interpretation_context.pyx":61
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
+ *             return None
+ *         return _list_interpretation_context_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     @staticmethod
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/list_interpretation_context.pyx":57
+ *         return obj
+ * 
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.list_interpretation_context.ListInterpretationContext.copy", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/list_interpretation_context.pyx":63
+ *         return _list_interpretation_context_from_capi(h_ret)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def fill_value(size_t count, InterpretationContext value):
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13fill_value = {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13fill_value(CYTHON_UNUSED PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19555,39 +19691,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_count,&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 57, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "fill_value", 0) < (0)) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "fill_value", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, i); __PYX_ERR(0, 57, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, i); __PYX_ERR(0, 63, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 63, __pyx_L3_error)
     }
-    __pyx_v_count = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_count == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 58, __pyx_L3_error)
+    __pyx_v_count = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_count == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L3_error)
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("fill_value", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19598,8 +19734,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 58, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_10fill_value(__pyx_v_count, __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_12fill_value(__pyx_v_count, __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -19618,7 +19754,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_10fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_12fill_value(size_t __pyx_v_count, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
   __pyx_t_6_c_api_ListInterpretationContextHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -19630,7 +19766,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("fill_value", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":59
+  /* "falcon_core/_capi/list_interpretation_context.pyx":65
  *     @staticmethod
  *     def fill_value(size_t count, InterpretationContext value):
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)             # <<<<<<<<<<<<<<
@@ -19645,7 +19781,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   }
   __pyx_v_h_ret = ListInterpretationContext_fill_value(__pyx_v_count, __pyx_t_1);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":60
+  /* "falcon_core/_capi/list_interpretation_context.pyx":66
  *     def fill_value(size_t count, InterpretationContext value):
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -19655,7 +19791,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListInterpretationContextHandle)0));
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":61
+    /* "falcon_core/_capi/list_interpretation_context.pyx":67
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
  *             return None             # <<<<<<<<<<<<<<
@@ -19666,7 +19802,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":60
+    /* "falcon_core/_capi/list_interpretation_context.pyx":66
  *     def fill_value(size_t count, InterpretationContext value):
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -19675,7 +19811,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":62
+  /* "falcon_core/_capi/list_interpretation_context.pyx":68
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
  *             return None
  *         return _list_interpretation_context_from_capi(h_ret)             # <<<<<<<<<<<<<<
@@ -19683,14 +19819,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
  *     def push_back(self, InterpretationContext value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":57
- *         return obj
+  /* "falcon_core/_capi/list_interpretation_context.pyx":63
+ *         return _list_interpretation_context_from_capi(h_ret)
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def fill_value(size_t count, InterpretationContext value):
@@ -19708,7 +19844,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":64
+/* "falcon_core/_capi/list_interpretation_context.pyx":70
  *         return _list_interpretation_context_from_capi(h_ret)
  * 
  *     def push_back(self, InterpretationContext value):             # <<<<<<<<<<<<<<
@@ -19717,15 +19853,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13push_back(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15push_back(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13push_back = {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13push_back(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15push_back = {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15push_back(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19755,32 +19891,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 64, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 70, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 64, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 70, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 64, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 70, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 64, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 70, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 64, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 70, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 64, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 70, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19791,8 +19927,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 64, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_12push_back(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_14push_back(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -19811,14 +19947,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_12push_back(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_14push_back(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_InterpretationContextHandle __pyx_t_1;
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("push_back", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":65
+  /* "falcon_core/_capi/list_interpretation_context.pyx":71
  * 
  *     def push_back(self, InterpretationContext value):
  *         _c_api.ListInterpretationContext_push_back(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)             # <<<<<<<<<<<<<<
@@ -19833,7 +19969,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   }
   ListInterpretationContext_push_back(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":64
+  /* "falcon_core/_capi/list_interpretation_context.pyx":70
  *         return _list_interpretation_context_from_capi(h_ret)
  * 
  *     def push_back(self, InterpretationContext value):             # <<<<<<<<<<<<<<
@@ -19848,7 +19984,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":67
+/* "falcon_core/_capi/list_interpretation_context.pyx":73
  *         _c_api.ListInterpretationContext_push_back(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def size(self, ):             # <<<<<<<<<<<<<<
@@ -19857,15 +19993,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15size(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17size(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15size = {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15size(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17size = {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17size(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19891,14 +20027,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("size", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_14size(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_16size(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_14size(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_16size(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19907,7 +20043,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("size", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":68
+  /* "falcon_core/_capi/list_interpretation_context.pyx":74
  * 
  *     def size(self, ):
  *         return _c_api.ListInterpretationContext_size(self.handle)             # <<<<<<<<<<<<<<
@@ -19915,13 +20051,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
  *     def empty(self, ):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_FromSize_t(ListInterpretationContext_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_FromSize_t(ListInterpretationContext_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":67
+  /* "falcon_core/_capi/list_interpretation_context.pyx":73
  *         _c_api.ListInterpretationContext_push_back(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def size(self, ):             # <<<<<<<<<<<<<<
@@ -19940,7 +20076,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":70
+/* "falcon_core/_capi/list_interpretation_context.pyx":76
  *         return _c_api.ListInterpretationContext_size(self.handle)
  * 
  *     def empty(self, ):             # <<<<<<<<<<<<<<
@@ -19949,15 +20085,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17empty(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19empty(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17empty = {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17empty(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19empty = {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19empty(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19983,14 +20119,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("empty", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_16empty(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_18empty(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_16empty(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_18empty(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19999,7 +20135,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("empty", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":71
+  /* "falcon_core/_capi/list_interpretation_context.pyx":77
  * 
  *     def empty(self, ):
  *         return _c_api.ListInterpretationContext_empty(self.handle)             # <<<<<<<<<<<<<<
@@ -20007,13 +20143,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
  *     def erase_at(self, size_t idx):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(ListInterpretationContext_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(ListInterpretationContext_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":70
+  /* "falcon_core/_capi/list_interpretation_context.pyx":76
  *         return _c_api.ListInterpretationContext_size(self.handle)
  * 
  *     def empty(self, ):             # <<<<<<<<<<<<<<
@@ -20032,7 +20168,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":73
+/* "falcon_core/_capi/list_interpretation_context.pyx":79
  *         return _c_api.ListInterpretationContext_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20041,15 +20177,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19erase_at(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21erase_at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19erase_at = {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19erase_at(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21erase_at = {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21erase_at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20079,32 +20215,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 73, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 79, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 73, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 73, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 79, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 73, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 79, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 73, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
     }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 79, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20115,7 +20251,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_18erase_at(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_idx);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_20erase_at(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_idx);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -20125,12 +20261,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_18erase_at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_20erase_at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("erase_at", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":74
+  /* "falcon_core/_capi/list_interpretation_context.pyx":80
  * 
  *     def erase_at(self, size_t idx):
  *         _c_api.ListInterpretationContext_erase_at(self.handle, idx)             # <<<<<<<<<<<<<<
@@ -20139,7 +20275,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   ListInterpretationContext_erase_at(__pyx_v_self->handle, __pyx_v_idx);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":73
+  /* "falcon_core/_capi/list_interpretation_context.pyx":79
  *         return _c_api.ListInterpretationContext_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20154,7 +20290,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":76
+/* "falcon_core/_capi/list_interpretation_context.pyx":82
  *         _c_api.ListInterpretationContext_erase_at(self.handle, idx)
  * 
  *     def clear(self, ):             # <<<<<<<<<<<<<<
@@ -20163,15 +20299,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21clear(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23clear(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21clear = {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21clear(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23clear = {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23clear(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20197,19 +20333,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("clear", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_20clear(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_22clear(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_20clear(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_22clear(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("clear", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":77
+  /* "falcon_core/_capi/list_interpretation_context.pyx":83
  * 
  *     def clear(self, ):
  *         _c_api.ListInterpretationContext_clear(self.handle)             # <<<<<<<<<<<<<<
@@ -20218,7 +20354,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   ListInterpretationContext_clear(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":76
+  /* "falcon_core/_capi/list_interpretation_context.pyx":82
  *         _c_api.ListInterpretationContext_erase_at(self.handle, idx)
  * 
  *     def clear(self, ):             # <<<<<<<<<<<<<<
@@ -20233,7 +20369,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":79
+/* "falcon_core/_capi/list_interpretation_context.pyx":85
  *         _c_api.ListInterpretationContext_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20242,15 +20378,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23at(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23at = {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23at(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25at = {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25at(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20280,32 +20416,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 79, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 85, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 79, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 85, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 79, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 85, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
     }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L3_error)
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 79, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20316,7 +20452,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_22at(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_idx);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_24at(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_idx);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -20326,7 +20462,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_22at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_24at(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, size_t __pyx_v_idx) {
   __pyx_t_6_c_api_InterpretationContextHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -20338,7 +20474,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("at", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":80
+  /* "falcon_core/_capi/list_interpretation_context.pyx":86
  * 
  *     def at(self, size_t idx):
  *         cdef _c_api.InterpretationContextHandle h_ret = _c_api.ListInterpretationContext_at(self.handle, idx)             # <<<<<<<<<<<<<<
@@ -20347,7 +20483,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   __pyx_v_h_ret = ListInterpretationContext_at(__pyx_v_self->handle, __pyx_v_idx);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":81
+  /* "falcon_core/_capi/list_interpretation_context.pyx":87
  *     def at(self, size_t idx):
  *         cdef _c_api.InterpretationContextHandle h_ret = _c_api.ListInterpretationContext_at(self.handle, idx)
  *         if h_ret == <_c_api.InterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -20357,7 +20493,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_InterpretationContextHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":82
+    /* "falcon_core/_capi/list_interpretation_context.pyx":88
  *         cdef _c_api.InterpretationContextHandle h_ret = _c_api.ListInterpretationContext_at(self.handle, idx)
  *         if h_ret == <_c_api.InterpretationContextHandle>0:
  *             return None             # <<<<<<<<<<<<<<
@@ -20368,7 +20504,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":81
+    /* "falcon_core/_capi/list_interpretation_context.pyx":87
  *     def at(self, size_t idx):
  *         cdef _c_api.InterpretationContextHandle h_ret = _c_api.ListInterpretationContext_at(self.handle, idx)
  *         if h_ret == <_c_api.InterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -20377,7 +20513,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":83
+  /* "falcon_core/_capi/list_interpretation_context.pyx":89
  *         if h_ret == <_c_api.InterpretationContextHandle>0:
  *             return None
  *         return _interpretation_context_from_capi(h_ret, owned=False)             # <<<<<<<<<<<<<<
@@ -20387,13 +20523,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 0;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_22interpretation_context__interpretation_context_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_22interpretation_context__interpretation_context_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":79
+  /* "falcon_core/_capi/list_interpretation_context.pyx":85
  *         _c_api.ListInterpretationContext_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20412,7 +20548,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":85
+/* "falcon_core/_capi/list_interpretation_context.pyx":91
  *         return _interpretation_context_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -20421,15 +20557,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25items(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27items(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25items = {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25items(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27items = {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27items(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20460,39 +20596,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_out_buffer,&__pyx_mstate_global->__pyx_n_u_buffer_size,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 85, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 85, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "items", 0) < (0)) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "items", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, i); __PYX_ERR(0, 85, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, i); __PYX_ERR(0, 91, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 91, __pyx_L3_error)
     }
-    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
-    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 91, __pyx_L3_error)
+    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 91, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 85, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20504,7 +20640,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_24items(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_out_buffer, __pyx_v_buffer_size);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_26items(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_out_buffer, __pyx_v_buffer_size);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -20515,7 +20651,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_24items(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_26items(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, __Pyx_memviewslice __pyx_v_out_buffer, size_t __pyx_v_buffer_size) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   Py_ssize_t __pyx_t_1;
@@ -20526,7 +20662,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("items", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":86
+  /* "falcon_core/_capi/list_interpretation_context.pyx":92
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):
  *         return _c_api.ListInterpretationContext_items(self.handle, <_c_api.InterpretationContextHandle*>&out_buffer[0], buffer_size)             # <<<<<<<<<<<<<<
@@ -20542,15 +20678,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   } else if (unlikely(__pyx_t_1 >= __pyx_v_out_buffer.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 86, __pyx_L1_error)
+    __PYX_ERR(0, 92, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListInterpretationContext_items(__pyx_v_self->handle, ((__pyx_t_6_c_api_InterpretationContextHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListInterpretationContext_items(__pyx_v_self->handle, ((__pyx_t_6_c_api_InterpretationContextHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":85
+  /* "falcon_core/_capi/list_interpretation_context.pyx":91
  *         return _interpretation_context_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -20569,7 +20705,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":88
+/* "falcon_core/_capi/list_interpretation_context.pyx":94
  *         return _c_api.ListInterpretationContext_items(self.handle, <_c_api.InterpretationContextHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, InterpretationContext value):             # <<<<<<<<<<<<<<
@@ -20578,15 +20714,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27contains(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29contains(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27contains = {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27contains(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29contains = {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29contains(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20616,32 +20752,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 88, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 94, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 88, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 94, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 88, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 94, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 88, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20652,8 +20788,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_26contains(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_28contains(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20672,7 +20808,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_26contains(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_28contains(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_InterpretationContextHandle __pyx_t_1;
@@ -20683,7 +20819,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("contains", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":89
+  /* "falcon_core/_capi/list_interpretation_context.pyx":95
  * 
  *     def contains(self, InterpretationContext value):
  *         return _c_api.ListInterpretationContext_contains(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)             # <<<<<<<<<<<<<<
@@ -20697,13 +20833,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_InterpretationContextHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(ListInterpretationContext_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(ListInterpretationContext_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":88
+  /* "falcon_core/_capi/list_interpretation_context.pyx":94
  *         return _c_api.ListInterpretationContext_items(self.handle, <_c_api.InterpretationContextHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, InterpretationContext value):             # <<<<<<<<<<<<<<
@@ -20722,7 +20858,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":91
+/* "falcon_core/_capi/list_interpretation_context.pyx":97
  *         return _c_api.ListInterpretationContext_contains(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def index(self, InterpretationContext value):             # <<<<<<<<<<<<<<
@@ -20731,15 +20867,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29index(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31index(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29index = {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29index(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31index = {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31index(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20769,32 +20905,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 97, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 97, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 91, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 97, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 97, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20805,8 +20941,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 91, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_28index(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22interpretation_context_InterpretationContext, 1, "value", 0))) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_30index(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20825,7 +20961,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_28index(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_30index(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_InterpretationContextHandle __pyx_t_1;
@@ -20836,7 +20972,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("index", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":92
+  /* "falcon_core/_capi/list_interpretation_context.pyx":98
  * 
  *     def index(self, InterpretationContext value):
  *         return _c_api.ListInterpretationContext_index(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)             # <<<<<<<<<<<<<<
@@ -20850,13 +20986,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_InterpretationContextHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListInterpretationContext_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(ListInterpretationContext_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":91
+  /* "falcon_core/_capi/list_interpretation_context.pyx":97
  *         return _c_api.ListInterpretationContext_contains(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def index(self, InterpretationContext value):             # <<<<<<<<<<<<<<
@@ -20875,7 +21011,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":94
+/* "falcon_core/_capi/list_interpretation_context.pyx":100
  *         return _c_api.ListInterpretationContext_index(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def intersection(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
@@ -20884,15 +21020,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31intersection(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33intersection(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31intersection = {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31intersection(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33intersection = {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33intersection(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20922,32 +21058,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 94, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 100, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 94, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 94, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 100, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20958,8 +21094,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "other", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_30intersection(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_other);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "other", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_32intersection(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -20978,7 +21114,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_30intersection(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_32intersection(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other) {
   __pyx_t_6_c_api_ListInterpretationContextHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -20990,7 +21126,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("intersection", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":95
+  /* "falcon_core/_capi/list_interpretation_context.pyx":101
  * 
  *     def intersection(self, ListInterpretationContext other):
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)             # <<<<<<<<<<<<<<
@@ -21005,7 +21141,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   }
   __pyx_v_h_ret = ListInterpretationContext_intersection(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":96
+  /* "falcon_core/_capi/list_interpretation_context.pyx":102
  *     def intersection(self, ListInterpretationContext other):
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -21015,7 +21151,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListInterpretationContextHandle)0));
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":97
+    /* "falcon_core/_capi/list_interpretation_context.pyx":103
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
  *             return None             # <<<<<<<<<<<<<<
@@ -21026,7 +21162,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":96
+    /* "falcon_core/_capi/list_interpretation_context.pyx":102
  *     def intersection(self, ListInterpretationContext other):
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -21035,21 +21171,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":98
+  /* "falcon_core/_capi/list_interpretation_context.pyx":104
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
  *             return None
  *         return _list_interpretation_context_from_capi(h_ret)             # <<<<<<<<<<<<<<
  * 
- *     def equal(self, ListInterpretationContext b):
+ *     def equal(self, ListInterpretationContext other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":94
+  /* "falcon_core/_capi/list_interpretation_context.pyx":100
  *         return _c_api.ListInterpretationContext_index(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def intersection(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
@@ -21068,31 +21204,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":100
+/* "falcon_core/_capi/list_interpretation_context.pyx":106
  *         return _list_interpretation_context_from_capi(h_ret)
  * 
- *     def equal(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+ *     def equal(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b = 0;
+  struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
@@ -21113,34 +21249,34 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_b,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 100, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 106, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 106, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 106, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 100, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 106, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 106, __pyx_L3_error)
     }
-    __pyx_v_b = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)values[0]);
+    __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 106, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21151,8 +21287,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "b", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_32equal(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_b);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "other", 0))) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_34equal(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -21171,7 +21307,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_32equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_34equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_ListInterpretationContextHandle __pyx_t_1;
@@ -21182,31 +21318,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":101
+  /* "falcon_core/_capi/list_interpretation_context.pyx":107
  * 
- *     def equal(self, ListInterpretationContext b):
- *         return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)             # <<<<<<<<<<<<<<
+ *     def equal(self, ListInterpretationContext other):
+ *         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def __eq__(self, ListInterpretationContext b):
+ *     def __eq__(self, ListInterpretationContext other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = (((PyObject *)__pyx_v_b) != Py_None);
+  __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_b->handle;
+    __pyx_t_1 = __pyx_v_other->handle;
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_ListInterpretationContextHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(ListInterpretationContext_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(ListInterpretationContext_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":100
+  /* "falcon_core/_capi/list_interpretation_context.pyx":106
  *         return _list_interpretation_context_from_capi(h_ret)
  * 
- *     def equal(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+ *     def equal(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
 */
 
@@ -21221,17 +21357,17 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":103
- *         return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+/* "falcon_core/_capi/list_interpretation_context.pyx":109
+ *         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
- *     def __eq__(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __eq__(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_b); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_b) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -21240,8 +21376,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25L
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "b", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_34__eq__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_b));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "other", 0))) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_36__eq__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -21254,7 +21390,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_34__eq__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_36__eq__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -21267,22 +21403,22 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":104
+  /* "falcon_core/_capi/list_interpretation_context.pyx":110
  * 
- *     def __eq__(self, ListInterpretationContext b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __eq__(self, ListInterpretationContext other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.equal(b)
+ *         return self.equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 110, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":105
- *     def __eq__(self, ListInterpretationContext b):
- *         if not hasattr(b, "handle"):
+    /* "falcon_core/_capi/list_interpretation_context.pyx":111
+ *     def __eq__(self, ListInterpretationContext other):
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(b)
+ *         return self.equal(other)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
@@ -21290,42 +21426,42 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":104
+    /* "falcon_core/_capi/list_interpretation_context.pyx":110
  * 
- *     def __eq__(self, ListInterpretationContext b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __eq__(self, ListInterpretationContext other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.equal(b)
+ *         return self.equal(other)
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":106
- *         if not hasattr(b, "handle"):
+  /* "falcon_core/_capi/list_interpretation_context.pyx":112
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
- *         return self.equal(b)             # <<<<<<<<<<<<<<
+ *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
- *     def not_equal(self, ListInterpretationContext b):
+ *     def not_equal(self, ListInterpretationContext other):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = ((PyObject *)__pyx_v_self);
   __Pyx_INCREF(__pyx_t_4);
   __pyx_t_5 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_b)};
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 112, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":103
- *         return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+  /* "falcon_core/_capi/list_interpretation_context.pyx":109
+ *         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
- *     def __eq__(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __eq__(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
@@ -21341,31 +21477,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":108
- *         return self.equal(b)
+/* "falcon_core/_capi/list_interpretation_context.pyx":114
+ *         return self.equal(other)
  * 
- *     def not_equal(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+ *     def not_equal(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListInterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37not_equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37not_equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b = 0;
+  struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
@@ -21386,34 +21522,34 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_b,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 114, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 114, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 108, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 114, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
     }
-    __pyx_v_b = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)values[0]);
+    __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21424,8 +21560,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "b", 0))) __PYX_ERR(0, 108, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_36not_equal(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_b);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "other", 0))) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_38not_equal(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -21444,7 +21580,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_36not_equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_38not_equal(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_ListInterpretationContextHandle __pyx_t_1;
@@ -21455,31 +21591,31 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":109
+  /* "falcon_core/_capi/list_interpretation_context.pyx":115
  * 
- *     def not_equal(self, ListInterpretationContext b):
- *         return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)             # <<<<<<<<<<<<<<
+ *     def not_equal(self, ListInterpretationContext other):
+ *         return _c_api.ListInterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def __ne__(self, ListInterpretationContext b):
+ *     def __ne__(self, ListInterpretationContext other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = (((PyObject *)__pyx_v_b) != Py_None);
+  __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_b->handle;
+    __pyx_t_1 = __pyx_v_other->handle;
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_ListInterpretationContextHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(ListInterpretationContext_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(ListInterpretationContext_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":108
- *         return self.equal(b)
+  /* "falcon_core/_capi/list_interpretation_context.pyx":114
+ *         return self.equal(other)
  * 
- *     def not_equal(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+ *     def not_equal(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListInterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
 */
 
@@ -21494,17 +21630,17 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":111
- *         return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+/* "falcon_core/_capi/list_interpretation_context.pyx":117
+ *         return _c_api.ListInterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
- *     def __ne__(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __ne__(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_b); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_b) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -21513,8 +21649,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25L
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "b", 0))) __PYX_ERR(0, 111, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_38__ne__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_b));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, 1, "other", 0))) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_40__ne__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -21527,7 +21663,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_38__ne__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_b) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_40__ne__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -21540,22 +21676,22 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":112
+  /* "falcon_core/_capi/list_interpretation_context.pyx":118
  * 
- *     def __ne__(self, ListInterpretationContext b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __ne__(self, ListInterpretationContext other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.not_equal(b)
+ *         return self.not_equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_b), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 118, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":113
- *     def __ne__(self, ListInterpretationContext b):
- *         if not hasattr(b, "handle"):
+    /* "falcon_core/_capi/list_interpretation_context.pyx":119
+ *     def __ne__(self, ListInterpretationContext other):
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(b)
+ *         return self.not_equal(other)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
@@ -21563,19 +21699,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":112
+    /* "falcon_core/_capi/list_interpretation_context.pyx":118
  * 
- *     def __ne__(self, ListInterpretationContext b):
- *         if not hasattr(b, "handle"):             # <<<<<<<<<<<<<<
+ *     def __ne__(self, ListInterpretationContext other):
+ *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
- *         return self.not_equal(b)
+ *         return self.not_equal(other)
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":114
- *         if not hasattr(b, "handle"):
+  /* "falcon_core/_capi/list_interpretation_context.pyx":120
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
- *         return self.not_equal(b)             # <<<<<<<<<<<<<<
+ *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def to_json(self, ):
 */
@@ -21584,21 +21720,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __Pyx_INCREF(__pyx_t_4);
   __pyx_t_5 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_b)};
+    PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":111
- *         return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+  /* "falcon_core/_capi/list_interpretation_context.pyx":117
+ *         return _c_api.ListInterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
- *     def __ne__(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         if not hasattr(b, "handle"):
+ *     def __ne__(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         if not hasattr(other, "handle"):
  *             return NotImplemented
 */
 
@@ -21614,8 +21750,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":116
- *         return self.not_equal(b)
+/* "falcon_core/_capi/list_interpretation_context.pyx":122
+ *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
@@ -21623,15 +21759,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41to_json(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41to_json(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -21657,14 +21793,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("to_json", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_40to_json(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_42to_json(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_40to_json(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_42to_json(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
   StringHandle __pyx_v_s_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -21685,7 +21821,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":118
+  /* "falcon_core/_capi/list_interpretation_context.pyx":124
  *     def to_json(self, ):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListInterpretationContext_to_json_string(self.handle)             # <<<<<<<<<<<<<<
@@ -21694,7 +21830,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   __pyx_v_s_ret = ListInterpretationContext_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":119
+  /* "falcon_core/_capi/list_interpretation_context.pyx":125
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListInterpretationContext_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -21704,7 +21840,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":120
+    /* "falcon_core/_capi/list_interpretation_context.pyx":126
  *         s_ret = _c_api.ListInterpretationContext_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""             # <<<<<<<<<<<<<<
@@ -21716,7 +21852,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_r = __pyx_mstate_global->__pyx_kp_u__6;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":119
+    /* "falcon_core/_capi/list_interpretation_context.pyx":125
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListInterpretationContext_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -21725,7 +21861,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":121
+  /* "falcon_core/_capi/list_interpretation_context.pyx":127
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""
  *         try:             # <<<<<<<<<<<<<<
@@ -21734,7 +21870,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   /*try:*/ {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":122
+    /* "falcon_core/_capi/list_interpretation_context.pyx":128
  *             return ""
  *         try:
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
@@ -21742,13 +21878,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
  *             _c_api.String_destroy(s_ret)
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 122, __pyx_L5_error)
+      __PYX_ERR(0, 128, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 128, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -21756,7 +21892,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":124
+  /* "falcon_core/_capi/list_interpretation_context.pyx":130
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
  *         finally:
  *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
@@ -21805,8 +21941,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     }
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":116
- *         return self.not_equal(b)
+  /* "falcon_core/_capi/list_interpretation_context.pyx":122
+ *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
@@ -21825,7 +21961,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":126
+/* "falcon_core/_capi/list_interpretation_context.pyx":132
  *             _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -21834,21 +21970,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static Py_ssize_t __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43__len__(PyObject *__pyx_v_self); /*proto*/
-static Py_ssize_t __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43__len__(PyObject *__pyx_v_self) {
+static Py_ssize_t __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__len__(PyObject *__pyx_v_self); /*proto*/
+static Py_ssize_t __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__len__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__len__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_42__len__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_44__len__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_42__len__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_44__len__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -21860,7 +21996,7 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":127
+  /* "falcon_core/_capi/list_interpretation_context.pyx":133
  * 
  *     def __len__(self):
  *         return self.size()             # <<<<<<<<<<<<<<
@@ -21874,15 +22010,15 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_size, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":126
+  /* "falcon_core/_capi/list_interpretation_context.pyx":132
  *             _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
@@ -21901,7 +22037,7 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":129
+/* "falcon_core/_capi/list_interpretation_context.pyx":135
  *         return self.size()
  * 
  *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
@@ -21910,21 +22046,21 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_44__getitem__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_46__getitem__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_46__getitem__(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_idx) {
   PyObject *__pyx_v_ret = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -21937,7 +22073,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":130
+  /* "falcon_core/_capi/list_interpretation_context.pyx":136
  * 
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)             # <<<<<<<<<<<<<<
@@ -21951,13 +22087,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_idx};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_at, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ret = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":131
+  /* "falcon_core/_capi/list_interpretation_context.pyx":137
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)
  *         if ret is None:             # <<<<<<<<<<<<<<
@@ -21967,7 +22103,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_t_4 = (__pyx_v_ret == Py_None);
   if (unlikely(__pyx_t_4)) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":132
+    /* "falcon_core/_capi/list_interpretation_context.pyx":138
  *         ret = self.at(idx)
  *         if ret is None:
  *             raise IndexError("Index out of bounds")             # <<<<<<<<<<<<<<
@@ -21980,14 +22116,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
       PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_Index_out_of_bounds};
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_IndexError)), __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 132, __pyx_L1_error)
+    __PYX_ERR(0, 138, __pyx_L1_error)
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":131
+    /* "falcon_core/_capi/list_interpretation_context.pyx":137
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)
  *         if ret is None:             # <<<<<<<<<<<<<<
@@ -21996,7 +22132,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":133
+  /* "falcon_core/_capi/list_interpretation_context.pyx":139
  *         if ret is None:
  *             raise IndexError("Index out of bounds")
  *         return ret             # <<<<<<<<<<<<<<
@@ -22008,7 +22144,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":129
+  /* "falcon_core/_capi/list_interpretation_context.pyx":135
  *         return self.size()
  * 
  *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
@@ -22029,7 +22165,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":135
+/* "falcon_core/_capi/list_interpretation_context.pyx":141
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
@@ -22038,15 +22174,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47append(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47append(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22076,32 +22212,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 135, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 141, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 135, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 141, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 135, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 141, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
     }
     __pyx_v_value = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 135, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 141, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22112,7 +22248,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_46append(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_48append(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22122,7 +22258,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_46append(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_48append(struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, PyObject *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -22133,7 +22269,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("append", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":136
+  /* "falcon_core/_capi/list_interpretation_context.pyx":142
  * 
  *     def append(self, value):
  *         self.push_back(value)             # <<<<<<<<<<<<<<
@@ -22147,12 +22283,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_value};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 142, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":135
+  /* "falcon_core/_capi/list_interpretation_context.pyx":141
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
@@ -22174,7 +22310,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":138
+/* "falcon_core/_capi/list_interpretation_context.pyx":144
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -22183,15 +22319,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49from_list(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51from_list(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49from_list(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51from_list(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22221,32 +22357,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_items,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 138, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 144, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 144, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 144, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 138, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 144, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 144, __pyx_L3_error)
     }
     __pyx_v_items = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 138, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 144, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22257,7 +22393,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_48from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_50from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22267,7 +22403,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_48from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_50from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
   struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_obj = 0;
   PyObject *__pyx_v_item = NULL;
   PyObject *__pyx_r = NULL;
@@ -22284,7 +22420,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_list", 0);
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":140
+  /* "falcon_core/_capi/list_interpretation_context.pyx":146
  *     @classmethod
  *     def from_list(cls, items):
  *         cdef ListInterpretationContext obj = cls.new_empty()             # <<<<<<<<<<<<<<
@@ -22298,14 +22434,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_new_empty, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext))))) __PYX_ERR(0, 140, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext))))) __PYX_ERR(0, 146, __pyx_L1_error)
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":141
+  /* "falcon_core/_capi/list_interpretation_context.pyx":147
  *     def from_list(cls, items):
  *         cdef ListInterpretationContext obj = cls.new_empty()
  *         for item in items:             # <<<<<<<<<<<<<<
@@ -22317,9 +22453,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 147, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
@@ -22327,7 +22463,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 147, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
@@ -22337,7 +22473,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 147, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
@@ -22348,13 +22484,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
         #endif
         ++__pyx_t_4;
       }
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
     } else {
       __pyx_t_2 = __pyx_t_5(__pyx_t_1);
       if (unlikely(!__pyx_t_2)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 147, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -22364,29 +22500,29 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
     __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":142
+    /* "falcon_core/_capi/list_interpretation_context.pyx":148
  *         cdef ListInterpretationContext obj = cls.new_empty()
  *         for item in items:
  *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
  *                 item = item._c
  *             obj.push_back(item)
 */
-    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 148, __pyx_L1_error)
     if (__pyx_t_6) {
 
-      /* "falcon_core/_capi/list_interpretation_context.pyx":143
+      /* "falcon_core/_capi/list_interpretation_context.pyx":149
  *         for item in items:
  *             if hasattr(item, "_c"):
  *                 item = item._c             # <<<<<<<<<<<<<<
  *             obj.push_back(item)
  *         return obj
 */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "falcon_core/_capi/list_interpretation_context.pyx":142
+      /* "falcon_core/_capi/list_interpretation_context.pyx":148
  *         cdef ListInterpretationContext obj = cls.new_empty()
  *         for item in items:
  *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
@@ -22395,7 +22531,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
     }
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":144
+    /* "falcon_core/_capi/list_interpretation_context.pyx":150
  *             if hasattr(item, "_c"):
  *                 item = item._c
  *             obj.push_back(item)             # <<<<<<<<<<<<<<
@@ -22409,12 +22545,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_item};
       __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":141
+    /* "falcon_core/_capi/list_interpretation_context.pyx":147
  *     def from_list(cls, items):
  *         cdef ListInterpretationContext obj = cls.new_empty()
  *         for item in items:             # <<<<<<<<<<<<<<
@@ -22424,7 +22560,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":145
+  /* "falcon_core/_capi/list_interpretation_context.pyx":151
  *                 item = item._c
  *             obj.push_back(item)
  *         return obj             # <<<<<<<<<<<<<<
@@ -22436,7 +22572,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":138
+  /* "falcon_core/_capi/list_interpretation_context.pyx":144
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -22466,15 +22602,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22500,14 +22636,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_50__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_52__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_50__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_52__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -22547,15 +22683,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_55__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_55__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_55__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_55__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22621,7 +22757,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_52__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_54__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22631,7 +22767,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_52__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_54__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -22663,7 +22799,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_27list_interpretation_context_25L
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/list_interpretation_context.pyx":147
+/* "falcon_core/_capi/list_interpretation_context.pyx":153
  *         return obj
  * 
  * cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h, bint owned=True):             # <<<<<<<<<<<<<<
@@ -22688,7 +22824,7 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
     }
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":148
+  /* "falcon_core/_capi/list_interpretation_context.pyx":154
  * 
  * cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h, bint owned=True):
  *     if h == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -22698,7 +22834,7 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_ListInterpretationContextHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":149
+    /* "falcon_core/_capi/list_interpretation_context.pyx":155
  * cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h, bint owned=True):
  *     if h == <_c_api.ListInterpretationContextHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -22709,7 +22845,7 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/list_interpretation_context.pyx":148
+    /* "falcon_core/_capi/list_interpretation_context.pyx":154
  * 
  * cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h, bint owned=True):
  *     if h == <_c_api.ListInterpretationContextHandle>0:             # <<<<<<<<<<<<<<
@@ -22718,19 +22854,19 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
 */
   }
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":150
+  /* "falcon_core/_capi/list_interpretation_context.pyx":156
  *     if h == <_c_api.ListInterpretationContextHandle>0:
  *         return None
  *     cdef ListInterpretationContext obj = ListInterpretationContext.__new__(ListInterpretationContext)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":151
+  /* "falcon_core/_capi/list_interpretation_context.pyx":157
  *         return None
  *     cdef ListInterpretationContext obj = ListInterpretationContext.__new__(ListInterpretationContext)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -22739,7 +22875,7 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":152
+  /* "falcon_core/_capi/list_interpretation_context.pyx":158
  *     cdef ListInterpretationContext obj = ListInterpretationContext.__new__(ListInterpretationContext)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -22747,7 +22883,7 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":153
+  /* "falcon_core/_capi/list_interpretation_context.pyx":159
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -22757,7 +22893,7 @@ static struct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListI
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":147
+  /* "falcon_core/_capi/list_interpretation_context.pyx":153
  *         return obj
  * 
  * cdef ListInterpretationContext _list_interpretation_context_from_capi(_c_api.ListInterpretationContextHandle h, bint owned=True):             # <<<<<<<<<<<<<<
@@ -22834,10 +22970,10 @@ static PyObject *__pyx_sq_item_11falcon_core_5_capi_27list_interpretation_contex
 static PyObject *__pyx_tp_richcompare_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext(PyObject *o1, PyObject *o2, int op) {
   switch (op) {
     case Py_EQ: {
-      return __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35__eq__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37__eq__(o1, o2);
     }
     case Py_NE: {
-      return __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39__ne__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41__ne__(o1, o2);
     }
     default: {
       return __Pyx_NewRef(Py_NotImplemented);
@@ -22849,33 +22985,34 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_27list_interpretation_cont
   {"new_empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_5new_empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_7new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_9from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"fill_value", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13fill_value, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_55__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext},
-  {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43__len__},
+  {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__len__},
   {Py_sq_item, (void *)__pyx_sq_item_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext},
-  {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43__len__},
-  {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__getitem__},
+  {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__len__},
+  {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47__getitem__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext},
@@ -22891,7 +23028,7 @@ static PyType_Spec __pyx_type_11falcon_core_5_capi_27list_interpretation_context
 #else
 
 static PySequenceMethods __pyx_tp_as_sequence_ListInterpretationContext = {
-  __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43__len__, /*sq_length*/
+  __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__len__, /*sq_length*/
   0, /*sq_concat*/
   0, /*sq_repeat*/
   __pyx_sq_item_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, /*sq_item*/
@@ -22904,8 +23041,8 @@ static PySequenceMethods __pyx_tp_as_sequence_ListInterpretationContext = {
 };
 
 static PyMappingMethods __pyx_tp_as_mapping_ListInterpretationContext = {
-  __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43__len__, /*mp_length*/
-  __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__getitem__, /*mp_subscript*/
+  __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_45__len__, /*mp_length*/
+  __pyx_pw_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47__getitem__, /*mp_subscript*/
   0, /*mp_ass_subscript*/
 };
 
@@ -24994,19 +25131,34 @@ __Pyx_RefNannySetupContext("PyInit_list_interpretation_context", 0);
   /* "falcon_core/_capi/list_interpretation_context.pyx":57
  *         return obj
  * 
- *     @staticmethod             # <<<<<<<<<<<<<<
- *     def fill_value(size_t count, InterpretationContext value):
- *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_copy(self.handle)
+ *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11fill_value, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_fill_v, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_11copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "falcon_core/_capi/list_interpretation_context.pyx":63
+ *         return _list_interpretation_context_from_capi(h_ret)
+ * 
+ *     @staticmethod             # <<<<<<<<<<<<<<
+ *     def fill_value(size_t count, InterpretationContext value):
+ *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_fill_value(count, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
+*/
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13fill_value, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_fill_v, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_4 = NULL;
-  __Pyx_GetNameInClass(__pyx_t_9, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_fill_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_9, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_fill_value); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_6 = 1;
   {
@@ -25014,242 +25166,242 @@ __Pyx_RefNannySetupContext("PyInit_list_interpretation_context", 0);
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_staticmethod, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_fill_value, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":64
+  /* "falcon_core/_capi/list_interpretation_context.pyx":70
  *         return _list_interpretation_context_from_capi(h_ret)
  * 
  *     def push_back(self, InterpretationContext value):             # <<<<<<<<<<<<<<
  *         _c_api.ListInterpretationContext_push_back(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_13push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_push_b, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_push_b, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_5) < (0)) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":67
+  /* "falcon_core/_capi/list_interpretation_context.pyx":73
  *         _c_api.ListInterpretationContext_push_back(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def size(self, ):             # <<<<<<<<<<<<<<
  *         return _c_api.ListInterpretationContext_size(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_15size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":70
+  /* "falcon_core/_capi/list_interpretation_context.pyx":76
  *         return _c_api.ListInterpretationContext_size(self.handle)
  * 
  *     def empty(self, ):             # <<<<<<<<<<<<<<
  *         return _c_api.ListInterpretationContext_empty(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_17empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_5) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":73
+  /* "falcon_core/_capi/list_interpretation_context.pyx":79
  *         return _c_api.ListInterpretationContext_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         _c_api.ListInterpretationContext_erase_at(self.handle, idx)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_19erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_erase, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_erase, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_5) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_5) < (0)) __PYX_ERR(0, 79, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":76
+  /* "falcon_core/_capi/list_interpretation_context.pyx":82
  *         _c_api.ListInterpretationContext_erase_at(self.handle, idx)
  * 
  *     def clear(self, ):             # <<<<<<<<<<<<<<
  *         _c_api.ListInterpretationContext_clear(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_21clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_5) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_5) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":79
+  /* "falcon_core/_capi/list_interpretation_context.pyx":85
  *         _c_api.ListInterpretationContext_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         cdef _c_api.InterpretationContextHandle h_ret = _c_api.ListInterpretationContext_at(self.handle, idx)
  *         if h_ret == <_c_api.InterpretationContextHandle>0:
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_23at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_5) < (0)) __PYX_ERR(0, 79, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_5) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":85
+  /* "falcon_core/_capi/list_interpretation_context.pyx":91
  *         return _interpretation_context_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
  *         return _c_api.ListInterpretationContext_items(self.handle, <_c_api.InterpretationContextHandle*>&out_buffer[0], buffer_size)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_25items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_5) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_5) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":88
+  /* "falcon_core/_capi/list_interpretation_context.pyx":94
  *         return _c_api.ListInterpretationContext_items(self.handle, <_c_api.InterpretationContextHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, InterpretationContext value):             # <<<<<<<<<<<<<<
  *         return _c_api.ListInterpretationContext_contains(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_27contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_contai, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_contai, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_5) < (0)) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_5) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":91
+  /* "falcon_core/_capi/list_interpretation_context.pyx":97
  *         return _c_api.ListInterpretationContext_contains(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def index(self, InterpretationContext value):             # <<<<<<<<<<<<<<
  *         return _c_api.ListInterpretationContext_index(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_29index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_5) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_5) < (0)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":94
+  /* "falcon_core/_capi/list_interpretation_context.pyx":100
  *         return _c_api.ListInterpretationContext_index(self.handle, value.handle if value is not None else <_c_api.InterpretationContextHandle>0)
  * 
  *     def intersection(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.ListInterpretationContext_intersection(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  *         if h_ret == <_c_api.ListInterpretationContextHandle>0:
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_31intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_inters, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_inters, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_5) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_5) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":100
+  /* "falcon_core/_capi/list_interpretation_context.pyx":106
  *         return _list_interpretation_context_from_capi(h_ret)
  * 
- *     def equal(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListInterpretationContext_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+ *     def equal(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListInterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_33equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_35equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":108
- *         return self.equal(b)
+  /* "falcon_core/_capi/list_interpretation_context.pyx":114
+ *         return self.equal(other)
  * 
- *     def not_equal(self, ListInterpretationContext b):             # <<<<<<<<<<<<<<
- *         return _c_api.ListInterpretationContext_not_equal(self.handle, b.handle if b is not None else <_c_api.ListInterpretationContextHandle>0)
+ *     def not_equal(self, ListInterpretationContext other):             # <<<<<<<<<<<<<<
+ *         return _c_api.ListInterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.ListInterpretationContextHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_37not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_not_eq, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_39not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_not_eq, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":116
- *         return self.not_equal(b)
+  /* "falcon_core/_capi/list_interpretation_context.pyx":122
+ *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.ListInterpretationContext_to_json_string(self.handle)
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_41to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_to_jso, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_43to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_to_jso, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":135
+  /* "falcon_core/_capi/list_interpretation_context.pyx":141
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
  *         self.push_back(value)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_47append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_5) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_5) < (0)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/list_interpretation_context.pyx":138
+  /* "falcon_core/_capi/list_interpretation_context.pyx":144
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def from_list(cls, items):
  *         cdef ListInterpretationContext obj = cls.new_empty()
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_49from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_from_l, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext_from_l, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_5) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_5) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetNameInClass(__pyx_t_5, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_5, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_9 = __Pyx_Method_ClassMethod(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_Method_ClassMethod(__pyx_t_5); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_9) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_9) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
   /* "(tree fragment)":1
@@ -25257,7 +25409,7 @@ __Pyx_RefNannySetupContext("PyInit_list_interpretation_context", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_51__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext___redu, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext___redu, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_9);
@@ -25271,7 +25423,7 @@ __Pyx_RefNannySetupContext("PyInit_list_interpretation_context", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_53__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext___sets, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_27list_interpretation_context_25ListInterpretationContext_55__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_ListInterpretationContext___sets, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_list_interpret, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_9);
@@ -25327,8 +25479,8 @@ __Pyx_RefNannySetupContext("PyInit_list_interpretation_context", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 57, __pyx_L1_error)
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 111, __pyx_L1_error)
   __pyx_builtin___import__ = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_import); if (!__pyx_builtin___import__) __PYX_ERR(1, 101, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 157, __pyx_L1_error)
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_Ellipsis); if (!__pyx_builtin_Ellipsis) __PYX_ERR(1, 409, __pyx_L1_error)
@@ -25422,31 +25574,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{42},{19},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{21},{53},{20},{32},{22},{14},{30},{37},{5},{8},{25},{43},{45},{32},{28},{31},{34},{31},{31},{34},{36},{35},{35},{31},{38},{31},{29},{35},{35},{35},{30},{33},{14},{20},{8},{15},{3},{15},{6},{18},{2},{1},{6},{4},{11},{1},{2},{9},{17},{5},{18},{3},{8},{5},{4},{8},{15},{5},{6},{9},{5},{8},{5},{45},{10},{5},{6},{7},{9},{9},{8},{12},{1},{5},{6},{2},{3},{10},{5},{12},{13},{4},{5},{8},{4},{8},{7},{4},{10},{4},{8},{4},{7},{3},{9},{9},{3},{5},{10},{4},{3},{9},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{12},{4},{4},{6},{8},{7},{6},{6},{5},{6},{1},{13},{38},{86},{14},{14},{40},{41},{32},{41},{68},{41},{82},{89},{104},{11},{50},{11},{49},{63},{9},{317},{289},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2115 bytes) */
-const char* const cstring = "BZh91AY&SY5\261\030%\000\0015\177\377\377\375\377\206g\377\377\377\377\377\377\377\377\377\377\376\300@@@@@@@@@@@@\000@\000`\007\307\336\361\336\366v\364\274\324\334wE.\206\253\263\n\357\r\341\222\223)\352\237\244\361\nf\247\204\311\352jz\203Oi4\231\003M2z\217(\006\236\210\362\236\247\250\3652\030\006Hz\215\246\243\322f\223\332($\220\200\230j2\232baS\375I\037\252y\032\200\321\352h\036\220\000\006\232\014\200\000\000\000\003j4\006\246\004I\344\247\222\215\250i\265\r\031\r\000\000\r\000\000\000\003@\000\000\000\003OP\tM\024\005O&\241\352i\264\231\r4\365=@\320\320\323@2\000\320\006 d\000\032d\000\030\020\304\020`\000\230\000\t\202`\000\000\000\000\230\004\300C\000\000F\000\000\002H\2014\322\010\247\264\023\320\325=O\321\023\321=\020i\240\006\231\000\003@\000\036\220\000\032\000\000\323\t\004.\024\004\312\tY\021\n\002\202\346\276\316\346\326\375\356~Nu\000\242\316\256\266\245*b\255J\237\n\367X\254\026\370\3622\313K\342b\264\032i\246\333\255|\262\246\007\261\322Py\\(A(P\204IB`\354\367\035\013\002I\0162\207]@9\303(\301a\327\261Hbm\030\212\027\246`\346\213\374\020\023&j\254\310Rq\037Y\363\264h\237R4c=o\364\214\323\314\364K\344\211\361\336U\233H\375V\001\251 u\271\002,\264\017\311\250\305\310\037\314\345P\300\363\006\212\273Y\035e\\\013\241\373\324\365VV\345\2732\314\031\345Y0\265\262\032~U\n\320\3032\355\305 \244\226Wr\n*\2650\010\261fU\032\034\344F\226\211\006\261H\321\000b\221\311\226\324\215U\321\360\313'\037\2301\246\252\253\256\254\372H\ndK\261\t`5\302\001\020G\210)\342\225\200\3034\343.\202\245\031\305\370jh+\326\332t\323\001\240\351FX2\016-NK\203\322\2374\267\235;6\207\276\032\250\326\354\301\263\n\007\031\266\256\323\362q\355\372\370T2\220\014p/\013\035\254\271\353\177\"\232\216>\234\024s\033\034\242b\006\005\236\336H\030\350$\310\366W\236\273Zq\326\203\033[(\241\001'\005\010\020\003\255\215Y\215\2723W\232H0\263\027\313\235\372\215\326\213W\240\303\347\311W\336\270\226\351\177i\205\233G\032P\022\021\014E\230e\234\203\302IH\204\217o;w\253\244\274zc|H\307\247)\335""\215\226\r-\364Gz\022\213\243e\030\217s\350*6\235\325\311\023\247\340\303\r{}\225Gu\207\016\342\212\305\300\255X\350\244\277\005\023>\323pV\273\323\341\3748\370\025#9M~\355\241\235\335\207Z\033P+VsN\322VB\3346\202N\245\035\367\220\2020\3409\221\002\235\315\324Sm\021\361\2727\222\263\252\020\tqv\225\016\231\037\250\230\361\342\277\225+F\316b9\303\222<q\236=b\305\337k\365\203\007l\313\000\014\326\014\3615\213bD\021*!C%t\211\344\247\023M\350\207(\2411Bk\252\244\350 \002\273\334\2168'\0259\232\361\271bu\266\347\254\313{\251L\325\264\225\334\272F\341\373\307\342\313\210\303\246Tk\023\272\345\206\307\224@%F~Ls\240\367\010>\001\342\271\341J\r#\033\260\270\210V&Y\031\263k\004\367\032\305\325\211\261c\001\260N\306\004\347\257\024\220f4\2254\3221\320\356[\220\350?\221_Ynk9\306\222\323V\321@\007\242i\307r\366~\236\253\254\262uX:E\225\2714\2464G\035v\252NJM&\216+\031\341\177\025\330_\303\240Wn\324GH\314:Q\214\026\240eH\260\356;\"\004\321\303h\241\221\370\315\234v\201\002\270\344+\327\243efk\005,\245\225A0\325\036!1K\216\311\221\305\210hM;\254\002\243\343\001\211<\217\355 \205x\363\370\351y\210\262R\031\310\254p\330F\370\244\246h\003\031L\352\022U\tp\352\010\344DY\266\220\210(+\324\225\2246%\000E\023a\025J\247\014V\303\233\002H\300P\342\336\023\026+\223\236\025\003\312\016V\017\030(_\317)\020\t\232\225\225\364n%Ji\030\242\207\267\201\316\221\202J\346\313\010\330\351\220#wDK2\027\271\262\315M\323\031\220\201\233\037\003\301\330\214\363\245Pa\254\032\314m\222\004\2766\001\333\300\312\217+.v\267\274\352\004\r\324\242\210\266\212\244\254\311\315\203\362\004\2673;o5\352\210?\205\365Nv\370\303\202\211\027[\374\246\302&\016\034\014\2661m\256\001\271\372\360\005\277\274:_\357\013\244\031\031_1\34130\314\353'U\033\232M2\324\310\216u<\317~\3639\202\331\tm\213]A?\254\314\302\277\231,\252\361\010a\232\326\021 \300#q\030|\350\024\300\315\217Wn3U\226\335\265Y\337\222\316\364v\334{:\372\370\221\\]\270=\203|\227\014\351of`c[\301\342\315H^wn\331)>()f\236\265s\211\347\260\340\345\034h\363\3538""\272T\242\205K\242M\303B\307s\021\221\000-\237E\310dBb\245*\362\335\234\022\342\246(\0016\245\315R\244\356\220\236[\330\211\030`t0%T\304\230\202\276\276\263D\322\340*X\021\220\274(\356\021SO\215\213\257\243ezFHd\350\276\206\2533\014\303]\007\245J\005\314\326\025`F\026HR\005\020\021\rFx\215\271\320\326\322\214\030*\306\006A\265\003|\327\336}\311\2427\240\251\t\275\356:B\333ft\314\342&&\010v\355>\241\020\204\216$!\230L\t\333\261\311\220.\3224\205\212\016Lr\324\234j\264\031\206`\261\201\262]\243}Sn\205ab\277;\252\204\224o&8b:\010Sw\226\246\373O\013\246O=\366B\r\234QE\350\335\263lo0)\247c\317\016\016\217\272\356<R\262e\026\326\014\213U\331$\224Y\014\313\035\3021\343f\032H!\003\211\3200\026\r\300\321\206\204\030\336\003\t\004\323!\301\344\207K\321\300\323\225\313A\0073\022\305'6u\321\202\nD\305\211\026\016eCb\216BP\035pq\225IT]\220/\256$\024$\254W\304\336\221\330\346\337J\231\340DX\253HOa5\205,\256\205x\271\023\014\377A\344;\027\03055i\237\001\346sPhv\353'\214\020\321r\204\nY\356\022\031&\035\250\2015\007~\300bW\264k\022\370\307!k\311\204Ek\027\363\363\022JHAI\306\016A\206d\257\302P.Q`\257\177X\315\010'\0071\301\320\202oC-\230,\373\351J\213.B\t\013\006\020\315\224z5Pg\305\215\262\221\202\\,\214)r'<\327\241\353\262\357\035\376\225\265O\371\016\\\213\320\331\0101\302s\330!q63\231\177eR\204]\202\327\205\020\r\303\230\357]\202\202\2031\251\355\264n+\247\265@R\030nG.\261W3fw\022\343s\\\031\002)\227\227\253\310\233\t\337fc\311!\002\232\036\262b\377l4\315b\2043Y\343X\nU\275\367l\340=\266\225\243=\361\004Uh\343(\332(\021c\374\272A\260<Gl\037p\033'x\013\346\237\372\311\301\022\0172{bE\274\301\322\360\232R\002\342\364}\277\304\377^\224\034\372\t/u\306\251Cz\026\356\320-\303\006\372\266\210z\304\261\003M\330*\032B\375\247\255\267\335\340\221+\271\r\256\230\273\223\277\002\313:\031\305\2314\034\264|\374\320\257h\231\207@\233\204\334\031\246\035Z\3025\277K\246\200t\347`\340\312pq\277\373\036\033u\270E1\261\2742\316\345}\216\274\361\251\231\340q\335\034\371\214\3659\275\025\241]0j""\247K\240\254\352\016\257h\037\250\312\3518=:\366\263$uz\2739;\315\202c\376.\344\212p\241 kb0J";
-    PyObject *data = __Pyx_DecompressString(cstring, 2115, 2);
+    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{42},{19},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{21},{53},{20},{32},{22},{14},{30},{37},{5},{8},{25},{43},{45},{32},{28},{31},{34},{30},{31},{31},{34},{36},{35},{35},{31},{38},{31},{29},{35},{35},{35},{30},{33},{14},{20},{8},{15},{3},{15},{6},{18},{2},{6},{4},{11},{1},{2},{9},{17},{5},{18},{3},{8},{4},{5},{4},{8},{15},{5},{6},{9},{5},{8},{5},{45},{10},{5},{6},{7},{9},{9},{8},{12},{1},{5},{6},{2},{3},{10},{5},{12},{13},{4},{5},{8},{4},{8},{7},{4},{10},{4},{8},{4},{7},{3},{9},{9},{3},{5},{10},{4},{3},{9},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{12},{4},{4},{6},{8},{7},{6},{6},{5},{6},{1},{13},{38},{86},{14},{14},{41},{41},{32},{41},{68},{41},{44},{82},{89},{104},{11},{50},{11},{49},{63},{9},{317},{289},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2131 bytes) */
+const char* const cstring = "BZh91AY&SY9~\276\314\000\001<\177\377\377\375\377\206g\377\377\377\377\377\377\377\377\377\377\376\300@@@@@@@@@@@@\000@\000`\007\307\336\361\334\233\336\336\335\216\273VtP\352\203 <\030d\222jzj6\324)\232\237\244OA\251\3524\317 \243CM\007\251\232!\241\232\214\236Sh\232hz\236\223\324\315C\023\021\204\3152j\014\210\246)\346Q\352\233F\244\375F\232'\242z\217P\000\321\246\200\000d\000b\006F\200\321\240\000\003M\030h\021\2444\215H\304\362\230!\246M=@\000\001\240\000\000\000\000\000\000h\3201\000\224\321\021\245=MM\006\203#A\246\206\232\000\310\003@\000\001\241\240\000\000\000\003 \320\020`\000\230\000\t\202`\000\000\000\000\230\004\300C\000\000F\000\000\002H\201\002b\004\320\323\025?T\362\246\332\032\247\241\243Q\246OH`\000\032\010\364\215\006F\236\246\200\3650M4\323\002\341\0044\024\t\222*\005\020\200\240\376U\331\373\246\327=\236K*\0036\363\331\352\320\323\247\357\245K[U8\352kk\335A\344q\305\263\tk\202\265\210p\352Z0\225\323n2I\026\340\\BIB\200\242I\017\014m\256%q N2\207\334\020\016\374`\214\025\337u\245!\221\273\314\205\013\0232:\302\3771\014T\231\256\331\220\245\214\367^\3343,\367\221\227\030\213\341\367>\207u\351>\334W\220\363Y\223|\326!\t\310%q0g\332Q\036]\010)$\314IP4#PEf\315\222Vu\221\364\363\357v\032Vv\343\0105A\023}n\240\325\301Q\177L\247`\200\316\276\245\2141\255\272\351&\024X\272\001\340y\324<\322\251\032-\202B\026\330\321T\010\034\222Pk\025\350\256q\277<\254~x\304\227\002\003\357\262\306\010\n\353J\261\025\2206\002\000\350\300tR\274,\201rY\275i\005?4\323v\034\226\0316\267'%\221\032/1\203{ \350\330\351s\366\252\341\236\203\330\277\276\017x6V\332\221\273|\303\3375\252r\367=\375}\273\253\014\024\003\360\020,E\247\201/\rs`\246\243\177\225\005\035&\256\320y\003g\361\336\302\002\371\006\014\215=|\266\234\237\200\314K\375,B\200\204\232T@\206_Y\317yo\211\315K\000\230\263\032\306\233\277\177\213\037R\013l0\232\225\032\022\2377{\315\262\264\303qD\220\210]e\271\025\326\356a\323sM\203-\265\030\t\222\221\272\357\326\225V=\254\021\221\206\253\030\314\332\373h\357\362\216%""\003\036\331\272J\225\3309\324,\314\367JG\005\327\255\030\352\027\343\231[n<\343\030\302\2451\344\025\257\242\274\267\241\226\326\341\037UV\305\314\257\263\231\016\371X\000f\2569\231\204\226\010^\206\000\223\251\216\370j@2\352E\346\000>\326NQ<f\342\345\322!R\023\205\002\032\335e\000p\203{\004B7E\235)[\033\\\310u\207$y\203<{\245\245_\345\373\241s\266\225p\006\233C\\M\005\302H\"h\205\014\225\372+\225\234l\307\2449J&(\232\376\354\255\004\000Wb\221\220\322\241\312\211`'\362\007\367tR\361E\205\224\242=$\211\363\236\250\262>\320\322\241\303\177\256d6\211\376\302\363t\n\342\023G\027g-H=\3220\210y\017\000\261\007 \307\014s\221\n\342c#N\235\001=\215iUq8m.\032\344\354\\N|\021\001\032NR\346\244\230\361:\354vO\022\037\367\307V\3440\342\3506\030\033{\316\220\244\004QJ\207\207kf\213\022nRT\"\024\024\251w\231\006\235\027(\021\201@\340m\225P\302Zu\322\235:\274`R\305\254G\3504\021\214R\177\032+0eH\270w\035\221\002h\352]\0242>9\263\216\240\203<9\013\005\351}\205V\210\261\224\346\240\250k^!1c\216\311\221\270\205+\366B\223\300\203+\351\300\317\302\257'\373h\224\356&\036B\335\201\235\345+\216\317\203\000\370\242r\265\340&\352\327\260\244\244E\323\330EI%{:\025\211\245U\221q62a*\336\001\331h\250\261a\201T\001\253\220\232<<\210-\264N)jb2(\235\261\346\006X\327X\330!\232\2542n\316M*I\212\353\203vz$\301,\224\340\2167\275\004#V\274K\363\032\035\270)fz\032D\201\232\376\371\340\354F|\211V\0145\241\241\215\204\220\227\300\300\n\234h\021\320\242\224\255\223\234\003F\0010\"\t\215\204\370\252\211\366\315d\340Ea\021m)\221\235[!uG\203\2249\353\222\353e\351[\201\224\336\343\203-\314c\213\200\335}\273\301w\272\307\237\323\277D\206F\250P\374\314\3143=\365+\216\014\347$\356dc\304\252\244!\255\235\203\t\023\303\026\317YW\264\314\302\263\251,U\211\010a\232\333DH.\010\324F\035\301\006 \005\232\265\355B7QZ\353\252\345\010\244a\033\234\214Mkx\304>\013d1\000\270\"\033\021I:\370X\030\333\000\200\270l\r\007a\367L\252\330\251\322\254\213;\225Uy\322\377\303\234~\226C\253\352X\212\325\217\2117\r\312\372\230\214\210""\001n\275\325!\221\t\212\224\255\345\266pK\242\231 \004\332\2347\026\321\331\206yo\204\"$\016\302\006k\217\206d\014\331oP\234\272\355Z\0060,\n;\204T\323\336\305VQ\261zFHd\350\262\206d\220\220\251\017]\205aD\255\032\310%\026\2034\301\244\300\304g\023\310[;\034y\364\362\242\366\013X\274\3126p\3465o{f\210\330\202\262\023{\034pKH\223\262N1P\310#h\252\350\022\010\231\260\031\204\206@\316\264\367\227\201\005\\\2438\262A\311\216`\223\233p\006a\230/`l\3725\367\252\3145\253\313\326\2167\2722\257\2211\323\304x!M\336Yy\232wU2|\226Z$\0349\"\213\021\272\330\017\253c\002\232v=P\347\361\377k\325&L\260m\200\310\275f\313)\213)\251c\230F8\263\r(\211\003\223\240\\+\233\231\243\r\250/x\014\222\t\246C\203\311\016\225\246\374\034\300bN\3458\232o)\307p\304Y\244\332\251\"n\326\274\222;\214\230+\214C)\322_\n\367\340N\370\006\226\324x3\300SQo\343\305&Y\032 \014\317\000\226 )TJ\206v\276n)@\214\326`m\305\030\211+\262d\305\014\024\213@`\256\003(\014\021\343\316\243\022\306z\222C$\303\265\004&\240\357\234bV4k\211dc\201m\204\302\"\266\322\317\013I$\244$\024\234`\344\030fJ\313\245\002\245\026\n\374Z\3431 \234\034\276\016$\023z\030\332\301k\362\245*,p \t\\\302\031\261\036\215Z\ry/lH\301.vE\324\251\023\236\233\020\365\360\273\307\227\363\333\230\373P\345H\261\r\230\213\034\347]\2029\312e9ts\\\243\213\357[w\327\020\322r\277m\203}\205\207\021\266\r\306mU\317\216\200\2440\332\372u\305T\315\300\356%\3579\250\030B)\227\247\237\\\330g}\207j<\022\";\322/\203#\255\274TT\251\204\271\262]\001\264\276~\210\230\2479qG\022\256\204x\024\030\275ah\240\210\300\376\361\002v\306Y\254\017\270\212\246\271\035\007J\315\203m\330\177\344\366\273\037\231\263?\312td\006\2076\005m\314\315\t\36123\222Ul74cZ\213\263\364%q\211\350\201\272E\255\251B\034\367\342(\321=\033\266\270\027\223^D\236\374g:\343\217\235{yP\273\206@\315\302\3369\373\225\"x\200x\345\0008I\341\023\214\315MS\037\366\361\240\0366\353\364\310<\020wE\201\277\253`\343\325\2462*\325\373\014c\263\261W\0370Q\233\344\2231}\327\241R\235\026\201\316-\264\002]\200\242]0""\224\003\n3#\017\334!\222\242\200\261\377\334\344$9\343J\313\177\262\215qw$S\205\t\003\227\353\354\300";
+    PyObject *data = __Pyx_DecompressString(cstring, 2131, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1887 bytes) */
-const char* const cstring = "x\332\255V\315w\023G\022G\"\331u\022?\210q>.\331\367\332\357%k\234`\201X\223%Y\307\2110\020{\001cc\314GH\322i\315\264\24463\335\343\351\036[\"\331\267\034}\324\321G\216>\352\250\243\216:\366QG\376\204\374\t[\3253\222e@\202\227\354A\3233]U]U\277\252\376\225\276&\245  \276\010\271\324BIM\242\230{\334\027\262z\264I>\363I\230hC\312\234\010\351\363:\367\t\223>\221\312\020\035\010P\277\222T*<&\273\202\357\021_q\355D\274\036)\315\2116\261\360\271^f\222(\0314\210\027sf8a\244\234\032\231\0323Dh\342)iD5Q\211\006'$\344\241\212\033\005\260\302\243\230\326\242*\211Q\004\214\375ywN\252\201.3\245\354\340\275X\030V\016x\246\220\006U\211U8\316\326\245E\366\204\251\021\323\2108\231\315\366M\314\244vi\034\231\244j`!\000*3\204\335\325a\300D\nB\252t-\214L\203\350\032\203\243M\022Ap\025\025\023\257ajJ\026X\034\263\306u&\002\200\0252\314\322\270)\264Y\225\206\307P\020\303\014\234\272\014\000\361:lb\250*1DUHY%\322\327\257\330\"gY\035B\370\314\237[}9\320\264rI\024\251\330p\177U\356\262@@\211\225\317\317a\325@\031B\231\365f\t\0049\013\221\"\n\263\347H\025\254\372\312i.P(\347f\361\226C\347\036\242\003!\254)H\300\325u\331\245\210`\370<\020e\036Cj\200?\366\0048q\305\227d\375\332\372\374\302\345\005\327S1\337\006\367\032\242+{\001\224\035z\tsJD`\300\031\326F\027\310j\2054TB$O\021\213@o\330\300\324\270$\232\033|!\263\256\220\016@\n\346\320\330\263YQ\304.G\353\353,\320\274p\373\030x\020r\326\235\314\363\270\356\243\271ixDB\326p\370\301ex\302cu\004\364\226tm\207%Tr\227\307\320U\206\207\370\255\312\230Taiv\356[\346\373T\"<\230,\001\204.\324=\025\004\030\016\024\246\300\312\336\342\320E@\2454\330\245\027\267\373\375\267\344\013\215~\271\363^\365\310Y,S\325\265\036f\2007\031\272\206K\343\356\325\321\245\026:5\3611J-\236p\262\370\r\271\360RcJ\005\245\253\260$0\204\322\230\373\211\307)%~\342\022\225J\316C)w\005\013@\352\t)\014\010\323t\2274\017*\005\311B\336\277\013kJr\035{\347+,\200d\250\247b~\236z,\022\347\003hv*\216u;\365\322v/D\215\372b\312!\3761<^\336\303v\035\300rL~|WV\265Jb\217/%\203\212\261 P""\236\243%\314\231\370\314\260\302+\244i\327\343\211\031\253\025J\233\313\253\253\327\202@DZ\350\221wv\244\2400\3004\305\234\322q\252\320\323\032\366\336D\231E\021\227\376\030\371\230\230\274\200\263x\214\030V&\344\350l\013\034\351n\214x'a\301\030q\3144\247\343\002\254\210 \240\300C\t\037\243\003\214O\267\265\222\257Q\301\326\033\255\342\346\30281\354\352\364\362\216\321\302\0136Z,\371\336X!}\r\234p\265\350k \215\022]\243e\346=\036\255\202\0140Zj\224\303\022\210}5\204\361\005\034\002#\202\322\365F\035~W\201\313\351\032\250\335\341\225M\210\204K\217\343((\034M\005\340\265\376%\242)\263\246\r\312tCzBAO\3050\276\004\360\0033\345\262\363U\206.HU)\306\346Q\017\030\006\031\236\322\376K\225\033\304\026?\241c\275\000\354\201E(\214+\217c\266^\240\373\315\352\001\261\033\274\326\224\372\030.\365q\226P\241i\312V\016c\010\034f \227I\350\006\225\003\265\337\215<\216U<\304\\\005\307\\\2051\314u\324\245\225\200U5\020k\310L6M\007\3359\350AJ+\211\3640\267j\377\226\323Z\r\330\001G\244\037p\341\013\277N\251\010qh\303\212\2159\334~\230\312\000ED%\245\365\214\333\321\025\245! \001O\036\342\337\030\034\367\360\241\374$\200\025yz\360\204!\001O\350<|\014:p\320g\200\230\202\321\212\276\262bF\000v\244\242A\233Q\n\254\355\000\302\204\334{\215{\217u\022\246_Y~\370\352\312\340\336\022\031\t\3571\004sM\366\365v\335?9<\003\375\246\321\035M\241\227\270s\260\301\353\370Z\005X\001\037\207\263F$q\"9\026\315\022\205\267l\266\rq+}\005\317:\336G\034a;v2\341\205P\031\345\203\207H\033\005\2778\301\2662\034K\231]\027\310\010\300H\"\350;\356\032\301=t\375i\251w\252\330\232j}\332\022\355\035\374\270\330\232i-\264\032\235\267;\217\354\372={\357'\373S\365\367\023'j\271\233yXn\346o\345\237\226~\377\313\211w\246\355\231\177\264\212v\341\241}\370\203\375\341g\3733\265\324\263\236\337\233xo\377\342\376\246}\377r;\327\233<\323\374\342`\343\200\365&\346\355\374J\367d\367\262\335\274k\357n\241\322\327\315\r\\\276j\226z\023\247\367\321\367\304\207\366\303\205V\251u\267=\225}]jm\264\374\366\314\261\257\271N\261s\243""\033\333\215\007\366A\031B\362r70\262\033\371\233\371\027\364.u\337\263\233\020\337/\366\227m\320x\234\273\215\212\267\363\353/(\332\345\232\255\t+\264\325\306\232\272\255729\244\320\376\240\375\260\303\273\377\262\367~\264?B~!\234 sw\360\240;\371\315#,\276jO\375\311\314\341\204\366\247m\321\331\301\250\267\354\026\370\253\200\227\352p\324\317'\256\330+U[\205x\225U\020\354\177A\364]\376:j\\\207\322\300r+\177\037\227\373\371_q\3715\377[\036}}\331\234\266\037,\266K\275\311\351f\021\274\332\323\230;C\327p\"\344\276m\267\245\225{v\3577\260\372On\005\215W\362k\270\254\345\267p\331\312S\\h\376\373\223\260|\177r\345\344\330\203\237O|rp\365\331_\237\355\034\346z\023\027Z\247\332\254]\357\350\356L\267\370|\342\235\336\344G\366\243Rg\2523\363\374\314\314\263\251g3\177\006\273\311\375\1777Ys\007]\316\037n\266\336m\317\340\336\nhL\236\336\337\003\321\356\301F\357\375\217\233\346\240\210;O\016\246\016f\372\306\247\n\207\354\320\264\212x\316\222]zd\037\001\354\320/\210\310 =\027S?\275\013\255\\\353om\227 \344\360m{\247\363V\2474P\235;\234\312T!\307i;}\356\260t\270\325\372{\373\355\366\203\316\375n\251\273\221\345\3734\327{\353\335\375/\232\033\351e%)\307\000\233\321bq\210\331\351\245\224\271.\376s\014\271\217\376\353E>?\2331\033\375\022f\026\2364Rw\305Q\3739r<\240\310P\026W\365\037\211\212\216\023\272Y\203\207\220\317\007\236@\316\002\347n\356\304\233\031\277!x\027G\234\363\246\230\375\337\360\032\025\310\037F\351uv\267\377\007\374\257\306\205";
-    PyObject *data = __Pyx_DecompressString(cstring, 1887, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1890 bytes) */
+const char* const cstring = "x\332\255VMs\033E\023\216\024x1\340Jp\314\307\005\252\306U\360:\206X\211\203\003\001\214Aq\022lH\034;\212\023B\200a\264;\222\306\331\235Y\357\314\332R\340\2557G\037u\3641G\037u\324QG\035\347\250c~B~\002\335\263+\331&\221\234\002\016\332\331\235\356\351\217\247\237\351\326\227\244\030\004\304\027!\227Z(\251I\024s\217\373BV\0176\311G>\t\023mH\231\023!}^\347>a\322'R\031\242\003\001\352W\222J\205\307d[\360\035\342+\256\235\210\327#\2459\321&\026>\327KL\022%\203\006\361b\316\014'\214\224\323C\246\306\014\021\232xJ\032QMT\242\301\t\ty\250\342F\001N\241)\246\265\250Jb\024\201\303\376\254\263\223j\240\313L)3\274\023\013\303\312\001\317\024\322\240*\261\nG\235ui\221\035aj\3044\"N\246\263}\0233\251]\032\007GR58!\000*s\010\273\253\207\001\023)\010\251\322\26502\r\242k\014L\233$\202\340**&^\303\324\224,\2608f\215\353L\004\000+d\230\245qCh\263\"\r\217\241 \206\031\260\272\004\000\361:lb\250*1DUHY%\322\327/\330\"gY\035B\370\310\237Yy>\320\264rI\024\251\330p\177En\263@@\211\225\317\317a\325@\031B\231\366\246\t\0049\r\221\"\n\323\347H\025N\365\225\323\\\240P\316\315\302M\207\316]D\007BXU\220\200\253\353\222K\021\301\360y \312<\206\324\000\177\344\0048q\305\227d\355\332\332\354\374\345y\307\251\230o\202{\r\321\225\275\000\312\016\\\302\234\022\021\030p\206\265\321\005\262R!\r\225\020\311S\304\"\320;|\300\324\270$\232\033|!\323\256\220\016@\n\307\201\330\323YQ\3046\307\323\327Y\240y\341\326\021\360 \344\214\235\314\363\270\356\243Y2<\"!k8\374\3402<\342\261:\000zC:\332a\t\225\334\3461\260\312\360\020\277U\031\223*,N\317|\303|\237J\204\007\223%\200\320\205\272\247\202\000\303\201\302\024X\331[8t\021P)\rv\361\257\333}\376-\372B\243_\356\274W=r\026\313Tu\324\303\014\360&\003k\2704\356^\035\\j\241\323#>F\251\305#N\026\276&\027\236#\246TP\272\nK\002C(\215\271\237x\234R\342'.Q\251\344,\224r[\260\000\244\236\220\302\2000MwQ\363\240R\220,\344\375\273\260\252$\327\261w\276\302\002H\206z*\346\347\251\307\"q>\000\262Sq\204\355\324K\351^\210\032\365\205\264\207\370G\360x~\017\351:\200\345\210""\374\350\256\254j\225\304\036_L\006\025cA\240<\327\2260g\3423\303\n/\220\246\254G\213YW+\024KK++\327\202@DZ\350\241wv\250\2400\3004\305\234\322Q\252\300i\r{/\243\314\242\210K\177\204|DL^\300Y<B\014+\023R\217\322\210\032\303\245\034\233\341\010\361V\302\202\021\342\230iNG\205_\021A@\241K%|\204\016\314\003\272\251\225<F\005\2119\\\305M\215Qb\330\325\351\325\036\241\205\327o\270X\362\235\221Bz\014\234p\361\3501\220F\211\256\3212\363\036\016W\301\3760\\j\224\303\022\332\376J\010\303\r:\014\014\020J\327\032u\370]\205NOWA\3556\257\224 \022.=\216\203\242p03\240\353\365\257\030M\373nJ_\246\033\322\023\n\370\024\303p\023\320=\230);We A\252I14\217z\320~\260\375S\332\177\251r\203\320\342'\320\331\013\3408\264\030\n\263\314\343\230\254\027\350>\223\221\257\036t~\203\367\236R\037#\246>\016\033*4M\333\231\203\031b\207!\311e\022\272I\346p\355\023\222\307\261\212\017\265\266\202km\205\021\255\355\200\250\225\200U5t\336\220\231l\334\016\010:\240!\245\225Dz\230_\265\337\006h\255\006\355\003g\250\037p\341\013\277N\251\010q\252\303\212\334<\314@Le\000$\"\223\366\375\254\371\243+JC@\003\236<\304\3779\370\177\000>\224\237\004\260b#\037<a\212\300\023\310\207\217\001\t\007T\003\304\024\314^\364\225\3253\002\300#\025\r\230F)\264u\007\020&\344\336k\334{\250\2230\375\312\362\303WW\006\367\226\310Hx\017!\230k\262\257\267\355\376\352\241\r\364\233Fw0\246\236k\256\203\r^\307\327*\300\n\3708\2345\"\211#\313\265\331,Qx\313\206\337\241\346K_\320\210\335`@\034a;v2\341\205P\031\345\203\207H\033\005\2778AZ\031\216\245\314n\014d\004`$\021\360\216;\"\270\207\256?.\366N\315\265&Z\037\266D{\013?.\266\246Z\363\255F\347\325\316\003\273v\327\336\375\305\376R}v\342D-w#\017\313\215\374\315\374\343\342\263\377\234x}\322\236\371\2645g\347\357\333\373?\331\237~\265\277RK=\353\371\275\2617w/\356\226\354[\227\333\271\336\370\231\346'{\353{\25476kg\227\273'\273\227m\351\216\275\263\201J_6\327q\371\242Y\354\215\235\336E\337c\357\330w\346[\305\326\235\366D\366u\251\265\336\362\333SG\276f:\227\272o\332\022\370\375\315""\376\266\t1=\314\335\302\320n\345\327\362\307)\226P\261\224\277\363\027E\273T\2635a\205\266\332XS\267\365F&\207\034\332o\267\357wx\367+{\367g\3733$\030\202\005\231\273\215\206n\347K\007`|\321\236\370\207\251\203\205\366\207m\321I\272?\330{\000\273o}\t^T\356\036:\273\227\377\321E}\305^a\226\225m\271b+U\264\362Ys\322\276\275\320.\366\306'\233s`\317\236\306\254\330\343\342S\324\255\332*\344\246\254\202\304\376\017f\276\315_Gk\327\241\216\260\334\314g\266\177\307\345\367\374\037\371\221\026\235w\300i\323nJ+w\354\316\037p\352\177\271e<\274\234_\305e5\277\201\313F\236\342B\363\337\235\204\345\273\223\313'\217\t\365\375\275\253O^{\262\265\237\353\215]h\235j\263v\275\243\273S\335\271\247c\257\367\306\337\265\357\026;\023\235\251\247g\246\236L<\231\372'8\217\357~\337d\315-t9\273_j\275\321\236\302\275e\320\030?\275\273\003\242\355\275\365\336[\3575\315\336\034\356<\332\233\330\233\352\037>U\330g\373\2465\207v\026\355\342\003\373\000(\001\334BD\006\351\271\230\372\351]h\345Z\037\264]\202\220\3037\355\255\316+\235\342@uf\177\"S\205\034'\355\344\271\375\342\376F\353\277\355W\333?v\356u\213\335\365,\337\307\271\336+o\354~\322\\Oo6I\033\022\264>:7wh\014\320Ki\233\273\370\371\210I0\374\217\034\371\370l\326\006\351g0\344\320\322P\335e7\007\316\221\243\001E\206\262\270\252\377NTt\224\320\r&4B>\036x\0029\013\234\273\231\023/w\370%\301\2738\304\316\313b\366\257\3415,\220\277\215\322q\347n\375\t\347[\347N";
+    PyObject *data = __Pyx_DecompressString(cstring, 1890, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (4436 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create ListInterpretationContextIndex out of boundsIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>self.name is not Nonesrc/falcon_core/_capi/list_interpretation_context.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisListInterpretationContextListInterpretationContext.__reduce_cython__ListInterpretationContext.__setstate_cython__ListInterpretationContext.appendListInterpretationContext.atListInterpretationContext.clearListInterpretationContext.containsListInterpretationContext.emptyListInterpretationContext.equalListInterpretationContext.erase_atListInterpretationContext.fill_valueListInterpretationContext.from_jsonListInterpretationContext.from_listListInterpretationContext.indexListInterpretationContext.intersectionListInterpretationContext.itemsListInterpretationContext.newListInterpretationContext.new_emptyListInterpretationContext.not_equalList""InterpretationContext.push_backListInterpretationContext.sizeListInterpretationContext.to_jsonNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferappendasyncio.coroutinesatbb_jsonbasebuffer_sizec_c__class____class_getitem__clearcline_in_tracebackclscontainscountdata__dict__dtype_is_objectemptyencodeenumerateequalerase_aterrorfalcon_core._capi.list_interpretation_contextfill_valueflagsformatfortranfrom_jsonfrom_list__func____getstate__hh_rethandleididx__import__indexintersection_is_coroutineitemitemsitemsizejson__main__memviewmode__module__name__name__ndim__new__newnew_emptynot_equalobjotherout_bufferpackpoppush_back__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registers_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstaticmethodstepstopstruct__test__to_jsonunpackupdatevaluevaluesx\200A\330\0161\260\021\260$\260i\270q\200A\330\0162\260!\2604\260y\300\005\300[\320PV\320V]\320]g\360\000\000h\001L\002\360\000\000L\002M\002\200A\360\006\000\t\023\320\0223\2601\3204Y\320YZ\320Z^\320^_\320_c\320cd\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0254\260A\260T\270\021\200A\330\010\025\320\0255\260Q\260d\270!\200A\330\010\025\320\0255\260Q\260d\270)\3001\300K\310r\320QX\320Xb\360\000\000c\001K\002\360\000\000K\002L\002\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\330\010\025\320\0255\260Q\260d\270)\320Ch\320hi\320is\320st\320tx\320xy\200A\330\010\025\320\0258\270\001\270\024\270Y\300e\310;\320V\\\320\\c\320cm\360\000\000n\001R\002\360\000\000R\002S\002\200A\360\006\000\t\023\320\0229\270\021\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330""\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0259\270\021\270$\270i\300q\310\013\320SU\320U\\\320\\f\360\000\000g\001O\002\360\000\000O\002P\002\200A\340\010B\320Bg\320gh\320ho\320ot\320t\177\360\000\000@\002F\002\360\000\000F\002M\002\360\000\000M\002W\002\360\000\000W\002{\002\360\000\000{\002|\002\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0175\260Q\260a\200A\330\010B\320Bi\320ij\320jn\320nw\320w|\360\000\000}\001H\002\360\000\000H\002N\002\360\000\000N\002U\002\360\000\000U\002_\002\360\000\000_\002G\003\360\000\000G\003H\003\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0175\260Q\260a\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026A\300\021\300!\340\022!\240\021\240!\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\340\010-\250S\260\n\270!\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\330\016.\250a\250t\2601\200A\330\010>\320>[\320[\\\320\\`\320`i\320ij\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0170\260\001\260\035\270a\200A\340\010\026\320\026?\270q\300\004\300A\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *(__pyx_t_6_c_api_ListInterpretationContextHandle, struct __pyx_opt_args_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi *__pyx_optional_args)\000_list_interpretation_context_from_capistruct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *(__pyx_t_6_c_api_Interpre""tationContextHandle, struct __pyx_opt_args_11falcon_core_5_capi_22interpretation_context__interpretation_context_from_capi *__pyx_optional_args)\000_interpretation_context_from_capiO";
+    #else /* compression: none (4514 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create ListInterpretationContextIndex out of boundsIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>self.name is not Nonesrc/falcon_core/_capi/list_interpretation_context.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisListInterpretationContextListInterpretationContext.__reduce_cython__ListInterpretationContext.__setstate_cython__ListInterpretationContext.appendListInterpretationContext.atListInterpretationContext.clearListInterpretationContext.containsListInterpretationContext.copyListInterpretationContext.emptyListInterpretationContext.equalListInterpretationContext.erase_atListInterpretationContext.fill_valueListInterpretationContext.from_jsonListInterpretationContext.from_listListInterpretationContext.indexListInterpretationContext.intersectionListInterpretationContext.itemsListInterpretationContext.newListInterpretationContext.new_emptyListInter""pretationContext.not_equalListInterpretationContext.push_backListInterpretationContext.sizeListInterpretationContext.to_jsonNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferappendasyncio.coroutinesatb_jsonbasebuffer_sizec_c__class____class_getitem__clearcline_in_tracebackclscontainscopycountdata__dict__dtype_is_objectemptyencodeenumerateequalerase_aterrorfalcon_core._capi.list_interpretation_contextfill_valueflagsformatfortranfrom_jsonfrom_list__func____getstate__hh_rethandleididx__import__indexintersection_is_coroutineitemitemsitemsizejson__main__memviewmode__module__name__name__ndim__new__newnew_emptynot_equalobjotherout_bufferpackpoppush_back__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registers_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstaticmethodstepstopstruct__test__to_jsonunpackupdatevaluevaluesx\200A\330\0161\260\021\260$\260i\270q\200A\330\0162\260!\2604\260y\300\005\300[\320PV\320V]\320]g\360\000\000h\001L\002\360\000\000L\002M\002\200A\360\006\000\t\023\320\0223\2601\3204Y\320YZ\320Z^\320^_\320_c\320cd\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0254\260A\260T\270\021\200A\330\010\025\320\0255\260Q\260d\270!\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001S\002\360\000\000S\002T\002\200A\330\010\025\320\0255\260Q\260d\270)\320Ch\320hi\320is\320st\320tx\320xy\200A\330\010\025\320\0258\270\001\270\024\270Y\300e\310;\320V\\\320\\c\320cm\360\000\000n\001R\002\360\000\000R\002S\002\200A\360\006\000\t\023\320\0229\270\021\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108""\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0259\270\021\270$\270i\300u\310K\320W]\320]d\320dn\360\000\000o\001W\002\360\000\000W\002X\002\200A\330\010B\320Ba\320ab\320bf\320fg\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0175\260Q\260a\200A\340\010B\320Bg\320gh\320ho\320ot\320t\177\360\000\000@\002F\002\360\000\000F\002M\002\360\000\000M\002W\002\360\000\000W\002{\002\360\000\000{\002|\002\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0175\260Q\260a\200A\330\010B\320Bi\320ij\320jn\320nw\320w|\360\000\000}\001H\002\360\000\000H\002N\002\360\000\000N\002U\002\360\000\000U\002_\002\360\000\000_\002G\003\360\000\000G\003H\003\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0175\260Q\260a\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026A\300\021\300!\340\022!\240\021\240!\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\340\010-\250S\260\n\270!\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\330\016.\250a\250t\2601\200A\330\010>\320>[\320[\\\320\\`\320`i\320ij\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0170\260\001\260\035\270a\200A\340\010\026\320\026?\270q\300\004\300A\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_27list_interpretation_context_ListInterpretationContext *(__pyx_t_6_c_api_ListInterpretationContextHandle, struct __pyx_opt_args_11falcon_core_5_capi_27list_interpretation_context__list_interpretation_context_from_capi *__pyx_optional_""args)\000_list_interpretation_context_from_capistruct __pyx_obj_11falcon_core_5_capi_22interpretation_context_InterpretationContext *(__pyx_t_6_c_api_InterpretationContextHandle, struct __pyx_opt_args_11falcon_core_5_capi_22interpretation_context__interpretation_context_from_capi *__pyx_optional_args)\000_interpretation_context_from_capiO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 176; i++) {
+    for (int i = 0; i < 177; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 50) PyUnicode_InternInPlace(&string);
@@ -25457,7 +25609,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 176; i < 199; i++) {
+    for (int i = 177; i < 201; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -25468,15 +25620,15 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 199; i++) {
+    for (Py_ssize_t i = 0; i < 201; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 176;
-      for (Py_ssize_t i=0; i<23; ++i) {
+      PyObject **table = stringtab + 177;
+      for (Py_ssize_t i=0; i<24; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
         #else
@@ -25550,94 +25702,99 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_BBaabbffg_6_A_1_5Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_count, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_fill_value, __pyx_mstate->__pyx_kp_b_iso88591_A_BBgghhoott_F_F_M_M_W_W_6_A_1_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_fill_value, __pyx_mstate->__pyx_kp_b_iso88591_A_BBgghhoott_F_F_M_M_W_W_6_A_1_5, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 64};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 67};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_4AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_4AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 76};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 79};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 79};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 82};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 85};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_iij_6_8_1_0_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_iij_6_8_1_0_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 85};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_out_buffer, __pyx_mstate->__pyx_n_u_buffer_size};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 88};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 94};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 97};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 94};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_b};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_1KrQXXb_c_K_K_L, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 106};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_S_S_T, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 108};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_b};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_9_iq_SUU_f_g_O_O_P, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 114};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_9_iuKW_ddn_o_W_W_X, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 122};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_q_A_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_q_A_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 135};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 141};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 138};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 144};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_n_u_obj, __pyx_mstate->__pyx_n_u_item};
-    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_list_inter, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_pyx_state};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

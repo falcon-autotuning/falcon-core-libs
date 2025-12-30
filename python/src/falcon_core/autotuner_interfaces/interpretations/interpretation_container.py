@@ -27,12 +27,15 @@ class _InterpretationContainerFactory:
             elif hasattr(self._c_class, 'create_empty'):
                 return InterpretationContainer(self._c_class.create_empty(), self.element_type)
             elif hasattr(self._c_class, 'new'):
-                return InterpretationContainer(self._c_class.new(), self.element_type)
+                try:
+                    return InterpretationContainer(self._c_class.new(), self.element_type)
+                except TypeError:
+                    pass
         
         if len(args) == 1 and not kwargs:
             arg = args[0]
             # List-like from iterable
-            if hasattr(self, 'from_list') and not isinstance(arg, dict):
+            if hasattr(self, 'from_list') and not isinstance(arg, dict) and not hasattr(arg, '_c'):
                 return self.from_list(arg)
             # Map-like from dict
             elif hasattr(self, 'from_dict') and isinstance(arg, dict):
@@ -50,6 +53,18 @@ class _InterpretationContainerFactory:
         # Fallback to raising error if no suitable constructor found
         raise TypeError(f'No suitable constructor found for InterpretationContainer[{self.element_type}] with args={args}')
 
+    def from_dict(self, data):
+        """Create a InterpretationContainer from a Python dictionary."""
+        if "InterpretationContainer" == "Pair":
+             if len(data) != 2:
+                 raise ValueError('Pair requires exactly 2 elements')
+             items = list(data.values())
+             return self(*items)
+        instance = self()
+        for k, v in data.items():
+            instance.insert(k, v)
+        return instance
+
     def __getattr__(self, name):
         """Delegate class method calls to the underlying Cython class."""
         attr = getattr(self._c_class, name, None)
@@ -58,8 +73,15 @@ class _InterpretationContainerFactory:
         
         # If it's a class method or static method, wrap the result
         if callable(attr):
+            # Helper to unwrap wrapper objects to their underlying C objects
+            def unwrap(obj):
+                if hasattr(obj, '_c'):
+                    return obj._c
+                return obj
             def wrapper(*args, **kwargs):
-                result = attr(*args, **kwargs)
+                # Unwrap arguments to their Cython objects
+                unwrapped_args = [unwrap(a) for a in args]
+                result = attr(*unwrapped_args, **kwargs)
                 # Wrap the result if it's a Cython instance
                 if result is not None and hasattr(result, 'handle'):
                     return InterpretationContainer(result, self.element_type)
@@ -231,6 +253,16 @@ class InterpretationContainer:
         if hasattr(self._c, 'at'):
             return self._c.at(key)
         raise TypeError(f'Underlying object {type(self._c)} does not support indexing')
+
+    def __setitem__(self, key, value):
+        if hasattr(self._c, '__setitem__'):
+            self._c[key] = value
+        elif hasattr(self._c, 'insert_or_assign'):
+            self._c.insert_or_assign(key, value)
+        elif hasattr(self._c, 'insert'):
+            self._c.insert(key, value)
+        else:
+            raise TypeError(f'Underlying object {type(self._c)} does not support item assignment')
 
     def __iter__(self):
         for i in range(len(self)):

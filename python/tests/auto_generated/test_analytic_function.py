@@ -8,7 +8,7 @@ class TestAnalyticFunction:
         self.obj = None
         try:
             # Using recipe for AnalyticFunction
-            self.obj = AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction()
+            self.obj = AnalyticFunction.new_identity()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -24,7 +24,7 @@ class TestAnalyticFunction:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction())
+            self.obj.equal(AnalyticFunction.new_identity())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -32,7 +32,7 @@ class TestAnalyticFunction:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(AnalyticFunction.new_empty() if hasattr(AnalyticFunction, 'new_empty') else AnalyticFunction())
+            self.obj.not_equal(AnalyticFunction.new_identity())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

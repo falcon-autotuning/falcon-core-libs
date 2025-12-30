@@ -212,15 +212,6 @@ cdef class Waveform:
     def append(self, value):
         self.push_back(value)
 
-    @classmethod
-    def from_list(cls, items):
-        cdef Waveform obj = cls.new_empty()
-        for item in items:
-            if hasattr(item, "_c"):
-                item = item._c
-            obj.push_back(item)
-        return obj
-
 cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):
     if h == <_c_api.WaveformHandle>0:
         return None

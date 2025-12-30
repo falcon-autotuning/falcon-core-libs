@@ -11,7 +11,7 @@ class TestAcquisitionContext:
         self.obj = None
         try:
             # Using recipe for AcquisitionContext
-            self.obj = AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter())
+            self.obj = AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt())
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -27,7 +27,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.equal(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -35,7 +35,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.not_equal(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -83,7 +83,7 @@ class TestAcquisitionContext:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.division(AcquisitionContext.new(Connection.new_barrier('test'), 'test_instr', SymbolUnit.new_meter()))
+            self.obj.division(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 

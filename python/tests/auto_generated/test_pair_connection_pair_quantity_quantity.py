@@ -12,8 +12,8 @@ class TestPairConnectionPairQuantityQuantity:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = Pair[Connection, Pair[Quantity, Quantity]].from_json('{}')
+            # Found constructor: PairConnectionPairQuantityQuantity_create
+            self.obj = Pair[Connection, Pair[Quantity, Quantity]](Connection.new_barrier('test_conn'), Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
             print(f'Setup failed: {e}')
 

@@ -1349,9 +1349,9 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
@@ -1359,66 +1359,66 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/communications/Time_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringDouble_c_api.h"
-#include "falcon_core/generic/ListPairStringDouble_c_api.h"
-#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/AnalyticFunction_c_api.h"
-#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
-#include "falcon_core/generic/ListInt_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/math/AxesInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
-#include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/MapStringBool_c_api.h"
-#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
-#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListMapStringBool_c_api.h"
-#include "falcon_core/math/AxesMapStringBool_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
-#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
-#include "falcon_core/generic/ListWaveform_c_api.h"
-#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
-#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
-#include "falcon_core/generic/PairConnectionDouble_c_api.h"
-#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
-#include "falcon_core/generic/MapConnectionDouble_c_api.h"
-#include "falcon_core/math/Point_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/math/AxesInt_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/PairStringDouble_c_api.h"
+#include "falcon_core/generic/ListPairStringDouble_c_api.h"
+#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/math/AnalyticFunction_c_api.h"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/PairStringBool_c_api.h"
+#include "falcon_core/generic/ListPairStringBool_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
+#include "falcon_core/generic/MapStringBool_c_api.h"
+#include "falcon_core/generic/ListMapStringBool_c_api.h"
+#include "falcon_core/math/AxesMapStringBool_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
+#include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
+#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
+#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
+#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
+#include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/generic/PairConnectionDouble_c_api.h"
+#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
+#include "falcon_core/generic/MapConnectionDouble_c_api.h"
+#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
+#include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/PairStringString_c_api.h"
 #include "falcon_core/generic/ListPairStringString_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
@@ -1458,8 +1458,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
-#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"
 #include "falcon_core/physics/config/core/Group_c_api.h"
@@ -1486,8 +1486,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
+#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
 #include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
@@ -3781,6 +3781,20 @@ static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject 
 #define __Pyx_tp_new(type_obj, args) __Pyx_tp_new_kwargs(type_obj, args, NULL)
 static CYTHON_INLINE PyObject* __Pyx_tp_new_kwargs(PyObject* type_obj, PyObject* args, PyObject* kwargs);
 
+/* HasAttr.proto */
+#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
+#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
+#else
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
+#endif
+
+/* PyObjectFastCallMethod.proto */
+#if CYTHON_VECTORCALL && PY_VERSION_HEX >= 0x03090000
+#define __Pyx_PyObject_FastCallMethod(name, args, nargsf) PyObject_VectorcallMethod(name, args, nargsf, NULL)
+#else
+static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *args, size_t nargsf);
+#endif
+
 /* decode_c_string_utf16.proto (used by decode_c_bytes) */
 static CYTHON_INLINE PyObject *__Pyx_PyUnicode_DecodeUTF16(const char *s, Py_ssize_t size, const char *errors) {
     int byteorder = 0;
@@ -3851,20 +3865,6 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #else
 #define __Pyx_ExceptionSave(type, value, tb)   PyErr_GetExcInfo(type, value, tb)
 #define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
-#endif
-
-/* HasAttr.proto */
-#if __PYX_LIMITED_VERSION_HEX >= 0x030d0000
-#define __Pyx_HasAttr(o, n)  PyObject_HasAttrWithError(o, n)
-#else
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
-#endif
-
-/* PyObjectFastCallMethod.proto */
-#if CYTHON_VECTORCALL && PY_VERSION_HEX >= 0x03090000
-#define __Pyx_PyObject_FastCallMethod(name, args, nargsf) PyObject_VectorcallMethod(name, args, nargsf, NULL)
-#else
-static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *args, size_t nargsf);
 #endif
 
 /* PyTypeError_Check.proto */
@@ -4324,6 +4324,7 @@ static int __Pyx_State_RemoveModule(void*);
 static struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *(*__pyx_f_11falcon_core_5_capi_10connection__connection_from_capi)(__pyx_t_6_c_api_ConnectionHandle, struct __pyx_opt_args_11falcon_core_5_capi_10connection__connection_from_capi *__pyx_optional_args); /*proto*/
 
 /* Module declarations from "falcon_core._capi.left_reservoir_with_implanted_ohmic" */
+static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_f_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi(__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args); /*proto*/
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
 #define __Pyx_MODULE_NAME "falcon_core._capi.left_reservoir_with_implanted_ohmic"
@@ -4337,19 +4338,20 @@ static PyObject *__pyx_builtin_NotImplemented;
 /* #### Code section: decls ### */
 static int __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic___cinit__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
 static void __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_2__dealloc__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_4new(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_name, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_right_neighbor, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_ohmic); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_6from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_8name(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_10type(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_12ohmic(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_14right_neighbor(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_16equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_18__eq__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_20not_equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_22__ne__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_24to_json(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_4from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_6new(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_name, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_right_neighbor, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_ohmic); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_8copy(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_10equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_12__eq__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_14not_equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_16__ne__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_18to_json(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_20name(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_22type(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_24ohmic(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_26right_neighbor(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -4378,8 +4380,8 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_items;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
-  PyObject *__pyx_codeobj_tab[11];
-  PyObject *__pyx_string_tab[83];
+  PyObject *__pyx_codeobj_tab[12];
+  PyObject *__pyx_string_tab[86];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -4436,73 +4438,76 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_LeftReservoirWithImplantedOhmic_10 __pyx_string_tab[13]
 #define __pyx_n_u_LeftReservoirWithImplantedOhmic_11 __pyx_string_tab[14]
 #define __pyx_n_u_LeftReservoirWithImplantedOhmic_12 __pyx_string_tab[15]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_2 __pyx_string_tab[16]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_3 __pyx_string_tab[17]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_4 __pyx_string_tab[18]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_5 __pyx_string_tab[19]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_6 __pyx_string_tab[20]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_7 __pyx_string_tab[21]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_8 __pyx_string_tab[22]
-#define __pyx_n_u_LeftReservoirWithImplantedOhmic_9 __pyx_string_tab[23]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[24]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[25]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[26]
-#define __pyx_n_u_b_json __pyx_string_tab[27]
-#define __pyx_n_u_b_name __pyx_string_tab[28]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[29]
-#define __pyx_n_u_cls __pyx_string_tab[30]
-#define __pyx_n_u_dict __pyx_string_tab[31]
-#define __pyx_n_u_equal __pyx_string_tab[32]
-#define __pyx_n_u_falcon_core__capi_left_reservoir __pyx_string_tab[33]
-#define __pyx_n_u_from_json __pyx_string_tab[34]
-#define __pyx_n_u_func __pyx_string_tab[35]
-#define __pyx_n_u_getstate __pyx_string_tab[36]
-#define __pyx_n_u_h __pyx_string_tab[37]
-#define __pyx_n_u_h_ret __pyx_string_tab[38]
-#define __pyx_n_u_handle __pyx_string_tab[39]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[40]
-#define __pyx_n_u_items __pyx_string_tab[41]
-#define __pyx_n_u_json __pyx_string_tab[42]
-#define __pyx_n_u_main __pyx_string_tab[43]
-#define __pyx_n_u_module __pyx_string_tab[44]
-#define __pyx_n_u_name __pyx_string_tab[45]
-#define __pyx_n_u_name_2 __pyx_string_tab[46]
-#define __pyx_n_u_new __pyx_string_tab[47]
-#define __pyx_n_u_not_equal __pyx_string_tab[48]
-#define __pyx_n_u_obj __pyx_string_tab[49]
-#define __pyx_n_u_ohmic __pyx_string_tab[50]
-#define __pyx_n_u_other __pyx_string_tab[51]
-#define __pyx_n_u_pop __pyx_string_tab[52]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[53]
-#define __pyx_n_u_pyx_state __pyx_string_tab[54]
-#define __pyx_n_u_qualname __pyx_string_tab[55]
-#define __pyx_n_u_reduce __pyx_string_tab[56]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[57]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[58]
-#define __pyx_n_u_right_neighbor __pyx_string_tab[59]
-#define __pyx_n_u_s_json __pyx_string_tab[60]
-#define __pyx_n_u_s_name __pyx_string_tab[61]
-#define __pyx_n_u_s_ret __pyx_string_tab[62]
-#define __pyx_n_u_self __pyx_string_tab[63]
-#define __pyx_n_u_set_name __pyx_string_tab[64]
-#define __pyx_n_u_setdefault __pyx_string_tab[65]
-#define __pyx_n_u_setstate __pyx_string_tab[66]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[67]
-#define __pyx_n_u_test __pyx_string_tab[68]
-#define __pyx_n_u_to_json __pyx_string_tab[69]
-#define __pyx_n_u_type __pyx_string_tab[70]
-#define __pyx_n_u_values __pyx_string_tab[71]
-#define __pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ __pyx_string_tab[72]
-#define __pyx_kp_b_iso88591_A_1D_kY__ffp_q __pyx_string_tab[73]
-#define __pyx_kp_b_iso88591_A_33YYZZ___6_Q_1_AQ __pyx_string_tab[74]
-#define __pyx_kp_b_iso88591_A_33bbccggh_6_Q_1_AQ __pyx_string_tab[75]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_Gq_2S_a_Qa_33TTWW __pyx_string_tab[76]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_QhnT__nnuu_Y_Y_a_a __pyx_string_tab[77]
-#define __pyx_kp_b_iso88591_A_EQd_6_1_AU_XWAQ __pyx_string_tab[78]
-#define __pyx_kp_b_iso88591_A_q_IUR_ccjjt_u_c_c_d __pyx_string_tab[79]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[80]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[81]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[82]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_13 __pyx_string_tab[16]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_2 __pyx_string_tab[17]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_3 __pyx_string_tab[18]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_4 __pyx_string_tab[19]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_5 __pyx_string_tab[20]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_6 __pyx_string_tab[21]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_7 __pyx_string_tab[22]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_8 __pyx_string_tab[23]
+#define __pyx_n_u_LeftReservoirWithImplantedOhmic_9 __pyx_string_tab[24]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[25]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[26]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[27]
+#define __pyx_n_u_b_json __pyx_string_tab[28]
+#define __pyx_n_u_b_name __pyx_string_tab[29]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[30]
+#define __pyx_n_u_cls __pyx_string_tab[31]
+#define __pyx_n_u_copy __pyx_string_tab[32]
+#define __pyx_n_u_dict __pyx_string_tab[33]
+#define __pyx_n_u_equal __pyx_string_tab[34]
+#define __pyx_n_u_falcon_core__capi_left_reservoir __pyx_string_tab[35]
+#define __pyx_n_u_from_json __pyx_string_tab[36]
+#define __pyx_n_u_func __pyx_string_tab[37]
+#define __pyx_n_u_getstate __pyx_string_tab[38]
+#define __pyx_n_u_h __pyx_string_tab[39]
+#define __pyx_n_u_h_ret __pyx_string_tab[40]
+#define __pyx_n_u_handle __pyx_string_tab[41]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[42]
+#define __pyx_n_u_items __pyx_string_tab[43]
+#define __pyx_n_u_json __pyx_string_tab[44]
+#define __pyx_n_u_main __pyx_string_tab[45]
+#define __pyx_n_u_module __pyx_string_tab[46]
+#define __pyx_n_u_name __pyx_string_tab[47]
+#define __pyx_n_u_name_2 __pyx_string_tab[48]
+#define __pyx_n_u_new __pyx_string_tab[49]
+#define __pyx_n_u_not_equal __pyx_string_tab[50]
+#define __pyx_n_u_obj __pyx_string_tab[51]
+#define __pyx_n_u_ohmic __pyx_string_tab[52]
+#define __pyx_n_u_other __pyx_string_tab[53]
+#define __pyx_n_u_pop __pyx_string_tab[54]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[55]
+#define __pyx_n_u_pyx_state __pyx_string_tab[56]
+#define __pyx_n_u_qualname __pyx_string_tab[57]
+#define __pyx_n_u_reduce __pyx_string_tab[58]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[59]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[60]
+#define __pyx_n_u_right_neighbor __pyx_string_tab[61]
+#define __pyx_n_u_s_json __pyx_string_tab[62]
+#define __pyx_n_u_s_name __pyx_string_tab[63]
+#define __pyx_n_u_s_ret __pyx_string_tab[64]
+#define __pyx_n_u_self __pyx_string_tab[65]
+#define __pyx_n_u_set_name __pyx_string_tab[66]
+#define __pyx_n_u_setdefault __pyx_string_tab[67]
+#define __pyx_n_u_setstate __pyx_string_tab[68]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[69]
+#define __pyx_n_u_test __pyx_string_tab[70]
+#define __pyx_n_u_to_json __pyx_string_tab[71]
+#define __pyx_n_u_type __pyx_string_tab[72]
+#define __pyx_n_u_values __pyx_string_tab[73]
+#define __pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ __pyx_string_tab[74]
+#define __pyx_kp_b_iso88591_A_1D_kY__ffp_q __pyx_string_tab[75]
+#define __pyx_kp_b_iso88591_A_33YYZZ___6_Q_1_AQ __pyx_string_tab[76]
+#define __pyx_kp_b_iso88591_A_33bbccggh_6_Q_1_AQ __pyx_string_tab[77]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_Gq_2S_a_Qa_33TTWW __pyx_string_tab[78]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_QhnT__nnuu_Y_Y_a_a __pyx_string_tab[79]
+#define __pyx_kp_b_iso88591_A_EQd_6_1_AU_XWAQ __pyx_string_tab[80]
+#define __pyx_kp_b_iso88591_A_HHmmnnrrs_6_B_1_Qa __pyx_string_tab[81]
+#define __pyx_kp_b_iso88591_A_q_IUR_ccjjt_u_c_c_d __pyx_string_tab[82]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[83]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[84]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[85]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -4521,8 +4526,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_10connection_Connection);
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic);
   Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic);
-  for (int i=0; i<11; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<83; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<12; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<86; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -4549,8 +4554,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_10connection_Connection);
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic);
   Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic);
-  for (int i=0; i<11; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<83; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<12; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<86; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -4715,40 +4720,38 @@ static void __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_
  * 
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
- *         cdef bytes b_name = name.encode("utf-8")
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5new(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5from_json(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5new = {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5new(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5from_json = {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5from_json(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  PyObject *__pyx_v_name = 0;
-  struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_right_neighbor = 0;
-  struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_ohmic = 0;
+  PyObject *__pyx_v_json = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[3] = {0,0,0};
+  PyObject* values[1] = {0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("new (wrapper)", 0);
+  __Pyx_RefNannySetupContext("from_json (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_SIZE
   __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -4758,19 +4761,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_right_neighbor,&__pyx_mstate_global->__pyx_n_u_ohmic,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_json,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
     if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 19, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
-        case  3:
-        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 19, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  2:
-        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 19, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
         if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 19, __pyx_L3_error)
@@ -4779,41 +4774,33 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new", 0) < (0)) __PYX_ERR(0, 19, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new", 1, 3, 3, i); __PYX_ERR(0, 19, __pyx_L3_error) }
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_json", 0) < (0)) __PYX_ERR(0, 19, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, i); __PYX_ERR(0, 19, __pyx_L3_error) }
       }
-    } else if (unlikely(__pyx_nargs != 3)) {
+    } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
       if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 19, __pyx_L3_error)
-      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 19, __pyx_L3_error)
-      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 19, __pyx_L3_error)
     }
-    __pyx_v_name = ((PyObject*)values[0]);
-    __pyx_v_right_neighbor = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[1]);
-    __pyx_v_ohmic = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[2]);
+    __pyx_v_json = ((PyObject*)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 19, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 19, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
     Py_XDECREF(values[__pyx_temp]);
   }
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.new", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_name), (&PyUnicode_Type), 1, "name", 1))) __PYX_ERR(0, 20, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_right_neighbor), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "right_neighbor", 0))) __PYX_ERR(0, 20, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ohmic), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "ohmic", 0))) __PYX_ERR(0, 20, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_4new(((PyTypeObject*)__pyx_v_cls), __pyx_v_name, __pyx_v_right_neighbor, __pyx_v_ohmic);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_json), (&PyUnicode_Type), 1, "json", 1))) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_4from_json(((PyTypeObject*)__pyx_v_cls), __pyx_v_json);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4832,9 +4819,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_4new(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_name, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_right_neighbor, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_ohmic) {
-  PyObject *__pyx_v_b_name = 0;
-  StringHandle __pyx_v_s_name;
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_4from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json) {
+  PyObject *__pyx_v_b_json = 0;
+  StringHandle __pyx_v_s_json;
   __pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -4842,48 +4829,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   PyObject *__pyx_t_1 = NULL;
   char const *__pyx_t_2;
   Py_ssize_t __pyx_t_3;
-  __pyx_t_6_c_api_ConnectionHandle __pyx_t_4;
-  int __pyx_t_5;
-  __pyx_t_6_c_api_ConnectionHandle __pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
-  size_t __pyx_t_8;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("new", 0);
+  __Pyx_RefNannySetupContext("from_json", 0);
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":21
  *     @classmethod
- *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
- *         cdef bytes b_name = name.encode("utf-8")             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
 */
-  if (unlikely(__pyx_v_name == Py_None)) {
+  if (unlikely(__pyx_v_json == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
     __PYX_ERR(0, 21, __pyx_L1_error)
   }
-  __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_json); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_b_name = ((PyObject*)__pyx_t_1);
+  __pyx_v_b_json = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":22
- *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
- *         cdef bytes b_name = name.encode("utf-8")
- *         cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))             # <<<<<<<<<<<<<<
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
+ *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))             # <<<<<<<<<<<<<<
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
  *         try:
 */
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_name); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyBytes_GET_SIZE(__pyx_v_b_name); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 22, __pyx_L1_error)
-  __pyx_v_s_name = String_create(__pyx_t_2, __pyx_t_3);
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_json); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_GET_SIZE(__pyx_v_b_json); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 22, __pyx_L1_error)
+  __pyx_v_s_json = String_create(__pyx_t_2, __pyx_t_3);
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":24
- *         cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))
+ *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
  *         try:             # <<<<<<<<<<<<<<
- *             h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0)
+ *             h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)
  *         finally:
 */
   /*try:*/ {
@@ -4891,35 +4876,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":25
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
  *         try:
- *             h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0)             # <<<<<<<<<<<<<<
+ *             h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)             # <<<<<<<<<<<<<<
  *         finally:
- *             _c_api.String_destroy(s_name)
+ *             _c_api.String_destroy(s_json)
 */
-    __pyx_t_5 = (((PyObject *)__pyx_v_right_neighbor) != Py_None);
-    if (__pyx_t_5) {
-      __pyx_t_4 = __pyx_v_right_neighbor->handle;
-    } else {
-      __pyx_t_4 = ((__pyx_t_6_c_api_ConnectionHandle)0);
-    }
-    __pyx_t_5 = (((PyObject *)__pyx_v_ohmic) != Py_None);
-    if (__pyx_t_5) {
-      __pyx_t_6 = __pyx_v_ohmic->handle;
-    } else {
-      __pyx_t_6 = ((__pyx_t_6_c_api_ConnectionHandle)0);
-    }
-    __pyx_v_h = LeftReservoirWithImplantedOhmic_create(__pyx_v_s_name, __pyx_t_4, __pyx_t_6);
+    __pyx_v_h = LeftReservoirWithImplantedOhmic_from_json_string(__pyx_v_s_json);
   }
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":27
- *             h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0)
+ *             h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)
  *         finally:
- *             _c_api.String_destroy(s_name)             # <<<<<<<<<<<<<<
+ *             _c_api.String_destroy(s_json)             # <<<<<<<<<<<<<<
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
 */
   /*finally:*/ {
     /*normal exit:*/{
-      String_destroy(__pyx_v_s_name);
+      String_destroy(__pyx_v_s_json);
       goto __pyx_L5;
     }
     __pyx_L5:;
@@ -4927,27 +4900,27 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":28
  *         finally:
- *             _c_api.String_destroy(s_name)
+ *             _c_api.String_destroy(s_json)
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
  *         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
 */
-  __pyx_t_5 = (__pyx_v_h == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
-  if (unlikely(__pyx_t_5)) {
+  __pyx_t_4 = (__pyx_v_h == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
+  if (unlikely(__pyx_t_4)) {
 
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":29
- *             _c_api.String_destroy(s_name)
+ *             _c_api.String_destroy(s_json)
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")             # <<<<<<<<<<<<<<
  *         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
  *         obj.handle = h
 */
-    __pyx_t_7 = NULL;
-    __pyx_t_8 = 1;
+    __pyx_t_5 = NULL;
+    __pyx_t_6 = 1;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_LeftReservoirWi};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_LeftReservoirWi};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
@@ -4957,7 +4930,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":28
  *         finally:
- *             _c_api.String_destroy(s_name)
+ *             _c_api.String_destroy(s_json)
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
  *         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
@@ -4977,11 +4950,11 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   }
   __pyx_t_1 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 30, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_7 = __pyx_t_1;
-  __Pyx_INCREF(__pyx_t_7);
+  __pyx_t_5 = __pyx_t_1;
+  __Pyx_INCREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_t_7);
-  __pyx_t_7 = 0;
+  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_t_5);
+  __pyx_t_5 = 0;
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":31
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
@@ -5017,18 +4990,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
  * 
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
- *         cdef bytes b_name = name.encode("utf-8")
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.new", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_b_name);
+  __Pyx_XDECREF(__pyx_v_b_json);
   __Pyx_XDECREF((PyObject *)__pyx_v_obj);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -5039,38 +5012,40 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
+ *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
+ *         cdef bytes b_name = name.encode("utf-8")
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7from_json(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7new(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7from_json = {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7from_json(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7new = {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7new(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
-  PyObject *__pyx_v_json = 0;
+  PyObject *__pyx_v_name = 0;
+  struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_right_neighbor = 0;
+  struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_ohmic = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
+  PyObject* values[3] = {0,0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("from_json (wrapper)", 0);
+  __Pyx_RefNannySetupContext("new (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_SIZE
   __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -5080,11 +5055,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_json,0};
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_name,&__pyx_mstate_global->__pyx_n_u_right_neighbor,&__pyx_mstate_global->__pyx_n_u_ohmic,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
     if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 35, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
+        case  3:
+        values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 35, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  2:
+        values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 35, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
         if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 35, __pyx_L3_error)
@@ -5093,33 +5076,41 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_json", 0) < (0)) __PYX_ERR(0, 35, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, i); __PYX_ERR(0, 35, __pyx_L3_error) }
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new", 0) < (0)) __PYX_ERR(0, 35, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new", 1, 3, 3, i); __PYX_ERR(0, 35, __pyx_L3_error) }
       }
-    } else if (unlikely(__pyx_nargs != 1)) {
+    } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
       if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 35, __pyx_L3_error)
+      values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 35, __pyx_L3_error)
+      values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 35, __pyx_L3_error)
     }
-    __pyx_v_json = ((PyObject*)values[0]);
+    __pyx_v_name = ((PyObject*)values[0]);
+    __pyx_v_right_neighbor = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[1]);
+    __pyx_v_ohmic = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[2]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 35, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 35, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
     Py_XDECREF(values[__pyx_temp]);
   }
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.new", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_json), (&PyUnicode_Type), 1, "json", 1))) __PYX_ERR(0, 36, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_6from_json(((PyTypeObject*)__pyx_v_cls), __pyx_v_json);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_name), (&PyUnicode_Type), 1, "name", 1))) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_right_neighbor), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "right_neighbor", 0))) __PYX_ERR(0, 36, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_ohmic), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "ohmic", 0))) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_6new(((PyTypeObject*)__pyx_v_cls), __pyx_v_name, __pyx_v_right_neighbor, __pyx_v_ohmic);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5138,9 +5129,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_6from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json) {
-  PyObject *__pyx_v_b_json = 0;
-  StringHandle __pyx_v_s_json;
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_6new(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_name, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_right_neighbor, struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *__pyx_v_ohmic) {
+  PyObject *__pyx_v_b_name = 0;
+  StringHandle __pyx_v_s_name;
   __pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -5148,46 +5139,48 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   PyObject *__pyx_t_1 = NULL;
   char const *__pyx_t_2;
   Py_ssize_t __pyx_t_3;
-  int __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  size_t __pyx_t_6;
+  __pyx_t_6_c_api_ConnectionHandle __pyx_t_4;
+  int __pyx_t_5;
+  __pyx_t_6_c_api_ConnectionHandle __pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  size_t __pyx_t_8;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("from_json", 0);
+  __Pyx_RefNannySetupContext("new", 0);
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":37
  *     @classmethod
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+ *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
+ *         cdef bytes b_name = name.encode("utf-8")             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
 */
-  if (unlikely(__pyx_v_json == Py_None)) {
+  if (unlikely(__pyx_v_name == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
     __PYX_ERR(0, 37, __pyx_L1_error)
   }
-  __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_json); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+  __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_b_json = ((PyObject*)__pyx_t_1);
+  __pyx_v_b_name = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":38
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
- *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))             # <<<<<<<<<<<<<<
+ *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
+ *         cdef bytes b_name = name.encode("utf-8")
+ *         cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))             # <<<<<<<<<<<<<<
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
  *         try:
 */
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_json); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyBytes_GET_SIZE(__pyx_v_b_json); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 38, __pyx_L1_error)
-  __pyx_v_s_json = String_create(__pyx_t_2, __pyx_t_3);
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_name); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_GET_SIZE(__pyx_v_b_name); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_v_s_name = String_create(__pyx_t_2, __pyx_t_3);
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":40
- *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+ *         cdef _c_api.StringHandle s_name = _c_api.String_create(b_name, len(b_name))
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
  *         try:             # <<<<<<<<<<<<<<
- *             h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)
+ *             h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0)
  *         finally:
 */
   /*try:*/ {
@@ -5195,23 +5188,35 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":41
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h
  *         try:
- *             h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)             # <<<<<<<<<<<<<<
+ *             h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0)             # <<<<<<<<<<<<<<
  *         finally:
- *             _c_api.String_destroy(s_json)
+ *             _c_api.String_destroy(s_name)
 */
-    __pyx_v_h = LeftReservoirWithImplantedOhmic_from_json_string(__pyx_v_s_json);
+    __pyx_t_5 = (((PyObject *)__pyx_v_right_neighbor) != Py_None);
+    if (__pyx_t_5) {
+      __pyx_t_4 = __pyx_v_right_neighbor->handle;
+    } else {
+      __pyx_t_4 = ((__pyx_t_6_c_api_ConnectionHandle)0);
+    }
+    __pyx_t_5 = (((PyObject *)__pyx_v_ohmic) != Py_None);
+    if (__pyx_t_5) {
+      __pyx_t_6 = __pyx_v_ohmic->handle;
+    } else {
+      __pyx_t_6 = ((__pyx_t_6_c_api_ConnectionHandle)0);
+    }
+    __pyx_v_h = LeftReservoirWithImplantedOhmic_create(__pyx_v_s_name, __pyx_t_4, __pyx_t_6);
   }
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":43
- *             h = _c_api.LeftReservoirWithImplantedOhmic_from_json_string(s_json)
+ *             h = _c_api.LeftReservoirWithImplantedOhmic_create(s_name, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0)
  *         finally:
- *             _c_api.String_destroy(s_json)             # <<<<<<<<<<<<<<
+ *             _c_api.String_destroy(s_name)             # <<<<<<<<<<<<<<
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
 */
   /*finally:*/ {
     /*normal exit:*/{
-      String_destroy(__pyx_v_s_json);
+      String_destroy(__pyx_v_s_name);
       goto __pyx_L5;
     }
     __pyx_L5:;
@@ -5219,27 +5224,27 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":44
  *         finally:
- *             _c_api.String_destroy(s_json)
+ *             _c_api.String_destroy(s_name)
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
  *         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
 */
-  __pyx_t_4 = (__pyx_v_h == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
-  if (unlikely(__pyx_t_4)) {
+  __pyx_t_5 = (__pyx_v_h == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
+  if (unlikely(__pyx_t_5)) {
 
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":45
- *             _c_api.String_destroy(s_json)
+ *             _c_api.String_destroy(s_name)
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")             # <<<<<<<<<<<<<<
  *         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
  *         obj.handle = h
 */
-    __pyx_t_5 = NULL;
-    __pyx_t_6 = 1;
+    __pyx_t_7 = NULL;
+    __pyx_t_8 = 1;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_LeftReservoirWi};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_LeftReservoirWi};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
@@ -5249,7 +5254,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":44
  *         finally:
- *             _c_api.String_destroy(s_json)
+ *             _c_api.String_destroy(s_name)
  *         if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
  *         cdef LeftReservoirWithImplantedOhmic obj = <LeftReservoirWithImplantedOhmic>cls.__new__(cls)
@@ -5269,11 +5274,11 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   }
   __pyx_t_1 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __pyx_t_1;
-  __Pyx_INCREF(__pyx_t_5);
+  __pyx_t_7 = __pyx_t_1;
+  __Pyx_INCREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_t_5);
-  __pyx_t_5 = 0;
+  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_t_7);
+  __pyx_t_7 = 0;
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":47
  *             raise MemoryError("Failed to create LeftReservoirWithImplantedOhmic")
@@ -5298,7 +5303,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def name(self, ):
+ *     def copy(self, ):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -5309,18 +5314,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
+ *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
+ *         cdef bytes b_name = name.encode("utf-8")
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_7);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.new", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_b_json);
+  __Pyx_XDECREF(__pyx_v_b_name);
   __Pyx_XDECREF((PyObject *)__pyx_v_obj);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -5330,21 +5335,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":51
  *         return obj
  * 
- *     def name(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9name(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9name = {"name", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9name, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9name(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9copy = {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5357,7 +5362,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("name (wrapper)", 0);
+  __Pyx_RefNannySetupContext("copy (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_SIZE
   __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -5366,648 +5371,93 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("name", 1, 0, 0, __pyx_nargs); return NULL; }
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("copy", 1, 0, 0, __pyx_nargs); return NULL; }
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("name", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_8name(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("copy", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_8copy(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_8name(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
-  StringHandle __pyx_v_s_ret;
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_8copy(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+  __pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
-  int __pyx_t_5;
-  char const *__pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
-  PyObject *__pyx_t_11 = NULL;
-  PyObject *__pyx_t_12 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("name", 0);
+  __Pyx_RefNannySetupContext("copy", 0);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":52
+ * 
+ *     def copy(self, ):
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = LeftReservoirWithImplantedOhmic_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":53
- *     def name(self, ):
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *     def copy(self, ):
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
 */
-  __pyx_v_s_ret = LeftReservoirWithImplantedOhmic_name(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":54
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
-  __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":55
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
-    __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
-    goto __pyx_L0;
 
     /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":54
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":56
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
-*/
-  /*try:*/ {
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":57
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L5_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (unlikely(__pyx_t_2 == Py_None)) {
-      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 57, __pyx_L5_error)
-    }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L5_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_r = __pyx_t_3;
-    __pyx_t_3 = 0;
-    goto __pyx_L4_return;
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":59
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
- * 
- *     def type(self, ):
-*/
-  /*finally:*/ {
-    __pyx_L5_error:;
-    /*exception exit:*/{
-      __Pyx_PyThreadState_declare
-      __Pyx_PyThreadState_assign
-      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-       __Pyx_ExceptionSwap(&__pyx_t_10, &__pyx_t_11, &__pyx_t_12);
-      if ( unlikely(__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0)) __Pyx_ErrFetch(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9);
-      __Pyx_XGOTREF(__pyx_t_7);
-      __Pyx_XGOTREF(__pyx_t_8);
-      __Pyx_XGOTREF(__pyx_t_9);
-      __Pyx_XGOTREF(__pyx_t_10);
-      __Pyx_XGOTREF(__pyx_t_11);
-      __Pyx_XGOTREF(__pyx_t_12);
-      __pyx_t_4 = __pyx_lineno; __pyx_t_5 = __pyx_clineno; __pyx_t_6 = __pyx_filename;
-      {
-        String_destroy(__pyx_v_s_ret);
-      }
-      __Pyx_XGIVEREF(__pyx_t_10);
-      __Pyx_XGIVEREF(__pyx_t_11);
-      __Pyx_XGIVEREF(__pyx_t_12);
-      __Pyx_ExceptionReset(__pyx_t_10, __pyx_t_11, __pyx_t_12);
-      __Pyx_XGIVEREF(__pyx_t_7);
-      __Pyx_XGIVEREF(__pyx_t_8);
-      __Pyx_XGIVEREF(__pyx_t_9);
-      __Pyx_ErrRestore(__pyx_t_7, __pyx_t_8, __pyx_t_9);
-      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
-      __pyx_lineno = __pyx_t_4; __pyx_clineno = __pyx_t_5; __pyx_filename = __pyx_t_6;
-      goto __pyx_L1_error;
-    }
-    __pyx_L4_return: {
-      __pyx_t_12 = __pyx_r;
-      __pyx_r = 0;
-      String_destroy(__pyx_v_s_ret);
-      __pyx_r = __pyx_t_12;
-      __pyx_t_12 = 0;
-      goto __pyx_L0;
-    }
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":51
- *         return obj
- * 
- *     def name(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.name", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":61
- *             _c_api.String_destroy(s_ret)
- * 
- *     def type(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11type(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11type = {"type", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11type, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11type(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("type (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("type", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("type", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_10type(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_10type(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
-  StringHandle __pyx_v_s_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
-  int __pyx_t_5;
-  char const *__pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  PyObject *__pyx_t_10 = NULL;
-  PyObject *__pyx_t_11 = NULL;
-  PyObject *__pyx_t_12 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("type", 0);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":63
- *     def type(self, ):
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
-*/
-  __pyx_v_s_ret = LeftReservoirWithImplantedOhmic_type(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":64
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
-  __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":65
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
-    __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
-    goto __pyx_L0;
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":64
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":66
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
-*/
-  /*try:*/ {
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":67
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 67, __pyx_L5_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (unlikely(__pyx_t_2 == Py_None)) {
-      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 67, __pyx_L5_error)
-    }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L5_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_r = __pyx_t_3;
-    __pyx_t_3 = 0;
-    goto __pyx_L4_return;
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":69
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
- * 
- *     def ohmic(self, ):
-*/
-  /*finally:*/ {
-    __pyx_L5_error:;
-    /*exception exit:*/{
-      __Pyx_PyThreadState_declare
-      __Pyx_PyThreadState_assign
-      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-       __Pyx_ExceptionSwap(&__pyx_t_10, &__pyx_t_11, &__pyx_t_12);
-      if ( unlikely(__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0)) __Pyx_ErrFetch(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9);
-      __Pyx_XGOTREF(__pyx_t_7);
-      __Pyx_XGOTREF(__pyx_t_8);
-      __Pyx_XGOTREF(__pyx_t_9);
-      __Pyx_XGOTREF(__pyx_t_10);
-      __Pyx_XGOTREF(__pyx_t_11);
-      __Pyx_XGOTREF(__pyx_t_12);
-      __pyx_t_4 = __pyx_lineno; __pyx_t_5 = __pyx_clineno; __pyx_t_6 = __pyx_filename;
-      {
-        String_destroy(__pyx_v_s_ret);
-      }
-      __Pyx_XGIVEREF(__pyx_t_10);
-      __Pyx_XGIVEREF(__pyx_t_11);
-      __Pyx_XGIVEREF(__pyx_t_12);
-      __Pyx_ExceptionReset(__pyx_t_10, __pyx_t_11, __pyx_t_12);
-      __Pyx_XGIVEREF(__pyx_t_7);
-      __Pyx_XGIVEREF(__pyx_t_8);
-      __Pyx_XGIVEREF(__pyx_t_9);
-      __Pyx_ErrRestore(__pyx_t_7, __pyx_t_8, __pyx_t_9);
-      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
-      __pyx_lineno = __pyx_t_4; __pyx_clineno = __pyx_t_5; __pyx_filename = __pyx_t_6;
-      goto __pyx_L1_error;
-    }
-    __pyx_L4_return: {
-      __pyx_t_12 = __pyx_r;
-      __pyx_r = 0;
-      String_destroy(__pyx_v_s_ret);
-      __pyx_r = __pyx_t_12;
-      __pyx_t_12 = 0;
-      goto __pyx_L0;
-    }
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":61
- *             _c_api.String_destroy(s_ret)
- * 
- *     def type(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.type", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":71
- *             _c_api.String_destroy(s_ret)
- * 
- *     def ohmic(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13ohmic(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13ohmic = {"ohmic", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13ohmic, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13ohmic(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("ohmic (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("ohmic", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("ohmic", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_12ohmic(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_12ohmic(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
-  __pyx_t_6_c_api_ConnectionHandle __pyx_v_h_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("ohmic", 0);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":72
- * 
- *     def ohmic(self, ):
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionHandle>0:
- *             return None
-*/
-  __pyx_v_h_ret = LeftReservoirWithImplantedOhmic_ohmic(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":73
- *     def ohmic(self, ):
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connection_from_capi(h_ret)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":74
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *             return None             # <<<<<<<<<<<<<<
- *         return _connection_from_capi(h_ret)
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":73
- *     def ohmic(self, ):
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":53
+ *     def copy(self, ):
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
  *             return None
- *         return _connection_from_capi(h_ret)
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
 */
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":75
- *         if h_ret == <_c_api.ConnectionHandle>0:
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":55
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *             return None
- *         return _connection_from_capi(h_ret)             # <<<<<<<<<<<<<<
- * 
- *     def right_neighbor(self, ):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_10connection__connection_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":71
- *             _c_api.String_destroy(s_ret)
- * 
- *     def ohmic(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.ohmic", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":77
- *         return _connection_from_capi(h_ret)
- * 
- *     def right_neighbor(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15right_neighbor(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15right_neighbor = {"right_neighbor", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15right_neighbor, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15right_neighbor(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("right_neighbor (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("right_neighbor", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("right_neighbor", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_14right_neighbor(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_14right_neighbor(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
-  __pyx_t_6_c_api_ConnectionHandle __pyx_v_h_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("right_neighbor", 0);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":78
- * 
- *     def right_neighbor(self, ):
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionHandle>0:
- *             return None
-*/
-  __pyx_v_h_ret = LeftReservoirWithImplantedOhmic_right_neighbor(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":79
- *     def right_neighbor(self, ):
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connection_from_capi(h_ret)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":80
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _connection_from_capi(h_ret)
- * 
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-    goto __pyx_L0;
-
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":79
- *     def right_neighbor(self, ):
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connection_from_capi(h_ret)
-*/
-  }
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":81
- *         if h_ret == <_c_api.ConnectionHandle>0:
- *             return None
- *         return _connection_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)             # <<<<<<<<<<<<<<
  * 
  *     def equal(self, LeftReservoirWithImplantedOhmic other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_10connection__connection_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":77
- *         return _connection_from_capi(h_ret)
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":51
+ *         return obj
  * 
- *     def right_neighbor(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.right_neighbor", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.copy", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6015,8 +5465,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":83
- *         return _connection_from_capi(h_ret)
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":57
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
  * 
  *     def equal(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
  *         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
@@ -6024,15 +5474,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6062,32 +5512,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 57, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 57, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 83, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 57, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 57, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6098,8 +5548,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_16equal(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), __pyx_v_other);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_10equal(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6118,7 +5568,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_16equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_10equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle __pyx_t_1;
@@ -6129,7 +5579,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":84
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":58
  * 
  *     def equal(self, LeftReservoirWithImplantedOhmic other):
  *         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)             # <<<<<<<<<<<<<<
@@ -6143,14 +5593,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(LeftReservoirWithImplantedOhmic_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(LeftReservoirWithImplantedOhmic_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":83
- *         return _connection_from_capi(h_ret)
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":57
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
  * 
  *     def equal(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
  *         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
@@ -6168,7 +5618,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":86
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":60
  *         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
  * 
  *     def __eq__(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
@@ -6177,8 +5627,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -6187,8 +5637,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_18__eq__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_other));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_12__eq__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -6201,7 +5651,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_18__eq__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_12__eq__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -6214,18 +5664,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":87
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":61
  * 
  *     def __eq__(self, LeftReservoirWithImplantedOhmic other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
  *         return self.equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 61, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":88
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":62
  *     def __eq__(self, LeftReservoirWithImplantedOhmic other):
  *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -6237,7 +5687,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":87
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":61
  * 
  *     def __eq__(self, LeftReservoirWithImplantedOhmic other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
@@ -6246,7 +5696,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":89
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":63
  *         if not hasattr(other, "handle"):
  *             return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
@@ -6261,14 +5711,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":86
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":60
  *         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
  * 
  *     def __eq__(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
@@ -6288,7 +5738,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":91
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":65
  *         return self.equal(other)
  * 
  *     def not_equal(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
@@ -6297,15 +5747,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21not_equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21not_equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6335,32 +5785,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 65, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 65, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 91, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 65, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 65, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6371,8 +5821,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 91, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_20not_equal(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), __pyx_v_other);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_14not_equal(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6391,7 +5841,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_20not_equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_14not_equal(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle __pyx_t_1;
@@ -6402,7 +5852,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":92
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":66
  * 
  *     def not_equal(self, LeftReservoirWithImplantedOhmic other):
  *         return _c_api.LeftReservoirWithImplantedOhmic_not_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)             # <<<<<<<<<<<<<<
@@ -6416,13 +5866,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(LeftReservoirWithImplantedOhmic_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(LeftReservoirWithImplantedOhmic_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":91
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":65
  *         return self.equal(other)
  * 
  *     def not_equal(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
@@ -6441,7 +5891,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":94
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":68
  *         return _c_api.LeftReservoirWithImplantedOhmic_not_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
  * 
  *     def __ne__(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
@@ -6450,8 +5900,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -6460,8 +5910,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_22__ne__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_other));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, 1, "other", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_16__ne__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -6474,7 +5924,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_22__ne__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_16__ne__(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -6487,18 +5937,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":95
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":69
  * 
  *     def __ne__(self, LeftReservoirWithImplantedOhmic other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
  *         return self.not_equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":96
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":70
  *     def __ne__(self, LeftReservoirWithImplantedOhmic other):
  *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -6510,7 +5960,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":95
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":69
  * 
  *     def __ne__(self, LeftReservoirWithImplantedOhmic other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
@@ -6519,7 +5969,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":97
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":71
  *         if not hasattr(other, "handle"):
  *             return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
@@ -6534,14 +5984,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":94
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":68
  *         return _c_api.LeftReservoirWithImplantedOhmic_not_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
  * 
  *     def __ne__(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
@@ -6561,7 +6011,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":99
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":73
  *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
@@ -6570,15 +6020,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25to_json(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25to_json(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6604,14 +6054,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("to_json", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_24to_json(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_18to_json(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_24to_json(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_18to_json(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
   StringHandle __pyx_v_s_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -6632,7 +6082,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":101
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":75
  *     def to_json(self, ):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_to_json_string(self.handle)             # <<<<<<<<<<<<<<
@@ -6641,7 +6091,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
   __pyx_v_s_ret = LeftReservoirWithImplantedOhmic_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":102
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":76
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -6651,7 +6101,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":103
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":77
  *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""             # <<<<<<<<<<<<<<
@@ -6663,7 +6113,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":102
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":76
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -6672,7 +6122,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":104
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":78
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""
  *         try:             # <<<<<<<<<<<<<<
@@ -6681,7 +6131,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
   /*try:*/ {
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":105
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":79
  *             return ""
  *         try:
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
@@ -6689,13 +6139,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
  *             _c_api.String_destroy(s_ret)
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 105, __pyx_L5_error)
+      __PYX_ERR(0, 79, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -6703,12 +6153,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":107
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":81
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
  *         finally:
  *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
- * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):
+ *     def name(self, ):
 */
   /*finally:*/ {
     __pyx_L5_error:;
@@ -6752,7 +6202,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
     }
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":99
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":73
  *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
@@ -6772,6 +6222,694 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":83
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def name(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21name(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21name = {"name", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21name, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21name(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("name (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("name", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("name", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_20name(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_20name(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+  StringHandle __pyx_v_s_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  char const *__pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11 = NULL;
+  PyObject *__pyx_t_12 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("name", 0);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":85
+ *     def name(self, ):
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)             # <<<<<<<<<<<<<<
+ *         if s_ret == <_c_api.StringHandle>0:
+ *             return ""
+*/
+  __pyx_v_s_ret = LeftReservoirWithImplantedOhmic_name(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":86
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
+ *             return ""
+ *         try:
+*/
+  __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":87
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0:
+ *             return ""             # <<<<<<<<<<<<<<
+ *         try:
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
+    __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":86
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
+ *             return ""
+ *         try:
+*/
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":88
+ *         if s_ret == <_c_api.StringHandle>0:
+ *             return ""
+ *         try:             # <<<<<<<<<<<<<<
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally:
+*/
+  /*try:*/ {
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":89
+ *             return ""
+ *         try:
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally:
+ *             _c_api.String_destroy(s_ret)
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L5_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (unlikely(__pyx_t_2 == Py_None)) {
+      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
+      __PYX_ERR(0, 89, __pyx_L5_error)
+    }
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L5_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_r = __pyx_t_3;
+    __pyx_t_3 = 0;
+    goto __pyx_L4_return;
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":91
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally:
+ *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def type(self, ):
+*/
+  /*finally:*/ {
+    __pyx_L5_error:;
+    /*exception exit:*/{
+      __Pyx_PyThreadState_declare
+      __Pyx_PyThreadState_assign
+      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+       __Pyx_ExceptionSwap(&__pyx_t_10, &__pyx_t_11, &__pyx_t_12);
+      if ( unlikely(__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0)) __Pyx_ErrFetch(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9);
+      __Pyx_XGOTREF(__pyx_t_7);
+      __Pyx_XGOTREF(__pyx_t_8);
+      __Pyx_XGOTREF(__pyx_t_9);
+      __Pyx_XGOTREF(__pyx_t_10);
+      __Pyx_XGOTREF(__pyx_t_11);
+      __Pyx_XGOTREF(__pyx_t_12);
+      __pyx_t_4 = __pyx_lineno; __pyx_t_5 = __pyx_clineno; __pyx_t_6 = __pyx_filename;
+      {
+        String_destroy(__pyx_v_s_ret);
+      }
+      __Pyx_XGIVEREF(__pyx_t_10);
+      __Pyx_XGIVEREF(__pyx_t_11);
+      __Pyx_XGIVEREF(__pyx_t_12);
+      __Pyx_ExceptionReset(__pyx_t_10, __pyx_t_11, __pyx_t_12);
+      __Pyx_XGIVEREF(__pyx_t_7);
+      __Pyx_XGIVEREF(__pyx_t_8);
+      __Pyx_XGIVEREF(__pyx_t_9);
+      __Pyx_ErrRestore(__pyx_t_7, __pyx_t_8, __pyx_t_9);
+      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
+      __pyx_lineno = __pyx_t_4; __pyx_clineno = __pyx_t_5; __pyx_filename = __pyx_t_6;
+      goto __pyx_L1_error;
+    }
+    __pyx_L4_return: {
+      __pyx_t_12 = __pyx_r;
+      __pyx_r = 0;
+      String_destroy(__pyx_v_s_ret);
+      __pyx_r = __pyx_t_12;
+      __pyx_t_12 = 0;
+      goto __pyx_L0;
+    }
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":83
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def name(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.name", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":93
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def type(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23type(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23type = {"type", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23type, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23type(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("type (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("type", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("type", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_22type(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_22type(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+  StringHandle __pyx_v_s_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  char const *__pyx_t_6;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  PyObject *__pyx_t_11 = NULL;
+  PyObject *__pyx_t_12 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("type", 0);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":95
+ *     def type(self, ):
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)             # <<<<<<<<<<<<<<
+ *         if s_ret == <_c_api.StringHandle>0:
+ *             return ""
+*/
+  __pyx_v_s_ret = LeftReservoirWithImplantedOhmic_type(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":96
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
+ *             return ""
+ *         try:
+*/
+  __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":97
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0:
+ *             return ""             # <<<<<<<<<<<<<<
+ *         try:
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
+    __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":96
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
+ *             return ""
+ *         try:
+*/
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":98
+ *         if s_ret == <_c_api.StringHandle>0:
+ *             return ""
+ *         try:             # <<<<<<<<<<<<<<
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally:
+*/
+  /*try:*/ {
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":99
+ *             return ""
+ *         try:
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally:
+ *             _c_api.String_destroy(s_ret)
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L5_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (unlikely(__pyx_t_2 == Py_None)) {
+      PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
+      __PYX_ERR(0, 99, __pyx_L5_error)
+    }
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L5_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_r = __pyx_t_3;
+    __pyx_t_3 = 0;
+    goto __pyx_L4_return;
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":101
+ *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally:
+ *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def ohmic(self, ):
+*/
+  /*finally:*/ {
+    __pyx_L5_error:;
+    /*exception exit:*/{
+      __Pyx_PyThreadState_declare
+      __Pyx_PyThreadState_assign
+      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+       __Pyx_ExceptionSwap(&__pyx_t_10, &__pyx_t_11, &__pyx_t_12);
+      if ( unlikely(__Pyx_GetException(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9) < 0)) __Pyx_ErrFetch(&__pyx_t_7, &__pyx_t_8, &__pyx_t_9);
+      __Pyx_XGOTREF(__pyx_t_7);
+      __Pyx_XGOTREF(__pyx_t_8);
+      __Pyx_XGOTREF(__pyx_t_9);
+      __Pyx_XGOTREF(__pyx_t_10);
+      __Pyx_XGOTREF(__pyx_t_11);
+      __Pyx_XGOTREF(__pyx_t_12);
+      __pyx_t_4 = __pyx_lineno; __pyx_t_5 = __pyx_clineno; __pyx_t_6 = __pyx_filename;
+      {
+        String_destroy(__pyx_v_s_ret);
+      }
+      __Pyx_XGIVEREF(__pyx_t_10);
+      __Pyx_XGIVEREF(__pyx_t_11);
+      __Pyx_XGIVEREF(__pyx_t_12);
+      __Pyx_ExceptionReset(__pyx_t_10, __pyx_t_11, __pyx_t_12);
+      __Pyx_XGIVEREF(__pyx_t_7);
+      __Pyx_XGIVEREF(__pyx_t_8);
+      __Pyx_XGIVEREF(__pyx_t_9);
+      __Pyx_ErrRestore(__pyx_t_7, __pyx_t_8, __pyx_t_9);
+      __pyx_t_7 = 0; __pyx_t_8 = 0; __pyx_t_9 = 0; __pyx_t_10 = 0; __pyx_t_11 = 0; __pyx_t_12 = 0;
+      __pyx_lineno = __pyx_t_4; __pyx_clineno = __pyx_t_5; __pyx_filename = __pyx_t_6;
+      goto __pyx_L1_error;
+    }
+    __pyx_L4_return: {
+      __pyx_t_12 = __pyx_r;
+      __pyx_r = 0;
+      String_destroy(__pyx_v_s_ret);
+      __pyx_r = __pyx_t_12;
+      __pyx_t_12 = 0;
+      goto __pyx_L0;
+    }
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":93
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def type(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.type", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":103
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def ohmic(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25ohmic(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25ohmic = {"ohmic", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25ohmic, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25ohmic(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("ohmic (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("ohmic", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("ohmic", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_24ohmic(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_24ohmic(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+  __pyx_t_6_c_api_ConnectionHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("ohmic", 0);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":104
+ * 
+ *     def ohmic(self, ):
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = LeftReservoirWithImplantedOhmic_ohmic(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":105
+ *     def ohmic(self, ):
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _connection_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":106
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _connection_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":105
+ *     def ohmic(self, ):
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _connection_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":107
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+ *             return None
+ *         return _connection_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def right_neighbor(self, ):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_10connection__connection_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":103
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def ohmic(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.ohmic", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":109
+ *         return _connection_from_capi(h_ret)
+ * 
+ *     def right_neighbor(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27right_neighbor(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27right_neighbor = {"right_neighbor", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27right_neighbor, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27right_neighbor(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("right_neighbor (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("right_neighbor", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("right_neighbor", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_26right_neighbor(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_26right_neighbor(struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+  __pyx_t_6_c_api_ConnectionHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("right_neighbor", 0);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":110
+ * 
+ *     def right_neighbor(self, ):
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = LeftReservoirWithImplantedOhmic_right_neighbor(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":111
+ *     def right_neighbor(self, ):
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _connection_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":112
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _connection_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":111
+ *     def right_neighbor(self, ):
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _connection_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":113
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+ *             return None
+ *         return _connection_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_10connection__connection_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":109
+ *         return _connection_from_capi(h_ret)
+ * 
+ *     def right_neighbor(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.left_reservoir_with_implanted_ohmic.LeftReservoirWithImplantedOhmic.right_neighbor", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
@@ -6779,15 +6917,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6813,14 +6951,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_26__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_28__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_26__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -6860,15 +6998,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_31__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_31__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_31__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_31__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6934,7 +7072,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_28__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_30__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -6944,7 +7082,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_28__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -6976,8 +7114,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_35left_reservoir_with_implanted_o
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":109
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":115
+ *         return _connection_from_capi(h_ret)
  * 
  * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
@@ -7001,7 +7139,7 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
     }
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":110
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":116
  * 
  * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):
  *     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
@@ -7011,7 +7149,7 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":111
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":117
  * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):
  *     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -7022,7 +7160,7 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":110
+    /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":116
  * 
  * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):
  *     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
@@ -7031,19 +7169,19 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
 */
   }
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":112
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":118
  *     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
  *         return None
  *     cdef LeftReservoirWithImplantedOhmic obj = LeftReservoirWithImplantedOhmic.__new__(LeftReservoirWithImplantedOhmic)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":113
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":119
  *         return None
  *     cdef LeftReservoirWithImplantedOhmic obj = LeftReservoirWithImplantedOhmic.__new__(LeftReservoirWithImplantedOhmic)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -7052,7 +7190,7 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":114
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":120
  *     cdef LeftReservoirWithImplantedOhmic obj = LeftReservoirWithImplantedOhmic.__new__(LeftReservoirWithImplantedOhmic)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -7060,7 +7198,7 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":115
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":121
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -7070,8 +7208,8 @@ static struct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohm
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":109
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":115
+ *         return _connection_from_capi(h_ret)
  * 
  * cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
@@ -7135,10 +7273,10 @@ static void __pyx_tp_dealloc_11falcon_core_5_capi_35left_reservoir_with_implante
 static PyObject *__pyx_tp_richcompare_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic(PyObject *o1, PyObject *o2, int op) {
   switch (op) {
     case Py_EQ: {
-      return __pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19__eq__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13__eq__(o1, o2);
     }
     case Py_NE: {
-      return __pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23__ne__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17__ne__(o1, o2);
     }
     default: {
       return __Pyx_NewRef(Py_NotImplemented);
@@ -7147,17 +7285,18 @@ static PyObject *__pyx_tp_richcompare_11falcon_core_5_capi_35left_reservoir_with
 }
 
 static PyMethodDef __pyx_methods_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic[] = {
-  {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"name", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9name, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"type", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11type, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"ohmic", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13ohmic, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"right_neighbor", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15right_neighbor, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"name", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21name, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"type", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23type, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"ohmic", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25ohmic, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"right_neighbor", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27right_neighbor, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_31__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
@@ -7717,149 +7856,164 @@ __Pyx_RefNannySetupContext("PyInit_left_reservoir_with_implanted_ohmic", 0);
  * 
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
- *         cdef bytes b_name = name.encode("utf-8")
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5new, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_2, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_5from_json, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_2, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_2) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_2) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_from_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_3) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_3) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":35
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
+ *     def new(cls, str name, Connection right_neighbor, Connection ohmic):
+ *         cdef bytes b_name = name.encode("utf-8")
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7from_json, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_3, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_7new, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_3, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_3) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_3) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_from_json); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_2) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_2) < (0)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":51
  *         return obj
  * 
- *     def name(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_copy(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9name, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_4, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_9copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_4, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_name, __pyx_t_2) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_2) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":61
- *             _c_api.String_destroy(s_ret)
- * 
- *     def type(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11type, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_5, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_type, __pyx_t_2) < (0)) __PYX_ERR(0, 61, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":71
- *             _c_api.String_destroy(s_ret)
- * 
- *     def ohmic(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_13ohmic, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_6, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_ohmic, __pyx_t_2) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":77
- *         return _connection_from_capi(h_ret)
- * 
- *     def right_neighbor(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
- *         if h_ret == <_c_api.ConnectionHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15right_neighbor, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_7, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_right_neighbor, __pyx_t_2) < (0)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":83
- *         return _connection_from_capi(h_ret)
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":57
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
  * 
  *     def equal(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
  *         return _c_api.LeftReservoirWithImplantedOhmic_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_17equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_8, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_5, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":91
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":65
  *         return self.equal(other)
  * 
  *     def not_equal(self, LeftReservoirWithImplantedOhmic other):             # <<<<<<<<<<<<<<
  *         return _c_api.LeftReservoirWithImplantedOhmic_not_equal(self.handle, other.handle if other is not None else <_c_api.LeftReservoirWithImplantedOhmicHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_9, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_6, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":99
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":73
  *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_to_json_string(self.handle)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_10, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_7, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":83
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def name(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_name(self.handle)
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_21name, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_8, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_name, __pyx_t_2) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":93
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def type(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_ret
+ *         s_ret = _c_api.LeftReservoirWithImplantedOhmic_type(self.handle)
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_23type, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_9, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_type, __pyx_t_2) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":103
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def ohmic(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_25ohmic, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_10, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_ohmic, __pyx_t_2) < (0)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx":109
+ *         return _connection_from_capi(h_ret)
+ * 
+ *     def right_neighbor(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
+ *         if h_ret == <_c_api.ConnectionHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27right_neighbor, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_11, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic, __pyx_mstate_global->__pyx_n_u_right_neighbor, __pyx_t_2) < (0)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
@@ -7867,7 +8021,7 @@ __Pyx_RefNannySetupContext("PyInit_left_reservoir_with_implanted_ohmic", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_27__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_11, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_12, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -7881,7 +8035,7 @@ __Pyx_RefNannySetupContext("PyInit_left_reservoir_with_implanted_ohmic", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_29__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_12, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_31LeftReservoirWithImplantedOhmic_31__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_LeftReservoirWithImplantedOhmic_13, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_left_reservoir, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -7936,7 +8090,7 @@ __Pyx_RefNannySetupContext("PyInit_left_reservoir_with_implanted_ohmic", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 62, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
@@ -7963,31 +8117,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{48},{179},{1},{8},{7},{6},{2},{9},{50},{61},{14},{31},{39},{49},{51},{35},{41},{36},{36},{37},{46},{37},{41},{14},{20},{18},{6},{6},{18},{3},{8},{5},{53},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{10},{4},{8},{3},{9},{3},{5},{5},{3},{12},{11},{12},{10},{17},{13},{14},{6},{6},{5},{4},{12},{10},{12},{19},{8},{7},{4},{6},{63},{41},{44},{44},{106},{183},{63},{42},{9},{361},{219}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1243 bytes) */
-const char* const cstring = "BZh91AY&SY\003\306/\217\000\000\274\177\377\376\375\377\004e\377\377\177\357\345\376\367\377\377\377\340\300@@@@@@@@@@@@\000@\000P\004o\007T\007\240\002\216\270j(\215\265\021\200F\002i\200M\006\000\203&##\000L\230\t\200\01040\016\000\001\240\001\240\r\000\000\0321\000\003@\000\000\000\003@\006\246\211\222\230\203LF\217Q\3514\323\010\032d\r\030\203 \310\3012\000\321\223F&\203M\r\001\225!\351\250\233LP1\244`\200\320d2i\240\014\215\r\032\000\006C 1\0324\030\022H &\247\241\240\214L&\202\231\251\243L\230\2320\232l\246\232\0324\006@4\3654zOMO#$\334@B\2021\005\024\nPPR\002\213\370\376u\177\r\177~\024\321{Y\261\2075\313f8\307\030\306E,\357+\235\317o\230\365\217=\203\00000\241\2342\260\207\210\347=\203\301\211C\t0m\220\030\\\340\341kJ8\032\014\314pq_\34198\373\322I\255\024x8e9;\271\246\332\214[L3w\310\2325*{\245f\226\326\261\330\014#\206\353\031\017\367\271\337-\035\241\341\317\230\254\355\236kr\223G(\330\\e`\036\316\371\314\346A8=\242\240\274VD\322\022\207\327\341\200x\206$\r,\033\333\334\316\271\274t#\331\316t\213\205\323\340\002=\272\314\335\037a\252g\305\312Q\336\262\217\223\030\332;\030*-?\324#U\206\240\221\334\330\351LC\030\325\222\220\355\200\350:\304X01\033V\000g\034\266\010\221y}%1\350(5\365\344'n\334 \333\3048[\216\300#0\357G\324B#\207\200c\014\3042\270:\332\0100\nPx\200\002\350] \344L\223F\207YNr\346\220:\247\336A\373\265vaD\030\260\244\331\036~g1'\225\337\240R\353\0147Ef\240B\226gB\246hj6\350\242v(=t>JYS\030\270~\255\025\016\023\003\301@T\310\361A5F\310\271M\033>\2755\023\025\276zZ\212\374\3746g\336%5\304\345\036x%{7\020\357\006\204#]\005\203\014\033/-I\227\",h\033\247\214\352\0160\333\232\303\025\375\013\306\265\013\376\346\276\354\250WY\026\232\370\303$>\322(\205\250\311\276\370\345+\347\302.\002t\035\032nT\016S\001\020\237\355\323\\D\035\006\026\245\031\032v\204\211\204\354=]YM\212\356\230\260\231\363\354\274\036\346\230\221\343\231\356fmHE\361\200\237\323\215r\244\207A\021wR\374}\222[\222\340\241d%\n0\341\323\266\260\n\257\322\222He+.Ix\013\233\324\226\341H,M"")O&\016K\207\275\341\013\026\211\202\366\254\020\207\224\273Np\226\340F[\020\214\014\254\031Q\312\202\343\0030\302z m\265\340Z\366k$\216L\225\3301\243\035b\251\356\235\3452\\\036\202\264\"\215\023:2\331k\250\222\357\n\212s\221j\026fZ\264\237\026=\253\021Z\021\021\302\266^l\226\214\335r\2434(\267CR\341\232\222\207C\010\247x\236\331\222Ez\022R\211\243,\214\3509&d&g\014Z\305:\037F\364\3016!c\224y;\234\246\024\226I&)\246\226T\225\246\023\260\356G\031+\026\230y^Z\237S#s:\021\224S\340\245\331Fx3\215Q9\016\362\017\007\030\250\014p\001\266\347L\317\326\226\222\375\270,\000\231\256\211\021\210]\264\226F:n\326On\351\33671\311\246J0\241\031\037w<EzJ\247f/8\013\002\213\217qpS\226\231\340\344\"vu\247n\014\306X\336\303\027\264%{\320\211J\251\rL\031R\265\013jj\007\2617\035>\247\204\262\340\035x+\205\336\325\344\225D\204\224\335\312LO\234\234QD!K\231\027\304\207:j/\266 \206\022\241V\t\017\032\016At\270l\220\032d.8\224\001\013\020\205XK\366X\357\"\360\333F@k\233\016\270_\231mUo\001B\020\352\304\330\006a\r\234\267\236\277\r\313\331\203kT1H\3021\317\376\r\236\214C\270?\241\034G\220\337\017)\344\017I\351\3438\207\024\235\222\330q\007\244\3458\213\247\240\340=\322&\371\314r\034\246\371\352\344=G\360Y\370u\213\367\033\217\315\316\035\033dpm\216\204naH-\023\363\364\r\241\320!\361\234\013@2\300$\361\0146\362\\\305(\013\342\177p\372<~*\273\277\267H\3069\251\330\322{FRQ\211G\216\030\353\2216\002B \363\317/\361\370\001\020\034%0\277\305\334\221N\024$\000\361\213\343\300";
-    PyObject *data = __Pyx_DecompressString(cstring, 1243, 2);
+    const struct { const unsigned int length: 9; } index[] = {{0},{48},{179},{1},{8},{7},{6},{2},{9},{50},{61},{14},{31},{37},{46},{49},{51},{41},{35},{36},{37},{41},{39},{36},{36},{14},{20},{18},{6},{6},{18},{3},{4},{8},{5},{53},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{10},{4},{8},{3},{9},{3},{5},{5},{3},{12},{11},{12},{10},{17},{13},{14},{6},{6},{5},{4},{12},{10},{12},{19},{8},{7},{4},{6},{63},{41},{44},{44},{106},{183},{63},{44},{42},{9},{361},{219}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1251 bytes) */
+const char* const cstring = "BZh91AY&SY\2216Sd\000\000\304\377\377\376\375\377\004e\377\377\177\377\345\376\367\377\377\377\340\300@@@@@@@@@@@@\000@\000P\004\217v\322\316\311\254V\263Cs\274%DL)\247\2422\001\243\311=@\000\000\001\240\364\236\240=@\000\r4\000\0314\364A$\221\242m\021\220d\230Sd\232h\r\000\000\320\000\000\000\000\000\000\000%\004\230\244\302M4\365\017S\320\324\362\032\215\032\r\036\240h\320d`@\032d\000\001\352\r4\323\020\340\000\032\000\006\200\310\000\000\032\000\003M\000\000\000\000\032\000$\221\023#S\325?MS\364\247\221\033\323S\3256Q\352\000\000\r\000\000\000\000\006\201\247\224=&\236\222\242\004$CbH\022\221\"P$\235\345\361J\211\375\365\243\303\027\217\247\242\177\257g[,2\303,\263\025\366=nvk\177\343`y\2620\201\201\222\203H/\262C\3223\033)\350b \274L.\220\025\023y\006D\261!\201`\252\247\317\365^\371\267\265\334\214lP\206\225\371\033}\253L\335\254\262nbKxXv<eTa)a\253C4,\205\004\271\2266|\314x\214i\n\205;r\331\250|\347\210\216\032\206l\366*`\036\316\356\025\224\211\301\210\225\033bb\023\0000\034\033q\002\001\"\350.\222\023f\303l\254\231\246\002\371\356\230\204\222\270\316@Z\257\247 \267\301\250J\035\222\332\352;-\307\026\240\001\203}\037\t4\353T\2531\332\022\334N\246\224UlP\016\365\226%6^/\026\340)).\334@i\216XHH^]\000\214\374\226\213\367\354\026[R\010\033\272B\372\355a\201F\213\\?\271\212\254b\005r\323\342\310he\272\004bc8\022yP2\256*\333\244\320\2132n\304/\032\344\037\231W\255\014\010)\302)\227G=F\351\037Cz\302w_4/\n\313\201\034\354\316\216\3334w\033TO8p?p\212I\331N\367\270\213\024-\216\023\003\301@),<P&\224\302-ss\207c\004\244d\317\263#Z\233\353\255E}b\"\2219C\232\004\256U\220wf\261\"\224\024\0140`y\235b\376\212(h\r\372\361\034a\306\032\255_1\327\244\273*\341^\347]\253(\225\346E\rX\303$EB!\035\017\223\237\023\364J\177\270E\353&6\270\034\223\250\275p\034\246\001\341\016\336\235OH6\214*a\225\246hE\024F\342\336\261\"\346\016\031\301\342\034|\213n\016\3532.2\273*\255hP\364@G\314}2\200\235\032\036\355\355\363\356\001\022Q\247\320\371^\324\3074\370\260)4%\224\005T\264m\000%\024s\304""\2365,G\021&[\271g8\235\320\241W\030\\\317\200Hy#\264\364\202)\302\030\250\022.\262\240ek\\D\354\206f\023\321\001\272k\200\251\243@\005\227Fj\006+\334L)^\353/$\2618\364\023\t\026\253\215\320\305Fw\024\003\250+S\347\036\320Y\231hNkd\324\276\212D\207\216\025F\006\313A\233\200[3G\n\240\323\270f\220\264\350/\n\313\304\366\250\005=\272\300#\023X\341\331\215\237\013\222fBfp\245k4\320z\231\263\t\331\023\022C\224\231\222bF\274cfs\340N`\025TF|UX\244\215\211Xyn\031_+#\025bEB\263zGT3\301\234h\t\310w\200\210\034d\200De`\033e2f\213\024\263\225\325\032\260\0235\344\220\367\212\365\tk\230\335\273\022\211\271\007(\331\344\223a$0\211\031b\275\235\342\301%\271\231\214\016\002\370B\353\261\204%\"\242\343@\034D8t\331\3537$U!^0u\264I\334D$V\250\024\341\314\225\021\335V\240D\305\257\254\377\250\202Yp\225EXT\373\372\325\200\\$$\242\376b\3216\2210\236\210\343\235\314\213\022C\235j\0268H\252VRh\242\3362\320\246\270:P\307Qp\3540>\204>Je\305U>D@\330\242\300k\272n\272Wih\333\252\302\002C\251\023X3\010l\345Y\351\351\350\027\253\314\032\230\201\3620\214\223{\354vx\247\306?W\350\221\214\362\235tz\217J2\031?F1\304\2074\2301\206C)\214\332\232\306\251\302\026\037!(\024G\317\322\201#\364\234)\315pXHM/\311\364\306fC\252UC~L\226p\222\210>0\021L\277B\025=\303\2548\235\360\036h\237\331\347\333\342\370x\020j\220q\360rG zv8\340\313W&\335\323,\270M\024\230\343\"\231\245\005,\220\221\020\201\365\236\373h\212\241\244\242\222\376.\344\212p\241!\"l\246\310";
+    PyObject *data = __Pyx_DecompressString(cstring, 1251, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1010 bytes) */
-const char* const cstring = "x\332\255V\317O\033G\024\206%U\2356*M(9\3650HU\323\374\300\304%\211\3723)\202\244E\252R\234\022Q\"\310cvv\326\0362\236\261wf\001\237\312\221\243\217\034}\344\230\243\217>\3728G\037\371\023\372'\364\315\332q@A]7\355J\3367\332\371\336{\337\373\346\275]?\241B\362\210XMX\302\251\345\344W\036\333g\334\360dO\213dC\330\352j\255.\251\262<\372\255Z\023\354\251F\214\255RK\226\233\266\252\025\021\206D\\\212\220'\350-\233\304\330D0\313\023\017Rd\355\361\332\374\275o\356\021\252\"\222\360]\316\254!&\r\231\244\306pCtL\302TH+\024\261\315:7E\262\032\223\246N\211\342\003Ru\304\235u\260U\256\210\341\326/\310\r\252\224\266\324\n\255\000\335\205\252\334 \221H0\211\330\343\336\373\t\225\206\027\037\321(\002\004\362H\030\032J\316\225\277W\2300\203U\2444\226\020\323TZ\002\220\360(e\034\200Di\026Ci5\217%\355\t*q\227\t%,\200I\330BL%\303\304L'|\001\030\255\213\005\211\322\241\377P;\330G\361@\274Q\017\264\227\257Xo\036\374\340%R\025\243\323\204\361\2079z\347l\027\255\206]\243U\036lT\027\313N\r \337\001U6(\356\370.\212\357\347A\342D\327\306\342\253h\215\347\226\216\035\223\207\321\343h\230\210J\325\202\342hB\235\344\241y#\2452\227\277\266\220\001q^\374\026\257\361\254\t`\255y\200\277\025\034\021x\312\0170FLMS1\241\213\330H:\305I\340&\314$\n\301\213\300$>\001\201\r\236P\306C\312^1i\000\"\037`\220\341L\037\026\263>,\216\321\207\243\203\000\210S\305\000\257\312\233\363\206j\025\275\375\370F\022S\033\0301\023\226\327\314\300\253F\221\023^5\035\245\210\312\270\216\356|\177T\277\016w\263\204\032\0076\251\353:\000N@F\323{\373\3650\251\007\017\334\337\316\340;];z\300\017py\356\330LV\216\311(\030\317\337p\031g]<d\205\253\341\224\237\351m\270\240\317\001,7\010\032\216\226o\263=*Sn\016\227N\013\327\335\365\357;\245\316Jw\262_\370\370\350Ak\306}v\363\344j\377\312L\253\324/\\F\353f\356\234,\235<\177\375e\347\203\316\037\335\215\336R\257|zm\256}\265=w\270\324/\314\272\331\201\373\345\336l\357\225\333\004\007\261\213\353\177ML4&!@\003\301N\340\201\213nq\323m\276p/^\272\2270J5\177R\036\246\232v\323_\264\227""\332\345!6t!s\254\342*\325\177\304\236\026>?^i\177\330n\234 \375\273\257?\351\320\316A\327\364\346z\245SO\036\213\373\271\333\350M\016\t\373P_\037\375\356>}\330\241\375+\327Z\267\217\313\3074K\267\356\3267\334\006\222\337q;\324\303\276k\225\275\371\266\205t\246\217\032\343d\372\261S\356T\273\312\255c\030\345T\352\322?\261\376\237\202M/\303f\260\345\315V@\275\241\201\364F\006\2117I\320\364\246\031,O\241Y\236\332\362fkj{\352\177\241\215\314\036w\313\335\2507\367\276\007\374\250\323\350^\352\256\366\236\273g\333n\033\217e\327\355Z\244\230N2\317\233\005Qp8\331\277\364\321\321\355V\031?\005)\363\237\035?\t8+P*\235\231g\270?\230\224\305\373c\214t\336\373\231\334\372j\220\306\302\003`\340\343\346x\374\222\275\001\356\220\363$\353\026hR1\377\205)\214\003\312^Q>(\2715\312\214_z*\263\3647'\376]\220\361\204.\335\305'\312\377\201\300\215\345\321\362\002\351\336n\276\207J\347\322\300\231un\315\027a\377\006)\216\326\311";
-    PyObject *data = __Pyx_DecompressString(cstring, 1010, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1035 bytes) */
+const char* const cstring = "x\332\255V\315S\0337\024\207%\235\2226S\232Pr\352A\314t\232\346\003\023\227$\323\317\244\024\222\302L'\305)\031J\006\362\320j\265\266\310Z\262%-\340S9r\364\221\243\217\034s\364\321G\037u\364\221?\241\177B\237\326\216\003\023\246\353\246\335\031\373i\244\337{\357\367\276\264\373\204\212\204G\304*\3024\247\226\223_yl\237q\303\365\236\022zC\330\312j\265\226Piy\364[\245*\330S\205\030[\241\226,5lEI\"\014\211x\"B\256Q;i\020c\265`\226k\017\222d\355\361\332\334\275o\356\021*#\242\371.g\326\020\223\206,\241\306pCTL\302T$VHb\0335n\nd5&\r\225\022\311\373\244j\210;\253`+\\\022\303\255_\220\033TJe\251\025J\002\252\013Y\276A\"\241\321\211\330\343^\373\tM\014/<\242Q\004\010\344\22104L8\227\376\277\314\204\351\257\"\2510\204\230\246\211%\000\232G)\343\000$J3\033R\3119\014iO\320\004O\231\220\302\002\030\315\346c\2320t\314\224\346\363\300hM\314'\230:\324\037\344\016\3661y \336d\017\224O_\241\3268\370\301\247H\226\215J5\343\017s\362\235s\\P\243\200\264(W,H\216\"T:\017=\314\001\313*\014\220\257\200\0251X\210\321Ub\255\252\260k\224\314\003J\276\237\007a\252\326\310\303\360zJ\223\\_\312\302H@\253F\343N\253<\327\024\266=\316\224\337\345U\2365\n\2545\016\360\267\214c\004O\371\001\252\307\3244$\023\nC\325*\305i\341&\314\030\204\340}\260\004w@\340\020h\312xH\331+\226\030\237\025\200\310\033\351\007u\246_\013Y\277\026F\350\327a\235\000\342T2\300\247\374\246\326P\251\240\266\037\363(A\367\006\206\354\204\345U\323\327\252R\344\205OUE)\2422\276\303\177\276?L\271\nw3\207\n\007[\327T\r\000'%\243\351\265\375z\340\324\203\373\352og\365\235\216\035n\360\003\\\236\353~\223\205c2\n\306\3637<\211\263\016\036\260\302\325\34068\323\327pA\217\003Xn\0204\350\006_\311=\232\244\334\034.\236N^w\327\277o\027\333\313\235\361\336\344\307G\017\232\323\356\263\233'W{W\246\233\305\336\344e\224n\372\316\311\342\311\363\327_\266?h\377\321\331\350.vK\247\327f[W[\263\207\213\275\311\0317\323W\277\334\235\351\276r\233\340 vq\355\257\261\261\3728\004( \330\t<p\301-l\272\315\027\356\305K\367\022\206\256\346NJ\003WSn\352""\213\326b\2534\300\206.d\216\225]\271\362\217\330\323\311\317\217\227[\037\266\352'H\377\356\353O\332\264}\3201\335\331n\361\324\223\307\340~\351\324\273\343\003\302\336\324\327G\277\273O\037\266i\357\312\265\346\355\343\3221\315\334\255\273\365\r\267\201\344w\334\016\365\260\357\232%/\276m\"\235\251\243\372(\236~l\227\332\225\216t\353hF:\231\272\364O\214\377\247`\323\247a3\330\362b+\240^\320 \361\"\t\264\027:hx\321\010\226&P,Mly\2615\261=\361\277\320Ff\217;\245N\324\235}\257\002\257\270\225\252\253b<\332i3\264\360sg\366m-|\340t\320\014\217\332\365\316\245\316j\367\271{\266\355\266\261\204\273n\327b8\3518\3631\262 \n\016\307{\227>:\272\335,\341\353%e\376U\346\247\006\347\n\212\3053\263\017\367\373S\265p\177\204\361\317\273\307\311\255\257\372n,<\000\006\336n\216\306Jv[\334!\347I\326,P]6\377\205)\214\002\312\2563o\224\334\032z\306\257\007\232d\356o\216\375;#\243%\272x\027w\244\377(\301\203\245\341\362\202\324\275=|\217,\235s\003g\326\2711_\204\375\033\372>\371\231";
+    PyObject *data = __Pyx_DecompressString(cstring, 1035, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2499 bytes) */
-const char* const bytes = "Failed to create LeftReservoirWithImplantedOhmicNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx<stringsource>LeftReservoirWithImplantedOhmicLeftReservoirWithImplantedOhmic.to_jsonLeftReservoirWithImplantedOhmic.__reduce_cython__LeftReservoirWithImplantedOhmic.__setstate_cython__LeftReservoirWithImplantedOhmic.newLeftReservoirWithImplantedOhmic.from_jsonLeftReservoirWithImplantedOhmic.nameLeftReservoirWithImplantedOhmic.typeLeftReservoirWithImplantedOhmic.ohmicLeftReservoirWithImplantedOhmic.right_neighborLeftReservoirWithImplantedOhmic.equalLeftReservoirWithImplantedOhmic.not_equalNotImplemented__Pyx_PyDict_NextRefasyncio.coroutinesb_jsonb_namecline_in_tracebackcls__dict__equalfalcon_core._capi.left_reservoir_with_implanted_ohmicfrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main____module__name__name__newnot_equalobjohmicotherpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__right_neighbors_jsons_names_retself__set_name__setdefault__setstate____setstate_cython____test__to_jsontypevalues\200A\340\010\026\320\026;\2701\270D\300\001\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\025;\2701\270D\300\t\310\025\310k\320Y_\320_f\320fp\360\000\000q\001_\002\360\000\000_\002`\002\200A\330\0103\3203Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\024-\250Q\330\014\023\2201\330\010\017\320\017$\240A\240Q\200A\330\0103\3203b\320bc\320cg\320gh\330\010\013\2106\220\023\320\024-\250Q\330\014\023\2201\330\010\017\320\017$\240A\240Q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026""\320\026G\300q\310\001\340\022!\240\021\240!\330\010\013\2102\210S\320\020>\270a\330\014\022\220+\230Q\230a\330\0103\3203T\320TW\320W_\320_`\320`a\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026=\270Q\270h\300n\320T_\320_n\320nu\320u\177\360\000\000@\002Y\002\360\000\000Y\002\\\002\360\000\000\\\002a\002\360\000\000a\002l\002\360\000\000l\002r\002\360\000\000r\002y\002\360\000\000y\002C\003\360\000\000C\003\\\003\360\000\000\\\003]\003\340\022!\240\021\240!\330\010\013\2102\210S\320\020>\270a\330\014\022\220+\230Q\230a\330\0103\3203T\320TW\320W_\320_`\320`a\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\026\320\026E\300Q\300d\310!\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\025?\270q\300\004\300I\310U\320R]\320]c\320cj\320jt\360\000\000u\001c\002\360\000\000c\002d\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *(__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args)\000_left_reservoir_with_implanted_ohmic_from_capistruct __pyx_obj_11falcon_core_5_capi_10connection_Connection *(__pyx_t_6_c_api_ConnectionHandle, struct __pyx_opt_args_11falcon_core_5_capi_10connection__connection_from_capi *__pyx_optional_args)\000_connection_from_capi";
+    #else /* compression: none (2583 bytes) */
+const char* const bytes = "Failed to create LeftReservoirWithImplantedOhmicNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/left_reservoir_with_implanted_ohmic.pyx<stringsource>LeftReservoirWithImplantedOhmicLeftReservoirWithImplantedOhmic.ohmicLeftReservoirWithImplantedOhmic.right_neighborLeftReservoirWithImplantedOhmic.__reduce_cython__LeftReservoirWithImplantedOhmic.__setstate_cython__LeftReservoirWithImplantedOhmic.from_jsonLeftReservoirWithImplantedOhmic.newLeftReservoirWithImplantedOhmic.copyLeftReservoirWithImplantedOhmic.equalLeftReservoirWithImplantedOhmic.not_equalLeftReservoirWithImplantedOhmic.to_jsonLeftReservoirWithImplantedOhmic.nameLeftReservoirWithImplantedOhmic.typeNotImplemented__Pyx_PyDict_NextRefasyncio.coroutinesb_jsonb_namecline_in_tracebackclscopy__dict__equalfalcon_core._capi.left_reservoir_with_implanted_ohmicfrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main____module__name__name__newnot_equalobjohmicotherpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__right_neighbors_jsons_names_retself__set_name__setdefault__setstate____setstate_cython____test__to_jsontypevalues\200A\340\010\026\320\026;\2701\270D\300\001\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\025;\2701\270D\300\t\310\025\310k\320Y_\320_f\320fp\360\000\000q\001_\002\360\000\000_\002`\002\200A\330\0103\3203Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\024-\250Q\330\014\023\2201\330\010\017\320\017$\240A\240Q\200A\330\0103\3203b\320bc\320cg\320gh\330\010\013\2106\220\023\320\024-\250Q\330\014\023\2201\330\010\017\320\017$\240A\240Q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x""\300s\310!\3101\340\010\t\330\014\026\320\026G\300q\310\001\340\022!\240\021\240!\330\010\013\2102\210S\320\020>\270a\330\014\022\220+\230Q\230a\330\0103\3203T\320TW\320W_\320_`\320`a\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026=\270Q\270h\300n\320T_\320_n\320nu\320u\177\360\000\000@\002Y\002\360\000\000Y\002\\\002\360\000\000\\\002a\002\360\000\000a\002l\002\360\000\000l\002r\002\360\000\000r\002y\002\360\000\000y\002C\003\360\000\000C\003\\\003\360\000\000\\\003]\003\340\022!\240\021\240!\330\010\013\2102\210S\320\020>\270a\330\014\022\220+\230Q\230a\330\0103\3203T\320TW\320W_\320_`\320`a\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\026\320\026E\300Q\300d\310!\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010H\320Hm\320mn\320nr\320rs\330\010\013\2106\220\023\320\024B\300!\330\014\023\2201\330\010\017\320\017=\270Q\270a\200A\330\010\025\320\025?\270q\300\004\300I\310U\320R]\320]c\320cj\320jt\360\000\000u\001c\002\360\000\000c\002d\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *(__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args)\000_left_reservoir_with_implanted_ohmic_from_capistruct __pyx_obj_11falcon_core_5_capi_10connection_Connection *(__pyx_t_6_c_api_ConnectionHandle, struct __pyx_opt_args_11falcon_core_5_capi_10connection__connection_from_capi *__pyx_optional_args)\000_connection_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 72; i++) {
+    for (int i = 0; i < 74; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 12) PyUnicode_InternInPlace(&string);
@@ -7998,7 +8152,7 @@ const char* const bytes = "Failed to create LeftReservoirWithImplantedOhmicNote 
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 72; i < 83; i++) {
+    for (int i = 74; i < 86; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -8009,15 +8163,15 @@ const char* const bytes = "Failed to create LeftReservoirWithImplantedOhmicNote 
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 83; i++) {
+    for (Py_ssize_t i = 0; i < 86; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 72;
-      for (Py_ssize_t i=0; i<11; ++i) {
+      PyObject **table = stringtab + 74;
+      for (Py_ssize_t i=0; i<12; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
         #else
@@ -8055,59 +8209,64 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 19};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_right_neighbor, __pyx_mstate->__pyx_n_u_ohmic, __pyx_mstate->__pyx_n_u_b_name, __pyx_mstate->__pyx_n_u_s_name, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_new, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_QhnT__nnuu_Y_Y_a_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 19};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_json, __pyx_mstate->__pyx_n_u_b_json, __pyx_mstate->__pyx_n_u_s_json, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_Gq_2S_a_Qa_33TTWW, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 35};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_json, __pyx_mstate->__pyx_n_u_b_json, __pyx_mstate->__pyx_n_u_s_json, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_Gq_2S_a_Qa_33TTWW, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 35};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_n_u_right_neighbor, __pyx_mstate->__pyx_n_u_ohmic, __pyx_mstate->__pyx_n_u_b_name, __pyx_mstate->__pyx_n_u_s_name, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_new, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_QhnT__nnuu_Y_Y_a_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 51};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 61};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_type, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 71};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_ohmic, __pyx_mstate->__pyx_kp_b_iso88591_A_33YYZZ___6_Q_1_AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_HHmmnnrrs_6_B_1_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 77};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_right_neighbor, __pyx_mstate->__pyx_kp_b_iso88591_A_33bbccggh_6_Q_1_AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_kY__ffp_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_kY__ffp_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 65};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IUR_ccjjt_u_c_c_d, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IUR_ccjjt_u_c_c_d, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 99};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_EQd_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_EQd_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_name, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 93};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_type, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 103};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_ohmic, __pyx_mstate->__pyx_kp_b_iso88591_A_33YYZZ___6_Q_1_AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 109};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_left_reser, __pyx_mstate->__pyx_n_u_right_neighbor, __pyx_mstate->__pyx_kp_b_iso88591_A_33bbccggh_6_Q_1_AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_pyx_state};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -9583,6 +9742,38 @@ static PyObject* __Pyx_tp_new_kwargs(PyObject* type_obj, PyObject* args, PyObjec
     return tp_new((PyTypeObject*)type_obj, args, kwargs);
 }
 
+/* HasAttr */
+#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
+static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
+    PyObject *r;
+    if (unlikely(!PyUnicode_Check(n))) {
+        PyErr_SetString(PyExc_TypeError,
+                        "hasattr(): attribute name must be string");
+        return -1;
+    }
+    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
+    if (!r) {
+        return (unlikely(PyErr_Occurred())) ? -1 : 0;
+    } else {
+        Py_DECREF(r);
+        return 1;
+    }
+}
+#endif
+
+/* PyObjectFastCallMethod */
+#if !CYTHON_VECTORCALL || PY_VERSION_HEX < 0x03090000
+static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *args, size_t nargsf) {
+    PyObject *result;
+    PyObject *attr = PyObject_GetAttr(args[0], name);
+    if (unlikely(!attr))
+        return NULL;
+    result = __Pyx_PyObject_FastCall(attr, args+1, nargsf - 1);
+    Py_DECREF(attr);
+    return result;
+}
+#endif
+
 /* decode_c_bytes (used by decode_bytes) */
 static CYTHON_INLINE PyObject* __Pyx_decode_c_bytes(
          const char* cstring, Py_ssize_t length, Py_ssize_t start, Py_ssize_t stop,
@@ -9846,38 +10037,6 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
     Py_XDECREF(tmp_value);
     Py_XDECREF(tmp_tb);
   #endif
-}
-#endif
-
-/* HasAttr */
-#if __PYX_LIMITED_VERSION_HEX < 0x030d0000
-static CYTHON_INLINE int __Pyx_HasAttr(PyObject *o, PyObject *n) {
-    PyObject *r;
-    if (unlikely(!PyUnicode_Check(n))) {
-        PyErr_SetString(PyExc_TypeError,
-                        "hasattr(): attribute name must be string");
-        return -1;
-    }
-    r = __Pyx_PyObject_GetAttrStrNoError(o, n);
-    if (!r) {
-        return (unlikely(PyErr_Occurred())) ? -1 : 0;
-    } else {
-        Py_DECREF(r);
-        return 1;
-    }
-}
-#endif
-
-/* PyObjectFastCallMethod */
-#if !CYTHON_VECTORCALL || PY_VERSION_HEX < 0x03090000
-static PyObject *__Pyx_PyObject_FastCallMethod(PyObject *name, PyObject *const *args, size_t nargsf) {
-    PyObject *result;
-    PyObject *attr = PyObject_GetAttr(args[0], name);
-    if (unlikely(!attr))
-        return NULL;
-    result = __Pyx_PyObject_FastCall(attr, args+1, nargsf - 1);
-    Py_DECREF(attr);
-    return result;
 }
 #endif
 

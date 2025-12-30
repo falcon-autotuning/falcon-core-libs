@@ -5,18 +5,54 @@ from falcon_core.math.quantity import Quantity
 from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
 from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
 from falcon_core.generic.list import List
+from falcon_core.generic.map import Map
 from falcon_core.math.axes import Axes
 from falcon_core.physics.device_structures.connection import Connection
 from falcon_core.physics.device_structures.connections import Connections
 from falcon_core.physics.units.symbol_unit import SymbolUnit
 from falcon_core.autotuner_interfaces.interpretations.interpretation_container import InterpretationContainer
 
+
+def _make_test_interpretation_container_quantity():
+    from falcon_core.autotuner_interfaces.interpretations.interpretation_container import InterpretationContainer
+    from falcon_core.generic.map import Map
+    from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
+    from falcon_core.math.quantity import Quantity
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    
+    ctx = _make_test_interpretation_context()
+    m = Map[InterpretationContext, Quantity]()
+    m._c.insert_or_assign(ctx._c, Quantity.new(1.0, SymbolUnit.new_meter())._c)
+    return InterpretationContainer[Quantity](m)
+
+
+
+def _make_test_interpretation_context():
+    from falcon_core.autotuner_interfaces.interpretations.interpretation_context import InterpretationContext
+    from falcon_core.autotuner_interfaces.contexts.measurement_context import MeasurementContext
+    from falcon_core.math.axes import Axes
+    from falcon_core.generic.list import List
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.physics.device_structures.connection import Connection
+    
+    conn = Connection.new_plunger('A')
+    unit = SymbolUnit.new_volt()
+    mc1 = MeasurementContext.new(conn, 'oscilloscope')
+    mc2 = MeasurementContext.new(conn, 'multimeter')
+    
+    axes = Axes[MeasurementContext].from_list([mc1, mc2])
+    list_mc = List[MeasurementContext]()
+    list_mc.append(mc2)
+    
+    return InterpretationContext.new(axes, list_mc, unit)
+
+
 class TestInterpretationContainerQuantity:
     def setup_method(self):
         self.obj = None
         try:
-            # Found from_json constructor
-            self.obj = InterpretationContainer[Quantity].from_json('{}')
+            # Using recipe for InterpretationContainerQuantity
+            self.obj = _make_test_interpretation_container_quantity()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -80,7 +116,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert_or_assign(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()), Quantity.new(1.0, SymbolUnit.new_meter()))
+            self.obj.insert_or_assign(_make_test_interpretation_context(), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -88,7 +124,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.insert(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()), Quantity.new(1.0, SymbolUnit.new_meter()))
+            self.obj.insert(_make_test_interpretation_context(), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -96,7 +132,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.at(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
+            self.obj.at(_make_test_interpretation_context())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -104,7 +140,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.erase(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
+            self.obj.erase(_make_test_interpretation_context())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -136,7 +172,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.contains(InterpretationContext.new(Axes[MeasurementContext](), List[MeasurementContext](), SymbolUnit.new_meter()))
+            self.obj.contains(_make_test_interpretation_context())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -168,7 +204,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(_make_test_interpretation_container_quantity())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -176,7 +212,7 @@ class TestInterpretationContainerQuantity:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(_make_test_interpretation_container_quantity())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -187,3 +223,25 @@ class TestInterpretationContainerQuantity:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')

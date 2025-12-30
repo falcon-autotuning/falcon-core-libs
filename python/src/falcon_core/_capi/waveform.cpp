@@ -1349,9 +1349,9 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
@@ -1359,66 +1359,66 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/communications/Time_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringDouble_c_api.h"
-#include "falcon_core/generic/ListPairStringDouble_c_api.h"
-#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/AnalyticFunction_c_api.h"
-#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
-#include "falcon_core/generic/ListInt_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/math/AxesInstrumentPort_c_api.h"
-#include "falcon_core/generic/PairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
-#include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/MapStringBool_c_api.h"
-#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
-#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/generic/ListMapStringBool_c_api.h"
-#include "falcon_core/math/AxesMapStringBool_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
-#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
-#include "falcon_core/generic/ListWaveform_c_api.h"
-#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
-#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
-#include "falcon_core/generic/PairConnectionDouble_c_api.h"
-#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
-#include "falcon_core/generic/MapConnectionDouble_c_api.h"
-#include "falcon_core/math/Point_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/math/AxesInt_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/PairStringDouble_c_api.h"
+#include "falcon_core/generic/ListPairStringDouble_c_api.h"
+#include "falcon_core/generic/MapStringDouble_c_api.h"
+#include "falcon_core/math/AnalyticFunction_c_api.h"
+#include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/PairStringBool_c_api.h"
+#include "falcon_core/generic/ListPairStringBool_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
+#include "falcon_core/generic/MapStringBool_c_api.h"
+#include "falcon_core/generic/ListMapStringBool_c_api.h"
+#include "falcon_core/math/AxesMapStringBool_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
+#include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
+#include "falcon_core/generic/ListLabelledControlArray_c_api.h"
+#include "falcon_core/math/AxesLabelledControlArray_c_api.h"
+#include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/instrument_interfaces/Waveform_c_api.h"
+#include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/generic/PairConnectionDouble_c_api.h"
+#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
+#include "falcon_core/generic/MapConnectionDouble_c_api.h"
+#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
+#include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
 #include "falcon_core/generic/PairStringString_c_api.h"
 #include "falcon_core/generic/ListPairStringString_c_api.h"
 #include "falcon_core/generic/MapStringString_c_api.h"
@@ -1458,8 +1458,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListControlArray1D_c_api.h"
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
-#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"
 #include "falcon_core/physics/config/core/Group_c_api.h"
@@ -1486,8 +1486,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
+#include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
 #include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
@@ -4086,9 +4086,6 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 /* PyIndexError_Check.proto */
 #define __Pyx_PyExc_IndexError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_IndexError)
 
-/* ExtTypeTest.proto */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type);
-
 /* PyTypeError_Check.proto */
 #define __Pyx_PyExc_TypeError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_TypeError)
 
@@ -4587,35 +4584,35 @@ static PyObject *__pyx_builtin_NotImplemented;
 /* #### Code section: decls ### */
 static int __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform___cinit__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
 static void __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_2__dealloc__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *__pyx_v_space, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesian_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesian_identity_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesian_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesian_identity_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesian_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesian_identity_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_22transforms(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_24push_back(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_26size(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_28empty(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_30erase_at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_32clear(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_34at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_36items(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_38contains(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_40index(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42intersection(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58append(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_60from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *__pyx_v_space, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesian_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesian_identity_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesian_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesian_identity_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesian_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18new_cartesian_identity_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20copy(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_22equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_24__eq__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_26not_equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_28__ne__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_30to_json(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_32space(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_34transforms(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_36push_back(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_38size(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_40empty(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42erase_at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44clear(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48items(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50contains(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52index(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54intersection(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other); /* proto */
+static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__len__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58__getitem__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_60append(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_62__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_64__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_8waveform_Waveform(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -4655,7 +4652,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[27];
-  PyObject *__pyx_string_tab[149];
+  PyObject *__pyx_string_tab[146];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -4718,11 +4715,11 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_Waveform_at __pyx_string_tab[19]
 #define __pyx_n_u_Waveform_clear __pyx_string_tab[20]
 #define __pyx_n_u_Waveform_contains __pyx_string_tab[21]
-#define __pyx_n_u_Waveform_empty __pyx_string_tab[22]
-#define __pyx_n_u_Waveform_equal __pyx_string_tab[23]
-#define __pyx_n_u_Waveform_erase_at __pyx_string_tab[24]
-#define __pyx_n_u_Waveform_from_json __pyx_string_tab[25]
-#define __pyx_n_u_Waveform_from_list __pyx_string_tab[26]
+#define __pyx_n_u_Waveform_copy __pyx_string_tab[22]
+#define __pyx_n_u_Waveform_empty __pyx_string_tab[23]
+#define __pyx_n_u_Waveform_equal __pyx_string_tab[24]
+#define __pyx_n_u_Waveform_erase_at __pyx_string_tab[25]
+#define __pyx_n_u_Waveform_from_json __pyx_string_tab[26]
 #define __pyx_n_u_Waveform_index __pyx_string_tab[27]
 #define __pyx_n_u_Waveform_intersection __pyx_string_tab[28]
 #define __pyx_n_u_Waveform_items __pyx_string_tab[29]
@@ -4744,11 +4741,11 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_at __pyx_string_tab[45]
 #define __pyx_n_u_axes __pyx_string_tab[46]
 #define __pyx_n_u_b_json __pyx_string_tab[47]
-#define __pyx_n_u_c __pyx_string_tab[48]
-#define __pyx_n_u_clear __pyx_string_tab[49]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[50]
-#define __pyx_n_u_cls __pyx_string_tab[51]
-#define __pyx_n_u_contains __pyx_string_tab[52]
+#define __pyx_n_u_clear __pyx_string_tab[48]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[49]
+#define __pyx_n_u_cls __pyx_string_tab[50]
+#define __pyx_n_u_contains __pyx_string_tab[51]
+#define __pyx_n_u_copy __pyx_string_tab[52]
 #define __pyx_n_u_dict __pyx_string_tab[53]
 #define __pyx_n_u_division __pyx_string_tab[54]
 #define __pyx_n_u_divisions __pyx_string_tab[55]
@@ -4758,93 +4755,90 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_erase_at __pyx_string_tab[59]
 #define __pyx_n_u_falcon_core__capi_waveform __pyx_string_tab[60]
 #define __pyx_n_u_from_json __pyx_string_tab[61]
-#define __pyx_n_u_from_list __pyx_string_tab[62]
-#define __pyx_n_u_func __pyx_string_tab[63]
-#define __pyx_n_u_getstate __pyx_string_tab[64]
-#define __pyx_n_u_h __pyx_string_tab[65]
-#define __pyx_n_u_h_ret __pyx_string_tab[66]
-#define __pyx_n_u_handle __pyx_string_tab[67]
-#define __pyx_n_u_idx __pyx_string_tab[68]
-#define __pyx_n_u_increasing __pyx_string_tab[69]
-#define __pyx_n_u_index __pyx_string_tab[70]
-#define __pyx_n_u_intersection __pyx_string_tab[71]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[72]
-#define __pyx_n_u_item __pyx_string_tab[73]
-#define __pyx_n_u_items __pyx_string_tab[74]
-#define __pyx_n_u_json __pyx_string_tab[75]
-#define __pyx_n_u_main __pyx_string_tab[76]
-#define __pyx_n_u_module __pyx_string_tab[77]
-#define __pyx_n_u_name __pyx_string_tab[78]
-#define __pyx_n_u_new __pyx_string_tab[79]
-#define __pyx_n_u_new_cartesian_identity_waveform __pyx_string_tab[80]
-#define __pyx_n_u_new_cartesian_identity_waveform_2 __pyx_string_tab[81]
-#define __pyx_n_u_new_cartesian_identity_waveform_3 __pyx_string_tab[82]
-#define __pyx_n_u_new_cartesian_waveform __pyx_string_tab[83]
-#define __pyx_n_u_new_cartesian_waveform_1D __pyx_string_tab[84]
-#define __pyx_n_u_new_cartesian_waveform_2D __pyx_string_tab[85]
-#define __pyx_n_u_new_empty __pyx_string_tab[86]
-#define __pyx_n_u_not_equal __pyx_string_tab[87]
-#define __pyx_n_u_obj __pyx_string_tab[88]
-#define __pyx_n_u_other __pyx_string_tab[89]
-#define __pyx_n_u_pop __pyx_string_tab[90]
-#define __pyx_n_u_push_back __pyx_string_tab[91]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[92]
-#define __pyx_n_u_pyx_state __pyx_string_tab[93]
-#define __pyx_n_u_qualname __pyx_string_tab[94]
-#define __pyx_n_u_reduce __pyx_string_tab[95]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[96]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[97]
-#define __pyx_n_u_s_json __pyx_string_tab[98]
-#define __pyx_n_u_s_ret __pyx_string_tab[99]
-#define __pyx_n_u_self __pyx_string_tab[100]
-#define __pyx_n_u_set_name __pyx_string_tab[101]
-#define __pyx_n_u_setdefault __pyx_string_tab[102]
-#define __pyx_n_u_setstate __pyx_string_tab[103]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[104]
-#define __pyx_n_u_shared_domain __pyx_string_tab[105]
-#define __pyx_n_u_size __pyx_string_tab[106]
-#define __pyx_n_u_space __pyx_string_tab[107]
-#define __pyx_n_u_test __pyx_string_tab[108]
-#define __pyx_n_u_to_json __pyx_string_tab[109]
-#define __pyx_n_u_transforms __pyx_string_tab[110]
-#define __pyx_n_u_value __pyx_string_tab[111]
-#define __pyx_n_u_values __pyx_string_tab[112]
-#define __pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_1_1_1 __pyx_string_tab[113]
-#define __pyx_kp_b_iso88591_A_1D __pyx_string_tab[114]
-#define __pyx_kp_b_iso88591_A_5Qi_T_ee_C_C_N_N_S_S_Z_Z_d_d_L __pyx_string_tab[115]
-#define __pyx_kp_b_iso88591_A_5_6_Jffiiss_J_J_Q_Q_2S_q_Qa_Jc __pyx_string_tab[116]
-#define __pyx_kp_b_iso88591_A_6l_4yPQ_6_0_1_a __pyx_string_tab[117]
-#define __pyx_kp_b_iso88591_A_6oQd_6_0_1 __pyx_string_tab[118]
-#define __pyx_kp_b_iso88591_A_8_P_iippz_____b_b_l_l_w_w_B_B __pyx_string_tab[119]
-#define __pyx_kp_b_iso88591_A_8_ZW_hh_B_B_F_F_Q_Q_V_V_g_g_O __pyx_string_tab[120]
-#define __pyx_kp_b_iso88591_A_A_MYddrry_z_D_D_h_h_k_k_u_u_K __pyx_string_tab[121]
-#define __pyx_kp_b_iso88591_A_A_V_ggq_r_H_H_K_K_O_O_Z_Z __pyx_string_tab[122]
-#define __pyx_kp_b_iso88591_A_Cz_HA_wavQ_t1_z_q __pyx_string_tab[123]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_0_2S_q_Qa_Jc_Q_9A __pyx_string_tab[124]
-#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[125]
-#define __pyx_kp_b_iso88591_A_NatST_6_4A_1_Qa __pyx_string_tab[126]
-#define __pyx_kp_b_iso88591_A_Qd __pyx_string_tab[127]
-#define __pyx_kp_b_iso88591_A_Ya __pyx_string_tab[128]
-#define __pyx_kp_b_iso88591_A_Ye_fGS_ttu __pyx_string_tab[129]
-#define __pyx_kp_b_iso88591_A__AT __pyx_string_tab[130]
-#define __pyx_kp_b_iso88591_A__AT_zYppq __pyx_string_tab[131]
-#define __pyx_kp_b_iso88591_A__AT_zYuuv __pyx_string_tab[132]
-#define __pyx_kp_b_iso88591_A_a_6_4A_1_Qa __pyx_string_tab[133]
-#define __pyx_kp_b_iso88591_A_at1_6_1_AU_XWAQ __pyx_string_tab[134]
-#define __pyx_kp_b_iso88591_A_ay_S_ddn_o_E_E_H_H_L_L_W_W_c_c __pyx_string_tab[135]
-#define __pyx_kp_b_iso88591_A_iuKvWJVrrs __pyx_string_tab[136]
-#define __pyx_kp_b_iso88591_A_q_IU_V7R_xxy __pyx_string_tab[137]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[138]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[139]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_10 __pyx_string_tab[140]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[141]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_3 __pyx_string_tab[142]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_4 __pyx_string_tab[143]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_5 __pyx_string_tab[144]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_6 __pyx_string_tab[145]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_7 __pyx_string_tab[146]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_8 __pyx_string_tab[147]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_9 __pyx_string_tab[148]
+#define __pyx_n_u_func __pyx_string_tab[62]
+#define __pyx_n_u_getstate __pyx_string_tab[63]
+#define __pyx_n_u_h __pyx_string_tab[64]
+#define __pyx_n_u_h_ret __pyx_string_tab[65]
+#define __pyx_n_u_handle __pyx_string_tab[66]
+#define __pyx_n_u_idx __pyx_string_tab[67]
+#define __pyx_n_u_increasing __pyx_string_tab[68]
+#define __pyx_n_u_index __pyx_string_tab[69]
+#define __pyx_n_u_intersection __pyx_string_tab[70]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[71]
+#define __pyx_n_u_items __pyx_string_tab[72]
+#define __pyx_n_u_json __pyx_string_tab[73]
+#define __pyx_n_u_main __pyx_string_tab[74]
+#define __pyx_n_u_module __pyx_string_tab[75]
+#define __pyx_n_u_name __pyx_string_tab[76]
+#define __pyx_n_u_new __pyx_string_tab[77]
+#define __pyx_n_u_new_cartesian_identity_waveform __pyx_string_tab[78]
+#define __pyx_n_u_new_cartesian_identity_waveform_2 __pyx_string_tab[79]
+#define __pyx_n_u_new_cartesian_identity_waveform_3 __pyx_string_tab[80]
+#define __pyx_n_u_new_cartesian_waveform __pyx_string_tab[81]
+#define __pyx_n_u_new_cartesian_waveform_1D __pyx_string_tab[82]
+#define __pyx_n_u_new_cartesian_waveform_2D __pyx_string_tab[83]
+#define __pyx_n_u_not_equal __pyx_string_tab[84]
+#define __pyx_n_u_obj __pyx_string_tab[85]
+#define __pyx_n_u_other __pyx_string_tab[86]
+#define __pyx_n_u_pop __pyx_string_tab[87]
+#define __pyx_n_u_push_back __pyx_string_tab[88]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[89]
+#define __pyx_n_u_pyx_state __pyx_string_tab[90]
+#define __pyx_n_u_qualname __pyx_string_tab[91]
+#define __pyx_n_u_reduce __pyx_string_tab[92]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[93]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[94]
+#define __pyx_n_u_s_json __pyx_string_tab[95]
+#define __pyx_n_u_s_ret __pyx_string_tab[96]
+#define __pyx_n_u_self __pyx_string_tab[97]
+#define __pyx_n_u_set_name __pyx_string_tab[98]
+#define __pyx_n_u_setdefault __pyx_string_tab[99]
+#define __pyx_n_u_setstate __pyx_string_tab[100]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[101]
+#define __pyx_n_u_shared_domain __pyx_string_tab[102]
+#define __pyx_n_u_size __pyx_string_tab[103]
+#define __pyx_n_u_space __pyx_string_tab[104]
+#define __pyx_n_u_test __pyx_string_tab[105]
+#define __pyx_n_u_to_json __pyx_string_tab[106]
+#define __pyx_n_u_transforms __pyx_string_tab[107]
+#define __pyx_n_u_value __pyx_string_tab[108]
+#define __pyx_n_u_values __pyx_string_tab[109]
+#define __pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_1_1_1 __pyx_string_tab[110]
+#define __pyx_kp_b_iso88591_A_1D __pyx_string_tab[111]
+#define __pyx_kp_b_iso88591_A_1_q_A_6_1_1_1 __pyx_string_tab[112]
+#define __pyx_kp_b_iso88591_A_5Qi_T_ee_C_C_N_N_S_S_Z_Z_d_d_L __pyx_string_tab[113]
+#define __pyx_kp_b_iso88591_A_5_6_Jffiiss_J_J_Q_Q_2S_q_Qa_Jc __pyx_string_tab[114]
+#define __pyx_kp_b_iso88591_A_6l_4yPQ_6_0_1_a __pyx_string_tab[115]
+#define __pyx_kp_b_iso88591_A_6oQd_6_0_1 __pyx_string_tab[116]
+#define __pyx_kp_b_iso88591_A_8_P_iippz_____b_b_l_l_w_w_B_B __pyx_string_tab[117]
+#define __pyx_kp_b_iso88591_A_8_ZW_hh_B_B_F_F_Q_Q_V_V_g_g_O __pyx_string_tab[118]
+#define __pyx_kp_b_iso88591_A_A_MYddrry_z_D_D_h_h_k_k_u_u_K __pyx_string_tab[119]
+#define __pyx_kp_b_iso88591_A_A_V_ggq_r_H_H_K_K_O_O_Z_Z __pyx_string_tab[120]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_0_2S_q_Qa_Jc_Q_9A __pyx_string_tab[121]
+#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[122]
+#define __pyx_kp_b_iso88591_A_NatST_6_4A_1_Qa __pyx_string_tab[123]
+#define __pyx_kp_b_iso88591_A_Qd __pyx_string_tab[124]
+#define __pyx_kp_b_iso88591_A_Ya __pyx_string_tab[125]
+#define __pyx_kp_b_iso88591_A_Ye_fGS_ttu __pyx_string_tab[126]
+#define __pyx_kp_b_iso88591_A__AT __pyx_string_tab[127]
+#define __pyx_kp_b_iso88591_A__AT_zYppq __pyx_string_tab[128]
+#define __pyx_kp_b_iso88591_A__AT_zYuuv __pyx_string_tab[129]
+#define __pyx_kp_b_iso88591_A_a_6_4A_1_Qa __pyx_string_tab[130]
+#define __pyx_kp_b_iso88591_A_at1_6_1_AU_XWAQ __pyx_string_tab[131]
+#define __pyx_kp_b_iso88591_A_ay_S_ddn_o_E_E_H_H_L_L_W_W_c_c __pyx_string_tab[132]
+#define __pyx_kp_b_iso88591_A_iuKvWJVrrs __pyx_string_tab[133]
+#define __pyx_kp_b_iso88591_A_q_IU_V7R_xxy __pyx_string_tab[134]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[135]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[136]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_10 __pyx_string_tab[137]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[138]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_3 __pyx_string_tab[139]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_4 __pyx_string_tab[140]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_5 __pyx_string_tab[141]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_6 __pyx_string_tab[142]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_7 __pyx_string_tab[143]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_8 __pyx_string_tab[144]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_9 __pyx_string_tab[145]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -4872,7 +4866,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform);
   Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_8waveform_Waveform);
   for (int i=0; i<27; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<149; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<146; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -4908,7 +4902,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform);
   Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_8waveform_Waveform);
   for (int i=0; i<27; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<149; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<146; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -5073,20 +5067,312 @@ static void __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_2__dealloc__(struc
  * 
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def new(cls, DiscreteSpace space, ListPortTransform transforms):
- *         cdef _c_api.WaveformHandle h
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5new(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5from_json(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_5new = {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5new(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_5from_json = {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5from_json(PyObject *__pyx_v_cls, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_json = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("from_json (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_json,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 27, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 27, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_json", 0) < (0)) __PYX_ERR(0, 27, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, i); __PYX_ERR(0, 27, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 27, __pyx_L3_error)
+    }
+    __pyx_v_json = ((PyObject*)values[0]);
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 27, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_json), (&PyUnicode_Type), 1, "json", 1))) __PYX_ERR(0, 28, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4from_json(((PyTypeObject*)__pyx_v_cls), __pyx_v_json);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json) {
+  PyObject *__pyx_v_b_json = 0;
+  StringHandle __pyx_v_s_json;
+  __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
+  struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  char const *__pyx_t_2;
+  Py_ssize_t __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  size_t __pyx_t_6;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("from_json", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":29
+ *     @classmethod
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")             # <<<<<<<<<<<<<<
+ *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+ *         cdef _c_api.WaveformHandle h
+*/
+  if (unlikely(__pyx_v_json == Py_None)) {
+    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
+    __PYX_ERR(0, 29, __pyx_L1_error)
+  }
+  __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_json); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_b_json = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":30
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
+ *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h
+ *         try:
+*/
+  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_json); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBytes_GET_SIZE(__pyx_v_b_json); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_v_s_json = String_create(__pyx_t_2, __pyx_t_3);
+
+  /* "falcon_core/_capi/waveform.pyx":32
+ *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
+ *         cdef _c_api.WaveformHandle h
+ *         try:             # <<<<<<<<<<<<<<
+ *             h = _c_api.Waveform_from_json_string(s_json)
+ *         finally:
+*/
+  /*try:*/ {
+
+    /* "falcon_core/_capi/waveform.pyx":33
+ *         cdef _c_api.WaveformHandle h
+ *         try:
+ *             h = _c_api.Waveform_from_json_string(s_json)             # <<<<<<<<<<<<<<
+ *         finally:
+ *             _c_api.String_destroy(s_json)
+*/
+    __pyx_v_h = Waveform_from_json_string(__pyx_v_s_json);
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":35
+ *             h = _c_api.Waveform_from_json_string(s_json)
+ *         finally:
+ *             _c_api.String_destroy(s_json)             # <<<<<<<<<<<<<<
+ *         if h == <_c_api.WaveformHandle>0:
+ *             raise MemoryError("Failed to create Waveform")
+*/
+  /*finally:*/ {
+    /*normal exit:*/{
+      String_destroy(__pyx_v_s_json);
+      goto __pyx_L5;
+    }
+    __pyx_L5:;
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":36
+ *         finally:
+ *             _c_api.String_destroy(s_json)
+ *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
+ *             raise MemoryError("Failed to create Waveform")
+ *         cdef Waveform obj = <Waveform>cls.__new__(cls)
+*/
+  __pyx_t_4 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
+  if (unlikely(__pyx_t_4)) {
+
+    /* "falcon_core/_capi/waveform.pyx":37
+ *             _c_api.String_destroy(s_json)
+ *         if h == <_c_api.WaveformHandle>0:
+ *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
+ *         cdef Waveform obj = <Waveform>cls.__new__(cls)
+ *         obj.handle = h
+*/
+    __pyx_t_5 = NULL;
+    __pyx_t_6 = 1;
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
+      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 37, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+    }
+    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __PYX_ERR(0, 37, __pyx_L1_error)
+
+    /* "falcon_core/_capi/waveform.pyx":36
+ *         finally:
+ *             _c_api.String_destroy(s_json)
+ *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
+ *             raise MemoryError("Failed to create Waveform")
+ *         cdef Waveform obj = <Waveform>cls.__new__(cls)
+*/
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":38
+ *         if h == <_c_api.WaveformHandle>0:
+ *             raise MemoryError("Failed to create Waveform")
+ *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
+ *         obj.handle = h
+ *         obj.owned = True
+*/
+  if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
+    PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
+    __PYX_ERR(0, 38, __pyx_L1_error)
+  }
+  __pyx_t_1 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = __pyx_t_1;
+  __Pyx_INCREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_5);
+  __pyx_t_5 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":39
+ *             raise MemoryError("Failed to create Waveform")
+ *         cdef Waveform obj = <Waveform>cls.__new__(cls)
+ *         obj.handle = h             # <<<<<<<<<<<<<<
+ *         obj.owned = True
+ *         return obj
+*/
+  __pyx_v_obj->handle = __pyx_v_h;
+
+  /* "falcon_core/_capi/waveform.pyx":40
+ *         cdef Waveform obj = <Waveform>cls.__new__(cls)
+ *         obj.handle = h
+ *         obj.owned = True             # <<<<<<<<<<<<<<
+ *         return obj
+ * 
+*/
+  __pyx_v_obj->owned = 1;
+
+  /* "falcon_core/_capi/waveform.pyx":41
+ *         obj.handle = h
+ *         obj.owned = True
+ *         return obj             # <<<<<<<<<<<<<<
+ * 
+ *     @classmethod
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __Pyx_INCREF((PyObject *)__pyx_v_obj);
+  __pyx_r = ((PyObject *)__pyx_v_obj);
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":27
+ * 
+ * 
+ *     @classmethod             # <<<<<<<<<<<<<<
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_b_json);
+  __Pyx_XDECREF((PyObject *)__pyx_v_obj);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":43
+ *         return obj
+ * 
+ *     @classmethod             # <<<<<<<<<<<<<<
+ *     def new(cls, DiscreteSpace space, ListPortTransform transforms):
+ *         cdef _c_api.WaveformHandle h
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new(PyObject *__pyx_v_cls, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_7new = {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5117,39 +5403,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_space,&__pyx_mstate_global->__pyx_n_u_transforms,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 27, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 43, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 27, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 43, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 27, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 43, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new", 0) < (0)) __PYX_ERR(0, 27, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new", 0) < (0)) __PYX_ERR(0, 43, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new", 1, 2, 2, i); __PYX_ERR(0, 27, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new", 1, 2, 2, i); __PYX_ERR(0, 43, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 27, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 43, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 27, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 43, __pyx_L3_error)
     }
     __pyx_v_space = ((struct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *)values[0]);
     __pyx_v_transforms = ((struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 27, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 43, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5160,9 +5446,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_space), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14discrete_space_DiscreteSpace, 1, "space", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 28, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(((PyTypeObject*)__pyx_v_cls), __pyx_v_space, __pyx_v_transforms);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_space), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14discrete_space_DiscreteSpace, 1, "space", 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new(((PyTypeObject*)__pyx_v_cls), __pyx_v_space, __pyx_v_transforms);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5181,7 +5467,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *__pyx_v_space, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *__pyx_v_space, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -5197,7 +5483,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":30
+  /* "falcon_core/_capi/waveform.pyx":46
  *     def new(cls, DiscreteSpace space, ListPortTransform transforms):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create(space.handle if space is not None else <_c_api.DiscreteSpaceHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0)             # <<<<<<<<<<<<<<
@@ -5218,7 +5504,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
   }
   __pyx_v_h = Waveform_create(__pyx_t_1, __pyx_t_3);
 
-  /* "falcon_core/_capi/waveform.pyx":31
+  /* "falcon_core/_capi/waveform.pyx":47
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create(space.handle if space is not None else <_c_api.DiscreteSpaceHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -5228,7 +5514,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":32
+    /* "falcon_core/_capi/waveform.pyx":48
  *         h = _c_api.Waveform_create(space.handle if space is not None else <_c_api.DiscreteSpaceHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -5241,14 +5527,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
       PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 48, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 32, __pyx_L1_error)
+    __PYX_ERR(0, 48, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":31
+    /* "falcon_core/_capi/waveform.pyx":47
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create(space.handle if space is not None else <_c_api.DiscreteSpaceHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -5257,7 +5543,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":33
+  /* "falcon_core/_capi/waveform.pyx":49
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
@@ -5266,9 +5552,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
 */
   if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 33, __pyx_L1_error)
+    __PYX_ERR(0, 49, __pyx_L1_error)
   }
-  __pyx_t_4 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = __pyx_t_4;
   __Pyx_INCREF(__pyx_t_5);
@@ -5276,7 +5562,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_5);
   __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":34
+  /* "falcon_core/_capi/waveform.pyx":50
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h             # <<<<<<<<<<<<<<
@@ -5285,7 +5571,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":35
+  /* "falcon_core/_capi/waveform.pyx":51
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h
  *         obj.owned = True             # <<<<<<<<<<<<<<
@@ -5294,7 +5580,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
 */
   __pyx_v_obj->owned = 1;
 
-  /* "falcon_core/_capi/waveform.pyx":36
+  /* "falcon_core/_capi/waveform.pyx":52
  *         obj.handle = h
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
@@ -5306,8 +5592,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":27
- * 
+  /* "falcon_core/_capi/waveform.pyx":43
+ *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new(cls, DiscreteSpace space, ListPortTransform transforms):
@@ -5327,7 +5613,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":38
+/* "falcon_core/_capi/waveform.pyx":54
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -5336,15 +5622,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_4new(PyTypeOb
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new_cartesian_waveform(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_waveform(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_7new_cartesian_waveform = {"new_cartesian_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new_cartesian_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new_cartesian_waveform(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_waveform = {"new_cartesian_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_waveform(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5378,50 +5664,50 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_divisions,&__pyx_mstate_global->__pyx_n_u_axes,&__pyx_mstate_global->__pyx_n_u_increasing,&__pyx_mstate_global->__pyx_n_u_transforms,&__pyx_mstate_global->__pyx_n_u_domain,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 38, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 54, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 54, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 54, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 54, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 54, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 38, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 54, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_waveform", 0) < (0)) __PYX_ERR(0, 38, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_waveform", 0) < (0)) __PYX_ERR(0, 54, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform", 1, 5, 5, i); __PYX_ERR(0, 38, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform", 1, 5, 5, i); __PYX_ERR(0, 54, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 38, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 54, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 38, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 54, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 38, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 54, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 38, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 54, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 38, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 54, __pyx_L3_error)
     }
     __pyx_v_divisions = ((struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *)values[0]);
     __pyx_v_axes = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[1]);
@@ -5431,7 +5717,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 38, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 54, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5442,12 +5728,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 39, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 39, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 39, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 39, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 39, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesian_waveform(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_transforms, __pyx_v_domain);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesian_waveform(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_transforms, __pyx_v_domain);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5466,7 +5752,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesian_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesian_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -5485,7 +5771,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new_cartesian_waveform", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":41
+  /* "falcon_core/_capi/waveform.pyx":57
  *     def new_cartesian_waveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)             # <<<<<<<<<<<<<<
@@ -5524,7 +5810,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
   }
   __pyx_v_h = Waveform_create_cartesian_waveform(__pyx_t_1, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6);
 
-  /* "falcon_core/_capi/waveform.pyx":42
+  /* "falcon_core/_capi/waveform.pyx":58
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -5534,7 +5820,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":43
+    /* "falcon_core/_capi/waveform.pyx":59
  *         h = _c_api.Waveform_create_cartesian_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -5547,14 +5833,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
       PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 43, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 59, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
     }
     __Pyx_Raise(__pyx_t_7, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __PYX_ERR(0, 43, __pyx_L1_error)
+    __PYX_ERR(0, 59, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":42
+    /* "falcon_core/_capi/waveform.pyx":58
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -5563,7 +5849,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":44
+  /* "falcon_core/_capi/waveform.pyx":60
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
@@ -5572,9 +5858,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
 */
   if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 44, __pyx_L1_error)
+    __PYX_ERR(0, 60, __pyx_L1_error)
   }
-  __pyx_t_7 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_8 = __pyx_t_7;
   __Pyx_INCREF(__pyx_t_8);
@@ -5582,7 +5868,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":45
+  /* "falcon_core/_capi/waveform.pyx":61
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h             # <<<<<<<<<<<<<<
@@ -5591,7 +5877,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":46
+  /* "falcon_core/_capi/waveform.pyx":62
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h
  *         obj.owned = True             # <<<<<<<<<<<<<<
@@ -5600,7 +5886,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
 */
   __pyx_v_obj->owned = 1;
 
-  /* "falcon_core/_capi/waveform.pyx":47
+  /* "falcon_core/_capi/waveform.pyx":63
  *         obj.handle = h
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
@@ -5612,7 +5898,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":38
+  /* "falcon_core/_capi/waveform.pyx":54
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -5633,7 +5919,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":49
+/* "falcon_core/_capi/waveform.pyx":65
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -5642,15 +5928,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_6new_cartesia
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_identity_waveform(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_identity_waveform(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_identity_waveform = {"new_cartesian_identity_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_identity_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_identity_waveform(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_identity_waveform = {"new_cartesian_identity_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_identity_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_identity_waveform(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5683,44 +5969,44 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_divisions,&__pyx_mstate_global->__pyx_n_u_axes,&__pyx_mstate_global->__pyx_n_u_increasing,&__pyx_mstate_global->__pyx_n_u_domain,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 49, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 65, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 49, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 65, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 49, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 65, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 49, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 65, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 49, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_identity_waveform", 0) < (0)) __PYX_ERR(0, 49, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_identity_waveform", 0) < (0)) __PYX_ERR(0, 65, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform", 1, 4, 4, i); __PYX_ERR(0, 49, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform", 1, 4, 4, i); __PYX_ERR(0, 65, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 49, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 49, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 65, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 49, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 65, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 49, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 65, __pyx_L3_error)
     }
     __pyx_v_divisions = ((struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *)values[0]);
     __pyx_v_axes = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[1]);
@@ -5729,7 +6015,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 49, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 65, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5740,11 +6026,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 50, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 50, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 50, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 50, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesian_identity_waveform(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_domain);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 66, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 66, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 66, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesian_identity_waveform(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_domain);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5763,7 +6049,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesian_identity_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesian_identity_waveform(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -5781,7 +6067,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new_cartesian_identity_waveform", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":52
+  /* "falcon_core/_capi/waveform.pyx":68
  *     def new_cartesian_identity_waveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)             # <<<<<<<<<<<<<<
@@ -5814,7 +6100,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
   }
   __pyx_v_h = Waveform_create_cartesian_identity_waveform(__pyx_t_1, __pyx_t_3, __pyx_t_4, __pyx_t_5);
 
-  /* "falcon_core/_capi/waveform.pyx":53
+  /* "falcon_core/_capi/waveform.pyx":69
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -5824,7 +6110,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":54
+    /* "falcon_core/_capi/waveform.pyx":70
  *         h = _c_api.Waveform_create_cartesian_identity_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -5837,14 +6123,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_6 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 54, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 70, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
     }
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 54, __pyx_L1_error)
+    __PYX_ERR(0, 70, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":53
+    /* "falcon_core/_capi/waveform.pyx":69
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -5853,7 +6139,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":55
+  /* "falcon_core/_capi/waveform.pyx":71
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
@@ -5862,9 +6148,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
 */
   if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 55, __pyx_L1_error)
+    __PYX_ERR(0, 71, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 71, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = __pyx_t_6;
   __Pyx_INCREF(__pyx_t_7);
@@ -5872,7 +6158,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":56
+  /* "falcon_core/_capi/waveform.pyx":72
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h             # <<<<<<<<<<<<<<
@@ -5881,7 +6167,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":57
+  /* "falcon_core/_capi/waveform.pyx":73
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h
  *         obj.owned = True             # <<<<<<<<<<<<<<
@@ -5890,7 +6176,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
 */
   __pyx_v_obj->owned = 1;
 
-  /* "falcon_core/_capi/waveform.pyx":58
+  /* "falcon_core/_capi/waveform.pyx":74
  *         obj.handle = h
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
@@ -5902,7 +6188,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":49
+  /* "falcon_core/_capi/waveform.pyx":65
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -5923,7 +6209,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":60
+/* "falcon_core/_capi/waveform.pyx":76
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -5932,15 +6218,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_8new_cartesia
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_waveform_2D(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_waveform_2D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_waveform_2D = {"new_cartesian_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_waveform_2D(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_waveform_2D = {"new_cartesian_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_waveform_2D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5974,50 +6260,50 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_divisions,&__pyx_mstate_global->__pyx_n_u_axes,&__pyx_mstate_global->__pyx_n_u_increasing,&__pyx_mstate_global->__pyx_n_u_transforms,&__pyx_mstate_global->__pyx_n_u_domain,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 60, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 76, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 76, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 76, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 76, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 76, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 76, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_waveform_2D", 0) < (0)) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_waveform_2D", 0) < (0)) __PYX_ERR(0, 76, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_2D", 1, 5, 5, i); __PYX_ERR(0, 60, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_2D", 1, 5, 5, i); __PYX_ERR(0, 76, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 76, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 76, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 76, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 76, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 76, __pyx_L3_error)
     }
     __pyx_v_divisions = ((struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *)values[0]);
     __pyx_v_axes = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[1]);
@@ -6027,7 +6313,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_2D", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 60, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_2D", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 76, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6038,12 +6324,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 61, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 61, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 61, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 61, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 61, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesian_waveform_2D(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_transforms, __pyx_v_domain);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesian_waveform_2D(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_transforms, __pyx_v_domain);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6062,7 +6348,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesian_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesian_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -6081,7 +6367,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new_cartesian_waveform_2D", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":63
+  /* "falcon_core/_capi/waveform.pyx":79
  *     def new_cartesian_waveform_2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)             # <<<<<<<<<<<<<<
@@ -6120,7 +6406,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
   }
   __pyx_v_h = Waveform_create_cartesian_waveform_2D(__pyx_t_1, __pyx_t_3, __pyx_t_4, __pyx_t_5, __pyx_t_6);
 
-  /* "falcon_core/_capi/waveform.pyx":64
+  /* "falcon_core/_capi/waveform.pyx":80
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -6130,7 +6416,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":65
+    /* "falcon_core/_capi/waveform.pyx":81
  *         h = _c_api.Waveform_create_cartesian_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -6143,14 +6429,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
       PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_9, (2-__pyx_t_9) | (__pyx_t_9*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 65, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 81, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
     }
     __Pyx_Raise(__pyx_t_7, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __PYX_ERR(0, 65, __pyx_L1_error)
+    __PYX_ERR(0, 81, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":64
+    /* "falcon_core/_capi/waveform.pyx":80
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -6159,7 +6445,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":66
+  /* "falcon_core/_capi/waveform.pyx":82
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
@@ -6168,9 +6454,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
 */
   if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 66, __pyx_L1_error)
+    __PYX_ERR(0, 82, __pyx_L1_error)
   }
-  __pyx_t_7 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_8 = __pyx_t_7;
   __Pyx_INCREF(__pyx_t_8);
@@ -6178,7 +6464,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_8);
   __pyx_t_8 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":67
+  /* "falcon_core/_capi/waveform.pyx":83
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h             # <<<<<<<<<<<<<<
@@ -6187,7 +6473,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":68
+  /* "falcon_core/_capi/waveform.pyx":84
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h
  *         obj.owned = True             # <<<<<<<<<<<<<<
@@ -6196,7 +6482,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
 */
   __pyx_v_obj->owned = 1;
 
-  /* "falcon_core/_capi/waveform.pyx":69
+  /* "falcon_core/_capi/waveform.pyx":85
  *         obj.handle = h
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
@@ -6208,7 +6494,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":60
+  /* "falcon_core/_capi/waveform.pyx":76
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -6229,7 +6515,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":71
+/* "falcon_core/_capi/waveform.pyx":87
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -6238,15 +6524,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_10new_cartesi
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_identity_waveform_2D(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_identity_waveform_2D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_identity_waveform_2D = {"new_cartesian_identity_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_identity_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_identity_waveform_2D(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_identity_waveform_2D = {"new_cartesian_identity_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_identity_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_identity_waveform_2D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6279,44 +6565,44 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_divisions,&__pyx_mstate_global->__pyx_n_u_axes,&__pyx_mstate_global->__pyx_n_u_increasing,&__pyx_mstate_global->__pyx_n_u_domain,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 71, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 87, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 71, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 87, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 71, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 87, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 71, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 87, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 71, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 87, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_identity_waveform_2D", 0) < (0)) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_identity_waveform_2D", 0) < (0)) __PYX_ERR(0, 87, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_2D", 1, 4, 4, i); __PYX_ERR(0, 71, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_2D", 1, 4, 4, i); __PYX_ERR(0, 87, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 87, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 87, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 87, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 71, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 87, __pyx_L3_error)
     }
     __pyx_v_divisions = ((struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *)values[0]);
     __pyx_v_axes = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[1]);
@@ -6325,7 +6611,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_2D", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 71, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_2D", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 87, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6336,11 +6622,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 72, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 72, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 72, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 72, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesian_identity_waveform_2D(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_domain);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_divisions), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8axes_int_AxesInt, 1, "divisions", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_axes), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "axes", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesian_identity_waveform_2D(((PyTypeObject*)__pyx_v_cls), __pyx_v_divisions, __pyx_v_axes, __pyx_v_increasing, __pyx_v_domain);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6359,7 +6645,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesian_identity_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesian_identity_waveform_2D(PyTypeObject *__pyx_v_cls, struct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *__pyx_v_divisions, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_axes, struct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -6377,7 +6663,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new_cartesian_identity_waveform_2D", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":74
+  /* "falcon_core/_capi/waveform.pyx":90
  *     def new_cartesian_identity_waveform_2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)             # <<<<<<<<<<<<<<
@@ -6410,7 +6696,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
   }
   __pyx_v_h = Waveform_create_cartesian_identity_waveform_2D(__pyx_t_1, __pyx_t_3, __pyx_t_4, __pyx_t_5);
 
-  /* "falcon_core/_capi/waveform.pyx":75
+  /* "falcon_core/_capi/waveform.pyx":91
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -6420,7 +6706,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":76
+    /* "falcon_core/_capi/waveform.pyx":92
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -6433,14 +6719,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_6 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 76, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 92, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
     }
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 76, __pyx_L1_error)
+    __PYX_ERR(0, 92, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":75
+    /* "falcon_core/_capi/waveform.pyx":91
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_2D(divisions.handle if divisions is not None else <_c_api.AxesIntHandle>0, axes.handle if axes is not None else <_c_api.AxesCoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.AxesMapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -6449,7 +6735,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":77
+  /* "falcon_core/_capi/waveform.pyx":93
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
@@ -6458,9 +6744,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
 */
   if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 77, __pyx_L1_error)
+    __PYX_ERR(0, 93, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = __pyx_t_6;
   __Pyx_INCREF(__pyx_t_7);
@@ -6468,7 +6754,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":78
+  /* "falcon_core/_capi/waveform.pyx":94
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h             # <<<<<<<<<<<<<<
@@ -6477,7 +6763,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":79
+  /* "falcon_core/_capi/waveform.pyx":95
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h
  *         obj.owned = True             # <<<<<<<<<<<<<<
@@ -6486,7 +6772,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
 */
   __pyx_v_obj->owned = 1;
 
-  /* "falcon_core/_capi/waveform.pyx":80
+  /* "falcon_core/_capi/waveform.pyx":96
  *         obj.handle = h
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
@@ -6498,7 +6784,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":71
+  /* "falcon_core/_capi/waveform.pyx":87
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -6519,7 +6805,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":82
+/* "falcon_core/_capi/waveform.pyx":98
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -6528,15 +6814,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_12new_cartesi
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_waveform_1D(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_waveform_1D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_waveform_1D = {"new_cartesian_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_waveform_1D(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_waveform_1D = {"new_cartesian_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_waveform_1D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6570,52 +6856,52 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_division,&__pyx_mstate_global->__pyx_n_u_shared_domain,&__pyx_mstate_global->__pyx_n_u_increasing,&__pyx_mstate_global->__pyx_n_u_transforms,&__pyx_mstate_global->__pyx_n_u_domain,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 82, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 98, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 98, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 98, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 98, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 98, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 82, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 98, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_waveform_1D", 0) < (0)) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_waveform_1D", 0) < (0)) __PYX_ERR(0, 98, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 5; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_1D", 1, 5, 5, i); __PYX_ERR(0, 82, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_1D", 1, 5, 5, i); __PYX_ERR(0, 98, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 5)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 98, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 98, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 98, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 98, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 82, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 98, __pyx_L3_error)
     }
-    __pyx_v_division = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_division == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_division = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_division == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 99, __pyx_L3_error)
     __pyx_v_shared_domain = ((struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *)values[1]);
     __pyx_v_increasing = ((struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *)values[2]);
     __pyx_v_transforms = ((struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *)values[3]);
@@ -6623,7 +6909,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_1D", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 82, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new_cartesian_waveform_1D", 1, 5, 5, __pyx_nargs); __PYX_ERR(0, 98, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6634,11 +6920,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_shared_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "shared_domain", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_15map_string_bool_MapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesian_waveform_1D(((PyTypeObject*)__pyx_v_cls), __pyx_v_division, __pyx_v_shared_domain, __pyx_v_increasing, __pyx_v_transforms, __pyx_v_domain);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_shared_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "shared_domain", 0))) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_15map_string_bool_MapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_transforms), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_19list_port_transform_ListPortTransform, 1, "transforms", 0))) __PYX_ERR(0, 99, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 99, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesian_waveform_1D(((PyTypeObject*)__pyx_v_cls), __pyx_v_division, __pyx_v_shared_domain, __pyx_v_increasing, __pyx_v_transforms, __pyx_v_domain);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6657,7 +6943,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesian_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesian_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *__pyx_v_transforms, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -6675,7 +6961,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new_cartesian_waveform_1D", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":85
+  /* "falcon_core/_capi/waveform.pyx":101
  *     def new_cartesian_waveform_1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, ListPortTransform transforms, Domain domain):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)             # <<<<<<<<<<<<<<
@@ -6708,7 +6994,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
   }
   __pyx_v_h = Waveform_create_cartesian_waveform_1D(__pyx_v_division, __pyx_t_1, __pyx_t_3, __pyx_t_4, __pyx_t_5);
 
-  /* "falcon_core/_capi/waveform.pyx":86
+  /* "falcon_core/_capi/waveform.pyx":102
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -6718,7 +7004,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":87
+    /* "falcon_core/_capi/waveform.pyx":103
  *         h = _c_api.Waveform_create_cartesian_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -6731,14 +7017,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_6 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_8, (2-__pyx_t_8) | (__pyx_t_8*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 87, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
     }
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 87, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":86
+    /* "falcon_core/_capi/waveform.pyx":102
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, transforms.handle if transforms is not None else <_c_api.ListPortTransformHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -6747,7 +7033,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":88
+  /* "falcon_core/_capi/waveform.pyx":104
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
@@ -6756,9 +7042,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
 */
   if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 88, __pyx_L1_error)
+    __PYX_ERR(0, 104, __pyx_L1_error)
   }
-  __pyx_t_6 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = __pyx_t_6;
   __Pyx_INCREF(__pyx_t_7);
@@ -6766,7 +7052,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_7);
   __pyx_t_7 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":89
+  /* "falcon_core/_capi/waveform.pyx":105
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h             # <<<<<<<<<<<<<<
@@ -6775,7 +7061,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":90
+  /* "falcon_core/_capi/waveform.pyx":106
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
  *         obj.handle = h
  *         obj.owned = True             # <<<<<<<<<<<<<<
@@ -6784,7 +7070,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
 */
   __pyx_v_obj->owned = 1;
 
-  /* "falcon_core/_capi/waveform.pyx":91
+  /* "falcon_core/_capi/waveform.pyx":107
  *         obj.handle = h
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
@@ -6796,7 +7082,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":82
+  /* "falcon_core/_capi/waveform.pyx":98
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -6817,7 +7103,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":93
+/* "falcon_core/_capi/waveform.pyx":109
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -6826,15 +7112,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_14new_cartesi
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_identity_waveform_1D(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19new_cartesian_identity_waveform_1D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_identity_waveform_1D = {"new_cartesian_identity_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_identity_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_identity_waveform_1D(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_19new_cartesian_identity_waveform_1D = {"new_cartesian_identity_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19new_cartesian_identity_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19new_cartesian_identity_waveform_1D(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6867,53 +7153,53 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_division,&__pyx_mstate_global->__pyx_n_u_shared_domain,&__pyx_mstate_global->__pyx_n_u_increasing,&__pyx_mstate_global->__pyx_n_u_domain,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 93, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 109, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 109, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 109, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 109, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 93, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 109, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_identity_waveform_1D", 0) < (0)) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "new_cartesian_identity_waveform_1D", 0) < (0)) __PYX_ERR(0, 109, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_1D", 1, 4, 4, i); __PYX_ERR(0, 93, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_1D", 1, 4, 4, i); __PYX_ERR(0, 109, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 4)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 109, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 109, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 109, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 93, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 109, __pyx_L3_error)
     }
-    __pyx_v_division = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_division == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 94, __pyx_L3_error)
+    __pyx_v_division = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_division == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 110, __pyx_L3_error)
     __pyx_v_shared_domain = ((struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *)values[1]);
     __pyx_v_increasing = ((struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *)values[2]);
     __pyx_v_domain = ((struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *)values[3]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_1D", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 93, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("new_cartesian_identity_waveform_1D", 1, 4, 4, __pyx_nargs); __PYX_ERR(0, 109, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6924,10 +7210,10 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_shared_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "shared_domain", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_15map_string_bool_MapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesian_identity_waveform_1D(((PyTypeObject*)__pyx_v_cls), __pyx_v_division, __pyx_v_shared_domain, __pyx_v_increasing, __pyx_v_domain);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_shared_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "shared_domain", 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_increasing), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_15map_string_bool_MapStringBool, 1, "increasing", 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_domain), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6domain_Domain, 1, "domain", 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18new_cartesian_identity_waveform_1D(((PyTypeObject*)__pyx_v_cls), __pyx_v_division, __pyx_v_shared_domain, __pyx_v_increasing, __pyx_v_domain);
 
   /* function exit code */
   goto __pyx_L0;
@@ -6946,7 +7232,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesian_identity_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18new_cartesian_identity_waveform_1D(PyTypeObject *__pyx_v_cls, int __pyx_v_division, struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *__pyx_v_shared_domain, struct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *__pyx_v_increasing, struct __pyx_obj_11falcon_core_5_capi_6domain_Domain *__pyx_v_domain) {
   __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
   struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
   PyObject *__pyx_r = NULL;
@@ -6963,7 +7249,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesi
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("new_cartesian_identity_waveform_1D", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":96
+  /* "falcon_core/_capi/waveform.pyx":112
  *     def new_cartesian_identity_waveform_1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)             # <<<<<<<<<<<<<<
@@ -6990,7 +7276,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesi
   }
   __pyx_v_h = Waveform_create_cartesian_identity_waveform_1D(__pyx_v_division, __pyx_t_1, __pyx_t_3, __pyx_t_4);
 
-  /* "falcon_core/_capi/waveform.pyx":97
+  /* "falcon_core/_capi/waveform.pyx":113
  *         cdef _c_api.WaveformHandle h
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -7000,7 +7286,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesi
   __pyx_t_2 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (unlikely(__pyx_t_2)) {
 
-    /* "falcon_core/_capi/waveform.pyx":98
+    /* "falcon_core/_capi/waveform.pyx":114
  *         h = _c_api.Waveform_create_cartesian_identity_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:
  *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
@@ -7013,307 +7299,16 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_16new_cartesi
       PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
       __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 98, __pyx_L1_error)
+      if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 114, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
     }
     __Pyx_Raise(__pyx_t_5, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __PYX_ERR(0, 98, __pyx_L1_error)
-
-    /* "falcon_core/_capi/waveform.pyx":97
- *         cdef _c_api.WaveformHandle h
- *         h = _c_api.Waveform_create_cartesian_identity_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
- *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
- *             raise MemoryError("Failed to create Waveform")
- *         cdef Waveform obj = <Waveform>cls.__new__(cls)
-*/
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":99
- *         if h == <_c_api.WaveformHandle>0:
- *             raise MemoryError("Failed to create Waveform")
- *         cdef Waveform obj = <Waveform>cls.__new__(cls)             # <<<<<<<<<<<<<<
- *         obj.handle = h
- *         obj.owned = True
-*/
-  if (unlikely(((PyObject *)__pyx_v_cls) == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
-    __PYX_ERR(0, 99, __pyx_L1_error)
-  }
-  __pyx_t_5 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 99, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __pyx_t_5;
-  __Pyx_INCREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_6);
-  __pyx_t_6 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":100
- *             raise MemoryError("Failed to create Waveform")
- *         cdef Waveform obj = <Waveform>cls.__new__(cls)
- *         obj.handle = h             # <<<<<<<<<<<<<<
- *         obj.owned = True
- *         return obj
-*/
-  __pyx_v_obj->handle = __pyx_v_h;
-
-  /* "falcon_core/_capi/waveform.pyx":101
- *         cdef Waveform obj = <Waveform>cls.__new__(cls)
- *         obj.handle = h
- *         obj.owned = True             # <<<<<<<<<<<<<<
- *         return obj
- * 
-*/
-  __pyx_v_obj->owned = 1;
-
-  /* "falcon_core/_capi/waveform.pyx":102
- *         obj.handle = h
- *         obj.owned = True
- *         return obj             # <<<<<<<<<<<<<<
- * 
- *     @classmethod
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF((PyObject *)__pyx_v_obj);
-  __pyx_r = ((PyObject *)__pyx_v_obj);
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":93
- *         return obj
- * 
- *     @classmethod             # <<<<<<<<<<<<<<
- *     def new_cartesian_identity_waveform_1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
- *         cdef _c_api.WaveformHandle h
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.new_cartesian_identity_waveform_1D", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF((PyObject *)__pyx_v_obj);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":104
- *         return obj
- * 
- *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19from_json(PyObject *__pyx_v_cls, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_19from_json = {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19from_json(PyObject *__pyx_v_cls, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyObject *__pyx_v_json = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("from_json (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_json,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 104, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 104, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_json", 0) < (0)) __PYX_ERR(0, 104, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, i); __PYX_ERR(0, 104, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 104, __pyx_L3_error)
-    }
-    __pyx_v_json = ((PyObject*)values[0]);
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_json", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 104, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_json), (&PyUnicode_Type), 1, "json", 1))) __PYX_ERR(0, 105, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18from_json(((PyTypeObject*)__pyx_v_cls), __pyx_v_json);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  goto __pyx_L7_cleaned_up;
-  __pyx_L0:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __pyx_L7_cleaned_up:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18from_json(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_json) {
-  PyObject *__pyx_v_b_json = 0;
-  StringHandle __pyx_v_s_json;
-  __pyx_t_6_c_api_WaveformHandle __pyx_v_h;
-  struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  char const *__pyx_t_2;
-  Py_ssize_t __pyx_t_3;
-  int __pyx_t_4;
-  PyObject *__pyx_t_5 = NULL;
-  size_t __pyx_t_6;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("from_json", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":106
- *     @classmethod
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")             # <<<<<<<<<<<<<<
- *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
- *         cdef _c_api.WaveformHandle h
-*/
-  if (unlikely(__pyx_v_json == Py_None)) {
-    PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
-    __PYX_ERR(0, 106, __pyx_L1_error)
-  }
-  __pyx_t_1 = PyUnicode_AsUTF8String(__pyx_v_json); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_b_json = ((PyObject*)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":107
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
- *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))             # <<<<<<<<<<<<<<
- *         cdef _c_api.WaveformHandle h
- *         try:
-*/
-  __pyx_t_2 = __Pyx_PyBytes_AsString(__pyx_v_b_json); if (unlikely((!__pyx_t_2) && PyErr_Occurred())) __PYX_ERR(0, 107, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyBytes_GET_SIZE(__pyx_v_b_json); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-1))) __PYX_ERR(0, 107, __pyx_L1_error)
-  __pyx_v_s_json = String_create(__pyx_t_2, __pyx_t_3);
-
-  /* "falcon_core/_capi/waveform.pyx":109
- *         cdef _c_api.StringHandle s_json = _c_api.String_create(b_json, len(b_json))
- *         cdef _c_api.WaveformHandle h
- *         try:             # <<<<<<<<<<<<<<
- *             h = _c_api.Waveform_from_json_string(s_json)
- *         finally:
-*/
-  /*try:*/ {
-
-    /* "falcon_core/_capi/waveform.pyx":110
- *         cdef _c_api.WaveformHandle h
- *         try:
- *             h = _c_api.Waveform_from_json_string(s_json)             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_json)
-*/
-    __pyx_v_h = Waveform_from_json_string(__pyx_v_s_json);
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":112
- *             h = _c_api.Waveform_from_json_string(s_json)
- *         finally:
- *             _c_api.String_destroy(s_json)             # <<<<<<<<<<<<<<
- *         if h == <_c_api.WaveformHandle>0:
- *             raise MemoryError("Failed to create Waveform")
-*/
-  /*finally:*/ {
-    /*normal exit:*/{
-      String_destroy(__pyx_v_s_json);
-      goto __pyx_L5;
-    }
-    __pyx_L5:;
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":113
- *         finally:
- *             _c_api.String_destroy(s_json)
- *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
- *             raise MemoryError("Failed to create Waveform")
- *         cdef Waveform obj = <Waveform>cls.__new__(cls)
-*/
-  __pyx_t_4 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
-  if (unlikely(__pyx_t_4)) {
-
-    /* "falcon_core/_capi/waveform.pyx":114
- *             _c_api.String_destroy(s_json)
- *         if h == <_c_api.WaveformHandle>0:
- *             raise MemoryError("Failed to create Waveform")             # <<<<<<<<<<<<<<
- *         cdef Waveform obj = <Waveform>cls.__new__(cls)
- *         obj.handle = h
-*/
-    __pyx_t_5 = NULL;
-    __pyx_t_6 = 1;
-    {
-      PyObject *__pyx_callargs[2] = {__pyx_t_5, __pyx_mstate_global->__pyx_kp_u_Failed_to_create_Waveform};
-      __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_MemoryError)), __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_1);
-    }
-    __Pyx_Raise(__pyx_t_1, 0, 0, 0);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __PYX_ERR(0, 114, __pyx_L1_error)
 
     /* "falcon_core/_capi/waveform.pyx":113
- *         finally:
- *             _c_api.String_destroy(s_json)
+ *         cdef _c_api.WaveformHandle h
+ *         h = _c_api.Waveform_create_cartesian_identity_waveform_1D(division, shared_domain.handle if shared_domain is not None else <_c_api.CoupledLabelledDomainHandle>0, increasing.handle if increasing is not None else <_c_api.MapStringBoolHandle>0, domain.handle if domain is not None else <_c_api.DomainHandle>0)
  *         if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
  *             raise MemoryError("Failed to create Waveform")
  *         cdef Waveform obj = <Waveform>cls.__new__(cls)
@@ -7331,13 +7326,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18from_json(P
     PyErr_SetString(PyExc_TypeError, "object.__new__(X): X is not a type object (NoneType)");
     __PYX_ERR(0, 115, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_5 = __pyx_t_1;
-  __Pyx_INCREF(__pyx_t_5);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_5);
-  __pyx_t_5 = 0;
+  __pyx_t_5 = __Pyx_tp_new(((PyObject *)__pyx_v_cls), __pyx_mstate_global->__pyx_empty_tuple); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __pyx_t_6 = __pyx_t_5;
+  __Pyx_INCREF(__pyx_t_6);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_6);
+  __pyx_t_6 = 0;
 
   /* "falcon_core/_capi/waveform.pyx":116
  *             raise MemoryError("Failed to create Waveform")
@@ -7362,29 +7357,28 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18from_json(P
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def space(self, ):
+ *     def copy(self, ):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":104
+  /* "falcon_core/_capi/waveform.pyx":109
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
+ *     def new_cartesian_identity_waveform_1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
+ *         cdef _c_api.WaveformHandle h
 */
 
   /* function exit code */
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.from_json", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.new_cartesian_identity_waveform_1D", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_b_json);
   __Pyx_XDECREF((PyObject *)__pyx_v_obj);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -7394,21 +7388,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_18from_json(P
 /* "falcon_core/_capi/waveform.pyx":120
  *         return obj
  * 
- *     def space(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+ *         if h_ret == <_c_api.WaveformHandle>0:
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21space(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_21space = {"space", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21space, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21space(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_21copy = {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21copy(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -7421,7 +7415,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("space (wrapper)", 0);
+  __Pyx_RefNannySetupContext("copy (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_SIZE
   __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
@@ -7430,19 +7424,19 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("space", 1, 0, 0, __pyx_nargs); return NULL; }
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("copy", 1, 0, 0, __pyx_nargs); return NULL; }
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("space", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("copy", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20copy(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
-  __pyx_t_6_c_api_DiscreteSpaceHandle __pyx_v_h_ret;
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20copy(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  __pyx_t_6_c_api_WaveformHandle __pyx_v_h_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -7450,32 +7444,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(struc
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("space", 0);
+  __Pyx_RefNannySetupContext("copy", 0);
 
   /* "falcon_core/_capi/waveform.pyx":121
  * 
- *     def space(self, ):
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *     def copy(self, ):
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.WaveformHandle>0:
  *             return None
 */
-  __pyx_v_h_ret = Waveform_space(__pyx_v_self->handle);
+  __pyx_v_h_ret = Waveform_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/waveform.pyx":122
- *     def space(self, ):
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:             # <<<<<<<<<<<<<<
+ *     def copy(self, ):
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+ *         if h_ret == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
  *             return None
- *         return _discrete_space_from_capi(h_ret)
+ *         return _waveform_from_capi(h_ret)
 */
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DiscreteSpaceHandle)0));
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (__pyx_t_1) {
 
     /* "falcon_core/_capi/waveform.pyx":123
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+ *         if h_ret == <_c_api.WaveformHandle>0:
  *             return None             # <<<<<<<<<<<<<<
- *         return _discrete_space_from_capi(h_ret)
+ *         return _waveform_from_capi(h_ret)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
@@ -7483,23 +7477,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(struc
     goto __pyx_L0;
 
     /* "falcon_core/_capi/waveform.pyx":122
- *     def space(self, ):
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:             # <<<<<<<<<<<<<<
+ *     def copy(self, ):
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+ *         if h_ret == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
  *             return None
- *         return _discrete_space_from_capi(h_ret)
+ *         return _waveform_from_capi(h_ret)
 */
   }
 
   /* "falcon_core/_capi/waveform.pyx":124
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *         if h_ret == <_c_api.WaveformHandle>0:
  *             return None
- *         return _discrete_space_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ *         return _waveform_from_capi(h_ret)             # <<<<<<<<<<<<<<
  * 
- *     def transforms(self, ):
+ *     def equal(self, Waveform other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14discrete_space__discrete_space_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8waveform__waveform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -7508,15 +7502,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(struc
   /* "falcon_core/_capi/waveform.pyx":120
  *         return obj
  * 
- *     def space(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+ *         if h_ret == <_c_api.WaveformHandle>0:
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.space", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.copy", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -7525,1475 +7519,6 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_20space(struc
 }
 
 /* "falcon_core/_capi/waveform.pyx":126
- *         return _discrete_space_from_capi(h_ret)
- * 
- *     def transforms(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23transforms(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_23transforms = {"transforms", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23transforms, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23transforms(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("transforms (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("transforms", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("transforms", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_22transforms(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_22transforms(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
-  __pyx_t_6_c_api_ListPortTransformHandle __pyx_v_h_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("transforms", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":127
- * 
- *     def transforms(self, ):
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
- *             return None
-*/
-  __pyx_v_h_ret = Waveform_transforms(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/waveform.pyx":128
- *     def transforms(self, ):
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _list_port_transform_from_capi(h_ret)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListPortTransformHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/waveform.pyx":129
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _list_port_transform_from_capi(h_ret)
- * 
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-    goto __pyx_L0;
-
-    /* "falcon_core/_capi/waveform.pyx":128
- *     def transforms(self, ):
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _list_port_transform_from_capi(h_ret)
-*/
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":130
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
- *             return None
- *         return _list_port_transform_from_capi(h_ret)             # <<<<<<<<<<<<<<
- * 
- *     def push_back(self, PortTransform value):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_19list_port_transform__list_port_transform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":126
- *         return _discrete_space_from_capi(h_ret)
- * 
- *     def transforms(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.transforms", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":132
- *         return _list_port_transform_from_capi(h_ret)
- * 
- *     def push_back(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25push_back(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_25push_back = {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25push_back(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("push_back (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 132, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 132, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 132, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 132, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 132, __pyx_L3_error)
-    }
-    __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *)values[0]);
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 132, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.push_back", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14port_transform_PortTransform, 1, "value", 0))) __PYX_ERR(0, 132, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_24push_back(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  goto __pyx_L7_cleaned_up;
-  __pyx_L0:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __pyx_L7_cleaned_up:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_24push_back(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __pyx_t_6_c_api_PortTransformHandle __pyx_t_1;
-  int __pyx_t_2;
-  __Pyx_RefNannySetupContext("push_back", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":133
- * 
- *     def push_back(self, PortTransform value):
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)             # <<<<<<<<<<<<<<
- * 
- *     def size(self, ):
-*/
-  __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
-  if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_value->handle;
-  } else {
-    __pyx_t_1 = ((__pyx_t_6_c_api_PortTransformHandle)0);
-  }
-  Waveform_push_back(__pyx_v_self->handle, __pyx_t_1);
-
-  /* "falcon_core/_capi/waveform.pyx":132
- *         return _list_port_transform_from_capi(h_ret)
- * 
- *     def push_back(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":135
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_size(self.handle)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27size(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_27size = {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27size(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("size (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("size", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("size", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_26size(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_26size(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("size", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":136
- * 
- *     def size(self, ):
- *         return _c_api.Waveform_size(self.handle)             # <<<<<<<<<<<<<<
- * 
- *     def empty(self, ):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_FromSize_t(Waveform_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":135
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_size(self.handle)
- * 
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.size", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":138
- *         return _c_api.Waveform_size(self.handle)
- * 
- *     def empty(self, ):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_empty(self.handle)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29empty(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_29empty = {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29empty(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("empty (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("empty", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("empty", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_28empty(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_28empty(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("empty", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":139
- * 
- *     def empty(self, ):
- *         return _c_api.Waveform_empty(self.handle)             # <<<<<<<<<<<<<<
- * 
- *     def erase_at(self, size_t idx):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(Waveform_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_r = __pyx_t_1;
-  __pyx_t_1 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":138
- *         return _c_api.Waveform_size(self.handle)
- * 
- *     def empty(self, ):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_empty(self.handle)
- * 
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":141
- *         return _c_api.Waveform_empty(self.handle)
- * 
- *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_erase_at(self.handle, idx)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31erase_at(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_31erase_at = {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31erase_at(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  size_t __pyx_v_idx;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("erase_at (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 141, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 141, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 141, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 141, __pyx_L3_error)
-    }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 141, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 141, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.erase_at", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_30erase_at(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_idx);
-
-  /* function exit code */
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_30erase_at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("erase_at", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":142
- * 
- *     def erase_at(self, size_t idx):
- *         _c_api.Waveform_erase_at(self.handle, idx)             # <<<<<<<<<<<<<<
- * 
- *     def clear(self, ):
-*/
-  Waveform_erase_at(__pyx_v_self->handle, __pyx_v_idx);
-
-  /* "falcon_core/_capi/waveform.pyx":141
- *         return _c_api.Waveform_empty(self.handle)
- * 
- *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_erase_at(self.handle, idx)
- * 
-*/
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":144
- *         _c_api.Waveform_erase_at(self.handle, idx)
- * 
- *     def clear(self, ):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_clear(self.handle)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33clear(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_33clear = {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33clear(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("clear (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("clear", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("clear", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_32clear(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_32clear(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("clear", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":145
- * 
- *     def clear(self, ):
- *         _c_api.Waveform_clear(self.handle)             # <<<<<<<<<<<<<<
- * 
- *     def at(self, size_t idx):
-*/
-  Waveform_clear(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/waveform.pyx":144
- *         _c_api.Waveform_erase_at(self.handle, idx)
- * 
- *     def clear(self, ):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_clear(self.handle)
- * 
-*/
-
-  /* function exit code */
-  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":147
- *         _c_api.Waveform_clear(self.handle)
- * 
- *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
- *         if h_ret == <_c_api.PortTransformHandle>0:
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35at(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_35at = {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35at(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  size_t __pyx_v_idx;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("at (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 147, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 147, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 147, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 147, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 147, __pyx_L3_error)
-    }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 147, __pyx_L3_error)
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 147, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_34at(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_idx);
-
-  /* function exit code */
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_34at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx) {
-  __pyx_t_6_c_api_PortTransformHandle __pyx_v_h_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  struct __pyx_opt_args_11falcon_core_5_capi_14port_transform__port_transform_from_capi __pyx_t_3;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("at", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":148
- * 
- *     def at(self, size_t idx):
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.PortTransformHandle>0:
- *             return None
-*/
-  __pyx_v_h_ret = Waveform_at(__pyx_v_self->handle, __pyx_v_idx);
-
-  /* "falcon_core/_capi/waveform.pyx":149
- *     def at(self, size_t idx):
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
- *         if h_ret == <_c_api.PortTransformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _port_transform_from_capi(h_ret, owned=False)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_PortTransformHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/waveform.pyx":150
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
- *         if h_ret == <_c_api.PortTransformHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _port_transform_from_capi(h_ret, owned=False)
- * 
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-    goto __pyx_L0;
-
-    /* "falcon_core/_capi/waveform.pyx":149
- *     def at(self, size_t idx):
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
- *         if h_ret == <_c_api.PortTransformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _port_transform_from_capi(h_ret, owned=False)
-*/
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":151
- *         if h_ret == <_c_api.PortTransformHandle>0:
- *             return None
- *         return _port_transform_from_capi(h_ret, owned=False)             # <<<<<<<<<<<<<<
- * 
- *     def items(self, ):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3.__pyx_n = 1;
-  __pyx_t_3.owned = 0;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14port_transform__port_transform_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":147
- *         _c_api.Waveform_clear(self.handle)
- * 
- *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
- *         if h_ret == <_c_api.PortTransformHandle>0:
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":153
- *         return _port_transform_from_capi(h_ret, owned=False)
- * 
- *     def items(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37items(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_37items = {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37items(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("items (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("items", 1, 0, 0, __pyx_nargs); return NULL; }
-  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-  if (unlikely(__pyx_kwds_len < 0)) return NULL;
-  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("items", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_36items(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
-
-  /* function exit code */
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_36items(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
-  __pyx_t_6_c_api_ListPortTransformHandle __pyx_v_h_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("items", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":154
- * 
- *     def items(self, ):
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
- *             return None
-*/
-  __pyx_v_h_ret = Waveform_items(__pyx_v_self->handle);
-
-  /* "falcon_core/_capi/waveform.pyx":155
- *     def items(self, ):
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _list_port_transform_from_capi(h_ret)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListPortTransformHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/waveform.pyx":156
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _list_port_transform_from_capi(h_ret)
- * 
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-    goto __pyx_L0;
-
-    /* "falcon_core/_capi/waveform.pyx":155
- *     def items(self, ):
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _list_port_transform_from_capi(h_ret)
-*/
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":157
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
- *             return None
- *         return _list_port_transform_from_capi(h_ret)             # <<<<<<<<<<<<<<
- * 
- *     def contains(self, PortTransform value):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_19list_port_transform__list_port_transform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 157, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":153
- *         return _port_transform_from_capi(h_ret, owned=False)
- * 
- *     def items(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.items", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":159
- *         return _list_port_transform_from_capi(h_ret)
- * 
- *     def contains(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39contains(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_39contains = {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39contains(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("contains (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 159, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 159, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 159, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 159, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 159, __pyx_L3_error)
-    }
-    __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *)values[0]);
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 159, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.contains", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14port_transform_PortTransform, 1, "value", 0))) __PYX_ERR(0, 159, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_38contains(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  goto __pyx_L7_cleaned_up;
-  __pyx_L0:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __pyx_L7_cleaned_up:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_38contains(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __pyx_t_6_c_api_PortTransformHandle __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("contains", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":160
- * 
- *     def contains(self, PortTransform value):
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)             # <<<<<<<<<<<<<<
- * 
- *     def index(self, PortTransform value):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
-  if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_value->handle;
-  } else {
-    __pyx_t_1 = ((__pyx_t_6_c_api_PortTransformHandle)0);
-  }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(Waveform_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":159
- *         return _list_port_transform_from_capi(h_ret)
- * 
- *     def contains(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.contains", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":162
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def index(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41index(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_41index = {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41index(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("index (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 162, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 162, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 162, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 162, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 162, __pyx_L3_error)
-    }
-    __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *)values[0]);
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 162, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.index", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14port_transform_PortTransform, 1, "value", 0))) __PYX_ERR(0, 162, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_40index(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  goto __pyx_L7_cleaned_up;
-  __pyx_L0:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __pyx_L7_cleaned_up:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_40index(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value) {
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __pyx_t_6_c_api_PortTransformHandle __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("index", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":163
- * 
- *     def index(self, PortTransform value):
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)             # <<<<<<<<<<<<<<
- * 
- *     def intersection(self, Waveform other):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
-  if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_value->handle;
-  } else {
-    __pyx_t_1 = ((__pyx_t_6_c_api_PortTransformHandle)0);
-  }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(Waveform_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":162
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def index(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.index", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":165
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def intersection(self, Waveform other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
- *         if h_ret == <_c_api.WaveformHandle>0:
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43intersection(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_43intersection = {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43intersection(PyObject *__pyx_v_self, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("intersection (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 165, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 165, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 165, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 165, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 165, __pyx_L3_error)
-    }
-    __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)values[0]);
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 165, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.intersection", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 165, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42intersection(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_other);
-
-  /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  goto __pyx_L7_cleaned_up;
-  __pyx_L0:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __pyx_L7_cleaned_up:;
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42intersection(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
-  __pyx_t_6_c_api_WaveformHandle __pyx_v_h_ret;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  __pyx_t_6_c_api_WaveformHandle __pyx_t_1;
-  int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("intersection", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":166
- * 
- *     def intersection(self, Waveform other):
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.WaveformHandle>0:
- *             return None
-*/
-  __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
-  if (__pyx_t_2) {
-    __pyx_t_1 = __pyx_v_other->handle;
-  } else {
-    __pyx_t_1 = ((__pyx_t_6_c_api_WaveformHandle)0);
-  }
-  __pyx_v_h_ret = Waveform_intersection(__pyx_v_self->handle, __pyx_t_1);
-
-  /* "falcon_core/_capi/waveform.pyx":167
- *     def intersection(self, Waveform other):
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
- *         if h_ret == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _waveform_from_capi(h_ret)
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_WaveformHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/waveform.pyx":168
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
- *         if h_ret == <_c_api.WaveformHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _waveform_from_capi(h_ret)
- * 
-*/
-    __Pyx_XDECREF(__pyx_r);
-    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
-    goto __pyx_L0;
-
-    /* "falcon_core/_capi/waveform.pyx":167
- *     def intersection(self, Waveform other):
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
- *         if h_ret == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _waveform_from_capi(h_ret)
-*/
-  }
-
-  /* "falcon_core/_capi/waveform.pyx":169
- *         if h_ret == <_c_api.WaveformHandle>0:
- *             return None
- *         return _waveform_from_capi(h_ret)             # <<<<<<<<<<<<<<
- * 
- *     def equal(self, Waveform other):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8waveform__waveform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 169, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_r = __pyx_t_3;
-  __pyx_t_3 = 0;
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":165
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def intersection(self, Waveform other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
- *         if h_ret == <_c_api.WaveformHandle>0:
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.intersection", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":171
  *         return _waveform_from_capi(h_ret)
  * 
  *     def equal(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9002,15 +7527,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42intersectio
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_45equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_23equal = {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -9040,32 +7565,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 171, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 126, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 171, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 126, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 171, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 126, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 171, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 126, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 171, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 126, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 171, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 126, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9076,8 +7601,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 171, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_other);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_22equal(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -9096,7 +7621,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_22equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_WaveformHandle __pyx_t_1;
@@ -9107,7 +7632,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":172
+  /* "falcon_core/_capi/waveform.pyx":127
  * 
  *     def equal(self, Waveform other):
  *         return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)             # <<<<<<<<<<<<<<
@@ -9121,13 +7646,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(struc
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_WaveformHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(Waveform_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(Waveform_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":171
+  /* "falcon_core/_capi/waveform.pyx":126
  *         return _waveform_from_capi(h_ret)
  * 
  *     def equal(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9146,7 +7671,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(struc
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":174
+/* "falcon_core/_capi/waveform.pyx":129
  *         return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
  * 
  *     def __eq__(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9155,8 +7680,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44equal(struc
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -9165,8 +7690,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47__eq__(PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 174, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_other));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_24__eq__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -9179,7 +7704,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47__eq__(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_24__eq__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -9192,18 +7717,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":175
+  /* "falcon_core/_capi/waveform.pyx":130
  * 
  *     def __eq__(self, Waveform other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
  *         return self.equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 130, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/waveform.pyx":176
+    /* "falcon_core/_capi/waveform.pyx":131
  *     def __eq__(self, Waveform other):
  *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -9215,7 +7740,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(stru
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/waveform.pyx":175
+    /* "falcon_core/_capi/waveform.pyx":130
  * 
  *     def __eq__(self, Waveform other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
@@ -9224,7 +7749,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(stru
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":177
+  /* "falcon_core/_capi/waveform.pyx":132
  *         if not hasattr(other, "handle"):
  *             return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
@@ -9239,14 +7764,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(stru
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":174
+  /* "falcon_core/_capi/waveform.pyx":129
  *         return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
  * 
  *     def __eq__(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9266,7 +7791,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(stru
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":179
+/* "falcon_core/_capi/waveform.pyx":134
  *         return self.equal(other)
  * 
  *     def not_equal(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9275,15 +7800,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46__eq__(stru
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49not_equal(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_49not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49not_equal(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_27not_equal = {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27not_equal(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -9313,32 +7838,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 179, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 134, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 179, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 134, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 179, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 134, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 179, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 134, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 179, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 134, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 179, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 134, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9349,8 +7874,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 179, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_other);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_26not_equal(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
   goto __pyx_L0;
@@ -9369,7 +7894,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_26not_equal(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   __pyx_t_6_c_api_WaveformHandle __pyx_t_1;
@@ -9380,7 +7905,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":180
+  /* "falcon_core/_capi/waveform.pyx":135
  * 
  *     def not_equal(self, Waveform other):
  *         return _c_api.Waveform_not_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)             # <<<<<<<<<<<<<<
@@ -9394,13 +7919,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(s
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_WaveformHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(Waveform_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 180, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(Waveform_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":179
+  /* "falcon_core/_capi/waveform.pyx":134
  *         return self.equal(other)
  * 
  *     def not_equal(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9419,7 +7944,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(s
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":182
+/* "falcon_core/_capi/waveform.pyx":137
  *         return _c_api.Waveform_not_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
  * 
  *     def __ne__(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9428,8 +7953,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48not_equal(s
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29__ne__(PyObject *__pyx_v_self, PyObject *__pyx_v_other) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -9438,8 +7963,8 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51__ne__(PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 182, __pyx_L1_error)
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_other));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_28__ne__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_other));
 
   /* function exit code */
   goto __pyx_L0;
@@ -9452,7 +7977,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51__ne__(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_28__ne__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -9465,18 +7990,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":183
+  /* "falcon_core/_capi/waveform.pyx":138
  * 
  *     def __ne__(self, Waveform other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
  *             return NotImplemented
  *         return self.not_equal(other)
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 138, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
-    /* "falcon_core/_capi/waveform.pyx":184
+    /* "falcon_core/_capi/waveform.pyx":139
  *     def __ne__(self, Waveform other):
  *         if not hasattr(other, "handle"):
  *             return NotImplemented             # <<<<<<<<<<<<<<
@@ -9488,7 +8013,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(stru
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/waveform.pyx":183
+    /* "falcon_core/_capi/waveform.pyx":138
  * 
  *     def __ne__(self, Waveform other):
  *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
@@ -9497,7 +8022,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(stru
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":185
+  /* "falcon_core/_capi/waveform.pyx":140
  *         if not hasattr(other, "handle"):
  *             return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
@@ -9512,14 +8037,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(stru
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 185, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":182
+  /* "falcon_core/_capi/waveform.pyx":137
  *         return _c_api.Waveform_not_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
  * 
  *     def __ne__(self, Waveform other):             # <<<<<<<<<<<<<<
@@ -9539,7 +8064,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(stru
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":187
+/* "falcon_core/_capi/waveform.pyx":142
  *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
@@ -9548,15 +8073,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50__ne__(stru
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53to_json(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_53to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53to_json(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_31to_json = {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31to_json(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -9582,14 +8107,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("to_json", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_30to_json(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_30to_json(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
   StringHandle __pyx_v_s_ret;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -9610,7 +8135,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":189
+  /* "falcon_core/_capi/waveform.pyx":144
  *     def to_json(self, ):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Waveform_to_json_string(self.handle)             # <<<<<<<<<<<<<<
@@ -9619,7 +8144,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
 */
   __pyx_v_s_ret = Waveform_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/waveform.pyx":190
+  /* "falcon_core/_capi/waveform.pyx":145
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Waveform_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -9629,7 +8154,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/waveform.pyx":191
+    /* "falcon_core/_capi/waveform.pyx":146
  *         s_ret = _c_api.Waveform_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""             # <<<<<<<<<<<<<<
@@ -9641,7 +8166,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
     __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/waveform.pyx":190
+    /* "falcon_core/_capi/waveform.pyx":145
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Waveform_to_json_string(self.handle)
  *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
@@ -9650,7 +8175,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":192
+  /* "falcon_core/_capi/waveform.pyx":147
  *         if s_ret == <_c_api.StringHandle>0:
  *             return ""
  *         try:             # <<<<<<<<<<<<<<
@@ -9659,7 +8184,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
 */
   /*try:*/ {
 
-    /* "falcon_core/_capi/waveform.pyx":193
+    /* "falcon_core/_capi/waveform.pyx":148
  *             return ""
  *         try:
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
@@ -9667,13 +8192,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
  *             _c_api.String_destroy(s_ret)
 */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 193, __pyx_L5_error)
+      __PYX_ERR(0, 148, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 193, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 148, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -9681,12 +8206,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/waveform.pyx":195
+  /* "falcon_core/_capi/waveform.pyx":150
  *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
  *         finally:
  *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
- *     def __len__(self):
+ *     def space(self, ):
 */
   /*finally:*/ {
     __pyx_L5_error:;
@@ -9730,7 +8255,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
     }
   }
 
-  /* "falcon_core/_capi/waveform.pyx":187
+  /* "falcon_core/_capi/waveform.pyx":142
  *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
@@ -9750,8 +8275,1610 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":197
+/* "falcon_core/_capi/waveform.pyx":152
  *             _c_api.String_destroy(s_ret)
+ * 
+ *     def space(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33space(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_33space = {"space", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33space, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33space(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("space (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("space", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("space", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_32space(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_32space(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  __pyx_t_6_c_api_DiscreteSpaceHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("space", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":153
+ * 
+ *     def space(self, ):
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = Waveform_space(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/waveform.pyx":154
+ *     def space(self, ):
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _discrete_space_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DiscreteSpaceHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/waveform.pyx":155
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _discrete_space_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/waveform.pyx":154
+ *     def space(self, ):
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _discrete_space_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":156
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *             return None
+ *         return _discrete_space_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def transforms(self, ):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14discrete_space__discrete_space_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":152
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def space(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.space", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":158
+ *         return _discrete_space_from_capi(h_ret)
+ * 
+ *     def transforms(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35transforms(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_35transforms = {"transforms", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35transforms, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35transforms(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("transforms (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("transforms", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("transforms", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_34transforms(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_34transforms(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  __pyx_t_6_c_api_ListPortTransformHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("transforms", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":159
+ * 
+ *     def transforms(self, ):
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = Waveform_transforms(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/waveform.pyx":160
+ *     def transforms(self, ):
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_port_transform_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListPortTransformHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/waveform.pyx":161
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/waveform.pyx":160
+ *     def transforms(self, ):
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_port_transform_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":162
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+ *             return None
+ *         return _list_port_transform_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def push_back(self, PortTransform value):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_19list_port_transform__list_port_transform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":158
+ *         return _discrete_space_from_capi(h_ret)
+ * 
+ *     def transforms(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.transforms", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":164
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+ *     def push_back(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37push_back(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_37push_back = {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37push_back(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("push_back (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 164, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 164, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 164, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 164, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 164, __pyx_L3_error)
+    }
+    __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *)values[0]);
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 164, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.push_back", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14port_transform_PortTransform, 1, "value", 0))) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_36push_back(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_36push_back(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __pyx_t_6_c_api_PortTransformHandle __pyx_t_1;
+  int __pyx_t_2;
+  __Pyx_RefNannySetupContext("push_back", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":165
+ * 
+ *     def push_back(self, PortTransform value):
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)             # <<<<<<<<<<<<<<
+ * 
+ *     def size(self, ):
+*/
+  __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
+  if (__pyx_t_2) {
+    __pyx_t_1 = __pyx_v_value->handle;
+  } else {
+    __pyx_t_1 = ((__pyx_t_6_c_api_PortTransformHandle)0);
+  }
+  Waveform_push_back(__pyx_v_self->handle, __pyx_t_1);
+
+  /* "falcon_core/_capi/waveform.pyx":164
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+ *     def push_back(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":167
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def size(self, ):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_size(self.handle)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39size(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_39size = {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39size(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("size (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("size", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("size", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_38size(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_38size(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("size", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":168
+ * 
+ *     def size(self, ):
+ *         return _c_api.Waveform_size(self.handle)             # <<<<<<<<<<<<<<
+ * 
+ *     def empty(self, ):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyLong_FromSize_t(Waveform_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":167
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def size(self, ):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_size(self.handle)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.size", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":170
+ *         return _c_api.Waveform_size(self.handle)
+ * 
+ *     def empty(self, ):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_empty(self.handle)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41empty(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_41empty = {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41empty(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("empty (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("empty", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("empty", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_40empty(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_40empty(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("empty", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":171
+ * 
+ *     def empty(self, ):
+ *         return _c_api.Waveform_empty(self.handle)             # <<<<<<<<<<<<<<
+ * 
+ *     def erase_at(self, size_t idx):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyBool_FromLong(Waveform_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":170
+ *         return _c_api.Waveform_size(self.handle)
+ * 
+ *     def empty(self, ):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_empty(self.handle)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":173
+ *         return _c_api.Waveform_empty(self.handle)
+ * 
+ *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_erase_at(self.handle, idx)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43erase_at(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_43erase_at = {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43erase_at(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  size_t __pyx_v_idx;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("erase_at (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 173, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 173, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 173, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 173, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 173, __pyx_L3_error)
+    }
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L3_error)
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 173, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.erase_at", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42erase_at(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_idx);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_42erase_at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("erase_at", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":174
+ * 
+ *     def erase_at(self, size_t idx):
+ *         _c_api.Waveform_erase_at(self.handle, idx)             # <<<<<<<<<<<<<<
+ * 
+ *     def clear(self, ):
+*/
+  Waveform_erase_at(__pyx_v_self->handle, __pyx_v_idx);
+
+  /* "falcon_core/_capi/waveform.pyx":173
+ *         return _c_api.Waveform_empty(self.handle)
+ * 
+ *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_erase_at(self.handle, idx)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":176
+ *         _c_api.Waveform_erase_at(self.handle, idx)
+ * 
+ *     def clear(self, ):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_clear(self.handle)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45clear(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_45clear = {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45clear(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("clear (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("clear", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("clear", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44clear(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_44clear(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("clear", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":177
+ * 
+ *     def clear(self, ):
+ *         _c_api.Waveform_clear(self.handle)             # <<<<<<<<<<<<<<
+ * 
+ *     def at(self, size_t idx):
+*/
+  Waveform_clear(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/waveform.pyx":176
+ *         _c_api.Waveform_erase_at(self.handle, idx)
+ * 
+ *     def clear(self, ):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_clear(self.handle)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":179
+ *         _c_api.Waveform_clear(self.handle)
+ * 
+ *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
+ *         if h_ret == <_c_api.PortTransformHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47at(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_47at = {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47at(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  size_t __pyx_v_idx;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("at (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 179, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 179, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 179, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 179, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 179, __pyx_L3_error)
+    }
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 179, __pyx_L3_error)
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 179, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46at(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_idx);
+
+  /* function exit code */
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_46at(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, size_t __pyx_v_idx) {
+  __pyx_t_6_c_api_PortTransformHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  struct __pyx_opt_args_11falcon_core_5_capi_14port_transform__port_transform_from_capi __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("at", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":180
+ * 
+ *     def at(self, size_t idx):
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.PortTransformHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = Waveform_at(__pyx_v_self->handle, __pyx_v_idx);
+
+  /* "falcon_core/_capi/waveform.pyx":181
+ *     def at(self, size_t idx):
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
+ *         if h_ret == <_c_api.PortTransformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _port_transform_from_capi(h_ret, owned=False)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_PortTransformHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/waveform.pyx":182
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
+ *         if h_ret == <_c_api.PortTransformHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _port_transform_from_capi(h_ret, owned=False)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/waveform.pyx":181
+ *     def at(self, size_t idx):
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
+ *         if h_ret == <_c_api.PortTransformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _port_transform_from_capi(h_ret, owned=False)
+*/
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":183
+ *         if h_ret == <_c_api.PortTransformHandle>0:
+ *             return None
+ *         return _port_transform_from_capi(h_ret, owned=False)             # <<<<<<<<<<<<<<
+ * 
+ *     def items(self, ):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_3.__pyx_n = 1;
+  __pyx_t_3.owned = 0;
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14port_transform__port_transform_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":179
+ *         _c_api.Waveform_clear(self.handle)
+ * 
+ *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
+ *         if h_ret == <_c_api.PortTransformHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.at", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":185
+ *         return _port_transform_from_capi(h_ret, owned=False)
+ * 
+ *     def items(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49items(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_49items = {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49items(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("items (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  if (unlikely(__pyx_nargs > 0)) { __Pyx_RaiseArgtupleInvalid("items", 1, 0, 0, __pyx_nargs); return NULL; }
+  const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+  if (unlikely(__pyx_kwds_len < 0)) return NULL;
+  if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("items", __pyx_kwds); return NULL;}
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48items(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_48items(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+  __pyx_t_6_c_api_ListPortTransformHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_t_1;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("items", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":186
+ * 
+ *     def items(self, ):
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+ *             return None
+*/
+  __pyx_v_h_ret = Waveform_items(__pyx_v_self->handle);
+
+  /* "falcon_core/_capi/waveform.pyx":187
+ *     def items(self, ):
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_port_transform_from_capi(h_ret)
+*/
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListPortTransformHandle)0));
+  if (__pyx_t_1) {
+
+    /* "falcon_core/_capi/waveform.pyx":188
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/waveform.pyx":187
+ *     def items(self, ):
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _list_port_transform_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":189
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+ *             return None
+ *         return _list_port_transform_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def contains(self, PortTransform value):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_19list_port_transform__list_port_transform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 189, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":185
+ *         return _port_transform_from_capi(h_ret, owned=False)
+ * 
+ *     def items(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.items", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":191
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+ *     def contains(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51contains(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_51contains = {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51contains(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("contains (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 191, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 191, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 191, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 191, __pyx_L3_error)
+    }
+    __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *)values[0]);
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 191, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.contains", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14port_transform_PortTransform, 1, "value", 0))) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50contains(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_50contains(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __pyx_t_6_c_api_PortTransformHandle __pyx_t_1;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("contains", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":192
+ * 
+ *     def contains(self, PortTransform value):
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)             # <<<<<<<<<<<<<<
+ * 
+ *     def index(self, PortTransform value):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
+  if (__pyx_t_2) {
+    __pyx_t_1 = __pyx_v_value->handle;
+  } else {
+    __pyx_t_1 = ((__pyx_t_6_c_api_PortTransformHandle)0);
+  }
+  __pyx_t_3 = __Pyx_PyBool_FromLong(Waveform_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":191
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+ *     def contains(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.contains", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":194
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def index(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53index(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_53index = {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53index(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("index (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 194, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 194, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 194, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 194, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 194, __pyx_L3_error)
+    }
+    __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *)values[0]);
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 194, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.index", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14port_transform_PortTransform, 1, "value", 0))) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52index(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52index(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *__pyx_v_value) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __pyx_t_6_c_api_PortTransformHandle __pyx_t_1;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("index", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":195
+ * 
+ *     def index(self, PortTransform value):
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)             # <<<<<<<<<<<<<<
+ * 
+ *     def intersection(self, Waveform other):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
+  if (__pyx_t_2) {
+    __pyx_t_1 = __pyx_v_value->handle;
+  } else {
+    __pyx_t_1 = ((__pyx_t_6_c_api_PortTransformHandle)0);
+  }
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(Waveform_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 195, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":194
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def index(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.index", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":197
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def intersection(self, Waveform other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+ *         if h_ret == <_c_api.WaveformHandle>0:
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55intersection(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_55intersection = {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55intersection(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("intersection (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_SIZE
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
+    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 197, __pyx_L3_error)
+    if (__pyx_kwds_len > 0) {
+      switch (__pyx_nargs) {
+        case  1:
+        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 197, __pyx_L3_error)
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      const Py_ssize_t kwd_pos_args = __pyx_nargs;
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 197, __pyx_L3_error)
+      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 197, __pyx_L3_error) }
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 197, __pyx_L3_error)
+    }
+    __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)values[0]);
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 197, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.intersection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, 1, "other", 0))) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54intersection(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_other);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  goto __pyx_L7_cleaned_up;
+  __pyx_L0:;
+  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+    Py_XDECREF(values[__pyx_temp]);
+  }
+  __pyx_L7_cleaned_up:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54intersection(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_other) {
+  __pyx_t_6_c_api_WaveformHandle __pyx_v_h_ret;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  __pyx_t_6_c_api_WaveformHandle __pyx_t_1;
+  int __pyx_t_2;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("intersection", 0);
+
+  /* "falcon_core/_capi/waveform.pyx":198
+ * 
+ *     def intersection(self, Waveform other):
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.WaveformHandle>0:
+ *             return None
+*/
+  __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
+  if (__pyx_t_2) {
+    __pyx_t_1 = __pyx_v_other->handle;
+  } else {
+    __pyx_t_1 = ((__pyx_t_6_c_api_WaveformHandle)0);
+  }
+  __pyx_v_h_ret = Waveform_intersection(__pyx_v_self->handle, __pyx_t_1);
+
+  /* "falcon_core/_capi/waveform.pyx":199
+ *     def intersection(self, Waveform other):
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+ *         if h_ret == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _waveform_from_capi(h_ret)
+*/
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_WaveformHandle)0));
+  if (__pyx_t_2) {
+
+    /* "falcon_core/_capi/waveform.pyx":200
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+ *         if h_ret == <_c_api.WaveformHandle>0:
+ *             return None             # <<<<<<<<<<<<<<
+ *         return _waveform_from_capi(h_ret)
+ * 
+*/
+    __Pyx_XDECREF(__pyx_r);
+    __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+    goto __pyx_L0;
+
+    /* "falcon_core/_capi/waveform.pyx":199
+ *     def intersection(self, Waveform other):
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+ *         if h_ret == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
+ *             return None
+ *         return _waveform_from_capi(h_ret)
+*/
+  }
+
+  /* "falcon_core/_capi/waveform.pyx":201
+ *         if h_ret == <_c_api.WaveformHandle>0:
+ *             return None
+ *         return _waveform_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ * 
+ *     def __len__(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8waveform__waveform_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 201, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/waveform.pyx":197
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def intersection(self, Waveform other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+ *         if h_ret == <_c_api.WaveformHandle>0:
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.intersection", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/waveform.pyx":203
+ *         return _waveform_from_capi(h_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self.size()
@@ -9759,21 +9886,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_52to_json(str
 */
 
 /* Python wrapper */
-static Py_ssize_t __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55__len__(PyObject *__pyx_v_self); /*proto*/
-static Py_ssize_t __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55__len__(PyObject *__pyx_v_self) {
+static Py_ssize_t __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__len__(PyObject *__pyx_v_self); /*proto*/
+static Py_ssize_t __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__len__(PyObject *__pyx_v_self) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__len__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__len__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
+static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__len__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self) {
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -9785,7 +9912,7 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(st
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":198
+  /* "falcon_core/_capi/waveform.pyx":204
  * 
  *     def __len__(self):
  *         return self.size()             # <<<<<<<<<<<<<<
@@ -9799,16 +9926,16 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(st
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_size, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":197
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/waveform.pyx":203
+ *         return _waveform_from_capi(h_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         return self.size()
@@ -9826,7 +9953,7 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(st
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":200
+/* "falcon_core/_capi/waveform.pyx":206
  *         return self.size()
  * 
  *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
@@ -9835,21 +9962,21 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_54__len__(st
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58__getitem__(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58__getitem__(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_idx) {
   PyObject *__pyx_v_ret = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -9862,7 +9989,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":201
+  /* "falcon_core/_capi/waveform.pyx":207
  * 
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)             # <<<<<<<<<<<<<<
@@ -9876,13 +10003,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_idx};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_at, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 201, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ret = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":202
+  /* "falcon_core/_capi/waveform.pyx":208
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)
  *         if ret is None:             # <<<<<<<<<<<<<<
@@ -9892,7 +10019,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
   __pyx_t_4 = (__pyx_v_ret == Py_None);
   if (unlikely(__pyx_t_4)) {
 
-    /* "falcon_core/_capi/waveform.pyx":203
+    /* "falcon_core/_capi/waveform.pyx":209
  *         ret = self.at(idx)
  *         if ret is None:
  *             raise IndexError("Index out of bounds")             # <<<<<<<<<<<<<<
@@ -9905,14 +10032,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
       PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_Index_out_of_bounds};
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_IndexError)), __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 203, __pyx_L1_error)
+    __PYX_ERR(0, 209, __pyx_L1_error)
 
-    /* "falcon_core/_capi/waveform.pyx":202
+    /* "falcon_core/_capi/waveform.pyx":208
  *     def __getitem__(self, idx):
  *         ret = self.at(idx)
  *         if ret is None:             # <<<<<<<<<<<<<<
@@ -9921,7 +10048,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":204
+  /* "falcon_core/_capi/waveform.pyx":210
  *         if ret is None:
  *             raise IndexError("Index out of bounds")
  *         return ret             # <<<<<<<<<<<<<<
@@ -9933,7 +10060,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":200
+  /* "falcon_core/_capi/waveform.pyx":206
  *         return self.size()
  * 
  *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
@@ -9954,7 +10081,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":206
+/* "falcon_core/_capi/waveform.pyx":212
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
@@ -9963,15 +10090,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_56__getitem__
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59append(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_59append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59append(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_61append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10001,32 +10128,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 206, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 212, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 206, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 212, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 206, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 212, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 206, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 212, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 206, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 212, __pyx_L3_error)
     }
     __pyx_v_value = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 206, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 212, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -10037,7 +10164,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58append(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_60append(((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -10047,7 +10174,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58append(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_60append(struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_self, PyObject *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -10058,12 +10185,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58append(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("append", 0);
 
-  /* "falcon_core/_capi/waveform.pyx":207
+  /* "falcon_core/_capi/waveform.pyx":213
  * 
  *     def append(self, value):
  *         self.push_back(value)             # <<<<<<<<<<<<<<
  * 
- *     @classmethod
+ * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):
 */
   __pyx_t_2 = ((PyObject *)__pyx_v_self);
   __Pyx_INCREF(__pyx_t_2);
@@ -10072,12 +10199,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58append(stru
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_value};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":206
+  /* "falcon_core/_capi/waveform.pyx":212
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
@@ -10094,291 +10221,6 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_58append(stru
   __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.append", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XGIVEREF(__pyx_r);
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-/* "falcon_core/_capi/waveform.pyx":209
- *         self.push_back(value)
- * 
- *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_list(cls, items):
- *         cdef Waveform obj = cls.new_empty()
-*/
-
-/* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61from_list(PyObject *__pyx_v_cls, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_61from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61from_list(PyObject *__pyx_v_cls, 
-#if CYTHON_METH_FASTCALL
-PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
-#else
-PyObject *__pyx_args, PyObject *__pyx_kwds
-#endif
-) {
-  PyObject *__pyx_v_items = 0;
-  #if !CYTHON_METH_FASTCALL
-  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
-  #endif
-  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[1] = {0};
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  PyObject *__pyx_r = 0;
-  __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("from_list (wrapper)", 0);
-  #if !CYTHON_METH_FASTCALL
-  #if CYTHON_ASSUME_SAFE_SIZE
-  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
-  #else
-  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
-  #endif
-  #endif
-  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
-  {
-    PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_items,0};
-    const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 209, __pyx_L3_error)
-    if (__pyx_kwds_len > 0) {
-      switch (__pyx_nargs) {
-        case  1:
-        values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 209, __pyx_L3_error)
-        CYTHON_FALLTHROUGH;
-        case  0: break;
-        default: goto __pyx_L5_argtuple_error;
-      }
-      const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 209, __pyx_L3_error)
-      for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 209, __pyx_L3_error) }
-      }
-    } else if (unlikely(__pyx_nargs != 1)) {
-      goto __pyx_L5_argtuple_error;
-    } else {
-      values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 209, __pyx_L3_error)
-    }
-    __pyx_v_items = values[0];
-  }
-  goto __pyx_L6_skip;
-  __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 209, __pyx_L3_error)
-  __pyx_L6_skip:;
-  goto __pyx_L4_argument_unpacking_done;
-  __pyx_L3_error:;
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.from_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __Pyx_RefNannyFinishContext();
-  return NULL;
-  __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_60from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
-
-  /* function exit code */
-  for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
-    Py_XDECREF(values[__pyx_temp]);
-  }
-  __Pyx_RefNannyFinishContext();
-  return __pyx_r;
-}
-
-static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_60from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
-  struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_v_obj = 0;
-  PyObject *__pyx_v_item = NULL;
-  PyObject *__pyx_r = NULL;
-  __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  size_t __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
-  PyObject *(*__pyx_t_5)(PyObject *);
-  int __pyx_t_6;
-  PyObject *__pyx_t_7 = NULL;
-  int __pyx_lineno = 0;
-  const char *__pyx_filename = NULL;
-  int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("from_list", 0);
-
-  /* "falcon_core/_capi/waveform.pyx":211
- *     @classmethod
- *     def from_list(cls, items):
- *         cdef Waveform obj = cls.new_empty()             # <<<<<<<<<<<<<<
- *         for item in items:
- *             if hasattr(item, "_c"):
-*/
-  __pyx_t_2 = ((PyObject *)__pyx_v_cls);
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = 0;
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
-    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_new_empty, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform))))) __PYX_ERR(0, 211, __pyx_L1_error)
-  __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":212
- *     def from_list(cls, items):
- *         cdef Waveform obj = cls.new_empty()
- *         for item in items:             # <<<<<<<<<<<<<<
- *             if hasattr(item, "_c"):
- *                 item = item._c
-*/
-  if (likely(PyList_CheckExact(__pyx_v_items)) || PyTuple_CheckExact(__pyx_v_items)) {
-    __pyx_t_1 = __pyx_v_items; __Pyx_INCREF(__pyx_t_1);
-    __pyx_t_4 = 0;
-    __pyx_t_5 = NULL;
-  } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 212, __pyx_L1_error)
-  }
-  for (;;) {
-    if (likely(!__pyx_t_5)) {
-      if (likely(PyList_CheckExact(__pyx_t_1))) {
-        {
-          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
-          #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 212, __pyx_L1_error)
-          #endif
-          if (__pyx_t_4 >= __pyx_temp) break;
-        }
-        __pyx_t_2 = __Pyx_PyList_GetItemRefFast(__pyx_t_1, __pyx_t_4, __Pyx_ReferenceSharing_OwnStrongReference);
-        ++__pyx_t_4;
-      } else {
-        {
-          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
-          #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 212, __pyx_L1_error)
-          #endif
-          if (__pyx_t_4 >= __pyx_temp) break;
-        }
-        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = __Pyx_NewRef(PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_4));
-        #else
-        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_4);
-        #endif
-        ++__pyx_t_4;
-      }
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
-    } else {
-      __pyx_t_2 = __pyx_t_5(__pyx_t_1);
-      if (unlikely(!__pyx_t_2)) {
-        PyObject* exc_type = PyErr_Occurred();
-        if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 212, __pyx_L1_error)
-          PyErr_Clear();
-        }
-        break;
-      }
-    }
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
-    __pyx_t_2 = 0;
-
-    /* "falcon_core/_capi/waveform.pyx":213
- *         cdef Waveform obj = cls.new_empty()
- *         for item in items:
- *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
- *                 item = item._c
- *             obj.push_back(item)
-*/
-    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 213, __pyx_L1_error)
-    if (__pyx_t_6) {
-
-      /* "falcon_core/_capi/waveform.pyx":214
- *         for item in items:
- *             if hasattr(item, "_c"):
- *                 item = item._c             # <<<<<<<<<<<<<<
- *             obj.push_back(item)
- *         return obj
-*/
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_2);
-      __pyx_t_2 = 0;
-
-      /* "falcon_core/_capi/waveform.pyx":213
- *         cdef Waveform obj = cls.new_empty()
- *         for item in items:
- *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
- *                 item = item._c
- *             obj.push_back(item)
-*/
-    }
-
-    /* "falcon_core/_capi/waveform.pyx":215
- *             if hasattr(item, "_c"):
- *                 item = item._c
- *             obj.push_back(item)             # <<<<<<<<<<<<<<
- *         return obj
- * 
-*/
-    __pyx_t_7 = ((PyObject *)__pyx_v_obj);
-    __Pyx_INCREF(__pyx_t_7);
-    __pyx_t_3 = 0;
-    {
-      PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_item};
-      __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "falcon_core/_capi/waveform.pyx":212
- *     def from_list(cls, items):
- *         cdef Waveform obj = cls.new_empty()
- *         for item in items:             # <<<<<<<<<<<<<<
- *             if hasattr(item, "_c"):
- *                 item = item._c
-*/
-  }
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":216
- *                 item = item._c
- *             obj.push_back(item)
- *         return obj             # <<<<<<<<<<<<<<
- * 
- * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):
-*/
-  __Pyx_XDECREF(__pyx_r);
-  __Pyx_INCREF((PyObject *)__pyx_v_obj);
-  __pyx_r = ((PyObject *)__pyx_v_obj);
-  goto __pyx_L0;
-
-  /* "falcon_core/_capi/waveform.pyx":209
- *         self.push_back(value)
- * 
- *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_list(cls, items):
- *         cdef Waveform obj = cls.new_empty()
-*/
-
-  /* function exit code */
-  __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_7);
-  __Pyx_AddTraceback("falcon_core._capi.waveform.Waveform.from_list", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = NULL;
-  __pyx_L0:;
-  __Pyx_XDECREF((PyObject *)__pyx_v_obj);
-  __Pyx_XDECREF(__pyx_v_item);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
@@ -10588,8 +10430,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8waveform_8Waveform_64__setstate_
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/waveform.pyx":218
- *         return obj
+/* "falcon_core/_capi/waveform.pyx":215
+ *         self.push_back(value)
  * 
  * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.WaveformHandle>0:
@@ -10613,7 +10455,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
     }
   }
 
-  /* "falcon_core/_capi/waveform.pyx":219
+  /* "falcon_core/_capi/waveform.pyx":216
  * 
  * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):
  *     if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -10623,7 +10465,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_WaveformHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/waveform.pyx":220
+    /* "falcon_core/_capi/waveform.pyx":217
  * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):
  *     if h == <_c_api.WaveformHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -10634,7 +10476,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/waveform.pyx":219
+    /* "falcon_core/_capi/waveform.pyx":216
  * 
  * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):
  *     if h == <_c_api.WaveformHandle>0:             # <<<<<<<<<<<<<<
@@ -10643,19 +10485,19 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
 */
   }
 
-  /* "falcon_core/_capi/waveform.pyx":221
+  /* "falcon_core/_capi/waveform.pyx":218
  *     if h == <_c_api.WaveformHandle>0:
  *         return None
  *     cdef Waveform obj = Waveform.__new__(Waveform)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_8waveform_Waveform(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_8waveform_Waveform(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":222
+  /* "falcon_core/_capi/waveform.pyx":219
  *         return None
  *     cdef Waveform obj = Waveform.__new__(Waveform)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -10664,7 +10506,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/waveform.pyx":223
+  /* "falcon_core/_capi/waveform.pyx":220
  *     cdef Waveform obj = Waveform.__new__(Waveform)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -10672,7 +10514,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/waveform.pyx":224
+  /* "falcon_core/_capi/waveform.pyx":221
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -10682,8 +10524,8 @@ static struct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *__pyx_f_11falco
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/waveform.pyx":218
- *         return obj
+  /* "falcon_core/_capi/waveform.pyx":215
+ *         self.push_back(value)
  * 
  * cdef Waveform _waveform_from_capi(_c_api.WaveformHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.WaveformHandle>0:
@@ -10759,10 +10601,10 @@ static PyObject *__pyx_sq_item_11falcon_core_5_capi_8waveform_Waveform(PyObject 
 static PyObject *__pyx_tp_richcompare_11falcon_core_5_capi_8waveform_Waveform(PyObject *o1, PyObject *o2, int op) {
   switch (op) {
     case Py_EQ: {
-      return __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47__eq__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25__eq__(o1, o2);
     }
     case Py_NE: {
-      return __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51__ne__(o1, o2);
+      return __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29__ne__(o1, o2);
     }
     default: {
       return __Pyx_NewRef(Py_NotImplemented);
@@ -10771,31 +10613,31 @@ static PyObject *__pyx_tp_richcompare_11falcon_core_5_capi_8waveform_Waveform(Py
 }
 
 static PyMethodDef __pyx_methods_11falcon_core_5_capi_8waveform_Waveform[] = {
-  {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"new_cartesian_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new_cartesian_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"new_cartesian_identity_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_identity_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"new_cartesian_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"new_cartesian_identity_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_identity_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"new_cartesian_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"new_cartesian_identity_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_identity_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"space", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21space, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"transforms", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23transforms, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_25push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_29empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"from_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_5from_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_7new, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new_cartesian_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new_cartesian_identity_waveform", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_identity_waveform, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new_cartesian_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new_cartesian_identity_waveform_2D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_identity_waveform_2D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new_cartesian_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"new_cartesian_identity_waveform_1D", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_19new_cartesian_identity_waveform_1D, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"copy", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_21copy, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_23equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_27not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_31to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"space", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_33space, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"transforms", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_35transforms, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"push_back", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_37push_back, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"size", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_39size, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"empty", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_41empty, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"erase_at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_43erase_at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"clear", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_45clear, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"at", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_47at, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"items", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_49items, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"contains", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_51contains, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"index", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_53index, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"intersection", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55intersection, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_61append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_63__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_65__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
@@ -10803,10 +10645,10 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_8waveform_Waveform[] = {
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_8waveform_Waveform_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_8waveform_Waveform},
-  {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55__len__},
+  {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__len__},
   {Py_sq_item, (void *)__pyx_sq_item_11falcon_core_5_capi_8waveform_Waveform},
-  {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55__len__},
-  {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__getitem__},
+  {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__len__},
+  {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59__getitem__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_8waveform_Waveform},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_8waveform_Waveform},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_8waveform_Waveform},
@@ -10822,7 +10664,7 @@ static PyType_Spec __pyx_type_11falcon_core_5_capi_8waveform_Waveform_spec = {
 #else
 
 static PySequenceMethods __pyx_tp_as_sequence_Waveform = {
-  __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55__len__, /*sq_length*/
+  __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__len__, /*sq_length*/
   0, /*sq_concat*/
   0, /*sq_repeat*/
   __pyx_sq_item_11falcon_core_5_capi_8waveform_Waveform, /*sq_item*/
@@ -10835,8 +10677,8 @@ static PySequenceMethods __pyx_tp_as_sequence_Waveform = {
 };
 
 static PyMappingMethods __pyx_tp_as_mapping_Waveform = {
-  __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_55__len__, /*mp_length*/
-  __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__getitem__, /*mp_subscript*/
+  __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_57__len__, /*mp_length*/
+  __pyx_pw_11falcon_core_5_capi_8waveform_8Waveform_59__getitem__, /*mp_subscript*/
   0, /*mp_ass_subscript*/
 };
 
@@ -11636,452 +11478,445 @@ __Pyx_RefNannySetupContext("PyInit_waveform", 0);
  * 
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
- *     def new(cls, DiscreteSpace space, ListPortTransform transforms):
- *         cdef _c_api.WaveformHandle h
+ *     def from_json(cls, str json):
+ *         cdef bytes b_json = json.encode("utf-8")
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_5new, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_5from_json, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_from_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_2) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_2) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_3) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_3) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":38
+  /* "falcon_core/_capi/waveform.pyx":43
+ *         return obj
+ * 
+ *     @classmethod             # <<<<<<<<<<<<<<
+ *     def new(cls, DiscreteSpace space, ListPortTransform transforms):
+ *         cdef _c_api.WaveformHandle h
+*/
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_7new, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_3) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new, __pyx_t_2) < (0)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":54
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new_cartesian_waveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
  *         cdef _c_api.WaveformHandle h
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_7new_cartesian_waveform, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_waveform, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform, __pyx_t_3) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_waveform, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_waveform, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform, __pyx_t_2) < (0)) __PYX_ERR(0, 38, __pyx_L1_error)
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform, __pyx_t_2) < (0)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform, __pyx_t_3) < (0)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":49
+  /* "falcon_core/_capi/waveform.pyx":65
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new_cartesian_identity_waveform(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
  *         cdef _c_api.WaveformHandle h
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_9new_cartesian_identity_waveform, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_identity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform, __pyx_t_2) < (0)) __PYX_ERR(0, 49, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 49, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_identity_waveform, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_identity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform, __pyx_t_3) < (0)) __PYX_ERR(0, 49, __pyx_L1_error)
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform, __pyx_t_3) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform, __pyx_t_2) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":60
+  /* "falcon_core/_capi/waveform.pyx":76
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new_cartesian_waveform_2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, ListPortTransform transforms, Domain domain):
  *         cdef _c_api.WaveformHandle h
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_11new_cartesian_waveform_2D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_waveform_2, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_2D, __pyx_t_3) < (0)) __PYX_ERR(0, 60, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_2D); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 60, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_waveform_2D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_waveform_2, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_2D, __pyx_t_2) < (0)) __PYX_ERR(0, 60, __pyx_L1_error)
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_2D, __pyx_t_2) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_2D); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_2D, __pyx_t_3) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":71
+  /* "falcon_core/_capi/waveform.pyx":87
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new_cartesian_identity_waveform_2D(cls, AxesInt divisions, AxesCoupledLabelledDomain axes, AxesMapStringBool increasing, Domain domain):
  *         cdef _c_api.WaveformHandle h
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_13new_cartesian_identity_waveform_2D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_identity_2, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_2, __pyx_t_2) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_identity_waveform_2D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_identity_2, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_2, __pyx_t_3) < (0)) __PYX_ERR(0, 71, __pyx_L1_error)
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_2, __pyx_t_3) < (0)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_2, __pyx_t_2) < (0)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":82
+  /* "falcon_core/_capi/waveform.pyx":98
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new_cartesian_waveform_1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, ListPortTransform transforms, Domain domain):
  *         cdef _c_api.WaveformHandle h
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_15new_cartesian_waveform_1D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_waveform_3, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_1D, __pyx_t_3) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_1D); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_waveform_1D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_waveform_3, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_1D, __pyx_t_2) < (0)) __PYX_ERR(0, 82, __pyx_L1_error)
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_1D, __pyx_t_2) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_1D); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_waveform_1D, __pyx_t_3) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":93
+  /* "falcon_core/_capi/waveform.pyx":109
  *         return obj
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def new_cartesian_identity_waveform_1D(cls, int division, CoupledLabelledDomain shared_domain, MapStringBool increasing, Domain domain):
  *         cdef _c_api.WaveformHandle h
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_17new_cartesian_identity_waveform_1D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_identity_3, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_3, __pyx_t_2) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_3, __pyx_t_3) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":104
- *         return obj
- * 
- *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_json(cls, str json):
- *         cdef bytes b_json = json.encode("utf-8")
-*/
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_19from_json, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_from_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_19new_cartesian_identity_waveform_1D, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_new_cartesian_identity_3, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_3) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_3, __pyx_t_3) < (0)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_json); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_3, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_Method_ClassMethod(__pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_json, __pyx_t_2) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_new_cartesian_identity_waveform_3, __pyx_t_2) < (0)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/waveform.pyx":120
  *         return obj
  * 
- *     def space(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
- *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+ *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_copy(self.handle)
+ *         if h_ret == <_c_api.WaveformHandle>0:
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_21space, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_space, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_21copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_space, __pyx_t_2) < (0)) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_2) < (0)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/waveform.pyx":126
- *         return _discrete_space_from_capi(h_ret)
- * 
- *     def transforms(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_23transforms, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_transforms, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_transforms, __pyx_t_2) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":132
- *         return _list_port_transform_from_capi(h_ret)
- * 
- *     def push_back(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_25push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_push_back, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_2) < (0)) __PYX_ERR(0, 132, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":135
- *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_size(self.handle)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_27size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_2) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":138
- *         return _c_api.Waveform_size(self.handle)
- * 
- *     def empty(self, ):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_empty(self.handle)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_29empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_2) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":141
- *         return _c_api.Waveform_empty(self.handle)
- * 
- *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_erase_at(self.handle, idx)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_31erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_erase_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_2) < (0)) __PYX_ERR(0, 141, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":144
- *         _c_api.Waveform_erase_at(self.handle, idx)
- * 
- *     def clear(self, ):             # <<<<<<<<<<<<<<
- *         _c_api.Waveform_clear(self.handle)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_33clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_2) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":147
- *         _c_api.Waveform_clear(self.handle)
- * 
- *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
- *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
- *         if h_ret == <_c_api.PortTransformHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_35at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_2) < (0)) __PYX_ERR(0, 147, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":153
- *         return _port_transform_from_capi(h_ret, owned=False)
- * 
- *     def items(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
- *         if h_ret == <_c_api.ListPortTransformHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_37items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_2) < (0)) __PYX_ERR(0, 153, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":159
- *         return _list_port_transform_from_capi(h_ret)
- * 
- *     def contains(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_39contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_contains, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_2) < (0)) __PYX_ERR(0, 159, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":162
- *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def index(self, PortTransform value):             # <<<<<<<<<<<<<<
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_41index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_2) < (0)) __PYX_ERR(0, 162, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":165
- *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
- * 
- *     def intersection(self, Waveform other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
- *         if h_ret == <_c_api.WaveformHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_43intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_intersection, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_2) < (0)) __PYX_ERR(0, 165, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":171
  *         return _waveform_from_capi(h_ret)
  * 
  *     def equal(self, Waveform other):             # <<<<<<<<<<<<<<
  *         return _c_api.Waveform_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_45equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_23equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":179
+  /* "falcon_core/_capi/waveform.pyx":134
  *         return self.equal(other)
  * 
  *     def not_equal(self, Waveform other):             # <<<<<<<<<<<<<<
  *         return _c_api.Waveform_not_equal(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_49not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_27not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 179, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":187
+  /* "falcon_core/_capi/waveform.pyx":142
  *         return self.not_equal(other)
  * 
  *     def to_json(self, ):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Waveform_to_json_string(self.handle)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_53to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_31to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 187, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/waveform.pyx":206
+  /* "falcon_core/_capi/waveform.pyx":152
+ *             _c_api.String_destroy(s_ret)
+ * 
+ *     def space(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
+ *         if h_ret == <_c_api.DiscreteSpaceHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_33space, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_space, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_space, __pyx_t_2) < (0)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":158
+ *         return _discrete_space_from_capi(h_ret)
+ * 
+ *     def transforms(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_35transforms, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_transforms, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_transforms, __pyx_t_2) < (0)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":164
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+ *     def push_back(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_37push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_push_back, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_2) < (0)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":167
+ *         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def size(self, ):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_size(self.handle)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_39size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_2) < (0)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":170
+ *         return _c_api.Waveform_size(self.handle)
+ * 
+ *     def empty(self, ):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_empty(self.handle)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_41empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_2) < (0)) __PYX_ERR(0, 170, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":173
+ *         return _c_api.Waveform_empty(self.handle)
+ * 
+ *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_erase_at(self.handle, idx)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_43erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_erase_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_2) < (0)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":176
+ *         _c_api.Waveform_erase_at(self.handle, idx)
+ * 
+ *     def clear(self, ):             # <<<<<<<<<<<<<<
+ *         _c_api.Waveform_clear(self.handle)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_45clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_2) < (0)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":179
+ *         _c_api.Waveform_clear(self.handle)
+ * 
+ *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.PortTransformHandle h_ret = _c_api.Waveform_at(self.handle, idx)
+ *         if h_ret == <_c_api.PortTransformHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_47at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_2) < (0)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":185
+ *         return _port_transform_from_capi(h_ret, owned=False)
+ * 
+ *     def items(self, ):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
+ *         if h_ret == <_c_api.ListPortTransformHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_49items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_2) < (0)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":191
+ *         return _list_port_transform_from_capi(h_ret)
+ * 
+ *     def contains(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_51contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_contains, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_2) < (0)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":194
+ *         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def index(self, PortTransform value):             # <<<<<<<<<<<<<<
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_53index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_2) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":197
+ *         return _c_api.Waveform_index(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
+ * 
+ *     def intersection(self, Waveform other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.WaveformHandle h_ret = _c_api.Waveform_intersection(self.handle, other.handle if other is not None else <_c_api.WaveformHandle>0)
+ *         if h_ret == <_c_api.WaveformHandle>0:
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_55intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_intersection, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_2) < (0)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/waveform.pyx":212
  *         return ret
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
  *         self.push_back(value)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_59append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_61append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_2) < (0)) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_2) < (0)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/waveform.pyx":209
- *         self.push_back(value)
- * 
- *     @classmethod             # <<<<<<<<<<<<<<
- *     def from_list(cls, items):
- *         cdef Waveform obj = cls.new_empty()
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_61from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform_from_list, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_2) < (0)) __PYX_ERR(0, 209, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetNameInClass(__pyx_t_2, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_Method_ClassMethod(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 209, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8waveform_Waveform, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_3) < (0)) __PYX_ERR(0, 209, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_63__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_63__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_reduce_cython, __pyx_t_3) < (0)) __PYX_ERR(1, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_reduce_cython, __pyx_t_2) < (0)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":3
  * def __reduce_cython__(self):
@@ -12089,23 +11924,23 @@ __Pyx_RefNannySetupContext("PyInit_waveform", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_65__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8waveform_8Waveform_65__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Waveform___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_waveform, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_setstate_cython, __pyx_t_3) < (0)) __PYX_ERR(1, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_setstate_cython, __pyx_t_2) < (0)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/waveform.pyx":1
  * cimport _c_api             # <<<<<<<<<<<<<<
  * from cpython.bytes cimport PyBytes_FromStringAndSize
  * from libc.stddef cimport size_t
 */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_test, __pyx_t_3) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_test, __pyx_t_2) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /*--- Wrapped vars code ---*/
 
@@ -12144,7 +11979,7 @@ __Pyx_RefNannySetupContext("PyInit_waveform", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 176, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 131, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
@@ -12171,31 +12006,31 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{25},{19},{179},{1},{8},{7},{6},{2},{9},{50},{34},{14},{14},{20},{8},{26},{28},{15},{11},{14},{17},{14},{14},{17},{18},{18},{14},{21},{14},{12},{40},{43},{43},{31},{34},{34},{18},{18},{13},{14},{16},{19},{6},{18},{2},{4},{6},{2},{5},{18},{3},{8},{8},{8},{9},{6},{5},{5},{8},{26},{9},{9},{8},{12},{1},{5},{6},{3},{10},{5},{12},{13},{4},{5},{4},{8},{10},{8},{3},{31},{34},{34},{22},{25},{25},{9},{9},{3},{5},{3},{9},{12},{11},{12},{10},{17},{13},{6},{5},{4},{12},{10},{12},{19},{13},{4},{5},{8},{7},{10},{5},{6},{70},{13},{279},{122},{45},{40},{242},{283},{197},{239},{50},{101},{11},{42},{11},{13},{31},{13},{29},{29},{40},{63},{239},{27},{31},{9},{205},{241},{321},{203},{273},{293},{241},{193},{269},{245}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2443 bytes) */
-const char* const cstring = "BZh91AY&SYC\242W\227\000\002\335\177\377\377\375\377\366w\377\377\377\377\377\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000`\t_X,\344\003\266\364\240\000\000\000\003\274\r\307\204\2454\224\310\036\365Q\275Di\260\220\362'\224z\201\351<P\364\324\332\203\324\311\214\223OMM=LG\224\362\236S\322f\243G\352\215\221\244x\231G\250\032\246\223T\367\252\t\275S\324~\3014\364\202\247\352\023\r =O\024\323@\000\000\000\032\006\203!\243jz#&\232z\200\001\244'\242\232F\232\000\320\017(\000\000\000h\032\000\000\320\000\000\000h\000\000\000j\237\205J2\214\324\r\r4\000h\323\021\246\200\311\246\200\000\00010M\014\203\020\014@\000\001\006\000\230L\t\204\302i\202b0\004\300\021\241\223\000\230\000\000\001\030\t\200\000\001\"\211\240\t\240\024\3322jf$2\023\322a56\247\223SC\3244\364\2312\031\032h\320f\220\321\240\006\201\246\207\250\365<\302B\n\022\200\0027\010b\017q\2441\200\3300hJ\321b\276\363<<\027n\260\234w\213\214\262p\361K\364\315+\352\353\357N\366lQ\337\241\265f\205'\025*V}\363R\267)7\245r\357\307\345s\026\366\225\022\354\350u\002Y\312b\220\024\304\342\010q8\021P\352&\232j(\246\232v\014/ba\327\366\315,\376\374j\227n\203i\313)RZ\245`Um\213\304\373\350THJ\002\005d\244%5\202R\224\241!)\rP\215\241\255\376\273n{'\323\227Q\304S\311\276\326\310\206\233\375z\230\270\346\220\246k\235k\371\231\023\030\206E\020c\030\266-\350\226\306\005\261k\"l\204\333\345\266\007\355\332\r\263^MkV5\367[\033\266e[?\336\300\342Y\274\265\005()JR\225Y;P\205!Jb\326#\217\224\363\311_\r\034\n\374*\3718p\262\343I\200\345kZ\326\265\255\312\327\345\210F\3770\010#\010\300\211)\022a\247\201B\"f\341\341\010\"5\342\363\"(=\221\242h\2019\346\265P\005ER#iBU\200\330\275\204\237\230Q\025T@\264Lr\366\373\222\020\311\204{Q\352w:]\350E\362\305\237<\020:X\213c\014\201\016\333\200\301\371\313\216\333\206\361n*\022\351\272\001\005\210O\333RX\2041\364\214\260\326\tHu\324\241\320\004\346\253\014\314\2261\270v\235\000D\004\036\251\021\300\206\333\306\000A\017|\335 %\272Y\204{\376\\\366\226\313p\330jbF\357$\334\361\267\344%\200\345\334""\000u~@F\222l\272Z8z\272*\021\240\013\217\361\374\355\014\007\005\000\210\2308\242\n\241^_oV\342p\240\250\244\014L\n\214\225r\335\320\253\257\332\367\337\300\373\217\310\343\204YV\365E\337\227\200\006\220\372\004\020\252\362;\235\234\301\t\234Y\200\331\200}=r\241\316\361pp7\347\326F#\363\210\261\325\232\232\374\234\261\304\313n\335|\330\234\257\317\022\312\241-\376\227q\276e\347\307e\026\267t\245\274p\340\243\003\273m\231\300\236X]\316\207\233T$\3333\016Z\003A\030\337\021\3275\016R\377\223\374\322\235\216\330[\342\315\210\315`\3319I\305\215\006c&\335R\002Y)/\036g\207\006\010\334\347s\311p\036\340o\001-\017zz\303Z\367m\235\271\347\313\226i;\344\"\244\006\007\020$\214\013\n\331S<\023\233\031\375\227K\233\202`c\037\300\320|*8(\021\004J\372r\237\250\211\264@\200S\022\355\006\302\026ne\264hl\3049\366\215\000\301\340)\245\007B\237\252\202\034\220\000\306\332c\354km\266\333m\266\333o\254\006\260ba\244\021\306\"\"\324\321\330\226aF\223\r-m*\262\031\000W\332\324\014\001z\245$\"jU\331\275\0352\213\205q\2361\343\240\021\340\021\362\010\224{w\356\232\311\254\204]x\004Z\"\"&/\312\333~C\264\007\312\"\241\026\177h|\240\213\340\203\252\n\373\030\221\230!l,@a\235X\240\224Ev\220S^\264\251\232\254\202\2201\271*\002(U@S\303\360\302h\326\004J,rN\020\2562\264IEE\312\000\221\216x\n\300s\366@b [H\017\235\2661\267\032\243\036\212\217+\353l\365\375\320\312\0057\274\000vs//\342\316\010\306=\2762\241\034BD\024\376\3312\3218-\236\320\210\372\330\004\277\010Z\007\"\000\322!\210\333\227YT\201\022\005I6l\347F\212\251\252\214\310\252hf:\300-\215&\200\372\304\2063\345\031?w\276\315\243\357\036\211\351\001\311\331}\334v\030\370\317\372\013\243\326H\202\220\034EU\265\314\2376\215\264\010\002\230\265`\306\232\214\335\210\256\241\253\216\236\327\030\2216J\322D\037\314\333\0131HW\0022,\2418x\000\307\225\347y\254\240Cb\r\260\313w\013\264S+cG\250EL\n<\361;llX\234e$Q\301V\237\017\307\367\261\344}\376n\034\207c\177P\214\272\311\311\317z\021\0042^t$\334\033\204\343\213mf\200H\234\232D;\363g`N\300\231\201\007""\004Q\017\016\242\344\002\2114\264W>\320UP\366S\246&:n\354\030\254\025T\374\347Tl\266\311\213\n\375\021\005\316`Y^i\326 \037M\221\241%y\201\376L\236w\303\361\351\352>\246\343\363\360od\360\372\240\211\213\262\020BLhLllc\032f G\006\247\226<\236L8\236\351\320\253\214,\337\004C\336\232\213\215x\2100\271\242\257\202\214\375\020H\331H,\376>\0346\213\027?E\253\330\004\3337\270\354\236w\202\260W>\234\225aUsR\205A\223\007^\230a\030Q\210\372%\342\275\005Z2_\252\364\261\332a<\375\333|\033\375nQ\027<\345L%\256|\353\0352\2235\035#K\030\301\210aP\024\221\0220\210\341\211\330\320\032\001\200\300\302\247\205\027\024T\177\261\221\00513\254\256\004\331p^\366\274/\037@\020\261\202\030\232\025\315!\370\233ab\262M\224r\304\"\3357)\352\224`\323M1\266\232\004\305\021B\016\002\211\001\031i\252\376\2754\322Y\022\251\222'\217\033\\+\215\353\364\240A\305[T\340\025h\252\213\270\251\240\244\244J\027\014\"`\200\305\n\357Y\207\231\344\342-eL\264F\\x\213Af\001d\026\001.\225\232\355qM\276\001\"(P\034\010|A\254\rw\202$$q$\222g\214&\003\236\304\337gM_\240)\002\334\230\315\2326=/N\260^\251P\252\304`\220$6\203`-7g\364[a#WI\202'[ks\244\225\354D\376\206\255\252g\353\322\3756\227T\3550;\026-\341\357U\213\247\353\003\021\025\243\241,\302F\243\034q\330\331\277!D\230\021ZJ\204\222[@L\261g\200)\002\220\"'\217\247\341\272\231\357\206A\r)\367i\230D(\220\030\030F2\211\315\021M\013\215e\222\260\307Xd\250K)\033\001WI\303=\334\211_5%-R\251\010\260\270\231\226\300\017,\310?l\300\254\2476*\365S\213\257\212\235\360Fl\265KFs\271pTG \211\353n5\335\0161\025\223\226L\025\201\022\010\232\2718@\202\030M\030\320\252\230\240\025r\307KT\356E\270\n\312.\021`\243Ht,\020\346\301\310\r\007\270\301\024`Fj\361\t\226Y\273\352x\275=\356g\310\374[\337\371\030\215\250\340\004=\363\236\033\347N\221,\203Y\266\343\353_\315\207F\035\027 \023Z\367\276\255]\006l*\022\364\364\210\365\006ld\334\364\030G\251\342\226\346\333\020\217\326,h\\\023\033\330\277uV;,\341\3648\000\320\366\263\271\310\035\031\330x<2!\311\304\206\023\024\342>v8\301\252'0H""5\372\355\010c=S\302\370\27649w\031\000\007\351\302\320\201e\2347\314)^u*\332\224\302Oc\t\302\213<\002\"n\024@\252\210k\tL\017\220\223\000\331\277L\r\260\327\365b\332c\333\215\016\330\207,\013\231\032(\021\"\316x\217c\363n\214\0166\030\316L\254\344\335\307\003\216\335D\005\326H'\272{N\355\253\314\003\201N\333\2154i\251\217M'\362\252\205\300\034\344\201t\372A\213D\360\344S\205\211\211\024\274M/\263\317\027\023>U\206\370\235\016\273\371$\355\001\340\3632\376\314\013\271\256\277\267\247\277\206\364\323\332\227%\254V\266\342\267\360\210\253\016\361\353\311\352I5\020\252\006\240\211,\264g\366\265\235`\301\"C\374h\371z?\233>\201_\202\266\351\253\277\004\220e}\250G\033\252RN\357KJ49O\263)\375#\342;.SK\275\354\363\300\010\201\335\355\242\014(C\024\200\262\002\217x\t\3410\203\352\r\025\"\241S\223cZ\262\255\0220#\020A\224\034\216\026\243p@\311b \204m\265\031P\240\3012@\213$\030C\212\027CM\230\331e4\020-?S\r\306\354\020R*\350\340BD\267r\325f\r\037\251?\342i\361\027\370\273\222)\302\204\202\035\022\274\270";
-    PyObject *data = __Pyx_DecompressString(cstring, 2443, 2);
+    const struct { const unsigned int length: 9; } index[] = {{0},{25},{19},{179},{1},{8},{7},{6},{2},{9},{50},{34},{14},{14},{20},{8},{26},{28},{15},{11},{14},{17},{13},{14},{14},{17},{18},{14},{21},{14},{12},{40},{43},{43},{31},{34},{34},{18},{18},{13},{14},{16},{19},{6},{18},{2},{4},{6},{5},{18},{3},{8},{4},{8},{8},{9},{6},{5},{5},{8},{26},{9},{8},{12},{1},{5},{6},{3},{10},{5},{12},{13},{5},{4},{8},{10},{8},{3},{31},{34},{34},{22},{25},{25},{9},{3},{5},{3},{9},{12},{11},{12},{10},{17},{13},{6},{5},{4},{12},{10},{12},{19},{13},{4},{5},{8},{7},{10},{5},{6},{70},{13},{40},{279},{122},{45},{40},{242},{283},{197},{239},{101},{11},{42},{11},{13},{31},{13},{29},{29},{40},{63},{239},{27},{31},{9},{205},{241},{321},{203},{273},{293},{241},{193},{269},{245}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2426 bytes) */
+const char* const cstring = "BZh91AY&SY\027\3303\240\000\002\336\377\377\377\375\377\367w\377\377\377\377\377\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000`\t?X-\357`\225\353t\252\005\000\000\0007\201\306\022T$\324\007\275Ty5\031\251\350&L\236\220\036\215OQ\351<\247\251\265\031\250i\345\017)\3514\321\246\217)\345='\251\352df\246\217I\2654\3152\215\004T\364\212?R\r\036\243\336\322bzM5S\365G\251\351\036Q\221\345<P\300A\220dh\006A\2024\000\362\236SC&h\004\320jz\230\210\223\312\237\252i\352~\211\251\246\323P\375(44\003F&\206\200\000\r\014\200\000\0004\r\000\000h%OM)\r(zFj\006\200\r\006\200\032\r\r\032\000\000\000\000\000\000\000\000\000\020`\000\230\000!\211\202`\000\010\300\t\223\004\311\200\001\031\030\230\214\0040\000\000\221B\000\020\021\221\2202\23144\023MOI\352f\201\036Q\247\244\320\000h\320\364\236\221\240\001\243F\207\251\240zO\220HABP\000G(\206 \366\332C\030\r\203\006\204\255\026u\366\034\334\374\333\266\322\340\270o\270\341\271\372\362N\240k\317\364\354z4\264\351~(\352m\321\246\352\255Z\330\265\333o\347O\355b\315\255?\325\231\367,:.+\230\340\2122iB\004\322a\001\330L\002'1\315k\\\351$\223X\301s\231\313\243\364lQ\375\350K\265h\rn(\212B\375\2250\340\256\235\302y\343\242q\304\340p\232\"\0023@DD\342\002 \264\002\226\013_\371\234\247\372\217\333\213\362\302(\341\351\3779\334i8Z\262\347\336\032\022j\330\312\273\273\327\347R\205G8)JJ\223(\351R\201*JX\310I\213\272\201s\036\257X\027V\224:\225\252\177ou\357\223\320\256\376\325@\302\253\261\002\001\010\004!\010B&\217 \016\203\241\t\202\000R\273R\245\014\030'\352\321\300\243\317\306\352c\306\225\t\343\030\3061\214c\30636)\033\374\320!44\222\226\227\224\233\035\264\222\221\304v\200\213^\017\220Q\022`LV\244\005\005\022\215d\351}`\033K\352$\374\324\243\245+\263\005\262\210UaIA\016\201\312v\3648X\030p\326\211\243bP\253G\346\261f,\340\341\356\310\021\037\3177\"[m$-\246L0\263C\204\006M\022\243\342Lg\247H:\301\357u\313\220z\000\366\311\345))\217\027\277\370\375\300?h\212\342\361\010\361\323@!\327\346\345\002cl\331\204{\277\363=\245\263m\033F\246\204m\362K""\261\033~\022k\316}\240\007W\341\004jR3jb\352\232)\021\240\013O\357\374\354\013\215\352\001\021.\342\210*\222\274\276\336\255\304\341AQH\030\230\025\031*\347\273r\256\216\337\272\377#\356?#\216!fZ*.\267\307\274\003\005\2720U\371\035\356\336\240BN,\300\344\300|\322\235\314\361\357o7\332\250\214G\206\020\203\237bJ\335\374$\275\"i\356\320\267\245\250\262\202\362W\265\376\253\020\235k\266i\013\302fU\262-\317\031\314\325U`\001\006\320\231\314M8\017bH\244\026\264\005\240\211B\003YbY\277s\374sN\307l-\360g\306g\260l\234\244\343\310\2039\227\223\\\300e\244\300y\336+\357\214\346\006\014\353\361\323\002\370\000\326\215\364+\001\202\356\254\320&\020\257]X\320\302\272)\021\013I\030\n\356\261H\021\314\216\201\270\035\374n!\200\306\1771`\375\333\272\307\t\300x\236\032OK3L\224\312(f\tA\203\\\347+\031XeT\254C\006\341\242\240\323\004\241.\345R\000aT\211\315\301$\226\333m\266\333o\240\016\020ba\250\021\310\"\"\326\340\370\\\\\234\025JUN3\265\2644\005\234\013C\003\016&\244BV\253\316<\n\252d[\213\r\354\240\021\337\021\375\004M\036\346\034\262\262VB.\273\304Z\"\"$a\235\266\375\343\317\003\312\"\241\026\177hyA\030A\007@*\360\0224\004-\205\301\022/@\222\204^\023b1\360\325m\n R\334\315\221\024\213A\023\212\273\262\353\002\315\267$\341\n\343+D\224T\\\320\004\214\223\300V\003\237\266\003\021\002\332@W\351!\t'[y\272<\025\246\317qzAt\013W\212\340\032\313\264\375\365\262aB\364[|EB8\304\210)\376\331%\246p[>\320\210\373W\211{\201h\034\250\003P\206#nn\022\251\201\023\002\244\226}\303\212\212\251\252\214\350\252P\316t\000\2664\232\003\350\023\014g\224d\376\207\244\315\257\346\035\343\323\003\227\266\375\014\226\0319\017\374\013\213\241\"\n`8\312\253k\252\237WN\332\020\001LZ\260cMF]\250\256s\\\250\363\370\304\211dn\244\221\007\361\266\302\214S\n\320FE\224'\016\370\030\362\274\3575\224\010lA\262\031n\326\355\024\225\261\243\330\"\244\n=\230\235\3066,n3L\212/\353\313b\3719\367\267\313\023\007K|j\257\363\005\013\271\242\301`\352\303\n\010\253Q\025%\tE\2016\332\317\000\230\234\224\304=)n0'`I\201\007\004Q""\017SYr\001D\224\332k\237h*\250\331LLt[\3321V*u\374\267Tl\266\311\026\025\367\204\0279\002\314\363\316\261\200\372l\215\002X\027\277\036^\307\345\375z\271\337?H\367\367\364e\365=\220D\213\262\220BLhLllc\032f0F\376\270r\373\330b}-\324*\343\0137\201\020\3742\242\343\207\031\006\0274U\344\243s\210\0226R\013s\305\301\212\321c\354\3615\203\000\226\315<\226O;\276\260W>\234\312\260\252\271R\205A\226\376\2750\3040\243\031\353\230\006\010*\323~[\322\307a\201\347t\266\367\364\364u\004X\363\252\232\233\202|\353\0353L\315G1\276\3060b\030T\005$D\214B5\304\355h\r\000\300`bS\302\213\212?\331Y\020R$\353+\201,\327\340\366<O&\350!d\00414\213\232C\3606\302\305d\312\216\244T[\246\345=SF\r4\323\033i\240LQ\024 \340(\220\021\232\232\260\353\315M4\226D\224\222'\217\033Z\327\033\347\364\340A\304\266`\nt\323<\374tQct\211B\321\204K\2401B\274\026q\347yx\313YS-\021\233\0362\320Y\304\214b\274K\232\316\033\\S\036\370\221\020Qm\300\207\350\016\0208p\004L\002\343I$\317\020H\016\315\211\276\337\r_\234)\002\334\271\r\232v=OW\010/d\250Uc/\230\022\033A\260\026\253\267;\315\260\230\327\314\301\023\233k\211\t\322K\006\"~\356\275\252O\351\324\375f.\261\352\367 \007\235j\322=5\344\347\366\201\210\212\336\3216q#\200\313\034\2666o\314(\222\004V\222\241$\227HHe\213v\000\246\0050\"'\213\237\325\272\231\360\206Q\r)\371u\310E\023\001{\t\2434N\264\244'\013\216\"\311\2542V\031j\022\314F\300U\322p\317w2XJ\222\226\251T\221aq&[\000?\354\220~\351\002\262\234\370\353\327N>\306:w\201\031\363U6\235\303\273pTe\021=m\327u;\004VNY \254\010\220D\253\231\302\004\020\302Q\215\005R(\005\\\331)j\236T[yYE\302,\024i\r\333\0049_\314\r\007\336`\212/Fz\361\211\331g\207\303\353\356\365\237I\370w|\310\304lF\360!\351;P\322sR%\220k6\314\235|:\230\264b\321r\0015\301\326\247q\234\205(^\266\370\217`g#%9x\367\336\022\330\333b\021\373\005\211\013L\215\314_\276\253\035\226j\356\357\3576\226\216H\037+hM;\020\216\235\374\373/\275\357\360\034\245R8\031\2241\247\020Mf0\214\317\022\031\261}6\024\010\340j\3705g$nt^\211\300{\376\317y\022\030\253\306v""\332IW\242\005P(%L\rT\246\201v\230\025\203A\357\355\005\340\033\335\364\020\374\317\324\010\267\326\323C\243E\254\265\007-Wz\007\006\3554\014\325X\207\252{\355\326\244\000\340\335\371\263\2230z\367\301\004\316\303\356T\r\340\036@\301\003|\326\227\017L\213\003\333\220\371\3642\3414\272\343\321\220\373\331\237}\233\266\260\014\010W1\t\331\306\021\205\022\354-\036\235\274\334\037\355\312\035\027\330g\213K?2\365\375\355H\326=\234\326\354\301\276\371J\347\312&\n\220\023\022^2\321\037\257;\235\303\303&OA\374\214|\373\026v\206\354\037\017\211?k \222ckjG>\225\n+&\376gk*^,JR\312\307a\253\307Q\035\310\320\312l\007\000t\201\330\232\024\201n\nl\200\303\250\222O\250\250\321j\256\276:\345\310\2711\nHS\004\r@\346\\\247\022\334\2224\2310A-\267\022\324J\201\211L\311\t\244)C\230\224\350\341\265-\246\241\301\002p\374Ln[\306\301\023/\202\242\207\205W\277\rn\301\203\037\363\333=\313;\235\377\027rE8P\220\027\3303\240";
+    PyObject *data = __Pyx_DecompressString(cstring, 2426, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2204 bytes) */
-const char* const cstring = "x\332\255\230Kw\023G\026\307Q?\024'\370@\314#\231\314\231\234\323\236\223\204\000\301 \3060\204\314d\374\020~c[\226\3376.\227\272KR\343Vw\273\253[\226l\030Xz\351\245\227Zj\251\245\226Zj\331K-\371\010\371\010S\267\245n\311FB\032\021\316\301\277zW\335{\377u]\355)\254jD\221lC\222-\202m\"m\340,I\032VfVWHN2\034[2\222R\302pt\205.\032\254\337Nc[\232\314\333iC\227T*)DS\023\304b3\265\274DmK\225mb\301 ]Z~\261\374`\364\331\250\204uE\262\310k\"\333T\242NB\3260\245\204z\313:\252f\253\272d\347MBG\244\331\244\2247\034I'\365\003\231l\\\353\004;Mt\211\022\033\n\322\035\254\353\206\215m\325\320\021\233\256\352\251;\222\242Zl\0235K`\366\024\326(\031\371\017V\024\304\006\022E\2458\241\021\242\303\317\224\254\322zI\321\rfB\022;\232-!d\021\305\221\tB\222\342xk\350\206\376\200\231\224U\261\306zeUWm\204\250%?LbMf\033\313\206E\036\"\031\233\352\303\243\206\333F\314|\356_\340\007=E\r\307\222\311\357\314k\263\031S#\031\242\263c \264\234\317\261\377Q\346(\264Hr\366\nI\372.\3679\022\234D\366\374\214PK\017s\000ev\267\351\303\246It\245Y\265\203\242\254\021l5k\206ncU\247A\003\311\230v\276Y;t\260\326\254Y\230\022\324\262V\32222\35055\364\213-\232J\233cT\320NK\215I\202BdZ&\2516\3114O\240\223\243\3262s\251e\023\252b\035\251\ns\233j\347\321\321e'u\031\207\036G{\036\032\3514\264\313\246\335\367j\273\205a\243\213N6\035\232F\t,\037\004-T=&\315\212\211\345f\3156.\272\337\266\260N\241D\353\002\3004\257\313\252\301\302l\261\333\253\352\204b\033\347\010Mx\323\220\354\211A\326X\007R\331\335\261\330\332\260\265\254Q_\030\010)\240N\3663\253R\0264\237T12\254\337\223\213g\200/\216\226\3530\342]\207\021\337\356@-\201H\020J:\272\214\330\277\224\257d\224N3\301C\316P4\242*9U\207\\D\331\025\362\204\324\252\037\244R\024\030\006\032\362t\344\031\206\340l\260n\306P\034\215@I\307\031F\026\221.\002\350.\245\356\nj\037\367\216j\350($\350\360<\034\310\304H\2746X\312\263L\303\014\204\202\020\3133\236\253\301N(7\\\t\023\352f7\323\331G\351$h 9\226P\274\370P\210\000%Z\322\3130\r\317\261R#9\266\344\035\324&\007\3214f+\242\272>@""\273\236d\021b\346\261\251\r\3056\205\232\305\232C\274\037\364\375xm \342F\246+\207U\241:\353\256m\273\333\304%\007\356\201\345Zo\376\270r\345mh\225cX\345\326\270\332\300\325\323\247g7\335[\367\213\221\332\340\315\263Hm\340\272{\375\357\205\341B\004V\271}\266W\210\024\242\305\320\373\361?\302W\276\274\351\336xR\212\225\324\362I\365\236\273\272\343\356\260eO\334\223\377\262\305\336\205&a\315In\021\260\310\305\001qn\033\260\315)\000\205[\340\031\026\370%\300\022\277\005\330\342\025\200\302\033\000\203\317\002\262\374\230\3000&\354\003\366\005\031 \013\031@F\310\001r\302\244\010\373\211s\2009q\025\260*\332\000[<\002\034\211o\001o\305\2310\303Lx\t\260\024^\007\254\207\367\001\373a\007\340\204\263a\360\304\343\323\270\373\365\235\302am\360\306\331\375\363\3309\256\r\374\355|\256 \027\377R\032*\r\303\210\347g1\300\257g\3149\327O\017\003\267\200\307\236\024\257\226\236\226\277\255|\345\316%\335\244\352\252\324\245u\327\314\201\371s\\\014\020\343v\000;\334\t\340\204{\303\365\271sm\340iI\253\014WF+yw9\026\004\362Q)\324\014\344\317\305P\361\373\022\256\0176*\261\212R\035\356<r(0\347Y9T\376k\345\337\3562\21313\304t\315c8l\010\301\231\021\227\000$8\r\240qG\200#n\002\"7\301\317\002f\3718 \356G\325\002X\374\033\300\033~\032\0028-\254\000V\204-\300\226\037\343FT\247\000S\342\002`A\334\000l\210{\200=\221\000\210h\000\0141\n\001\214\206_|f\000\301\342\357*\367\253\333\356\306\236\273\227v\323\365\310M\200m\023\334\024`\312\017\340:`\235{\005x\305\245\000)\256!\352\025\300\n\277\013\330\345S\200\224o~\036\220\347'\301\322I\337\340$ )\230\000S8\001\234\010\r\363_\002^\372\3467D}\0148\026\307\300\356\261\360<`>\274\002X\to\001\266\3022@\016\347\000\271p\3763]3^\031\252\334\253\276t\267\024Wa\031$\017\333\207\242`u\224K\003\322\334\001\340\200s\000\0167\006v\216\361\363\200\371K\036\311\001r\374\t\340\204\037\007s\307\205\005\300\202\020\007\304\205m\300\266\240\000\024!\017\310\013\307\302\347\033q\267\372\233\273\276\357\356\247\334\324!\004$4\003\347\235\341\346\001\363\334\022`\311O""Y\r\251'\001I\316\004\230\334&\034{\223\337\001\354\360\004@x\023`\372&M\300y'|\2234\200&\030\000Cp\000\2160\006\021\034\023\247\001\323\342\"`Q\334\004l\212\031@F\324\305>\315\375\300FL\236\037\027\207j\003\203\2473\254y\360\372\351\321\031>\313\236\307j_\177{f\237G\240\345\370|\350|\270eF\264\360E\341\260\030\252\r<*]+\343r\256B\253\303\325\310\207\201/k\203\337\270\337\260DQ\032\372pc\2700T\030\356;Y\r\236\316\261cx\305\347\356\363\305*\256\332n|5HF\243\245\361f2zP\214\025!i]\373\236\255\256\024\206\241(\025B\205[\205-\257}\340\266{\033\022\326\255\342V\211\224\177\253$\253\323n\374\225\373\312vm\247\376k\013\025\306\013\253\220\320\232\225\357J?\226N*?U\277\250\036\273[,\243\035v\354t\\'\353\235\263\374\260:T\375\241\212?y\312\017\003\314E#E\\\264K\221`\340]\026\200\372@\346\302\233\356\315_\212\343\305\265\322Oe\261\274Y\331\250\216Wc\rw\006\372\374\235\271=_\275\352\231\301\356\231\016z\t\275\000\325\275\340\0322]\000,p\033\200\rn\027\260\313\311\000\231\313\0002\334\032hp\215o\3104\001H\360\031@\306\277y\357\000\357\370Y\220\342\254\240\002T_\246\026\300\022\336\002\336\nQ\220bT\234\007\314\213k\2005\3615\340\265x\320\257>k\327\300\356\037\nj\321)\315\227\263\314\031s\356:\313*\264\021V\266ZQ(\316\226\326\312\367+\353\325\177\272+\273\356n\316\315\345\337\207j\302W\247\367\317b\354;\320\221\341\303\022\036h\354\031\207\"\221\226\2472zR\177\300=\013^\177\376\233^\272\367s}\216\215\236\"\031\301 \277k\306{$\377\"]\\\332\264\021\266R\264\333\372\315w\246\367\034\207^\351^\260\004{^c\315[\347\356\2256#{3&2j\032\226\215\202\267\036Zf\325U\277\326\306\260\013\375}X\367\321\206\350R\275\253\251\235\306\367f\360\343g\360q\305\232\034\366\215\257 \r'\210\246\005oa4\316:'\353}\013\215\256\250\327\323\306\025\035\307\366\341\226.\307B\237\354\355\352\262\336f\367(\177o1\366\221\347\331?\253\333\035<\303z\372\021\177\260:\nJ\275\231wad\217Zx\344\315\314`\023\325\377\004\204\022\206\241y\247\177\211\315\270\3274\301Z:XxaL?1o\277=j\333\332\233\023:\316\352\321!\377\350$""\222^\357\304\237v\037:\236\244\377[\360']\200\310\250\242R\231}~\023T\377l\2166\252q\250\265\361\311\205\376\276R\346\245\r\321\245zW\313;\215\357\315\340\247\r?u\014z\337Q\366W\3569\204}F\354W\357/Y\227~q,\260\266n\277\355>\032\323O\370\332\356\216\3325v\265\377\223\223zt\306\223\313I\242[\256\373\334<\367\361\216\377\177v\3538\341\177\223\336H\271";
-    PyObject *data = __Pyx_DecompressString(cstring, 2204, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2167 bytes) */
+const char* const cstring = "x\332\255\230Kw\023G\026\200Q?\024'p`\314#3\2313\231\323\236\223\t\001\202A\214a\010\231\311\370!\374\306/\371m\343r\251\273$5nu\267\273\272m\311\206!K\226^\262\324RK-\265\324R\313Zj\311O\310O\230\272-uK6\022\322\210p\016\376\352q\353V\335G]W{\022\353\006\321\024\327RT\207`\227(\033\370\210\244,';cj$\247X\236\253X)%iy\246F\027,>\357f\260\253L\344\335\214e*:U4b\350I\342\360\225F^\241\256\243\253.q@\310T\226\236/\335\037y:\242`SS\034\362\212\250.U\250\227T\rL)\241\276ZO7\\\335T\334\274M\350\2602\223R\362\226\247\230\244~ \233\313\265.p3\304T(q\241\241\334\306\246i\271\330\325-\023\361\345\272\231\276\255h\272\3037\321\217\010\254\236\304\006%\303\377\301\232\206\270 \321t\212\223\006!&\374L\253:\255\2674\323\342&\244\260g\270\nB\016\321<\225 \244h\236\257\303\264\314\373\334\244#\035\033|V\325M\335E\210:\352\203\0246T\276\261j9\344\001R\261\255?8n\270m\330\316\347\376\005~0\323\324\362\034\225\374\302\2756\223\265\r\222%&?\006BK\371\034\377\037\347\216B\013$\347\256\220T\340\362\200\303\341IT\337\317\010\265\314p\007Pnw\2339l\333\304\324\232]7l\252\006\301N\263g\231.\326M\3322`\347\303\016\311\332nK\357\320\303F\263\347`JP\213\342\224ce\321+j\231\341\210\016i\323\322\343\331@!(\255\".\311677\311qk\233{\323q\t\325\261\211t\215{Lw\363\350\370\242\177\272\310\241G\361\236Ec\235D\273l\332}\257\266[X.:\357R\333\243\031\224\304\352A8B\365\023\322\354\330Xm\366\\\353\274\263]\007\233\024Z\264\036{L\363\246\252[<\240\016\277\270\272I(vq\216\320\244\277\314\317\002\325\340\303H\347\227\306\341\232ac\325\240AF@\" \244Aj\362\237G:\345a\013H5+\313e\374\364\360M\010\222\241\345.\014\373wa8\260<\314\016\204R\236\251\"\376/\035d/\312dx\222C\235\320\014\242k9\335\204\372C\371\265\3613\2505q\220NQh\221\237<u\235p\034\320\231\2654\317 \3202q\226\223\207\241K\324\273\347O\367\264i\037\354\216)\3201{\302\224\260\222\257,^\331\034\333\262\303\244@\210\227\023\337\251`\036\264\033\336\203\005uk\233U\353\243\252\021\016\220\034\257\033~$(8\235\022#\345\027\222\206\303x\253Q\003[\312\013jSjh""\006s\215\250\236\t\220\247~z\"\304\255\342K\033\331\331L\312#lx\304\377A\177\035\253\r\304Xl\252rX\225\2523lm\233m\023F\016\330\201\303\234\327\277]\272\364&\262*p\254\nkBm\340\362\273'g7\330\315{\305X\355\312\215\263Xm\340\032\273\366\267\302P!\006Zn\235\355\025b\205x1\342\253,\375\265|X\221*c\237\\\364[\364\322\2277\330\365\307\245\345\222^>\255\336e\253;l\207o\177\312N\377\3137}\033\231\200\275'\204\005\300\202\220\000$\204m\300\266\240\0014a^\344\230\027\027\001\213\342\026`K\324\000\232h\001,\361\010p$\216J\034\243\322>`_R\001\252\224\005d\245\034 'M\310\260\237<\013\230\225W\001\253\262\013p\345c\300\261\374\006\360F\236\216rLG\027\001\213\321u\300zt\037\260\037\365\000^\364(\n\306?z\227`\177\270]8\254]\271~v\357\375\362{\\\033\370\313\373\331\202Z\374Si\2604\004\022\317\316\226\001?\235qg]{w\030\272\005\234\364\270x\271\364\244\374\307\312Wl6\305R:\323)\243u\327\314\202\371\263\3022`Y\330\001\354\010\247\200S\341\265\320\347\316\265\201'%\2432T\031\251\344\331\322r\030\273\207\245H3v?\024#\305oK\270.lU\226+Zu\250\263\344`h\316\323r\244\374\347\312\277\331\022\21717\304f\366\t\0346\202\340\314HH\002\222\202\0010\204c\300\2610\016\221\033\027g\0003b\002\220\010\242\352\000\034\3615\340\2658\005\001\234\222V\000+\322\026`+\210q#\252\223\200Iy\0360/o\0006\344=\300\236L\000D\266\000\226\034\207\000\306\243\317?3\200`\3617\225{\325m\266\261\307\3662,S\217\3348\3306.L\002&\203\000\256\003\326\205\227\200\227B\032\220\026\032I\275\002X\021w\001\273b\032\220\016\314\317\003\362\342\004X:\021\030\234\002\244$\033`K\247\200S\251a\376\013\300\213\300\374FR\237\000N\344Q\260{4:\007\230\213\256\000V\242[\200\255\250\nP\2439@.\232\377L\327\214U\006+w\253/\330\226\3064^i\362\260}$\016V\307\205\014 #\034\000\016\004\017\340\t\243`\347\2508\007\230\273\340\221\034 '\236\002N\30510wL\232\007\314K\t@B\332\006lK\032@\223\362\200\274t\"}\276\021w\252?\263\365}\266\237f\351C\010Hd\032\316;-\314\001\346\204E\300bP\262\032\251\236\002\244\004\033`\013\233p\354Mq\007\260#\022\000""\021m\200\035\2304\016\347\035\017L2\000\206d\001,\311\003x\322(DpT\236\002L\311\013\200\005y\023\260)g\001Y\331\224\3734\367\003\227\210\027\276(\034\026#\265\201\207\245\253e\\\316Uhu\250\032\3730\360e\355\312\327\354k~\355K\203\037\256\017\025\006\013C}\227\236+\357f\317\360\231\337|\306\236-Tq\325e\211\325\260\264\214\224\306\232\245\345~q\271\010%\350\352\267\\\273V\030\202\246R\210\024n\026\266\374\361\201[\354\026\224\237\233\305\255\022)\377\\IU\247X\342%{\3512\327\253\377\262B\205\261\302*\224\247f\347\233\322\337K\247\225\357\253_TO\330\026\257O\207\035'=\346\035\371\347,?\250\016V\277\253\342O\236\362\303\000w\321p\021\027\335R,\024\274S\034l\010r\027\336`7~,\216\025\327J\337\227\345\362fe\243:V]n\2703\314\266_\270\333\363\325\313\276\031\374\326\230\020\375\310s\310\241\347B#\351\346\001\363\302\006`C\330\005\354\n*@\025\262\200\254\260\006\031\265&6\222.\tH\212Y@6\270Go\001o\305\031H\254\031I\007\350A\3229\000Gz\003x#\305!\261\342\362\034`N^\003\254\311\257\000\257\344\203~\263\255v\025\354\376\256\240\027\275\322\\\371\210;c\226\255\363\032A\033a\345\332\212Rq\246\264V\276WY\257\376\223\255\354\262\335\034\313\345\177\215\324\244\257\336\335;[\346\037y\236\n_\215\360,\343\2177\024\213\265<\205\321\343\372\263\355i\370\324\013^\355\312\335\037\352k\\\364\004\251\010\204\202\251i\3775\374\243r^\265\355\"\354\244i7\375\315G\245\377\356\206Y\345n\250\202\277\243\261\341\353\271s\251\215do\306\304Fl\313qQ\370\302CK\274\273\032\364\332\030vn\276\017\353>\332\020]\350w5\265\223|o\006?z\n\237O|\310\343\037\360\0322p\222\030F\370\002Fc|r\242>7\337\230\212\3733m\\\321Q\266\017\267t9\026\372\344lW\227\365\266\272\307\364\367\225\361\2579\337\376\031\323\355\340\031>\323O\362\207\332Q\330\352\315\274s\222=\346\302C\177e\026\333\250\376\367\035\224\264,\303?\375\013l'\374\241q>\322\301\302s2\375\304\274\375\366\250\355hoN\350\270\252G\207\374\243S\222\364z'~\267\373\320\361$\375\337\202\337\351\002\304F4\235\252\374\243\233\240\372\307r\274\321M@\257\215O\316\315""\367U2/l\210.\364\273Z\336I\2767\203\2374\374\3241\350}G9\320\334s\010\373\214\330O\006\227\274\370\213c\236\217u\373m\367\221L?\341k\273;j7\330\325\376O.\352\321\031\217/\026\211n\265\356s\353\334\307;\376\377\325\255\343\202\377\001g\2259o";
+    PyObject *data = __Pyx_DecompressString(cstring, 2167, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (6417 bytes) */
-const char* const bytes = "Failed to create WaveformIndex out of boundsNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/waveform.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefWaveformWaveform.__reduce_cython__Waveform.__setstate_cython__Waveform.appendWaveform.atWaveform.clearWaveform.containsWaveform.emptyWaveform.equalWaveform.erase_atWaveform.from_jsonWaveform.from_listWaveform.indexWaveform.intersectionWaveform.itemsWaveform.newWaveform.new_cartesian_identity_waveformWaveform.new_cartesian_identity_waveform_2DWaveform.new_cartesian_identity_waveform_1DWaveform.new_cartesian_waveformWaveform.new_cartesian_waveform_2DWaveform.new_cartesian_waveform_1DWaveform.not_equalWaveform.push_backWaveform.sizeWaveform.spaceWaveform.to_jsonWaveform.transformsappendasyncio.coroutinesataxesb_json_cclearcline_in_tracebackclscontains__dict__divisiondivisionsdomainemptyequalerase_atfalcon_core._capi.waveformfrom_jsonfrom_list__func____getstate__hh_rethandleidxincreasingindexintersection_is_coroutineitemitemsjson__main____module____name__newnew_cartesian_identity_waveformnew_cartesian_identity_waveform_2Dnew_cartesian_identity_waveform_1Dnew_cartesian_waveformnew_cartesian_waveform_1Dnew_cartesian_waveform_2Dnew_emptynot_equalobjotherpoppush_back__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_retself__set_name__setdefault__setstate____setstate_cython__shared_domainsizespace__test__to_jsontransformsvaluevalues\200A\330\0101\3201G\300q\310\004\310I\320UZ\320Ze\320ek\320kr\320r|\360\000\000}\001T\002\360\000\000T\002U\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\2401\200A\330\010\025\220^\2401\240D\250\001\200A\360\006\000\t\023\320\0225\260Q\260i\270{\310*\320T[\320[e\320e{\320{~\360\000\000\177""\001C\002\360\000\000C\002N\002\360\000\000N\002S\002\360\000\000S\002Z\002\360\000\000Z\002d\002\360\000\000d\002L\003\360\000\000L\003O\003\360\000\000O\003Y\003\360\000\000Y\003d\003\360\000\000d\003o\003\360\000\000o\003v\003\360\000\000v\003@\004\360\000\000@\004`\004\360\000\000`\004c\004\360\000\000c\004m\004\360\000\000m\004x\004\360\000\000x\004C\005\360\000\000C\005J\005\360\000\000J\005T\005\360\000\000T\005t\005\360\000\000t\005w\005\360\000\000w\005}\005\360\000\000}\005H\006\360\000\000H\006O\006\360\000\000O\006V\006\360\000\000V\006`\006\360\000\000`\006u\006\360\000\000u\006v\006\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022\"\240!\2405\250\013\2606\270\027\300\n\320Jf\320fi\320is\320s~\360\000\000\177\001J\002\360\000\000J\002Q\002\360\000\000Q\002[\002\360\000\000[\002{\002\360\000\000{\002|\002\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\0106\260l\300!\3004\300y\320PQ\330\010\013\2106\220\023\320\0240\260\001\330\014\023\2201\330\010\017\320\017(\250\001\250\035\260a\200A\330\0106\260o\300Q\300d\310!\330\010\013\2106\220\023\320\0240\260\001\330\014\023\2201\330\010\017\320\017(\250\001\250\021\200A\360\006\000\t\023\320\0228\270\001\270\032\300=\320P[\320[i\320ip\320pz\360\000\000{\001_\002\360\000\000_\002b\002\360\000\000b\002l\002\360\000\000l\002w\002\360\000\000w\002B\003\360\000\000B\003I\003\360\000\000I\003S\003\360\000\000S\003o\003\360\000\000o\003r\003\360\000\000r\003|\003\360\000\000|\003G\004\360\000\000G\004R\004\360\000\000R\004Y\004\360\000\000Y\004c\004\360\000\000c\004C\005\360\000\000C\005F\005\360\000\000F\005L\005\360\000\000L\005W\005\360\000\000W\005^\005\360\000\000^\005e\005\360\000\000e\005o\005\360\000\000o\005D\006\360\000\000D\006E\006""\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\0228\270\001\270\031\300+\310Z\320W^\320^h\320h~\360\000\000\177\001B\002\360\000\000B\002F\002\360\000\000F\002Q\002\360\000\000Q\002V\002\360\000\000V\002]\002\360\000\000]\002g\002\360\000\000g\002O\003\360\000\000O\003R\003\360\000\000R\003\\\003\360\000\000\\\003g\003\360\000\000g\003r\003\360\000\000r\003y\003\360\000\000y\003C\004\360\000\000C\004c\004\360\000\000c\004f\004\360\000\000f\004p\004\360\000\000p\004{\004\360\000\000{\004F\005\360\000\000F\005M\005\360\000\000M\005W\005\360\000\000W\005w\005\360\000\000w\005z\005\360\000\000z\005@\006\360\000\000@\006K\006\360\000\000K\006R\006\360\000\000R\006Y\006\360\000\000Y\006c\006\360\000\000c\006x\006\360\000\000x\006y\006\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022A\300\021\300*\310M\320Yd\320dr\320ry\360\000\000z\001D\002\360\000\000D\002h\002\360\000\000h\002k\002\360\000\000k\002u\002\360\000\000u\002@\003\360\000\000@\003K\003\360\000\000K\003R\003\360\000\000R\003\\\003\360\000\000\\\003x\003\360\000\000x\003{\003\360\000\000{\003A\004\360\000\000A\004L\004\360\000\000L\004S\004\360\000\000S\004Z\004\360\000\000Z\004d\004\360\000\000d\004y\004\360\000\000y\004z\004\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022A\300\021\300)\310;\320V`\320`g\320gq\360\000\000r\001H\002\360\000\000H\002K\002\360\000\000K\002O\002\360\000\000O\002Z\002\360\000\000Z\002_\002\360\000\000_\002f\002\360\000\000f\002p\002\360\000\000p\002X\003\360\000\000X\003[\003\360\000\000[\003e\003\360\000\000e\003p\003\360\000\000p\003{\003""\360\000\000{\003B\004\360\000\000B\004L\004\360\000\000L\004l\004\360\000\000l\004o\004\360\000\000o\004u\004\360\000\000u\004@\005\360\000\000@\005G\005\360\000\000G\005N\005\360\000\000N\005X\005\360\000\000X\005m\005\360\000\000m\005n\005\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\034\230C\230z\250\021\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0260\260\001\260\021\340\022!\240\021\240!\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\330\010:\320:N\310a\310t\320ST\330\010\013\2106\220\023\320\0244\260A\330\014\023\2201\330\010\017\320\017-\250Q\250a\200A\330\016\035\230Q\230d\240!\200A\330\016 \240\001\240\024\240Y\250a\200A\330\010\025\320\025(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]t\320tu\200A\330\010\025\220_\240A\240T\250\021\200A\330\010\025\220_\240A\240T\250\031\260%\260{\300&\310\007\310z\320Yp\320pq\200A\330\010\025\220_\240A\240T\250\031\260%\260{\300&\310\007\310z\320Yu\320uv\200A\330\010:\270/\310\021\310$\310a\330\010\013\2106\220\023\320\0244\260A\330\014\023\2201\330\010\017\320\017-\250Q\250a\200A\340\010\026\320\026.\250a\250t\2601\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\360\006\000\t\023\320\022>\270a\270y\310\013\320S]\320]d\320dn\360\000\000o\001E\002\360\000\000E\002H\002\360\000\000H\002L\002\360\000\000L\002W\002\360\000\000W\002\\\002\360\000\000\\\002c\002\360\000\000c\002m\002\360\000\000m\002U\003\360\000\000U\003X\003\360\000""\000X\003b\003\360\000\000b\003m\003\360\000\000m\003x\003\360\000\000x\003\177\003\360\000\000\177\003I\004\360\000\000I\004i\004\360\000\000i\004l\004\360\000\000l\004r\004\360\000\000r\004}\004\360\000\000}\004D\005\360\000\000D\005K\005\360\000\000K\005U\005\360\000\000U\005j\005\360\000\000j\005k\005\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\016!\240\021\240$\240i\250u\260K\270v\300W\310J\320Vr\320rs\200A\330\010\025\320\025'\240q\250\004\250I\260U\270+\300V\3107\320R\\\320\\x\320xy\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *(__pyx_t_6_c_api_WaveformHandle, struct __pyx_opt_args_11falcon_core_5_capi_8waveform__waveform_from_capi *__pyx_optional_args)\000_waveform_from_capistruct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *(__pyx_t_6_c_api_PortTransformHandle, struct __pyx_opt_args_11falcon_core_5_capi_14port_transform__port_transform_from_capi *__pyx_optional_args)\000_port_transform_from_capistruct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *(__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi *__pyx_optional_args)\000_axes_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *(__pyx_t_6_c_api_AxesIntHandle, struct __pyx_opt_args_11falcon_core_5_capi_8axes_int__axes_int_from_capi *__pyx_optional_args)\000_axes_int_from_capistruct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *(__pyx_t_6_c_api_AxesMapStringBoolHandle, struct __pyx_opt_args_11falcon_core_5_capi_20axes_map_string_bool__axes_map_string_bool_from_capi *__pyx_optional_args)\000_axes_map_string_bool_from_capistruct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *(""__pyx_t_6_c_api_CoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_23coupled_labelled_domain__coupled_labelled_domain_from_capi *__pyx_optional_args)\000_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *(__pyx_t_6_c_api_DiscreteSpaceHandle, struct __pyx_opt_args_11falcon_core_5_capi_14discrete_space__discrete_space_from_capi *__pyx_optional_args)\000_discrete_space_from_capistruct __pyx_obj_11falcon_core_5_capi_6domain_Domain *(__pyx_t_6_c_api_DomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_6domain__domain_from_capi *__pyx_optional_args)\000_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *(__pyx_t_6_c_api_ListPortTransformHandle, struct __pyx_opt_args_11falcon_core_5_capi_19list_port_transform__list_port_transform_from_capi *__pyx_optional_args)\000_list_port_transform_from_capistruct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *(__pyx_t_6_c_api_MapStringBoolHandle, struct __pyx_opt_args_11falcon_core_5_capi_15map_string_bool__map_string_bool_from_capi *__pyx_optional_args)\000_map_string_bool_from_capi";
+    #else /* compression: none (6382 bytes) */
+const char* const bytes = "Failed to create WaveformIndex out of boundsNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/waveform.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefWaveformWaveform.__reduce_cython__Waveform.__setstate_cython__Waveform.appendWaveform.atWaveform.clearWaveform.containsWaveform.copyWaveform.emptyWaveform.equalWaveform.erase_atWaveform.from_jsonWaveform.indexWaveform.intersectionWaveform.itemsWaveform.newWaveform.new_cartesian_identity_waveformWaveform.new_cartesian_identity_waveform_2DWaveform.new_cartesian_identity_waveform_1DWaveform.new_cartesian_waveformWaveform.new_cartesian_waveform_2DWaveform.new_cartesian_waveform_1DWaveform.not_equalWaveform.push_backWaveform.sizeWaveform.spaceWaveform.to_jsonWaveform.transformsappendasyncio.coroutinesataxesb_jsonclearcline_in_tracebackclscontainscopy__dict__divisiondivisionsdomainemptyequalerase_atfalcon_core._capi.waveformfrom_json__func____getstate__hh_rethandleidxincreasingindexintersection_is_coroutineitemsjson__main____module____name__newnew_cartesian_identity_waveformnew_cartesian_identity_waveform_2Dnew_cartesian_identity_waveform_1Dnew_cartesian_waveformnew_cartesian_waveform_1Dnew_cartesian_waveform_2Dnot_equalobjotherpoppush_back__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_retself__set_name__setdefault__setstate____setstate_cython__shared_domainsizespace__test__to_jsontransformsvaluevalues\200A\330\0101\3201G\300q\310\004\310I\320UZ\320Ze\320ek\320kr\320r|\360\000\000}\001T\002\360\000\000T\002U\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\2401\200A\330\010\025\220^\2401\240D\250\001\200A\330\0101\260\036\270q\300\004\300A\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"""\240!\2401\200A\360\006\000\t\023\320\0225\260Q\260i\270{\310*\320T[\320[e\320e{\320{~\360\000\000\177\001C\002\360\000\000C\002N\002\360\000\000N\002S\002\360\000\000S\002Z\002\360\000\000Z\002d\002\360\000\000d\002L\003\360\000\000L\003O\003\360\000\000O\003Y\003\360\000\000Y\003d\003\360\000\000d\003o\003\360\000\000o\003v\003\360\000\000v\003@\004\360\000\000@\004`\004\360\000\000`\004c\004\360\000\000c\004m\004\360\000\000m\004x\004\360\000\000x\004C\005\360\000\000C\005J\005\360\000\000J\005T\005\360\000\000T\005t\005\360\000\000t\005w\005\360\000\000w\005}\005\360\000\000}\005H\006\360\000\000H\006O\006\360\000\000O\006V\006\360\000\000V\006`\006\360\000\000`\006u\006\360\000\000u\006v\006\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022\"\240!\2405\250\013\2606\270\027\300\n\320Jf\320fi\320is\320s~\360\000\000\177\001J\002\360\000\000J\002Q\002\360\000\000Q\002[\002\360\000\000[\002{\002\360\000\000{\002|\002\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\0106\260l\300!\3004\300y\320PQ\330\010\013\2106\220\023\320\0240\260\001\330\014\023\2201\330\010\017\320\017(\250\001\250\035\260a\200A\330\0106\260o\300Q\300d\310!\330\010\013\2106\220\023\320\0240\260\001\330\014\023\2201\330\010\017\320\017(\250\001\250\021\200A\360\006\000\t\023\320\0228\270\001\270\032\300=\320P[\320[i\320ip\320pz\360\000\000{\001_\002\360\000\000_\002b\002\360\000\000b\002l\002\360\000\000l\002w\002\360\000\000w\002B\003\360\000\000B\003I\003\360\000\000I\003S\003\360\000\000S\003o\003\360\000\000o\003r\003\360\000\000r\003|\003\360\000\000|\003G\004\360\000\000G\004R\004\360\000\000R\004Y\004\360\000\000Y\004c\004\360\000\000c\004C\005\360\000\000C\005F\005\360\000\000F\005L\005\360\000\000L\005W\005\360\000""\000W\005^\005\360\000\000^\005e\005\360\000\000e\005o\005\360\000\000o\005D\006\360\000\000D\006E\006\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\0228\270\001\270\031\300+\310Z\320W^\320^h\320h~\360\000\000\177\001B\002\360\000\000B\002F\002\360\000\000F\002Q\002\360\000\000Q\002V\002\360\000\000V\002]\002\360\000\000]\002g\002\360\000\000g\002O\003\360\000\000O\003R\003\360\000\000R\003\\\003\360\000\000\\\003g\003\360\000\000g\003r\003\360\000\000r\003y\003\360\000\000y\003C\004\360\000\000C\004c\004\360\000\000c\004f\004\360\000\000f\004p\004\360\000\000p\004{\004\360\000\000{\004F\005\360\000\000F\005M\005\360\000\000M\005W\005\360\000\000W\005w\005\360\000\000w\005z\005\360\000\000z\005@\006\360\000\000@\006K\006\360\000\000K\006R\006\360\000\000R\006Y\006\360\000\000Y\006c\006\360\000\000c\006x\006\360\000\000x\006y\006\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022A\300\021\300*\310M\320Yd\320dr\320ry\360\000\000z\001D\002\360\000\000D\002h\002\360\000\000h\002k\002\360\000\000k\002u\002\360\000\000u\002@\003\360\000\000@\003K\003\360\000\000K\003R\003\360\000\000R\003\\\003\360\000\000\\\003x\003\360\000\000x\003{\003\360\000\000{\003A\004\360\000\000A\004L\004\360\000\000L\004S\004\360\000\000S\004Z\004\360\000\000Z\004d\004\360\000\000d\004y\004\360\000\000y\004z\004\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\360\006\000\t\023\320\022A\300\021\300)\310;\320V`\320`g\320gq\360\000\000r\001H\002\360\000\000H\002K\002\360\000\000K\002O\002\360\000\000O\002Z\002\360\000\000Z\002_\002\360\000\000_\002f\002\360\000\000f\002p\002\360\000""\000p\002X\003\360\000\000X\003[\003\360\000\000[\003e\003\360\000\000e\003p\003\360\000\000p\003{\003\360\000\000{\003B\004\360\000\000B\004L\004\360\000\000L\004l\004\360\000\000l\004o\004\360\000\000o\004u\004\360\000\000u\004@\005\360\000\000@\005G\005\360\000\000G\005N\005\360\000\000N\005X\005\360\000\000X\005m\005\360\000\000m\005n\005\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0260\260\001\260\021\340\022!\240\021\240!\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\330\010:\320:N\310a\310t\320ST\330\010\013\2106\220\023\320\0244\260A\330\014\023\2201\330\010\017\320\017-\250Q\250a\200A\330\016\035\230Q\230d\240!\200A\330\016 \240\001\240\024\240Y\250a\200A\330\010\025\320\025(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]t\320tu\200A\330\010\025\220_\240A\240T\250\021\200A\330\010\025\220_\240A\240T\250\031\260%\260{\300&\310\007\310z\320Yp\320pq\200A\330\010\025\220_\240A\240T\250\031\260%\260{\300&\310\007\310z\320Yu\320uv\200A\330\010:\270/\310\021\310$\310a\330\010\013\2106\220\023\320\0244\260A\330\014\023\2201\330\010\017\320\017-\250Q\250a\200A\340\010\026\320\026.\250a\250t\2601\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\360\006\000\t\023\320\022>\270a\270y\310\013\320S]\320]d\320dn\360\000\000o\001E\002\360\000\000E\002H\002\360\000\000H\002L\002\360\000\000L\002W\002\360\000\000W\002\\\002\360\000\000\\\002c\002\360\000\000c\002m\002\360\000\000m\002U\003\360\000\000U\003X\003\360\000\000X\003b\003\360\000\000b\003m\003\360\000\000m\003x\003""\360\000\000x\003\177\003\360\000\000\177\003I\004\360\000\000I\004i\004\360\000\000i\004l\004\360\000\000l\004r\004\360\000\000r\004}\004\360\000\000}\004D\005\360\000\000D\005K\005\360\000\000K\005U\005\360\000\000U\005j\005\360\000\000j\005k\005\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\016!\240\021\240$\240i\250u\260K\270v\300W\310J\320Vr\320rs\200A\330\010\025\320\025'\240q\250\004\250I\260U\270+\300V\3107\320R\\\320\\x\320xy\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_8waveform_Waveform *(__pyx_t_6_c_api_WaveformHandle, struct __pyx_opt_args_11falcon_core_5_capi_8waveform__waveform_from_capi *__pyx_optional_args)\000_waveform_from_capistruct __pyx_obj_11falcon_core_5_capi_14port_transform_PortTransform *(__pyx_t_6_c_api_PortTransformHandle, struct __pyx_opt_args_11falcon_core_5_capi_14port_transform__port_transform_from_capi *__pyx_optional_args)\000_port_transform_from_capistruct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *(__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi *__pyx_optional_args)\000_axes_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_8axes_int_AxesInt *(__pyx_t_6_c_api_AxesIntHandle, struct __pyx_opt_args_11falcon_core_5_capi_8axes_int__axes_int_from_capi *__pyx_optional_args)\000_axes_int_from_capistruct __pyx_obj_11falcon_core_5_capi_20axes_map_string_bool_AxesMapStringBool *(__pyx_t_6_c_api_AxesMapStringBoolHandle, struct __pyx_opt_args_11falcon_core_5_capi_20axes_map_string_bool__axes_map_string_bool_from_capi *__pyx_optional_args)\000_axes_map_string_bool_from_capistruct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *(__pyx_t_6_c_api_CoupledLabelledDomainHandle, struct __pyx_""opt_args_11falcon_core_5_capi_23coupled_labelled_domain__coupled_labelled_domain_from_capi *__pyx_optional_args)\000_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_14discrete_space_DiscreteSpace *(__pyx_t_6_c_api_DiscreteSpaceHandle, struct __pyx_opt_args_11falcon_core_5_capi_14discrete_space__discrete_space_from_capi *__pyx_optional_args)\000_discrete_space_from_capistruct __pyx_obj_11falcon_core_5_capi_6domain_Domain *(__pyx_t_6_c_api_DomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_6domain__domain_from_capi *__pyx_optional_args)\000_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_19list_port_transform_ListPortTransform *(__pyx_t_6_c_api_ListPortTransformHandle, struct __pyx_opt_args_11falcon_core_5_capi_19list_port_transform__list_port_transform_from_capi *__pyx_optional_args)\000_list_port_transform_from_capistruct __pyx_obj_11falcon_core_5_capi_15map_string_bool_MapStringBool *(__pyx_t_6_c_api_MapStringBoolHandle, struct __pyx_opt_args_11falcon_core_5_capi_15map_string_bool__map_string_bool_from_capi *__pyx_optional_args)\000_map_string_bool_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 113; i++) {
+    for (int i = 0; i < 110; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
       if (likely(string) && i >= 13) PyUnicode_InternInPlace(&string);
@@ -12206,7 +12041,7 @@ const char* const bytes = "Failed to create WaveformIndex out of boundsNote that
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 113; i < 149; i++) {
+    for (int i = 110; i < 146; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -12217,14 +12052,14 @@ const char* const bytes = "Failed to create WaveformIndex out of boundsNote that
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 149; i++) {
+    for (Py_ssize_t i = 0; i < 146; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 113;
+      PyObject **table = stringtab + 110;
       for (Py_ssize_t i=0; i<36; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         Py_SET_REFCNT(table[i], _Py_IMMORTAL_REFCNT_LOCAL);
@@ -12263,129 +12098,129 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 27};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_space, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new, __pyx_mstate->__pyx_kp_b_iso88591_A_5_6_Jffiiss_J_J_Q_Q_2S_q_Qa_Jc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 38};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_waveform, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qi_T_ee_C_C_N_N_S_S_Z_Z_d_d_L, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 49};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_identity_waveform, __pyx_mstate->__pyx_kp_b_iso88591_A_ay_S_ddn_o_E_E_H_H_L_L_W_W_c_c, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 60};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_waveform_2D, __pyx_mstate->__pyx_kp_b_iso88591_A_8_ZW_hh_B_B_F_F_Q_Q_V_V_g_g_O, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 71};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_identity_waveform_2, __pyx_mstate->__pyx_kp_b_iso88591_A_A_V_ggq_r_H_H_K_K_O_O_Z_Z, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 82};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_division, __pyx_mstate->__pyx_n_u_shared_domain, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_waveform_1D, __pyx_mstate->__pyx_kp_b_iso88591_A_8_P_iippz_____b_b_l_l_w_w_B_B, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 93};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_division, __pyx_mstate->__pyx_n_u_shared_domain, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_identity_waveform_3, __pyx_mstate->__pyx_kp_b_iso88591_A_A_MYddrry_z_D_D_h_h_k_k_u_u_K, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 104};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 27};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_json, __pyx_mstate->__pyx_n_u_b_json, __pyx_mstate->__pyx_n_u_s_json, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_0_2S_q_Qa_Jc_Q_9A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_0_2S_q_Qa_Jc_Q_9A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 5, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 43};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_space, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new, __pyx_mstate->__pyx_kp_b_iso88591_A_5_6_Jffiiss_J_J_Q_Q_2S_q_Qa_Jc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 54};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_waveform, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qi_T_ee_C_C_N_N_S_S_Z_Z_d_d_L, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 65};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_identity_waveform, __pyx_mstate->__pyx_kp_b_iso88591_A_ay_S_ddn_o_E_E_H_H_L_L_W_W_c_c, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 76};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_waveform_2D, __pyx_mstate->__pyx_kp_b_iso88591_A_8_ZW_hh_B_B_F_F_Q_Q_V_V_g_g_O, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 87};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_divisions, __pyx_mstate->__pyx_n_u_axes, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_identity_waveform_2, __pyx_mstate->__pyx_kp_b_iso88591_A_A_V_ggq_r_H_H_K_K_O_O_Z_Z, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 8, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 98};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_division, __pyx_mstate->__pyx_n_u_shared_domain, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_waveform_1D, __pyx_mstate->__pyx_kp_b_iso88591_A_8_P_iippz_____b_b_l_l_w_w_B_B, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {5, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 109};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_division, __pyx_mstate->__pyx_n_u_shared_domain, __pyx_mstate->__pyx_n_u_increasing, __pyx_mstate->__pyx_n_u_domain, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_new_cartesian_identity_waveform_3, __pyx_mstate->__pyx_kp_b_iso88591_A_A_MYddrry_z_D_D_h_h_k_k_u_u_K, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 120};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_space, __pyx_mstate->__pyx_kp_b_iso88591_A_6oQd_6_0_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_1_q_A_6_1_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 126};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_kp_b_iso88591_A_NatST_6_4A_1_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 132};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_iuKvWJVrrs, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 135};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_1D, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 138};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A__AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 141};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_Ya, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 144};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 147};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_6l_4yPQ_6_0_1_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 153};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_a_6_4A_1_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 159};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IU_V7R_xxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 162};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A__AT_zYuuv, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 165};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_1_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 171};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 126};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A__AT_zYppq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A__AT_zYppq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 179};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 134};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
-    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_Ye_fGS_ttu, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_Ye_fGS_ttu, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 187};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 142};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_at1_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_at1_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 206};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 152};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_space, __pyx_mstate->__pyx_kp_b_iso88591_A_6oQd_6_0_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 158};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_transforms, __pyx_mstate->__pyx_kp_b_iso88591_A_NatST_6_4A_1_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 164};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_iuKvWJVrrs, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 209};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_n_u_obj, __pyx_mstate->__pyx_n_u_item};
-    __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_Cz_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 167};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_1D, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 170};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A__AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 173};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_Ya, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 176};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
+    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 179};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_6l_4yPQ_6_0_1_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 185};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_a_6_4A_1_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 191};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IU_V7R_xxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 194};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
+    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A__AT_zYuuv, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 197};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_1_1_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 212};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
+    __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_waveform_p, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
@@ -14168,26 +14003,6 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
   #endif
 }
 #endif
-
-/* ExtTypeTest */
-static CYTHON_INLINE int __Pyx_TypeTest(PyObject *obj, PyTypeObject *type) {
-    __Pyx_TypeName obj_type_name;
-    __Pyx_TypeName type_name;
-    if (unlikely(!type)) {
-        PyErr_SetString(PyExc_SystemError, "Missing type object");
-        return 0;
-    }
-    if (likely(__Pyx_TypeCheck(obj, type)))
-        return 1;
-    obj_type_name = __Pyx_PyType_GetFullyQualifiedName(Py_TYPE(obj));
-    type_name = __Pyx_PyType_GetFullyQualifiedName(type);
-    PyErr_Format(PyExc_TypeError,
-                 "Cannot convert " __Pyx_FMT_TYPENAME " to " __Pyx_FMT_TYPENAME,
-                 obj_type_name, type_name);
-    __Pyx_DECREF_TypeName(obj_type_name);
-    __Pyx_DECREF_TypeName(type_name);
-    return 0;
-}
 
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {

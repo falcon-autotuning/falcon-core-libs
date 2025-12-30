@@ -2,14 +2,15 @@ import pytest
 import array
 from falcon_core.generic.list import List
 from falcon_core.generic.pair import Pair
+from falcon_core._capi.pair_float_float import PairFloatFloat
 from falcon_core.generic.list import List
 
 class TestListPairFloatFloat:
     def setup_method(self):
         self.obj = None
         try:
-            # Found empty constructor: ListPairFloatFloat_create_empty
-            self.obj = List[Pair[float, float]]()
+            # Using recipe for ListPairFloatFloat
+            self.obj = List[PairFloatFloat]()
         except Exception as e:
             print(f'Setup failed: {e}')
 
@@ -105,7 +106,7 @@ class TestListPairFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.intersection(None)
+            self.obj.intersection(List[PairFloatFloat]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -113,7 +114,7 @@ class TestListPairFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.equal(None)
+            self.obj.equal(List[PairFloatFloat]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -121,7 +122,7 @@ class TestListPairFloatFloat:
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.not_equal(None)
+            self.obj.not_equal(List[PairFloatFloat]())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
@@ -132,3 +133,25 @@ class TestListPairFloatFloat:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_len_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            len(self.obj)
+        except Exception as e:
+            print(f'len() failed as expected: {e}')
+
+    def test_getitem_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            self.obj[0]
+        except Exception as e:
+            print(f'__getitem__ failed as expected: {e}')
+
+    def test_iter_magic(self):
+        if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
+        try:
+            # Try to iterate over the object
+            for _ in self.obj: break
+        except Exception as e:
+            print(f'iter() failed as expected: {e}')
