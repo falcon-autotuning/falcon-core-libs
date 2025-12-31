@@ -40,7 +40,7 @@ fi
 
 # 4. Download and install falcon-core libraries and headers
 REPO="falcon-autotuning/falcon-core"
-RELEASE_TAG="v0.0.1"
+RELEASE_TAG="v0.0.2"
 TMPDIR="/tmp/falcon-core-release"
 
 rm -rf "${TMPDIR}"

@@ -1,7 +1,10 @@
 install:
-	rm -rf .venv
-	uv venv
+	uv venv --clear
+	uv pip install Cython setuptools pytest coverage
 	uv pip install -e .
 
 test:
-	pytest --cov=. --cov-report=term-missing
+	uv run pytest --tb=short
+
+coverage:
+	uv run python run_coverage.py
