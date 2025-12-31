@@ -61,7 +61,7 @@ cdef class DeviceVoltageStates:
         cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageStates_states(self.handle)
         if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
             return None
-        return _list_device_voltage_state_from_capi(h_ret)
+        return _list_device_voltage_state_from_capi(h_ret, owned=True)
 
     def add_state(self, DeviceVoltageState state):
         _c_api.DeviceVoltageStates_add_state(self.handle, state.handle if state is not None else <_c_api.DeviceVoltageStateHandle>0)
@@ -76,7 +76,7 @@ cdef class DeviceVoltageStates:
         cdef _c_api.PointHandle h_ret = _c_api.DeviceVoltageStates_to_point(self.handle)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=True)
 
     def intersection(self, DeviceVoltageStates other):
         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.DeviceVoltageStates_intersection(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStatesHandle>0)
@@ -109,7 +109,7 @@ cdef class DeviceVoltageStates:
         cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageStates_items(self.handle)
         if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
             return None
-        return _list_device_voltage_state_from_capi(h_ret)
+        return _list_device_voltage_state_from_capi(h_ret, owned=False)
 
     def contains(self, DeviceVoltageState value):
         return _c_api.DeviceVoltageStates_contains(self.handle, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)

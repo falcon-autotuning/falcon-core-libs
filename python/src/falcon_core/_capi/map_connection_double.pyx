@@ -92,19 +92,19 @@ cdef class MapConnectionDouble:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.MapConnectionDouble_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListDoubleHandle h_ret = _c_api.MapConnectionDouble_values(self.handle)
         if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return _list_double_from_capi(h_ret)
+        return _list_double_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionDoubleHandle h_ret = _c_api.MapConnectionDouble_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionDoubleHandle>0:
             return None
-        return _list_pair_connection_double_from_capi(h_ret)
+        return _list_pair_connection_double_from_capi(h_ret, owned=False)
 
     def equal(self, MapConnectionDouble other):
         return _c_api.MapConnectionDouble_equal(self.handle, other.handle if other is not None else <_c_api.MapConnectionDoubleHandle>0)

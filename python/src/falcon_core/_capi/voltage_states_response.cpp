@@ -1335,12 +1335,12 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
+#include "falcon_core/generic/ListConnection_c_api.h"
+#include "falcon_core/generic/ListDouble_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
-#include "falcon_core/generic/ListDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
@@ -1349,9 +1349,9 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
@@ -1359,65 +1359,65 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
 #include "falcon_core/communications/Time_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/generic/ListInt_c_api.h"
+#include "falcon_core/math/AxesInt_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
+#include "falcon_core/generic/PairConnectionDouble_c_api.h"
+#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
+#include "falcon_core/generic/MapConnectionDouble_c_api.h"
+#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
+#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
+#include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
 #include "falcon_core/math/arrays/MeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
 #include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
 #include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/PairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
-#include "falcon_core/generic/MapConnectionQuantity_c_api.h"
-#include "falcon_core/generic/PairConnectionDouble_c_api.h"
-#include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
-#include "falcon_core/generic/MapConnectionDouble_c_api.h"
-#include "falcon_core/math/Point_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
 #include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesInstrumentPort_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListInt_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
@@ -1459,8 +1459,8 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h"
 #include "falcon_core/generic/ListDotGateWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h"
-#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h"
+#include "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h"
 #include "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h"
 #include "falcon_core/physics/config/core/Group_c_api.h"
 #include "falcon_core/generic/ListGroup_c_api.h"
@@ -1486,9 +1486,9 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/config/core/Adjacency_c_api.h"
 #include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
+#include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
@@ -4495,7 +4495,7 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_b_iso88591_A_4AT_6_1_AU_XWAQ __pyx_string_tab[72]
 #define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P __pyx_string_tab[73]
 #define __pyx_kp_b_iso88591_A_D_q_0_axs_1_Qa_2S_4A_Qa_81A_Q __pyx_string_tab[74]
-#define __pyx_kp_b_iso88591_A_YYZZ___6_6a_1_q __pyx_string_tab[75]
+#define __pyx_kp_b_iso88591_A_YYZZ___6_6a_1_q_Q __pyx_string_tab[75]
 #define __pyx_kp_b_iso88591_A_YYZZ___6_8_1_1_cImmqqr __pyx_string_tab[76]
 #define __pyx_kp_b_iso88591_A_wgQa_3_SPQQR_31Kv_PWW_h_i_K_K __pyx_string_tab[77]
 #define __pyx_kp_b_iso88591_Q __pyx_string_tab[78]
@@ -6469,6 +6469,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
+  struct __pyx_opt_args_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi __pyx_t_3;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6488,7 +6489,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
  *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:             # <<<<<<<<<<<<<<
  *             return None
- *         return _device_voltage_states_from_capi(h_ret)
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DeviceVoltageStatesHandle)0));
   if (__pyx_t_1) {
@@ -6497,7 +6498,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
  *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
  *             return None             # <<<<<<<<<<<<<<
- *         return _device_voltage_states_from_capi(h_ret)
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
  * 
 */
     __Pyx_XDECREF(__pyx_r);
@@ -6509,19 +6510,21 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
  *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:             # <<<<<<<<<<<<<<
  *             return None
- *         return _device_voltage_states_from_capi(h_ret)
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
 */
   }
 
   /* "falcon_core/_capi/voltage_states_response.pyx":97
  *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
  *             return None
- *         return _device_voltage_states_from_capi(h_ret)             # <<<<<<<<<<<<<<
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_3.__pyx_n = 1;
+  __pyx_t_3.owned = 1;
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -6751,7 +6754,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
 }
 
 /* "falcon_core/_capi/voltage_states_response.pyx":99
- *         return _device_voltage_states_from_capi(h_ret)
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.VoltageStatesResponseHandle>0:
@@ -6845,7 +6848,7 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
   goto __pyx_L0;
 
   /* "falcon_core/_capi/voltage_states_response.pyx":99
- *         return _device_voltage_states_from_capi(h_ret)
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.VoltageStatesResponseHandle>0:
@@ -7721,25 +7724,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{38},{179},{1},{8},{7},{6},{2},{9},{50},{49},{14},{14},{20},{21},{39},{41},{26},{27},{31},{29},{25},{31},{28},{29},{18},{6},{9},{18},{3},{4},{8},{5},{41},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{7},{10},{8},{3},{9},{3},{5},{3},{12},{11},{12},{10},{17},{13},{6},{9},{5},{4},{12},{10},{12},{19},{6},{8},{7},{6},{63},{40},{63},{41},{102},{44},{57},{131},{9},{293},{281}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1180 bytes) */
-const char* const cstring = "BZh91AY&SY\027\276 +\000\000\262\377\377\377\375\377\004\345\377\377\177\357m\377\375\377\377\377\340@@@@@@@@@@@@@\000@\000P\004/R\327\035\330\315\255mm\307BT\324\320T\336\223SM\221\244\375BoP\215\031\241\r\032d\3654z\002fA\006\017P#F&\233\032\247\232\236F\250%\022\231\211\240\214\251\354\246S&\324\321\240d\0324i\240\000\006C\020\304\000\302d\003 \320%\002 !OF\246\324\323\312\000\032\036\240\000\r\0004\000\000\001\240\000\001\246\207\000\001\240\000\031\000\000\000d4h\000\000\000\000\000\000\000\222HS\3654\302\230\320\032\217Jz\203\324\320h\00044i\352\003\324\000\000\000\0004\320=$\242\221O\211\365A\005A\313\317\025\210\373\343\331*\324\333E\213l\270\330\304\213%\020\001\001\205H^a\031\240\021>\311\0100\360\200\255\034\345p\304<af\007\n1\001l\010\207]\224\277-C\245\013V\032Q\257Y\302\353\340\375\324M4\225\331\267\2524w\370f\255\207\021\237-'\030*q\242\261\3639\344\205&\241\264\3203\2036\023kh\345\033\252%\205\030\030\014V]\257\006\244\370C)\2249\261GF\002\3205`\240\214\347I\331\352\301\254<&\274\3420\301\244\314\213\0070\256]\256\2033\231\243\240zFg\205\361\236\013\0201oJ2\275\215\344o\026\365\214\251\332%\"\213\3352\336\234\034\350\375\222\300x\273\352J\347\252\250\312\312j\021>0\244\003\020l\"\224\214\232\210P\317\312fU\335\267;\326\353\304\351\342\325\006\017Z\312\303\214v\242\253\225\246\201\035\342&0O\014C\273m\247%!Q\033\213\204tM\374IH\\\312\263k\224\224SJa\303<\004>\342\356(\252\026\253\032.\030\307<\306\221O\221\274\341ke\332%\266\203\344[\025^\025U\305&q\377\262i\016\3555\303X\214\t\002i+\010\365\014\2400\305\203\203Y\374*\305\235Y\262M\360\234\002!\2041\365\263\207\246FR'(\266aTh\375\307e\302\202\340\242\2066\001\355\275J\027U\004KfO<\346eZ\262\022]+\300\233\311]\016\251\004cG \2418\226\203\342+\356\340\023iv\244F\271hZ\224\222\r\335\307M\235\312s\027@\245\032t\"\210\331X5W\2525\227\257\220\232\225@\\Lf\0000\314\340\317\032\346\244\233\262\312\035UX\2739\210@P\254\331\"\365#B\0247\347\001[\304\236'%\273\024\333\207-'\201\356y\205\311\013>i\320N\310dH\021Y""\254\241\031\354k\226\0022m\213\273\026\2504\351\010\007\205\307;\375\275\222\032\204\224\026B\036\325\373\202\215\221\246\374\000\252\260\302\271rY\357A\222\276\321#x\005\244~\0072&\334\245\317\301\212D\262\030j\033\325Km\005\024I\313\213\261\251/Y5\241\205Z\014b\tC\311\304\261\321\363\\1\356\241\2457\241\221\025Q\025X)]\017\264C-\340\373\024\231\314H\256G\037S\t\320A\t\327\010\211H)\031G\n\037\300\r\001\024\212\252\364\2710\327\205*\201_\0043J\020\210\333=3c\272\372\3454E`\"\255\306\202\rh\225\314\211yM\375\210\305\353\230\331\022\305}f\304\230K\266K:\251\224\300_\n\323 \224\2268i\265J\366\266p\250\002\212\220\245XY\021\344\016\252\026d\201\361DJ\360\232\305\364\244\220\021\026{\201\206\256@\305\327$G\253.\263\2054\344l\001~2\370V\022%^V\264\240\246B\t\010g\200($El\250V\306>F\002$'r\243qP\226\370\351\311\034\025@\234\362(G2\r\216k\3504\306\214@\323\351:r\252\313\205n\3318\246\016\007\340qC\362g\034[\343\230CCc%\362\335\007\311\036\006\233AC\325\204\251Q\324\303\354\376\n8N#`  \013'\372\321a\2034\207RxB\024\353\320\200\3514$&Qn*\244\31613O\312\231\340u\351\226\272\242-\322\215\331\"$v\225\232x\226\315.\254\014H\315\213\207\005\272\270~\354\023'\260\361\217\231w\371\306\331\234*\022\300_\037L\nnJ\377\033\r\377z|\215\035\024\365xx<\374\323V6\313\264^1\204\3053\211\253\004\306}0\366N`\341\262\342+\207\247\227\376.\344\212p\241 /|@V";
-    PyObject *data = __Pyx_DecompressString(cstring, 1180, 2);
+    const struct { const unsigned int length: 9; } index[] = {{0},{38},{179},{1},{8},{7},{6},{2},{9},{50},{49},{14},{14},{20},{21},{39},{41},{26},{27},{31},{29},{25},{31},{28},{29},{18},{6},{9},{18},{3},{4},{8},{5},{41},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{7},{10},{8},{3},{9},{3},{5},{3},{12},{11},{12},{10},{17},{13},{6},{9},{5},{4},{12},{10},{12},{19},{6},{8},{7},{6},{63},{40},{63},{41},{102},{46},{57},{131},{9},{293},{281}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1176 bytes) */
+const char* const cstring = "BZh91AY&SYa\020\013]\000\000\262\377\377\377\377\377\004\345\377\377\177\357m\377\375\377\377\377\340@@@@@@@@@@@@@\000@\000P\004/R\327\035\330\265\255j\263\200\22554iSd\324\323\332M\017Q=O!1=&\002b1\030\000&\004\304i\220\332\231\244\306OT\317S\320\324\022\211\030\215\000T\366S\322\214\312h\000\000\006F\200\000\000\000\000\000\r\003@\224\010\200\2053)\3454\362\200\000z\200\0004\000\320\000\000\000\000\0004\016\000\000\000\001\240\000\000\000\r\006\200\000\000\001\220\006\200\000\222H\217SA\252m=4\233)\264\236\250=M\006\200\006\2324\036\2402\032\000\320\0004\032i\241\246\236\2221H\252\002p \202\271y\277Ub\206-skgm\026-\205\206\rD\2621\000\020\020S\005\326\021\216\001\030\315\302\020a\341\001Z(\312\341H\361\205\214\034(\204\005\264\"\024\374\022i\343\007\316\007;\334Q\253Q\322\313:}\224.8\225[\257\2468yze-\247Q\237fs\232\0248\276\260\350\342,\023\232\006fYT1\3407y'@\340If\024L\300Sm\3330hG\2004\3150\351\324\212I\214\220j\301!\021\324\261\251\245\007TxZ\312q\020M\232\315\213\007n\254Y\256\331\267\233\301\3131\006\346\005\251\222\013\020(K0c~\356s(Kj\213\337\0230\247\r\022\256\374\036\366\371f\201 \272\252\354.\246+Z\\Yh\211\352\205\200\031\243\241\034\303IH\205\266M\026\343]\233\036\306\220\370\364\301j\345\271\246\262\240\353]\210\252\245I@Eh\211v\023\003\030\356\333)\311HTF\341b\035\023y\022R\027\rY\325\312J)\2430\340\035\342\037kw\034U\013U\215\027\014\203\236CD\247\304\336P\265\257\332%\266\203\345[\025^\025U\305&q?\222i\016\3555\305X\214\t\002h\253\010\365\014\2400\305\203\203Y\375(\246\255f\305kZ0\n\203\010c^\336\016\311\0218\234\252nB\244\277\260;K\002\tE\0243\362\222;\013\020\304\250\"Tm\370\006\357y\025\360\227\021vT\324K\251}\250#\034=\005\t\304\264\037\031_k\000\233\013\265\"5\313B\324\244\220n.:k\356S\205t\nQ\247B(\215\233\203Mz\243Q{0\204\322\252\002\343c\010\003\014\316\014\361\252jI\273,\241\325U\213\263\230\204\005\n\315\226/R4!C~0\025\274I\342r[\261M\270\257\243\261\275\21721\020J\250\245\002\225AP\230\033d\211\030\257S\356V\022\224i\337\247l\206t\341""\000\360\225\316\377p\354C@\222\202\330C\251zQD\310\316|\300\250\310aK,\364a\006M$D\256\316\"I2\275\221\272\273\037&\\\204k)\254P\324\266j\220QD\240\255u\265%\353&\2640\253A\220A(y8\226:>s\206M\2744\246\3642\"\252\"\253\005.\246H\210o\344\t/Rw\261#\255\255\342\346>\010!B\346\021\251\005\032S\256\206\330\006X\211\305Ey\334\230l\241YP+\300\206k!\010\215\343\3236\033\257\256YLw\202*\326\340A\316\022\351\3210SWz1x\346~\332h\361\254\371\263\211\212\371\250U3X\014\300\2552\211Ic\207\371\252W\265\266b\240\n*B\225bdG\2203:5T@{ZN\360\242\274\021&\230\020mL\005\026\004J^\304B])\371.\024\323\225\260\006d_\337\330H\225y\272\222\202\231\010$!\236\000\240\221\025\262\241s\031$\254\004HP\365GdBlc\350%x[\002\203\254\240\331\320sg\306\203\214(\244\032<\327FQYr.\\#\025\240\343~G\022?\025S\227xs\010hr1^.]\3146\346\n\225XD\332\343S\332\256\327\376z\302<\207\224\353\006\251\252\037\243g\366l8\214\203A\340\200>\225&\376\016\203*\261&\213!\331$\362\t\204\177\024\337\332C\362|za+\374\242\221\345Z\022\264\234\317\014\371\365\314\356\233\211\361\032\266\016*\373S\262\356\2124\307\312\006\024\334\203l\310\025\001\336\026\246\365\276{\261\317\315\267\227\326\256\322\225%t}\362\252\276\\\215^\360\026\207\254\030!\356\030\215\003\006\227\030u1\200\351\260\352+\222\2277\230\273\222)\302\204\203\010\200Z\350";
+    PyObject *data = __Pyx_DecompressString(cstring, 1176, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (994 bytes) */
-const char* const cstring = "x\332\245U\317s\0335\024\216\303/C;\0047\264'fPf\030\212\233\326\301\315\217\t\020\002\036B\207L\230\326N(\241\245SU\326\312\266\322\265d\257\264\256}\3531G\037s\364\321\307=\356q\217>\352\350c\376\004\376\004\236v\035'\2055i\313\316x\245\325\373\236\336\367>\275'\337#\334e\016\322\022Q\217\021\315\320\357\322\325\244\316\0164|\250}\246ZR(v_\202E7\210F?\365tC\n\304\025r\230\313\253\314\003\230\333CJ{\234j\346Y\220@\345\237\313w\3266\327\020\021\016\362\330\021\243Z!\345W\251K\224b\n\311\032\252\372\334\325\\ \335k1U@\2735\324\223>\022,\241\322\002\334E\007\335`\002)\246\355\004\335$BH`\307\245\300\340\316E\375&r\270\007Ax\207Y\357{\304U\254\360\003q\034\014@\346pE\252.c\302\276\353\224\253d\346\010\t)\324\210\357j\204\261\307\034\2372\214\221\343\307{\010)\356@J\035N\\\260R.\270\306Xyt\245F\\\n\201\251\364\330\n\246\244\305W:\211`X\305\212\301N\211d\205V\257\273ee\021u%}\217\262m\020q\267\331rY\223\t`\205q\271\327\205\337\016\350\206\357\263\256\336g\265T\355S\027\013S\3124>\020\214g\301@\266\230\331%@*[\275t\013k\373\304M7\325<\331\304GJ\212ts\223)\005\253\351F\301^\3140H\215\377#f\"s\272M\313\230\rQ=A\271\204\234<\351C\2251U\215\327\253x\302\210\272\260\2109\324\217G(\253\022\372\234\272\312*\200\261c\217#\211\177\341\250\013\361Q\027f\034\365T\006\214k\276\240\030\236\372\231\352\270\321\000\234\355\n\307\205\220\nOIq\315\232*\361j\022n\337\t9\230H\307\0070<\2024a\004\251\246\242\310\352\221\204.\360Z\262\2051\224XL\314B\355|\022\322\342\022\317\363\302\376W\275L\027X\027\212$\246\257\316(\330\324\264bn-.\237\t\013\230M\372\345BQ\341\224\002\233\250\203\341\005\320\311\231t\210\3533\365\262t\232\275an|\027\026\303\235(3\316^9\336\350/\232O\363\303\334\370\352b\2778\316~\010\243Y\274=,\r\037\006_\206\357\205\177D\207\243\322\250rzmi\220\033,\275,\215\263\327\315\365b\220\013\276\010x\350G{\243\216y\370\304<\251\37557W\317\354\315\303\2607\377\353\374$\314ZP\n~\013so\033f=\250\004N\230\217\326GW\314\301#\363\350\231yv\004\001\236g\036\3308\017\346\313q\234\317Nv""\006\037\014\332C\310\346\353\340\343\220\204\335H\215\226F\305S\033\004H|\037VB2\331\3302\271{|`>\001f\343\253\327\372\313'\225\0232\316\346M\376\307\350\235hsT\034\225,\344\333~\305\016\337\364\341k\341\270m\351l\231-`\360\330<~j\236\342iB\033\001\231$\264`\026V\206\355 c\261\333f;\005\273\031f\316\261V\301B\364~D\315n\3234\333\246\355\331T>?y1\250\017+C\240\264\032lG\271hyt`\312\025S\331?Kf5(\006{a'\372\323\224\017\315!\354\337\000%\370\271\360\377/\317\314\370\335\217\216\227\373\025\2705}joe[\323P\360\270X\274\320\213x=\251\371\273\2533\3321\375\206C\267\276J6\324x\003SlwH\305\375\022w\352m\364*\211\226\306\304\253\2537e\202g\031\342+\303:\243[\323\010\360\207F\3348L~\356r\307\327\024\251\350\260\016\207.\377\307~;\361\352+\002\244\010\224\202z\033yfp\300\351\313\227Js\211\333\337z\037|\365";
-    PyObject *data = __Pyx_DecompressString(cstring, 994, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (996 bytes) */
+const char* const cstring = "x\332\245U\317s\0335\024\216\303/C\013\301\r\355\211\031\224\031\206\342\246up\363c\002\204\200\207\320!\023\246\265\023Jh\351T\225\265\262\255t-\331+\255k\337z\314\321\307\034}\364q\217{\334\243\217:\372\230?\201?\201\247]\307I\313\232@\331\031\257\264z\337\323\373\336\247\367\344{\204\273\314AZ\"\3521\242\031\372M\272\232\324\331\201\206\017\265\317TK\n\305\356K\260\350\006\321\350\307\236nH\201\270B\016sy\225y\000s{Hi\217S\315<\013\022\250\374S\371\316\332\346\032\"\302A\036;bT+\244\374*u\211RL!YCU\237\273\232\013\244{-\246\nh\267\206z\322G\202%TZ\200\273\350\240\033L \305\264\235\240\233D\010\t\354\270\024\030\334\271\250\337D\016\367 \010\3570\353}\217\270\212\025\276'\216\203\001\310\034\256H\325eL\330w\235r\225\314\034!!\205\032\361]\2150\366\230\343S\2061r\374x\017!\305\035H\251\303\211\013V\312\005\327\030+\217\256\324\210K!0\225\036[\301\224\264\370J'\021\014\253X1\330)\221\254\320\352u\267\254,\242\256\244\357Q\266\r\"\3566[.k2\001\2540.\367\272\360\333\001\335\360}\326\325\373\254\226\252}\352baJ\231\306\007\202\361,\030\310\0263\273\004He\253\227nam\237\270\351\246\232'\233\370HI\221nn2\245`5\335(\330\213\031\006\251\361?\304LdN\267i\031\263!\252'(\227\220\223'}\2502\246\252\361z\025O\030Q\027\0261\207\372\361\010eUB\237SWY\0050v\354q$\361/\034u!>\352\302\214\243\236\312\200q\315\027\024\303S?S\0357\032\200\263]\341\270\020R\341))\256YS%^M\302\355;!\007\023\351\370\000\206G\220&\214 \325T\024Y=\222\320\005^K\2660\206\022\213\211Y\250\235OBZ\\\342y^\330\177\253\227\351\002\353B\221\304\364\325\031\005\233\232V\314\255\305\3453a\001\263I\277\\(*\234R`\023u0\274\000:9\223\016q}\246^\226N\2637\314\215o\303b\270\023e\306\331+\307\033\375E\363I~\230\033_]\354\027\307\331\367a4\213\267\207\245\341\303\340\213\360\235\360\367\350pT\032UN\257-\rr\203\245\227\245q\366\272\271^\014r\301\347\001\017\375ho\3241\017\237\230'\265?\347\346\352\231\275y\030\366\346\177\231\237\204Y\013J\301\257a\356M\303\254\007\225\300\t\363\321\372\350\2129xd\036=3\317\216 \300\363""\314\003\033\347\301|9\216\363\351\311\316\340\275A{\010\331|\025|\024\222\260\033\251\321\322\250xj\203\000\211\357\302JH&\033[&w\217\017\314\307\300l|\365Z\177\371\244rB\306\331\274\311\377\020\275\025m\216\212\243\222\205|\323\257\330\341\353>|-\034\267-\235-\263\005\014\036\233\307O\315S<Mh# \223\204\026\314\302\312\260\035|\030V,z\333l\247\2407\303\3149\332jX\210\336\215\250\331m\232f\333\264=\233\314g'/\006\365ae\010\244V\203\355(\027-\217\016L\271b*\373g\351\254\006\305`/\354D\177\230\362\2419\204\375\033\240\005?\227\376\377e\232\031\277\375\301\361r\277\002\367\246O\355\275l\253\032J\036\027\213\027\272\021\257'U\177wuFC\246\337q\350\326\227\311\206\032o`\212\355\016\251\270\237\343^\275\215^%\321\322\230xu\365_\231\340Y\206\370\322\260\316\350\3264\002\374\245\0217\016\223\237\273\334\361_\212TtX\207C\237\277\266\337N\274\372\212\000)\002\245\240\336D\236\031\034p\372\362\245\322\\\342\366\027W\337~\n";
+    PyObject *data = __Pyx_DecompressString(cstring, 996, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2258 bytes) */
-const char* const bytes = "Failed to create VoltageStatesResponseNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/voltage_states_response.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefVoltageStatesResponseVoltageStatesResponse.__reduce_cython__VoltageStatesResponse.__setstate_cython__VoltageStatesResponse.copyVoltageStatesResponse.equalVoltageStatesResponse.from_jsonVoltageStatesResponse.messageVoltageStatesResponse.newVoltageStatesResponse.not_equalVoltageStatesResponse.statesVoltageStatesResponse.to_jsonasyncio.coroutinesb_jsonb_messagecline_in_tracebackclscopy__dict__equalfalcon_core._capi.voltage_states_responsefrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main__message__module____name__newnot_equalobjotherpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_messages_retself__set_name__setdefault__setstate____setstate_cython__states__test__to_jsonvalues\200A\340\010\026\320\026;\2701\270D\300\001\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\0251\260\021\260$\260i\270u\300K\310v\320U\\\320\\f\360\000\000g\001K\002\360\000\000K\002L\002\200A\340\010\026\320\0264\260A\260T\270\021\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026=\270Q\270a\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003""\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010<\320<Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0246\260a\330\014\023\2201\330\010\017\320\017/\250q\260\001\200A\330\010>\320>Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0171\260\021\260.\300\006\300c\320Im\320mq\320qr\200A\340\010\037\230w\240g\250Q\250a\330\0103\260>\300\021\300+\310S\320PQ\320QR\340\010\t\330\014\026\320\0263\2601\260K\270v\300[\320PW\320W^\320^h\360\000\000i\001K\002\360\000\000K\002L\002\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *(__pyx_t_6_c_api_VoltageStatesResponseHandle, struct __pyx_opt_args_11falcon_core_5_capi_23voltage_states_response__voltage_states_response_from_capi *__pyx_optional_args)\000_voltage_states_response_from_capistruct __pyx_obj_11falcon_core_5_capi_21device_voltage_states_DeviceVoltageStates *(__pyx_t_6_c_api_DeviceVoltageStatesHandle, struct __pyx_opt_args_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi *__pyx_optional_args)\000_device_voltage_states_from_capi";
+    #else /* compression: none (2260 bytes) */
+const char* const bytes = "Failed to create VoltageStatesResponseNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/voltage_states_response.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefVoltageStatesResponseVoltageStatesResponse.__reduce_cython__VoltageStatesResponse.__setstate_cython__VoltageStatesResponse.copyVoltageStatesResponse.equalVoltageStatesResponse.from_jsonVoltageStatesResponse.messageVoltageStatesResponse.newVoltageStatesResponse.not_equalVoltageStatesResponse.statesVoltageStatesResponse.to_jsonasyncio.coroutinesb_jsonb_messagecline_in_tracebackclscopy__dict__equalfalcon_core._capi.voltage_states_responsefrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main__message__module____name__newnot_equalobjotherpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_messages_retself__set_name__setdefault__setstate____setstate_cython__states__test__to_jsonvalues\200A\340\010\026\320\026;\2701\270D\300\001\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\0251\260\021\260$\260i\270u\300K\310v\320U\\\320\\f\360\000\000g\001K\002\360\000\000K\002L\002\200A\340\010\026\320\0264\260A\260T\270\021\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026=\270Q\270a\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003""\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010<\320<Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0246\260a\330\014\023\2201\330\010\017\320\017/\250q\260\r\270Q\200A\330\010>\320>Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0171\260\021\260.\300\006\300c\320Im\320mq\320qr\200A\340\010\037\230w\240g\250Q\250a\330\0103\260>\300\021\300+\310S\320PQ\320QR\340\010\t\330\014\026\320\0263\2601\260K\270v\300[\320PW\320W^\320^h\360\000\000i\001K\002\360\000\000K\002L\002\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *(__pyx_t_6_c_api_VoltageStatesResponseHandle, struct __pyx_opt_args_11falcon_core_5_capi_23voltage_states_response__voltage_states_response_from_capi *__pyx_optional_args)\000_voltage_states_response_from_capistruct __pyx_obj_11falcon_core_5_capi_21device_voltage_states_DeviceVoltageStates *(__pyx_t_6_c_api_DeviceVoltageStatesHandle, struct __pyx_opt_args_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi *__pyx_optional_args)\000_device_voltage_states_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -7850,7 +7853,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 93};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_states, __pyx_mstate->__pyx_kp_b_iso88591_A_YYZZ___6_6a_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_states, __pyx_mstate->__pyx_kp_b_iso88591_A_YYZZ___6_6a_1_q_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};

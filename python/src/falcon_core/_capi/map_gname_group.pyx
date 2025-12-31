@@ -96,19 +96,19 @@ cdef class MapGnameGroup:
         cdef _c_api.ListGnameHandle h_ret = _c_api.MapGnameGroup_keys(self.handle)
         if h_ret == <_c_api.ListGnameHandle>0:
             return None
-        return _list_gname_from_capi(h_ret)
+        return _list_gname_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListGroupHandle h_ret = _c_api.MapGnameGroup_values(self.handle)
         if h_ret == <_c_api.ListGroupHandle>0:
             return None
-        return _list_group_from_capi(h_ret)
+        return _list_group_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairGnameGroupHandle h_ret = _c_api.MapGnameGroup_items(self.handle)
         if h_ret == <_c_api.ListPairGnameGroupHandle>0:
             return None
-        return _list_pair_gname_group_from_capi(h_ret)
+        return _list_pair_gname_group_from_capi(h_ret, owned=False)
 
     def equal(self, MapGnameGroup other):
         return _c_api.MapGnameGroup_equal(self.handle, other.handle if other is not None else <_c_api.MapGnameGroupHandle>0)

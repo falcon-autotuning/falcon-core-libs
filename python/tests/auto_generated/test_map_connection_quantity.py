@@ -120,6 +120,13 @@ class TestMapConnectionQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == None
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -128,6 +135,13 @@ class TestMapConnectionQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != None
+        except Exception as e:
+            print(f'Operator != failed: {e}')
+
     def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -135,6 +149,24 @@ class TestMapConnectionQuantity:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_new_empty(self):
+        try:
+            Map[Connection, Quantity]()
+        except Exception as e:
+            print(f'Constructor new_empty failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Map[Connection, Quantity](array.array('L', [0]), 1)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Map[Connection, Quantity]("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

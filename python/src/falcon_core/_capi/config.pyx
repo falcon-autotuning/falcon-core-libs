@@ -96,25 +96,25 @@ cdef class Config:
         cdef _c_api.VoltageConstraintsHandle h_ret = _c_api.Config_voltage_constraints(self.handle)
         if h_ret == <_c_api.VoltageConstraintsHandle>0:
             return None
-        return _voltage_constraints_from_capi(h_ret)
+        return _voltage_constraints_from_capi(h_ret, owned=True)
 
     def groups(self, ):
         cdef _c_api.MapGnameGroupHandle h_ret = _c_api.Config_groups(self.handle)
         if h_ret == <_c_api.MapGnameGroupHandle>0:
             return None
-        return _map_gname_group_from_capi(h_ret)
+        return _map_gname_group_from_capi(h_ret, owned=True)
 
     def wiring_DC(self, ):
         cdef _c_api.ImpedancesHandle h_ret = _c_api.Config_wiring_DC(self.handle)
         if h_ret == <_c_api.ImpedancesHandle>0:
             return None
-        return _impedances_from_capi(h_ret)
+        return _impedances_from_capi(h_ret, owned=True)
 
     def channels(self, ):
         cdef _c_api.ChannelsHandle h_ret = _c_api.Config_channels(self.handle)
         if h_ret == <_c_api.ChannelsHandle>0:
             return None
-        return _channels_from_capi(h_ret)
+        return _channels_from_capi(h_ret, owned=True)
 
     def get_impedance(self, Connection connection):
         cdef _c_api.ImpedanceHandle h_ret = _c_api.Config_get_impedance(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
@@ -144,7 +144,7 @@ cdef class Config:
         cdef _c_api.GroupHandle h_ret = _c_api.Config_select_group(self.handle, gname.handle if gname is not None else <_c_api.GnameHandle>0)
         if h_ret == <_c_api.GroupHandle>0:
             return None
-        return _group_from_capi(h_ret)
+        return _group_from_capi(h_ret, owned=True)
 
     def get_dot_number(self, Channel channel):
         return _c_api.Config_get_dot_number(self.handle, channel.handle if channel is not None else <_c_api.ChannelHandle>0)
@@ -267,13 +267,13 @@ cdef class Config:
         cdef _c_api.ChannelsHandle h_ret = _c_api.Config_return_channels_from_gate(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.ChannelsHandle>0:
             return None
-        return _channels_from_capi(h_ret)
+        return _channels_from_capi(h_ret, owned=True)
 
     def return_channel_from_gate(self, Connection gate):
         cdef _c_api.ChannelHandle h_ret = _c_api.Config_return_channel_from_gate(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.ChannelHandle>0:
             return None
-        return _channel_from_capi(h_ret)
+        return _channel_from_capi(h_ret, owned=True)
 
     def ohmic_in_channel(self, Connection ohmic, Channel channel):
         return _c_api.Config_ohmic_in_channel(self.handle, ohmic.handle if ohmic is not None else <_c_api.ConnectionHandle>0, channel.handle if channel is not None else <_c_api.ChannelHandle>0)
@@ -504,43 +504,43 @@ cdef class Config:
         cdef _c_api.GateRelationsHandle h_ret = _c_api.Config_generate_gate_relations(self.handle)
         if h_ret == <_c_api.GateRelationsHandle>0:
             return None
-        return _gate_relations_from_capi(h_ret)
+        return _gate_relations_from_capi(h_ret, owned=True)
 
     def screening_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Config_screening_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def reservoir_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Config_reservoir_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def plunger_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Config_plunger_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def barrier_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Config_barrier_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def ohmics(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Config_ohmics(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def dot_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Config_dot_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def get_ohmic(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.Config_get_ohmic(self.handle)

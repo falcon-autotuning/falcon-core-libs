@@ -276,12 +276,6 @@ class MeasuredArray:
 
     def __add__(self, other):
         """Operator overload for +"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.plus_equals_farray(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.plus_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.plus_equals_int(other)
         if isinstance(other, MeasuredArray):
             return self.plus_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -294,12 +288,6 @@ class MeasuredArray:
 
     def __sub__(self, other):
         """Operator overload for -"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.minus_equals_farray(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.minus_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.minus_equals_int(other)
         if isinstance(other, MeasuredArray):
             return self.minus_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -313,14 +301,6 @@ class MeasuredArray:
     def __mul__(self, other):
         """Operator overload for *"""
         if isinstance(other, MeasuredArray):
-            return self.times_equals_measured_array(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.times_equals_farray(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.times_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.times_equals_int(other)
-        if isinstance(other, MeasuredArray):
             return self.times_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
             return self.times_farray(other)
@@ -332,14 +312,6 @@ class MeasuredArray:
 
     def __truediv__(self, other):
         """Operator overload for /"""
-        if isinstance(other, MeasuredArray):
-            return self.divides_equals_measured_array(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.divides_equals_farray(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.divides_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.divides_equals_int(other)
         if isinstance(other, MeasuredArray):
             return self.divides_measured_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:

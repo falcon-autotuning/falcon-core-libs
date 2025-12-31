@@ -87,67 +87,67 @@ cdef class GateGeometryArray1D:
         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
             return None
-        return _dot_gates_with_neighbors_from_capi(h_ret)
+        return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
 
     def query_neighbors(self, Connection gate):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def left_reservoir(self, ):
         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
             return None
-        return _left_reservoir_with_implanted_ohmic_from_capi(h_ret)
+        return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
 
     def right_reservoir(self, ):
         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
             return None
-        return _right_reservoir_with_implanted_ohmic_from_capi(h_ret)
+        return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
 
     def left_barrier(self, ):
         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
             return None
-        return _dot_gate_with_neighbors_from_capi(h_ret)
+        return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
 
     def right_barrier(self, ):
         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
             return None
-        return _dot_gate_with_neighbors_from_capi(h_ret)
+        return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
 
     def linear_array(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def screening_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def raw_central_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def central_dot_gates(self, ):
         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
             return None
-        return _dot_gates_with_neighbors_from_capi(h_ret)
+        return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
 
     def ohmics(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
 cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
     if h == <_c_api.GateGeometryArray1DHandle>0:

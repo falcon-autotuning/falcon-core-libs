@@ -111,25 +111,25 @@ cdef class DiscreteSpace:
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.DiscreteSpace_space(self.handle)
         if h_ret == <_c_api.UnitSpaceHandle>0:
             return None
-        return _unit_space_from_capi(h_ret)
+        return _unit_space_from_capi(h_ret, owned=True)
 
     def axes(self, ):
         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.DiscreteSpace_axes(self.handle)
         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
             return None
-        return _axes_coupled_labelled_domain_from_capi(h_ret)
+        return _axes_coupled_labelled_domain_from_capi(h_ret, owned=True)
 
     def increasing(self, ):
         cdef _c_api.AxesMapStringBoolHandle h_ret = _c_api.DiscreteSpace_increasing(self.handle)
         if h_ret == <_c_api.AxesMapStringBoolHandle>0:
             return None
-        return _axes_map_string_bool_from_capi(h_ret)
+        return _axes_map_string_bool_from_capi(h_ret, owned=True)
 
     def knobs(self, ):
         cdef _c_api.PortsHandle h_ret = _c_api.DiscreteSpace_knobs(self.handle)
         if h_ret == <_c_api.PortsHandle>0:
             return None
-        return _ports_from_capi(h_ret)
+        return _ports_from_capi(h_ret, owned=True)
 
     def validate_unit_space_dimensionality_matches_knobs(self, ):
         _c_api.DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(self.handle)

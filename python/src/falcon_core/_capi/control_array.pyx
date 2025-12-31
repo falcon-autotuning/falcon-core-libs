@@ -266,7 +266,7 @@ cdef class ControlArray:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.ControlArray_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=True)
 
     def flip(self, size_t axis):
         cdef _c_api.ControlArrayHandle h_ret = _c_api.ControlArray_flip(self.handle, axis)
@@ -281,7 +281,7 @@ cdef class ControlArray:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.ControlArray_gradient(self.handle, axis)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
     def get_sum_of_squares(self, ):
         return _c_api.ControlArray_get_sum_of_squares(self.handle)

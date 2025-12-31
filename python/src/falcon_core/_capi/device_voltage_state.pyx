@@ -60,7 +60,7 @@ cdef class DeviceVoltageState:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.DeviceVoltageState_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=False)
 
     def convert_to(self, SymbolUnit target_unit):
         _c_api.DeviceVoltageState_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)

@@ -96,19 +96,19 @@ cdef class MapInterpretationContextQuantity:
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.MapInterpretationContextQuantity_keys(self.handle)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListQuantityHandle h_ret = _c_api.MapInterpretationContextQuantity_values(self.handle)
         if h_ret == <_c_api.ListQuantityHandle>0:
             return None
-        return _list_quantity_from_capi(h_ret)
+        return _list_quantity_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairInterpretationContextQuantityHandle h_ret = _c_api.MapInterpretationContextQuantity_items(self.handle)
         if h_ret == <_c_api.ListPairInterpretationContextQuantityHandle>0:
             return None
-        return _list_pair_interpretation_context_quantity_from_capi(h_ret)
+        return _list_pair_interpretation_context_quantity_from_capi(h_ret, owned=False)
 
     def equal(self, MapInterpretationContextQuantity other):
         return _c_api.MapInterpretationContextQuantity_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextQuantityHandle>0)

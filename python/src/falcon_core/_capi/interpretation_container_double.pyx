@@ -61,37 +61,37 @@ cdef class InterpretationContainerDouble:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContainerDouble_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=False)
 
     def select_by_connection(self, Connection connection):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerDouble_select_by_connection(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_by_connections(self, Connections connections):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerDouble_select_by_connections(self.handle, connections.handle if connections is not None else <_c_api.ConnectionsHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_by_independent_connection(self, Connection connection):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerDouble_select_by_independent_connection(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_by_dependent_connection(self, Connection connection):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerDouble_select_by_dependent_connection(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_contexts(self, ListConnection independent_connections, ListConnection dependent_connections):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerDouble_select_contexts(self.handle, independent_connections.handle if independent_connections is not None else <_c_api.ListConnectionHandle>0, dependent_connections.handle if dependent_connections is not None else <_c_api.ListConnectionHandle>0)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def insert_or_assign(self, InterpretationContext key, double value):
         _c_api.InterpretationContainerDouble_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0, value)
@@ -121,19 +121,19 @@ cdef class InterpretationContainerDouble:
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerDouble_keys(self.handle)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListDoubleHandle h_ret = _c_api.InterpretationContainerDouble_values(self.handle)
         if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return _list_double_from_capi(h_ret)
+        return _list_double_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairInterpretationContextDoubleHandle h_ret = _c_api.InterpretationContainerDouble_items(self.handle)
         if h_ret == <_c_api.ListPairInterpretationContextDoubleHandle>0:
             return None
-        return _list_pair_interpretation_context_double_from_capi(h_ret)
+        return _list_pair_interpretation_context_double_from_capi(h_ret, owned=False)
 
     def equal(self, InterpretationContainerDouble other):
         return _c_api.InterpretationContainerDouble_equal(self.handle, other.handle if other is not None else <_c_api.InterpretationContainerDoubleHandle>0)

@@ -112,7 +112,7 @@ cdef class Impedances:
         cdef _c_api.ListImpedanceHandle h_ret = _c_api.Impedances_items(self.handle)
         if h_ret == <_c_api.ListImpedanceHandle>0:
             return None
-        return _list_impedance_from_capi(h_ret)
+        return _list_impedance_from_capi(h_ret, owned=False)
 
     def contains(self, Impedance value):
         return _c_api.Impedances_contains(self.handle, value.handle if value is not None else <_c_api.ImpedanceHandle>0)

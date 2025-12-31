@@ -114,19 +114,19 @@ cdef class MapStringBool:
         cdef _c_api.ListStringHandle h_ret = _c_api.MapStringBool_keys(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListBoolHandle h_ret = _c_api.MapStringBool_values(self.handle)
         if h_ret == <_c_api.ListBoolHandle>0:
             return None
-        return _list_bool_from_capi(h_ret)
+        return _list_bool_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairStringBoolHandle h_ret = _c_api.MapStringBool_items(self.handle)
         if h_ret == <_c_api.ListPairStringBoolHandle>0:
             return None
-        return _list_pair_string_bool_from_capi(h_ret)
+        return _list_pair_string_bool_from_capi(h_ret, owned=False)
 
     def equal(self, MapStringBool other):
         return _c_api.MapStringBool_equal(self.handle, other.handle if other is not None else <_c_api.MapStringBoolHandle>0)

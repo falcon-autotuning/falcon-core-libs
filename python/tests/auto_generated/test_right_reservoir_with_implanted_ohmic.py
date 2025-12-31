@@ -29,6 +29,13 @@ class TestRightReservoirWithImplantedOhmic:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == RightReservoirWithImplantedOhmic.new('test', Connection.new_barrier('left'), Connection.new_ohmic('ohmic'))
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -36,6 +43,13 @@ class TestRightReservoirWithImplantedOhmic:
             self.obj.not_equal(RightReservoirWithImplantedOhmic.new('test', Connection.new_barrier('left'), Connection.new_ohmic('ohmic')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != RightReservoirWithImplantedOhmic.new('test', Connection.new_barrier('left'), Connection.new_ohmic('ohmic'))
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -76,3 +90,15 @@ class TestRightReservoirWithImplantedOhmic:
             self.obj.left_neighbor()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            RightReservoirWithImplantedOhmic.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            RightReservoirWithImplantedOhmic.new("test_string", Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

@@ -29,6 +29,13 @@ class TestDotGateWithNeighbors:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -36,6 +43,13 @@ class TestDotGateWithNeighbors:
             self.obj.not_equal(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right'))
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -92,3 +106,21 @@ class TestDotGateWithNeighbors:
             self.obj.is_plunger_gate()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            DotGateWithNeighbors.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_plunger_gate_with_neighbors(self):
+        try:
+            DotGateWithNeighbors.new_plunger_gate_with_neighbors("test_string", Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
+        except Exception as e:
+            print(f'Constructor new_plunger_gate_with_neighbors failed: {e}')
+
+    def test_ctor_new_barrier_gate_with_neighbors(self):
+        try:
+            DotGateWithNeighbors.new_barrier_gate_with_neighbors("test_string", Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
+        except Exception as e:
+            print(f'Constructor new_barrier_gate_with_neighbors failed: {e}')

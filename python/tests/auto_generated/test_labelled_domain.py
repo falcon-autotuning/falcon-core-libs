@@ -32,6 +32,13 @@ class TestLabelledDomain:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -39,6 +46,13 @@ class TestLabelledDomain:
             self.obj.not_equal(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description')
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -183,3 +197,45 @@ class TestLabelledDomain:
             self.obj.transform(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            LabelledDomain.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_primitive_knob(self):
+        try:
+            LabelledDomain.new_primitive_knob("test_string", 1.0, 1.0, Connection.new_barrier('test_conn'), "test_string", False, False, SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_primitive_knob failed: {e}')
+
+    def test_ctor_new_primitive_meter(self):
+        try:
+            LabelledDomain.new_primitive_meter("test_string", 1.0, 1.0, Connection.new_barrier('test_conn'), "test_string", False, False, SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_primitive_meter failed: {e}')
+
+    def test_ctor_new_primitive_port(self):
+        try:
+            LabelledDomain.new_primitive_port("test_string", 1.0, 1.0, Connection.new_barrier('test_conn'), "test_string", False, False, SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_primitive_port failed: {e}')
+
+    def test_ctor_new_from_port(self):
+        try:
+            LabelledDomain.new_from_port(1.0, 1.0, InstrumentPort.new_timer(), False, False)
+        except Exception as e:
+            print(f'Constructor new_from_port failed: {e}')
+
+    def test_ctor_new_from_port_and_domain(self):
+        try:
+            LabelledDomain.new_from_port_and_domain(InstrumentPort.new_timer(), Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_from_port_and_domain failed: {e}')
+
+    def test_ctor_new_from_domain(self):
+        try:
+            LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), "test_string", Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_from_domain failed: {e}')

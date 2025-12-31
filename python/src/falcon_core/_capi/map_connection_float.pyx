@@ -92,19 +92,19 @@ cdef class MapConnectionFloat:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.MapConnectionFloat_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListFloatHandle h_ret = _c_api.MapConnectionFloat_values(self.handle)
         if h_ret == <_c_api.ListFloatHandle>0:
             return None
-        return _list_float_from_capi(h_ret)
+        return _list_float_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionFloatHandle h_ret = _c_api.MapConnectionFloat_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionFloatHandle>0:
             return None
-        return _list_pair_connection_float_from_capi(h_ret)
+        return _list_pair_connection_float_from_capi(h_ret, owned=False)
 
     def equal(self, MapConnectionFloat other):
         return _c_api.MapConnectionFloat_equal(self.handle, other.handle if other is not None else <_c_api.MapConnectionFloatHandle>0)

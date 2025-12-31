@@ -30,6 +30,13 @@ class TestInstrumentPort:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == InstrumentPort.new_timer()
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -37,6 +44,13 @@ class TestInstrumentPort:
             self.obj.not_equal(InstrumentPort.new_timer())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != InstrumentPort.new_timer()
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -117,3 +131,39 @@ class TestInstrumentPort:
             self.obj.is_port()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            InstrumentPort.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_port(self):
+        try:
+            InstrumentPort.new_port("test_string", Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_port failed: {e}')
+
+    def test_ctor_new_knob(self):
+        try:
+            InstrumentPort.new_knob("test_string", Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_knob failed: {e}')
+
+    def test_ctor_new_meter(self):
+        try:
+            InstrumentPort.new_meter("test_string", Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter(), "test_string")
+        except Exception as e:
+            print(f'Constructor new_meter failed: {e}')
+
+    def test_ctor_new_timer(self):
+        try:
+            InstrumentPort.new_timer()
+        except Exception as e:
+            print(f'Constructor new_timer failed: {e}')
+
+    def test_ctor_new_execution_clock(self):
+        try:
+            InstrumentPort.new_execution_clock()
+        except Exception as e:
+            print(f'Constructor new_execution_clock failed: {e}')

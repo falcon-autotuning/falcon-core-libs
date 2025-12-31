@@ -34,6 +34,13 @@ class TestVector:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Vector.new(Point.new_empty(), Point.new_empty())
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -41,6 +48,13 @@ class TestVector:
             self.obj.not_equal(Vector.new(Point.new_empty(), Point.new_empty()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Vector.new(Point.new_empty(), Point.new_empty())
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -274,6 +288,13 @@ class TestVector:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_unary_op_negation(self):
+        if self.obj is None: pytest.skip()
+        try:
+            -self.obj
+        except Exception as e:
+            print(f'Unary operator - failed: {e}')
+
     def test_update_start_from_states(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -377,6 +398,54 @@ class TestVector:
             self.obj.update_unit(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Vector.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Vector.new(Point.new_empty(), Point.new_empty())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_from_end(self):
+        try:
+            Vector.new_from_end(Point.new_empty())
+        except Exception as e:
+            print(f'Constructor new_from_end failed: {e}')
+
+    def test_ctor_new_from_quantities(self):
+        try:
+            Vector.new_from_quantities(None, None)
+        except Exception as e:
+            print(f'Constructor new_from_quantities failed: {e}')
+
+    def test_ctor_new_from_end_quantities(self):
+        try:
+            Vector.new_from_end_quantities(None)
+        except Exception as e:
+            print(f'Constructor new_from_end_quantities failed: {e}')
+
+    def test_ctor_new_from_doubles(self):
+        try:
+            Vector.new_from_doubles(None, None, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Constructor new_from_doubles failed: {e}')
+
+    def test_ctor_new_from_end_doubles(self):
+        try:
+            Vector.new_from_end_doubles(None, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Constructor new_from_end_doubles failed: {e}')
+
+    def test_ctor_new_from_parent(self):
+        try:
+            Vector.new_from_parent(None)
+        except Exception as e:
+            print(f'Constructor new_from_parent failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

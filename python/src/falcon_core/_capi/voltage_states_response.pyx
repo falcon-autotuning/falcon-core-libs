@@ -94,7 +94,7 @@ cdef class VoltageStatesResponse:
         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
             return None
-        return _device_voltage_states_from_capi(h_ret)
+        return _device_voltage_states_from_capi(h_ret, owned=True)
 
 cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
     if h == <_c_api.VoltageStatesResponseHandle>0:

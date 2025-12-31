@@ -28,6 +28,13 @@ class TestDiscretizer:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Discretizer.new_cartesian_discretizer(0.1)
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -35,6 +42,13 @@ class TestDiscretizer:
             self.obj.not_equal(Discretizer.new_cartesian_discretizer(0.1))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Discretizer.new_cartesian_discretizer(0.1)
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -83,3 +97,21 @@ class TestDiscretizer:
             self.obj.is_polar()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Discretizer.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_cartesian_discretizer(self):
+        try:
+            Discretizer.new_cartesian_discretizer(1.0)
+        except Exception as e:
+            print(f'Constructor new_cartesian_discretizer failed: {e}')
+
+    def test_ctor_new_polar_discretizer(self):
+        try:
+            Discretizer.new_polar_discretizer(1.0)
+        except Exception as e:
+            print(f'Constructor new_polar_discretizer failed: {e}')

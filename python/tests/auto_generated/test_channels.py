@@ -28,6 +28,13 @@ class TestChannels:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == None
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -35,6 +42,13 @@ class TestChannels:
             self.obj.not_equal(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != None
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -123,6 +137,24 @@ class TestChannels:
             self.obj.index(Channel.new('test_channel'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Channels.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_empty(self):
+        try:
+            Channels.new_empty()
+        except Exception as e:
+            print(f'Constructor new_empty failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Channels.new(None)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

@@ -96,19 +96,19 @@ cdef class MapInstrumentPortPortTransform:
         cdef _c_api.ListInstrumentPortHandle h_ret = _c_api.MapInstrumentPortPortTransform_keys(self.handle)
         if h_ret == <_c_api.ListInstrumentPortHandle>0:
             return None
-        return _list_instrument_port_from_capi(h_ret)
+        return _list_instrument_port_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_values(self.handle)
         if h_ret == <_c_api.ListPortTransformHandle>0:
             return None
-        return _list_port_transform_from_capi(h_ret)
+        return _list_port_transform_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairInstrumentPortPortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_items(self.handle)
         if h_ret == <_c_api.ListPairInstrumentPortPortTransformHandle>0:
             return None
-        return _list_pair_instrument_port_port_transform_from_capi(h_ret)
+        return _list_pair_instrument_port_port_transform_from_capi(h_ret, owned=False)
 
     def equal(self, MapInstrumentPortPortTransform other):
         return _c_api.MapInstrumentPortPortTransform_equal(self.handle, other.handle if other is not None else <_c_api.MapInstrumentPortPortTransformHandle>0)

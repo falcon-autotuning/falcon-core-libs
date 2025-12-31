@@ -104,13 +104,13 @@ cdef class LeftReservoirWithImplantedOhmic:
         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_ohmic(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def right_neighbor(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.LeftReservoirWithImplantedOhmic_right_neighbor(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
 cdef LeftReservoirWithImplantedOhmic _left_reservoir_with_implanted_ohmic_from_capi(_c_api.LeftReservoirWithImplantedOhmicHandle h, bint owned=True):
     if h == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:

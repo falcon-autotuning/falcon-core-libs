@@ -120,13 +120,13 @@ cdef class DotGateWithNeighbors:
         cdef _c_api.ConnectionHandle h_ret = _c_api.DotGateWithNeighbors_left_neighbor(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def right_neighbor(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.DotGateWithNeighbors_right_neighbor(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def is_barrier_gate(self, ):
         return _c_api.DotGateWithNeighbors_is_barrier_gate(self.handle)

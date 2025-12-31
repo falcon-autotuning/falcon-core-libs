@@ -31,6 +31,13 @@ class TestAcquisitionContext:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -38,6 +45,13 @@ class TestAcquisitionContext:
             self.obj.not_equal(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -87,6 +101,13 @@ class TestAcquisitionContext:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_division(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_match_connection(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -102,3 +123,21 @@ class TestAcquisitionContext:
             self.obj.match_instrument_type("test_string")
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            AcquisitionContext.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            AcquisitionContext.new(Connection.new_barrier('test_conn'), "test_string", SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_from_port(self):
+        try:
+            AcquisitionContext.new_from_port(InstrumentPort.new_timer())
+        except Exception as e:
+            print(f'Constructor new_from_port failed: {e}')

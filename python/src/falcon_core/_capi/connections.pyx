@@ -139,7 +139,7 @@ cdef class Connections:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Connections_items(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def contains(self, Connection value):
         return _c_api.Connections_contains(self.handle, value.handle if value is not None else <_c_api.ConnectionHandle>0)

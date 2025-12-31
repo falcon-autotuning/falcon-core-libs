@@ -1,5 +1,6 @@
 install:
-	uv venv -- -y
+	rm -rf .venv
+	uv venv
 	uv pip install -e .
 
 test:

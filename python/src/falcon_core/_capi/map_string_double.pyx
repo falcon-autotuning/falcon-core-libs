@@ -114,19 +114,19 @@ cdef class MapStringDouble:
         cdef _c_api.ListStringHandle h_ret = _c_api.MapStringDouble_keys(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListDoubleHandle h_ret = _c_api.MapStringDouble_values(self.handle)
         if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return _list_double_from_capi(h_ret)
+        return _list_double_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.MapStringDouble_items(self.handle)
         if h_ret == <_c_api.ListPairStringDoubleHandle>0:
             return None
-        return _list_pair_string_double_from_capi(h_ret)
+        return _list_pair_string_double_from_capi(h_ret, owned=False)
 
     def equal(self, MapStringDouble other):
         return _c_api.MapStringDouble_equal(self.handle, other.handle if other is not None else <_c_api.MapStringDoubleHandle>0)

@@ -30,6 +30,13 @@ class TestUnitSpace:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -37,6 +44,13 @@ class TestUnitSpace:
             self.obj.not_equal(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -173,6 +187,48 @@ class TestUnitSpace:
             self.obj.intersection(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            UnitSpace.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            UnitSpace.new(None, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_ray_space(self):
+        try:
+            UnitSpace.new_ray_space(1.0, 1.0, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_ray_space failed: {e}')
+
+    def test_ctor_new_cartesian_space(self):
+        try:
+            UnitSpace.new_cartesian_space(None, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_cartesian_space failed: {e}')
+
+    def test_ctor_new_cartesian_1D_space(self):
+        try:
+            UnitSpace.new_cartesian_1D_space(1.0, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_cartesian_1D_space failed: {e}')
+
+    def test_ctor_new_cartesian_2D_space(self):
+        try:
+            UnitSpace.new_cartesian_2D_space(None, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_cartesian_2D_space failed: {e}')
+
+    def test_ctor_new_array(self):
+        try:
+            UnitSpace.new_array(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)), None)
+        except Exception as e:
+            print(f'Constructor new_array failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

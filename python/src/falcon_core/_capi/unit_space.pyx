@@ -140,25 +140,25 @@ cdef class UnitSpace:
         cdef _c_api.AxesDiscretizerHandle h_ret = _c_api.UnitSpace_axes(self.handle)
         if h_ret == <_c_api.AxesDiscretizerHandle>0:
             return None
-        return _axes_discretizer_from_capi(h_ret)
+        return _axes_discretizer_from_capi(h_ret, owned=True)
 
     def domain(self, ):
         cdef _c_api.DomainHandle h_ret = _c_api.UnitSpace_domain(self.handle)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=False)
 
     def space(self, ):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.UnitSpace_space(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
     def shape(self, ):
         cdef _c_api.ListIntHandle h_ret = _c_api.UnitSpace_shape(self.handle)
         if h_ret == <_c_api.ListIntHandle>0:
             return None
-        return _list_int_from_capi(h_ret)
+        return _list_int_from_capi(h_ret, owned=True)
 
     def dimension(self, ):
         return _c_api.UnitSpace_dimension(self.handle)

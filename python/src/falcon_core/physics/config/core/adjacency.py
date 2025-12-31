@@ -101,8 +101,6 @@ class Adjacency:
 
     def __mul__(self, other):
         """Operator overload for *"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.times_equals_farray(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
             return self.times_farray(other)
         return NotImplemented

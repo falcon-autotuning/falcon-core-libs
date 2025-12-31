@@ -28,6 +28,13 @@ class TestConnection:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Connection.new_barrier('test_conn')
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -35,6 +42,13 @@ class TestConnection:
             self.obj.not_equal(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Connection.new_barrier('test_conn')
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -115,3 +129,39 @@ class TestConnection:
             self.obj.is_gate()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Connection.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_barrier(self):
+        try:
+            Connection.new_barrier("test_string")
+        except Exception as e:
+            print(f'Constructor new_barrier failed: {e}')
+
+    def test_ctor_new_plunger(self):
+        try:
+            Connection.new_plunger("test_string")
+        except Exception as e:
+            print(f'Constructor new_plunger failed: {e}')
+
+    def test_ctor_new_reservoir(self):
+        try:
+            Connection.new_reservoir("test_string")
+        except Exception as e:
+            print(f'Constructor new_reservoir failed: {e}')
+
+    def test_ctor_new_screening(self):
+        try:
+            Connection.new_screening("test_string")
+        except Exception as e:
+            print(f'Constructor new_screening failed: {e}')
+
+    def test_ctor_new_ohmic(self):
+        try:
+            Connection.new_ohmic("test_string")
+        except Exception as e:
+            print(f'Constructor new_ohmic failed: {e}')

@@ -90,19 +90,19 @@ cdef class MapIntInt:
         cdef _c_api.ListIntHandle h_ret = _c_api.MapIntInt_keys(self.handle)
         if h_ret == <_c_api.ListIntHandle>0:
             return None
-        return _list_int_from_capi(h_ret)
+        return _list_int_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListIntHandle h_ret = _c_api.MapIntInt_values(self.handle)
         if h_ret == <_c_api.ListIntHandle>0:
             return None
-        return _list_int_from_capi(h_ret)
+        return _list_int_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairIntIntHandle h_ret = _c_api.MapIntInt_items(self.handle)
         if h_ret == <_c_api.ListPairIntIntHandle>0:
             return None
-        return _list_pair_int_int_from_capi(h_ret)
+        return _list_pair_int_int_from_capi(h_ret, owned=False)
 
     def equal(self, MapIntInt other):
         return _c_api.MapIntInt_equal(self.handle, other.handle if other is not None else <_c_api.MapIntIntHandle>0)

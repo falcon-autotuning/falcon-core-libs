@@ -33,6 +33,13 @@ class TestCoupledLabelledDomain:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == CoupledLabelledDomain.new_empty()
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -40,6 +47,13 @@ class TestCoupledLabelledDomain:
             self.obj.not_equal(CoupledLabelledDomain.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != CoupledLabelledDomain.new_empty()
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -160,6 +174,24 @@ class TestCoupledLabelledDomain:
             self.obj.index(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            CoupledLabelledDomain.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_empty(self):
+        try:
+            CoupledLabelledDomain.new_empty()
+        except Exception as e:
+            print(f'Constructor new_empty failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            CoupledLabelledDomain.new(None)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

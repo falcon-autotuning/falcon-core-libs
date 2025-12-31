@@ -55,13 +55,13 @@ cdef class LabelledArraysLabelledMeasuredArray1D:
         cdef _c_api.ListLabelledMeasuredArray1DHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray1D_arrays(self.handle)
         if h_ret == <_c_api.ListLabelledMeasuredArray1DHandle>0:
             return None
-        return _list_labelled_measured_array1_d_from_capi(h_ret)
+        return _list_labelled_measured_array1_d_from_capi(h_ret, owned=True)
 
     def labels(self, ):
         cdef _c_api.ListAcquisitionContextHandle h_ret = _c_api.LabelledArraysLabelledMeasuredArray1D_labels(self.handle)
         if h_ret == <_c_api.ListAcquisitionContextHandle>0:
             return None
-        return _list_acquisition_context_from_capi(h_ret)
+        return _list_acquisition_context_from_capi(h_ret, owned=True)
 
     def is_control_arrays(self, ):
         return _c_api.LabelledArraysLabelledMeasuredArray1D_is_control_arrays(self.handle)

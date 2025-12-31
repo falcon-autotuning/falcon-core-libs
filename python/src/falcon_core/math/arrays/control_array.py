@@ -241,12 +241,6 @@ class ControlArray:
 
     def __add__(self, other):
         """Operator overload for +"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.plus_equals_farray(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.plus_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.plus_equals_int(other)
         if isinstance(other, ControlArray):
             return self.plus_control_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -259,12 +253,6 @@ class ControlArray:
 
     def __sub__(self, other):
         """Operator overload for -"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsFarray":
-            return self.minus_equals_farray(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.minus_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.minus_equals_int(other)
         if isinstance(other, ControlArray):
             return self.minus_control_array(other)
         if hasattr(other, "_c") and type(other).__name__ in ["FArrayDouble", "FArrayInt", "FArray"]:
@@ -277,10 +265,6 @@ class ControlArray:
 
     def __mul__(self, other):
         """Operator overload for *"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.times_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.times_equals_int(other)
         if isinstance(other, float):
             return self.times_double(other)
         if isinstance(other, int):
@@ -289,10 +273,6 @@ class ControlArray:
 
     def __truediv__(self, other):
         """Operator overload for /"""
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsDouble":
-            return self.divides_equals_double(other)
-        if hasattr(other, "_c") and type(other).__name__ == "EqualsInt":
-            return self.divides_equals_int(other)
         if isinstance(other, float):
             return self.divides_double(other)
         if isinstance(other, int):

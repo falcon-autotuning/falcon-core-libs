@@ -76,6 +76,13 @@ class TestHDF5Data:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == HDF5Data.from_json('{"unique_id": 0}')
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -83,6 +90,13 @@ class TestHDF5Data:
             self.obj.not_equal(HDF5Data.from_json('{"unique_id": 0}'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != HDF5Data.from_json('{"unique_id": 0}')
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -171,3 +185,27 @@ class TestHDF5Data:
             self.obj.timestamp()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            HDF5Data.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            HDF5Data.new(None, None, None, LabelledArrays[LabelledMeasuredArray](List[LabelledMeasuredArray]()), None, "test_string", 1, 1)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_from_file(self):
+        try:
+            HDF5Data.new_from_file("test_string")
+        except Exception as e:
+            print(f'Constructor new_from_file failed: {e}')
+
+    def test_ctor_new_from_communications(self):
+        try:
+            HDF5Data.new_from_communications(_make_test_measurement_request(), _make_test_measurement_response(), DeviceVoltageStates.new_empty(), array.array('i', [0]), "test_string", 1, 1)
+        except Exception as e:
+            print(f'Constructor new_from_communications failed: {e}')

@@ -108,7 +108,7 @@ cdef class Point:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Point_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=False)
 
     def insert_or_assign(self, Connection key, Quantity value):
         _c_api.Point_insert_or_assign(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0, value.handle if value is not None else <_c_api.QuantityHandle>0)
@@ -141,31 +141,31 @@ cdef class Point:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Point_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListQuantityHandle h_ret = _c_api.Point_values(self.handle)
         if h_ret == <_c_api.ListQuantityHandle>0:
             return None
-        return _list_quantity_from_capi(h_ret)
+        return _list_quantity_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionQuantityHandle h_ret = _c_api.Point_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionQuantityHandle>0:
             return None
-        return _list_pair_connection_quantity_from_capi(h_ret)
+        return _list_pair_connection_quantity_from_capi(h_ret, owned=False)
 
     def coordinates(self, ):
         cdef _c_api.MapConnectionQuantityHandle h_ret = _c_api.Point_coordinates(self.handle)
         if h_ret == <_c_api.MapConnectionQuantityHandle>0:
             return None
-        return _map_connection_quantity_from_capi(h_ret)
+        return _map_connection_quantity_from_capi(h_ret, owned=True)
 
     def connections(self, ):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Point_connections(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def addition(self, Point other):
         cdef _c_api.PointHandle h_ret = _c_api.Point_addition(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)

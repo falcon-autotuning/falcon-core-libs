@@ -90,19 +90,19 @@ cdef class MapFloatFloat:
         cdef _c_api.ListFloatHandle h_ret = _c_api.MapFloatFloat_keys(self.handle)
         if h_ret == <_c_api.ListFloatHandle>0:
             return None
-        return _list_float_from_capi(h_ret)
+        return _list_float_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListFloatHandle h_ret = _c_api.MapFloatFloat_values(self.handle)
         if h_ret == <_c_api.ListFloatHandle>0:
             return None
-        return _list_float_from_capi(h_ret)
+        return _list_float_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairFloatFloatHandle h_ret = _c_api.MapFloatFloat_items(self.handle)
         if h_ret == <_c_api.ListPairFloatFloatHandle>0:
             return None
-        return _list_pair_float_float_from_capi(h_ret)
+        return _list_pair_float_float_from_capi(h_ret, owned=False)
 
     def equal(self, MapFloatFloat other):
         return _c_api.MapFloatFloat_equal(self.handle, other.handle if other is not None else <_c_api.MapFloatFloatHandle>0)

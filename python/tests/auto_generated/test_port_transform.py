@@ -30,6 +30,13 @@ class TestPortTransform:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == PortTransform.new_identity_transform(InstrumentPort.new_timer())
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -37,6 +44,13 @@ class TestPortTransform:
             self.obj.not_equal(PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != PortTransform.new_identity_transform(InstrumentPort.new_timer())
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -77,3 +91,27 @@ class TestPortTransform:
             self.obj.evaluate_arraywise(None, 1.0, 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            PortTransform.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            PortTransform.new(InstrumentPort.new_timer(), AnalyticFunction.new_identity())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_constant_transform(self):
+        try:
+            PortTransform.new_constant_transform(InstrumentPort.new_timer(), 1.0)
+        except Exception as e:
+            print(f'Constructor new_constant_transform failed: {e}')
+
+    def test_ctor_new_identity_transform(self):
+        try:
+            PortTransform.new_identity_transform(InstrumentPort.new_timer())
+        except Exception as e:
+            print(f'Constructor new_identity_transform failed: {e}')

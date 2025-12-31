@@ -113,7 +113,7 @@ cdef class AcquisitionContext:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.AcquisitionContext_units(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=True)
 
     def division_unit(self, SymbolUnit other):
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_division_unit(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)

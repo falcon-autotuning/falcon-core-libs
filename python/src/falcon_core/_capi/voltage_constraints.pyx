@@ -81,19 +81,19 @@ cdef class VoltageConstraints:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.VoltageConstraints_matrix(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
     def adjacency(self, ):
         cdef _c_api.AdjacencyHandle h_ret = _c_api.VoltageConstraints_adjacency(self.handle)
         if h_ret == <_c_api.AdjacencyHandle>0:
             return None
-        return _adjacency_from_capi(h_ret)
+        return _adjacency_from_capi(h_ret, owned=True)
 
     def limits(self, ):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.VoltageConstraints_limits(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
 cdef VoltageConstraints _voltage_constraints_from_capi(_c_api.VoltageConstraintsHandle h, bint owned=True):
     if h == <_c_api.VoltageConstraintsHandle>0:

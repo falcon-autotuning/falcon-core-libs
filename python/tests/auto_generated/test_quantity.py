@@ -29,6 +29,13 @@ class TestQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -36,6 +43,13 @@ class TestQuantity:
             self.obj.not_equal(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -77,6 +91,13 @@ class TestQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_multiply_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_multiply_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -85,6 +106,13 @@ class TestQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_multiply_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1.0
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_multiply_quantity(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -92,6 +120,13 @@ class TestQuantity:
             self.obj.multiply_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_multiply_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Operator * failed: {e}')
 
     def test_multiply_equals_int(self):
         if self.obj is None:
@@ -125,6 +160,13 @@ class TestQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divide_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_divide_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -133,6 +175,13 @@ class TestQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divide_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1.0
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_divide_quantity(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -140,6 +189,13 @@ class TestQuantity:
             self.obj.divide_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_divide_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Operator / failed: {e}')
 
     def test_divide_equals_int(self):
         if self.obj is None:
@@ -173,6 +229,13 @@ class TestQuantity:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_power(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj ** 1
+        except Exception as e:
+            print(f'Operator ** failed: {e}')
+
     def test_add_quantity(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -180,6 +243,13 @@ class TestQuantity:
             self.obj.add_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_add_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj + Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Operator + failed: {e}')
 
     def test_add_equals_quantity(self):
         if self.obj is None:
@@ -196,6 +266,13 @@ class TestQuantity:
             self.obj.subtract_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_subtract_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj - Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Operator - failed: {e}')
 
     def test_subtract_equals_quantity(self):
         if self.obj is None:
@@ -220,3 +297,15 @@ class TestQuantity:
             self.obj.abs()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Quantity.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Quantity.new(1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

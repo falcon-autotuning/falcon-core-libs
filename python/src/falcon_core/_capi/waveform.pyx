@@ -153,13 +153,13 @@ cdef class Waveform:
         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.Waveform_space(self.handle)
         if h_ret == <_c_api.DiscreteSpaceHandle>0:
             return None
-        return _discrete_space_from_capi(h_ret)
+        return _discrete_space_from_capi(h_ret, owned=True)
 
     def transforms(self, ):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_transforms(self.handle)
         if h_ret == <_c_api.ListPortTransformHandle>0:
             return None
-        return _list_port_transform_from_capi(h_ret)
+        return _list_port_transform_from_capi(h_ret, owned=True)
 
     def push_back(self, PortTransform value):
         _c_api.Waveform_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
@@ -186,7 +186,7 @@ cdef class Waveform:
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.Waveform_items(self.handle)
         if h_ret == <_c_api.ListPortTransformHandle>0:
             return None
-        return _list_port_transform_from_capi(h_ret)
+        return _list_port_transform_from_capi(h_ret, owned=False)
 
     def contains(self, PortTransform value):
         return _c_api.Waveform_contains(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)

@@ -725,19 +725,40 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
              lines.append(f'            return None')
              
              # Use factory function
-             is_accessor = method_name in ["connection", "at", "front", "back"] or method_name.startswith("get_")
+             accessor_prefixes = ["get_", "as_", "is_", "has_", "connection", "at", "front", "back", "items", "keys", "values"]
+             is_accessor = any(method_name.startswith(p) for p in accessor_prefixes) or method_name in ["connection", "at", "front", "back", "unit", "domain", "parent"]
+             
+             # Methods that definitely create new objects or return owned handles
+             factory_prefixes = ["new", "create", "from_", "copy", "clone", "plus", "minus", "times", "divides", "negation", "gradient", "where", "reshape", "flip",
+                                "add", "subtract", "multiply", "divide", "power", "abs", "negat", "invert", "sqrt", "exp", "log", "sin", "cos", "tan"]
+             is_factory = any(method_name.startswith(p) for p in factory_prefixes)
+             
+             if is_static:
+                 is_accessor = False # Static methods are usually factories (constructors)
+                 is_owning_factory = True
+             elif is_factory:
+                 is_accessor = False
+                 is_owning_factory = True
+             elif is_accessor:
+                 is_owning_factory = False
+             else:
+                 # Default for unknown non-static methods: treat as factory but check for in-place
+                 is_owning_factory = True
+                 is_accessor = False
+             
              if wrapper_class == cls.name:
                  snake_name = to_snake_case(cls.name)
                  if is_accessor:
                      owned_arg = ", owned=False"
                  elif not is_static:
+                     # If it's an operator/method returning the same type, check if it's in-place
                      owned_arg = ", owned=(h_ret != <_c_api.{}Handle>self.handle)".format(cls.name)
                  else:
                      owned_arg = "" # Default is True for static methods (factories)
                  lines.append(f'        return _{snake_name}_from_capi(h_ret{owned_arg})')
              else:
                  snake_wrapper = to_snake_case(wrapper_class)
-                 owned_arg = ", owned=False" if is_accessor else ""
+                 owned_arg = ", owned=True" if is_owning_factory else ", owned=False"
                  lines.append(f'        return _{snake_wrapper}_from_capi(h_ret{owned_arg})')
 
         else:
@@ -1144,14 +1165,16 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         
         # Check for operator patterns
         # Pattern 1: plus_X, minus_X, times_X, divides_X (arrays)
-        if method_name.startswith('plus_'):
+        # Skip _equals_ variants - they're in-place operators, not regular operators
+        if method_name.startswith('plus_') and 'equals' not in method_name:
             operator_methods['plus'].append((method, method_name))
-        elif method_name.startswith('minus_') and method_name != 'minus':
+        elif method_name.startswith('minus_') and method_name != 'minus' and 'equals' not in method_name:
             operator_methods['minus'].append((method, method_name))
-        elif method_name.startswith('times_'):
+        elif method_name.startswith('times_') and 'equals' not in method_name:
             operator_methods['times'].append((method, method_name))
-        elif method_name.startswith('divides_'):
+        elif method_name.startswith('divides_') and 'equals' not in method_name:
             operator_methods['divides'].append((method, method_name))
+
         
         # Pattern 2: add_X, subtract_X, multiply_X, divide_X (Quantity)
         elif method_name.startswith('add_'):

@@ -62,6 +62,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_multiply_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_multiply_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -70,6 +77,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_multiply_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1.0
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_multiply_quantity(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -77,6 +91,13 @@ class TestDeviceVoltageState:
             self.obj.multiply_quantity(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_multiply_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator * failed: {e}')
 
     def test_multiply_equals_int(self):
         if self.obj is None:
@@ -110,6 +131,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divide_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_divide_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -118,6 +146,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divide_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1.0
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_divide_quantity(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -125,6 +160,13 @@ class TestDeviceVoltageState:
             self.obj.divide_quantity(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_divide_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator / failed: {e}')
 
     def test_divide_equals_int(self):
         if self.obj is None:
@@ -158,6 +200,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_power(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj ** 1
+        except Exception as e:
+            print(f'Operator ** failed: {e}')
+
     def test_add_quantity(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -165,6 +214,13 @@ class TestDeviceVoltageState:
             self.obj.add_quantity(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_add_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj + DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator + failed: {e}')
 
     def test_add_equals_quantity(self):
         if self.obj is None:
@@ -181,6 +237,13 @@ class TestDeviceVoltageState:
             self.obj.subtract_quantity(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_subtract_quantity(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj - DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator - failed: {e}')
 
     def test_subtract_equals_quantity(self):
         if self.obj is None:
@@ -214,6 +277,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -222,6 +292,13 @@ class TestDeviceVoltageState:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt())
+        except Exception as e:
+            print(f'Operator != failed: {e}')
+
     def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -229,3 +306,15 @@ class TestDeviceVoltageState:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_new(self):
+        try:
+            DeviceVoltageState.new(Connection.new_barrier('test_conn'), 1.0, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            DeviceVoltageState.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')

@@ -31,6 +31,13 @@ class TestAdjacency:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')]))
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -38,6 +45,13 @@ class TestAdjacency:
             self.obj.not_equal(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')]))
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -111,6 +125,13 @@ class TestAdjacency:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_times_equals_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj *= FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator *= failed: {e}')
+
     def test_times_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -118,6 +139,13 @@ class TestAdjacency:
             self.obj.times_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_times_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator * failed: {e}')
 
     def test_sum(self):
         if self.obj is None:
@@ -142,6 +170,18 @@ class TestAdjacency:
             self.obj.flip(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Adjacency.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Adjacency.new(array.array('i', [0]), array.array('L', [0]), 1, Connections.new_empty())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

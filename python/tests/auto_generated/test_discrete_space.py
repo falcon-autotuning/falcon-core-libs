@@ -33,6 +33,13 @@ class TestDiscreteSpace:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -40,6 +47,13 @@ class TestDiscreteSpace:
             self.obj.not_equal(DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -120,3 +134,27 @@ class TestDiscreteSpace:
             self.obj.get_projection(None)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            DiscreteSpace.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            DiscreteSpace.new(UnitSpace.new_cartesian_1D_space(0.1, Domain.new(0.0, 1.0, True, True)), None, None)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_cartesian_discrete_space(self):
+        try:
+            DiscreteSpace.new_cartesian_discrete_space(None, None, None, Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_cartesian_discrete_space failed: {e}')
+
+    def test_ctor_new_cartesian_discrete_space_1D(self):
+        try:
+            DiscreteSpace.new_cartesian_discrete_space_1D(1, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True))
+        except Exception as e:
+            print(f'Constructor new_cartesian_discrete_space_1D failed: {e}')

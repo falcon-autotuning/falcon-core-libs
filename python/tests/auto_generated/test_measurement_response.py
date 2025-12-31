@@ -42,6 +42,13 @@ class TestMeasurementResponse:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == _make_test_measurement_response()
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -49,6 +56,13 @@ class TestMeasurementResponse:
             self.obj.not_equal(_make_test_measurement_response())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != _make_test_measurement_response()
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -73,3 +87,15 @@ class TestMeasurementResponse:
             self.obj.message()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            MeasurementResponse.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            MeasurementResponse.new(LabelledArrays[LabelledMeasuredArray](List[LabelledMeasuredArray]()))
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

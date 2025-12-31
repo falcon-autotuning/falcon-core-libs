@@ -76,6 +76,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_plus_equals_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj += FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator += failed: {e}')
+
     def test_plus_equals_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -83,6 +90,13 @@ class TestFArrayInt:
             self.obj.plus_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_plus_equals_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj += 1.0
+        except Exception as e:
+            print(f'Operator += failed: {e}')
 
     def test_plus_equals_int(self):
         if self.obj is None:
@@ -92,6 +106,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_plus_equals_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj += 1
+        except Exception as e:
+            print(f'Operator += failed: {e}')
+
     def test_plus_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -99,6 +120,13 @@ class TestFArrayInt:
             self.obj.plus_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_plus_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj + FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator + failed: {e}')
 
     def test_plus_double(self):
         if self.obj is None:
@@ -108,6 +136,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_plus_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj + 1.0
+        except Exception as e:
+            print(f'Operator + failed: {e}')
+
     def test_plus_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -115,6 +150,13 @@ class TestFArrayInt:
             self.obj.plus_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_plus_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj + 1
+        except Exception as e:
+            print(f'Operator + failed: {e}')
 
     def test_minus_equals_farray(self):
         if self.obj is None:
@@ -124,6 +166,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_minus_equals_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj -= FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator -= failed: {e}')
+
     def test_minus_equals_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -131,6 +180,13 @@ class TestFArrayInt:
             self.obj.minus_equals_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_minus_equals_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj -= 1.0
+        except Exception as e:
+            print(f'Operator -= failed: {e}')
 
     def test_minus_equals_int(self):
         if self.obj is None:
@@ -140,6 +196,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_minus_equals_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj -= 1
+        except Exception as e:
+            print(f'Operator -= failed: {e}')
+
     def test_minus_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -147,6 +210,13 @@ class TestFArrayInt:
             self.obj.minus_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_minus_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj - FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator - failed: {e}')
 
     def test_minus_double(self):
         if self.obj is None:
@@ -156,6 +226,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_minus_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj - 1.0
+        except Exception as e:
+            print(f'Operator - failed: {e}')
+
     def test_minus_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -163,6 +240,13 @@ class TestFArrayInt:
             self.obj.minus_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_minus_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj - 1
+        except Exception as e:
+            print(f'Operator - failed: {e}')
 
     def test_negation(self):
         if self.obj is None:
@@ -172,6 +256,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_unary_op_negation(self):
+        if self.obj is None: pytest.skip()
+        try:
+            -self.obj
+        except Exception as e:
+            print(f'Unary operator - failed: {e}')
+
     def test_times_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -179,6 +270,13 @@ class TestFArrayInt:
             self.obj.times_equals_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_times_equals_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj *= FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator *= failed: {e}')
 
     def test_times_equals_double(self):
         if self.obj is None:
@@ -188,6 +286,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_times_equals_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj *= 1.0
+        except Exception as e:
+            print(f'Operator *= failed: {e}')
+
     def test_times_equals_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -195,6 +300,13 @@ class TestFArrayInt:
             self.obj.times_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_times_equals_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj *= 1
+        except Exception as e:
+            print(f'Operator *= failed: {e}')
 
     def test_times_farray(self):
         if self.obj is None:
@@ -204,6 +316,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_times_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_times_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -211,6 +330,13 @@ class TestFArrayInt:
             self.obj.times_double(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_times_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1.0
+        except Exception as e:
+            print(f'Operator * failed: {e}')
 
     def test_times_int(self):
         if self.obj is None:
@@ -220,6 +346,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_times_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_divides_equals_farray(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -227,6 +360,13 @@ class TestFArrayInt:
             self.obj.divides_equals_farray(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_divides_equals_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj /= FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator /= failed: {e}')
 
     def test_divides_equals_double(self):
         if self.obj is None:
@@ -236,6 +376,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divides_equals_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj /= 1.0
+        except Exception as e:
+            print(f'Operator /= failed: {e}')
+
     def test_divides_equals_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -243,6 +390,13 @@ class TestFArrayInt:
             self.obj.divides_equals_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_divides_equals_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj /= 1
+        except Exception as e:
+            print(f'Operator /= failed: {e}')
 
     def test_divides_farray(self):
         if self.obj is None:
@@ -252,6 +406,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divides_farray(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_divides_double(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -260,6 +421,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_divides_double(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1.0
+        except Exception as e:
+            print(f'Operator / failed: {e}')
+
     def test_divides_int(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -267,6 +435,13 @@ class TestFArrayInt:
             self.obj.divides_int(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_divides_int(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1
+        except Exception as e:
+            print(f'Operator / failed: {e}')
 
     def test_pow(self):
         if self.obj is None:
@@ -340,6 +515,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -347,6 +529,13 @@ class TestFArrayInt:
             self.obj.not_equal(FArray[int].from_list([1, 2, 3]))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != FArray[int].from_list([1, 2, 3])
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_greater_than(self):
         if self.obj is None:
@@ -356,6 +545,13 @@ class TestFArrayInt:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_greater_than(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj > 1
+        except Exception as e:
+            print(f'Operator > failed: {e}')
+
     def test_less_than(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -363,6 +559,13 @@ class TestFArrayInt:
             self.obj.less_than(1)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_less_than(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj < 1
+        except Exception as e:
+            print(f'Operator < failed: {e}')
 
     def test_remove_offset(self):
         if self.obj is None:
@@ -459,6 +662,24 @@ class TestFArrayInt:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_new_empty(self):
+        try:
+            FArray[int](array.array('L', [0]), 1)
+        except Exception as e:
+            print(f'Constructor new_empty failed: {e}')
+
+    def test_ctor_new_zeros(self):
+        try:
+            FArray[int](array.array('L', [0]), 1)
+        except Exception as e:
+            print(f'Constructor new_zeros failed: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            FArray[int]("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

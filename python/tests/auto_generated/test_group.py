@@ -67,6 +67,13 @@ class TestGroup:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == _make_test_group()
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -74,6 +81,13 @@ class TestGroup:
             self.obj.not_equal(_make_test_group())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != _make_test_group()
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -298,3 +312,15 @@ class TestGroup:
             self.obj.has_screening_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Group.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Group.new(Channel.new('test_channel'), 1, Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

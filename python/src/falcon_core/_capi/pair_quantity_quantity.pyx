@@ -53,13 +53,13 @@ cdef class PairQuantityQuantity:
         cdef _c_api.QuantityHandle h_ret = _c_api.PairQuantityQuantity_first(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=True)
 
     def second(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.PairQuantityQuantity_second(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=True)
 
     def equal(self, PairQuantityQuantity other):
         return _c_api.PairQuantityQuantity_equal(self.handle, other.handle if other is not None else <_c_api.PairQuantityQuantityHandle>0)

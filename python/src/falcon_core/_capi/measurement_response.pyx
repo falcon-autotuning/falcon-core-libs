@@ -79,7 +79,7 @@ cdef class MeasurementResponse:
         cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.MeasurementResponse_arrays(self.handle)
         if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+        return _labelled_arrays_labelled_measured_array_from_capi(h_ret, owned=True)
 
     def message(self, ):
         cdef _c_api.StringHandle s_ret

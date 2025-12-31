@@ -31,6 +31,13 @@ class TestPoint:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Point.new_empty()
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -38,6 +45,13 @@ class TestPoint:
             self.obj.not_equal(Point.new_empty())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Point.new_empty()
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -183,6 +197,13 @@ class TestPoint:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_multiplication(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj * 1.0
+        except Exception as e:
+            print(f'Operator * failed: {e}')
+
     def test_division(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -190,6 +211,13 @@ class TestPoint:
             self.obj.division(1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_division(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj / 1.0
+        except Exception as e:
+            print(f'Operator / failed: {e}')
 
     def test_negation(self):
         if self.obj is None:
@@ -199,6 +227,13 @@ class TestPoint:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_unary_op_negation(self):
+        if self.obj is None: pytest.skip()
+        try:
+            -self.obj
+        except Exception as e:
+            print(f'Unary operator - failed: {e}')
+
     def test_set_unit(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -206,6 +241,30 @@ class TestPoint:
             self.obj.set_unit(SymbolUnit.new_meter())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Point.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new_empty(self):
+        try:
+            Point.new_empty()
+        except Exception as e:
+            print(f'Constructor new_empty failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Point.new(None, SymbolUnit.new_meter())
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_new_from_parent(self):
+        try:
+            Point.new_from_parent(None)
+        except Exception as e:
+            print(f'Constructor new_from_parent failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')

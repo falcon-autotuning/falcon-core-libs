@@ -53,7 +53,7 @@ cdef class PairConnectionFloat:
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionFloat_first(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def second(self, ):
         return _c_api.PairConnectionFloat_second(self.handle)

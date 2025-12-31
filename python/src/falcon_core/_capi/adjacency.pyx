@@ -82,13 +82,13 @@ cdef class Adjacency:
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Adjacency_indexes(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def indexes(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Adjacency_indexes(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def get_true_pairs(self, ):
         cdef _c_api.ListPairSizeTSizeTHandle h_ret = _c_api.Adjacency_get_true_pairs(self.handle)
@@ -124,7 +124,7 @@ cdef class Adjacency:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.Adjacency_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=True)
 
     def flip(self, size_t axis):
         cdef _c_api.AdjacencyHandle h_ret = _c_api.Adjacency_flip(self.handle, axis)

@@ -54,13 +54,13 @@ cdef class PairMeasurementResponseMeasurementRequest:
         cdef _c_api.MeasurementResponseHandle h_ret = _c_api.PairMeasurementResponseMeasurementRequest_first(self.handle)
         if h_ret == <_c_api.MeasurementResponseHandle>0:
             return None
-        return _measurement_response_from_capi(h_ret)
+        return _measurement_response_from_capi(h_ret, owned=True)
 
     def second(self, ):
         cdef _c_api.MeasurementRequestHandle h_ret = _c_api.PairMeasurementResponseMeasurementRequest_second(self.handle)
         if h_ret == <_c_api.MeasurementRequestHandle>0:
             return None
-        return _measurement_request_from_capi(h_ret)
+        return _measurement_request_from_capi(h_ret, owned=True)
 
     def equal(self, PairMeasurementResponseMeasurementRequest other):
         return _c_api.PairMeasurementResponseMeasurementRequest_equal(self.handle, other.handle if other is not None else <_c_api.PairMeasurementResponseMeasurementRequestHandle>0)

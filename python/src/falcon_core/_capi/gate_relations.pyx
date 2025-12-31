@@ -121,19 +121,19 @@ cdef class GateRelations:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.GateRelations_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListConnectionsHandle h_ret = _c_api.GateRelations_values(self.handle)
         if h_ret == <_c_api.ListConnectionsHandle>0:
             return None
-        return _list_connections_from_capi(h_ret)
+        return _list_connections_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionConnectionsHandle h_ret = _c_api.GateRelations_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionConnectionsHandle>0:
             return None
-        return _list_pair_connection_connections_from_capi(h_ret)
+        return _list_pair_connection_connections_from_capi(h_ret, owned=False)
 
     def __len__(self):
         return self.size()

@@ -87,7 +87,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.LabelledMeasuredArray_label(self.handle)
         if h_ret == <_c_api.AcquisitionContextHandle>0:
             return None
-        return _acquisition_context_from_capi(h_ret)
+        return _acquisition_context_from_capi(h_ret, owned=True)
 
     def connection(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.LabelledMeasuredArray_connection(self.handle)
@@ -109,7 +109,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.LabelledMeasuredArray_units(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=True)
 
     def size(self, ):
         return _c_api.LabelledMeasuredArray_size(self.handle)
@@ -355,7 +355,7 @@ cdef class LabelledMeasuredArray:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.LabelledMeasuredArray_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=True)
 
     def flip(self, size_t axis):
         cdef _c_api.LabelledMeasuredArrayHandle h_ret = _c_api.LabelledMeasuredArray_flip(self.handle, axis)

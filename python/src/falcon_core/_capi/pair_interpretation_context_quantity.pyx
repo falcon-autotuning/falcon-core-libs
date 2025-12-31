@@ -54,13 +54,13 @@ cdef class PairInterpretationContextQuantity:
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.PairInterpretationContextQuantity_first(self.handle)
         if h_ret == <_c_api.InterpretationContextHandle>0:
             return None
-        return _interpretation_context_from_capi(h_ret)
+        return _interpretation_context_from_capi(h_ret, owned=True)
 
     def second(self, ):
         cdef _c_api.QuantityHandle h_ret = _c_api.PairInterpretationContextQuantity_second(self.handle)
         if h_ret == <_c_api.QuantityHandle>0:
             return None
-        return _quantity_from_capi(h_ret)
+        return _quantity_from_capi(h_ret, owned=True)
 
     def equal(self, PairInterpretationContextQuantity other):
         return _c_api.PairInterpretationContextQuantity_equal(self.handle, other.handle if other is not None else <_c_api.PairInterpretationContextQuantityHandle>0)

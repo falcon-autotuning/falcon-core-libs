@@ -229,10 +229,18 @@ class Axes:
 
     def __eq__(self, other):
         # Try different method overloads based on argument type
+        if isinstance(other, Axes) and hasattr(self._c, 'equality'):
+            return self._c.equality(other._c)
+        if isinstance(other, Axes) and hasattr(self._c, 'equal'):
+            return self._c.equal(other._c)
         return NotImplemented
 
     def __ne__(self, other):
         # Try different method overloads based on argument type
+        if isinstance(other, Axes) and hasattr(self._c, 'notequality'):
+            return self._c.notequality(other._c)
+        if isinstance(other, Axes) and hasattr(self._c, 'not_equal'):
+            return self._c.not_equal(other._c)
         return NotImplemented
 
     def __repr__(self):

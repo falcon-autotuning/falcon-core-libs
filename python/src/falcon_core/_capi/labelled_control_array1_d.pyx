@@ -91,7 +91,7 @@ cdef class LabelledControlArray1D:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.LabelledControlArray1D_as_1D(self.handle)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=False)
 
     def get_start(self, ):
         return _c_api.LabelledControlArray1D_get_start(self.handle)
@@ -124,13 +124,13 @@ cdef class LabelledControlArray1D:
         cdef _c_api.ListFArrayDoubleHandle h_ret = _c_api.LabelledControlArray1D_even_divisions(self.handle, divisions)
         if h_ret == <_c_api.ListFArrayDoubleHandle>0:
             return None
-        return _list_f_array_double_from_capi(h_ret)
+        return _list_f_array_double_from_capi(h_ret, owned=True)
 
     def label(self, ):
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.LabelledControlArray1D_label(self.handle)
         if h_ret == <_c_api.AcquisitionContextHandle>0:
             return None
-        return _acquisition_context_from_capi(h_ret)
+        return _acquisition_context_from_capi(h_ret, owned=True)
 
     def connection(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.LabelledControlArray1D_connection(self.handle)
@@ -152,7 +152,7 @@ cdef class LabelledControlArray1D:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.LabelledControlArray1D_units(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=True)
 
     def size(self, ):
         return _c_api.LabelledControlArray1D_size(self.handle)
@@ -341,7 +341,7 @@ cdef class LabelledControlArray1D:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.LabelledControlArray1D_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=True)
 
     def flip(self, size_t axis):
         cdef _c_api.LabelledControlArray1DHandle h_ret = _c_api.LabelledControlArray1D_flip(self.handle, axis)
@@ -356,7 +356,7 @@ cdef class LabelledControlArray1D:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.LabelledControlArray1D_gradient(self.handle, axis)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
     def get_sum_of_squares(self, ):
         return _c_api.LabelledControlArray1D_get_sum_of_squares(self.handle)

@@ -94,13 +94,13 @@ cdef class Ports:
         cdef _c_api.ListInstrumentPortHandle h_ret = _c_api.Ports_ports(self.handle)
         if h_ret == <_c_api.ListInstrumentPortHandle>0:
             return None
-        return _list_instrument_port_from_capi(h_ret)
+        return _list_instrument_port_from_capi(h_ret, owned=True)
 
     def default_names(self, ):
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports_default_names(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=True)
 
     def get_psuedo_names(self, ):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Ports_get_psuedo_names(self.handle)
@@ -112,19 +112,19 @@ cdef class Ports:
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports__get_raw_names(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=True)
 
     def _get_instrument_facing_names(self, ):
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports__get_instrument_facing_names(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=True)
 
     def _get_psuedoname_matching_port(self, Connection name):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports__get_psuedoname_matching_port(self.handle, name.handle if name is not None else <_c_api.ConnectionHandle>0)
         if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return _instrument_port_from_capi(h_ret)
+        return _instrument_port_from_capi(h_ret, owned=True)
 
     def _get_instrument_type_matching_port(self, str insttype):
         cdef bytes b_insttype = insttype.encode("utf-8")
@@ -133,7 +133,7 @@ cdef class Ports:
         _c_api.String_destroy(s_insttype)
         if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return _instrument_port_from_capi(h_ret)
+        return _instrument_port_from_capi(h_ret, owned=True)
 
     def is_knobs(self, ):
         return _c_api.Ports_is_knobs(self.handle)
@@ -172,7 +172,7 @@ cdef class Ports:
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports_items(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=False)
 
     def contains(self, InstrumentPort value):
         return _c_api.Ports_contains(self.handle, value.handle if value is not None else <_c_api.InstrumentPortHandle>0)

@@ -154,55 +154,55 @@ cdef class Vector:
         cdef _c_api.PointHandle h_ret = _c_api.Vector_end_point(self.handle)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=True)
 
     def start_point(self, ):
         cdef _c_api.PointHandle h_ret = _c_api.Vector_start_point(self.handle)
         if h_ret == <_c_api.PointHandle>0:
             return None
-        return _point_from_capi(h_ret)
+        return _point_from_capi(h_ret, owned=True)
 
     def end_quantities(self, ):
         cdef _c_api.MapConnectionQuantityHandle h_ret = _c_api.Vector_end_quantities(self.handle)
         if h_ret == <_c_api.MapConnectionQuantityHandle>0:
             return None
-        return _map_connection_quantity_from_capi(h_ret)
+        return _map_connection_quantity_from_capi(h_ret, owned=True)
 
     def start_quantities(self, ):
         cdef _c_api.MapConnectionQuantityHandle h_ret = _c_api.Vector_start_quantities(self.handle)
         if h_ret == <_c_api.MapConnectionQuantityHandle>0:
             return None
-        return _map_connection_quantity_from_capi(h_ret)
+        return _map_connection_quantity_from_capi(h_ret, owned=True)
 
     def end_map(self, ):
         cdef _c_api.MapConnectionDoubleHandle h_ret = _c_api.Vector_end_map(self.handle)
         if h_ret == <_c_api.MapConnectionDoubleHandle>0:
             return None
-        return _map_connection_double_from_capi(h_ret)
+        return _map_connection_double_from_capi(h_ret, owned=True)
 
     def start_map(self, ):
         cdef _c_api.MapConnectionDoubleHandle h_ret = _c_api.Vector_start_map(self.handle)
         if h_ret == <_c_api.MapConnectionDoubleHandle>0:
             return None
-        return _map_connection_double_from_capi(h_ret)
+        return _map_connection_double_from_capi(h_ret, owned=True)
 
     def connections(self, ):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Vector_connections(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def unit(self, ):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Vector_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=False)
 
     def principle_connection(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.Vector_principle_connection(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def magnitude(self, ):
         return _c_api.Vector_magnitude(self.handle)
@@ -238,19 +238,19 @@ cdef class Vector:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Vector_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListPairQuantityQuantityHandle h_ret = _c_api.Vector_values(self.handle)
         if h_ret == <_c_api.ListPairQuantityQuantityHandle>0:
             return None
-        return _list_pair_quantity_quantity_from_capi(h_ret)
+        return _list_pair_quantity_quantity_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionPairQuantityQuantityHandle h_ret = _c_api.Vector_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:
             return None
-        return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret)
+        return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret, owned=False)
 
     def addition(self, Vector other):
         cdef _c_api.VectorHandle h_ret = _c_api.Vector_addition(self.handle, other.handle if other is not None else <_c_api.VectorHandle>0)

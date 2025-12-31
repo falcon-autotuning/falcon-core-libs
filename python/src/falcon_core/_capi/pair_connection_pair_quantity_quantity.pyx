@@ -54,13 +54,13 @@ cdef class PairConnectionPairQuantityQuantity:
         cdef _c_api.ConnectionHandle h_ret = _c_api.PairConnectionPairQuantityQuantity_first(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def second(self, ):
         cdef _c_api.PairQuantityQuantityHandle h_ret = _c_api.PairConnectionPairQuantityQuantity_second(self.handle)
         if h_ret == <_c_api.PairQuantityQuantityHandle>0:
             return None
-        return _pair_quantity_quantity_from_capi(h_ret)
+        return _pair_quantity_quantity_from_capi(h_ret, owned=True)
 
     def equal(self, PairConnectionPairQuantityQuantity other):
         return _c_api.PairConnectionPairQuantityQuantity_equal(self.handle, other.handle if other is not None else <_c_api.PairConnectionPairQuantityQuantityHandle>0)

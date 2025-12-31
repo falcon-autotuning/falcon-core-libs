@@ -100,25 +100,25 @@ cdef class MeasurementRequest:
         cdef _c_api.PortsHandle h_ret = _c_api.MeasurementRequest_getters(self.handle)
         if h_ret == <_c_api.PortsHandle>0:
             return None
-        return _ports_from_capi(h_ret)
+        return _ports_from_capi(h_ret, owned=True)
 
     def waveforms(self, ):
         cdef _c_api.ListWaveformHandle h_ret = _c_api.MeasurementRequest_waveforms(self.handle)
         if h_ret == <_c_api.ListWaveformHandle>0:
             return None
-        return _list_waveform_from_capi(h_ret)
+        return _list_waveform_from_capi(h_ret, owned=True)
 
     def meter_transforms(self, ):
         cdef _c_api.MapInstrumentPortPortTransformHandle h_ret = _c_api.MeasurementRequest_meter_transforms(self.handle)
         if h_ret == <_c_api.MapInstrumentPortPortTransformHandle>0:
             return None
-        return _map_instrument_port_port_transform_from_capi(h_ret)
+        return _map_instrument_port_port_transform_from_capi(h_ret, owned=True)
 
     def time_domain(self, ):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.MeasurementRequest_time_domain(self.handle)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=True)
 
     def message(self, ):
         cdef _c_api.StringHandle s_ret

@@ -105,13 +105,13 @@ cdef class PortTransform:
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.PortTransform_port(self.handle)
         if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return _instrument_port_from_capi(h_ret)
+        return _instrument_port_from_capi(h_ret, owned=True)
 
     def labels(self, ):
         cdef _c_api.ListStringHandle h_ret = _c_api.PortTransform_labels(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=True)
 
     def evaluate(self, MapStringDouble args, double time):
         return _c_api.PortTransform_evaluate(self.handle, args.handle if args is not None else <_c_api.MapStringDoubleHandle>0, time)
@@ -120,7 +120,7 @@ cdef class PortTransform:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.PortTransform_evaluate_arraywise(self.handle, args.handle if args is not None else <_c_api.MapStringDoubleHandle>0, deltaT, maxTime)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
 cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h, bint owned=True):
     if h == <_c_api.PortTransformHandle>0:

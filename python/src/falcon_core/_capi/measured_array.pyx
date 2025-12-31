@@ -320,7 +320,7 @@ cdef class MeasuredArray:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.MeasuredArray_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=True)
 
     def flip(self, size_t axis):
         cdef _c_api.MeasuredArrayHandle h_ret = _c_api.MeasuredArray_flip(self.handle, axis)

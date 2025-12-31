@@ -124,7 +124,7 @@ cdef class DotGatesWithNeighbors:
         cdef _c_api.ListDotGateWithNeighborsHandle h_ret = _c_api.DotGatesWithNeighbors_items(self.handle)
         if h_ret == <_c_api.ListDotGateWithNeighborsHandle>0:
             return None
-        return _list_dot_gate_with_neighbors_from_capi(h_ret)
+        return _list_dot_gate_with_neighbors_from_capi(h_ret, owned=False)
 
     def contains(self, DotGateWithNeighbors value):
         return _c_api.DotGatesWithNeighbors_contains(self.handle, value.handle if value is not None else <_c_api.DotGateWithNeighborsHandle>0)

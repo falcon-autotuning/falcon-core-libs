@@ -181,13 +181,13 @@ cdef class LabelledDomain:
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.LabelledDomain_port(self.handle)
         if h_ret == <_c_api.InstrumentPortHandle>0:
             return None
-        return _instrument_port_from_capi(h_ret)
+        return _instrument_port_from_capi(h_ret, owned=True)
 
     def domain(self, ):
         cdef _c_api.DomainHandle h_ret = _c_api.LabelledDomain_domain(self.handle)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=False)
 
     def matching_port(self, InstrumentPort port):
         return _c_api.LabelledDomain_matching_port(self.handle, port.handle if port is not None else <_c_api.InstrumentPortHandle>0)

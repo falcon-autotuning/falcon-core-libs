@@ -92,19 +92,19 @@ cdef class MapInterpretationContextDouble:
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.MapInterpretationContextDouble_keys(self.handle)
         if h_ret == <_c_api.ListInterpretationContextHandle>0:
             return None
-        return _list_interpretation_context_from_capi(h_ret)
+        return _list_interpretation_context_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListDoubleHandle h_ret = _c_api.MapInterpretationContextDouble_values(self.handle)
         if h_ret == <_c_api.ListDoubleHandle>0:
             return None
-        return _list_double_from_capi(h_ret)
+        return _list_double_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairInterpretationContextDoubleHandle h_ret = _c_api.MapInterpretationContextDouble_items(self.handle)
         if h_ret == <_c_api.ListPairInterpretationContextDoubleHandle>0:
             return None
-        return _list_pair_interpretation_context_double_from_capi(h_ret)
+        return _list_pair_interpretation_context_double_from_capi(h_ret, owned=False)
 
     def equal(self, MapInterpretationContextDouble other):
         return _c_api.MapInterpretationContextDouble_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextDoubleHandle>0)

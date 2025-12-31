@@ -93,13 +93,13 @@ cdef class CoupledLabelledDomain:
         cdef _c_api.ListLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_domains(self.handle)
         if h_ret == <_c_api.ListLabelledDomainHandle>0:
             return None
-        return _list_labelled_domain_from_capi(h_ret)
+        return _list_labelled_domain_from_capi(h_ret, owned=True)
 
     def labels(self, ):
         cdef _c_api.PortsHandle h_ret = _c_api.CoupledLabelledDomain_labels(self.handle)
         if h_ret == <_c_api.PortsHandle>0:
             return None
-        return _ports_from_capi(h_ret)
+        return _ports_from_capi(h_ret, owned=True)
 
     def get_domain(self, InstrumentPort search):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_get_domain(self.handle, search.handle if search is not None else <_c_api.InstrumentPortHandle>0)
@@ -132,7 +132,7 @@ cdef class CoupledLabelledDomain:
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_const_at(self.handle, idx)
         if h_ret == <_c_api.LabelledDomainHandle>0:
             return None
-        return _labelled_domain_from_capi(h_ret)
+        return _labelled_domain_from_capi(h_ret, owned=True)
 
     def at(self, size_t idx):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_at(self.handle, idx)
@@ -144,7 +144,7 @@ cdef class CoupledLabelledDomain:
         cdef _c_api.ListLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_items(self.handle)
         if h_ret == <_c_api.ListLabelledDomainHandle>0:
             return None
-        return _list_labelled_domain_from_capi(h_ret)
+        return _list_labelled_domain_from_capi(h_ret, owned=False)
 
     def contains(self, LabelledDomain value):
         return _c_api.CoupledLabelledDomain_contains(self.handle, value.handle if value is not None else <_c_api.LabelledDomainHandle>0)

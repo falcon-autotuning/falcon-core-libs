@@ -107,6 +107,13 @@ class TestConfig:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == _make_test_config()
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -114,6 +121,13 @@ class TestConfig:
             self.obj.not_equal(_make_test_config())
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != _make_test_config()
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -874,3 +888,15 @@ class TestConfig:
             self.obj.has_screening_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Config.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Config.new(Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Connections.new_empty(), Map[Gname, Group](), Impedances.new_empty(), VoltageConstraints.new(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])), 0.0, Pair[float, float](0.0, 0.0)))
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

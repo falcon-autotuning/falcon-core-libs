@@ -119,7 +119,7 @@ cdef class Channels:
         cdef _c_api.ListStringHandle h_ret = _c_api.Channels_items(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=False)
 
     def contains(self, Channel value):
         return _c_api.Channels_contains(self.handle, value.handle if value is not None else <_c_api.ChannelHandle>0)

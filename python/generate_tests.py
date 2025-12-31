@@ -8,6 +8,61 @@ from generate_wrappers import (ClassDef, Function, Argument, to_snake_case, is_t
 RENAMED_METHODS = PYTHON_KEYWORD_RENAMES.copy()
 RENAMED_METHODS["to_json_string"] = "to_json"
 
+OPERATOR_MAP = {
+    "plus_farray": "+",
+    "plus_double": "+",
+    "plus_int": "+",
+    "plus_measured_array": "+",
+    "plus_control_array": "+",
+    "minus_farray": "-",
+    "minus_double": "-",
+    "minus_int": "-",
+    "minus_measured_array": "-",
+    "minus_control_array": "-",
+    "times_farray": "*",
+    "times_double": "*",
+    "times_int": "*",
+    "times_measured_array": "*",
+    "divides_farray": "/",
+    "divides_double": "/",
+    "divides_int": "/",
+    "divides_measured_array": "/",
+    "plus_equals_farray": "+=",
+    "plus_equals_double": "+=",
+    "plus_equals_int": "+=",
+    "minus_equals_farray": "-=",
+    "minus_equals_double": "-=",
+    "minus_equals_int": "-=",
+    "times_equals_farray": "*=",
+    "times_equals_double": "*=",
+    "times_equals_int": "*=",
+    "divides_equals_farray": "/=",
+    "divides_equals_double": "/=",
+    "divides_equals_int": "/=",
+    "equal": "==",
+    "not_equal": "!=",
+    "greater_than": ">",
+    "less_than": "<",
+    "greater_than_or_equal": ">=",
+    "less_than_or_equal": "<=",
+    # SymbolUnit/Quantity style operators
+    "division": "/",
+    "multiplication": "*",
+    "multiply_int": "*",
+    "multiply_double": "*",
+    "multiply_quantity": "*",
+    "divide_int": "/",
+    "divide_double": "/",
+    "divide_quantity": "/",
+    "add_quantity": "+",
+    "subtract_quantity": "-",
+    "power": "**",
+}
+
+UNARY_OPERATOR_MAP = {
+    "negation": "-",
+}
+
 RECIPES = {
     # type_name: (instantiation_expression, [imports])
     "Connection": ("Connection.new_barrier('test_conn')", ["from falcon_core.physics.device_structures.connection import Connection"]),
@@ -141,6 +196,55 @@ def _make_test_interpretation_context():
     
     return InterpretationContext.new(axes, list_mc, unit)
 """
+
+def _make_test_measurement_request_code():
+    """Returns code to create a test measurement request."""
+    return '''
+def _make_test_measurement_request():
+    from falcon_core.communications.messages.measurement_request import MeasurementRequest
+    from falcon_core.instrument_interfaces.names.ports import Ports
+    from falcon_core.math.domains.labelled_domain import LabelledDomain
+    from falcon_core.physics.device_structures.connection import Connection
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.generic.list import List
+    from falcon_core.generic.map import Map
+    from falcon_core.instrument_interfaces.waveform import Waveform
+    from falcon_core.instrument_interfaces.names.instrument_port import InstrumentPort
+    from falcon_core.instrument_interfaces.port_transforms.port_transform import PortTransform
+    from falcon_core.math.domains.domain import Domain
+    
+    conn = Connection.new_plunger("test_gate")
+    unit = SymbolUnit.new_volt()
+    domain = LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'time', conn, 'DAC', unit, 'test')
+    getters = Ports.new_empty()
+    waveforms = List[Waveform]()
+    waveforms.append(_make_test_waveform())
+    meter_transforms = Map[InstrumentPort, PortTransform]()
+    return MeasurementRequest.new("test message", "test_measurement", waveforms, getters, meter_transforms, domain)
+'''
+
+def _make_test_measurement_response_code():
+    """Returns code to create a test measurement response."""
+    return '''
+def _make_test_measurement_response():
+    from falcon_core.communications.messages.measurement_response import MeasurementResponse
+    from falcon_core.math.arrays.labelled_arrays import LabelledArrays
+    from falcon_core.math.arrays.labelled_measured_array import LabelledMeasuredArray
+    from falcon_core.math.arrays.measured_array import MeasuredArray
+    from falcon_core.generic.f_array import FArray
+    from falcon_core.autotuner_interfaces.contexts.acquisition_context import AcquisitionContext
+    from falcon_core.physics.device_structures.connection import Connection
+    from falcon_core.physics.units.symbol_unit import SymbolUnit
+    from falcon_core.generic.list import List
+    
+    conn = Connection.new_barrier('test')
+    unit = SymbolUnit.new_meter()
+    ac = AcquisitionContext.new(conn, 'test', unit)
+    ma = MeasuredArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]))
+    lma = LabelledMeasuredArray(ma._c, ac)
+    la = LabelledArrays[LabelledMeasuredArray](List[LabelledMeasuredArray].from_list([lma]))
+    return MeasurementResponse.new("test response", la)
+'''
 
 def _make_test_interpretation_container_double_code():
     return """
@@ -716,8 +820,12 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
             else:
                 args.append(get_dummy_value(arg.type_name))
                 
+        # Handle handles
         if args and (method.args[0].type_name == cls.handle_type or method.args[0].name == "handle"):
+            orig_args = args # Keep for operator tests
             args = args[1:]
+        else:
+            orig_args = args
             
         lines.append("        try:")
         # Rename method if it conflicts with Python keywords
@@ -728,6 +836,61 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
         lines.append(f"            self.obj.{call_method_name}({', '.join(args)})")
         lines.append("        except Exception as e:")
         lines.append(f"            print(f'Method call failed as expected: {{e}}')")
+        lines.append("")
+
+        # Add operator test if applicable
+        raw_method_name = method.name
+        if raw_method_name.startswith(cls.name + "_"):
+            raw_method_name = raw_method_name[len(cls.name)+1:]
+            
+        if raw_method_name in OPERATOR_MAP:
+            op = OPERATOR_MAP[raw_method_name]
+            op_arg = orig_args[1] if len(orig_args) > 1 else "None"
+            lines.append(f"    def test_op_{raw_method_name}(self):")
+            lines.append("        if self.obj is None: pytest.skip()")
+            lines.append("        try:")
+            if op.endswith("="):
+                 lines.append(f"            self.obj {op} {op_arg}")
+            else:
+                 lines.append(f"            self.obj {op} {op_arg}")
+            lines.append("        except Exception as e:")
+            lines.append(f"            print(f'Operator {op} failed: {{e}}')")
+            lines.append("")
+
+        if raw_method_name in UNARY_OPERATOR_MAP:
+            op = UNARY_OPERATOR_MAP[raw_method_name]
+            lines.append(f"    def test_unary_op_{raw_method_name}(self):")
+            lines.append("        if self.obj is None: pytest.skip()")
+            lines.append("        try:")
+            lines.append(f"            {op}self.obj")
+            lines.append("        except Exception as e:")
+            lines.append(f"            print(f'Unary operator {op} failed: {{e}}')")
+            lines.append("")
+
+    # Generate tests for ALL constructors (factories)
+    for ctor in cls.constructors:
+        ctor_py_name = map_ctor_to_py(ctor.name, cls.name)
+        # Skip if it's the one we already used in setup if possible, but actually testing all is better.
+        
+        lines.append(f"    def test_ctor_{ctor_py_name}(self):")
+        args = []
+        for arg in ctor.args:
+            if arg.is_ptr:
+                type_code = 'i'
+                if arg.type_name in ['double', 'float']: type_code = 'd'
+                elif arg.type_name == 'bool': type_code = 'B'
+                elif arg.type_name == 'size_t' or arg.type_name.endswith('Handle'): type_code = 'L'
+                args.append(f"array.array('{type_code}', [0])")
+            else:
+                args.append(get_dummy_value(arg.type_name))
+        
+        lines.append("        try:")
+        if is_template_type(cls.name):
+             lines.append(f"            {instantiation_class}({', '.join(args)})")
+        else:
+             lines.append(f"            {cls.name}.{ctor_py_name}({', '.join(args)})")
+        lines.append("        except Exception as e:")
+        lines.append(f"            print(f'Constructor {ctor_py_name} failed: {{e}}')")
         lines.append("")
 
     # Add smoke tests for Python magic methods if it looks like a container

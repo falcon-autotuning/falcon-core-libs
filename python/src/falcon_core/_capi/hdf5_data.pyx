@@ -130,37 +130,37 @@ cdef class HDF5Data:
         cdef _c_api.PairMeasurementResponseMeasurementRequestHandle h_ret = _c_api.HDF5Data_to_communications(self.handle)
         if h_ret == <_c_api.PairMeasurementResponseMeasurementRequestHandle>0:
             return None
-        return _pair_measurement_response_measurement_request_from_capi(h_ret)
+        return _pair_measurement_response_measurement_request_from_capi(h_ret, owned=True)
 
     def shape(self, ):
         cdef _c_api.AxesIntHandle h_ret = _c_api.HDF5Data_shape(self.handle)
         if h_ret == <_c_api.AxesIntHandle>0:
             return None
-        return _axes_int_from_capi(h_ret)
+        return _axes_int_from_capi(h_ret, owned=True)
 
     def unit_domain(self, ):
         cdef _c_api.AxesControlArrayHandle h_ret = _c_api.HDF5Data_unit_domain(self.handle)
         if h_ret == <_c_api.AxesControlArrayHandle>0:
             return None
-        return _axes_control_array_from_capi(h_ret)
+        return _axes_control_array_from_capi(h_ret, owned=True)
 
     def domain_labels(self, ):
         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.HDF5Data_domain_labels(self.handle)
         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
             return None
-        return _axes_coupled_labelled_domain_from_capi(h_ret)
+        return _axes_coupled_labelled_domain_from_capi(h_ret, owned=True)
 
     def ranges(self, ):
         cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.HDF5Data_ranges(self.handle)
         if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
             return None
-        return _labelled_arrays_labelled_measured_array_from_capi(h_ret)
+        return _labelled_arrays_labelled_measured_array_from_capi(h_ret, owned=True)
 
     def metadata(self, ):
         cdef _c_api.MapStringStringHandle h_ret = _c_api.HDF5Data_metadata(self.handle)
         if h_ret == <_c_api.MapStringStringHandle>0:
             return None
-        return _map_string_string_from_capi(h_ret)
+        return _map_string_string_from_capi(h_ret, owned=True)
 
     def measurement_title(self, ):
         cdef _c_api.StringHandle s_ret

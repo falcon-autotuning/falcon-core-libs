@@ -82,19 +82,19 @@ cdef class InterpretationContext:
         cdef _c_api.AxesMeasurementContextHandle h_ret = _c_api.InterpretationContext_independent_variables(self.handle)
         if h_ret == <_c_api.AxesMeasurementContextHandle>0:
             return None
-        return _axes_measurement_context_from_capi(h_ret)
+        return _axes_measurement_context_from_capi(h_ret, owned=True)
 
     def dependent_variables(self, ):
         cdef _c_api.ListMeasurementContextHandle h_ret = _c_api.InterpretationContext_dependent_variables(self.handle)
         if h_ret == <_c_api.ListMeasurementContextHandle>0:
             return None
-        return _list_measurement_context_from_capi(h_ret)
+        return _list_measurement_context_from_capi(h_ret, owned=True)
 
     def unit(self, ):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContext_unit(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=False)
 
     def dimension(self, ):
         return _c_api.InterpretationContext_dimension(self.handle)

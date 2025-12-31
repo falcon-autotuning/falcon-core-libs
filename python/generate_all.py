@@ -555,7 +555,11 @@ def generate_generic_wrapper(base, instances):
             lines.append(f"    def {op}(self, other):")
             lines.append(f"        # Try different method overloads based on argument type")
             for method_name in method_names:
-                if 'farray' in method_name or base.lower() in method_name:
+                # Determine type check based on method name or operator
+                if method_name in ['equal', 'equality', 'not_equal', 'notequality']:
+                    lines.append(f"        if isinstance(other, {base}) and hasattr(self._c, '{method_name}'):")
+                    lines.append(f"            return self._c.{method_name}(other._c)")
+                elif 'farray' in method_name or base.lower() in method_name or 'measured_array' in method_name or 'control_array' in method_name:
                     lines.append(f"        if isinstance(other, {base}) and hasattr(self._c, '{method_name}'):")
                     lines.append(f"            result = self._c.{method_name}(other._c)")
                     lines.append(f"            if result is not None and hasattr(result, 'handle'):")

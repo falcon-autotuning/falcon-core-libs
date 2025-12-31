@@ -214,7 +214,7 @@ cdef class FArrayInt:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayInt_double_pow(self.handle, other)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
     def pow_inplace(self, int other):
         _c_api.FArrayInt_pow_inplace(self.handle, other)
@@ -287,7 +287,7 @@ cdef class FArrayInt:
         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayInt_where(self.handle, value)
         if h_ret == <_c_api.ListListSizeTHandle>0:
             return None
-        return _list_list_size_t_from_capi(h_ret)
+        return _list_list_size_t_from_capi(h_ret, owned=True)
 
     def flip(self, size_t axis):
         cdef _c_api.FArrayIntHandle h_ret = _c_api.FArrayInt_flip(self.handle, axis)

@@ -18,3 +18,9 @@ class TestLoader:
             self.obj.config()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Loader.new("test_string")
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

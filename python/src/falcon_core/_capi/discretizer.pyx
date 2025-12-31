@@ -96,7 +96,7 @@ cdef class Discretizer:
         cdef _c_api.DomainHandle h_ret = _c_api.Discretizer_domain(self.handle)
         if h_ret == <_c_api.DomainHandle>0:
             return None
-        return _domain_from_capi(h_ret)
+        return _domain_from_capi(h_ret, owned=False)
 
     def is_cartesian(self, ):
         return _c_api.Discretizer_is_cartesian(self.handle)

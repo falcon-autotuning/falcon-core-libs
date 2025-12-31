@@ -58,7 +58,7 @@ cdef class PairInterpretationContextString:
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.PairInterpretationContextString_first(self.handle)
         if h_ret == <_c_api.InterpretationContextHandle>0:
             return None
-        return _interpretation_context_from_capi(h_ret)
+        return _interpretation_context_from_capi(h_ret, owned=True)
 
     def second(self, ):
         cdef _c_api.StringHandle s_ret

@@ -54,13 +54,13 @@ cdef class PairGnameGroup:
         cdef _c_api.GnameHandle h_ret = _c_api.PairGnameGroup_first(self.handle)
         if h_ret == <_c_api.GnameHandle>0:
             return None
-        return _gname_from_capi(h_ret)
+        return _gname_from_capi(h_ret, owned=True)
 
     def second(self, ):
         cdef _c_api.GroupHandle h_ret = _c_api.PairGnameGroup_second(self.handle)
         if h_ret == <_c_api.GroupHandle>0:
             return None
-        return _group_from_capi(h_ret)
+        return _group_from_capi(h_ret, owned=True)
 
     def equal(self, PairGnameGroup other):
         return _c_api.PairGnameGroup_equal(self.handle, other.handle if other is not None else <_c_api.PairGnameGroupHandle>0)

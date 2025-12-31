@@ -167,7 +167,7 @@ cdef class InstrumentPort:
         cdef _c_api.ConnectionHandle h_ret = _c_api.InstrumentPort_psuedo_name(self.handle)
         if h_ret == <_c_api.ConnectionHandle>0:
             return None
-        return _connection_from_capi(h_ret)
+        return _connection_from_capi(h_ret, owned=True)
 
     def instrument_type(self, ):
         cdef _c_api.StringHandle s_ret
@@ -183,7 +183,7 @@ cdef class InstrumentPort:
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InstrumentPort_units(self.handle)
         if h_ret == <_c_api.SymbolUnitHandle>0:
             return None
-        return _symbol_unit_from_capi(h_ret)
+        return _symbol_unit_from_capi(h_ret, owned=True)
 
     def description(self, ):
         cdef _c_api.StringHandle s_ret

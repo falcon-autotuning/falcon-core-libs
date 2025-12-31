@@ -124,19 +124,19 @@ cdef class MapStringString:
         cdef _c_api.ListStringHandle h_ret = _c_api.MapStringString_keys(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListStringHandle h_ret = _c_api.MapStringString_values(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairStringStringHandle h_ret = _c_api.MapStringString_items(self.handle)
         if h_ret == <_c_api.ListPairStringStringHandle>0:
             return None
-        return _list_pair_string_string_from_capi(h_ret)
+        return _list_pair_string_string_from_capi(h_ret, owned=False)
 
     def equal(self, MapStringString other):
         return _c_api.MapStringString_equal(self.handle, other.handle if other is not None else <_c_api.MapStringStringHandle>0)

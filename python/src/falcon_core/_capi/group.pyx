@@ -82,7 +82,7 @@ cdef class Group:
         cdef _c_api.ChannelHandle h_ret = _c_api.Group_name(self.handle)
         if h_ret == <_c_api.ChannelHandle>0:
             return None
-        return _channel_from_capi(h_ret)
+        return _channel_from_capi(h_ret, owned=True)
 
     def num_dots(self, ):
         return _c_api.Group_num_dots(self.handle)
@@ -91,7 +91,7 @@ cdef class Group:
         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.Group_order(self.handle)
         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
             return None
-        return _gate_geometry_array1_d_from_capi(h_ret)
+        return _gate_geometry_array1_d_from_capi(h_ret, owned=True)
 
     def has_channel(self, Channel channel):
         return _c_api.Group_has_channel(self.handle, channel.handle if channel is not None else <_c_api.ChannelHandle>0)
@@ -109,37 +109,37 @@ cdef class Group:
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Group_screening_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def reservoir_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Group_reservoir_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def plunger_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Group_plunger_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def barrier_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Group_barrier_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def ohmics(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Group_ohmics(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def dot_gates(self, ):
         cdef _c_api.ConnectionsHandle h_ret = _c_api.Group_dot_gates(self.handle)
         if h_ret == <_c_api.ConnectionsHandle>0:
             return None
-        return _connections_from_capi(h_ret)
+        return _connections_from_capi(h_ret, owned=True)
 
     def get_ohmic(self, ):
         cdef _c_api.ConnectionHandle h_ret = _c_api.Group_get_ohmic(self.handle)

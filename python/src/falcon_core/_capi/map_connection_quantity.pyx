@@ -96,19 +96,19 @@ cdef class MapConnectionQuantity:
         cdef _c_api.ListConnectionHandle h_ret = _c_api.MapConnectionQuantity_keys(self.handle)
         if h_ret == <_c_api.ListConnectionHandle>0:
             return None
-        return _list_connection_from_capi(h_ret)
+        return _list_connection_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListQuantityHandle h_ret = _c_api.MapConnectionQuantity_values(self.handle)
         if h_ret == <_c_api.ListQuantityHandle>0:
             return None
-        return _list_quantity_from_capi(h_ret)
+        return _list_quantity_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairConnectionQuantityHandle h_ret = _c_api.MapConnectionQuantity_items(self.handle)
         if h_ret == <_c_api.ListPairConnectionQuantityHandle>0:
             return None
-        return _list_pair_connection_quantity_from_capi(h_ret)
+        return _list_pair_connection_quantity_from_capi(h_ret, owned=False)
 
     def equal(self, MapConnectionQuantity other):
         return _c_api.MapConnectionQuantity_equal(self.handle, other.handle if other is not None else <_c_api.MapConnectionQuantityHandle>0)

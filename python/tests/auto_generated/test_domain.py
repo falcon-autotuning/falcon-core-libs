@@ -28,6 +28,13 @@ class TestDomain:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == Domain.new(0.0, 1.0, True, True)
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -35,6 +42,13 @@ class TestDomain:
             self.obj.not_equal(Domain.new(0.0, 1.0, True, True))
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != Domain.new(0.0, 1.0, True, True)
+        except Exception as e:
+            print(f'Operator != failed: {e}')
 
     def test_to_json(self):
         if self.obj is None:
@@ -155,3 +169,15 @@ class TestDomain:
             self.obj.transform(Domain.new(0.0, 1.0, True, True), 1.0)
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Domain.from_json("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Domain.new(1.0, 1.0, False, False)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')

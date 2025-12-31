@@ -96,19 +96,19 @@ cdef class MapChannelConnections:
         cdef _c_api.ListChannelHandle h_ret = _c_api.MapChannelConnections_keys(self.handle)
         if h_ret == <_c_api.ListChannelHandle>0:
             return None
-        return _list_channel_from_capi(h_ret)
+        return _list_channel_from_capi(h_ret, owned=False)
 
     def values(self, ):
         cdef _c_api.ListConnectionsHandle h_ret = _c_api.MapChannelConnections_values(self.handle)
         if h_ret == <_c_api.ListConnectionsHandle>0:
             return None
-        return _list_connections_from_capi(h_ret)
+        return _list_connections_from_capi(h_ret, owned=False)
 
     def items(self, ):
         cdef _c_api.ListPairChannelConnectionsHandle h_ret = _c_api.MapChannelConnections_items(self.handle)
         if h_ret == <_c_api.ListPairChannelConnectionsHandle>0:
             return None
-        return _list_pair_channel_connections_from_capi(h_ret)
+        return _list_pair_channel_connections_from_capi(h_ret, owned=False)
 
     def equal(self, MapChannelConnections other):
         return _c_api.MapChannelConnections_equal(self.handle, other.handle if other is not None else <_c_api.MapChannelConnectionsHandle>0)

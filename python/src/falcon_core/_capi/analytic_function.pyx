@@ -108,7 +108,7 @@ cdef class AnalyticFunction:
         cdef _c_api.ListStringHandle h_ret = _c_api.AnalyticFunction_labels(self.handle)
         if h_ret == <_c_api.ListStringHandle>0:
             return None
-        return _list_string_from_capi(h_ret)
+        return _list_string_from_capi(h_ret, owned=True)
 
     def evaluate(self, MapStringDouble args, double time):
         return _c_api.AnalyticFunction_evaluate(self.handle, args.handle if args is not None else <_c_api.MapStringDoubleHandle>0, time)
@@ -117,7 +117,7 @@ cdef class AnalyticFunction:
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.AnalyticFunction_evaluate_arraywise(self.handle, args.handle if args is not None else <_c_api.MapStringDoubleHandle>0, deltaT, maxTime)
         if h_ret == <_c_api.FArrayDoubleHandle>0:
             return None
-        return _f_array_double_from_capi(h_ret)
+        return _f_array_double_from_capi(h_ret, owned=True)
 
 cdef AnalyticFunction _analytic_function_from_capi(_c_api.AnalyticFunctionHandle h, bint owned=True):
     if h == <_c_api.AnalyticFunctionHandle>0:

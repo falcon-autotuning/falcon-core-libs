@@ -113,6 +113,13 @@ class TestAxesLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj == None
+        except Exception as e:
+            print(f'Operator == failed: {e}')
+
     def test_not_equal(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -121,6 +128,13 @@ class TestAxesLabelledMeasuredArray:
         except Exception as e:
             print(f'Method call failed as expected: {e}')
 
+    def test_op_not_equal(self):
+        if self.obj is None: pytest.skip()
+        try:
+            self.obj != None
+        except Exception as e:
+            print(f'Operator != failed: {e}')
+
     def test_to_json(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
@@ -128,6 +142,24 @@ class TestAxesLabelledMeasuredArray:
             self.obj.to_json()
         except Exception as e:
             print(f'Method call failed as expected: {e}')
+
+    def test_ctor_new_empty(self):
+        try:
+            Axes[LabelledMeasuredArray]()
+        except Exception as e:
+            print(f'Constructor new_empty failed: {e}')
+
+    def test_ctor_new(self):
+        try:
+            Axes[LabelledMeasuredArray](None)
+        except Exception as e:
+            print(f'Constructor new failed: {e}')
+
+    def test_ctor_from_json(self):
+        try:
+            Axes[LabelledMeasuredArray]("test_string")
+        except Exception as e:
+            print(f'Constructor from_json failed: {e}')
 
     def test_len_magic(self):
         if self.obj is None: pytest.skip('Skipping test because object could not be instantiated')
