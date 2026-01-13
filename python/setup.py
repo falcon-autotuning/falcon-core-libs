@@ -2,6 +2,8 @@ from setuptools import setup, Extension, find_packages
 import os
 from Cython.Build import cythonize
 
+import multiprocessing
+
 # Get the absolute path to the directory containing this setup.py file
 SETUP_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -35,6 +37,9 @@ for pyx_file in os.listdir(CAPI_WRAPPER_DIR):
             )
         )
 
+# Use as many threads as available for cythonization
+N_THREADS = multiprocessing.cpu_count()
+
 setup(
     name="falcon_core",
     version="0.0.0",
@@ -43,6 +48,7 @@ setup(
     ext_modules=cythonize(
         ext_modules, 
         language_level=3,
+        nthreads=N_THREADS,
         include_path=[
             C_API_INCLUDE_DIR,
             CAPI_WRAPPER_DIR,

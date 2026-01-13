@@ -12,3 +12,29 @@ When installing this package, make sure you have falcon-core installed on your s
 The go package is setup to to require a pkg-config installed somehere on your system. This pkg-config contains all of the locations of the header files and the shared library for falcon-core.
 We recommend installing falcon-core at tmp/local/ such that the pkg-config file is located at `tmp/local/lib/pkgconfig/falcon-core.pc'.
 We have a makefile setup for that can be accessed via 'make install'
+
+# Python bindings
+The falcon-core language bindings for Python are located in the `python/` directory.
+
+### Quick Install (Pre-built Wheel)
+To install without compilation (requires C-API libraries already installed in `/usr/local/lib`):
+```bash
+pip install https://github.com/falcon-autotuning/falcon-core-libs/releases/download/v0.0.2/falcon_core-0.0.0-cp314-cp314-linux_x86_64.whl
+```
+
+### Installation from Source
+If a pre-built wheel is not available for your system:
+```bash
+# Install system dependencies
+./install_dependencies.sh
+
+# Install the package
+pip install ./python
+```
+
+### Building Wheels
+To generate a new binary wheel:
+```bash
+make wheel
+```
+This will use all available CPU cores for parallel Cythonization to speed up the process.

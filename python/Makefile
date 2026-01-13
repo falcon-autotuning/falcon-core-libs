@@ -8,3 +8,6 @@ test:
 
 coverage:
 	uv run python run_coverage.py
+
+wheel:
+	uv build --wheel

@@ -83,6 +83,14 @@ uninstall:
 clean:
 	rm -rf $(TMPDIR)
 
+wheel:
+	$(MAKE) -C python wheel
+
+python-release-upload: wheel
+	@echo "Uploading Python wheel to GitHub release $(RELEASE_TAG)..."
+	gh release upload $(RELEASE_TAG) --repo $(REPO) --clobber \
+		python/dist/falcon_core-0.0.0-cp314-cp314-linux_x86_64.whl
+
 prepare-go-release:
 	rm -rf out && mkdir -p out
 	cd go && zip -r ../out/falcon-core-go.zip falcon-core -x "falcon-core/.git/*" "falcon-core/.cache/*" "falcon-core/vendor/*" "falcon-core/testdata/*"
