@@ -1,5 +1,7 @@
 REPO = falcon-autotuning/falcon-core
 RELEASE_TAG = v0.0.2
+LIBS_RELEASE_TAG = v0.0.1
+LIBS_REPO = falcon-autotuning/falcon-core-libs
 TMPDIR = /tmp/falcon-core-install
 LIBDIR = /usr/local/lib
 INCLUDEDIR = /usr/local/include
@@ -87,8 +89,8 @@ wheel:
 	$(MAKE) -C python wheel
 
 python-release-upload: wheel
-	@echo "Uploading Python wheel to GitHub release $(RELEASE_TAG)..."
-	gh release upload $(RELEASE_TAG) --repo $(REPO) --clobber \
+	@echo "Uploading Python wheel to GitHub release $(LIBS_RELEASE_TAG)..."
+	gh release upload $(LIBS_RELEASE_TAG) --repo $(LIBS_REPO) --clobber \
 		python/dist/falcon_core-0.0.0-cp314-cp314-linux_x86_64.whl
 
 prepare-go-release:
