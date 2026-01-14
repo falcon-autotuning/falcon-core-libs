@@ -47,47 +47,44 @@ cdef class Channel:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.ChannelHandle h_ret = _c_api.Channel_copy(self.handle)
-        if h_ret == <_c_api.ChannelHandle>0:
-            return None
+        if h_ret == <_c_api.ChannelHandle>0: return None
         return _channel_from_capi(h_ret, owned=(h_ret != <_c_api.ChannelHandle>self.handle))
 
     def equal(self, Channel other):
         return _c_api.Channel_equal(self.handle, other.handle if other is not None else <_c_api.ChannelHandle>0)
 
     def __eq__(self, Channel other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, Channel other):
         return _c_api.Channel_not_equal(self.handle, other.handle if other is not None else <_c_api.ChannelHandle>0)
 
     def __ne__(self, Channel other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Channel_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def name(self, ):
+    def name(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Channel_name(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef Channel _channel_from_capi(_c_api.ChannelHandle h, bint owned=True):
     if h == <_c_api.ChannelHandle>0:

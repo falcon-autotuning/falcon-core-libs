@@ -75,66 +75,56 @@ cdef class DiscreteSpace:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.DiscreteSpaceHandle h_ret = _c_api.DiscreteSpace_copy(self.handle)
-        if h_ret == <_c_api.DiscreteSpaceHandle>0:
-            return None
+        if h_ret == <_c_api.DiscreteSpaceHandle>0: return None
         return _discrete_space_from_capi(h_ret, owned=(h_ret != <_c_api.DiscreteSpaceHandle>self.handle))
 
     def equal(self, DiscreteSpace other):
         return _c_api.DiscreteSpace_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)
 
     def __eq__(self, DiscreteSpace other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, DiscreteSpace other):
         return _c_api.DiscreteSpace_not_equal(self.handle, other.handle if other is not None else <_c_api.DiscreteSpaceHandle>0)
 
     def __ne__(self, DiscreteSpace other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.DiscreteSpace_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def space(self, ):
+    def space(self):
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.DiscreteSpace_space(self.handle)
-        if h_ret == <_c_api.UnitSpaceHandle>0:
-            return None
+        if h_ret == <_c_api.UnitSpaceHandle>0: return None
         return _unit_space_from_capi(h_ret, owned=True)
 
-    def axes(self, ):
+    def axes(self):
         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.DiscreteSpace_axes(self.handle)
-        if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=True)
 
-    def increasing(self, ):
+    def increasing(self):
         cdef _c_api.AxesMapStringBoolHandle h_ret = _c_api.DiscreteSpace_increasing(self.handle)
-        if h_ret == <_c_api.AxesMapStringBoolHandle>0:
-            return None
+        if h_ret == <_c_api.AxesMapStringBoolHandle>0: return None
         return _axes_map_string_bool_from_capi(h_ret, owned=True)
 
-    def knobs(self, ):
+    def knobs(self):
         cdef _c_api.PortsHandle h_ret = _c_api.DiscreteSpace_knobs(self.handle)
-        if h_ret == <_c_api.PortsHandle>0:
-            return None
+        if h_ret == <_c_api.PortsHandle>0: return None
         return _ports_from_capi(h_ret, owned=True)
 
-    def validate_unit_space_dimensionality_matches_knobs(self, ):
+    def validate_unit_space_dimensionality_matches_knobs(self):
         _c_api.DiscreteSpace_validate_unit_space_dimensionality_matches_knobs(self.handle)
 
-    def validate_knob_uniqueness(self, ):
+    def validate_knob_uniqueness(self):
         _c_api.DiscreteSpace_validate_knob_uniqueness(self.handle)
 
     def get_axis(self, InstrumentPort knob):
@@ -142,15 +132,19 @@ cdef class DiscreteSpace:
 
     def get_domain(self, InstrumentPort knob):
         cdef _c_api.DomainHandle h_ret = _c_api.DiscreteSpace_get_domain(self.handle, knob.handle if knob is not None else <_c_api.InstrumentPortHandle>0)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=False)
 
     def get_projection(self, AxesInstrumentPort projection):
         cdef _c_api.AxesLabelledControlArrayHandle h_ret = _c_api.DiscreteSpace_get_projection(self.handle, projection.handle if projection is not None else <_c_api.AxesInstrumentPortHandle>0)
-        if h_ret == <_c_api.AxesLabelledControlArrayHandle>0:
-            return None
+        if h_ret == <_c_api.AxesLabelledControlArrayHandle>0: return None
         return _axes_labelled_control_array_from_capi(h_ret, owned=False)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef DiscreteSpace _discrete_space_from_capi(_c_api.DiscreteSpaceHandle h, bint owned=True):
     if h == <_c_api.DiscreteSpaceHandle>0:

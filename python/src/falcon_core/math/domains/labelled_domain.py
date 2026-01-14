@@ -68,11 +68,11 @@ class LabelledDomain:
         ret = self._c.copy()
         return LabelledDomain._from_capi(ret)
 
-    def equal(self, other: LabelledDomain) -> None:
+    def equal(self, other: LabelledDomain) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: LabelledDomain) -> None:
+    def not_equal(self, other: LabelledDomain) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -90,35 +90,31 @@ class LabelledDomain:
         if ret is None: return None
         return Domain._from_capi(ret)
 
-    def matching_port(self, port: InstrumentPort) -> None:
+    def matching_port(self, port: InstrumentPort) -> bool:
         ret = self._c.matching_port(port._c if port is not None else None)
         return ret
 
-    def lesser_bound(self, ) -> None:
+    def lesser_bound(self, ) -> float:
         ret = self._c.lesser_bound()
         return ret
 
-    def greater_bound(self, ) -> None:
+    def greater_bound(self, ) -> float:
         ret = self._c.greater_bound()
         return ret
 
-    def lesser_bound_contained(self, ) -> None:
+    def lesser_bound_contained(self, ) -> bool:
         ret = self._c.lesser_bound_contained()
         return ret
 
-    def greater_bound_contained(self, ) -> None:
+    def greater_bound_contained(self, ) -> bool:
         ret = self._c.greater_bound_contained()
         return ret
 
-    def contains(self, value: Any) -> None:
+    def contains(self, value: Any) -> bool:
         ret = self._c.contains(value)
         return ret
 
-    def get_range(self, ) -> None:
-        ret = self._c.get_range()
-        return ret
-
-    def center(self, ) -> None:
+    def center(self, ) -> float:
         ret = self._c.center()
         return ret
 
@@ -130,11 +126,11 @@ class LabelledDomain:
         ret = self._c.union(other._c if other is not None else None)
         return LabelledDomain._from_capi(ret)
 
-    def is_empty(self, ) -> None:
+    def is_empty(self, ) -> bool:
         ret = self._c.is_empty()
         return ret
 
-    def contains_domain(self, other: LabelledDomain) -> None:
+    def contains_domain(self, other: LabelledDomain) -> bool:
         ret = self._c.contains_domain(other._c if other is not None else None)
         return ret
 
@@ -146,9 +142,20 @@ class LabelledDomain:
         ret = self._c.scale(scale)
         return LabelledDomain._from_capi(ret)
 
-    def transform(self, other: LabelledDomain, value: Any) -> None:
+    def transform(self, other: LabelledDomain, value: Any) -> float:
         ret = self._c.transform(other._c if other is not None else None, value)
         return ret
+
+    @property
+    def range(self) -> float:
+        ret = self._c.get_range()
+        return ret
+
+    def __repr__(self):
+        return f"LabelledDomain({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

@@ -173,8 +173,8 @@
         ],
         "include_dirs": [
             "/usr/local/include/falcon-core-c-api",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi",
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src"
         ],
         "language": "c++",
         "libraries": [
@@ -188,7 +188,7 @@
             "/usr/local/lib"
         ],
         "sources": [
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi/axes_coupled_labelled_domain.pyx"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi/axes_coupled_labelled_domain.pyx"
         ]
     },
     "module_name": "falcon_core._capi.axes_coupled_labelled_domain"
@@ -1327,51 +1327,56 @@ static int __Pyx_init_co_variables(void) {
 #include <stddef.h>
 #include <stdint.h>
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
-#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
-#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include "falcon_core/generic/MapConnectionDouble_c_api.h"
@@ -1379,51 +1384,46 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
-#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/communications/messages/StandardRequest_c_api.h"
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
@@ -1486,10 +1486,10 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
-#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
+#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
 #include <string.h>
@@ -1974,6 +1974,7 @@ typedef struct {
 struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain;
 struct __pyx_obj_11falcon_core_5_capi_28list_coupled_labelled_domain_ListCoupledLabelledDomain;
 struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain;
+struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__;
 struct __pyx_array_obj;
 struct __pyx_MemviewEnum_obj;
 struct __pyx_memoryview_obj;
@@ -2047,7 +2048,7 @@ typedef void *__pyx_t_6_c_api_ChannelHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle             # <<<<<<<<<<<<<<
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
+ * ctypedef void* HDF5DataHandle
 */
 typedef void *__pyx_t_6_c_api_ChannelsHandle;
 
@@ -2055,32 +2056,32 @@ typedef void *__pyx_t_6_c_api_ChannelsHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle             # <<<<<<<<<<<<<<
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
 */
 typedef void *__pyx_t_6_c_api_GnameHandle;
 
 /* "_c_api.pxd":19
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
- * ctypedef void* HDF5DataHandle
- * ctypedef void* MeasurementRequestHandle
-*/
-typedef void *__pyx_t_6_c_api_TimeHandle;
-
-/* "_c_api.pxd":20
- * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
- * ctypedef void* MeasurementResponseHandle
 */
 typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 
-/* "_c_api.pxd":21
- * ctypedef void* TimeHandle
+/* "_c_api.pxd":20
+ * ctypedef void* GnameHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* MeasurementRequestHandle
+ * ctypedef void* MeasurementResponseHandle
+*/
+typedef void *__pyx_t_6_c_api_TimeHandle;
+
+/* "_c_api.pxd":21
+ * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle             # <<<<<<<<<<<<<<
  * ctypedef void* MeasurementResponseHandle
  * ctypedef void* StandardRequestHandle
@@ -2088,7 +2089,7 @@ typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 typedef void *__pyx_t_6_c_api_MeasurementRequestHandle;
 
 /* "_c_api.pxd":22
- * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
  * ctypedef void* MeasurementResponseHandle             # <<<<<<<<<<<<<<
  * ctypedef void* StandardRequestHandle
@@ -3001,7 +3002,7 @@ typedef void *__pyx_t_6_c_api_PortTransformsHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle             # <<<<<<<<<<<<<<
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
 */
 typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
 
@@ -3009,7 +3010,7 @@ typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
 */
 typedef void *__pyx_t_6_c_api_PointHandle;
@@ -3017,32 +3018,41 @@ typedef void *__pyx_t_6_c_api_PointHandle;
 /* "_c_api.pxd":125
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
  * ctypedef void* UnitSpaceHandle
- * ctypedef void* AxesDoubleHandle
+ * ctypedef void* VectorHandle
 */
-typedef void *__pyx_t_6_c_api_VectorHandle;
+typedef void *__pyx_t_6_c_api_QuantityHandle;
 
 /* "_c_api.pxd":126
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
- * ctypedef void* AxesIntHandle
 */
 typedef void *__pyx_t_6_c_api_UnitSpaceHandle;
 
 /* "_c_api.pxd":127
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AxesDoubleHandle
+ * ctypedef void* AxesIntHandle
+*/
+typedef void *__pyx_t_6_c_api_VectorHandle;
+
+/* "_c_api.pxd":128
+ * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
 */
 typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 
-/* "_c_api.pxd":128
- * ctypedef void* UnitSpaceHandle
+/* "_c_api.pxd":129
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesDiscretizerHandle
@@ -3050,7 +3060,7 @@ typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesIntHandle;
 
-/* "_c_api.pxd":129
+/* "_c_api.pxd":130
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle             # <<<<<<<<<<<<<<
@@ -3059,7 +3069,7 @@ typedef void *__pyx_t_6_c_api_AxesIntHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 
-/* "_c_api.pxd":130
+/* "_c_api.pxd":131
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3068,7 +3078,7 @@ typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 
-/* "_c_api.pxd":131
+/* "_c_api.pxd":132
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3077,7 +3087,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 
-/* "_c_api.pxd":132
+/* "_c_api.pxd":133
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle             # <<<<<<<<<<<<<<
@@ -3086,7 +3096,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 
-/* "_c_api.pxd":133
+/* "_c_api.pxd":134
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle             # <<<<<<<<<<<<<<
@@ -3095,7 +3105,7 @@ typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 
-/* "_c_api.pxd":134
+/* "_c_api.pxd":135
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle             # <<<<<<<<<<<<<<
@@ -3104,7 +3114,7 @@ typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 
-/* "_c_api.pxd":135
+/* "_c_api.pxd":136
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle             # <<<<<<<<<<<<<<
@@ -3113,7 +3123,7 @@ typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 
-/* "_c_api.pxd":136
+/* "_c_api.pxd":137
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3122,7 +3132,7 @@ typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 
-/* "_c_api.pxd":137
+/* "_c_api.pxd":138
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3131,63 +3141,54 @@ typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArray1DHandle;
 
-/* "_c_api.pxd":138
+/* "_c_api.pxd":139
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
+ * ctypedef void* ControlArray1DHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArrayHandle;
 
-/* "_c_api.pxd":139
+/* "_c_api.pxd":140
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle             # <<<<<<<<<<<<<<
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
+ * ctypedef void* ControlArray1DHandle
+ * ctypedef void* ControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArray1DHandle;
 
-/* "_c_api.pxd":140
+/* "_c_api.pxd":141
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
- * ctypedef void* IncreasingAlignmentHandle
- * ctypedef void* ControlArray1DHandle
-*/
-typedef void *__pyx_t_6_c_api_QuantityHandle;
-
-/* "_c_api.pxd":141
- * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ControlArray1DHandle
- * ctypedef void* ControlArrayHandle
-*/
-typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
-
-/* "_c_api.pxd":142
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* ControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* ControlArrayHandle
- * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* IncreasingAlignmentHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArray1DHandle;
 
-/* "_c_api.pxd":143
- * ctypedef void* IncreasingAlignmentHandle
+/* "_c_api.pxd":142
+ * ctypedef void* AxesLabelledMeasuredArray1DHandle
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
- * ctypedef void* LabelledControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 
-/* "_c_api.pxd":144
+/* "_c_api.pxd":143
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* LabelledControlArrayHandle
+*/
+typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
+
+/* "_c_api.pxd":144
+ * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledControlArrayHandle
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3195,7 +3196,7 @@ typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 typedef void *__pyx_t_6_c_api_LabelledControlArray1DHandle;
 
 /* "_c_api.pxd":145
- * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
  * ctypedef void* LabelledControlArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3316,7 +3317,7 @@ typedef void *__pyx_t_6_c_api_DomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
+ * ctypedef void* AdjacencyHandle
 */
 typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
 
@@ -3324,131 +3325,131 @@ typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AdjacencyHandle
  * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
 */
 typedef void *__pyx_t_6_c_api_LoaderHandle;
 
 /* "_c_api.pxd":160
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
 */
-typedef void *__pyx_t_6_c_api_ConfigHandle;
+typedef void *__pyx_t_6_c_api_AdjacencyHandle;
 
 /* "_c_api.pxd":161
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GroupHandle
  * ctypedef void* AdjacencyHandle
+ * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GroupHandle
+ * ctypedef void* VoltageConstraintsHandle
 */
-typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
+typedef void *__pyx_t_6_c_api_ConfigHandle;
 
 /* "_c_api.pxd":162
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
- * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AdjacencyHandle
- * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* ConfigHandle
+ * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
 */
 typedef void *__pyx_t_6_c_api_GroupHandle;
 
 /* "_c_api.pxd":163
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GateGeometryArray1DHandle
- * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+ * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
 */
-typedef void *__pyx_t_6_c_api_AdjacencyHandle;
+typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
 
 /* "_c_api.pxd":164
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* GateGeometryArray1DHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
+
+/* "_c_api.pxd":165
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
+
+/* "_c_api.pxd":166
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
 */
 typedef void *__pyx_t_6_c_api_GateGeometryArray1DHandle;
 
-/* "_c_api.pxd":165
- * ctypedef void* AdjacencyHandle
+/* "_c_api.pxd":167
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
 */
 typedef void *__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":166
+/* "_c_api.pxd":168
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
+ * ctypedef void* ConnectionsHandle
 */
 typedef void *__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":167
+/* "_c_api.pxd":169
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGateWithNeighborsHandle
- * ctypedef void* ConnectionHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
-
-/* "_c_api.pxd":168
- * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
-
-/* "_c_api.pxd":169
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
  * ctypedef void* ConnectionHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConnectionsHandle
  * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionHandle;
 
 /* "_c_api.pxd":170
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* RightReservoirWithImplantedOhmicHandle
  * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedanceHandle
- * ctypedef void* ConnectionsHandle
-*/
-typedef void *__pyx_t_6_c_api_GateRelationsHandle;
-
-/* "_c_api.pxd":171
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionsHandle
- * ctypedef void* ImpedancesHandle
-*/
-typedef void *__pyx_t_6_c_api_ImpedanceHandle;
-
-/* "_c_api.pxd":172
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
  * ctypedef void* ConnectionsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedancesHandle
- * ctypedef void* SymbolUnitHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 
-/* "_c_api.pxd":173
- * ctypedef void* ImpedanceHandle
+/* "_c_api.pxd":171
+ * ctypedef void* ConnectionHandle
  * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedanceHandle
+ * ctypedef void* ImpedancesHandle
+*/
+typedef void *__pyx_t_6_c_api_GateRelationsHandle;
+
+/* "_c_api.pxd":172
+ * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedancesHandle
+ * ctypedef void* SymbolUnitHandle
+*/
+typedef void *__pyx_t_6_c_api_ImpedanceHandle;
+
+/* "_c_api.pxd":173
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle             # <<<<<<<<<<<<<<
  * ctypedef void* SymbolUnitHandle
  * 
@@ -3456,7 +3457,7 @@ typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 typedef void *__pyx_t_6_c_api_ImpedancesHandle;
 
 /* "_c_api.pxd":174
- * ctypedef void* ConnectionsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle
  * ctypedef void* SymbolUnitHandle             # <<<<<<<<<<<<<<
  * 
@@ -3536,6 +3537,23 @@ struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupled
   PyObject_HEAD
   __pyx_t_6_c_api_AxesCoupledLabelledDomainHandle handle;
   int owned;
+};
+
+
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":127
+ *         return ret
+ * 
+ *     def __iter__(self):             # <<<<<<<<<<<<<<
+ *         for i in range(len(self)):
+ *             yield self[i]
+*/
+struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ {
+  PyObject_HEAD
+  Py_ssize_t __pyx_v_i;
+  struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self;
+  Py_ssize_t __pyx_t_0;
+  Py_ssize_t __pyx_t_1;
+  Py_ssize_t __pyx_t_2;
 };
 
 
@@ -4397,8 +4415,28 @@ static CYTHON_INLINE PyObject* __Pyx_decode_bytes(
         start, stop, encoding, errors, decode_func);
 }
 
+/* pep479.proto */
+static void __Pyx_Generator_Replace_StopIteration(int in_async_gen);
+
+/* PyObjectCallNoArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+
 /* AllocateExtensionType.proto */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final);
+
+/* CheckTypeForFreelists.proto */
+#if CYTHON_USE_FREELISTS
+#if CYTHON_USE_TYPE_SPECS
+#define __PYX_CHECK_FINAL_TYPE_FOR_FREELISTS(t, expected_tp, expected_size) ((int) ((t) == (expected_tp)))
+#define __PYX_CHECK_TYPE_FOR_FREELIST_FLAGS  Py_TPFLAGS_IS_ABSTRACT
+#else
+#define __PYX_CHECK_FINAL_TYPE_FOR_FREELISTS(t, expected_tp, expected_size) ((int) ((t)->tp_basicsize == (expected_size)))
+#define __PYX_CHECK_TYPE_FOR_FREELIST_FLAGS  (Py_TPFLAGS_IS_ABSTRACT | Py_TPFLAGS_HEAPTYPE)
+#endif
+#define __PYX_CHECK_TYPE_FOR_FREELISTS(t, expected_tp, expected_size)\
+    (__PYX_CHECK_FINAL_TYPE_FOR_FREELISTS((t), (expected_tp), (expected_size)) &\
+     (int) (!__Pyx_PyType_HasFeature((t), __PYX_CHECK_TYPE_FOR_FREELIST_FLAGS)))
+#endif
 
 /* CallTypeTraverse.proto */
 #if !CYTHON_USE_TYPE_SPECS || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX < 0x03090000)
@@ -4431,9 +4469,6 @@ static int __Pyx__SetItemOnTypeDict(PyTypeObject *tp, PyObject *k, PyObject *v);
 
 /* FixUpExtensionType.proto */
 static CYTHON_INLINE int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type);
-
-/* PyObjectCallNoArg.proto (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 
 /* PyObjectGetMethod.proto (used by PyObjectCallMethod0) */
 #if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
@@ -4805,6 +4840,102 @@ static void __Pyx_init_runtime_version(void);
 #endif
 static unsigned long __Pyx_get_runtime_version(void);
 
+/* IterNextPlain.proto (used by CoroutineBase) */
+static CYTHON_INLINE PyObject *__Pyx_PyIter_Next_Plain(PyObject *iterator);
+#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030A0000
+static PyObject *__Pyx_GetBuiltinNext_LimitedAPI(void);
+#endif
+
+/* ReturnWithStopIteration.proto (used by CoroutineBase) */
+static CYTHON_INLINE void __Pyx_ReturnWithStopIteration(PyObject* value, int async, int iternext);
+
+/* CoroutineBase.proto (used by Generator) */
+struct __pyx_CoroutineObject;
+typedef PyObject *(*__pyx_coroutine_body_t)(struct __pyx_CoroutineObject *, PyThreadState *, PyObject *);
+#if CYTHON_USE_EXC_INFO_STACK
+#define __Pyx_ExcInfoStruct  _PyErr_StackItem
+#else
+typedef struct {
+    PyObject *exc_type;
+    PyObject *exc_value;
+    PyObject *exc_traceback;
+} __Pyx_ExcInfoStruct;
+#endif
+typedef struct __pyx_CoroutineObject {
+    PyObject_HEAD
+    __pyx_coroutine_body_t body;
+    PyObject *closure;
+    __Pyx_ExcInfoStruct gi_exc_state;
+#if PY_VERSION_HEX < 0x030C0000 || CYTHON_COMPILING_IN_LIMITED_API
+    PyObject *gi_weakreflist;
+#endif
+    PyObject *classobj;
+    PyObject *yieldfrom;
+    __Pyx_pyiter_sendfunc yieldfrom_am_send;
+    PyObject *gi_name;
+    PyObject *gi_qualname;
+    PyObject *gi_modulename;
+    PyObject *gi_code;
+    PyObject *gi_frame;
+#if CYTHON_USE_SYS_MONITORING && (CYTHON_PROFILE || CYTHON_TRACE)
+    PyMonitoringState __pyx_pymonitoring_state[__Pyx_MonitoringEventTypes_CyGen_count];
+    uint64_t __pyx_pymonitoring_version;
+#endif
+    int resume_label;
+    char is_running;
+} __pyx_CoroutineObject;
+static __pyx_CoroutineObject *__Pyx__Coroutine_New(
+    PyTypeObject *type, __pyx_coroutine_body_t body, PyObject *code, PyObject *closure,
+    PyObject *name, PyObject *qualname, PyObject *module_name);
+static __pyx_CoroutineObject *__Pyx__Coroutine_NewInit(
+            __pyx_CoroutineObject *gen, __pyx_coroutine_body_t body, PyObject *code, PyObject *closure,
+            PyObject *name, PyObject *qualname, PyObject *module_name);
+static CYTHON_INLINE void __Pyx_Coroutine_ExceptionClear(__Pyx_ExcInfoStruct *self);
+static int __Pyx_Coroutine_clear(PyObject *self);
+static __Pyx_PySendResult __Pyx_Coroutine_AmSend(PyObject *self, PyObject *value, PyObject **retval);
+static PyObject *__Pyx_Coroutine_Send(PyObject *self, PyObject *value);
+static __Pyx_PySendResult __Pyx_Coroutine_Close(PyObject *self, PyObject **retval);
+static PyObject *__Pyx_Coroutine_Throw(PyObject *gen, PyObject *args);
+#if CYTHON_USE_EXC_INFO_STACK
+#define __Pyx_Coroutine_SwapException(self)
+#define __Pyx_Coroutine_ResetAndClearException(self)  __Pyx_Coroutine_ExceptionClear(&(self)->gi_exc_state)
+#else
+#define __Pyx_Coroutine_SwapException(self) {\
+    __Pyx_ExceptionSwap(&(self)->gi_exc_state.exc_type, &(self)->gi_exc_state.exc_value, &(self)->gi_exc_state.exc_traceback);\
+    __Pyx_Coroutine_ResetFrameBackpointer(&(self)->gi_exc_state);\
+    }
+#define __Pyx_Coroutine_ResetAndClearException(self) {\
+    __Pyx_ExceptionReset((self)->gi_exc_state.exc_type, (self)->gi_exc_state.exc_value, (self)->gi_exc_state.exc_traceback);\
+    (self)->gi_exc_state.exc_type = (self)->gi_exc_state.exc_value = (self)->gi_exc_state.exc_traceback = NULL;\
+    }
+#endif
+#if CYTHON_FAST_THREAD_STATE
+#define __Pyx_PyGen_FetchStopIterationValue(pvalue)\
+    __Pyx_PyGen__FetchStopIterationValue(__pyx_tstate, pvalue)
+#else
+#define __Pyx_PyGen_FetchStopIterationValue(pvalue)\
+    __Pyx_PyGen__FetchStopIterationValue(__Pyx_PyThreadState_Current, pvalue)
+#endif
+static int __Pyx_PyGen__FetchStopIterationValue(PyThreadState *tstate, PyObject **pvalue);
+static CYTHON_INLINE void __Pyx_Coroutine_ResetFrameBackpointer(__Pyx_ExcInfoStruct *exc_state);
+static char __Pyx_Coroutine_test_and_set_is_running(__pyx_CoroutineObject *gen);
+static void __Pyx_Coroutine_unset_is_running(__pyx_CoroutineObject *gen);
+static char __Pyx_Coroutine_get_is_running(__pyx_CoroutineObject *gen);
+static PyObject *__Pyx_Coroutine_get_is_running_getter(PyObject *gen, void *closure);
+#if __PYX_HAS_PY_AM_SEND == 2
+static void __Pyx_SetBackportTypeAmSend(PyTypeObject *type, __Pyx_PyAsyncMethodsStruct *static_amsend_methods, __Pyx_pyiter_sendfunc am_send);
+#endif
+static PyObject *__Pyx_Coroutine_fail_reduce_ex(PyObject *self, PyObject *arg);
+
+/* Generator.proto */
+#define __Pyx_Generator_USED
+#define __Pyx_Generator_CheckExact(obj) __Pyx_IS_TYPE(obj, __pyx_mstate_global->__pyx_GeneratorType)
+#define __Pyx_Generator_New(body, code, closure, name, qualname, module_name)\
+    __Pyx__Coroutine_New(__pyx_mstate_global->__pyx_GeneratorType, body, code, closure, name, qualname, module_name)
+static PyObject *__Pyx_Generator_Next(PyObject *self);
+static int __pyx_Generator_init(PyObject *module);
+static CYTHON_INLINE PyObject *__Pyx_Generator_GetInlinedResult(PyObject *self);
+
 /* CheckBinaryVersion.proto */
 static int __Pyx_check_binary_version(unsigned long ct_version, unsigned long rt_version, int allow_newer);
 
@@ -5025,12 +5156,16 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_38__ne__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_40to_json(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
 static Py_ssize_t __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_42__len__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_idx); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_46append(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_48from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_46__iter__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49append(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__repr__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_55__str__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_57__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_59__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -5059,11 +5194,13 @@ typedef struct {
   PyTypeObject *__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain;
   PyTypeObject *__pyx_ptype_11falcon_core_5_capi_28list_coupled_labelled_domain_ListCoupledLabelledDomain;
   PyObject *__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain;
+  PyObject *__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__;
   PyObject *__pyx_type___pyx_array;
   PyObject *__pyx_type___pyx_MemviewEnum;
   PyObject *__pyx_type___pyx_memoryview;
   PyObject *__pyx_type___pyx_memoryviewslice;
   PyTypeObject *__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain;
+  PyTypeObject *__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__;
   PyTypeObject *__pyx_array_type;
   PyTypeObject *__pyx_MemviewEnum_type;
   PyTypeObject *__pyx_memoryview_type;
@@ -5073,10 +5210,15 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[1];
-  PyObject *__pyx_codeobj_tab[21];
-  PyObject *__pyx_string_tab[197];
+  PyObject *__pyx_codeobj_tab[22];
+  PyObject *__pyx_string_tab[206];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
+
+#if CYTHON_USE_FREELISTS
+struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *__pyx_freelist_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__[8];
+int __pyx_freecount_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__;
+#endif
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
 
@@ -5090,6 +5232,14 @@ PyTypeObject *__pyx_CyFunctionType;
 
 /* CodeObjectCache.module_state_decls */
 struct __Pyx_CodeObjectCache __pyx_code_cache;
+
+/* IterNextPlain.module_state_decls */
+#if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030A0000
+PyObject *__Pyx_GetBuiltinNext_LimitedAPI_cache;
+#endif
+
+/* Generator.module_state_decls */
+PyTypeObject *__pyx_GeneratorType;
 
 /* #### Code section: module_state_end ### */
 } __pyx_mstatetype;
@@ -5127,22 +5277,22 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Dimension_d_is_not_direct __pyx_string_tab[8]
 #define __pyx_kp_u_Empty_shape_tuple_for_cython_arr __pyx_string_tab[9]
 #define __pyx_kp_u_Failed_to_create_AxesCoupledLabe __pyx_string_tab[10]
-#define __pyx_kp_u_Index_out_of_bounds __pyx_string_tab[11]
-#define __pyx_kp_u_Index_out_of_bounds_axis_d __pyx_string_tab[12]
-#define __pyx_kp_u_Indirect_dimensions_not_supporte __pyx_string_tab[13]
-#define __pyx_kp_u_Invalid_mode_expected_c_or_fortr __pyx_string_tab[14]
-#define __pyx_kp_u_Invalid_shape_in_axis __pyx_string_tab[15]
-#define __pyx_kp_u_MemoryView_of __pyx_string_tab[16]
-#define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[17]
-#define __pyx_kp_u_Out_of_bounds_on_buffer_access_a __pyx_string_tab[18]
-#define __pyx_kp_u_Step_may_not_be_zero_axis_d __pyx_string_tab[19]
-#define __pyx_kp_u_Unable_to_convert_item_to_object __pyx_string_tab[20]
-#define __pyx_kp_u__2 __pyx_string_tab[21]
-#define __pyx_kp_u__3 __pyx_string_tab[22]
-#define __pyx_kp_u__4 __pyx_string_tab[23]
-#define __pyx_kp_u__5 __pyx_string_tab[24]
-#define __pyx_kp_u__6 __pyx_string_tab[25]
-#define __pyx_kp_u__7 __pyx_string_tab[26]
+#define __pyx_kp_u_Index_out_of_bounds_axis_d __pyx_string_tab[11]
+#define __pyx_kp_u_Indirect_dimensions_not_supporte __pyx_string_tab[12]
+#define __pyx_kp_u_Invalid_mode_expected_c_or_fortr __pyx_string_tab[13]
+#define __pyx_kp_u_Invalid_shape_in_axis __pyx_string_tab[14]
+#define __pyx_kp_u_MemoryView_of __pyx_string_tab[15]
+#define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[16]
+#define __pyx_kp_u_Out_of_bounds_on_buffer_access_a __pyx_string_tab[17]
+#define __pyx_kp_u_Step_may_not_be_zero_axis_d __pyx_string_tab[18]
+#define __pyx_kp_u_Unable_to_convert_item_to_object __pyx_string_tab[19]
+#define __pyx_kp_u__2 __pyx_string_tab[20]
+#define __pyx_kp_u__3 __pyx_string_tab[21]
+#define __pyx_kp_u__4 __pyx_string_tab[22]
+#define __pyx_kp_u__5 __pyx_string_tab[23]
+#define __pyx_kp_u__6 __pyx_string_tab[24]
+#define __pyx_kp_u__7 __pyx_string_tab[25]
+#define __pyx_kp_u__8 __pyx_string_tab[26]
 #define __pyx_kp_u_add_note __pyx_string_tab[27]
 #define __pyx_kp_u_and __pyx_string_tab[28]
 #define __pyx_kp_u_at_0x __pyx_string_tab[29]
@@ -5157,162 +5307,171 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_isenabled __pyx_string_tab[38]
 #define __pyx_kp_u_itemsize_0_for_cython_array __pyx_string_tab[39]
 #define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[40]
-#define __pyx_kp_u_object __pyx_string_tab[41]
-#define __pyx_kp_u_src_falcon_core__capi_axes_coupl __pyx_string_tab[42]
-#define __pyx_kp_u_strided_and_direct __pyx_string_tab[43]
-#define __pyx_kp_u_strided_and_direct_or_indirect __pyx_string_tab[44]
-#define __pyx_kp_u_strided_and_indirect __pyx_string_tab[45]
-#define __pyx_kp_u_stringsource __pyx_string_tab[46]
-#define __pyx_kp_u_unable_to_allocate_array_data __pyx_string_tab[47]
-#define __pyx_kp_u_unable_to_allocate_shape_and_str __pyx_string_tab[48]
-#define __pyx_n_u_ASCII __pyx_string_tab[49]
-#define __pyx_n_u_AxesCoupledLabelledDomain __pyx_string_tab[50]
-#define __pyx_n_u_AxesCoupledLabelledDomain___redu __pyx_string_tab[51]
-#define __pyx_n_u_AxesCoupledLabelledDomain___sets __pyx_string_tab[52]
-#define __pyx_n_u_AxesCoupledLabelledDomain_append __pyx_string_tab[53]
-#define __pyx_n_u_AxesCoupledLabelledDomain_at __pyx_string_tab[54]
-#define __pyx_n_u_AxesCoupledLabelledDomain_clear __pyx_string_tab[55]
-#define __pyx_n_u_AxesCoupledLabelledDomain_contai __pyx_string_tab[56]
-#define __pyx_n_u_AxesCoupledLabelledDomain_copy __pyx_string_tab[57]
-#define __pyx_n_u_AxesCoupledLabelledDomain_empty __pyx_string_tab[58]
-#define __pyx_n_u_AxesCoupledLabelledDomain_equal __pyx_string_tab[59]
-#define __pyx_n_u_AxesCoupledLabelledDomain_erase __pyx_string_tab[60]
-#define __pyx_n_u_AxesCoupledLabelledDomain_from_j __pyx_string_tab[61]
-#define __pyx_n_u_AxesCoupledLabelledDomain_from_l __pyx_string_tab[62]
-#define __pyx_n_u_AxesCoupledLabelledDomain_index __pyx_string_tab[63]
-#define __pyx_n_u_AxesCoupledLabelledDomain_inters __pyx_string_tab[64]
-#define __pyx_n_u_AxesCoupledLabelledDomain_items __pyx_string_tab[65]
-#define __pyx_n_u_AxesCoupledLabelledDomain_new __pyx_string_tab[66]
-#define __pyx_n_u_AxesCoupledLabelledDomain_new_em __pyx_string_tab[67]
-#define __pyx_n_u_AxesCoupledLabelledDomain_not_eq __pyx_string_tab[68]
-#define __pyx_n_u_AxesCoupledLabelledDomain_push_b __pyx_string_tab[69]
-#define __pyx_n_u_AxesCoupledLabelledDomain_size __pyx_string_tab[70]
-#define __pyx_n_u_AxesCoupledLabelledDomain_to_jso __pyx_string_tab[71]
-#define __pyx_n_u_Ellipsis __pyx_string_tab[72]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[73]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[74]
-#define __pyx_n_u_Sequence __pyx_string_tab[75]
-#define __pyx_n_u_View_MemoryView __pyx_string_tab[76]
-#define __pyx_n_u_abc __pyx_string_tab[77]
-#define __pyx_n_u_allocate_buffer __pyx_string_tab[78]
-#define __pyx_n_u_append __pyx_string_tab[79]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[80]
-#define __pyx_n_u_at __pyx_string_tab[81]
-#define __pyx_n_u_b_json __pyx_string_tab[82]
-#define __pyx_n_u_base __pyx_string_tab[83]
-#define __pyx_n_u_buffer_size __pyx_string_tab[84]
-#define __pyx_n_u_c __pyx_string_tab[85]
-#define __pyx_n_u_c_2 __pyx_string_tab[86]
-#define __pyx_n_u_class __pyx_string_tab[87]
-#define __pyx_n_u_class_getitem __pyx_string_tab[88]
-#define __pyx_n_u_clear __pyx_string_tab[89]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[90]
-#define __pyx_n_u_cls __pyx_string_tab[91]
-#define __pyx_n_u_contains __pyx_string_tab[92]
-#define __pyx_n_u_copy __pyx_string_tab[93]
-#define __pyx_n_u_count __pyx_string_tab[94]
-#define __pyx_n_u_data __pyx_string_tab[95]
-#define __pyx_n_u_dict __pyx_string_tab[96]
-#define __pyx_n_u_dtype_is_object __pyx_string_tab[97]
-#define __pyx_n_u_empty __pyx_string_tab[98]
-#define __pyx_n_u_encode __pyx_string_tab[99]
-#define __pyx_n_u_enumerate __pyx_string_tab[100]
-#define __pyx_n_u_equal __pyx_string_tab[101]
-#define __pyx_n_u_erase_at __pyx_string_tab[102]
-#define __pyx_n_u_error __pyx_string_tab[103]
-#define __pyx_n_u_falcon_core__capi_axes_coupled_l __pyx_string_tab[104]
-#define __pyx_n_u_flags __pyx_string_tab[105]
-#define __pyx_n_u_format __pyx_string_tab[106]
-#define __pyx_n_u_fortran __pyx_string_tab[107]
-#define __pyx_n_u_from_json __pyx_string_tab[108]
-#define __pyx_n_u_from_list __pyx_string_tab[109]
-#define __pyx_n_u_func __pyx_string_tab[110]
-#define __pyx_n_u_getstate __pyx_string_tab[111]
-#define __pyx_n_u_h __pyx_string_tab[112]
-#define __pyx_n_u_h_ret __pyx_string_tab[113]
-#define __pyx_n_u_handle __pyx_string_tab[114]
-#define __pyx_n_u_id __pyx_string_tab[115]
-#define __pyx_n_u_idx __pyx_string_tab[116]
-#define __pyx_n_u_import __pyx_string_tab[117]
-#define __pyx_n_u_index __pyx_string_tab[118]
-#define __pyx_n_u_intersection __pyx_string_tab[119]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[120]
-#define __pyx_n_u_item __pyx_string_tab[121]
-#define __pyx_n_u_items __pyx_string_tab[122]
-#define __pyx_n_u_itemsize __pyx_string_tab[123]
-#define __pyx_n_u_json __pyx_string_tab[124]
-#define __pyx_n_u_main __pyx_string_tab[125]
-#define __pyx_n_u_memview __pyx_string_tab[126]
-#define __pyx_n_u_mode __pyx_string_tab[127]
-#define __pyx_n_u_module __pyx_string_tab[128]
-#define __pyx_n_u_name __pyx_string_tab[129]
-#define __pyx_n_u_name_2 __pyx_string_tab[130]
-#define __pyx_n_u_ndim __pyx_string_tab[131]
-#define __pyx_n_u_new __pyx_string_tab[132]
-#define __pyx_n_u_new_2 __pyx_string_tab[133]
-#define __pyx_n_u_new_empty __pyx_string_tab[134]
-#define __pyx_n_u_not_equal __pyx_string_tab[135]
-#define __pyx_n_u_obj __pyx_string_tab[136]
-#define __pyx_n_u_other __pyx_string_tab[137]
-#define __pyx_n_u_out_buffer __pyx_string_tab[138]
-#define __pyx_n_u_pack __pyx_string_tab[139]
-#define __pyx_n_u_pop __pyx_string_tab[140]
-#define __pyx_n_u_push_back __pyx_string_tab[141]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[142]
-#define __pyx_n_u_pyx_checksum __pyx_string_tab[143]
-#define __pyx_n_u_pyx_state __pyx_string_tab[144]
-#define __pyx_n_u_pyx_type __pyx_string_tab[145]
-#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[146]
-#define __pyx_n_u_pyx_vtable __pyx_string_tab[147]
-#define __pyx_n_u_qualname __pyx_string_tab[148]
-#define __pyx_n_u_reduce __pyx_string_tab[149]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[150]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[151]
-#define __pyx_n_u_register __pyx_string_tab[152]
-#define __pyx_n_u_s_json __pyx_string_tab[153]
-#define __pyx_n_u_s_ret __pyx_string_tab[154]
-#define __pyx_n_u_self __pyx_string_tab[155]
-#define __pyx_n_u_set_name __pyx_string_tab[156]
-#define __pyx_n_u_setdefault __pyx_string_tab[157]
-#define __pyx_n_u_setstate __pyx_string_tab[158]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[159]
-#define __pyx_n_u_shape __pyx_string_tab[160]
-#define __pyx_n_u_size __pyx_string_tab[161]
-#define __pyx_n_u_start __pyx_string_tab[162]
-#define __pyx_n_u_step __pyx_string_tab[163]
-#define __pyx_n_u_stop __pyx_string_tab[164]
-#define __pyx_n_u_struct __pyx_string_tab[165]
-#define __pyx_n_u_test __pyx_string_tab[166]
-#define __pyx_n_u_to_json __pyx_string_tab[167]
-#define __pyx_n_u_unpack __pyx_string_tab[168]
-#define __pyx_n_u_update __pyx_string_tab[169]
-#define __pyx_n_u_value __pyx_string_tab[170]
-#define __pyx_n_u_values __pyx_string_tab[171]
-#define __pyx_n_u_x __pyx_string_tab[172]
-#define __pyx_kp_b_iso88591_A_1_iq __pyx_string_tab[173]
-#define __pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M __pyx_string_tab[174]
-#define __pyx_kp_b_iso88591_A_31D_5_z_Z_B_B_C_2S_8_Qa_H_8STT __pyx_string_tab[175]
-#define __pyx_kp_b_iso88591_A_4AT __pyx_string_tab[176]
-#define __pyx_kp_b_iso88591_A_5Qd __pyx_string_tab[177]
-#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P __pyx_string_tab[178]
-#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_S_S_T __pyx_string_tab[179]
-#define __pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy __pyx_string_tab[180]
-#define __pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S __pyx_string_tab[181]
-#define __pyx_kp_b_iso88591_A_9_2S_8_Qa_H_8STTU_Q_9A_q __pyx_string_tab[182]
-#define __pyx_kp_b_iso88591_A_9_iuKW_ddn_o_W_W_X __pyx_string_tab[183]
-#define __pyx_kp_b_iso88591_A_BBaabbffg_6_A_1_6a_V3Nvvzz __pyx_string_tab[184]
-#define __pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G __pyx_string_tab[185]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU __pyx_string_tab[186]
-#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[187]
-#define __pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q __pyx_string_tab[188]
-#define __pyx_kp_b_iso88591_A_at1 __pyx_string_tab[189]
-#define __pyx_kp_b_iso88591_A_iij_6_8_1_1_q __pyx_string_tab[190]
-#define __pyx_kp_b_iso88591_A_q_A_6_1_AU_XWAQ __pyx_string_tab[191]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[192]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[193]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[194]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_3 __pyx_string_tab[195]
-#define __pyx_n_b_O __pyx_string_tab[196]
+#define __pyx_kp_u_not_found_in __pyx_string_tab[41]
+#define __pyx_kp_u_object __pyx_string_tab[42]
+#define __pyx_kp_u_src_falcon_core__capi_axes_coupl __pyx_string_tab[43]
+#define __pyx_kp_u_strided_and_direct __pyx_string_tab[44]
+#define __pyx_kp_u_strided_and_direct_or_indirect __pyx_string_tab[45]
+#define __pyx_kp_u_strided_and_indirect __pyx_string_tab[46]
+#define __pyx_kp_u_stringsource __pyx_string_tab[47]
+#define __pyx_kp_u_unable_to_allocate_array_data __pyx_string_tab[48]
+#define __pyx_kp_u_unable_to_allocate_shape_and_str __pyx_string_tab[49]
+#define __pyx_n_u_ASCII __pyx_string_tab[50]
+#define __pyx_n_u_AxesCoupledLabelledDomain __pyx_string_tab[51]
+#define __pyx_n_u_AxesCoupledLabelledDomain___iter __pyx_string_tab[52]
+#define __pyx_n_u_AxesCoupledLabelledDomain___redu __pyx_string_tab[53]
+#define __pyx_n_u_AxesCoupledLabelledDomain___sets __pyx_string_tab[54]
+#define __pyx_n_u_AxesCoupledLabelledDomain_append __pyx_string_tab[55]
+#define __pyx_n_u_AxesCoupledLabelledDomain_at __pyx_string_tab[56]
+#define __pyx_n_u_AxesCoupledLabelledDomain_clear __pyx_string_tab[57]
+#define __pyx_n_u_AxesCoupledLabelledDomain_contai __pyx_string_tab[58]
+#define __pyx_n_u_AxesCoupledLabelledDomain_copy __pyx_string_tab[59]
+#define __pyx_n_u_AxesCoupledLabelledDomain_empty __pyx_string_tab[60]
+#define __pyx_n_u_AxesCoupledLabelledDomain_equal __pyx_string_tab[61]
+#define __pyx_n_u_AxesCoupledLabelledDomain_erase __pyx_string_tab[62]
+#define __pyx_n_u_AxesCoupledLabelledDomain_from_j __pyx_string_tab[63]
+#define __pyx_n_u_AxesCoupledLabelledDomain_from_l __pyx_string_tab[64]
+#define __pyx_n_u_AxesCoupledLabelledDomain_index __pyx_string_tab[65]
+#define __pyx_n_u_AxesCoupledLabelledDomain_inters __pyx_string_tab[66]
+#define __pyx_n_u_AxesCoupledLabelledDomain_items __pyx_string_tab[67]
+#define __pyx_n_u_AxesCoupledLabelledDomain_new __pyx_string_tab[68]
+#define __pyx_n_u_AxesCoupledLabelledDomain_new_em __pyx_string_tab[69]
+#define __pyx_n_u_AxesCoupledLabelledDomain_not_eq __pyx_string_tab[70]
+#define __pyx_n_u_AxesCoupledLabelledDomain_push_b __pyx_string_tab[71]
+#define __pyx_n_u_AxesCoupledLabelledDomain_size __pyx_string_tab[72]
+#define __pyx_n_u_AxesCoupledLabelledDomain_to_jso __pyx_string_tab[73]
+#define __pyx_n_u_Ellipsis __pyx_string_tab[74]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[75]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[76]
+#define __pyx_n_u_Sequence __pyx_string_tab[77]
+#define __pyx_n_u_View_MemoryView __pyx_string_tab[78]
+#define __pyx_n_u_abc __pyx_string_tab[79]
+#define __pyx_n_u_allocate_buffer __pyx_string_tab[80]
+#define __pyx_n_u_append __pyx_string_tab[81]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[82]
+#define __pyx_n_u_at __pyx_string_tab[83]
+#define __pyx_n_u_b_json __pyx_string_tab[84]
+#define __pyx_n_u_base __pyx_string_tab[85]
+#define __pyx_n_u_buffer_size __pyx_string_tab[86]
+#define __pyx_n_u_c __pyx_string_tab[87]
+#define __pyx_n_u_c_2 __pyx_string_tab[88]
+#define __pyx_n_u_class __pyx_string_tab[89]
+#define __pyx_n_u_class_getitem __pyx_string_tab[90]
+#define __pyx_n_u_clear __pyx_string_tab[91]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[92]
+#define __pyx_n_u_close __pyx_string_tab[93]
+#define __pyx_n_u_cls __pyx_string_tab[94]
+#define __pyx_n_u_contains __pyx_string_tab[95]
+#define __pyx_n_u_copy __pyx_string_tab[96]
+#define __pyx_n_u_count __pyx_string_tab[97]
+#define __pyx_n_u_data __pyx_string_tab[98]
+#define __pyx_n_u_dict __pyx_string_tab[99]
+#define __pyx_n_u_dtype_is_object __pyx_string_tab[100]
+#define __pyx_n_u_empty __pyx_string_tab[101]
+#define __pyx_n_u_encode __pyx_string_tab[102]
+#define __pyx_n_u_enumerate __pyx_string_tab[103]
+#define __pyx_n_u_equal __pyx_string_tab[104]
+#define __pyx_n_u_erase_at __pyx_string_tab[105]
+#define __pyx_n_u_error __pyx_string_tab[106]
+#define __pyx_n_u_falcon_core__capi_axes_coupled_l __pyx_string_tab[107]
+#define __pyx_n_u_flags __pyx_string_tab[108]
+#define __pyx_n_u_format __pyx_string_tab[109]
+#define __pyx_n_u_fortran __pyx_string_tab[110]
+#define __pyx_n_u_from_json __pyx_string_tab[111]
+#define __pyx_n_u_from_list __pyx_string_tab[112]
+#define __pyx_n_u_func __pyx_string_tab[113]
+#define __pyx_n_u_getstate __pyx_string_tab[114]
+#define __pyx_n_u_h __pyx_string_tab[115]
+#define __pyx_n_u_h_ret __pyx_string_tab[116]
+#define __pyx_n_u_handle __pyx_string_tab[117]
+#define __pyx_n_u_i __pyx_string_tab[118]
+#define __pyx_n_u_id __pyx_string_tab[119]
+#define __pyx_n_u_idx __pyx_string_tab[120]
+#define __pyx_n_u_import __pyx_string_tab[121]
+#define __pyx_n_u_index __pyx_string_tab[122]
+#define __pyx_n_u_intersection __pyx_string_tab[123]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[124]
+#define __pyx_n_u_item __pyx_string_tab[125]
+#define __pyx_n_u_items __pyx_string_tab[126]
+#define __pyx_n_u_itemsize __pyx_string_tab[127]
+#define __pyx_n_u_iter __pyx_string_tab[128]
+#define __pyx_n_u_json __pyx_string_tab[129]
+#define __pyx_n_u_main __pyx_string_tab[130]
+#define __pyx_n_u_memview __pyx_string_tab[131]
+#define __pyx_n_u_mode __pyx_string_tab[132]
+#define __pyx_n_u_module __pyx_string_tab[133]
+#define __pyx_n_u_name __pyx_string_tab[134]
+#define __pyx_n_u_name_2 __pyx_string_tab[135]
+#define __pyx_n_u_ndim __pyx_string_tab[136]
+#define __pyx_n_u_new __pyx_string_tab[137]
+#define __pyx_n_u_new_2 __pyx_string_tab[138]
+#define __pyx_n_u_new_empty __pyx_string_tab[139]
+#define __pyx_n_u_next __pyx_string_tab[140]
+#define __pyx_n_u_not_equal __pyx_string_tab[141]
+#define __pyx_n_u_obj __pyx_string_tab[142]
+#define __pyx_n_u_other __pyx_string_tab[143]
+#define __pyx_n_u_out_buffer __pyx_string_tab[144]
+#define __pyx_n_u_pack __pyx_string_tab[145]
+#define __pyx_n_u_pop __pyx_string_tab[146]
+#define __pyx_n_u_push_back __pyx_string_tab[147]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[148]
+#define __pyx_n_u_pyx_checksum __pyx_string_tab[149]
+#define __pyx_n_u_pyx_state __pyx_string_tab[150]
+#define __pyx_n_u_pyx_type __pyx_string_tab[151]
+#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[152]
+#define __pyx_n_u_pyx_vtable __pyx_string_tab[153]
+#define __pyx_n_u_qualname __pyx_string_tab[154]
+#define __pyx_n_u_reduce __pyx_string_tab[155]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[156]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[157]
+#define __pyx_n_u_register __pyx_string_tab[158]
+#define __pyx_n_u_s_json __pyx_string_tab[159]
+#define __pyx_n_u_s_ret __pyx_string_tab[160]
+#define __pyx_n_u_self __pyx_string_tab[161]
+#define __pyx_n_u_send __pyx_string_tab[162]
+#define __pyx_n_u_set_name __pyx_string_tab[163]
+#define __pyx_n_u_setdefault __pyx_string_tab[164]
+#define __pyx_n_u_setstate __pyx_string_tab[165]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[166]
+#define __pyx_n_u_shape __pyx_string_tab[167]
+#define __pyx_n_u_size __pyx_string_tab[168]
+#define __pyx_n_u_start __pyx_string_tab[169]
+#define __pyx_n_u_step __pyx_string_tab[170]
+#define __pyx_n_u_stop __pyx_string_tab[171]
+#define __pyx_n_u_struct __pyx_string_tab[172]
+#define __pyx_n_u_test __pyx_string_tab[173]
+#define __pyx_n_u_throw __pyx_string_tab[174]
+#define __pyx_n_u_to_json __pyx_string_tab[175]
+#define __pyx_n_u_unpack __pyx_string_tab[176]
+#define __pyx_n_u_update __pyx_string_tab[177]
+#define __pyx_n_u_value __pyx_string_tab[178]
+#define __pyx_n_u_values __pyx_string_tab[179]
+#define __pyx_n_u_x __pyx_string_tab[180]
+#define __pyx_kp_b_iso88591_A __pyx_string_tab[181]
+#define __pyx_kp_b_iso88591_A_1_iq __pyx_string_tab[182]
+#define __pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M __pyx_string_tab[183]
+#define __pyx_kp_b_iso88591_A_31D_5_z_Z_B_B_C_2S_8_Qa_H_8STT __pyx_string_tab[184]
+#define __pyx_kp_b_iso88591_A_4AT __pyx_string_tab[185]
+#define __pyx_kp_b_iso88591_A_5Qd __pyx_string_tab[186]
+#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P __pyx_string_tab[187]
+#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_S_S_T __pyx_string_tab[188]
+#define __pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy __pyx_string_tab[189]
+#define __pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S __pyx_string_tab[190]
+#define __pyx_kp_b_iso88591_A_9_2S_8_Qa_H_8STTU_Q_9A_q __pyx_string_tab[191]
+#define __pyx_kp_b_iso88591_A_9_iuKW_ddn_o_W_W_X __pyx_string_tab[192]
+#define __pyx_kp_b_iso88591_A_BBaabbffg_6_Cwa_6a_V3Nvvzz __pyx_string_tab[193]
+#define __pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G __pyx_string_tab[194]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU __pyx_string_tab[195]
+#define __pyx_kp_b_iso88591_A_Jaq __pyx_string_tab[196]
+#define __pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q __pyx_string_tab[197]
+#define __pyx_kp_b_iso88591_A_at1 __pyx_string_tab[198]
+#define __pyx_kp_b_iso88591_A_iij_6_8_7_1_q __pyx_string_tab[199]
+#define __pyx_kp_b_iso88591_A_q_A_6_G1_W_Qe6_hgQa_aq __pyx_string_tab[200]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[201]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[202]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[203]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_3 __pyx_string_tab[204]
+#define __pyx_n_b_O __pyx_string_tab[205]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_neg_1 __pyx_number_tab[1]
 #define __pyx_int_1 __pyx_number_tab[2]
@@ -5336,6 +5495,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_28list_coupled_labelled_domain_ListCoupledLabelledDomain);
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain);
   Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain);
+  Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__);
+  Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__);
   Py_CLEAR(clear_module_state->__pyx_array_type);
   Py_CLEAR(clear_module_state->__pyx_type___pyx_array);
   Py_CLEAR(clear_module_state->__pyx_MemviewEnum_type);
@@ -5346,8 +5507,8 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<21; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<197; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<22; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<206; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -5355,6 +5516,9 @@ Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
 
 /* CythonFunctionShared.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CyFunctionType);
+
+/* Generator.module_state_clear */
+Py_CLEAR(clear_module_state->__pyx_GeneratorType);
 
 /* #### Code section: module_state_clear_end ### */
 return 0;
@@ -5376,6 +5540,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_28list_coupled_labelled_domain_ListCoupledLabelledDomain);
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain);
   Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain);
+  Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__);
+  Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__);
   Py_VISIT(traverse_module_state->__pyx_array_type);
   Py_VISIT(traverse_module_state->__pyx_type___pyx_array);
   Py_VISIT(traverse_module_state->__pyx_MemviewEnum_type);
@@ -5386,8 +5552,8 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_type___pyx_memoryviewslice);
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
-  for (int i=0; i<21; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<197; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<22; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
+  for (int i=0; i<206; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -5395,6 +5561,9 @@ Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
 
 /* CythonFunctionShared.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CyFunctionType);
+
+/* Generator.module_state_traverse */
+Py_VISIT(traverse_module_state->__pyx_GeneratorType);
 
 /* #### Code section: module_state_traverse_end ### */
 return 0;
@@ -19503,7 +19672,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def copy(self, ):
+ *     def copy(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -19535,9 +19704,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":58
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
 */
 
 /* Python wrapper */
@@ -19596,46 +19765,30 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 
   /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":59
  * 
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
- *             return None
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
+ *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
 */
   __pyx_v_h_ret = AxesCoupledLabelledDomain_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":60
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":61
- *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":60
- *     def copy(self, ):
- *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":62
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
- *             return None
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":61
+ *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def push_back(self, CoupledLabelledDomain value):
@@ -19643,7 +19796,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -19652,9 +19805,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":58
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
 */
 
   /* function exit code */
@@ -19668,7 +19821,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":64
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":63
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
  *     def push_back(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
@@ -19715,32 +19868,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 64, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 64, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 64, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "push_back", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 64, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, i); __PYX_ERR(0, 63, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 64, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 64, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("push_back", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19751,7 +19904,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "value", 0))) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "value", 0))) __PYX_ERR(0, 63, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_12push_back(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
@@ -19778,12 +19931,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("push_back", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":65
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":64
  * 
  *     def push_back(self, CoupledLabelledDomain value):
  *         _c_api.AxesCoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def size(self, ):
+ *     def size(self):
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_value) != Py_None);
   if (__pyx_t_2) {
@@ -19793,7 +19946,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   }
   AxesCoupledLabelledDomain_push_back(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":64
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":63
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
  *     def push_back(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
@@ -19808,10 +19961,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":67
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":66
  *         _c_api.AxesCoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
+ *     def size(self):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)
  * 
 */
@@ -19867,24 +20020,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("size", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":68
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":67
  * 
- *     def size(self, ):
+ *     def size(self):
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)             # <<<<<<<<<<<<<<
  * 
- *     def empty(self, ):
+ *     def empty(self):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_FromSize_t(AxesCoupledLabelledDomain_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_FromSize_t(AxesCoupledLabelledDomain_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 67, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":67
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":66
  *         _c_api.AxesCoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
+ *     def size(self):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)
  * 
 */
@@ -19900,10 +20053,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":70
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":69
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)
  * 
- *     def empty(self, ):             # <<<<<<<<<<<<<<
+ *     def empty(self):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)
  * 
 */
@@ -19959,24 +20112,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("empty", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":71
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":70
  * 
- *     def empty(self, ):
+ *     def empty(self):
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def erase_at(self, size_t idx):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 71, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_empty(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":70
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":69
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)
  * 
- *     def empty(self, ):             # <<<<<<<<<<<<<<
+ *     def empty(self):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)
  * 
 */
@@ -19992,7 +20145,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":73
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":72
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20039,32 +20192,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 73, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 72, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 73, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 72, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 73, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "erase_at", 0) < (0)) __PYX_ERR(0, 72, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 73, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, i); __PYX_ERR(0, 72, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 73, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 72, __pyx_L3_error)
     }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L3_error)
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 72, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 73, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("erase_at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 72, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20090,16 +20243,16 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("erase_at", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":74
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":73
  * 
  *     def erase_at(self, size_t idx):
  *         _c_api.AxesCoupledLabelledDomain_erase_at(self.handle, idx)             # <<<<<<<<<<<<<<
  * 
- *     def clear(self, ):
+ *     def clear(self):
 */
   AxesCoupledLabelledDomain_erase_at(__pyx_v_self->handle, __pyx_v_idx);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":73
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":72
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
@@ -20114,10 +20267,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":76
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":75
  *         _c_api.AxesCoupledLabelledDomain_erase_at(self.handle, idx)
  * 
- *     def clear(self, ):             # <<<<<<<<<<<<<<
+ *     def clear(self):             # <<<<<<<<<<<<<<
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)
  * 
 */
@@ -20169,19 +20322,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("clear", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":77
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":76
  * 
- *     def clear(self, ):
+ *     def clear(self):
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def at(self, size_t idx):
 */
   AxesCoupledLabelledDomain_clear(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":76
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":75
  *         _c_api.AxesCoupledLabelledDomain_erase_at(self.handle, idx)
  * 
- *     def clear(self, ):             # <<<<<<<<<<<<<<
+ *     def clear(self):             # <<<<<<<<<<<<<<
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)
  * 
 */
@@ -20193,12 +20346,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":79
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":78
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
 */
 
 /* Python wrapper */
@@ -20240,32 +20393,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_idx,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 79, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 78, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 78, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 79, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "at", 0) < (0)) __PYX_ERR(0, 78, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 79, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, i); __PYX_ERR(0, 78, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 79, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 78, __pyx_L3_error)
     }
-    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 79, __pyx_L3_error)
+    __pyx_v_idx = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_idx == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 78, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 79, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("at", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 78, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20298,48 +20451,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("at", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":80
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":79
  * 
  *     def at(self, size_t idx):
  *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
- *             return None
+ *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
+ *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
 */
   __pyx_v_h_ret = AxesCoupledLabelledDomain_at(__pyx_v_self->handle, __pyx_v_idx);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":81
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":80
  *     def at(self, size_t idx):
  *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_CoupledLabelledDomainHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":82
- *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_CoupledLabelledDomainHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":81
- *     def at(self, size_t idx):
- *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
-*/
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":83
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
- *             return None
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":81
+ *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
+ *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
  *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)             # <<<<<<<<<<<<<<
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):
@@ -20347,18 +20484,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 0;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23coupled_labelled_domain__coupled_labelled_domain_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23coupled_labelled_domain__coupled_labelled_domain_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":79
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":78
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
 */
 
   /* function exit code */
@@ -20372,7 +20509,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":85
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":83
  *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -20420,39 +20557,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_out_buffer,&__pyx_mstate_global->__pyx_n_u_buffer_size,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 85, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 85, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "items", 0) < (0)) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "items", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, i); __PYX_ERR(0, 85, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, i); __PYX_ERR(0, 83, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 85, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
     }
-    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 85, __pyx_L3_error)
-    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 85, __pyx_L3_error)
+    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 85, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("items", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20486,7 +20623,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("items", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":86
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":84
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):
  *         return _c_api.AxesCoupledLabelledDomain_items(self.handle, <_c_api.CoupledLabelledDomainHandle*>&out_buffer[0], buffer_size)             # <<<<<<<<<<<<<<
@@ -20502,15 +20639,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   } else if (unlikely(__pyx_t_1 >= __pyx_v_out_buffer.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 86, __pyx_L1_error)
+    __PYX_ERR(0, 84, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(AxesCoupledLabelledDomain_items(__pyx_v_self->handle, ((__pyx_t_6_c_api_CoupledLabelledDomainHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(AxesCoupledLabelledDomain_items(__pyx_v_self->handle, ((__pyx_t_6_c_api_CoupledLabelledDomainHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":85
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":83
  *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -20529,7 +20666,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":88
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":86
  *         return _c_api.AxesCoupledLabelledDomain_items(self.handle, <_c_api.CoupledLabelledDomainHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
@@ -20576,32 +20713,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 88, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 86, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 86, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 88, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "contains", 0) < (0)) __PYX_ERR(0, 86, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 88, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, i); __PYX_ERR(0, 86, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 86, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 88, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("contains", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 86, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20612,7 +20749,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "value", 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "value", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_26contains(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
@@ -20643,7 +20780,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("contains", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":89
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":87
  * 
  *     def contains(self, CoupledLabelledDomain value):
  *         return _c_api.AxesCoupledLabelledDomain_contains(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)             # <<<<<<<<<<<<<<
@@ -20657,13 +20794,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_CoupledLabelledDomainHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_contains(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":88
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":86
  *         return _c_api.AxesCoupledLabelledDomain_items(self.handle, <_c_api.CoupledLabelledDomainHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
@@ -20682,7 +20819,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":91
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":89
  *         return _c_api.AxesCoupledLabelledDomain_contains(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
  *     def index(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
@@ -20729,32 +20866,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 91, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 89, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 89, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "index", 0) < (0)) __PYX_ERR(0, 89, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 91, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, i); __PYX_ERR(0, 89, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 91, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 89, __pyx_L3_error)
     }
     __pyx_v_value = ((struct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 91, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("index", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 89, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20765,7 +20902,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "value", 0))) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain, 1, "value", 0))) __PYX_ERR(0, 89, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_28index(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
@@ -20796,7 +20933,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("index", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":92
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":90
  * 
  *     def index(self, CoupledLabelledDomain value):
  *         return _c_api.AxesCoupledLabelledDomain_index(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)             # <<<<<<<<<<<<<<
@@ -20810,13 +20947,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_CoupledLabelledDomainHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(AxesCoupledLabelledDomain_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(AxesCoupledLabelledDomain_index(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":91
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":89
  *         return _c_api.AxesCoupledLabelledDomain_contains(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
  *     def index(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
@@ -20835,12 +20972,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":94
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":92
  *         return _c_api.AxesCoupledLabelledDomain_index(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
  *     def intersection(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
 */
 
 /* Python wrapper */
@@ -20882,32 +21019,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 94, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 92, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 94, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "intersection", 0) < (0)) __PYX_ERR(0, 92, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 94, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, i); __PYX_ERR(0, 92, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 94, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 94, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("intersection", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 92, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20918,7 +21055,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 92, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_30intersection(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -20951,12 +21088,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("intersection", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":95
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":93
  * 
  *     def intersection(self, AxesCoupledLabelledDomain other):
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
- *             return None
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
+ *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -20966,39 +21103,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   }
   __pyx_v_h_ret = AxesCoupledLabelledDomain_intersection(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":96
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":94
  *     def intersection(self, AxesCoupledLabelledDomain other):
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":97
- *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":96
- *     def intersection(self, AxesCoupledLabelledDomain other):
- *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":98
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
- *             return None
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":95
+ *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def equal(self, AxesCoupledLabelledDomain other):
@@ -21006,18 +21127,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":94
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":92
  *         return _c_api.AxesCoupledLabelledDomain_index(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
  *     def intersection(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
 */
 
   /* function exit code */
@@ -21031,7 +21152,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":100
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":97
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
  *     def equal(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
@@ -21078,32 +21199,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 100, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 97, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 97, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 100, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 97, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 97, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 97, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21114,7 +21235,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 97, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_32equal(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -21145,7 +21266,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":101
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":98
  * 
  *     def equal(self, AxesCoupledLabelledDomain other):
  *         return _c_api.AxesCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)             # <<<<<<<<<<<<<<
@@ -21159,13 +21280,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":100
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":97
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
  *     def equal(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
@@ -21184,12 +21305,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":103
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":100
  *         return _c_api.AxesCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
  * 
  *     def __eq__(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
 /* Python wrapper */
@@ -21203,7 +21324,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 100, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_34__eq__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_other));
 
   /* function exit code */
@@ -21230,41 +21351,25 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":104
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":101
  * 
  *     def __eq__(self, AxesCoupledLabelledDomain other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 101, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":105
- *     def __eq__(self, AxesCoupledLabelledDomain other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":104
- * 
- *     def __eq__(self, AxesCoupledLabelledDomain other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":106
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":102
+ *     def __eq__(self, AxesCoupledLabelledDomain other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def not_equal(self, AxesCoupledLabelledDomain other):
@@ -21277,19 +21382,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":103
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":100
  *         return _c_api.AxesCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
  * 
  *     def __eq__(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
   /* function exit code */
@@ -21304,7 +21409,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":108
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":104
  *         return self.equal(other)
  * 
  *     def not_equal(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
@@ -21351,32 +21456,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 104, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 104, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 104, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 108, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 104, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 104, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 104, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21387,7 +21492,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 104, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_36not_equal(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -21418,7 +21523,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":109
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":105
  * 
  *     def not_equal(self, AxesCoupledLabelledDomain other):
  *         return _c_api.AxesCoupledLabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)             # <<<<<<<<<<<<<<
@@ -21432,13 +21537,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(AxesCoupledLabelledDomain_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":108
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":104
  *         return self.equal(other)
  * 
  *     def not_equal(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
@@ -21457,12 +21562,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":111
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":107
  *         return _c_api.AxesCoupledLabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
  * 
  *     def __ne__(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
 /* Python wrapper */
@@ -21476,7 +21581,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 111, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, 1, "other", 0))) __PYX_ERR(0, 107, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_38__ne__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_other));
 
   /* function exit code */
@@ -21503,44 +21608,28 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":112
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":108
  * 
  *     def __ne__(self, AxesCoupledLabelledDomain other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.not_equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 108, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":113
- *     def __ne__(self, AxesCoupledLabelledDomain other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":112
- * 
- *     def __ne__(self, AxesCoupledLabelledDomain other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.not_equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":114
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":109
+ *     def __ne__(self, AxesCoupledLabelledDomain other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
- *     def to_json(self, ):
+ *     def to_json(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = ((PyObject *)__pyx_v_self);
@@ -21550,19 +21639,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 114, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 109, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":111
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":107
  *         return _c_api.AxesCoupledLabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
  * 
  *     def __ne__(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
   /* function exit code */
@@ -21577,10 +21666,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":116
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":111
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
 */
@@ -21648,70 +21737,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":118
- *     def to_json(self, ):
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":113
+ *     def to_json(self):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
 */
   __pyx_v_s_ret = AxesCoupledLabelledDomain_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":119
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":114
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
+ *         if s_ret == <_c_api.StringHandle>0: return ""             # <<<<<<<<<<<<<<
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)
 */
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":120
- *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u__6);
     __pyx_r = __pyx_mstate_global->__pyx_kp_u__6;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":119
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":121
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":115
+ *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally: _c_api.String_destroy(s_ret)
+ * 
 */
   /*try:*/ {
-
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":122
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 122, __pyx_L5_error)
+      __PYX_ERR(0, 115, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 115, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -21719,10 +21784,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":124
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":116
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
  *     def __len__(self):
 */
@@ -21768,10 +21833,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     }
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":116
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":111
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
 */
@@ -21788,11 +21853,11 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":126
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":118
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
- *         return self.size()
+ *         return self.size
  * 
 */
 
@@ -21815,48 +21880,37 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_2
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  size_t __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
+  Py_ssize_t __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":127
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":119
  * 
  *     def __len__(self):
- *         return self.size()             # <<<<<<<<<<<<<<
+ *         return self.size             # <<<<<<<<<<<<<<
  * 
- *     def __getitem__(self, idx):
+ *     def __getitem__(self, key):
 */
-  __pyx_t_2 = ((PyObject *)__pyx_v_self);
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = 0;
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
-    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_size, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_r = __pyx_t_4;
+  __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":126
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":118
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
- *         return self.size()
+ *         return self.size
  * 
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("falcon_core._capi.axes_coupled_labelled_domain.AxesCoupledLabelledDomain.__len__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = -1;
   __pyx_L0:;
@@ -21864,30 +21918,30 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_2
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":129
- *         return self.size()
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":121
+ *         return self.size
  * 
- *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
- *         ret = self.at(idx)
+ *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
+ *         ret = self.at(key)
  *         if ret is None:
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx); /*proto*/
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_45__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_44__getitem__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), ((PyObject *)__pyx_v_idx));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_44__getitem__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), ((PyObject *)__pyx_v_key));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_idx) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_44__getitem__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_key) {
   PyObject *__pyx_v_ret = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -21895,87 +21949,110 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   PyObject *__pyx_t_2 = NULL;
   size_t __pyx_t_3;
   int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8[3];
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":130
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":122
  * 
- *     def __getitem__(self, idx):
- *         ret = self.at(idx)             # <<<<<<<<<<<<<<
+ *     def __getitem__(self, key):
+ *         ret = self.at(key)             # <<<<<<<<<<<<<<
  *         if ret is None:
- *             raise IndexError("Index out of bounds")
+ *             raise IndexError(f"{key} not found in {self.__class__.__name__}")
 */
   __pyx_t_2 = ((PyObject *)__pyx_v_self);
   __Pyx_INCREF(__pyx_t_2);
   __pyx_t_3 = 0;
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_idx};
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_key};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_at, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_ret = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":131
- *     def __getitem__(self, idx):
- *         ret = self.at(idx)
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":123
+ *     def __getitem__(self, key):
+ *         ret = self.at(key)
  *         if ret is None:             # <<<<<<<<<<<<<<
- *             raise IndexError("Index out of bounds")
+ *             raise IndexError(f"{key} not found in {self.__class__.__name__}")
  *         return ret
 */
   __pyx_t_4 = (__pyx_v_ret == Py_None);
   if (unlikely(__pyx_t_4)) {
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":132
- *         ret = self.at(idx)
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":124
+ *         ret = self.at(key)
  *         if ret is None:
- *             raise IndexError("Index out of bounds")             # <<<<<<<<<<<<<<
+ *             raise IndexError(f"{key} not found in {self.__class__.__name__}")             # <<<<<<<<<<<<<<
  *         return ret
  * 
 */
     __pyx_t_2 = NULL;
+    __pyx_t_5 = __Pyx_PyObject_FormatSimple(__pyx_v_key, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_class); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_name_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_t_7, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    __pyx_t_8[0] = __pyx_t_5;
+    __pyx_t_8[1] = __pyx_mstate_global->__pyx_kp_u_not_found_in;
+    __pyx_t_8[2] = __pyx_t_6;
+    __pyx_t_7 = __Pyx_PyUnicode_Join(__pyx_t_8, 3, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_5) + 14 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_6), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_5) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_6));
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 124, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_3 = 1;
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_mstate_global->__pyx_kp_u_Index_out_of_bounds};
+      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_7};
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)(((PyTypeObject*)PyExc_IndexError)), __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (__pyx_t_3*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 132, __pyx_L1_error)
+    __PYX_ERR(0, 124, __pyx_L1_error)
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":131
- *     def __getitem__(self, idx):
- *         ret = self.at(idx)
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":123
+ *     def __getitem__(self, key):
+ *         ret = self.at(key)
  *         if ret is None:             # <<<<<<<<<<<<<<
- *             raise IndexError("Index out of bounds")
+ *             raise IndexError(f"{key} not found in {self.__class__.__name__}")
  *         return ret
 */
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":133
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":125
  *         if ret is None:
- *             raise IndexError("Index out of bounds")
+ *             raise IndexError(f"{key} not found in {self.__class__.__name__}")
  *         return ret             # <<<<<<<<<<<<<<
  * 
- *     def append(self, value):
+ *     def __iter__(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_ret);
   __pyx_r = __pyx_v_ret;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":129
- *         return self.size()
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":121
+ *         return self.size
  * 
- *     def __getitem__(self, idx):             # <<<<<<<<<<<<<<
- *         ret = self.at(idx)
+ *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
+ *         ret = self.at(key)
  *         if ret is None:
 */
 
@@ -21983,6 +22060,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("falcon_core._capi.axes_coupled_labelled_domain.AxesCoupledLabelledDomain.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -21991,9 +22071,163 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
+static PyObject *__pyx_gb_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_48generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":135
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":127
  *         return ret
+ * 
+ *     def __iter__(self):             # <<<<<<<<<<<<<<
+ *         for i in range(len(self)):
+ *             yield self[i]
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47__iter__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47__iter__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__iter__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_46__iter__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_46__iter__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self) {
+  struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *__pyx_cur_scope;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__iter__", 0);
+  __pyx_cur_scope = (struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *)__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__, __pyx_mstate_global->__pyx_empty_tuple, NULL);
+  if (unlikely(!__pyx_cur_scope)) {
+    __pyx_cur_scope = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *)Py_None);
+    __Pyx_INCREF(Py_None);
+    __PYX_ERR(0, 127, __pyx_L1_error)
+  } else {
+    __Pyx_GOTREF((PyObject *)__pyx_cur_scope);
+  }
+  __pyx_cur_scope->__pyx_v_self = __pyx_v_self;
+  __Pyx_INCREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
+  __Pyx_GIVEREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
+  {
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_48generator, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0]), (PyObject *) __pyx_cur_scope, __pyx_mstate_global->__pyx_n_u_iter, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain___iter, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l); if (unlikely(!gen)) __PYX_ERR(0, 127, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_cur_scope);
+    __Pyx_RefNannyFinishContext();
+    return (PyObject *) gen;
+  }
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("falcon_core._capi.axes_coupled_labelled_domain.AxesCoupledLabelledDomain.__iter__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __Pyx_DECREF((PyObject *)__pyx_cur_scope);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_gb_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_48generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value) /* generator body */
+{
+  struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *__pyx_cur_scope = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *)__pyx_generator->closure);
+  PyObject *__pyx_r = NULL;
+  Py_ssize_t __pyx_t_1;
+  Py_ssize_t __pyx_t_2;
+  Py_ssize_t __pyx_t_3;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__iter__", 0);
+  switch (__pyx_generator->resume_label) {
+    case 0: goto __pyx_L3_first_run;
+    case 1: goto __pyx_L6_resume_from_yield;
+    default: /* CPython raises the right error here */
+    __Pyx_RefNannyFinishContext();
+    return NULL;
+  }
+  __pyx_L3_first_run:;
+  if (unlikely(__pyx_sent_value != Py_None)) {
+    if (unlikely(__pyx_sent_value)) PyErr_SetString(PyExc_TypeError, "can't send non-None value to a just-started generator");
+    __PYX_ERR(0, 127, __pyx_L1_error)
+  }
+
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":128
+ * 
+ *     def __iter__(self):
+ *         for i in range(len(self)):             # <<<<<<<<<<<<<<
+ *             yield self[i]
+ * 
+*/
+  __pyx_t_1 = PyObject_Length(((PyObject *)__pyx_cur_scope->__pyx_v_self)); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = __pyx_t_1;
+  for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
+    __pyx_cur_scope->__pyx_v_i = __pyx_t_3;
+
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":129
+ *     def __iter__(self):
+ *         for i in range(len(self)):
+ *             yield self[i]             # <<<<<<<<<<<<<<
+ * 
+ *     def append(self, value):
+*/
+    __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_cur_scope->__pyx_v_self), __pyx_cur_scope->__pyx_v_i, Py_ssize_t, 1, PyLong_FromSsize_t, 0, 1, 1, 1, __Pyx_ReferenceSharing_FunctionArgument); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 129, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __pyx_r = __pyx_t_4;
+    __pyx_t_4 = 0;
+    __pyx_cur_scope->__pyx_t_0 = __pyx_t_1;
+    __pyx_cur_scope->__pyx_t_1 = __pyx_t_2;
+    __pyx_cur_scope->__pyx_t_2 = __pyx_t_3;
+    __Pyx_XGIVEREF(__pyx_r);
+    __Pyx_RefNannyFinishContext();
+    __Pyx_Coroutine_ResetAndClearException(__pyx_generator);
+    /* return from generator, yielding value */
+    __pyx_generator->resume_label = 1;
+    return __pyx_r;
+    __pyx_L6_resume_from_yield:;
+    __pyx_t_1 = __pyx_cur_scope->__pyx_t_0;
+    __pyx_t_2 = __pyx_cur_scope->__pyx_t_1;
+    __pyx_t_3 = __pyx_cur_scope->__pyx_t_2;
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 129, __pyx_L1_error)
+  }
+  CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
+
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":127
+ *         return ret
+ * 
+ *     def __iter__(self):             # <<<<<<<<<<<<<<
+ *         for i in range(len(self)):
+ *             yield self[i]
+*/
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_4);
+  if (__Pyx_PyErr_Occurred()) {
+    __Pyx_Generator_Replace_StopIteration(0);
+    __Pyx_AddTraceback("__iter__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  }
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  #if !CYTHON_USE_EXC_INFO_STACK
+  __Pyx_Coroutine_ResetAndClearException(__pyx_generator);
+  #endif
+  __pyx_generator->resume_label = -1;
+  __Pyx_Coroutine_clear((PyObject*)__pyx_generator);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":131
+ *             yield self[i]
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
  *         self.push_back(value)
@@ -22001,15 +22235,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47append(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47append(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50append = {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50append(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22039,32 +22273,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 135, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 131, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 131, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 135, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append", 0) < (0)) __PYX_ERR(0, 131, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 135, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, i); __PYX_ERR(0, 131, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 131, __pyx_L3_error)
     }
     __pyx_v_value = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 135, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("append", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 131, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22075,7 +22309,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_46append(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_value);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49append(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v_value);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22085,7 +22319,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_46append(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_value) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49append(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, PyObject *__pyx_v_value) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -22096,7 +22330,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("append", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":136
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":132
  * 
  *     def append(self, value):
  *         self.push_back(value)             # <<<<<<<<<<<<<<
@@ -22110,13 +22344,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_v_value};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":135
- *         return ret
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":131
+ *             yield self[i]
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
  *         self.push_back(value)
@@ -22137,7 +22371,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":138
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":134
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -22146,15 +22380,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49from_list(PyObject *__pyx_v_cls, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52from_list(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49from_list(PyObject *__pyx_v_cls, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52from_list = {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52from_list(PyObject *__pyx_v_cls, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22184,32 +22418,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_items,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 138, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 134, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 134, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_list", 0) < (0)) __PYX_ERR(0, 134, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 138, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, i); __PYX_ERR(0, 134, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 134, __pyx_L3_error)
     }
     __pyx_v_items = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 138, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("from_list", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 134, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22220,7 +22454,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_48from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51from_list(((PyTypeObject*)__pyx_v_cls), __pyx_v_items);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22230,7 +22464,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_48from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51from_list(PyTypeObject *__pyx_v_cls, PyObject *__pyx_v_items) {
   struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_obj = 0;
   PyObject *__pyx_v_item = NULL;
   PyObject *__pyx_r = NULL;
@@ -22247,7 +22481,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_list", 0);
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":140
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":136
  *     @classmethod
  *     def from_list(cls, items):
  *         cdef AxesCoupledLabelledDomain obj = cls.new_empty()             # <<<<<<<<<<<<<<
@@ -22261,14 +22495,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_new_empty, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain))))) __PYX_ERR(0, 140, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain))))) __PYX_ERR(0, 136, __pyx_L1_error)
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":141
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":137
  *     def from_list(cls, items):
  *         cdef AxesCoupledLabelledDomain obj = cls.new_empty()
  *         for item in items:             # <<<<<<<<<<<<<<
@@ -22280,9 +22514,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     __pyx_t_4 = 0;
     __pyx_t_5 = NULL;
   } else {
-    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_4 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_items); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 137, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 141, __pyx_L1_error)
+    __pyx_t_5 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_5)) {
@@ -22290,7 +22524,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 137, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
@@ -22300,7 +22534,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
           #if !CYTHON_ASSUME_SAFE_SIZE
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 137, __pyx_L1_error)
           #endif
           if (__pyx_t_4 >= __pyx_temp) break;
         }
@@ -22311,13 +22545,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
         #endif
         ++__pyx_t_4;
       }
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
     } else {
       __pyx_t_2 = __pyx_t_5(__pyx_t_1);
       if (unlikely(!__pyx_t_2)) {
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
-          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 141, __pyx_L1_error)
+          if (unlikely(!__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) __PYX_ERR(0, 137, __pyx_L1_error)
           PyErr_Clear();
         }
         break;
@@ -22327,29 +22561,29 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
     __Pyx_XDECREF_SET(__pyx_v_item, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":142
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":138
  *         cdef AxesCoupledLabelledDomain obj = cls.new_empty()
  *         for item in items:
  *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
  *                 item = item._c
  *             obj.push_back(item)
 */
-    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 142, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_HasAttr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 138, __pyx_L1_error)
     if (__pyx_t_6) {
 
-      /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":143
+      /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":139
  *         for item in items:
  *             if hasattr(item, "_c"):
  *                 item = item._c             # <<<<<<<<<<<<<<
  *             obj.push_back(item)
  *         return obj
 */
-      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_item, __pyx_mstate_global->__pyx_n_u_c_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_item, __pyx_t_2);
       __pyx_t_2 = 0;
 
-      /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":142
+      /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":138
  *         cdef AxesCoupledLabelledDomain obj = cls.new_empty()
  *         for item in items:
  *             if hasattr(item, "_c"):             # <<<<<<<<<<<<<<
@@ -22358,7 +22592,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 */
     }
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":144
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":140
  *             if hasattr(item, "_c"):
  *                 item = item._c
  *             obj.push_back(item)             # <<<<<<<<<<<<<<
@@ -22372,12 +22606,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_v_item};
       __pyx_t_2 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_push_back, __pyx_callargs+__pyx_t_3, (2-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":141
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":137
  *     def from_list(cls, items):
  *         cdef AxesCoupledLabelledDomain obj = cls.new_empty()
  *         for item in items:             # <<<<<<<<<<<<<<
@@ -22387,19 +22621,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":145
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":141
  *                 item = item._c
  *             obj.push_back(item)
  *         return obj             # <<<<<<<<<<<<<<
  * 
- * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):
+ *     def __repr__(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
   __pyx_r = ((PyObject *)__pyx_v_obj);
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":138
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":134
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
@@ -22422,6 +22656,175 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":143
+ *         return obj
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_54__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_54__repr__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__repr__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__repr__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4[4];
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__repr__", 0);
+
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":144
+ * 
+ *     def __repr__(self):
+ *         return f"{self.__class__.__name__}({self.to_json()})"             # <<<<<<<<<<<<<<
+ * 
+ *     def __str__(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_to_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_4[0] = __pyx_t_1;
+  __pyx_t_4[1] = __pyx_mstate_global->__pyx_kp_u__7;
+  __pyx_t_4[2] = __pyx_t_2;
+  __pyx_t_4[3] = __pyx_mstate_global->__pyx_kp_u__5;
+  __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":143
+ *         return obj
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.axes_coupled_labelled_domain.AxesCoupledLabelledDomain.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":146
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_56__str__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_56__str__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__str__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_55__str__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_55__str__(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__str__", 0);
+
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":147
+ * 
+ *     def __str__(self):
+ *         return self.to_json()             # <<<<<<<<<<<<<<
+ * 
+ * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_v_self);
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_to_json, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":146
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.axes_coupled_labelled_domain.AxesCoupledLabelledDomain.__str__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
 /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
@@ -22429,15 +22832,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_58__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_58__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_58__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_58__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22463,14 +22866,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_57__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_57__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -22510,15 +22913,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_60__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_60__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_60__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_60__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22584,7 +22987,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_59__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -22594,7 +22997,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_59__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -22626,8 +23029,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_28axes_coupled_labelled_domain_25
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":147
- *         return obj
+/* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":149
+ *         return self.to_json()
  * 
  * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.AxesCoupledLabelledDomainHandle>0:
@@ -22651,7 +23054,7 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
     }
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":148
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":150
  * 
  * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):
  *     if h == <_c_api.AxesCoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
@@ -22661,7 +23064,7 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":149
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":151
  * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):
  *     if h == <_c_api.AxesCoupledLabelledDomainHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -22672,7 +23075,7 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":148
+    /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":150
  * 
  * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):
  *     if h == <_c_api.AxesCoupledLabelledDomainHandle>0:             # <<<<<<<<<<<<<<
@@ -22681,19 +23084,19 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
 */
   }
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":150
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":152
  *     if h == <_c_api.AxesCoupledLabelledDomainHandle>0:
  *         return None
  *     cdef AxesCoupledLabelledDomain obj = AxesCoupledLabelledDomain.__new__(AxesCoupledLabelledDomain)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 152, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":151
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":153
  *         return None
  *     cdef AxesCoupledLabelledDomain obj = AxesCoupledLabelledDomain.__new__(AxesCoupledLabelledDomain)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -22702,7 +23105,7 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":152
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":154
  *     cdef AxesCoupledLabelledDomain obj = AxesCoupledLabelledDomain.__new__(AxesCoupledLabelledDomain)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -22710,7 +23113,7 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":153
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":155
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -22720,8 +23123,8 @@ static struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_Axes
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":147
- *         return obj
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":149
+ *         return self.to_json()
  * 
  * cdef AxesCoupledLabelledDomain _axes_coupled_labelled_domain_from_capi(_c_api.AxesCoupledLabelledDomainHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.AxesCoupledLabelledDomainHandle>0:
@@ -22826,20 +23229,23 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_28axes_coupled_labelled_do
   {"equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_33equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"not_equal", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_37not_equal, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_41to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"append", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50append, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"from_list", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52from_list, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_58__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_60__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain},
+  {Py_tp_repr, (void *)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_54__repr__},
   {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_43__len__},
   {Py_sq_item, (void *)__pyx_sq_item_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain},
   {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_43__len__},
   {Py_mp_subscript, (void *)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_45__getitem__},
+  {Py_tp_str, (void *)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_56__str__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain},
+  {Py_tp_iter, (void *)__pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47__iter__},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain},
   {0, 0},
@@ -22882,13 +23288,13 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_doma
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   0, /*tp_as_async*/
-  0, /*tp_repr*/
+  __pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_54__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   &__pyx_tp_as_sequence_AxesCoupledLabelledDomain, /*tp_as_sequence*/
   &__pyx_tp_as_mapping_AxesCoupledLabelledDomain, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
-  0, /*tp_str*/
+  __pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_56__str__, /*tp_str*/
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
@@ -22898,7 +23304,7 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_doma
   0, /*tp_clear*/
   __pyx_tp_richcompare_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
-  0, /*tp_iter*/
+  __pyx_pw_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47__iter__, /*tp_iter*/
   0, /*tp_iternext*/
   __pyx_methods_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, /*tp_methods*/
   0, /*tp_members*/
@@ -22913,6 +23319,165 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_doma
   0, /*tp_init*/
   0, /*tp_alloc*/
   __pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if CYTHON_USE_TP_FINALIZE
+  0, /*tp_finalize*/
+  #else
+  NULL, /*tp_finalize*/
+  #endif
+  #if !CYTHON_COMPILING_IN_PYPY || PYPY_VERSION_NUM >= 0x07030800
+  0, /*tp_vectorcall*/
+  #endif
+  #if __PYX_NEED_TP_PRINT_SLOT == 1
+  0, /*tp_print*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030C0000
+  0, /*tp_watched*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030d00A4
+  0, /*tp_versions_used*/
+  #endif
+  #if CYTHON_COMPILING_IN_PYPY && PY_VERSION_HEX >= 0x03090000 && PY_VERSION_HEX < 0x030a0000
+  0, /*tp_pypy_flags*/
+  #endif
+};
+#endif
+
+static PyObject *__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  PyObject *o;
+  #if CYTHON_USE_FREELISTS
+  if (likely((int)(__pyx_mstate_global->__pyx_freecount_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ > 0) & __PYX_CHECK_FINAL_TYPE_FOR_FREELISTS(t, __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__, sizeof(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__))))
+  {
+    o = (PyObject*)__pyx_mstate_global->__pyx_freelist_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__[--__pyx_mstate_global->__pyx_freecount_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__];
+    #if CYTHON_USE_TYPE_SPECS
+    Py_DECREF(Py_TYPE(o));
+    #endif
+    memset(o, 0, sizeof(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__));
+    #if CYTHON_COMPILING_IN_LIMITED_API
+    (void) PyObject_Init(o, t);
+    #else
+    (void) PyObject_INIT(o, t);
+    #endif
+    PyObject_GC_Track(o);
+  } else
+  #endif
+  {
+    o = __Pyx_AllocateExtensionType(t, 1);
+    if (unlikely(!o)) return 0;
+  }
+  return o;
+}
+
+static void __pyx_tp_dealloc_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__(PyObject *o) {
+  struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *p = (struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *)o;
+  #if CYTHON_USE_TP_FINALIZE
+  if (unlikely(__Pyx_PyObject_GetSlot(o, tp_finalize, destructor)) && !__Pyx_PyObject_GC_IsFinalized(o)) {
+    if (__Pyx_PyObject_GetSlot(o, tp_dealloc, destructor) == __pyx_tp_dealloc_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__) {
+      if (PyObject_CallFinalizerFromDealloc(o)) return;
+    }
+  }
+  #endif
+  PyObject_GC_UnTrack(o);
+  Py_CLEAR(p->__pyx_v_self);
+  #if CYTHON_USE_FREELISTS
+  if (likely((int)(__pyx_mstate_global->__pyx_freecount_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ < 8) & __PYX_CHECK_FINAL_TYPE_FOR_FREELISTS(Py_TYPE(o), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__, sizeof(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__))))
+  {
+    __pyx_mstate_global->__pyx_freelist_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__[__pyx_mstate_global->__pyx_freecount_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__++] = ((struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *)o);
+  } else
+  #endif
+  {
+    PyTypeObject *tp = Py_TYPE(o);
+    #if CYTHON_USE_TYPE_SLOTS
+    (*tp->tp_free)(o);
+    #else
+    {
+      freefunc tp_free = (freefunc)PyType_GetSlot(tp, Py_tp_free);
+      if (tp_free) tp_free(o);
+    }
+    #endif
+    #if CYTHON_USE_TYPE_SPECS
+    Py_DECREF(tp);
+    #endif
+  }
+}
+
+static int __pyx_tp_traverse_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__(PyObject *o, visitproc v, void *a) {
+  int e;
+  struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *p = (struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ *)o;
+  {
+    e = __Pyx_call_type_traverse(o, 1, v, a);
+    if (e) return e;
+  }
+  if (p->__pyx_v_self) {
+    e = (*v)(((PyObject *)p->__pyx_v_self), a); if (e) return e;
+  }
+  return 0;
+}
+#if CYTHON_USE_TYPE_SPECS
+static PyType_Slot __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter___slots[] = {
+  {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__},
+  {Py_tp_traverse, (void *)__pyx_tp_traverse_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__},
+  {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__},
+  {0, 0},
+};
+static PyType_Spec __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter___spec = {
+  "falcon_core._capi.axes_coupled_labelled_domain.__pyx_scope_struct____iter__",
+  sizeof(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__),
+  0,
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC,
+  __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter___slots,
+};
+#else
+
+static PyTypeObject __pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "falcon_core._capi.axes_coupled_labelled_domain.""__pyx_scope_struct____iter__", /*tp_name*/
+  sizeof(struct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__, /*tp_dealloc*/
+  0, /*tp_vectorcall_offset*/
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  0, /*tp_as_async*/
+  0, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
+  0, /*tp_doc*/
+  __pyx_tp_traverse_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  0, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  #if !CYTHON_USE_TYPE_SPECS
+  0, /*tp_dictoffset*/
+  #endif
+  0, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -23903,6 +24468,25 @@ static int __Pyx_modinit_type_init_code(__pyx_mstatetype *__pyx_mstate) {
   #endif
   if (PyObject_SetAttr(__pyx_m, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain, (PyObject *) __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject *) __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
+  #if CYTHON_USE_TYPE_SPECS
+  __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter___spec, NULL); if (unlikely(!__pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__)) __PYX_ERR(0, 127, __pyx_L1_error)
+  if (__Pyx_fix_up_extension_type_from_spec(&__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter___spec, __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
+  #else
+  __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__ = &__pyx_type_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__;
+  #endif
+  #if !CYTHON_COMPILING_IN_LIMITED_API
+  #endif
+  #if !CYTHON_USE_TYPE_SPECS
+  if (__Pyx_PyType_Ready(__pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__) < (0)) __PYX_ERR(0, 127, __pyx_L1_error)
+  #endif
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount((PyObject*)__pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__);
+  #endif
+  #if !CYTHON_COMPILING_IN_LIMITED_API
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__->tp_dictoffset && __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__->tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_mstate->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain___pyx_scope_struct____iter__->tp_getattro = PyObject_GenericGetAttr;
+  }
+  #endif
   __pyx_vtabptr_array = &__pyx_vtable_array;
   __pyx_vtable_array.get_memview = (PyObject *(*)(struct __pyx_array_obj *))__pyx_array_get_memview;
   #if CYTHON_USE_TYPE_SPECS
@@ -24926,7 +25510,7 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
  *     def new_empty(cls, ):
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_5new_empty, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_new_em, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 20, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_5new_empty, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_new_em, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 20, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
@@ -24948,7 +25532,7 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
  *     def new(cls, ListCoupledLabelledDomain data):
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_7new, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_new, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 31, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_7new, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_new, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 31, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
@@ -24970,7 +25554,7 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
  *     def from_json(cls, str json):
  *         cdef bytes b_json = json.encode("utf-8")
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_9from_json, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_from_j, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_9from_json, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_from_j, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
@@ -24988,11 +25572,11 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
   /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":58
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_copy(self.handle)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_11copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_11copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
@@ -25000,236 +25584,236 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_5) < (0)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":64
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":63
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
  *     def push_back(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
  *         _c_api.AxesCoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_13push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_push_b, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_13push_back, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_push_b, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_5) < (0)) __PYX_ERR(0, 64, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_push_back, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":67
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":66
  *         _c_api.AxesCoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
+ *     def size(self):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_15size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 67, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_15size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 67, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":70
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":69
  *         return _c_api.AxesCoupledLabelledDomain_size(self.handle)
  * 
- *     def empty(self, ):             # <<<<<<<<<<<<<<
+ *     def empty(self):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_17empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_17empty, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_empty, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_empty, __pyx_t_5) < (0)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":73
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":72
  *         return _c_api.AxesCoupledLabelledDomain_empty(self.handle)
  * 
  *     def erase_at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         _c_api.AxesCoupledLabelledDomain_erase_at(self.handle, idx)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_19erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_erase, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_19erase_at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_erase, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_5) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_erase_at, __pyx_t_5) < (0)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":76
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":75
  *         _c_api.AxesCoupledLabelledDomain_erase_at(self.handle, idx)
  * 
- *     def clear(self, ):             # <<<<<<<<<<<<<<
+ *     def clear(self):             # <<<<<<<<<<<<<<
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_21clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_21clear, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_clear, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_5) < (0)) __PYX_ERR(0, 76, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_clear, __pyx_t_5) < (0)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":79
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":78
  *         _c_api.AxesCoupledLabelledDomain_clear(self.handle)
  * 
  *     def at(self, size_t idx):             # <<<<<<<<<<<<<<
  *         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_at(self.handle, idx)
- *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_23at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_23at, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_at, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_5) < (0)) __PYX_ERR(0, 79, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_at, __pyx_t_5) < (0)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":85
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":83
  *         return _coupled_labelled_domain_from_capi(h_ret, owned=False)
  * 
  *     def items(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_items(self.handle, <_c_api.CoupledLabelledDomainHandle*>&out_buffer[0], buffer_size)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_25items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_25items, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_items, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_5) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_items, __pyx_t_5) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":88
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":86
  *         return _c_api.AxesCoupledLabelledDomain_items(self.handle, <_c_api.CoupledLabelledDomainHandle*>&out_buffer[0], buffer_size)
  * 
  *     def contains(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_contains(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_27contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_contai, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_27contains, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_contai, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_5) < (0)) __PYX_ERR(0, 88, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_contains, __pyx_t_5) < (0)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":91
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":89
  *         return _c_api.AxesCoupledLabelledDomain_contains(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
  *     def index(self, CoupledLabelledDomain value):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_index(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_29index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_29index, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_index, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_5) < (0)) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_index, __pyx_t_5) < (0)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":94
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":92
  *         return _c_api.AxesCoupledLabelledDomain_index(self.handle, value.handle if value is not None else <_c_api.CoupledLabelledDomainHandle>0)
  * 
  *     def intersection(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.AxesCoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
- *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
+ *         if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_31intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_inters, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_31intersection, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_inters, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_5) < (0)) __PYX_ERR(0, 94, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_intersection, __pyx_t_5) < (0)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":100
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":97
  *         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.AxesCoupledLabelledDomainHandle>self.handle))
  * 
  *     def equal(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_33equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_33equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":108
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":104
  *         return self.equal(other)
  * 
  *     def not_equal(self, AxesCoupledLabelledDomain other):             # <<<<<<<<<<<<<<
  *         return _c_api.AxesCoupledLabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.AxesCoupledLabelledDomainHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_37not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_not_eq, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_37not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_not_eq, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":116
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":111
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.AxesCoupledLabelledDomain_to_json_string(self.handle)
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_41to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_to_jso, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_41to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_to_jso, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":135
- *         return ret
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":131
+ *             yield self[i]
  * 
  *     def append(self, value):             # <<<<<<<<<<<<<<
  *         self.push_back(value)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_47append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_50append, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_append, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_5) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_append, __pyx_t_5) < (0)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":138
+  /* "falcon_core/_capi/axes_coupled_labelled_domain.pyx":134
  *         self.push_back(value)
  * 
  *     @classmethod             # <<<<<<<<<<<<<<
  *     def from_list(cls, items):
  *         cdef AxesCoupledLabelledDomain obj = cls.new_empty()
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_49from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_from_l, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_52from_list, __Pyx_CYFUNCTION_CLASSMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain_from_l, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_5) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_5) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  __Pyx_GetNameInClass(__pyx_t_5, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_5, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_from_list); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_4 = __Pyx_Method_ClassMethod(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_Method_ClassMethod(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_4) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain, __pyx_mstate_global->__pyx_n_u_from_list, __pyx_t_4) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "(tree fragment)":1
@@ -25237,7 +25821,7 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_51__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain___redu, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_58__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain___redu, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
@@ -25251,7 +25835,7 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_53__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain___sets, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_28axes_coupled_labelled_domain_25AxesCoupledLabelledDomain_60__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_AxesCoupledLabelledDomain___sets, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_axes_coupled_l, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
@@ -25306,7 +25890,7 @@ __Pyx_RefNannySetupContext("PyInit_axes_coupled_labelled_domain", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 101, __pyx_L1_error)
   __pyx_builtin___import__ = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_import); if (!__pyx_builtin___import__) __PYX_ERR(1, 101, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 157, __pyx_L1_error)
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_Ellipsis); if (!__pyx_builtin_Ellipsis) __PYX_ERR(1, 409, __pyx_L1_error)
@@ -25403,42 +25987,42 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{42},{19},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{54},{20},{32},{22},{14},{30},{37},{5},{25},{43},{45},{32},{28},{31},{34},{30},{31},{31},{34},{35},{35},{31},{38},{31},{29},{35},{35},{35},{30},{33},{8},{14},{20},{8},{15},{3},{15},{6},{18},{2},{6},{4},{11},{1},{2},{9},{17},{5},{18},{3},{8},{4},{5},{4},{8},{15},{5},{6},{9},{5},{8},{5},{46},{5},{6},{7},{9},{9},{8},{12},{1},{5},{6},{2},{3},{10},{5},{12},{13},{4},{5},{8},{4},{8},{7},{4},{10},{4},{8},{4},{7},{3},{9},{9},{3},{5},{10},{4},{3},{9},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{4},{4},{6},{8},{7},{6},{6},{5},{6},{1},{13},{38},{92},{14},{14},{41},{41},{32},{41},{68},{41},{57},{102},{104},{11},{50},{11},{49},{63},{9},{321},{293},{321},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1892 bytes) */
-const char* const cstring = "(\265/\375`l\021\325:\000\312W\234\021E\360\320\246\r\314\300v\204\255\002\326\006\360\000\3014F\024\006\177\366<(l\014\246\332\220\245\224D\222\302>\326\254\345\212\333\342`\205\330\343g\210\031GT\337\216N2\022\253]1\215(@C\003?\237s\375\276v\004\357\000\355\000\007\001u>\235\033v\214!\215'\374\321q\374\226\230\224\214\310\260\310\274\372\261E\375\341\365\323\244.U\374-\214M\211\223\324\023\031\215\336\265o\024GO\272\210K;)\\U\027\351\177\255\246m.!x\262\340\204\207e\335\354\351\241\354\373\315\272\324\t3\273B\375\004_\244e\225\354?\351t\302\020-x/$U\253\372V|\327\242\236Sm\373\347\032T\341\327z-c\231+\037\375N\\\341\375\321s\255\365O\365s\347e\366\242\234\236\340\317\2733\"\241\337g\377\325\324\304\030\222Z\327f\236\275:\037\336\354\226\232_m|x\276\207\252?=\370\374\241\337\370Z\264\332W\241\nv9\357\343\347\330j,\307n\345\333\361\271z\327Q\250-eR\374\336\326'+|\322Y.\353|~z\217\267\354\311\010/U\247\364\350W{\270\332\211\253gS>JK\257C0\375q\256\260Z2\335\322\277z\226\271\274\205\301\023k\223R\026\3739\021\236Z\2057\255\337\326\336\361\212\257\377\343I\253\3058\335\216\341\245p\323y-\363\226\206\277\332\013\235\306\227\3255\r>|\374\216\273I..*\246\022\211\004\037\312\027-\245pC\361x7\213S\265Ny\302ji$\331\264ccgA\013S\203\261-\370\265\261\253\215\024\242,\304\213Q\272\177\326\031)\234\253y\177\244\332\272\311\327\355q\223~\273\337\323\r\242\\>[/\274\017'\317y&\226x~\365g\371\224\023^L9\236\262N\224\223x\202$Jmd]x\017\237\277\255-%\004\0212B!\235l\346?\337__U[k\354u\036[_\013fO\3637a\217\021V\033CrLa\010_\315QW;\037\216\336;~\325U\217\241\346\365m\266\365P.\217\204\003\\\211+a\220\031t\364 \350\210\225\\\034f\\\035jh2\215)\233\3008`-#y\244#\006}f|*\270\024x\304@\235I\202l\352\301\320c\240#\026R\t\245\244\200R\360\300\006\3004\274\014t+\034\t\227AA\006!\260!\240FIF\250D\350%\364\002Rml\324H\261\310,l\262\215LV\361\n\360jq%\234\210\303\240\323M\016\002\367\301\221\034\210\225d\260\360F\341\312\037Jm\253\233\377v\355c\355o\243\250c\214g\212\345\277\252,\3554'N\255n""\331\206s\242\253\272\2735\253i\256z\273\343\331\224\031\254t\353\316\274\273;\233\335,9\345t*\375\266J\325\251X7T\367\303\354Z\024NA\212\"\221\256\275\327\263\255\272K\033\2537\236-[v\177\335l\3044z\204\367\273\316\366:i\354~Ouw\307\216\355\030\236N\017\261\327\371\233\2756\222\354\214\265\205a\307\023$y\254nB\271\211gy1\375b\222a#\204\302j'\205\3278ua\277\366DZ:\366\206\236@\341\231`\320\320$$\375f\\\025z\n\000\210\201d\314\300J\260\233\327\211.@'\201\253\371)\375\210\200d\220\217\237\220\322\013\300K\247\003\321\215\250\310*P2\n\t\367?\360\207t@\344\363\341\303C\342\363.\007\tb3>\253\235\036\004\256\026QW\2003\375\214\350\270\240kD\217\207h\306\307\014\221\002\032\242\327\307\253\324 7\360\210\021\350\240A\002\023\301\360\213\325\301\356\000w\241#\006\372\321\2311`\306\212\317\203\016\032\034-\034\"8D\204\272C55!\030\230PK\013\010\306\213\235\274Ss\305\3118.x2\317*\257`r\006\230\315+\006\007\271\r\0102\211\013\304#V\352N\026d\020\327\206\024*\243N\371\0043L\311)'B77 \273\261Q\243\312,o2\t\330\366\232\035\204\356\243\343`\n\2310\001\252Y\314qE^a\223=\300\374\205\242[\320\265X\231\365\371q\3063OUV\251d\232\220\311\024\222\t\305\304\200rpZ\344\026(2\nS6\020\"\352$7\303i\370\350h\002\201J\250!\235d\n\315\210\314H\222\244\220\016A\010\002Q\024\244X\3722\331X\3131\246\0141\204\210\310\304\210\224\220\202\224\024\246\322\006\202\035\374S>\350\264\206\035k\360\357\251cn\001\221_R\370Il(j\345\226\3214\356\214\233\016\357\240\243\314\361\210\352T \"\375\272\027V\211\206\211\022\303\336[\032\322^\021\343\034,o0\307\207\315\2507\265\264\277q\241Xy?\303-\323\313\331\212\203\261\272\003\2313\235\203\023\274\034\3741)\026Y\311;\373\322\366\235%\342\234(\317;\233/\357\002\340\256\246\346\017\244\332\237\377\354Q\2173\243CMe\032\242\301\226!\r\036\016\256t\263\274\305\371t\302\244$JN/8\030\300\353\305~\323\357\003\026\n\030)\270\330\217\226\203\301$_\007qc\210\200\020\013o\216\312\261|\201\304\002{=;(\327\211\213\200G\255\206\202|\2046\210;P\006\205\243\027\351\355\271f\303\324""\\:~\017\257\316\372\305\255\006\377\232Pm\354\002\212\232lJ\254\2556\342\316\227\" \356\244r\232WCT\373\355\300\327\013\350\257\265v\003\377\361{\274\227c\346?mh\322\332\024l\234\255\305W\336\341\225a\321h\363\315\241\343A|\213L\310\273\272q\351\251L\025\345\351\374\000\272\002\3766\276G\244\210nh(\2365!O\236^\207\271\347\030<\317\362\312\321nI\024\301(U\2119\335\001\302\355\355\2226\236\371\330F*\365\225\233P\023Gq\\\251m{=\360\222H\261\224\032\277k+\221Y\336Pq\345(\232v\327(\246\215d*\237\241\262D\350\276\370o\031})S\001\225S\221\332\364\324` \216\207yM*\220\251\260.\0262\340-\322B\tN?\365\274\225\270\345\367;\000\275\006t\272\325\"\\\316x\210\310*\244wa\312:\010b\207\037P>\034\2210\250\034\311V\236w\260&\233\0006/Q\314\246j+\347\036\004\315\230\242\331>\016\315\332\351\277c\357\311X^p\376\231\235\001\206\267\001vk\347\270\325\1779\251\003\345a\323IqJ\221\032ci\306\016\255\255\242\346j\213\213\317M\365l@\360\236u<\244\350\002V\213\370\210\241\237\323\272\202\233p'l\240&\311\270LO\026\331B\006\261!\242\366\010\365\201\002Y\r\302\201y\312\215\005\302\"s\311\243qQ\030X\243\317\247\231_\205\022R\372\2250\000h\312\005\035\"\301\314\225m\265\341\315\243C.j\312\372\177F\t\305\312NB'ZGP&\267`\314\205z\3010\213\370\214\370H\313\322\305~;\364\202oZ\220)\357\220F\204\312F\343,\177\220\365\247\006\260r)-\2345\326\242\343\227\205a\n\2047\016\014\"\331\030\205\274\013\212\023\2632\373\007\207T\356\246\345\312_\324cT";
-    PyObject *data = __Pyx_DecompressString(cstring, 1892, 3);
+    const struct { const unsigned int length: 9; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{42},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{14},{8},{54},{20},{32},{22},{14},{30},{37},{5},{25},{34},{43},{45},{32},{28},{31},{34},{30},{31},{31},{34},{35},{35},{31},{38},{31},{29},{35},{35},{35},{30},{33},{8},{14},{20},{8},{15},{3},{15},{6},{18},{2},{6},{4},{11},{1},{2},{9},{17},{5},{18},{5},{3},{8},{4},{5},{4},{8},{15},{5},{6},{9},{5},{8},{5},{46},{5},{6},{7},{9},{9},{8},{12},{1},{5},{6},{1},{2},{3},{10},{5},{12},{13},{4},{5},{8},{8},{4},{8},{7},{4},{10},{4},{8},{4},{7},{3},{9},{4},{9},{3},{5},{10},{4},{3},{9},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{6},{5},{4},{4},{12},{10},{12},{19},{5},{4},{5},{4},{4},{6},{8},{5},{7},{6},{6},{5},{6},{1},{2},{13},{38},{92},{14},{14},{41},{41},{32},{41},{68},{41},{56},{101},{104},{11},{50},{11},{48},{61},{9},{321},{293},{321},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1936 bytes) */
+const char* const cstring = "(\265/\375`\242\0215<\000\332Z<\022F\360\260\250\r\314\300v\304\003\0026\255\330J0\215\021\017\014?\302<0\3744\312Q~\243\325\016\332\302X\245\355s\245=b\026\207a$%)\353\332V{\376Y\363Z\372\263\217;\236\2076e\253\345\000\345\344\253E\001\373\000\370\000\022\001:\307\355-\344\256\013\246X )[\252+\345\362\347\034\253De-\337\346\261\010\211\310\010F\005\006Z-]\365u\304\217\242\365'\312\353\353Bs\242D\005/\210D\020_(\222\242\013?/\255\221eY\346k|\267\215c\t\311\264\213 0O\313]\024L]\250\271\313bi\324nJ}Tl\231\2673]\r\347W\032G\270\"\306\221d\357J\273$\3047\005\277n\234\206\277\305U\206.\275i*4E\313\3074\333\210\265\010\376\346\322p\245i\013j\027\247\276\242\242\246\2705\232\3611\274\032Z\025\3159\222\\\370j\257AKa\346.\247\242\332^\t3\205:\2564\nF\370:>\226\320U\355\2056\242\344\237\024\353\014?\337\255\373\374w\302\326S\026\304\237Jq'\264f\250\257\205\323F8\277\373i)|\024\324\231\323\340\234\000U\226\316\227\2177\230\355\245\331\276F'\254\325\004?\004\370J\322\245\322\272rt\211\212\244\227\366O\251G\241\273wq-iJ\347\202q\237\257\355k\032\213\276.\231\346\215\326\252r5\014\031Q\276\312\334\346\372Zo\275\315\370\265\316\264\332\233m\334?G\\#w\2437\355][\326\366\342\370U\352i\177\333\242\216:\353\317\356\3705u'\261\260\240\234L$R\324qByk\215\234\311K\314\335\254\262\226\316\222\316\265\221\246W\227\236\277\213\030\350\026\245cx|\245\327\230\302 q6I\271kj\251\254\221\262(\326#{-7\241\373Kn>v\207\272r1\365\023^\233\001\206(\201\217C\363\314T\333\327\335\323\t\002\245\3523\235\226\232\224HT$\325ze\227\001\352\010__\353sF\021 !\"\023\022\352j\257)\324\370Y\366\332\231\213\037\307\0255\270\275>\345\2272\332\373B\372\\\343\210gQ\221\333Ku\024A\375\031\332_\005\006BB\337\364b<\016\037\237\214g\362D\034l\007\240\234\004\240\231\351\345!\346\365aFf\313\2346\211\254C\2662\332#\320,\352\304\350Xx-\360\230y>\022\005\373\224\243!\307\000h\366A\371\234\234xV\340\310\006\3108\304\014|)^\311\333\260`3 \300!\340\206\251\306\347\304\247\345\323\342Yqp\334P\271\330.h6\r\314f\021\013\020sy""\"^\310\323p\363QO\202\367\341\225\020\314L5L5\272\314\325\310z\035\347\306Y\256u\361*\277\346\360\325y\323\330\247\375\234\252\237s\246\252\3565\313\252\370W\030\222n\226\323\270\014C\376\312\335}\273\333\366+}u\367\266\365\032\235Z\264\356_9\367\237W\323\336\335]\243\356\335\244\223\322\257\363\261\257V\256\222\226K\271\353\250\341\233\312\252XS$\022\276\030\277\306\331\377y\245}\317\324\247Owm\271+s\225\237o\225/#\326n\251\277\245U\272\353W\271\273K\227\3769\242P:\346\267Ts7/\336RI6p\204\324h/\255\000=\253pt\275\301\013+.}\304A*@\022\r\034\274Tr\030\363\262\220S\000\300\314S\343f'\356P\2000\213\262\030\231*\266\372\034|#\336\303b`\243\006\273&\347\000hV\362H\300\030\300BL1\000\261\233O\3047\n\305:|\035\037\t\213\315\302d\233\224<\r\2130\022\202\220\316\207\016NIG\277 (\230\305\350\260Z9\t<VB_\001\357\004\033\335\274\342\253D\216Gh\347c'\264\300F(\366\0213=\330\017<f\004@6J\262\220,\307\272/~\010\274\014\240\231\007v\2633`'E'\002\310F\307J\007\211\016\022\037\367\317\314\314\307\305\345\263\262\342\231!\243\265[v[\233m\023\003g\343\2606\313eo\220\321\304hx\321\033I\260c\254\365\241|%\r6\203\327\210*\265S\250\215\212;\236\354\223\024\237\232\032\317\345\340\270a\347\2365\333\204\214\213\321O\302\367\361y8}P\240\360XMn\331b\267\240\331 d\037S\3615\370\\\335\356\364\326yg\272\351j\257P\266\314\347t\372\300|^^<0l^\354\027*\266\212\323\016\201K\250!\035d\n\r\215\214H\222\244\220\016A\010\002A\026\224\034\372B\321T\3139\245\0141\204\020\021\211\221\241!\221\224\024\246\322\006\202\035\374\003>0\266\306\035k\364O\3261\260\200\353\021n\303-C\251\325-\243\327\310\02179\272c\007\230\226\021\311\251@L\372c/\264\022\247\023\361\204p\2444\240\275\222\032\236i\337\274\034S\247Q#\005S\302\354\222$\313O\260n\225\277\310\\|\031o\235U\215\325\250\nG\24042\354\335J\210F\t\262\270\355\274\244\013\220\264B\204{Q\022;\233\330\363\036'\246\207\202f\302\224\205A\246\007\272\262,\2472\346`\273\251\004\316$\221\334Rp\213\200\252B\362\350\257.\213\nL\276,\342\217\343`\300\250\003\301\036c""\214\000\205\265-\357\301\226!c\361\202\376\272v\020\324\371\025A\232Z\r*\314N|2\032|(/\242\317\212d\317\246\233_\357\255\247\023\241i_\217\037\327Z\005\247T\233\256\353\255 \264X\004\267/Y\263\264\010\001\233\322g\325\237\222\365~<\360\272\206MV\216V\035\231\364\023\374\017\341>o\243|\013\017\223\374t\320\347\311=\303\256\222\323!\177\214\250\304\021\204\261k\327\027\301i\215\212\024\301\220\335\307\035\241]_f\240\232\206K\322\2661\024\0251J*&\317'\311\363\003\253\217\374{\244\243\335Pe\303g\247\316\220;\\q\322\350\323C\363\364\262pw\304\004\203\323\315\323:\203\372\217s:\371J \274l[\016f\272\214\n\356\307\306t\264\3260m<S\376\320\345+d\223\000\306\320J|L\305\2364\313\253\326\323w\203p\0021\302t]\231\013\317%\341AxB\"w\240i]\316\227\021\263\013\025\001\020\256\241\305'^\204t\034 \021\034\n]S\336>\207*\030\352\233\340#P\017C\343\376,\"\255\315\007\212\2153\342vy\243`\206\252Jz\023\2240\030\307\"\226h\300\372\326\004\033\243\334J\352\236K6p\366\005\004\265\365![\242\203\355\363\311\264\200\024\364\266\t\256\010\323\203\311\323\226\215RdW\225\270\365\314\270\nIowS\031m\232\217UN\301\310|\212\030\357U\27712\322H}#\235\326Ff\306[c+\220\271\314^\2371\021\233~\277\302\206\240\022\245\243\216z\032\210j\240\017\205\245\311<\020d\3476\235\007\2012\212\0109\214<_\323\022J\037\"\324\266\333\010\001{?\3014\022\344\274\301\206\331\016_j\317\324\347\345\010\275\362\207\235\026\232\202}\207\007L\361=}\245\232\2113Vz~{\227\376\366\370Q\336`\276)\317\241H\004\260\243\001\224?juRU\354\275\2244\233\235\326\032\360\303\3024/\221\207\263\243\036\033^\340\331\362qxV\206\377\301\212\312\275i\231\376\027O.\025";
+    PyObject *data = __Pyx_DecompressString(cstring, 1936, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2123 bytes) */
-const char* const cstring = "BZh91AY&SY\273%\242\265\000\001:\177\377\377\375\377\204g\377\377\177\277\377\377\376\377\377\377\377@@@@@@@@@@@@@\000@\000`\007\347\334\352\356\261\312\341Og5\322t\r F\360\320\312*6\3254\331L\223\320i\250\366\246\236\243\322\237\2516\246h\215\0310\000\232\007\247\251\223S\032FzM4hO@!\262i\220d@\232be\004\304\302\024~\205\r=OP\332\201\246\232\000\000\003 \000\000=@\003@\003 \201&\222dda\244\364\232\014\324\310h\032\000\000\000d\000\000\000\r\030C\324\000d\212e<\247\250\003ji\240\000h\320\003@\000\014\214\200h\3102\032\000\000\000\000\203\000\004\300\000L\000\000\000\000\000\000\000\000\000\000\000\000\022$@L\223\002M\252xi\241\023O)\265\031= \3204\0004\000\003C@\000\r\007\250\006\226A\001A \030\346hI\010\005\016\366~\336\242\216:\335\365R\006\224\017\266\304\275\251\216\376gM\235\2719R\356\027b\003\014)v.&W6\351\261\345\r\027\342\272\237YA\004\240\240\233\360\340\221a$\033u\005\222$5>\322\220q\215NJ\236\326\002\242W\275\313\312\213Sa\320\037h$\024\2415\222\201\037v\276\355\240\323\037\000\332m\222\237\030\235\003\340\324\244{\352\323\316]\nKE\311\225s\013f(\021;\254#\320\242\212\212\350,\350?1\260\025\235\364f\266R\311L\373\267;o;\336\364a\006\310*\364\353 \332*/\354\366%\203\207_\023/\rFV\227\226\210\331\237\310\203\223\257\030Me4V\2753\020\325:+0\020I\254\340\367\255*Y\2567\351\223\217\325\0272\335\362\262\240\330\240.&\337\243\023\200\367\n\001\234\351\316=Y\027\003\377r\034\220C\353x\334\246\361NLhp\336Mz\345\000\215H\022PZA%\315\245\237D\272\013\266\013\300\301\266\232\233\300\031\216\240o\212\250\006\237\nT7`?\024\007\002\205h^wx\002\236E\277r\251N\377\"Jy\214\374\343\205\226\037W&\360p27\251\331\353/y\200\201!\3763~\261\360\265R=\t|\342\313l\302\351]\214\366\256o\232u\302\200B%\004\200<^\256\241\243P\353y\271\365\350\035\325\315\313\255A!QSsJ\314\202yssl\2727G\035\223\037\257q\343\345;=8\317\0248q\272;)G\020M\205x\264=\215\235\371\203\243\315u\337l!\021\277\272w@R\265\234\362,\231\317y\036\004\370r\2308\323|\336\334\320\353\030\r\234i\3048#g\266\376&\004\230{""C-F\236\222\214\345\303\000J\245\027m\242\"[\006\370\0343\217\020\352\216\252\373x\020 \320\033\027\000Ks9\030\242Z~Sq*\021\260\256X\010e\346P\0369\177a\210W\271V\312\026\033%\024<\305K\206-\317\0341\257\34747\375k\316\016\n\022F\200\014\306\364Db\205\242V\003\353\201)\200\"\036@\274P22\323\227ub\324\004\260\225HE\020\275\203&)\0021\312\021\324\230At6i\\\274\246\306\0036N\272\022\330\022\235\251\273\335\265\337\225zFs\263o\353\256\t\027\032\275B\365\270\004\177f\023L\213&R\032<\034u\240\353\251\312a\325\211\005\240\266\223Z'\224\230\254\231\212\203>|\301N\333\300Wd\315\214\005\303\271C.)\247^y\315]b\223\007\001\205\333c<#\275\357\316\363\261\341\255k\214\233=\003I\254) \214l{\204\260\001\310\224\302\266}\275]\272\344\004\331I43\214k!\253\236$\312hT:\034\370m6%o\036+x\265\001V\357T\314JV\240\216\244\035\2266\005\013(\261\244d\"\010h\2210\343\276hh\374\251pC\221#1) H\346\251\252h\014\277\r\224a\204Xd\027\024\265\241\r\250(\241A\202\265\200\353\306A+(\360\206\234\261\200\273]\317\335\222\311\202\266\227\005\3216\314u\261x\337\300\313\024[\251\024\027T\310Y\211;\206\242\3144Q\021/\3411 \205\343F\262\2075\010D\222\300I\332\226\r\270`XR\tr\020J \004\252@\211\254\035\362(c\221\313I:\244\202.0J\217\230!\340\335j \014\307\032\344\340\312\036L\034\2021bx=\273\220\007R\0306\330,\000\317\252\303\n \370\222][\346\234z\321\244\200\212R\005\261PCh\020\240G\000u\005H\344L\212\0023\364\350\257G\330\005\24396\"\251\266\324\030\37123 ;\036\210\272\324\315\234\2138\016\216 {;\234\261s\254\274\3267`\200km\230rB\\\232@5h#\227NI\215\031\345I\325m\204E\245\346C.\227I\010\301\2479\202\200\010c7QP\014\034\034\374*\230\232#\265\230\033\201@\211\030\202\034\005\345\262\rc\273\360\204m\240\266\232\302yk\305<:a\3670\216\347\247\323\376\366\267\205~(\316I\206\242\223I\241.\333a\242\221-S\t\001\261hf]8\334\244\262\346\204\252BLI\211P\252\212\3572\301]W\036\000\317;\206\264\204t\246D\214\326\360^(\327\231M\003\3000$\212\220\234-|\300B\036 \312H\366\241$\270\251\276@R\356\327\270\245`p\330\342\215""\331Jp\230\301\r4\232i\266\201\211\267q\364\322Ib\275E\023\350\272\3203\t`U\020\023\nT^\315\352^(\2256\302\032\204[VF\330\330\353\224UaR\255\217\000\254\2219L\222\214n.\036\327&\214\271\367\221\205\206\006aX\307\2247\316c\266\204J\304\216p\2216\223B\260\243T`\203jN\023u\201$H\243\321$\022\232\033\334\303\204R*\3248\002\371AI\006\024\240\333\27566\035\026\017.\316\245g\022\022b5\326p\030\035I&6;\n\016\322\241X@\017U\016\000\221n\024|\256x~\313\363RIX\215\333dF\276\333\000\245C:\301\317<N\274WCMa{@\321\235d\307E c5\326,\2021blt2\232\205p\256|\3279m\244a\211\016\224\321\000+\211Ro\034\025QP\201\312\260\335G\253\236\335\342\201\243:\202\n\276\016/W\002\262c\321\275\213$\026e\342P\270Z\300b\235CK]0q\330hr\332\033\304\337wI\326\006x\000\304\001*$\205\224\227P\240F\177H\302\3365\033\351\031w\260Q\237P:\0272\026\004\001\2721\026\264E\024\227\007\225g\0062\313\321\321\275\214\251\222\201\021)\010\367;\201\340\275\314z\206 D&2s\005\305\250\005:Qk\225\343\006\010\013I\000\226\322`mQ!\033\025\212D\201\252tK\006\260\236\311\t\234.!\357\334\274\205\216\362\256\337\016Y?\304AR-I\313!\317:L'\224\253\031\2477\005\312z\321\251nj\222B,a\230\337\217i\206\253M\006\344=\006\342\257\016\311\263\304X\n\241\216|6\315X\3372 A\330\216\222\005\240P\301\205yx\263\355\322\307\021\244\346H\364\350\2319\3258\304\321\307\276\031\031M\001\003#7\010\n%\340\300\270:\374a\231\231A\251\265\032K\326\026\237\220\337\306\276@\250\303K\274\203LP4A\333\001\343H\n\306mnc^\365\277\004E\211\"\253\362\316\231\371\306\n\025b\321\251\253\221\243\013_'\0102\277\341\027S\341\177\024\360\014`\013\260+-\004L#\306'.\010\345\320\304\206\222\350\361\251\327\007-\236K\226\262oX\310\302\037\333\"\254.|\270>\343\034\353`\274:O\326\246\374<|\323(\346\023\332Ohd\317\375\010\270\343\257\024\262$\237+\273\021\202\272\2070\246\\\342\333\225\305\310\331\245\276\336~\250\372bl\017\226\224\231~\377c\034x\332g\311U\322\016\305\tl,\020\022\205k\221\3125]\020\242\253\255`^\356\274\370\363v\255\036b\356H\247\n\022\027d\264V\240";
-    PyObject *data = __Pyx_DecompressString(cstring, 2123, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2169 bytes) */
+const char* const cstring = "BZh91AY&SYE\033\343\025\000\0015\177\377\377\377\377\204g\377\377\377\277\377\377\376\377\377\377\377@@@@@@@@@@@@@\000@\000`\007\353\270n#\272>\2424d\353@\326\232-\236\010e\"2h\32242\217\324\233j\236\232mOI\224\375P\323j~\241\032m'\241\032h\017M2\237\252\033H{H\233\022i\265\036\243\3226S&\203$\232\006\247\220@\247\2645O$\323jzC\322\036\240\321\243@h\000\006\200\000\000\000h\001\352d\032\230@\246$\332\215C& \r2=L\004\323\002\000\310\310\014\214\rCM\r\r\006\236\223\324\364\230@\t\021\010\002\232\236\2322&\004\232j\032z\2316\241\241\240hz\200\000\000\000\320\003@h=OP=D\032b`\000\000\000\000\000\000\000\000\000\000\010\3020\000\000\000$\221\006\246\247\240h\322\2154\332\032j\r\030\206\236\240d\310\000\032\r\000\000\000\000\000\000:\201\001P\220\006Y\254\022!\000\242\245\357\223\374(\372a\277\201#\261\023\325\347\247\273V\247\271\352\317{\336V\234\215uG:\026\272M9\262\032\217j\377\205\341\222\rg\301%\n\023xa\301\252\242\013a\020\002\362j\236e!\350\215RU\274\331\\N\217;\030.\257py\202\210\263I\346\224\016\322\341\247\312\351\226\007\320%\204\273/\253\231Y\236\215\330\272\251\244<\247Z/\256\254c\345\2009\234@\213Q\003\263bb\200:\307\010\216\027H\r\025k\300\346)\230Y\374\027\232K\nZ\250\346\234\033 C\310\262hY\214\217\362\344*A\243~t\240,\232kN\214\201E\t\323\205\355-\370\276c\226\004i; \033IH\321\000i@\340\325\235\037\031\245w\020\271\236;\312\235%\251P58\240y\2569\337\0336\201\335\252T\005\006\355\003M\245\360u\266\306\304(t\266\3460\346b\254\205\327\222\232jDQj\003\022\034\264\022gTR\013\021\302\355\203`\034XUR\022\245\250\016IQ\3612\010\342\177\341\r`R\0034\244a\200\270\203\227\336\\\010N\226b\225\214\014M\224\314\010\342Cc\264\200\260\270\356`\r 3%\375\365\027bZ\013kg\346\315\032P\025F:Ps\224R\234k\253\305\334\227\2151>\341@!\010\000lV`H`{}\021\350\2601\304\271\350Q$)\024\225p\213O8\022qX\307r6D\312\323\351*\277b3\2038\335\351\261\320g\325\\Y\255k\340\2230\227\005\270\036]\226Z\017\307\272\212/\2040\306/\333:\353`L\262\267:\272\232\367\276\241\032.ms\013\345\327\313""\027g\256`\024\340L\301~)\240k\0242\232 z,J\037o\252\207\324\216p.\306\017/[m\365\213h\271\327z\312\220\351\021OF\250+>\225\216\375@\277\0060c\210\256W\270\235i\003\245;\244\231\3140\037\323\300\2203\260\305\303c\201\254d\235\262\254\206(\257v\241T\333\311\343&\226\366\026\213\037\333\036\300\265\201\344\264\003z\305\2670F\2170\247\020\223\334X\245\302\245\231.b\014<q\345\233S\001)+\213F\rS%s\024\202;\223\010\337@\2038l\352^O!\277#v\337\276$\270\tS\024\336\217\033\352\332\\\302\223\3437\316\342\022'1\371\305U\267\001\337\242\261\214\362\244D\201\207\241f\010;*\223@\365\242C\020]\t\256jq\224\026\0246T\344\344\334\026\351y\027\341C\206FcN\234\304\344\222\\\212\223#L\220\302\276Vi\2521\240jg\347\230;\270\r\025\245Er\233\273R\361@\340H\311\327e\244\360\"\t`9\372\227\251\275<\241\007\271%QBI'C\347\205\330\022F\243h\332,\311\214G\315\266\226\304\331\267\300\206O\000\266=\370H\035\242\343\340\3030\025\\b\315#i\020CD\224\017OJ!\213\371Y\301\016I7\023)$\233\004\275\254_\317\350[\230\301:\325\311de\023-\030A\t\246|\t\220\344\245\204\244tD\337wx<\271\370\177\346\212_\010\350\216\024o\334\312\345\265-\272\252\356\223\257\027\002S.\211\3005\355hX\234\002<\210\212\233b\036\t\212\350\244\310l\306&\002'\232\007\322p\311u\327\223(\022UbI\260J\035\310\316.\257\257\004\325\3261\247\020$\\\254\370\217\3165\331\315F\302{\230k\307\331\307Gd\256\2630\302_\255\342\253\030\312\351v\264\345\326.\r\375\335Mv\233\300\016I\337~[\257\\\276\321\3042k\320\214\030\323\036J\2261O\023E\233\227d9\030\225\360uD\363T\225\204Wk\363\325(\314\264\362\320\256\310\315u\370\257U_\230\352\2600P,\250F\256Q\260\232\271d\310p\340eu\212\366\334\006v\347 \003'\224\217'n\352\r\033f\307\306m\215\306\271.\032\034\275\026\315\243g5SW\302\004L\367\\0\342\251[ql|t0\363\347\211^&7\206\002*\030\252dRk\360F\206c\204\327e\205\265e\3316I\006\210\2065\221\235o?\373NX2N\246\223H\200^\024\023n\322\022\302]\264\t\003\206\001\271z\221\325c\014\330\222\270I1&%Ut_\251i\304%\234\320\030\345l\340\t\032pD\252\003\253\025\234]R\301\210""\243\036\222D\315.n\253\301\242\226\025\327:tVR\360\333I\002\317>Z\3465\223\206\307\025\354\231\244\003\030!\246\223M6\32016\363?M\211[4QZx\235\341-\020\265\300.\210\n\005H\321\235\353=\221\205.\306\020\324\"n\332\333M\216\376\330\277\022\365\203\036b\306JM\tQ\265\306\203\351\367\234\373\271uF\2542f\253`\370\303\3167\274j\023\202G\201$Q\244\320\260+\333\031A\321.\023w\201(\222\277D\220\232!\276\255u\024\227v\216\000\322`\261\006\251A\305\323!D(\200c@\022\265\330\262\2036\200\222\200\231\256\231e\002\3425\345\262\222\2036p\251@Z \252\0226\367\335\262\276\305\272q\337\244\245\202;1\2227\364\260\013(f\227$2\215\373\335\010\3312\254\313\024\031\024\252,\307 \026K\212\305\002,Xf\0326Z\341f,\337\236\351<\351\032\304\235\221rh\220\213%\tdv\354\203`\312\304]\316\355\025\265:\323(p\204\205\027QV((\316j\351\3319\021\232\213\030\335$by\300\252\351\202\312\337p5\246\024#\363\303x\226E\240\375P[(\017 \t0b\031\323/\206\230\347\375\271T\360A\330\360\313\335]\006\376\201sG+R4S\233\270R\206\016\022\251e\023\333\265N.\270c3\304\262\200\300\313#\017O\220\260\255Y\264\022\306\322\303*\311z\243\r=\\)B\263cY(l\311\206]\364\255r\331\304dc\261F/\\\210\027/\312\331\303\357\023\205\t\2226\021\004\026ZB\243\276\245lw\325+\344!B\022\030J=l\3123\230\"\244\226\311\217N\272u\025w^X\327\236\t\025\030-\227\335\323ezc\014\307s\346;\025\372\367N\357\204\300\025\303\036U\366\376\201\235\214\233\341\020 \374q\342\020\271\305\014\0320\335\207'M\230\342:\315\362}:\320\245.t\356B=/8W+\257b\017\007\251\330\001db\t\023\306\316\260\237\236\260\235\021\002\365\377`\223\002\222})\262\200\222\023\027\277$\033b\301\375p\003X\013\007\t\335\301p\3640\335\304e17\235c+\\\3552\256\030|\371\\\030<\202\224Ev\264Z\035\230\243#z\3766\237\332\023\340N\314\030\240aR0\252FM\246\205\245\265\234\216\221\267\2709.\362\306\324\225k\\d5\244\307\3666\214\321\315\324:4\007%z8\372e\243\267\235d2gWz\177~\211\240]<\2503\t\274&\035\355\361%\321\367\240r\306\201\351\353\177\245\005n\213\202\331r\313\316\331\232\331\341\256\335/(q\315""\261E\312t\035]\316\357l\3330\224\361\265\007\002\022k(\nB\3772\256\255e[<\030\032<\263=}\336l\017\376.\344\212p\241 \2127\306*";
+    PyObject *data = __Pyx_DecompressString(cstring, 2169, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1875 bytes) */
-const char* const cstring = "x\332\255V\317S\033G\026\266\344dCb\312\016&\311^\366\320T%\213I\214l\374\253H\226\220\022\340\004v\035\014\226\301\361:\251Nk\246%5\036u\017\323=B\"\311\226\217\034u\344\350#G\035u\324Q\307>\352\350?!\177\302\276\3273\022\020[\202rr\320\364L\277\327\375\336\373\336\327_\353+\222\017\002\342\213*\227Z(\251I\030q\217\373B\226\217'\311g>\251\306\332\220\"'B\372\274\316}\302\244O\2442D\007\002\334\227\342R\211G\244&\370\036\361\025\327\316\304\353\241\322\234h\023\t\237\353e&\211\222A\203x\021g\206\023F\212\311\"Sa\206\010M<%\215(\307*\326\020\204TyUE\215\034\254\302\255\230\326\242,\211Q\004\026\373\263n\237\304\003C\246N\351\306{\2210\254\030\360\324!I\252\024\251\352\250\265\256,\262'L\205\230F\310\311t:o\"&\265+\343xI\342\006+\004@eN`\267r\0220\221\200\2208\335\257\206\246At\205\301\326&\016!\271\222\212\210\3270\025%s,\212X\343[&\002\200\025*L\313\310\327\0013\205\276\376\003V\344\001\214+\252\312\204\\s\251\252\330\020U\"E\025K_\277a\212\\cuH\3413\177f\355\365D\223\316\305a\250\"\303\3755Yc\201\200\026+\237_\307\256\2013\2442\355M\023Hr\0322E\024\246\257\2232\254\352;'\265@\243\\\230\205\357\035:\333\210\016\244\260\256\240\000\327\327eW\"\202\341\363@\024y\004\245\001\376\310\t\010\342\232/\311\306\375\215\331;\363w\034\247\"\276\003\3415dW\364\002h;p\tk\212E` \030\366F\347\310Z\2114TL$O\020\013\301\357\344\002S\341\222hn\360\205L\273F2\003uSX\016\304\236N\233\"j\034W\177\313\002\315s\017O\201\007)\247\354d\236\307u\037\315\202\341!\251\262\206\303\017\016\303>\217\3241\320[\322\321\016[\250d\215G\300*\303\253\370\255\212XTnqz\346\033\346\373T\"<X,\001\204n\326=\005\315\3650A\235cEo\341\304A@\247$\331\305?N\367\371\267\350\013\215q\271\213^\366\3105lS\331Q\017+\300\223\314\353\206K\343\316\325\361\241\026:Y\342c\226Z\354s\262\3605\271\371\0321\245\202\326\225X\034\030Bi\304\375\330\343\224\022?v\205J%g\241\2255\301\002\260zB\n\003\306\244\334E\035y7J,\200\274\251\247\"~\203z,\0247\030\360\032\276\035\261i\2202\233\372\216\332\271\260Q_H\364\302?U\373\353sH\315""\001\004\247\354\247geY\2538\362\370b<\350\016\013\002\3459\t\302\372\210\317\014\313\275\301\2320\034wL\025,\227/,\257\255\r=\227C\r\271\001n\t\256\224\216r\005\336j\240\353y\234Y\030r\351\217\260\233\3416/\340,\032a\006\262\301\250Gy\204\215\341V\216\2027\302\274\033\263`\2049b\232\323Q\351\243\236\323\035\255\344\031.\201\320#vq\252?\312\014\022\245\223\2439\302\013\217\317p\263\344{#\215\364\014\250@,\350\031p\205\261\256\320\"\363\236\017w\301\363=\334j\224\303\362~\020\210P\013\r\362\275V\0057P\n\270\010(\335h\324\341\267\002\212M\327AJ\036\361R\0012\342\322\343(\370\271c\355\007\365\352\037\037\232\350gBQ\246\033\322\023\n8\023\301%%$\327\314\024]\310\"4:\361\244\230\242G=\220\021\224qJ\373/en\020b\374\004\312z\001,\247\002\264<b\036\307\242\275@\367\331\212\234\004i\221\006\3174\245>fL}\2744\250\3204\221%\0077\344\016\227\035\227q\325\335H\016\337>\351x\024\251\350\204n\345\234n\345F\351V)`e\r\302Ye&\275-\007\374\034\260\220\322R,=,\253\334?\341\264R\001e\300+\320\017\270\360\205_\247TT\361R\206\021\251y\222\200X\301\000?\004$\221\355T\2731\024\245\230\013<y\025\377\246\340u\016\037\312\217\003\030%\253\036?\341\022\200'p\017\037\003\016\016\230\006@)\270:1V\332\306\020p\016U8 \032\245\240\324\016\027,\310\275W\270\367\\\307\325\344+\255\017_\035\372\356-\226\241\360\236C2\367e\337\257\346\376\251\341\036\0307\311\356\370\226yM7\007\023\274\216\257e\200\025\360q8kDR\363\240\344\0244-\024\336\322\273\353\204\256\3227h\254\323z\304\021\246#\260\361P\033\005\277(F\006\031\216\355K\017\tT\001\000\304!P\214\303_\2418y\350\372\213|\357\362\\k\242\365iK\264w\361\343Vk\252u\247\325\350\274\333yf7\266\355\366O\366\247\362\357\027.T2\017\2620<\310~\237}\221\377\375o\027\336\237\264Wo\267\346Z+\355K\235\273\335\367\272\373`\374of\t}\226\262\313\331\336\330\245\203[\007\005\373\341|;\323\033\277\332\374\342p\363\220\365\306f\355\354j\367bw\336\026\036\333\307[\350\364Us\023\207/\233\371\336\330\225\003\314`\354c\373\361\235V\276\365\270=\221~\335mm\266\374\366\324\251""\257\031\210z\311\026\236\332\247?\333\237w \352\363\314C\014\3760\273\221=\313\261\200\216\205\354\343?8\332\345\212\255\010+\264\325\306\232\272\2557R;\324\320\376\250\375\264\303\273\377\262\333?\332\037=\353Ua\007\231y\204\033=\312\026\216!\371\262=\361'K\207\035\332\237\266E'\356\376\307>\001\360}\353K\210\2422O0\330\223\354\017.\353%\273\304,+\332b\311\226\312\270\313\275\346\244\375h\241\235\357\215O6\347`?{\345^\213\265\376\327\331\356\336\266\3535[\333\267\373\277\244\013\241\304\035\273#\255\334\263{\277\302\236\277eVq\353\325\354:\016\353\331-\034\266\262\024\007\232\375\356\"\014\337]\\\275x\376(\257\306\376q\270\362\362\275\227\273G\231\336\330\315\326\3456k\327;\272;\325\235{5\366~o\374\023\373I\2763\321\231zuu\352\345\304\313\251?\203\327\370\301\277\233\254\271\213!g\217\n\255\017\332S8\267\n\036\343W\016\366\300T;\334\354}\370\367\2469\234\303\231\375\303\211\303\251\376\342\313\271#vdZs\270\317\242]|f\237Ak\201#\010\317\240V\227S\277V<'\263m\027\rj\370\246\275\333y\247\223\037\270\316\034M\244\256P\343\244\235\274~\224?\332j\375\263\375n\373\207\316\223n\276\273\231\326\373\"\323{\347\203\203/\232\233\3119%\211\244\200x\321\271\271\023\372M\357&Buk~\224\204\017\377\233E>\277\226*\031\275\007\327\023n5\324w\325I\371ur:\243\320P\026\225\365[\245EGZ\335\355\202\333\220\317\007\261\340\256`\201\0138s\341\234\253\317\t\340\355a\033\235\027\267\277\014\263\241\231\274=R\177\025H\363\356\262\037\266\333\0030\236\027\255\241\276o\305\262\221i\321\221\3263\261;\337\352\207\377\007\235\037&r";
-    PyObject *data = __Pyx_DecompressString(cstring, 1875, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1915 bytes) */
+const char* const cstring = "x\332\255VKW\033G\0266\"3!\261\307\016~$\233Y\024\347$\203I\214l\374\nI\030r\0048\206\031\007\203e\343\36189\225RwI*\334\252j\272\252\221\304<\216\227,Y\262d\311R\313^j\251e-\265\364O\310O\310\275\325-\001q$8N\026R?\356\255\272\367~\367\253\357\366\327\244\020\004\304\0275.\265PR\2230\342\036\367\205\254\034\275$\237\371\244\026kCJ\234\010\351\363\006\367\t\223>\221\312\020\035\010p_\210\313e\036\221m\301\353\304W\\;\023o\204Js\242M$|\256\027\231$J\006M\342E\234\031N\030)\245\213L\225\031\"4\361\2244\242\022\253XC\020R\3435\0255\363\260\n\267bZ\213\212$F\021X\354O\273}R\017\014\2319e\033\327#aX)\340\231C\232T9R\265ak]Y\244.L\225\230f\310\311d\366\336DLjW\306\321\222\324\rV\010\200\312\034\303n\3518`\"\005!uzP\013M\223\350*\203\255M\034Bre\025\021\257i\252J\346Y\024\261\346wL\004\000+T\230\225Qh\000f\n}\375G\254\304\003\270.\251\032\023r\305\245\252bCT\231\224T,}M\256\263\006\304\373\314\237Zy;\253\264Mq\030\252\310p\177En\263@@?\225\317o`\213\300\031\342Nz\223\0042\232\204\264\260\344\311\033\244\002\253z\316i\342\320\025\027f\356{\007\305\006B\001)\254*\310\3265q\321\325\203\225\373<\020%\036A\035\0006\022\000\202\270NK\262\366`m\372\356\354]G\240\210oBx\r\331\225\274\000z\014\304\301\232b\021\030\010\206\215\320y\262R&M\025\023\311SxB\360;\276\300T\271$\232\033\274!\223\256k\314@\335\024\226\003\213'\263\016\210m\216\253\277c\201\346\371\307'\300\203\2243*2\317\343\272\207f\321\360\220\324X\323\341\007\314\337\341\221:\002\372\231t\034\303~)\271\315#\240\220\3415|V%,*\077\0779u\375[\346\373T\">X-\001\210n5<\005\255\3640C\235g%o\356\030\355\321)\315v\376\327\257{l\233\367\205\306\300\334\205\257x\344:\366\251\342\210\206%\340\271\345\r\303\245q\247\350\350\010\013\235.\3611M-v8\231\373;\271\365\026\r\245\202\336\225Y\034\030Bi\304\375\330\343\224\022?v\225J%\247\241\227\333\202\005`\365\204\024\006\214\010O\031\221\304\200Y\365\363:\362n\226Y\000UPOE\374&\365X(n2\3404<;R\323 c5\365\035\255\363a\2631\227j\205\177\002\211\267\337!S\373\200\234\260\237|++Z\305\221""\307\347\343~\263X\020(\317\311\017VK|fX\3767\254)\341q\307L\275\362\205\342\342\312\312\30039\320\220\247\024\000\217(\035\346\221\341\234\366a\270+\020]\003\277\317\342\314\302\220K\177\210\335\014\266y\001g\321\0203\220\023\256z\230G\330\034l\345(\207C\314[1\013\206\230#\2469\035\226>\252=\335\324J\236\342\022\010=d\0277\023\206\231\241\261:=\312C\274\360\270\r6K^\037j\244\247@\005\207\217\236\002W\030\353*-1\357\325`\027\324\203\301V\243\034\226\017\202@\204Zh\320\373\225\032\270\201\262\300\344\240t\255\331\200\337\022H<]\005\351y\302\313E\310\210K\217\343\204\310\037\r\013P\273\336\001\243\251\340\246\024e\272)=\241\2003\021L5!\271f\246\344B\226\240\321\251'\305\024=\352\201\354\240\356S\332\273\251p\203\020\343#P\326\013`9\025 \376\021\3638\026\355\0050\274\275@\367(\213\304\004\005\222\006\217>\245>\246M}\0345Th\232\252\227\303\034\n\200\021\311e\\ss\314\201\334c\036\217\"\025\035\223\267\274\223\267\3740y+\007\254\242Amk\314d3\266O\322>\025)-\307\322\303\332*\275cN\253U\220\007\034\234~\300\205\360\205\337\000E\251\341,\207+\022\3648\r\261\204>\212\010K*\366\231\342\367\244\010cR\212I\301?\257\341'\r~\r\300\203\362\343\000\256\222\325\216\376a\204\300?0\021\377\372\214\224\320\351>\367\0005\005\323\027\343f\215\r\001\371P\205}\352Q\n\352\356@\302\352\334}\225{\257t\\K\237\262b\361\326\265\302\335\3052\024\336+H\350\201\354\371m\273/;\334\003\343\246\031\036\315\251\267\224\264\377\2027\360\266\002\030\003V\016\000\215\260j\036\224a.\372NW\263\202\341.\233\200\307\324\226\376\206\362\272\031\201\270\302\353\010l<\324F\301/\212\221R\206c?M5R\365\354\374@9\200D\034\002\3618|V\305\351\237n\274.\274.t/\316\264\306[\237\266D\262\205\017\267[\023\255\273\255f\373O\355\227vm\303n\374h\177\254\374|\356\\u\344Q\016.\217r\337\347^\027~\376\363\271\017\256\330\313wZ3\255\245\344|\373^\347\375\316\016\030\377=\262\200>\013\271\305\\w\354\374\356\355\335\242\375h6\031\351^\270\274\367\305\376\372>\353\216M\333\351\345\316hg\326\026\237\332\247\317\320\351\353\275u\274|""\265W\350\216]\332\305\014\306\256\331kw[\205\326\323d<{\272\327Zo\371\311\304\211\247)\210z\336\026_\330\027?\331\2376!\352\253\221\307\030\374qn-w\232c\021\035\213\271\247\277r\264\213U[\025Vh\253\2155\r\333hfv\250!\271\232\274h\363\3167v\343\007\373\203g\275\032\354 G\236\340FOr\305#H\276J\306\177g\351\260C\362i\"\332q\347\237\3669\200\357[_B\0245\362\034\203=\317\375\313e\275`\027\230e%[*\333r\005w\271\277w\305^\235K\026\223z\033\202]\262\227\356\267X\353\377\355\215\316\035\273\272m\267w\354\316\177\262uP\341\246\335\224V\326m\375\277\260\345\377F\226q\347\345\334*^Vs\317\360\362,G\361Bs\017G\341\362pty\364\314A\336\214\375u\177\351\340\375\203\255\303\221\356\330\255\326\305\204%\215\266\356Ltf\336\214}\320\275\360\261\375\270\320\036oO\274\271<q0~0\361{\320\272\260\373\217=\266\267\205!\247\017\213\255\017\223\t|\267\014\036\027.\355\326\301\264\275\277\336\375\350\223=\263?\203ov\366\307\367'z\213/\346\017\331\241i\315\340>\363v\376\245}\t\215\005\206 :\375Rg\223\321\344\313\366\204+\025\017\311t\342\202A\t\337&[\355\367\332\205\276\347\324\341\225\303\207\255\231\356\330_v\237\333\253\323\207\353\207\274u?\271\226T\333\225\316z\207u?\371\333\001;\330z=\322}\357\303\335/\366\326\323\223JRa\001\t\24333\307$\235\336K\345\352\366\3540U\037\374\371E>\277\236\351\031\275\017c\013\267\032\350\273\354\324\375\0069\231Qh(\213*\372\235\322\242C\255n\340\3406\344\363~,\230\036,p\001\247\316\235q\365\031\001\2743h\243\263\342\366\207a60\223wG\352\217\002i\326\315\377A\273=\002\343Y\321\032\350\373N,\033\232\026\035j=\025\273\263\255~\374\013\346/?\373";
+    PyObject *data = __Pyx_DecompressString(cstring, 1915, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (4716 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create AxesCoupledLabelledDomainIndex out of boundsIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>src/falcon_core/_capi/axes_coupled_labelled_domain.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIAxesCoupledLabelledDomainAxesCoupledLabelledDomain.__reduce_cython__AxesCoupledLabelledDomain.__setstate_cython__AxesCoupledLabelledDomain.appendAxesCoupledLabelledDomain.atAxesCoupledLabelledDomain.clearAxesCoupledLabelledDomain.containsAxesCoupledLabelledDomain.copyAxesCoupledLabelledDomain.emptyAxesCoupledLabelledDomain.equalAxesCoupledLabelledDomain.erase_atAxesCoupledLabelledDomain.from_jsonAxesCoupledLabelledDomain.from_listAxesCoupledLabelledDomain.indexAxesCoupledLabelledDomain.intersectionAxesCoupledLabelledDomain.itemsAxesCoupledLabelledDomain.newAxesCoupledLabelledDomain.new_emptyAxesCoupledLabelledDomain.not_equalAxesCoupledLabelledDomain.push_backAxe""sCoupledLabelledDomain.sizeAxesCoupledLabelledDomain.to_jsonEllipsisNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferappendasyncio.coroutinesatb_jsonbasebuffer_sizec_c__class____class_getitem__clearcline_in_tracebackclscontainscopycountdata__dict__dtype_is_objectemptyencodeenumerateequalerase_aterrorfalcon_core._capi.axes_coupled_labelled_domainflagsformatfortranfrom_jsonfrom_list__func____getstate__hh_rethandleididx__import__indexintersection_is_coroutineitemitemsitemsizejson__main__memviewmode__module__name__name__ndim__new__newnew_emptynot_equalobjotherout_bufferpackpoppush_back__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registers_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstepstopstruct__test__to_jsonunpackupdatevaluevaluesx\200A\330\0161\260\021\260$\260i\270q\200A\330\0162\260!\2604\260y\300\005\300[\320PV\320V]\320]g\360\000\000h\001L\002\360\000\000L\002M\002\200A\360\006\000\t\023\320\0223\2601\260D\270\013\3005\310\007\310z\360\000\000Z\001B\002\360\000\000B\002C\002\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0254\260A\260T\270\021\200A\330\010\025\320\0255\260Q\260d\270!\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001S\002\360\000\000S\002T\002\200A\330\010\025\320\0255\260Q\260d\270)\320Ch\320hi\320is\320st\320tx\320xy\200A\330\010\025\320\0258\270\001\270\024\270Y\300e\310;\320V\\\320\\c\320cm\360\000\000n\001R\002\360\000\000R\002S\002\200A\360\006\000\t\023\320\0229\270\021\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330""\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0259\270\021\270$\270i\300u\310K\320W]\320]d\320dn\360\000\000o\001W\002\360\000\000W\002X\002\200A\330\010B\320Ba\320ab\320bf\320fg\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0176\260a\260~\300V\3103\320Nv\320vz\320z{\200A\330\010B\320Bi\320ij\320jn\320nw\320w|\360\000\000}\001H\002\360\000\000H\002N\002\360\000\000N\002U\002\360\000\000U\002_\002\360\000\000_\002G\003\360\000\000G\003H\003\330\010\013\2106\220\023\320\024<\270A\330\014\023\2201\330\010\017\320\0176\260a\260~\300V\3103\320Nv\320vz\320z{\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026A\300\021\300!\340\022!\240\021\240!\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\340\010-\250S\260\n\270!\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\330\016.\250a\250t\2601\200A\330\010>\320>[\320[\\\320\\`\320`i\320ij\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0171\260\021\260-\270q\200A\340\010\026\320\026?\270q\300\004\300A\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *(__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi *__pyx_optional_args)\000_axes_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *(__pyx_t_6_c_api_CoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_23""coupled_labelled_domain__coupled_labelled_domain_from_capi *__pyx_optional_args)\000_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_28list_coupled_labelled_domain_ListCoupledLabelledDomain *(__pyx_t_6_c_api_ListCoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_28list_coupled_labelled_domain__list_coupled_labelled_domain_from_capi *__pyx_optional_args)\000_list_coupled_labelled_domain_from_capiO";
+    #else /* compression: none (4770 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create AxesCoupledLabelledDomainIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')(?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ not found in  object>src/falcon_core/_capi/axes_coupled_labelled_domain.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIAxesCoupledLabelledDomainAxesCoupledLabelledDomain.__iter__AxesCoupledLabelledDomain.__reduce_cython__AxesCoupledLabelledDomain.__setstate_cython__AxesCoupledLabelledDomain.appendAxesCoupledLabelledDomain.atAxesCoupledLabelledDomain.clearAxesCoupledLabelledDomain.containsAxesCoupledLabelledDomain.copyAxesCoupledLabelledDomain.emptyAxesCoupledLabelledDomain.equalAxesCoupledLabelledDomain.erase_atAxesCoupledLabelledDomain.from_jsonAxesCoupledLabelledDomain.from_listAxesCoupledLabelledDomain.indexAxesCoupledLabelledDomain.intersectionAxesCoupledLabelledDomain.itemsAxesCoupledLabelledDomain.newAxesCoupledLabelledDomain.new_emptyAxesCoupledLabelledDomain.not_equalAxesCoup""ledLabelledDomain.push_backAxesCoupledLabelledDomain.sizeAxesCoupledLabelledDomain.to_jsonEllipsisNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcallocate_bufferappendasyncio.coroutinesatb_jsonbasebuffer_sizec_c__class____class_getitem__clearcline_in_tracebackcloseclscontainscopycountdata__dict__dtype_is_objectemptyencodeenumerateequalerase_aterrorfalcon_core._capi.axes_coupled_labelled_domainflagsformatfortranfrom_jsonfrom_list__func____getstate__hh_rethandleiididx__import__indexintersection_is_coroutineitemitemsitemsize__iter__json__main__memviewmode__module__name__name__ndim__new__newnew_emptynextnot_equalobjotherout_bufferpackpoppush_back__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registers_jsons_retselfsend__set_name__setdefault__setstate____setstate_cython__shapesizestartstepstopstruct__test__throwto_jsonunpackupdatevaluevaluesx\200A\200A\330\0161\260\021\260$\260i\270q\200A\330\0162\260!\2604\260y\300\005\300[\320PV\320V]\320]g\360\000\000h\001L\002\360\000\000L\002M\002\200A\360\006\000\t\023\320\0223\2601\260D\270\013\3005\310\007\310z\360\000\000Z\001B\002\360\000\000B\002C\002\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0254\260A\260T\270\021\200A\330\010\025\320\0255\260Q\260d\270!\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001S\002\360\000\000S\002T\002\200A\330\010\025\320\0255\260Q\260d\270)\320Ch\320hi\320is\320st\320tx\320xy\200A\330\010\025\320\0258\270\001\270\024\270Y\300e\310;\320V\\\320\\c\320cm\360\000\000n\001R\002\360\000\000R\002S\002\200A\360\006\000\t\023\320\0229\270\021\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330""\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\0259\270\021\270$\270i\300u\310K\320W]\320]d\320dn\360\000\000o\001W\002\360\000\000W\002X\002\200A\330\010B\320Ba\320ab\320bf\320fg\330\010\013\2106\220\023\320\024<\270C\270w\300a\330\010\017\320\0176\260a\260~\300V\3103\320Nv\320vz\320z{\200A\330\010B\320Bi\320ij\320jn\320nw\320w|\360\000\000}\001H\002\360\000\000H\002N\002\360\000\000N\002U\002\360\000\000U\002_\002\360\000\000_\002G\003\360\000\000G\003H\003\330\010\013\2106\220\023\320\024<\270C\270w\300a\330\010\017\320\0176\260a\260~\300V\3103\320Nv\320vz\320z{\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026A\300\021\300!\340\022!\240\021\240!\330\010\013\2102\210S\320\0208\270\001\330\014\022\220+\230Q\230a\330\010-\320-H\310\003\3108\320ST\320TU\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\014\210J\220a\220q\200A\340\010-\250S\260\n\270!\330\010\014\210H\220A\330\014\017\210w\220a\220v\230Q\330\020\027\220t\2301\330\014\017\210z\230\021\230!\330\010\017\210q\200A\330\016.\250a\250t\2601\200A\330\010>\320>[\320[\\\320\\`\320`i\320ij\330\010\013\2106\220\023\320\0248\270\003\2707\300!\330\010\017\320\0171\260\021\260-\270q\200A\340\010\026\320\026?\270q\300\004\300A\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\r\210W\320\024-\250Q\250e\2606\270\025\270h\300g\310Q\310a\330\027&\240a\240q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_28axes_coupled_labelled_domain_AxesCoupledLabelledDomain *(__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_28axes_coupled_labelled_domain__axes_coupled_labelled_domain_from_capi *__pyx_optional_args)\000_axes_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_23coupled_labelled_domain_CoupledLabelledDomain *(__pyx_t_6_c_api_CoupledLabelledDomainHandle, struct __pyx_opt_args""_11falcon_core_5_capi_23coupled_labelled_domain__coupled_labelled_domain_from_capi *__pyx_optional_args)\000_coupled_labelled_domain_from_capistruct __pyx_obj_11falcon_core_5_capi_28list_coupled_labelled_domain_ListCoupledLabelledDomain *(__pyx_t_6_c_api_ListCoupledLabelledDomainHandle, struct __pyx_opt_args_11falcon_core_5_capi_28list_coupled_labelled_domain__list_coupled_labelled_domain_from_capi *__pyx_optional_args)\000_list_coupled_labelled_domain_from_capiO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 173; i++) {
+    for (int i = 0; i < 181; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 49) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 50) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -25446,7 +26030,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 173; i < 197; i++) {
+    for (int i = 181; i < 206; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -25457,15 +26041,15 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 197; i++) {
+    for (Py_ssize_t i = 0; i < 206; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 173;
-      for (Py_ssize_t i=0; i<24; ++i) {
+      PyObject **table = stringtab + 181;
+      for (Py_ssize_t i=0; i<25; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
         if (_Py_IsOwnedByCurrentThread(table[i]) && Py_REFCNT(table[i]) == 1)
@@ -25538,109 +26122,114 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_GENERATOR), 127};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_i};
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_iter, __pyx_mstate->__pyx_kp_b_iso88591_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+  }
+  {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 20};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_new_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_9_2S_8_Qa_H_8STTU_Q_9A_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_new_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_9_2S_8_Qa_H_8STTU_Q_9A_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 31};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_new_2, __pyx_mstate->__pyx_kp_b_iso88591_A_31D_5_z_Z_B_B_C_2S_8_Qa_H_8STT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_new_2, __pyx_mstate->__pyx_kp_b_iso88591_A_31D_5_z_Z_B_B_C_2S_8_Qa_H_8STT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 6, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 42};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_json, __pyx_mstate->__pyx_n_u_b_json, __pyx_mstate->__pyx_n_u_s_json, __pyx_mstate->__pyx_n_u_h, __pyx_mstate->__pyx_n_u_obj};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_from_json, __pyx_mstate->__pyx_kp_b_iso88591_A_D_q_0_axs_1_A_2S_8_Qa_H_8STTU, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 58};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_BBaabbffg_6_A_1_6a_V3Nvvzz, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_BBaabbffg_6_Cwa_6a_V3Nvvzz, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 64};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_push_back, __pyx_mstate->__pyx_kp_b_iso88591_A_2_4y_PVV_g_h_L_L_M, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 67};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 66};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_4AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_4AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 69};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_empty, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 72};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_erase_at, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 76};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 75};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_clear, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 79};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 78};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_idx, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_iij_6_8_1_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_at, __pyx_mstate->__pyx_kp_b_iso88591_A_iij_6_8_7_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 85};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_out_buffer, __pyx_mstate->__pyx_n_u_buffer_size};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_Chhiissttxxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 88};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 86};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_contains, __pyx_mstate->__pyx_kp_b_iso88591_A_8_Ye_V_ccm_n_R_R_S, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 91};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 89};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_index, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 94};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 92};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_intersection, __pyx_mstate->__pyx_kp_b_iso88591_A_BBiijjnnww_H_H_N_N_U_U_____G_G, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 97};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_S_S_T, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_S_S_T, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 108};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 104};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_9_iuKW_ddn_o_W_W_X, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_9_iuKW_ddn_o_W_W_X, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 111};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_q_A_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_q_A_6_G1_W_Qe6_hgQa_aq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 135};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 131};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_append, __pyx_mstate->__pyx_kp_b_iso88591_A_Jaq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 138};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 134};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_cls, __pyx_mstate->__pyx_n_u_items, __pyx_mstate->__pyx_n_u_obj, __pyx_mstate->__pyx_n_u_item};
-    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_axes_coupl, __pyx_mstate->__pyx_n_u_from_list, __pyx_mstate->__pyx_kp_b_iso88591_A_S_HA_wavQ_t1_z_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_reduce_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 3};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_pyx_state};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_stringsource, __pyx_mstate->__pyx_n_u_setstate_cython, __pyx_mstate->__pyx_kp_b_iso88591_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
@@ -25682,6 +26271,11 @@ static int __Pyx_InitGlobals(void) {
 
   /* CythonFunctionShared.init */
   if (likely(__pyx_CyFunction_init(__pyx_m) == 0)); else
+  
+  if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1, __pyx_L1_error)
+
+  /* Generator.init */
+  if (likely(__pyx_Generator_init(__pyx_m) == 0)); else
   
   if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 1, __pyx_L1_error)
 
@@ -28503,6 +29097,42 @@ static CYTHON_INLINE PyObject* __Pyx_decode_c_bytes(
     }
 }
 
+/* pep479 */
+static void __Pyx_Generator_Replace_StopIteration(int in_async_gen) {
+    PyObject *exc, *val, *tb, *cur_exc, *new_exc;
+    __Pyx_PyThreadState_declare
+    int is_async_stopiteration = 0;
+    CYTHON_MAYBE_UNUSED_VAR(in_async_gen);
+    __Pyx_PyThreadState_assign
+    cur_exc = __Pyx_PyErr_CurrentExceptionType();
+    if (likely(!__Pyx_PyErr_GivenExceptionMatches(cur_exc, PyExc_StopIteration))) {
+        if (in_async_gen && unlikely(__Pyx_PyErr_GivenExceptionMatches(cur_exc, PyExc_StopAsyncIteration))) {
+            is_async_stopiteration = 1;
+        } else {
+            return;
+        }
+    }
+    __Pyx_GetException(&exc, &val, &tb);
+    Py_XDECREF(exc);
+    Py_XDECREF(tb);
+    new_exc = PyObject_CallFunction(PyExc_RuntimeError, "s",
+        is_async_stopiteration ? "async generator raised StopAsyncIteration" :
+        in_async_gen ? "async generator raised StopIteration" :
+        "generator raised StopIteration");
+    if (!new_exc) {
+        Py_XDECREF(val);
+        return;
+    }
+    PyException_SetCause(new_exc, val); // steals ref to val
+    PyErr_SetObject(PyExc_RuntimeError, new_exc);
+}
+
+/* PyObjectCallNoArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+    PyObject *arg[2] = {NULL, NULL};
+    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {
     if (is_final || likely(!__Pyx_PyType_HasFeature(t, Py_TPFLAGS_IS_ABSTRACT))) {
@@ -28739,12 +29369,6 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
         PyType_Modified(type);
 #endif  // PY_VERSION_HEX > 0x030900B1
     return 0;
-}
-
-/* PyObjectCallNoArg (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-    PyObject *arg[2] = {NULL, NULL};
-    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
 
 /* PyObjectGetMethod (used by PyObjectCallMethod0) */
@@ -33537,7 +34161,7 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
           result = name;
           name = NULL;
       } else {
-          result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__7);
+          result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__8);
       }
       goto done;
   }
@@ -33574,6 +34198,1132 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
   #else
       return __Pyx_cached_runtime_version;
   #endif
+  }
+  
+/* IterNextPlain (used by CoroutineBase) */
+  #if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030A0000
+  static PyObject *__Pyx_GetBuiltinNext_LimitedAPI(void) {
+      if (unlikely(!__pyx_mstate_global->__Pyx_GetBuiltinNext_LimitedAPI_cache))
+          __pyx_mstate_global->__Pyx_GetBuiltinNext_LimitedAPI_cache = __Pyx_GetBuiltinName(__pyx_mstate_global->__pyx_n_u_next);
+      return __pyx_mstate_global->__Pyx_GetBuiltinNext_LimitedAPI_cache;
+  }
+  #endif
+  static CYTHON_INLINE PyObject *__Pyx_PyIter_Next_Plain(PyObject *iterator) {
+  #if CYTHON_COMPILING_IN_LIMITED_API && __PYX_LIMITED_VERSION_HEX < 0x030A0000
+      PyObject *result;
+      PyObject *next = __Pyx_GetBuiltinNext_LimitedAPI();
+      if (unlikely(!next)) return NULL;
+      result = PyObject_CallFunctionObjArgs(next, iterator, NULL);
+      return result;
+  #else
+      (void)__Pyx_GetBuiltinName; // only for early limited API
+      iternextfunc iternext = __Pyx_PyObject_GetIterNextFunc(iterator);
+      assert(iternext);
+      return iternext(iterator);
+  #endif
+  }
+  
+/* ReturnWithStopIteration (used by CoroutineBase) */
+  static void __Pyx__ReturnWithStopIteration(PyObject* value, int async);
+  static CYTHON_INLINE void __Pyx_ReturnWithStopIteration(PyObject* value, int async, int iternext) {
+      if (value == Py_None) {
+          if (async || !iternext)
+              PyErr_SetNone(async ? PyExc_StopAsyncIteration : PyExc_StopIteration);
+          return;
+      }
+      __Pyx__ReturnWithStopIteration(value, async);
+  }
+  static void __Pyx__ReturnWithStopIteration(PyObject* value, int async) {
+  #if CYTHON_COMPILING_IN_CPYTHON
+      __Pyx_PyThreadState_declare
+  #endif
+      PyObject *exc;
+      PyObject *exc_type = async ? PyExc_StopAsyncIteration : PyExc_StopIteration;
+  #if CYTHON_COMPILING_IN_CPYTHON
+      if ((PY_VERSION_HEX >= (0x030C00A6)) || unlikely(PyTuple_Check(value) || PyExceptionInstance_Check(value))) {
+          if (PY_VERSION_HEX >= (0x030e00A1)) {
+              exc = __Pyx_PyObject_CallOneArg(exc_type, value);
+          } else {
+              PyObject *args_tuple = PyTuple_New(1);
+              if (unlikely(!args_tuple)) return;
+              Py_INCREF(value);
+              PyTuple_SET_ITEM(args_tuple, 0, value);
+              exc = PyObject_Call(exc_type, args_tuple, NULL);
+              Py_DECREF(args_tuple);
+          }
+          if (unlikely(!exc)) return;
+      } else {
+          Py_INCREF(value);
+          exc = value;
+      }
+      #if CYTHON_FAST_THREAD_STATE
+      __Pyx_PyThreadState_assign
+      #if CYTHON_USE_EXC_INFO_STACK
+      if (!__pyx_tstate->exc_info->exc_value)
+      #else
+      if (!__pyx_tstate->exc_type)
+      #endif
+      {
+          Py_INCREF(exc_type);
+          __Pyx_ErrRestore(exc_type, exc, NULL);
+          return;
+      }
+      #endif
+  #else
+      exc = __Pyx_PyObject_CallOneArg(exc_type, value);
+      if (unlikely(!exc)) return;
+  #endif
+      PyErr_SetObject(exc_type, exc);
+      Py_DECREF(exc);
+  }
+  
+/* CoroutineBase (used by Generator) */
+  #if !CYTHON_COMPILING_IN_LIMITED_API
+  #include <frameobject.h>
+  #if PY_VERSION_HEX >= 0x030b00a6 && !defined(PYPY_VERSION)
+    #ifndef Py_BUILD_CORE
+      #define Py_BUILD_CORE 1
+    #endif
+    #include "internal/pycore_frame.h"
+  #endif
+  #endif // CYTHON_COMPILING_IN_LIMITED_API
+  static CYTHON_INLINE void
+  __Pyx_Coroutine_Undelegate(__pyx_CoroutineObject *gen) {
+  #if CYTHON_USE_AM_SEND
+      gen->yieldfrom_am_send = NULL;
+  #endif
+      Py_CLEAR(gen->yieldfrom);
+  }
+  static int __Pyx_PyGen__FetchStopIterationValue(PyThreadState *__pyx_tstate, PyObject **pvalue) {
+      PyObject *et, *ev, *tb;
+      PyObject *value = NULL;
+      CYTHON_UNUSED_VAR(__pyx_tstate);
+      __Pyx_ErrFetch(&et, &ev, &tb);
+      if (!et) {
+          Py_XDECREF(tb);
+          Py_XDECREF(ev);
+          Py_INCREF(Py_None);
+          *pvalue = Py_None;
+          return 0;
+      }
+      if (likely(et == PyExc_StopIteration)) {
+          if (!ev) {
+              Py_INCREF(Py_None);
+              value = Py_None;
+          }
+          else if (likely(__Pyx_IS_TYPE(ev, (PyTypeObject*)PyExc_StopIteration))) {
+              #if CYTHON_COMPILING_IN_LIMITED_API || CYTHON_COMPILING_IN_GRAAL
+              value = PyObject_GetAttr(ev, __pyx_mstate_global->__pyx_n_u_value);
+              if (unlikely(!value)) goto limited_api_failure;
+              #else
+              value = ((PyStopIterationObject *)ev)->value;
+              Py_INCREF(value);
+              #endif
+              Py_DECREF(ev);
+          }
+          else if (unlikely(PyTuple_Check(ev))) {
+              Py_ssize_t tuple_size = __Pyx_PyTuple_GET_SIZE(ev);
+              #if !CYTHON_ASSUME_SAFE_SIZE
+              if (unlikely(tuple_size < 0)) {
+                  Py_XDECREF(tb);
+                  Py_DECREF(ev);
+                  Py_DECREF(et);
+                  return -1;
+              }
+              #endif
+              if (tuple_size >= 1) {
+  #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+                  value = PyTuple_GET_ITEM(ev, 0);
+                  Py_INCREF(value);
+  #elif CYTHON_ASSUME_SAFE_MACROS
+                  value = PySequence_ITEM(ev, 0);
+  #else
+                  value = PySequence_GetItem(ev, 0);
+                  if (!value) goto limited_api_failure;
+  #endif
+              } else {
+                  Py_INCREF(Py_None);
+                  value = Py_None;
+              }
+              Py_DECREF(ev);
+          }
+          else if (!__Pyx_TypeCheck(ev, (PyTypeObject*)PyExc_StopIteration)) {
+              value = ev;
+          }
+          if (likely(value)) {
+              Py_XDECREF(tb);
+              Py_DECREF(et);
+              *pvalue = value;
+              return 0;
+          }
+      } else if (!__Pyx_PyErr_GivenExceptionMatches(et, PyExc_StopIteration)) {
+          __Pyx_ErrRestore(et, ev, tb);
+          return -1;
+      }
+      PyErr_NormalizeException(&et, &ev, &tb);
+      if (unlikely(!PyObject_TypeCheck(ev, (PyTypeObject*)PyExc_StopIteration))) {
+          __Pyx_ErrRestore(et, ev, tb);
+          return -1;
+      }
+      Py_XDECREF(tb);
+      Py_DECREF(et);
+  #if CYTHON_COMPILING_IN_LIMITED_API
+      value = PyObject_GetAttr(ev, __pyx_mstate_global->__pyx_n_u_value);
+  #else
+      value = ((PyStopIterationObject *)ev)->value;
+      Py_INCREF(value);
+  #endif
+      Py_DECREF(ev);
+  #if CYTHON_COMPILING_IN_LIMITED_API
+      if (unlikely(!value)) return -1;
+  #endif
+      *pvalue = value;
+      return 0;
+  #if CYTHON_COMPILING_IN_LIMITED_API || CYTHON_COMPILING_IN_GRAAL || !CYTHON_ASSUME_SAFE_MACROS
+    limited_api_failure:
+      Py_XDECREF(et);
+      Py_XDECREF(tb);
+      Py_XDECREF(ev);
+      return -1;
+  #endif
+  }
+  static CYTHON_INLINE
+  __Pyx_PySendResult __Pyx_Coroutine_status_from_result(PyObject **retval) {
+      if (*retval) {
+          return PYGEN_NEXT;
+      } else if (likely(__Pyx_PyGen__FetchStopIterationValue(__Pyx_PyThreadState_Current, retval) == 0)) {
+          return PYGEN_RETURN;
+      } else {
+          return PYGEN_ERROR;
+      }
+  }
+  static CYTHON_INLINE
+  void __Pyx_Coroutine_ExceptionClear(__Pyx_ExcInfoStruct *exc_state) {
+  #if PY_VERSION_HEX >= 0x030B00a4
+      Py_CLEAR(exc_state->exc_value);
+  #else
+      PyObject *t, *v, *tb;
+      t = exc_state->exc_type;
+      v = exc_state->exc_value;
+      tb = exc_state->exc_traceback;
+      exc_state->exc_type = NULL;
+      exc_state->exc_value = NULL;
+      exc_state->exc_traceback = NULL;
+      Py_XDECREF(t);
+      Py_XDECREF(v);
+      Py_XDECREF(tb);
+  #endif
+  }
+  #define __Pyx_Coroutine_AlreadyRunningError(gen)  (__Pyx__Coroutine_AlreadyRunningError(gen), (PyObject*)NULL)
+  static void __Pyx__Coroutine_AlreadyRunningError(__pyx_CoroutineObject *gen) {
+      const char *msg;
+      CYTHON_MAYBE_UNUSED_VAR(gen);
+      if ((0)) {
+      #ifdef __Pyx_Coroutine_USED
+      } else if (__Pyx_Coroutine_Check((PyObject*)gen)) {
+          msg = "coroutine already executing";
+      #endif
+      #ifdef __Pyx_AsyncGen_USED
+      } else if (__Pyx_AsyncGen_CheckExact((PyObject*)gen)) {
+          msg = "async generator already executing";
+      #endif
+      } else {
+          msg = "generator already executing";
+      }
+      PyErr_SetString(PyExc_ValueError, msg);
+  }
+  static void __Pyx_Coroutine_AlreadyTerminatedError(PyObject *gen, PyObject *value, int closing) {
+      CYTHON_MAYBE_UNUSED_VAR(gen);
+      CYTHON_MAYBE_UNUSED_VAR(closing);
+      #ifdef __Pyx_Coroutine_USED
+      if (!closing && __Pyx_Coroutine_Check(gen)) {
+          PyErr_SetString(PyExc_RuntimeError, "cannot reuse already awaited coroutine");
+      } else
+      #endif
+      if (value) {
+          #ifdef __Pyx_AsyncGen_USED
+          if (__Pyx_AsyncGen_CheckExact(gen))
+              PyErr_SetNone(PyExc_StopAsyncIteration);
+          else
+          #endif
+          PyErr_SetNone(PyExc_StopIteration);
+      }
+  }
+  static
+  __Pyx_PySendResult __Pyx_Coroutine_SendEx(__pyx_CoroutineObject *self, PyObject *value, PyObject **result, int closing) {
+      __Pyx_PyThreadState_declare
+      PyThreadState *tstate;
+      __Pyx_ExcInfoStruct *exc_state;
+      PyObject *retval;
+      assert(__Pyx_Coroutine_get_is_running(self));  // Callers should ensure is_running
+      if (unlikely(self->resume_label == -1)) {
+          __Pyx_Coroutine_AlreadyTerminatedError((PyObject*)self, value, closing);
+          return PYGEN_ERROR;
+      }
+  #if CYTHON_FAST_THREAD_STATE
+      __Pyx_PyThreadState_assign
+      tstate = __pyx_tstate;
+  #else
+      tstate = __Pyx_PyThreadState_Current;
+  #endif
+      exc_state = &self->gi_exc_state;
+      if (exc_state->exc_value) {
+          #if CYTHON_COMPILING_IN_LIMITED_API || CYTHON_COMPILING_IN_PYPY
+          #else
+          PyObject *exc_tb;
+          #if PY_VERSION_HEX >= 0x030B00a4 && !CYTHON_COMPILING_IN_CPYTHON
+          exc_tb = PyException_GetTraceback(exc_state->exc_value);
+          #elif PY_VERSION_HEX >= 0x030B00a4
+          exc_tb = ((PyBaseExceptionObject*) exc_state->exc_value)->traceback;
+          #else
+          exc_tb = exc_state->exc_traceback;
+          #endif
+          if (exc_tb) {
+              PyTracebackObject *tb = (PyTracebackObject *) exc_tb;
+              PyFrameObject *f = tb->tb_frame;
+              assert(f->f_back == NULL);
+              #if PY_VERSION_HEX >= 0x030B00A1
+              f->f_back = PyThreadState_GetFrame(tstate);
+              #else
+              Py_XINCREF(tstate->frame);
+              f->f_back = tstate->frame;
+              #endif
+              #if PY_VERSION_HEX >= 0x030B00a4 && !CYTHON_COMPILING_IN_CPYTHON
+              Py_DECREF(exc_tb);
+              #endif
+          }
+          #endif
+      }
+  #if CYTHON_USE_EXC_INFO_STACK
+      exc_state->previous_item = tstate->exc_info;
+      tstate->exc_info = exc_state;
+  #else
+      if (exc_state->exc_type) {
+          __Pyx_ExceptionSwap(&exc_state->exc_type, &exc_state->exc_value, &exc_state->exc_traceback);
+      } else {
+          __Pyx_Coroutine_ExceptionClear(exc_state);
+          __Pyx_ExceptionSave(&exc_state->exc_type, &exc_state->exc_value, &exc_state->exc_traceback);
+      }
+  #endif
+      retval = self->body(self, tstate, value);
+  #if CYTHON_USE_EXC_INFO_STACK
+      exc_state = &self->gi_exc_state;
+      tstate->exc_info = exc_state->previous_item;
+      exc_state->previous_item = NULL;
+      __Pyx_Coroutine_ResetFrameBackpointer(exc_state);
+  #endif
+      *result = retval;
+      if (self->resume_label == -1) {
+          return likely(retval) ? PYGEN_RETURN : PYGEN_ERROR;
+      }
+      return PYGEN_NEXT;
+  }
+  static CYTHON_INLINE void __Pyx_Coroutine_ResetFrameBackpointer(__Pyx_ExcInfoStruct *exc_state) {
+  #if CYTHON_COMPILING_IN_PYPY || CYTHON_COMPILING_IN_LIMITED_API
+      CYTHON_UNUSED_VAR(exc_state);
+  #else
+      PyObject *exc_tb;
+      #if PY_VERSION_HEX >= 0x030B00a4
+      if (!exc_state->exc_value) return;
+      exc_tb = PyException_GetTraceback(exc_state->exc_value);
+      #else
+      exc_tb = exc_state->exc_traceback;
+      #endif
+      if (likely(exc_tb)) {
+          PyTracebackObject *tb = (PyTracebackObject *) exc_tb;
+          PyFrameObject *f = tb->tb_frame;
+          Py_CLEAR(f->f_back);
+          #if PY_VERSION_HEX >= 0x030B00a4
+          Py_DECREF(exc_tb);
+          #endif
+      }
+  #endif
+  }
+  #define __Pyx_Coroutine_MethodReturnFromResult(gen, result, retval, iternext)\
+      ((result) == PYGEN_NEXT ? (retval) : __Pyx__Coroutine_MethodReturnFromResult(gen, result, retval, iternext))
+  static PyObject *
+  __Pyx__Coroutine_MethodReturnFromResult(PyObject* gen, __Pyx_PySendResult result, PyObject *retval, int iternext) {
+      CYTHON_MAYBE_UNUSED_VAR(gen);
+      if (likely(result == PYGEN_RETURN)) {
+          int is_async = 0;
+          #ifdef __Pyx_AsyncGen_USED
+          is_async = __Pyx_AsyncGen_CheckExact(gen);
+          #endif
+          __Pyx_ReturnWithStopIteration(retval, is_async, iternext);
+          Py_XDECREF(retval);
+      }
+      return NULL;
+  }
+  #if CYTHON_COMPILING_IN_CPYTHON
+  static CYTHON_INLINE
+  PyObject *__Pyx_PyGen_Send(PyGenObject *gen, PyObject *arg) {
+  #if PY_VERSION_HEX <= 0x030A00A1
+      return _PyGen_Send(gen, arg);
+  #else
+      PyObject *result;
+      if (PyIter_Send((PyObject*)gen, arg ? arg : Py_None, &result) == PYGEN_RETURN) {
+          if (PyAsyncGen_CheckExact(gen)) {
+              assert(result == Py_None);
+              PyErr_SetNone(PyExc_StopAsyncIteration);
+          }
+          else if (result == Py_None) {
+              PyErr_SetNone(PyExc_StopIteration);
+          }
+          else {
+  #if PY_VERSION_HEX < 0x030d00A1
+              _PyGen_SetStopIterationValue(result);
+  #else
+              if (!PyTuple_Check(result) && !PyExceptionInstance_Check(result)) {
+                  PyErr_SetObject(PyExc_StopIteration, result);
+              } else {
+                  PyObject *exc = __Pyx_PyObject_CallOneArg(PyExc_StopIteration, result);
+                  if (likely(exc != NULL)) {
+                      PyErr_SetObject(PyExc_StopIteration, exc);
+                      Py_DECREF(exc);
+                  }
+              }
+  #endif
+          }
+          Py_DECREF(result);
+          result = NULL;
+      }
+      return result;
+  #endif
+  }
+  #endif
+  static CYTHON_INLINE __Pyx_PySendResult
+  __Pyx_Coroutine_FinishDelegation(__pyx_CoroutineObject *gen, PyObject** retval) {
+      __Pyx_PySendResult result;
+      PyObject *val = NULL;
+      assert(__Pyx_Coroutine_get_is_running(gen));
+      __Pyx_Coroutine_Undelegate(gen);
+      __Pyx_PyGen__FetchStopIterationValue(__Pyx_PyThreadState_Current, &val);
+      result = __Pyx_Coroutine_SendEx(gen, val, retval, 0);
+      Py_XDECREF(val);
+      return result;
+  }
+  #if CYTHON_USE_AM_SEND
+  static __Pyx_PySendResult
+  __Pyx_Coroutine_SendToDelegate(__pyx_CoroutineObject *gen, __Pyx_pyiter_sendfunc gen_am_send, PyObject *value, PyObject **retval) {
+      PyObject *ret = NULL;
+      __Pyx_PySendResult delegate_result, result;
+      assert(__Pyx_Coroutine_get_is_running(gen));
+      delegate_result = gen_am_send(gen->yieldfrom, value, &ret);
+      if (delegate_result == PYGEN_NEXT) {
+          assert (ret != NULL);
+          *retval = ret;
+          return PYGEN_NEXT;
+      }
+      assert (delegate_result != PYGEN_ERROR || ret == NULL);
+      __Pyx_Coroutine_Undelegate(gen);
+      result = __Pyx_Coroutine_SendEx(gen, ret, retval, 0);
+      Py_XDECREF(ret);
+      return result;
+  }
+  #endif
+  static PyObject *__Pyx_Coroutine_Send(PyObject *self, PyObject *value) {
+      PyObject *retval = NULL;
+      __Pyx_PySendResult result = __Pyx_Coroutine_AmSend(self, value, &retval);
+      return __Pyx_Coroutine_MethodReturnFromResult(self, result, retval, 0);
+  }
+  static __Pyx_PySendResult
+  __Pyx_Coroutine_AmSend(PyObject *self, PyObject *value, PyObject **retval) {
+      __Pyx_PySendResult result;
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject*) self;
+      if (unlikely(__Pyx_Coroutine_test_and_set_is_running(gen))) {
+          *retval = __Pyx_Coroutine_AlreadyRunningError(gen);
+          return PYGEN_ERROR;
+      }
+      #if CYTHON_USE_AM_SEND
+      if (gen->yieldfrom_am_send) {
+          result = __Pyx_Coroutine_SendToDelegate(gen, gen->yieldfrom_am_send, value, retval);
+      } else
+      #endif
+      if (gen->yieldfrom) {
+          PyObject *yf = gen->yieldfrom;
+          PyObject *ret;
+        #if !CYTHON_USE_AM_SEND
+          #ifdef __Pyx_Generator_USED
+          if (__Pyx_Generator_CheckExact(yf)) {
+              ret = __Pyx_Coroutine_Send(yf, value);
+          } else
+          #endif
+          #ifdef __Pyx_Coroutine_USED
+          if (__Pyx_Coroutine_Check(yf)) {
+              ret = __Pyx_Coroutine_Send(yf, value);
+          } else
+          #endif
+          #ifdef __Pyx_AsyncGen_USED
+          if (__pyx_PyAsyncGenASend_CheckExact(yf)) {
+              ret = __Pyx_async_gen_asend_send(yf, value);
+          } else
+          #endif
+          #if CYTHON_COMPILING_IN_CPYTHON
+          if (PyGen_CheckExact(yf)) {
+              ret = __Pyx_PyGen_Send((PyGenObject*)yf, value == Py_None ? NULL : value);
+          } else
+          if (PyCoro_CheckExact(yf)) {
+              ret = __Pyx_PyGen_Send((PyGenObject*)yf, value == Py_None ? NULL : value);
+          } else
+          #endif
+        #endif
+          {
+              #if !CYTHON_COMPILING_IN_LIMITED_API || __PYX_LIMITED_VERSION_HEX >= 0x03080000
+              if (value == Py_None && PyIter_Check(yf))
+                  ret = __Pyx_PyIter_Next_Plain(yf);
+              else
+              #endif
+                  ret = __Pyx_PyObject_CallMethod1(yf, __pyx_mstate_global->__pyx_n_u_send, value);
+          }
+          if (likely(ret)) {
+              __Pyx_Coroutine_unset_is_running(gen);
+              *retval = ret;
+              return PYGEN_NEXT;
+          }
+          result = __Pyx_Coroutine_FinishDelegation(gen, retval);
+      } else {
+          result = __Pyx_Coroutine_SendEx(gen, value, retval, 0);
+      }
+      __Pyx_Coroutine_unset_is_running(gen);
+      return result;
+  }
+  static int __Pyx_Coroutine_CloseIter(__pyx_CoroutineObject *gen, PyObject *yf) {
+      __Pyx_PySendResult result;
+      PyObject *retval = NULL;
+      CYTHON_UNUSED_VAR(gen);
+      assert(__Pyx_Coroutine_get_is_running(gen));
+      #ifdef __Pyx_Generator_USED
+      if (__Pyx_Generator_CheckExact(yf)) {
+          result = __Pyx_Coroutine_Close(yf, &retval);
+      } else
+      #endif
+      #ifdef __Pyx_Coroutine_USED
+      if (__Pyx_Coroutine_Check(yf)) {
+          result = __Pyx_Coroutine_Close(yf, &retval);
+      } else
+      if (__Pyx_CoroutineAwait_CheckExact(yf)) {
+          result = __Pyx_CoroutineAwait_Close((__pyx_CoroutineAwaitObject*)yf);
+      } else
+      #endif
+      #ifdef __Pyx_AsyncGen_USED
+      if (__pyx_PyAsyncGenASend_CheckExact(yf)) {
+          retval = __Pyx_async_gen_asend_close(yf, NULL);
+          result = PYGEN_RETURN;
+      } else
+      if (__pyx_PyAsyncGenAThrow_CheckExact(yf)) {
+          retval = __Pyx_async_gen_athrow_close(yf, NULL);
+          result = PYGEN_RETURN;
+      } else
+      #endif
+      {
+          PyObject *meth;
+          result = PYGEN_RETURN;
+          meth = __Pyx_PyObject_GetAttrStrNoError(yf, __pyx_mstate_global->__pyx_n_u_close);
+          if (unlikely(!meth)) {
+              if (unlikely(PyErr_Occurred())) {
+                  PyErr_WriteUnraisable(yf);
+              }
+          } else {
+              retval = __Pyx_PyObject_CallNoArg(meth);
+              Py_DECREF(meth);
+              if (unlikely(!retval)) {
+                  result = PYGEN_ERROR;
+              }
+          }
+      }
+      Py_XDECREF(retval);
+      return result == PYGEN_ERROR ? -1 : 0;
+  }
+  static PyObject *__Pyx_Generator_Next(PyObject *self) {
+      __Pyx_PySendResult result;
+      PyObject *retval = NULL;
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject*) self;
+      if (unlikely(__Pyx_Coroutine_test_and_set_is_running(gen))) {
+          return __Pyx_Coroutine_AlreadyRunningError(gen);
+      }
+      #if CYTHON_USE_AM_SEND
+      if (gen->yieldfrom_am_send) {
+          result = __Pyx_Coroutine_SendToDelegate(gen, gen->yieldfrom_am_send, Py_None, &retval);
+      } else
+      #endif
+      if (gen->yieldfrom) {
+          PyObject *yf = gen->yieldfrom;
+          PyObject *ret;
+          #ifdef __Pyx_Generator_USED
+          if (__Pyx_Generator_CheckExact(yf)) {
+              ret = __Pyx_Generator_Next(yf);
+          } else
+          #endif
+          #ifdef __Pyx_Coroutine_USED
+          if (__Pyx_Coroutine_CheckExact(yf)) {
+              ret = __Pyx_Coroutine_Send(yf, Py_None);
+          } else
+          #endif
+          #if CYTHON_COMPILING_IN_CPYTHON && (PY_VERSION_HEX < 0x030A00A3 || !CYTHON_USE_AM_SEND)
+          if (PyGen_CheckExact(yf)) {
+              ret = __Pyx_PyGen_Send((PyGenObject*)yf, NULL);
+          } else
+          #endif
+              ret = __Pyx_PyIter_Next_Plain(yf);
+          if (likely(ret)) {
+              __Pyx_Coroutine_unset_is_running(gen);
+              return ret;
+          }
+          result = __Pyx_Coroutine_FinishDelegation(gen, &retval);
+      } else {
+          result = __Pyx_Coroutine_SendEx(gen, Py_None, &retval, 0);
+      }
+      __Pyx_Coroutine_unset_is_running(gen);
+      return __Pyx_Coroutine_MethodReturnFromResult(self, result, retval, 1);
+  }
+  static PyObject *__Pyx_Coroutine_Close_Method(PyObject *self, PyObject *arg) {
+      PyObject *retval = NULL;
+      __Pyx_PySendResult result;
+      CYTHON_UNUSED_VAR(arg);
+      result = __Pyx_Coroutine_Close(self, &retval);
+      if (unlikely(result == PYGEN_ERROR))
+          return NULL;
+      Py_XDECREF(retval);
+      Py_RETURN_NONE;
+  }
+  static __Pyx_PySendResult
+  __Pyx_Coroutine_Close(PyObject *self, PyObject **retval) {
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject *) self;
+      __Pyx_PySendResult result;
+      PyObject *yf;
+      int err = 0;
+      if (unlikely(__Pyx_Coroutine_test_and_set_is_running(gen))) {
+          *retval = __Pyx_Coroutine_AlreadyRunningError(gen);
+          return PYGEN_ERROR;
+      }
+      yf = gen->yieldfrom;
+      if (yf) {
+          Py_INCREF(yf);
+          err = __Pyx_Coroutine_CloseIter(gen, yf);
+          __Pyx_Coroutine_Undelegate(gen);
+          Py_DECREF(yf);
+      }
+      if (err == 0)
+          PyErr_SetNone(PyExc_GeneratorExit);
+      result = __Pyx_Coroutine_SendEx(gen, NULL, retval, 1);
+      if (result == PYGEN_ERROR) {
+          __Pyx_PyThreadState_declare
+          __Pyx_PyThreadState_assign
+          __Pyx_Coroutine_unset_is_running(gen);
+          if (!__Pyx_PyErr_Occurred()) {
+              return PYGEN_RETURN;
+          } else if (likely(__Pyx_PyErr_ExceptionMatches2(PyExc_GeneratorExit, PyExc_StopIteration))) {
+              __Pyx_PyErr_Clear();
+              return PYGEN_RETURN;
+          }
+          return PYGEN_ERROR;
+      } else if (likely(result == PYGEN_RETURN && *retval == Py_None)) {
+          __Pyx_Coroutine_unset_is_running(gen);
+          return PYGEN_RETURN;
+      } else {
+          const char *msg;
+          Py_DECREF(*retval);
+          *retval = NULL;
+          if ((0)) {
+          #ifdef __Pyx_Coroutine_USED
+          } else if (__Pyx_Coroutine_Check(self)) {
+              msg = "coroutine ignored GeneratorExit";
+          #endif
+          #ifdef __Pyx_AsyncGen_USED
+          } else if (__Pyx_AsyncGen_CheckExact(self)) {
+              msg = "async generator ignored GeneratorExit";
+          #endif
+          } else {
+              msg = "generator ignored GeneratorExit";
+          }
+          PyErr_SetString(PyExc_RuntimeError, msg);
+          __Pyx_Coroutine_unset_is_running(gen);
+          return PYGEN_ERROR;
+      }
+  }
+  static PyObject *__Pyx__Coroutine_Throw(PyObject *self, PyObject *typ, PyObject *val, PyObject *tb,
+                                          PyObject *args, int close_on_genexit) {
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject *) self;
+      PyObject *yf;
+      if (unlikely(__Pyx_Coroutine_test_and_set_is_running(gen)))
+          return __Pyx_Coroutine_AlreadyRunningError(gen);
+      yf = gen->yieldfrom;
+      if (yf) {
+          __Pyx_PySendResult result;
+          PyObject *ret;
+          Py_INCREF(yf);
+          if (__Pyx_PyErr_GivenExceptionMatches(typ, PyExc_GeneratorExit) && close_on_genexit) {
+              int err = __Pyx_Coroutine_CloseIter(gen, yf);
+              Py_DECREF(yf);
+              __Pyx_Coroutine_Undelegate(gen);
+              if (err < 0)
+                  goto propagate_exception;
+              goto throw_here;
+          }
+          if (0
+          #ifdef __Pyx_Generator_USED
+              || __Pyx_Generator_CheckExact(yf)
+          #endif
+          #ifdef __Pyx_Coroutine_USED
+              || __Pyx_Coroutine_Check(yf)
+          #endif
+              ) {
+              ret = __Pyx__Coroutine_Throw(yf, typ, val, tb, args, close_on_genexit);
+          #ifdef __Pyx_Coroutine_USED
+          } else if (__Pyx_CoroutineAwait_CheckExact(yf)) {
+              ret = __Pyx__Coroutine_Throw(((__pyx_CoroutineAwaitObject*)yf)->coroutine, typ, val, tb, args, close_on_genexit);
+          #endif
+          } else {
+              PyObject *meth = __Pyx_PyObject_GetAttrStrNoError(yf, __pyx_mstate_global->__pyx_n_u_throw);
+              if (unlikely(!meth)) {
+                  Py_DECREF(yf);
+                  if (unlikely(PyErr_Occurred())) {
+                      __Pyx_Coroutine_unset_is_running(gen);
+                      return NULL;
+                  }
+                  __Pyx_Coroutine_Undelegate(gen);
+                  goto throw_here;
+              }
+              if (likely(args)) {
+                  ret = __Pyx_PyObject_Call(meth, args, NULL);
+              } else {
+                  PyObject *cargs[4] = {NULL, typ, val, tb};
+                  ret = __Pyx_PyObject_FastCall(meth, cargs+1, 3 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+              }
+              Py_DECREF(meth);
+          }
+          Py_DECREF(yf);
+          if (ret) {
+              __Pyx_Coroutine_unset_is_running(gen);
+              return ret;
+          }
+          result = __Pyx_Coroutine_FinishDelegation(gen, &ret);
+          __Pyx_Coroutine_unset_is_running(gen);
+          return __Pyx_Coroutine_MethodReturnFromResult(self, result, ret, 0);
+      }
+  throw_here:
+      __Pyx_Raise(typ, val, tb, NULL);
+  propagate_exception:
+      {
+          PyObject *retval = NULL;
+          __Pyx_PySendResult result = __Pyx_Coroutine_SendEx(gen, NULL, &retval, 0);
+          __Pyx_Coroutine_unset_is_running(gen);
+          return __Pyx_Coroutine_MethodReturnFromResult(self, result, retval, 0);
+      }
+  }
+  static PyObject *__Pyx_Coroutine_Throw(PyObject *self, PyObject *args) {
+      PyObject *typ;
+      PyObject *val = NULL;
+      PyObject *tb = NULL;
+      if (unlikely(!PyArg_UnpackTuple(args, "throw", 1, 3, &typ, &val, &tb)))
+          return NULL;
+      return __Pyx__Coroutine_Throw(self, typ, val, tb, args, 1);
+  }
+  static CYTHON_INLINE int __Pyx_Coroutine_traverse_excstate(__Pyx_ExcInfoStruct *exc_state, visitproc visit, void *arg) {
+  #if PY_VERSION_HEX >= 0x030B00a4
+      Py_VISIT(exc_state->exc_value);
+  #else
+      Py_VISIT(exc_state->exc_type);
+      Py_VISIT(exc_state->exc_value);
+      Py_VISIT(exc_state->exc_traceback);
+  #endif
+      return 0;
+  }
+  static int __Pyx_Coroutine_traverse(__pyx_CoroutineObject *gen, visitproc visit, void *arg) {
+      {
+          int e = __Pyx_call_type_traverse((PyObject*)gen, 1, visit, arg);
+          if (e) return e;
+      }
+      Py_VISIT(gen->closure);
+      Py_VISIT(gen->classobj);
+      Py_VISIT(gen->yieldfrom);
+      return __Pyx_Coroutine_traverse_excstate(&gen->gi_exc_state, visit, arg);
+  }
+  static int __Pyx_Coroutine_clear(PyObject *self) {
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject *) self;
+      Py_CLEAR(gen->closure);
+      Py_CLEAR(gen->classobj);
+      __Pyx_Coroutine_Undelegate(gen);
+      __Pyx_Coroutine_ExceptionClear(&gen->gi_exc_state);
+  #ifdef __Pyx_AsyncGen_USED
+      if (__Pyx_AsyncGen_CheckExact(self)) {
+          Py_CLEAR(((__pyx_PyAsyncGenObject*)gen)->ag_finalizer);
+      }
+  #endif
+      Py_CLEAR(gen->gi_code);
+      Py_CLEAR(gen->gi_frame);
+      Py_CLEAR(gen->gi_name);
+      Py_CLEAR(gen->gi_qualname);
+      Py_CLEAR(gen->gi_modulename);
+      return 0;
+  }
+  static void __Pyx_Coroutine_dealloc(PyObject *self) {
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject *) self;
+      PyObject_GC_UnTrack(gen);
+      #if PY_VERSION_HEX < 0x030C0000 || CYTHON_COMPILING_IN_LIMITED_API
+      if (gen->gi_weakreflist != NULL)
+      #endif
+          PyObject_ClearWeakRefs(self);
+      if (gen->resume_label >= 0) {
+          PyObject_GC_Track(self);
+  #if CYTHON_USE_TP_FINALIZE
+          if (unlikely(PyObject_CallFinalizerFromDealloc(self)))
+  #else
+          {
+              destructor del = __Pyx_PyObject_GetSlot(gen, tp_del, destructor);
+              if (del) del(self);
+          }
+          if (unlikely(Py_REFCNT(self) > 0))
+  #endif
+          {
+              return;
+          }
+          PyObject_GC_UnTrack(self);
+      }
+  #ifdef __Pyx_AsyncGen_USED
+      if (__Pyx_AsyncGen_CheckExact(self)) {
+          /* We have to handle this case for asynchronous generators
+             right here, because this code has to be between UNTRACK
+             and GC_Del. */
+          Py_CLEAR(((__pyx_PyAsyncGenObject*)self)->ag_finalizer);
+      }
+  #endif
+      __Pyx_Coroutine_clear(self);
+      __Pyx_PyHeapTypeObject_GC_Del(gen);
+  }
+  #if CYTHON_USE_TP_FINALIZE
+  static void __Pyx_Coroutine_del(PyObject *self) {
+      PyObject *error_type, *error_value, *error_traceback;
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject *) self;
+      __Pyx_PyThreadState_declare
+      if (gen->resume_label < 0) {
+          return;
+      }
+      __Pyx_PyThreadState_assign
+      __Pyx_ErrFetch(&error_type, &error_value, &error_traceback);
+  #ifdef __Pyx_AsyncGen_USED
+      if (__Pyx_AsyncGen_CheckExact(self)) {
+          __pyx_PyAsyncGenObject *agen = (__pyx_PyAsyncGenObject*)self;
+          PyObject *finalizer = agen->ag_finalizer;
+          if (finalizer && !agen->ag_closed) {
+              PyObject *res = __Pyx_PyObject_CallOneArg(finalizer, self);
+              if (unlikely(!res)) {
+                  PyErr_WriteUnraisable(self);
+              } else {
+                  Py_DECREF(res);
+              }
+              __Pyx_ErrRestore(error_type, error_value, error_traceback);
+              return;
+          }
+      }
+  #endif
+      if (unlikely(gen->resume_label == 0 && !error_value)) {
+  #ifdef __Pyx_Coroutine_USED
+  #ifdef __Pyx_Generator_USED
+      if (!__Pyx_Generator_CheckExact(self))
+  #endif
+          {
+          PyObject_GC_UnTrack(self);
+          if (unlikely(PyErr_WarnFormat(PyExc_RuntimeWarning, 1, "coroutine '%.50S' was never awaited", gen->gi_qualname) < 0))
+              PyErr_WriteUnraisable(self);
+          PyObject_GC_Track(self);
+          }
+  #endif
+      } else {
+          PyObject *retval = NULL;
+          __Pyx_PySendResult result = __Pyx_Coroutine_Close(self, &retval);
+          if (result == PYGEN_ERROR) {
+              PyErr_WriteUnraisable(self);
+          } else {
+              Py_XDECREF(retval);
+          }
+      }
+      __Pyx_ErrRestore(error_type, error_value, error_traceback);
+  }
+  #endif
+  static PyObject *
+  __Pyx_Coroutine_get_name(__pyx_CoroutineObject *self, void *context)
+  {
+      PyObject *name = self->gi_name;
+      CYTHON_UNUSED_VAR(context);
+      if (unlikely(!name)) name = Py_None;
+      Py_INCREF(name);
+      return name;
+  }
+  static int
+  __Pyx_Coroutine_set_name(__pyx_CoroutineObject *self, PyObject *value, void *context)
+  {
+      CYTHON_UNUSED_VAR(context);
+      if (unlikely(value == NULL || !PyUnicode_Check(value))) {
+          PyErr_SetString(PyExc_TypeError,
+                          "__name__ must be set to a string object");
+          return -1;
+      }
+      Py_INCREF(value);
+      __Pyx_Py_XDECREF_SET(self->gi_name, value);
+      return 0;
+  }
+  static PyObject *
+  __Pyx_Coroutine_get_qualname(__pyx_CoroutineObject *self, void *context)
+  {
+      PyObject *name = self->gi_qualname;
+      CYTHON_UNUSED_VAR(context);
+      if (unlikely(!name)) name = Py_None;
+      Py_INCREF(name);
+      return name;
+  }
+  static int
+  __Pyx_Coroutine_set_qualname(__pyx_CoroutineObject *self, PyObject *value, void *context)
+  {
+      CYTHON_UNUSED_VAR(context);
+      if (unlikely(value == NULL || !PyUnicode_Check(value))) {
+          PyErr_SetString(PyExc_TypeError,
+                          "__qualname__ must be set to a string object");
+          return -1;
+      }
+      Py_INCREF(value);
+      __Pyx_Py_XDECREF_SET(self->gi_qualname, value);
+      return 0;
+  }
+  static PyObject *
+  __Pyx__Coroutine_get_frame(__pyx_CoroutineObject *self)
+  {
+  #if !CYTHON_COMPILING_IN_LIMITED_API
+      PyObject *frame;
+      #if PY_VERSION_HEX >= 0x030d0000
+      Py_BEGIN_CRITICAL_SECTION(self);
+      #endif
+      frame = self->gi_frame;
+      if (!frame) {
+          if (unlikely(!self->gi_code)) {
+              Py_RETURN_NONE;
+          }
+          PyObject *globals = PyDict_New();
+          if (unlikely(!globals)) return NULL;
+          frame = (PyObject *) PyFrame_New(
+              PyThreadState_Get(),            /*PyThreadState *tstate,*/
+              (PyCodeObject*) self->gi_code,  /*PyCodeObject *code,*/
+              globals,                        /*PyObject *globals,*/
+              0                               /*PyObject *locals*/
+          );
+          Py_DECREF(globals);
+          if (unlikely(!frame))
+              return NULL;
+          if (unlikely(self->gi_frame)) {
+              Py_DECREF(frame);
+              frame = self->gi_frame;
+          } else {
+              self->gi_frame = frame;
+          }
+      }
+      Py_INCREF(frame);
+      #if PY_VERSION_HEX >= 0x030d0000
+      Py_END_CRITICAL_SECTION();
+      #endif
+      return frame;
+  #else
+      CYTHON_UNUSED_VAR(self);
+      Py_RETURN_NONE;
+  #endif
+  }
+  static PyObject *
+  __Pyx_Coroutine_get_frame(__pyx_CoroutineObject *self, void *context) {
+      CYTHON_UNUSED_VAR(context);
+      PyObject *frame = self->gi_frame;
+      if (frame)
+          return __Pyx_NewRef(frame);
+      return __Pyx__Coroutine_get_frame(self);
+  }
+  static __pyx_CoroutineObject *__Pyx__Coroutine_New(
+              PyTypeObject* type, __pyx_coroutine_body_t body, PyObject *code, PyObject *closure,
+              PyObject *name, PyObject *qualname, PyObject *module_name) {
+      __pyx_CoroutineObject *gen = PyObject_GC_New(__pyx_CoroutineObject, type);
+      if (unlikely(!gen))
+          return NULL;
+      return __Pyx__Coroutine_NewInit(gen, body, code, closure, name, qualname, module_name);
+  }
+  static __pyx_CoroutineObject *__Pyx__Coroutine_NewInit(
+              __pyx_CoroutineObject *gen, __pyx_coroutine_body_t body, PyObject *code, PyObject *closure,
+              PyObject *name, PyObject *qualname, PyObject *module_name) {
+      gen->body = body;
+      gen->closure = closure;
+      Py_XINCREF(closure);
+      gen->is_running = 0;
+      gen->resume_label = 0;
+      gen->classobj = NULL;
+      gen->yieldfrom = NULL;
+      gen->yieldfrom_am_send = NULL;
+      #if PY_VERSION_HEX >= 0x030B00a4 && !CYTHON_COMPILING_IN_LIMITED_API
+      gen->gi_exc_state.exc_value = NULL;
+      #else
+      gen->gi_exc_state.exc_type = NULL;
+      gen->gi_exc_state.exc_value = NULL;
+      gen->gi_exc_state.exc_traceback = NULL;
+      #endif
+  #if CYTHON_USE_EXC_INFO_STACK
+      gen->gi_exc_state.previous_item = NULL;
+  #endif
+  #if PY_VERSION_HEX < 0x030C0000 || CYTHON_COMPILING_IN_LIMITED_API
+      gen->gi_weakreflist = NULL;
+  #endif
+      Py_XINCREF(qualname);
+      gen->gi_qualname = qualname;
+      Py_XINCREF(name);
+      gen->gi_name = name;
+      Py_XINCREF(module_name);
+      gen->gi_modulename = module_name;
+      Py_XINCREF(code);
+      gen->gi_code = code;
+      gen->gi_frame = NULL;
+      PyObject_GC_Track(gen);
+      return gen;
+  }
+  static char __Pyx_Coroutine_test_and_set_is_running(__pyx_CoroutineObject *gen) {
+      char result;
+      #if PY_VERSION_HEX >= 0x030d0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_BEGIN_CRITICAL_SECTION(gen);
+      #endif
+      result = gen->is_running;
+      gen->is_running = 1;
+      #if PY_VERSION_HEX >= 0x030d0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_END_CRITICAL_SECTION();
+      #endif
+      return result;
+  }
+  static void __Pyx_Coroutine_unset_is_running(__pyx_CoroutineObject *gen) {
+      #if PY_VERSION_HEX >= 0x030d0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_BEGIN_CRITICAL_SECTION(gen);
+      #endif
+      assert(gen->is_running);
+      gen->is_running = 0;
+      #if PY_VERSION_HEX >= 0x030d0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_END_CRITICAL_SECTION();
+      #endif
+  }
+  static char __Pyx_Coroutine_get_is_running(__pyx_CoroutineObject *gen) {
+      char result;
+      #if PY_VERSION_HEX >= 0x030d0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_BEGIN_CRITICAL_SECTION(gen);
+      #endif
+      result = gen->is_running;
+      #if PY_VERSION_HEX >= 0x030d0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_END_CRITICAL_SECTION();
+      #endif
+      return result;
+  }
+  static PyObject *__Pyx_Coroutine_get_is_running_getter(PyObject *gen, void *closure) {
+      CYTHON_UNUSED_VAR(closure);
+      char result = __Pyx_Coroutine_get_is_running((__pyx_CoroutineObject*)gen);
+      if (result) Py_RETURN_TRUE;
+      else Py_RETURN_FALSE;
+  }
+  #if __PYX_HAS_PY_AM_SEND == 2
+  static void __Pyx_SetBackportTypeAmSend(PyTypeObject *type, __Pyx_PyAsyncMethodsStruct *static_amsend_methods, __Pyx_pyiter_sendfunc am_send) {
+      Py_ssize_t ptr_offset = (char*)(type->tp_as_async) - (char*)type;
+      if (ptr_offset < 0 || ptr_offset > type->tp_basicsize) {
+          return;
+      }
+      memcpy((void*)static_amsend_methods, (void*)(type->tp_as_async), sizeof(*type->tp_as_async));
+      static_amsend_methods->am_send = am_send;
+      type->tp_as_async = __Pyx_SlotTpAsAsync(static_amsend_methods);
+  }
+  #endif
+  static PyObject *__Pyx_Coroutine_fail_reduce_ex(PyObject *self, PyObject *arg) {
+      CYTHON_UNUSED_VAR(arg);
+      __Pyx_TypeName self_type_name = __Pyx_PyType_GetFullyQualifiedName(Py_TYPE((PyObject*)self));
+      PyErr_Format(PyExc_TypeError, "cannot pickle '" __Pyx_FMT_TYPENAME "' object",
+                           self_type_name);
+      __Pyx_DECREF_TypeName(self_type_name);
+      return NULL;
+  }
+  
+/* Generator */
+  static PyMethodDef __pyx_Generator_methods[] = {
+      {"send", (PyCFunction) __Pyx_Coroutine_Send, METH_O,
+       PyDoc_STR("send(arg) -> send 'arg' into generator,\nreturn next yielded value or raise StopIteration.")},
+      {"throw", (PyCFunction) __Pyx_Coroutine_Throw, METH_VARARGS,
+       PyDoc_STR("throw(typ[,val[,tb]]) -> raise exception in generator,\nreturn next yielded value or raise StopIteration.")},
+      {"close", (PyCFunction) __Pyx_Coroutine_Close_Method, METH_NOARGS,
+       PyDoc_STR("close() -> raise GeneratorExit inside generator.")},
+      {"__reduce_ex__", (PyCFunction) __Pyx_Coroutine_fail_reduce_ex, METH_O, 0},
+      {"__reduce__", (PyCFunction) __Pyx_Coroutine_fail_reduce_ex, METH_NOARGS, 0},
+      {0, 0, 0, 0}
+  };
+  static PyMemberDef __pyx_Generator_memberlist[] = {
+      {"gi_yieldfrom", T_OBJECT, offsetof(__pyx_CoroutineObject, yieldfrom), READONLY,
+       PyDoc_STR("object being iterated by 'yield from', or None")},
+      {"gi_code", T_OBJECT, offsetof(__pyx_CoroutineObject, gi_code), READONLY, NULL},
+      {"__module__", T_OBJECT, offsetof(__pyx_CoroutineObject, gi_modulename), 0, 0},
+  #if PY_VERSION_HEX < 0x030C0000 || CYTHON_COMPILING_IN_LIMITED_API
+      {"__weaklistoffset__", T_PYSSIZET, offsetof(__pyx_CoroutineObject, gi_weakreflist), READONLY, 0},
+  #endif
+      {0, 0, 0, 0, 0}
+  };
+  static PyGetSetDef __pyx_Generator_getsets[] = {
+      {"__name__", (getter)__Pyx_Coroutine_get_name, (setter)__Pyx_Coroutine_set_name,
+       PyDoc_STR("name of the generator"), 0},
+      {"__qualname__", (getter)__Pyx_Coroutine_get_qualname, (setter)__Pyx_Coroutine_set_qualname,
+       PyDoc_STR("qualified name of the generator"), 0},
+      {"gi_frame", (getter)__Pyx_Coroutine_get_frame, NULL,
+       PyDoc_STR("Frame of the generator"), 0},
+      {"gi_running", __Pyx_Coroutine_get_is_running_getter, NULL, NULL, NULL},
+      {0, 0, 0, 0, 0}
+  };
+  static PyType_Slot __pyx_GeneratorType_slots[] = {
+      {Py_tp_dealloc, (void *)__Pyx_Coroutine_dealloc},
+      {Py_tp_traverse, (void *)__Pyx_Coroutine_traverse},
+      {Py_tp_iter, (void *)PyObject_SelfIter},
+      {Py_tp_iternext, (void *)__Pyx_Generator_Next},
+      {Py_tp_methods, (void *)__pyx_Generator_methods},
+      {Py_tp_members, (void *)__pyx_Generator_memberlist},
+      {Py_tp_getset, (void *)__pyx_Generator_getsets},
+      {Py_tp_getattro, (void *) PyObject_GenericGetAttr},
+  #if CYTHON_USE_TP_FINALIZE
+      {Py_tp_finalize, (void *)__Pyx_Coroutine_del},
+  #endif
+  #if __PYX_HAS_PY_AM_SEND == 1
+      {Py_am_send, (void *)__Pyx_Coroutine_AmSend},
+  #endif
+      {0, 0},
+  };
+  static PyType_Spec __pyx_GeneratorType_spec = {
+      __PYX_TYPE_MODULE_PREFIX "generator",
+      sizeof(__pyx_CoroutineObject),
+      0,
+  #if PY_VERSION_HEX >= 0x030C0000 && !CYTHON_COMPILING_IN_LIMITED_API
+      Py_TPFLAGS_MANAGED_WEAKREF |
+  #endif
+      Py_TPFLAGS_IMMUTABLETYPE | Py_TPFLAGS_DISALLOW_INSTANTIATION |
+      Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC | __Pyx_TPFLAGS_HAVE_AM_SEND,
+      __pyx_GeneratorType_slots
+  };
+  #if __PYX_HAS_PY_AM_SEND == 2
+  static __Pyx_PyAsyncMethodsStruct __pyx_Generator_as_async;
+  #endif
+  static int __pyx_Generator_init(PyObject *module) {
+      __pyx_mstatetype *mstate = __Pyx_PyModule_GetState(module);
+      mstate->__pyx_GeneratorType = __Pyx_FetchCommonTypeFromSpec(
+          mstate->__pyx_CommonTypesMetaclassType, module, &__pyx_GeneratorType_spec, NULL);
+      if (unlikely(!mstate->__pyx_GeneratorType)) {
+          return -1;
+      }
+  #if __PYX_HAS_PY_AM_SEND == 2
+      __Pyx_SetBackportTypeAmSend(mstate->__pyx_GeneratorType, &__pyx_Generator_as_async, &__Pyx_Coroutine_AmSend);
+  #endif
+      return 0;
+  }
+  static PyObject *__Pyx_Generator_GetInlinedResult(PyObject *self) {
+      __pyx_CoroutineObject *gen = (__pyx_CoroutineObject*) self;
+      PyObject *retval = NULL;
+      if (unlikely(__Pyx_Coroutine_test_and_set_is_running(gen))) {
+          return __Pyx_Coroutine_AlreadyRunningError(gen);
+      }
+      __Pyx_PySendResult result = __Pyx_Coroutine_SendEx(gen, Py_None, &retval, 0);
+      __Pyx_Coroutine_unset_is_running(gen);
+      (void) result;
+      assert (result == PYGEN_RETURN || result == PYGEN_ERROR);
+      assert ((result == PYGEN_RETURN && retval != NULL) || (result == PYGEN_ERROR && retval == NULL));
+      return retval;
   }
   
 /* CheckBinaryVersion */

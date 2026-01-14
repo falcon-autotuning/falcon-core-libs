@@ -173,8 +173,8 @@
         ],
         "include_dirs": [
             "/usr/local/include/falcon-core-c-api",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi",
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src"
         ],
         "language": "c++",
         "libraries": [
@@ -188,7 +188,7 @@
             "/usr/local/lib"
         ],
         "sources": [
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi/f_array_double.pyx"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi/f_array_double.pyx"
         ]
     },
     "module_name": "falcon_core._capi.f_array_double"
@@ -1327,51 +1327,56 @@ static int __Pyx_init_co_variables(void) {
 #include <stddef.h>
 #include <stdint.h>
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
-#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
-#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include "falcon_core/generic/MapConnectionDouble_c_api.h"
@@ -1379,51 +1384,46 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
-#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/communications/messages/StandardRequest_c_api.h"
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
@@ -1486,10 +1486,10 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
-#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
+#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
 #include <string.h>
@@ -2045,7 +2045,7 @@ typedef void *__pyx_t_6_c_api_ChannelHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle             # <<<<<<<<<<<<<<
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
+ * ctypedef void* HDF5DataHandle
 */
 typedef void *__pyx_t_6_c_api_ChannelsHandle;
 
@@ -2053,32 +2053,32 @@ typedef void *__pyx_t_6_c_api_ChannelsHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle             # <<<<<<<<<<<<<<
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
 */
 typedef void *__pyx_t_6_c_api_GnameHandle;
 
 /* "_c_api.pxd":19
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
- * ctypedef void* HDF5DataHandle
- * ctypedef void* MeasurementRequestHandle
-*/
-typedef void *__pyx_t_6_c_api_TimeHandle;
-
-/* "_c_api.pxd":20
- * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
- * ctypedef void* MeasurementResponseHandle
 */
 typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 
-/* "_c_api.pxd":21
- * ctypedef void* TimeHandle
+/* "_c_api.pxd":20
+ * ctypedef void* GnameHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* MeasurementRequestHandle
+ * ctypedef void* MeasurementResponseHandle
+*/
+typedef void *__pyx_t_6_c_api_TimeHandle;
+
+/* "_c_api.pxd":21
+ * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle             # <<<<<<<<<<<<<<
  * ctypedef void* MeasurementResponseHandle
  * ctypedef void* StandardRequestHandle
@@ -2086,7 +2086,7 @@ typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 typedef void *__pyx_t_6_c_api_MeasurementRequestHandle;
 
 /* "_c_api.pxd":22
- * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
  * ctypedef void* MeasurementResponseHandle             # <<<<<<<<<<<<<<
  * ctypedef void* StandardRequestHandle
@@ -2999,7 +2999,7 @@ typedef void *__pyx_t_6_c_api_PortTransformsHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle             # <<<<<<<<<<<<<<
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
 */
 typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
 
@@ -3007,7 +3007,7 @@ typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
 */
 typedef void *__pyx_t_6_c_api_PointHandle;
@@ -3015,32 +3015,41 @@ typedef void *__pyx_t_6_c_api_PointHandle;
 /* "_c_api.pxd":125
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
  * ctypedef void* UnitSpaceHandle
- * ctypedef void* AxesDoubleHandle
+ * ctypedef void* VectorHandle
 */
-typedef void *__pyx_t_6_c_api_VectorHandle;
+typedef void *__pyx_t_6_c_api_QuantityHandle;
 
 /* "_c_api.pxd":126
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
- * ctypedef void* AxesIntHandle
 */
 typedef void *__pyx_t_6_c_api_UnitSpaceHandle;
 
 /* "_c_api.pxd":127
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AxesDoubleHandle
+ * ctypedef void* AxesIntHandle
+*/
+typedef void *__pyx_t_6_c_api_VectorHandle;
+
+/* "_c_api.pxd":128
+ * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
 */
 typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 
-/* "_c_api.pxd":128
- * ctypedef void* UnitSpaceHandle
+/* "_c_api.pxd":129
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesDiscretizerHandle
@@ -3048,7 +3057,7 @@ typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesIntHandle;
 
-/* "_c_api.pxd":129
+/* "_c_api.pxd":130
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle             # <<<<<<<<<<<<<<
@@ -3057,7 +3066,7 @@ typedef void *__pyx_t_6_c_api_AxesIntHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 
-/* "_c_api.pxd":130
+/* "_c_api.pxd":131
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3066,7 +3075,7 @@ typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 
-/* "_c_api.pxd":131
+/* "_c_api.pxd":132
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3075,7 +3084,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 
-/* "_c_api.pxd":132
+/* "_c_api.pxd":133
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle             # <<<<<<<<<<<<<<
@@ -3084,7 +3093,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 
-/* "_c_api.pxd":133
+/* "_c_api.pxd":134
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle             # <<<<<<<<<<<<<<
@@ -3093,7 +3102,7 @@ typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 
-/* "_c_api.pxd":134
+/* "_c_api.pxd":135
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle             # <<<<<<<<<<<<<<
@@ -3102,7 +3111,7 @@ typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 
-/* "_c_api.pxd":135
+/* "_c_api.pxd":136
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle             # <<<<<<<<<<<<<<
@@ -3111,7 +3120,7 @@ typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 
-/* "_c_api.pxd":136
+/* "_c_api.pxd":137
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3120,7 +3129,7 @@ typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 
-/* "_c_api.pxd":137
+/* "_c_api.pxd":138
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3129,63 +3138,54 @@ typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArray1DHandle;
 
-/* "_c_api.pxd":138
+/* "_c_api.pxd":139
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
+ * ctypedef void* ControlArray1DHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArrayHandle;
 
-/* "_c_api.pxd":139
+/* "_c_api.pxd":140
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle             # <<<<<<<<<<<<<<
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
+ * ctypedef void* ControlArray1DHandle
+ * ctypedef void* ControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArray1DHandle;
 
-/* "_c_api.pxd":140
+/* "_c_api.pxd":141
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
- * ctypedef void* IncreasingAlignmentHandle
- * ctypedef void* ControlArray1DHandle
-*/
-typedef void *__pyx_t_6_c_api_QuantityHandle;
-
-/* "_c_api.pxd":141
- * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ControlArray1DHandle
- * ctypedef void* ControlArrayHandle
-*/
-typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
-
-/* "_c_api.pxd":142
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* ControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* ControlArrayHandle
- * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* IncreasingAlignmentHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArray1DHandle;
 
-/* "_c_api.pxd":143
- * ctypedef void* IncreasingAlignmentHandle
+/* "_c_api.pxd":142
+ * ctypedef void* AxesLabelledMeasuredArray1DHandle
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
- * ctypedef void* LabelledControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 
-/* "_c_api.pxd":144
+/* "_c_api.pxd":143
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* LabelledControlArrayHandle
+*/
+typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
+
+/* "_c_api.pxd":144
+ * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledControlArrayHandle
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3193,7 +3193,7 @@ typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 typedef void *__pyx_t_6_c_api_LabelledControlArray1DHandle;
 
 /* "_c_api.pxd":145
- * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
  * ctypedef void* LabelledControlArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3314,7 +3314,7 @@ typedef void *__pyx_t_6_c_api_DomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
+ * ctypedef void* AdjacencyHandle
 */
 typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
 
@@ -3322,131 +3322,131 @@ typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AdjacencyHandle
  * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
 */
 typedef void *__pyx_t_6_c_api_LoaderHandle;
 
 /* "_c_api.pxd":160
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
 */
-typedef void *__pyx_t_6_c_api_ConfigHandle;
+typedef void *__pyx_t_6_c_api_AdjacencyHandle;
 
 /* "_c_api.pxd":161
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GroupHandle
  * ctypedef void* AdjacencyHandle
+ * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GroupHandle
+ * ctypedef void* VoltageConstraintsHandle
 */
-typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
+typedef void *__pyx_t_6_c_api_ConfigHandle;
 
 /* "_c_api.pxd":162
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
- * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AdjacencyHandle
- * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* ConfigHandle
+ * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
 */
 typedef void *__pyx_t_6_c_api_GroupHandle;
 
 /* "_c_api.pxd":163
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GateGeometryArray1DHandle
- * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+ * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
 */
-typedef void *__pyx_t_6_c_api_AdjacencyHandle;
+typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
 
 /* "_c_api.pxd":164
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* GateGeometryArray1DHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
+
+/* "_c_api.pxd":165
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
+
+/* "_c_api.pxd":166
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
 */
 typedef void *__pyx_t_6_c_api_GateGeometryArray1DHandle;
 
-/* "_c_api.pxd":165
- * ctypedef void* AdjacencyHandle
+/* "_c_api.pxd":167
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
 */
 typedef void *__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":166
+/* "_c_api.pxd":168
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
+ * ctypedef void* ConnectionsHandle
 */
 typedef void *__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":167
+/* "_c_api.pxd":169
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGateWithNeighborsHandle
- * ctypedef void* ConnectionHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
-
-/* "_c_api.pxd":168
- * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
-
-/* "_c_api.pxd":169
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
  * ctypedef void* ConnectionHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConnectionsHandle
  * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionHandle;
 
 /* "_c_api.pxd":170
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* RightReservoirWithImplantedOhmicHandle
  * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedanceHandle
- * ctypedef void* ConnectionsHandle
-*/
-typedef void *__pyx_t_6_c_api_GateRelationsHandle;
-
-/* "_c_api.pxd":171
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionsHandle
- * ctypedef void* ImpedancesHandle
-*/
-typedef void *__pyx_t_6_c_api_ImpedanceHandle;
-
-/* "_c_api.pxd":172
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
  * ctypedef void* ConnectionsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedancesHandle
- * ctypedef void* SymbolUnitHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 
-/* "_c_api.pxd":173
- * ctypedef void* ImpedanceHandle
+/* "_c_api.pxd":171
+ * ctypedef void* ConnectionHandle
  * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedanceHandle
+ * ctypedef void* ImpedancesHandle
+*/
+typedef void *__pyx_t_6_c_api_GateRelationsHandle;
+
+/* "_c_api.pxd":172
+ * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedancesHandle
+ * ctypedef void* SymbolUnitHandle
+*/
+typedef void *__pyx_t_6_c_api_ImpedanceHandle;
+
+/* "_c_api.pxd":173
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle             # <<<<<<<<<<<<<<
  * ctypedef void* SymbolUnitHandle
  * 
@@ -3454,7 +3454,7 @@ typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 typedef void *__pyx_t_6_c_api_ImpedancesHandle;
 
 /* "_c_api.pxd":174
- * ctypedef void* ConnectionsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle
  * ctypedef void* SymbolUnitHandle             # <<<<<<<<<<<<<<
  * 
@@ -4370,6 +4370,9 @@ static CYTHON_INLINE PyObject* __Pyx_decode_bytes(
         start, stop, encoding, errors, decode_func);
 }
 
+/* PyObjectCallNoArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+
 /* AllocateExtensionType.proto */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final);
 
@@ -4404,9 +4407,6 @@ static int __Pyx__SetItemOnTypeDict(PyTypeObject *tp, PyObject *k, PyObject *v);
 
 /* FixUpExtensionType.proto */
 static CYTHON_INLINE int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type);
-
-/* PyObjectCallNoArg.proto (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 
 /* PyObjectGetMethod.proto (used by PyObjectCallMethod0) */
 #if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
@@ -5045,8 +5045,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
 static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_128get_summed_diff_array_of_squares(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_130to_json(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self); /* proto */
 static Py_ssize_t __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_132__len__(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_134__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_136__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_134__repr__(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_136__str__(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_138__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_140__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_14f_array_double_FArrayDouble(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -5090,7 +5092,7 @@ typedef struct {
   PyObject *__pyx_slice[1];
   PyObject *__pyx_tuple[1];
   PyObject *__pyx_codeobj_tab[61];
-  PyObject *__pyx_string_tab[304];
+  PyObject *__pyx_string_tab[305];
   PyObject *__pyx_number_tab[4];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
@@ -5158,284 +5160,285 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u__5 __pyx_string_tab[23]
 #define __pyx_kp_u__6 __pyx_string_tab[24]
 #define __pyx_kp_u__7 __pyx_string_tab[25]
-#define __pyx_kp_u_add_note __pyx_string_tab[26]
-#define __pyx_kp_u_and __pyx_string_tab[27]
-#define __pyx_kp_u_at_0x __pyx_string_tab[28]
-#define __pyx_kp_u_collections_abc __pyx_string_tab[29]
-#define __pyx_kp_u_contiguous_and_direct __pyx_string_tab[30]
-#define __pyx_kp_u_contiguous_and_indirect __pyx_string_tab[31]
-#define __pyx_kp_u_disable __pyx_string_tab[32]
-#define __pyx_kp_u_enable __pyx_string_tab[33]
-#define __pyx_kp_u_gc __pyx_string_tab[34]
-#define __pyx_kp_u_got __pyx_string_tab[35]
-#define __pyx_kp_u_got_differing_extents_in_dimensi __pyx_string_tab[36]
-#define __pyx_kp_u_isenabled __pyx_string_tab[37]
-#define __pyx_kp_u_itemsize_0_for_cython_array __pyx_string_tab[38]
-#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[39]
-#define __pyx_kp_u_object __pyx_string_tab[40]
-#define __pyx_kp_u_src_falcon_core__capi_f_array_do __pyx_string_tab[41]
-#define __pyx_kp_u_strided_and_direct __pyx_string_tab[42]
-#define __pyx_kp_u_strided_and_direct_or_indirect __pyx_string_tab[43]
-#define __pyx_kp_u_strided_and_indirect __pyx_string_tab[44]
-#define __pyx_kp_u_stringsource __pyx_string_tab[45]
-#define __pyx_kp_u_unable_to_allocate_array_data __pyx_string_tab[46]
-#define __pyx_kp_u_unable_to_allocate_shape_and_str __pyx_string_tab[47]
-#define __pyx_n_u_ASCII __pyx_string_tab[48]
-#define __pyx_n_u_Ellipsis __pyx_string_tab[49]
-#define __pyx_n_u_FArrayDouble __pyx_string_tab[50]
-#define __pyx_n_u_FArrayDouble___reduce_cython __pyx_string_tab[51]
-#define __pyx_n_u_FArrayDouble___setstate_cython __pyx_string_tab[52]
-#define __pyx_n_u_FArrayDouble_abs __pyx_string_tab[53]
-#define __pyx_n_u_FArrayDouble_copy __pyx_string_tab[54]
-#define __pyx_n_u_FArrayDouble_data __pyx_string_tab[55]
-#define __pyx_n_u_FArrayDouble_dimension __pyx_string_tab[56]
-#define __pyx_n_u_FArrayDouble_divides_double __pyx_string_tab[57]
-#define __pyx_n_u_FArrayDouble_divides_equals_doub __pyx_string_tab[58]
-#define __pyx_n_u_FArrayDouble_divides_equals_farr __pyx_string_tab[59]
-#define __pyx_n_u_FArrayDouble_divides_equals_int __pyx_string_tab[60]
-#define __pyx_n_u_FArrayDouble_divides_farray __pyx_string_tab[61]
-#define __pyx_n_u_FArrayDouble_divides_int __pyx_string_tab[62]
-#define __pyx_n_u_FArrayDouble_double_pow __pyx_string_tab[63]
-#define __pyx_n_u_FArrayDouble_equal __pyx_string_tab[64]
-#define __pyx_n_u_FArrayDouble_flip __pyx_string_tab[65]
-#define __pyx_n_u_FArrayDouble_from_data __pyx_string_tab[66]
-#define __pyx_n_u_FArrayDouble_from_json __pyx_string_tab[67]
-#define __pyx_n_u_FArrayDouble_from_shape __pyx_string_tab[68]
-#define __pyx_n_u_FArrayDouble_full_gradient __pyx_string_tab[69]
-#define __pyx_n_u_FArrayDouble_get_sum_of_squares __pyx_string_tab[70]
-#define __pyx_n_u_FArrayDouble_get_summed_diff_arr __pyx_string_tab[71]
-#define __pyx_n_u_FArrayDouble_get_summed_diff_dou __pyx_string_tab[72]
-#define __pyx_n_u_FArrayDouble_get_summed_diff_int __pyx_string_tab[73]
-#define __pyx_n_u_FArrayDouble_gradient __pyx_string_tab[74]
-#define __pyx_n_u_FArrayDouble_greater_than __pyx_string_tab[75]
-#define __pyx_n_u_FArrayDouble_less_than __pyx_string_tab[76]
-#define __pyx_n_u_FArrayDouble_max __pyx_string_tab[77]
-#define __pyx_n_u_FArrayDouble_max_arraywise __pyx_string_tab[78]
-#define __pyx_n_u_FArrayDouble_min __pyx_string_tab[79]
-#define __pyx_n_u_FArrayDouble_min_arraywise __pyx_string_tab[80]
-#define __pyx_n_u_FArrayDouble_minus_double __pyx_string_tab[81]
-#define __pyx_n_u_FArrayDouble_minus_equals_double __pyx_string_tab[82]
-#define __pyx_n_u_FArrayDouble_minus_equals_farray __pyx_string_tab[83]
-#define __pyx_n_u_FArrayDouble_minus_equals_int __pyx_string_tab[84]
-#define __pyx_n_u_FArrayDouble_minus_farray __pyx_string_tab[85]
-#define __pyx_n_u_FArrayDouble_minus_int __pyx_string_tab[86]
-#define __pyx_n_u_FArrayDouble_negation __pyx_string_tab[87]
-#define __pyx_n_u_FArrayDouble_new_empty __pyx_string_tab[88]
-#define __pyx_n_u_FArrayDouble_new_zeros __pyx_string_tab[89]
-#define __pyx_n_u_FArrayDouble_not_equal __pyx_string_tab[90]
-#define __pyx_n_u_FArrayDouble_plus_double __pyx_string_tab[91]
-#define __pyx_n_u_FArrayDouble_plus_equals_double __pyx_string_tab[92]
-#define __pyx_n_u_FArrayDouble_plus_equals_farray __pyx_string_tab[93]
-#define __pyx_n_u_FArrayDouble_plus_equals_int __pyx_string_tab[94]
-#define __pyx_n_u_FArrayDouble_plus_farray __pyx_string_tab[95]
-#define __pyx_n_u_FArrayDouble_plus_int __pyx_string_tab[96]
-#define __pyx_n_u_FArrayDouble_pow __pyx_string_tab[97]
-#define __pyx_n_u_FArrayDouble_pow_inplace __pyx_string_tab[98]
-#define __pyx_n_u_FArrayDouble_remove_offset __pyx_string_tab[99]
-#define __pyx_n_u_FArrayDouble_reshape __pyx_string_tab[100]
-#define __pyx_n_u_FArrayDouble_shape __pyx_string_tab[101]
-#define __pyx_n_u_FArrayDouble_size __pyx_string_tab[102]
-#define __pyx_n_u_FArrayDouble_sum __pyx_string_tab[103]
-#define __pyx_n_u_FArrayDouble_times_double __pyx_string_tab[104]
-#define __pyx_n_u_FArrayDouble_times_equals_double __pyx_string_tab[105]
-#define __pyx_n_u_FArrayDouble_times_equals_farray __pyx_string_tab[106]
-#define __pyx_n_u_FArrayDouble_times_equals_int __pyx_string_tab[107]
-#define __pyx_n_u_FArrayDouble_times_farray __pyx_string_tab[108]
-#define __pyx_n_u_FArrayDouble_times_int __pyx_string_tab[109]
-#define __pyx_n_u_FArrayDouble_to_json __pyx_string_tab[110]
-#define __pyx_n_u_FArrayDouble_where __pyx_string_tab[111]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[112]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[113]
-#define __pyx_n_u_Sequence __pyx_string_tab[114]
-#define __pyx_n_u_View_MemoryView __pyx_string_tab[115]
-#define __pyx_n_u_abc __pyx_string_tab[116]
-#define __pyx_n_u_abs __pyx_string_tab[117]
-#define __pyx_n_u_allocate_buffer __pyx_string_tab[118]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[119]
-#define __pyx_n_u_axis __pyx_string_tab[120]
-#define __pyx_n_u_b_json __pyx_string_tab[121]
-#define __pyx_n_u_base __pyx_string_tab[122]
-#define __pyx_n_u_buffer_size __pyx_string_tab[123]
-#define __pyx_n_u_c __pyx_string_tab[124]
-#define __pyx_n_u_class __pyx_string_tab[125]
-#define __pyx_n_u_class_getitem __pyx_string_tab[126]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[127]
-#define __pyx_n_u_cls __pyx_string_tab[128]
-#define __pyx_n_u_copy __pyx_string_tab[129]
-#define __pyx_n_u_count __pyx_string_tab[130]
-#define __pyx_n_u_data __pyx_string_tab[131]
-#define __pyx_n_u_dict __pyx_string_tab[132]
-#define __pyx_n_u_dimension __pyx_string_tab[133]
-#define __pyx_n_u_divides_double __pyx_string_tab[134]
-#define __pyx_n_u_divides_equals_double __pyx_string_tab[135]
-#define __pyx_n_u_divides_equals_farray __pyx_string_tab[136]
-#define __pyx_n_u_divides_equals_int __pyx_string_tab[137]
-#define __pyx_n_u_divides_farray __pyx_string_tab[138]
-#define __pyx_n_u_divides_int __pyx_string_tab[139]
-#define __pyx_n_u_double_pow __pyx_string_tab[140]
-#define __pyx_n_u_dtype_is_object __pyx_string_tab[141]
-#define __pyx_n_u_encode __pyx_string_tab[142]
-#define __pyx_n_u_enumerate __pyx_string_tab[143]
-#define __pyx_n_u_equal __pyx_string_tab[144]
-#define __pyx_n_u_error __pyx_string_tab[145]
-#define __pyx_n_u_falcon_core__capi_f_array_double __pyx_string_tab[146]
-#define __pyx_n_u_flags __pyx_string_tab[147]
-#define __pyx_n_u_flip __pyx_string_tab[148]
-#define __pyx_n_u_format __pyx_string_tab[149]
-#define __pyx_n_u_fortran __pyx_string_tab[150]
-#define __pyx_n_u_from_data __pyx_string_tab[151]
-#define __pyx_n_u_from_json __pyx_string_tab[152]
-#define __pyx_n_u_from_shape __pyx_string_tab[153]
-#define __pyx_n_u_full_gradient __pyx_string_tab[154]
-#define __pyx_n_u_func __pyx_string_tab[155]
-#define __pyx_n_u_get_sum_of_squares __pyx_string_tab[156]
-#define __pyx_n_u_get_summed_diff_array_of_squares __pyx_string_tab[157]
-#define __pyx_n_u_get_summed_diff_double_of_square __pyx_string_tab[158]
-#define __pyx_n_u_get_summed_diff_int_of_squares __pyx_string_tab[159]
-#define __pyx_n_u_getstate __pyx_string_tab[160]
-#define __pyx_n_u_gradient __pyx_string_tab[161]
-#define __pyx_n_u_greater_than __pyx_string_tab[162]
-#define __pyx_n_u_h __pyx_string_tab[163]
-#define __pyx_n_u_h_ret __pyx_string_tab[164]
-#define __pyx_n_u_handle __pyx_string_tab[165]
-#define __pyx_n_u_id __pyx_string_tab[166]
-#define __pyx_n_u_import __pyx_string_tab[167]
-#define __pyx_n_u_index __pyx_string_tab[168]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[169]
-#define __pyx_n_u_items __pyx_string_tab[170]
-#define __pyx_n_u_itemsize __pyx_string_tab[171]
-#define __pyx_n_u_json __pyx_string_tab[172]
-#define __pyx_n_u_less_than __pyx_string_tab[173]
-#define __pyx_n_u_main __pyx_string_tab[174]
-#define __pyx_n_u_max __pyx_string_tab[175]
-#define __pyx_n_u_max_arraywise __pyx_string_tab[176]
-#define __pyx_n_u_memview __pyx_string_tab[177]
-#define __pyx_n_u_min __pyx_string_tab[178]
-#define __pyx_n_u_min_arraywise __pyx_string_tab[179]
-#define __pyx_n_u_minus_double __pyx_string_tab[180]
-#define __pyx_n_u_minus_equals_double __pyx_string_tab[181]
-#define __pyx_n_u_minus_equals_farray __pyx_string_tab[182]
-#define __pyx_n_u_minus_equals_int __pyx_string_tab[183]
-#define __pyx_n_u_minus_farray __pyx_string_tab[184]
-#define __pyx_n_u_minus_int __pyx_string_tab[185]
-#define __pyx_n_u_mode __pyx_string_tab[186]
-#define __pyx_n_u_module __pyx_string_tab[187]
-#define __pyx_n_u_name __pyx_string_tab[188]
-#define __pyx_n_u_name_2 __pyx_string_tab[189]
-#define __pyx_n_u_ndim __pyx_string_tab[190]
-#define __pyx_n_u_ndims __pyx_string_tab[191]
-#define __pyx_n_u_negation __pyx_string_tab[192]
-#define __pyx_n_u_new __pyx_string_tab[193]
-#define __pyx_n_u_new_empty __pyx_string_tab[194]
-#define __pyx_n_u_new_zeros __pyx_string_tab[195]
-#define __pyx_n_u_not_equal __pyx_string_tab[196]
-#define __pyx_n_u_numdata __pyx_string_tab[197]
-#define __pyx_n_u_obj __pyx_string_tab[198]
-#define __pyx_n_u_offset __pyx_string_tab[199]
-#define __pyx_n_u_other __pyx_string_tab[200]
-#define __pyx_n_u_out_buffer __pyx_string_tab[201]
-#define __pyx_n_u_pack __pyx_string_tab[202]
-#define __pyx_n_u_plus_double __pyx_string_tab[203]
-#define __pyx_n_u_plus_equals_double __pyx_string_tab[204]
-#define __pyx_n_u_plus_equals_farray __pyx_string_tab[205]
-#define __pyx_n_u_plus_equals_int __pyx_string_tab[206]
-#define __pyx_n_u_plus_farray __pyx_string_tab[207]
-#define __pyx_n_u_plus_int __pyx_string_tab[208]
-#define __pyx_n_u_pop __pyx_string_tab[209]
-#define __pyx_n_u_pow __pyx_string_tab[210]
-#define __pyx_n_u_pow_inplace __pyx_string_tab[211]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[212]
-#define __pyx_n_u_pyx_checksum __pyx_string_tab[213]
-#define __pyx_n_u_pyx_state __pyx_string_tab[214]
-#define __pyx_n_u_pyx_type __pyx_string_tab[215]
-#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[216]
-#define __pyx_n_u_pyx_vtable __pyx_string_tab[217]
-#define __pyx_n_u_qualname __pyx_string_tab[218]
-#define __pyx_n_u_reduce __pyx_string_tab[219]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[220]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[221]
-#define __pyx_n_u_register __pyx_string_tab[222]
-#define __pyx_n_u_remove_offset __pyx_string_tab[223]
-#define __pyx_n_u_reshape __pyx_string_tab[224]
-#define __pyx_n_u_s_json __pyx_string_tab[225]
-#define __pyx_n_u_s_ret __pyx_string_tab[226]
-#define __pyx_n_u_self __pyx_string_tab[227]
-#define __pyx_n_u_set_name __pyx_string_tab[228]
-#define __pyx_n_u_setdefault __pyx_string_tab[229]
-#define __pyx_n_u_setstate __pyx_string_tab[230]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[231]
-#define __pyx_n_u_shape __pyx_string_tab[232]
-#define __pyx_n_u_size __pyx_string_tab[233]
-#define __pyx_n_u_start __pyx_string_tab[234]
-#define __pyx_n_u_staticmethod __pyx_string_tab[235]
-#define __pyx_n_u_step __pyx_string_tab[236]
-#define __pyx_n_u_stop __pyx_string_tab[237]
-#define __pyx_n_u_struct __pyx_string_tab[238]
-#define __pyx_n_u_sum __pyx_string_tab[239]
-#define __pyx_n_u_test __pyx_string_tab[240]
-#define __pyx_n_u_times_double __pyx_string_tab[241]
-#define __pyx_n_u_times_equals_double __pyx_string_tab[242]
-#define __pyx_n_u_times_equals_farray __pyx_string_tab[243]
-#define __pyx_n_u_times_equals_int __pyx_string_tab[244]
-#define __pyx_n_u_times_farray __pyx_string_tab[245]
-#define __pyx_n_u_times_int __pyx_string_tab[246]
-#define __pyx_n_u_to_json __pyx_string_tab[247]
-#define __pyx_n_u_unpack __pyx_string_tab[248]
-#define __pyx_n_u_update __pyx_string_tab[249]
-#define __pyx_n_u_value __pyx_string_tab[250]
-#define __pyx_n_u_values __pyx_string_tab[251]
-#define __pyx_n_u_where __pyx_string_tab[252]
-#define __pyx_n_u_x __pyx_string_tab[253]
-#define __pyx_kp_b_iso88591_A_0_Y_ZZ_eeffjjk __pyx_string_tab[254]
-#define __pyx_kp_b_iso88591_A_1D __pyx_string_tab[255]
-#define __pyx_kp_b_iso88591_A_1_iq __pyx_string_tab[256]
-#define __pyx_kp_b_iso88591_A_1_iuKvU_f_g_B_B_C __pyx_string_tab[257]
-#define __pyx_kp_b_iso88591_A_2_4q_6_1_AU_XWAQ __pyx_string_tab[258]
-#define __pyx_kp_b_iso88591_A_55Fat1_6_q_1_vS __pyx_string_tab[259]
-#define __pyx_kp_b_iso88591_A_55Fat9TU_6_q_1_vS __pyx_string_tab[260]
-#define __pyx_kp_b_iso88591_A_55Gq_A_6_q_1_vS __pyx_string_tab[261]
-#define __pyx_kp_b_iso88591_A_55Gq_IUV_6_q_1_vS __pyx_string_tab[262]
-#define __pyx_kp_b_iso88591_A_55J_4yXYY___ccd_6_q_1_vS __pyx_string_tab[263]
-#define __pyx_kp_b_iso88591_A_55K1DPQ_6_q_1_vS __pyx_string_tab[264]
-#define __pyx_kp_b_iso88591_A_55K1DPYYZ_6_q_1_vS __pyx_string_tab[265]
-#define __pyx_kp_b_iso88591_A_55LAQdRSSWWXX_bbc_6_q_1 __pyx_string_tab[266]
-#define __pyx_kp_b_iso88591_A_55LATQZZ_6_q_1_vS __pyx_string_tab[267]
-#define __pyx_kp_b_iso88591_A_55MQauTUUYYZ_6_q_1 __pyx_string_tab[268]
-#define __pyx_kp_b_iso88591_A_55MQdR_6_q_1_vS __pyx_string_tab[269]
-#define __pyx_kp_b_iso88591_A_55NatS_6_q_1_vS __pyx_string_tab[270]
-#define __pyx_kp_b_iso88591_A_55NatS_aallrry_z_D_D_____6_q_1 __pyx_string_tab[271]
-#define __pyx_kp_b_iso88591_A_55OqPTT_6_q_1_vS __pyx_string_tab[272]
-#define __pyx_kp_b_iso88591_A_55OqPTT_bbmmssz_E_E_a_6_q_1_vS __pyx_string_tab[273]
-#define __pyx_kp_b_iso88591_A_55PPQQUU_ccnntt_F_F_a_a_b_6_q __pyx_string_tab[274]
-#define __pyx_kp_b_iso88591_A_55QQRRVV___6_q_1_vS __pyx_string_tab[275]
-#define __pyx_kp_b_iso88591_A_55QQRRVV__ddoouu_G_G_b_b_c_6_q __pyx_string_tab[276]
-#define __pyx_kp_b_iso88591_A_5Qd __pyx_string_tab[277]
-#define __pyx_kp_b_iso88591_A_66I_iWX_6_0_1 __pyx_string_tab[278]
-#define __pyx_kp_b_iso88591_A_AQe1D_2S_1_Qa_c_Q_9A_q __pyx_string_tab[279]
-#define __pyx_kp_b_iso88591_A_AT __pyx_string_tab[280]
-#define __pyx_kp_b_iso88591_A_AT_2 __pyx_string_tab[281]
-#define __pyx_kp_b_iso88591_A_AT_3 __pyx_string_tab[282]
-#define __pyx_kp_b_iso88591_A_AT_PWWaa __pyx_string_tab[283]
-#define __pyx_kp_b_iso88591_A_A_iq __pyx_string_tab[284]
-#define __pyx_kp_b_iso88591_A_C1D_QVVaaggnnx_y_T_T_U __pyx_string_tab[285]
-#define __pyx_kp_b_iso88591_A_DAT_RS __pyx_string_tab[286]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_4AQ_2S_1_Qa_c_Q_9A __pyx_string_tab[287]
-#define __pyx_kp_b_iso88591_A_Yaz_a __pyx_string_tab[288]
-#define __pyx_kp_b_iso88591_A_Ye_fGS_xxy __pyx_string_tab[289]
-#define __pyx_kp_b_iso88591_A_at1 __pyx_string_tab[290]
-#define __pyx_kp_b_iso88591_A_at9A __pyx_string_tab[291]
-#define __pyx_kp_b_iso88591_A_at9E_FRYYcc __pyx_string_tab[292]
-#define __pyx_kp_b_iso88591_A_iq __pyx_string_tab[293]
-#define __pyx_kp_b_iso88591_A_q_A __pyx_string_tab[294]
-#define __pyx_kp_b_iso88591_A_q_IQ __pyx_string_tab[295]
-#define __pyx_kp_b_iso88591_A_q_IQ_2 __pyx_string_tab[296]
-#define __pyx_kp_b_iso88591_A_q_IQ_3 __pyx_string_tab[297]
-#define __pyx_kp_b_iso88591_A_q_IQj_Q __pyx_string_tab[298]
-#define __pyx_kp_b_iso88591_A_q_IU_VSZZdd_A __pyx_string_tab[299]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[300]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[301]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[302]
-#define __pyx_n_b_O __pyx_string_tab[303]
+#define __pyx_kp_u__8 __pyx_string_tab[26]
+#define __pyx_kp_u_add_note __pyx_string_tab[27]
+#define __pyx_kp_u_and __pyx_string_tab[28]
+#define __pyx_kp_u_at_0x __pyx_string_tab[29]
+#define __pyx_kp_u_collections_abc __pyx_string_tab[30]
+#define __pyx_kp_u_contiguous_and_direct __pyx_string_tab[31]
+#define __pyx_kp_u_contiguous_and_indirect __pyx_string_tab[32]
+#define __pyx_kp_u_disable __pyx_string_tab[33]
+#define __pyx_kp_u_enable __pyx_string_tab[34]
+#define __pyx_kp_u_gc __pyx_string_tab[35]
+#define __pyx_kp_u_got __pyx_string_tab[36]
+#define __pyx_kp_u_got_differing_extents_in_dimensi __pyx_string_tab[37]
+#define __pyx_kp_u_isenabled __pyx_string_tab[38]
+#define __pyx_kp_u_itemsize_0_for_cython_array __pyx_string_tab[39]
+#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[40]
+#define __pyx_kp_u_object __pyx_string_tab[41]
+#define __pyx_kp_u_src_falcon_core__capi_f_array_do __pyx_string_tab[42]
+#define __pyx_kp_u_strided_and_direct __pyx_string_tab[43]
+#define __pyx_kp_u_strided_and_direct_or_indirect __pyx_string_tab[44]
+#define __pyx_kp_u_strided_and_indirect __pyx_string_tab[45]
+#define __pyx_kp_u_stringsource __pyx_string_tab[46]
+#define __pyx_kp_u_unable_to_allocate_array_data __pyx_string_tab[47]
+#define __pyx_kp_u_unable_to_allocate_shape_and_str __pyx_string_tab[48]
+#define __pyx_n_u_ASCII __pyx_string_tab[49]
+#define __pyx_n_u_Ellipsis __pyx_string_tab[50]
+#define __pyx_n_u_FArrayDouble __pyx_string_tab[51]
+#define __pyx_n_u_FArrayDouble___reduce_cython __pyx_string_tab[52]
+#define __pyx_n_u_FArrayDouble___setstate_cython __pyx_string_tab[53]
+#define __pyx_n_u_FArrayDouble_abs __pyx_string_tab[54]
+#define __pyx_n_u_FArrayDouble_copy __pyx_string_tab[55]
+#define __pyx_n_u_FArrayDouble_data __pyx_string_tab[56]
+#define __pyx_n_u_FArrayDouble_dimension __pyx_string_tab[57]
+#define __pyx_n_u_FArrayDouble_divides_double __pyx_string_tab[58]
+#define __pyx_n_u_FArrayDouble_divides_equals_doub __pyx_string_tab[59]
+#define __pyx_n_u_FArrayDouble_divides_equals_farr __pyx_string_tab[60]
+#define __pyx_n_u_FArrayDouble_divides_equals_int __pyx_string_tab[61]
+#define __pyx_n_u_FArrayDouble_divides_farray __pyx_string_tab[62]
+#define __pyx_n_u_FArrayDouble_divides_int __pyx_string_tab[63]
+#define __pyx_n_u_FArrayDouble_double_pow __pyx_string_tab[64]
+#define __pyx_n_u_FArrayDouble_equal __pyx_string_tab[65]
+#define __pyx_n_u_FArrayDouble_flip __pyx_string_tab[66]
+#define __pyx_n_u_FArrayDouble_from_data __pyx_string_tab[67]
+#define __pyx_n_u_FArrayDouble_from_json __pyx_string_tab[68]
+#define __pyx_n_u_FArrayDouble_from_shape __pyx_string_tab[69]
+#define __pyx_n_u_FArrayDouble_full_gradient __pyx_string_tab[70]
+#define __pyx_n_u_FArrayDouble_get_sum_of_squares __pyx_string_tab[71]
+#define __pyx_n_u_FArrayDouble_get_summed_diff_arr __pyx_string_tab[72]
+#define __pyx_n_u_FArrayDouble_get_summed_diff_dou __pyx_string_tab[73]
+#define __pyx_n_u_FArrayDouble_get_summed_diff_int __pyx_string_tab[74]
+#define __pyx_n_u_FArrayDouble_gradient __pyx_string_tab[75]
+#define __pyx_n_u_FArrayDouble_greater_than __pyx_string_tab[76]
+#define __pyx_n_u_FArrayDouble_less_than __pyx_string_tab[77]
+#define __pyx_n_u_FArrayDouble_max __pyx_string_tab[78]
+#define __pyx_n_u_FArrayDouble_max_arraywise __pyx_string_tab[79]
+#define __pyx_n_u_FArrayDouble_min __pyx_string_tab[80]
+#define __pyx_n_u_FArrayDouble_min_arraywise __pyx_string_tab[81]
+#define __pyx_n_u_FArrayDouble_minus_double __pyx_string_tab[82]
+#define __pyx_n_u_FArrayDouble_minus_equals_double __pyx_string_tab[83]
+#define __pyx_n_u_FArrayDouble_minus_equals_farray __pyx_string_tab[84]
+#define __pyx_n_u_FArrayDouble_minus_equals_int __pyx_string_tab[85]
+#define __pyx_n_u_FArrayDouble_minus_farray __pyx_string_tab[86]
+#define __pyx_n_u_FArrayDouble_minus_int __pyx_string_tab[87]
+#define __pyx_n_u_FArrayDouble_negation __pyx_string_tab[88]
+#define __pyx_n_u_FArrayDouble_new_empty __pyx_string_tab[89]
+#define __pyx_n_u_FArrayDouble_new_zeros __pyx_string_tab[90]
+#define __pyx_n_u_FArrayDouble_not_equal __pyx_string_tab[91]
+#define __pyx_n_u_FArrayDouble_plus_double __pyx_string_tab[92]
+#define __pyx_n_u_FArrayDouble_plus_equals_double __pyx_string_tab[93]
+#define __pyx_n_u_FArrayDouble_plus_equals_farray __pyx_string_tab[94]
+#define __pyx_n_u_FArrayDouble_plus_equals_int __pyx_string_tab[95]
+#define __pyx_n_u_FArrayDouble_plus_farray __pyx_string_tab[96]
+#define __pyx_n_u_FArrayDouble_plus_int __pyx_string_tab[97]
+#define __pyx_n_u_FArrayDouble_pow __pyx_string_tab[98]
+#define __pyx_n_u_FArrayDouble_pow_inplace __pyx_string_tab[99]
+#define __pyx_n_u_FArrayDouble_remove_offset __pyx_string_tab[100]
+#define __pyx_n_u_FArrayDouble_reshape __pyx_string_tab[101]
+#define __pyx_n_u_FArrayDouble_shape __pyx_string_tab[102]
+#define __pyx_n_u_FArrayDouble_size __pyx_string_tab[103]
+#define __pyx_n_u_FArrayDouble_sum __pyx_string_tab[104]
+#define __pyx_n_u_FArrayDouble_times_double __pyx_string_tab[105]
+#define __pyx_n_u_FArrayDouble_times_equals_double __pyx_string_tab[106]
+#define __pyx_n_u_FArrayDouble_times_equals_farray __pyx_string_tab[107]
+#define __pyx_n_u_FArrayDouble_times_equals_int __pyx_string_tab[108]
+#define __pyx_n_u_FArrayDouble_times_farray __pyx_string_tab[109]
+#define __pyx_n_u_FArrayDouble_times_int __pyx_string_tab[110]
+#define __pyx_n_u_FArrayDouble_to_json __pyx_string_tab[111]
+#define __pyx_n_u_FArrayDouble_where __pyx_string_tab[112]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[113]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[114]
+#define __pyx_n_u_Sequence __pyx_string_tab[115]
+#define __pyx_n_u_View_MemoryView __pyx_string_tab[116]
+#define __pyx_n_u_abc __pyx_string_tab[117]
+#define __pyx_n_u_abs __pyx_string_tab[118]
+#define __pyx_n_u_allocate_buffer __pyx_string_tab[119]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[120]
+#define __pyx_n_u_axis __pyx_string_tab[121]
+#define __pyx_n_u_b_json __pyx_string_tab[122]
+#define __pyx_n_u_base __pyx_string_tab[123]
+#define __pyx_n_u_buffer_size __pyx_string_tab[124]
+#define __pyx_n_u_c __pyx_string_tab[125]
+#define __pyx_n_u_class __pyx_string_tab[126]
+#define __pyx_n_u_class_getitem __pyx_string_tab[127]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[128]
+#define __pyx_n_u_cls __pyx_string_tab[129]
+#define __pyx_n_u_copy __pyx_string_tab[130]
+#define __pyx_n_u_count __pyx_string_tab[131]
+#define __pyx_n_u_data __pyx_string_tab[132]
+#define __pyx_n_u_dict __pyx_string_tab[133]
+#define __pyx_n_u_dimension __pyx_string_tab[134]
+#define __pyx_n_u_divides_double __pyx_string_tab[135]
+#define __pyx_n_u_divides_equals_double __pyx_string_tab[136]
+#define __pyx_n_u_divides_equals_farray __pyx_string_tab[137]
+#define __pyx_n_u_divides_equals_int __pyx_string_tab[138]
+#define __pyx_n_u_divides_farray __pyx_string_tab[139]
+#define __pyx_n_u_divides_int __pyx_string_tab[140]
+#define __pyx_n_u_double_pow __pyx_string_tab[141]
+#define __pyx_n_u_dtype_is_object __pyx_string_tab[142]
+#define __pyx_n_u_encode __pyx_string_tab[143]
+#define __pyx_n_u_enumerate __pyx_string_tab[144]
+#define __pyx_n_u_equal __pyx_string_tab[145]
+#define __pyx_n_u_error __pyx_string_tab[146]
+#define __pyx_n_u_falcon_core__capi_f_array_double __pyx_string_tab[147]
+#define __pyx_n_u_flags __pyx_string_tab[148]
+#define __pyx_n_u_flip __pyx_string_tab[149]
+#define __pyx_n_u_format __pyx_string_tab[150]
+#define __pyx_n_u_fortran __pyx_string_tab[151]
+#define __pyx_n_u_from_data __pyx_string_tab[152]
+#define __pyx_n_u_from_json __pyx_string_tab[153]
+#define __pyx_n_u_from_shape __pyx_string_tab[154]
+#define __pyx_n_u_full_gradient __pyx_string_tab[155]
+#define __pyx_n_u_func __pyx_string_tab[156]
+#define __pyx_n_u_get_sum_of_squares __pyx_string_tab[157]
+#define __pyx_n_u_get_summed_diff_array_of_squares __pyx_string_tab[158]
+#define __pyx_n_u_get_summed_diff_double_of_square __pyx_string_tab[159]
+#define __pyx_n_u_get_summed_diff_int_of_squares __pyx_string_tab[160]
+#define __pyx_n_u_getstate __pyx_string_tab[161]
+#define __pyx_n_u_gradient __pyx_string_tab[162]
+#define __pyx_n_u_greater_than __pyx_string_tab[163]
+#define __pyx_n_u_h __pyx_string_tab[164]
+#define __pyx_n_u_h_ret __pyx_string_tab[165]
+#define __pyx_n_u_handle __pyx_string_tab[166]
+#define __pyx_n_u_id __pyx_string_tab[167]
+#define __pyx_n_u_import __pyx_string_tab[168]
+#define __pyx_n_u_index __pyx_string_tab[169]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[170]
+#define __pyx_n_u_items __pyx_string_tab[171]
+#define __pyx_n_u_itemsize __pyx_string_tab[172]
+#define __pyx_n_u_json __pyx_string_tab[173]
+#define __pyx_n_u_less_than __pyx_string_tab[174]
+#define __pyx_n_u_main __pyx_string_tab[175]
+#define __pyx_n_u_max __pyx_string_tab[176]
+#define __pyx_n_u_max_arraywise __pyx_string_tab[177]
+#define __pyx_n_u_memview __pyx_string_tab[178]
+#define __pyx_n_u_min __pyx_string_tab[179]
+#define __pyx_n_u_min_arraywise __pyx_string_tab[180]
+#define __pyx_n_u_minus_double __pyx_string_tab[181]
+#define __pyx_n_u_minus_equals_double __pyx_string_tab[182]
+#define __pyx_n_u_minus_equals_farray __pyx_string_tab[183]
+#define __pyx_n_u_minus_equals_int __pyx_string_tab[184]
+#define __pyx_n_u_minus_farray __pyx_string_tab[185]
+#define __pyx_n_u_minus_int __pyx_string_tab[186]
+#define __pyx_n_u_mode __pyx_string_tab[187]
+#define __pyx_n_u_module __pyx_string_tab[188]
+#define __pyx_n_u_name __pyx_string_tab[189]
+#define __pyx_n_u_name_2 __pyx_string_tab[190]
+#define __pyx_n_u_ndim __pyx_string_tab[191]
+#define __pyx_n_u_ndims __pyx_string_tab[192]
+#define __pyx_n_u_negation __pyx_string_tab[193]
+#define __pyx_n_u_new __pyx_string_tab[194]
+#define __pyx_n_u_new_empty __pyx_string_tab[195]
+#define __pyx_n_u_new_zeros __pyx_string_tab[196]
+#define __pyx_n_u_not_equal __pyx_string_tab[197]
+#define __pyx_n_u_numdata __pyx_string_tab[198]
+#define __pyx_n_u_obj __pyx_string_tab[199]
+#define __pyx_n_u_offset __pyx_string_tab[200]
+#define __pyx_n_u_other __pyx_string_tab[201]
+#define __pyx_n_u_out_buffer __pyx_string_tab[202]
+#define __pyx_n_u_pack __pyx_string_tab[203]
+#define __pyx_n_u_plus_double __pyx_string_tab[204]
+#define __pyx_n_u_plus_equals_double __pyx_string_tab[205]
+#define __pyx_n_u_plus_equals_farray __pyx_string_tab[206]
+#define __pyx_n_u_plus_equals_int __pyx_string_tab[207]
+#define __pyx_n_u_plus_farray __pyx_string_tab[208]
+#define __pyx_n_u_plus_int __pyx_string_tab[209]
+#define __pyx_n_u_pop __pyx_string_tab[210]
+#define __pyx_n_u_pow __pyx_string_tab[211]
+#define __pyx_n_u_pow_inplace __pyx_string_tab[212]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[213]
+#define __pyx_n_u_pyx_checksum __pyx_string_tab[214]
+#define __pyx_n_u_pyx_state __pyx_string_tab[215]
+#define __pyx_n_u_pyx_type __pyx_string_tab[216]
+#define __pyx_n_u_pyx_unpickle_Enum __pyx_string_tab[217]
+#define __pyx_n_u_pyx_vtable __pyx_string_tab[218]
+#define __pyx_n_u_qualname __pyx_string_tab[219]
+#define __pyx_n_u_reduce __pyx_string_tab[220]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[221]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[222]
+#define __pyx_n_u_register __pyx_string_tab[223]
+#define __pyx_n_u_remove_offset __pyx_string_tab[224]
+#define __pyx_n_u_reshape __pyx_string_tab[225]
+#define __pyx_n_u_s_json __pyx_string_tab[226]
+#define __pyx_n_u_s_ret __pyx_string_tab[227]
+#define __pyx_n_u_self __pyx_string_tab[228]
+#define __pyx_n_u_set_name __pyx_string_tab[229]
+#define __pyx_n_u_setdefault __pyx_string_tab[230]
+#define __pyx_n_u_setstate __pyx_string_tab[231]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[232]
+#define __pyx_n_u_shape __pyx_string_tab[233]
+#define __pyx_n_u_size __pyx_string_tab[234]
+#define __pyx_n_u_start __pyx_string_tab[235]
+#define __pyx_n_u_staticmethod __pyx_string_tab[236]
+#define __pyx_n_u_step __pyx_string_tab[237]
+#define __pyx_n_u_stop __pyx_string_tab[238]
+#define __pyx_n_u_struct __pyx_string_tab[239]
+#define __pyx_n_u_sum __pyx_string_tab[240]
+#define __pyx_n_u_test __pyx_string_tab[241]
+#define __pyx_n_u_times_double __pyx_string_tab[242]
+#define __pyx_n_u_times_equals_double __pyx_string_tab[243]
+#define __pyx_n_u_times_equals_farray __pyx_string_tab[244]
+#define __pyx_n_u_times_equals_int __pyx_string_tab[245]
+#define __pyx_n_u_times_farray __pyx_string_tab[246]
+#define __pyx_n_u_times_int __pyx_string_tab[247]
+#define __pyx_n_u_to_json __pyx_string_tab[248]
+#define __pyx_n_u_unpack __pyx_string_tab[249]
+#define __pyx_n_u_update __pyx_string_tab[250]
+#define __pyx_n_u_value __pyx_string_tab[251]
+#define __pyx_n_u_values __pyx_string_tab[252]
+#define __pyx_n_u_where __pyx_string_tab[253]
+#define __pyx_n_u_x __pyx_string_tab[254]
+#define __pyx_kp_b_iso88591_A_0_Y_ZZ_eeffjjk __pyx_string_tab[255]
+#define __pyx_kp_b_iso88591_A_1D __pyx_string_tab[256]
+#define __pyx_kp_b_iso88591_A_1_iq __pyx_string_tab[257]
+#define __pyx_kp_b_iso88591_A_1_iuKvU_f_g_B_B_C __pyx_string_tab[258]
+#define __pyx_kp_b_iso88591_A_2_4q_6_G1_W_Qe6_hgQa_aq __pyx_string_tab[259]
+#define __pyx_kp_b_iso88591_A_55Fat1_6_s_vS __pyx_string_tab[260]
+#define __pyx_kp_b_iso88591_A_55Fat9TU_6_s_vS __pyx_string_tab[261]
+#define __pyx_kp_b_iso88591_A_55Gq_A_6_s_vS __pyx_string_tab[262]
+#define __pyx_kp_b_iso88591_A_55Gq_IUV_6_s_vS __pyx_string_tab[263]
+#define __pyx_kp_b_iso88591_A_55J_4yXYY___ccd_6_s_vS __pyx_string_tab[264]
+#define __pyx_kp_b_iso88591_A_55K1DPQ_6_s_vS __pyx_string_tab[265]
+#define __pyx_kp_b_iso88591_A_55K1DPYYZ_6_s_vS __pyx_string_tab[266]
+#define __pyx_kp_b_iso88591_A_55LAQdRSSWWXX_bbc_6_s __pyx_string_tab[267]
+#define __pyx_kp_b_iso88591_A_55LATQZZ_6_s_vS __pyx_string_tab[268]
+#define __pyx_kp_b_iso88591_A_55MQauTUUYYZ_6_s __pyx_string_tab[269]
+#define __pyx_kp_b_iso88591_A_55MQdR_6_s_vS __pyx_string_tab[270]
+#define __pyx_kp_b_iso88591_A_55NatS_6_s_vS __pyx_string_tab[271]
+#define __pyx_kp_b_iso88591_A_55NatS_aallrry_z_D_D_____6_s_v __pyx_string_tab[272]
+#define __pyx_kp_b_iso88591_A_55OqPTT_6_s_vS __pyx_string_tab[273]
+#define __pyx_kp_b_iso88591_A_55OqPTT_bbmmssz_E_E_a_6_s_vS __pyx_string_tab[274]
+#define __pyx_kp_b_iso88591_A_55PPQQUU_ccnntt_F_F_a_a_b_6_s __pyx_string_tab[275]
+#define __pyx_kp_b_iso88591_A_55QQRRVV___6_s_vS __pyx_string_tab[276]
+#define __pyx_kp_b_iso88591_A_55QQRRVV__ddoouu_G_G_b_b_c_6_s __pyx_string_tab[277]
+#define __pyx_kp_b_iso88591_A_5Qd __pyx_string_tab[278]
+#define __pyx_kp_b_iso88591_A_66I_iWX_6_0_7 __pyx_string_tab[279]
+#define __pyx_kp_b_iso88591_A_AQe1D_2S_1_Qa_c_Q_9A_q __pyx_string_tab[280]
+#define __pyx_kp_b_iso88591_A_AT __pyx_string_tab[281]
+#define __pyx_kp_b_iso88591_A_AT_2 __pyx_string_tab[282]
+#define __pyx_kp_b_iso88591_A_AT_3 __pyx_string_tab[283]
+#define __pyx_kp_b_iso88591_A_AT_PWWaa __pyx_string_tab[284]
+#define __pyx_kp_b_iso88591_A_A_iq __pyx_string_tab[285]
+#define __pyx_kp_b_iso88591_A_C1D_QVVaaggnnx_y_T_T_U __pyx_string_tab[286]
+#define __pyx_kp_b_iso88591_A_DAT_RS __pyx_string_tab[287]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_4AQ_2S_1_Qa_c_Q_9A __pyx_string_tab[288]
+#define __pyx_kp_b_iso88591_A_Yaz_a __pyx_string_tab[289]
+#define __pyx_kp_b_iso88591_A_Ye_fGS_xxy __pyx_string_tab[290]
+#define __pyx_kp_b_iso88591_A_at1 __pyx_string_tab[291]
+#define __pyx_kp_b_iso88591_A_at9A __pyx_string_tab[292]
+#define __pyx_kp_b_iso88591_A_at9E_FRYYcc __pyx_string_tab[293]
+#define __pyx_kp_b_iso88591_A_iq __pyx_string_tab[294]
+#define __pyx_kp_b_iso88591_A_q_A __pyx_string_tab[295]
+#define __pyx_kp_b_iso88591_A_q_IQ __pyx_string_tab[296]
+#define __pyx_kp_b_iso88591_A_q_IQ_2 __pyx_string_tab[297]
+#define __pyx_kp_b_iso88591_A_q_IQ_3 __pyx_string_tab[298]
+#define __pyx_kp_b_iso88591_A_q_IQj_Q __pyx_string_tab[299]
+#define __pyx_kp_b_iso88591_A_q_IU_VSZZdd_A __pyx_string_tab[300]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[301]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[302]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[303]
+#define __pyx_n_b_O __pyx_string_tab[304]
 #define __pyx_int_0 __pyx_number_tab[0]
 #define __pyx_int_neg_1 __pyx_number_tab[1]
 #define __pyx_int_1 __pyx_number_tab[2]
@@ -5469,7 +5472,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { Py_CLEAR(clear_module_state->__pyx_tuple[i]); }
   for (int i=0; i<61; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<304; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<305; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { Py_CLEAR(clear_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
@@ -5508,7 +5511,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_slice[i]); }
   for (int i=0; i<1; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_tuple[i]); }
   for (int i=0; i<61; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<304; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<305; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
   for (int i=0; i<4; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_number_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
@@ -19694,7 +19697,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def copy(self, ):
+ *     def copy(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -19726,9 +19729,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
 /* "falcon_core/_capi/f_array_double.pyx":57
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -19787,46 +19790,30 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
 
   /* "falcon_core/_capi/f_array_double.pyx":58
  * 
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/f_array_double.pyx":59
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":60
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":59
- *     def copy(self, ):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":61
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":60
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     @staticmethod
@@ -19834,7 +19821,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -19843,9 +19830,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   /* "falcon_core/_capi/f_array_double.pyx":57
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -19859,7 +19846,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":63
+/* "falcon_core/_capi/f_array_double.pyx":62
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -19907,39 +19894,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_shape,&__pyx_mstate_global->__pyx_n_u_ndim,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 62, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 63, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 62, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 62, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_shape", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_shape", 0) < (0)) __PYX_ERR(0, 62, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_shape", 1, 2, 2, i); __PYX_ERR(0, 63, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_shape", 1, 2, 2, i); __PYX_ERR(0, 62, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 62, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 63, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 62, __pyx_L3_error)
     }
-    __pyx_v_shape = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_shape.memview)) __PYX_ERR(0, 64, __pyx_L3_error)
-    __pyx_v_ndim = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_ndim == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 64, __pyx_L3_error)
+    __pyx_v_shape = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_shape.memview)) __PYX_ERR(0, 63, __pyx_L3_error)
+    __pyx_v_ndim = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_ndim == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 63, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_shape", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("from_shape", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 62, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19975,12 +19962,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_shape", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":65
+  /* "falcon_core/_capi/f_array_double.pyx":64
  *     @staticmethod
  *     def from_shape(size_t[:] shape, size_t ndim):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret)
 */
   __pyx_t_1 = 0;
   __pyx_t_2 = -1;
@@ -19990,55 +19977,39 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   } else if (unlikely(__pyx_t_1 >= __pyx_v_shape.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 65, __pyx_L1_error)
+    __PYX_ERR(0, 64, __pyx_L1_error)
   }
   __pyx_v_h_ret = FArrayDouble_from_shape((&(*((size_t *) ( /* dim=0 */ (__pyx_v_shape.data + __pyx_t_1 * __pyx_v_shape.strides[0]) )))), __pyx_v_ndim);
 
-  /* "falcon_core/_capi/f_array_double.pyx":66
+  /* "falcon_core/_capi/f_array_double.pyx":65
  *     def from_shape(size_t[:] shape, size_t ndim):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret)
-*/
-  __pyx_t_3 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_3) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":67
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret)
  * 
 */
+  __pyx_t_3 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_3) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":66
- *     def from_shape(size_t[:] shape, size_t ndim):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret)
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":68
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":66
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret)             # <<<<<<<<<<<<<<
  * 
  *     @staticmethod
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_4 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 66, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":63
+  /* "falcon_core/_capi/f_array_double.pyx":62
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20057,7 +20028,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":70
+/* "falcon_core/_capi/f_array_double.pyx":68
  *         return _f_array_double_from_capi(h_ret)
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20106,46 +20077,46 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_data,&__pyx_mstate_global->__pyx_n_u_shape,&__pyx_mstate_global->__pyx_n_u_ndim,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 70, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 68, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 70, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 68, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 70, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 68, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 70, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 68, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_data", 0) < (0)) __PYX_ERR(0, 70, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "from_data", 0) < (0)) __PYX_ERR(0, 68, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_data", 1, 3, 3, i); __PYX_ERR(0, 70, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("from_data", 1, 3, 3, i); __PYX_ERR(0, 68, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 70, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 68, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 70, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 68, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 70, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 68, __pyx_L3_error)
     }
-    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_data.memview)) __PYX_ERR(0, 71, __pyx_L3_error)
-    __pyx_v_shape = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_shape.memview)) __PYX_ERR(0, 71, __pyx_L3_error)
-    __pyx_v_ndim = __Pyx_PyLong_As_size_t(values[2]); if (unlikely((__pyx_v_ndim == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 71, __pyx_L3_error)
+    __pyx_v_data = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_data.memview)) __PYX_ERR(0, 69, __pyx_L3_error)
+    __pyx_v_shape = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_shape.memview)) __PYX_ERR(0, 69, __pyx_L3_error)
+    __pyx_v_ndim = __Pyx_PyLong_As_size_t(values[2]); if (unlikely((__pyx_v_ndim == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 69, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("from_data", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 70, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("from_data", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 68, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20184,12 +20155,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_data", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":72
+  /* "falcon_core/_capi/f_array_double.pyx":70
  *     @staticmethod
  *     def from_data(double[:] data, size_t[:] shape, size_t ndim):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_data(&data[0], &shape[0], ndim)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret)
 */
   __pyx_t_1 = 0;
   __pyx_t_2 = -1;
@@ -20199,7 +20170,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   } else if (unlikely(__pyx_t_1 >= __pyx_v_data.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 72, __pyx_L1_error)
+    __PYX_ERR(0, 70, __pyx_L1_error)
   }
   __pyx_t_3 = 0;
   __pyx_t_2 = -1;
@@ -20209,55 +20180,39 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   } else if (unlikely(__pyx_t_3 >= __pyx_v_shape.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 72, __pyx_L1_error)
+    __PYX_ERR(0, 70, __pyx_L1_error)
   }
   __pyx_v_h_ret = FArrayDouble_from_data((&(*((double *) ( /* dim=0 */ (__pyx_v_data.data + __pyx_t_1 * __pyx_v_data.strides[0]) )))), (&(*((size_t *) ( /* dim=0 */ (__pyx_v_shape.data + __pyx_t_3 * __pyx_v_shape.strides[0]) )))), __pyx_v_ndim);
 
-  /* "falcon_core/_capi/f_array_double.pyx":73
+  /* "falcon_core/_capi/f_array_double.pyx":71
  *     def from_data(double[:] data, size_t[:] shape, size_t ndim):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_data(&data[0], &shape[0], ndim)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret)
+ * 
 */
   __pyx_t_4 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
   if (__pyx_t_4) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":74
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_data(&data[0], &shape[0], ndim)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _f_array_double_from_capi(h_ret)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":73
- *     def from_data(double[:] data, size_t[:] shape, size_t ndim):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_data(&data[0], &shape[0], ndim)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret)
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":75
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":72
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_data(&data[0], &shape[0], ndim)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret)             # <<<<<<<<<<<<<<
  * 
- *     def size(self, ):
+ *     def size(self):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_t_5 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, NULL)); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":70
+  /* "falcon_core/_capi/f_array_double.pyx":68
  *         return _f_array_double_from_capi(h_ret)
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
@@ -20276,10 +20231,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":77
+/* "falcon_core/_capi/f_array_double.pyx":74
  *         return _f_array_double_from_capi(h_ret)
  * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
+ *     def size(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_size(self.handle)
  * 
 */
@@ -20335,24 +20290,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("size", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":78
+  /* "falcon_core/_capi/f_array_double.pyx":75
  * 
- *     def size(self, ):
+ *     def size(self):
  *         return _c_api.FArrayDouble_size(self.handle)             # <<<<<<<<<<<<<<
  * 
- *     def dimension(self, ):
+ *     def dimension(self):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_FromSize_t(FArrayDouble_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_FromSize_t(FArrayDouble_size(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":77
+  /* "falcon_core/_capi/f_array_double.pyx":74
  *         return _f_array_double_from_capi(h_ret)
  * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
+ *     def size(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_size(self.handle)
  * 
 */
@@ -20368,10 +20323,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":80
+/* "falcon_core/_capi/f_array_double.pyx":77
  *         return _c_api.FArrayDouble_size(self.handle)
  * 
- *     def dimension(self, ):             # <<<<<<<<<<<<<<
+ *     def dimension(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_dimension(self.handle)
  * 
 */
@@ -20427,24 +20382,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("dimension", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":81
+  /* "falcon_core/_capi/f_array_double.pyx":78
  * 
- *     def dimension(self, ):
+ *     def dimension(self):
  *         return _c_api.FArrayDouble_dimension(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def shape(self, size_t[:] out_buffer, size_t ndim):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyLong_FromSize_t(FArrayDouble_dimension(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyLong_FromSize_t(FArrayDouble_dimension(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":80
+  /* "falcon_core/_capi/f_array_double.pyx":77
  *         return _c_api.FArrayDouble_size(self.handle)
  * 
- *     def dimension(self, ):             # <<<<<<<<<<<<<<
+ *     def dimension(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_dimension(self.handle)
  * 
 */
@@ -20460,7 +20415,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":83
+/* "falcon_core/_capi/f_array_double.pyx":80
  *         return _c_api.FArrayDouble_dimension(self.handle)
  * 
  *     def shape(self, size_t[:] out_buffer, size_t ndim):             # <<<<<<<<<<<<<<
@@ -20508,39 +20463,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_out_buffer,&__pyx_mstate_global->__pyx_n_u_ndim,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 80, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 80, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "shape", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "shape", 0) < (0)) __PYX_ERR(0, 80, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("shape", 1, 2, 2, i); __PYX_ERR(0, 83, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("shape", 1, 2, 2, i); __PYX_ERR(0, 80, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 80, __pyx_L3_error)
     }
-    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
-    __pyx_v_ndim = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_ndim == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 80, __pyx_L3_error)
+    __pyx_v_ndim = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_ndim == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 80, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("shape", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("shape", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 80, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20574,7 +20529,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("shape", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":84
+  /* "falcon_core/_capi/f_array_double.pyx":81
  * 
  *     def shape(self, size_t[:] out_buffer, size_t ndim):
  *         return _c_api.FArrayDouble_shape(self.handle, &out_buffer[0], ndim)             # <<<<<<<<<<<<<<
@@ -20590,15 +20545,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   } else if (unlikely(__pyx_t_1 >= __pyx_v_out_buffer.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 84, __pyx_L1_error)
+    __PYX_ERR(0, 81, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(FArrayDouble_shape(__pyx_v_self->handle, (&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) )))), __pyx_v_ndim)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(FArrayDouble_shape(__pyx_v_self->handle, (&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) )))), __pyx_v_ndim)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":83
+  /* "falcon_core/_capi/f_array_double.pyx":80
  *         return _c_api.FArrayDouble_dimension(self.handle)
  * 
  *     def shape(self, size_t[:] out_buffer, size_t ndim):             # <<<<<<<<<<<<<<
@@ -20617,7 +20572,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":86
+/* "falcon_core/_capi/f_array_double.pyx":83
  *         return _c_api.FArrayDouble_shape(self.handle, &out_buffer[0], ndim)
  * 
  *     def data(self, double[:] out_buffer, size_t numdata):             # <<<<<<<<<<<<<<
@@ -20665,39 +20620,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_out_buffer,&__pyx_mstate_global->__pyx_n_u_numdata,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 86, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 86, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 86, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "data", 0) < (0)) __PYX_ERR(0, 86, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "data", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("data", 1, 2, 2, i); __PYX_ERR(0, 86, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("data", 1, 2, 2, i); __PYX_ERR(0, 83, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 86, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 86, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
     }
-    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 86, __pyx_L3_error)
-    __pyx_v_numdata = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_numdata == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 86, __pyx_L3_error)
+    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 83, __pyx_L3_error)
+    __pyx_v_numdata = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_numdata == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("data", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 86, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("data", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20731,7 +20686,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("data", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":87
+  /* "falcon_core/_capi/f_array_double.pyx":84
  * 
  *     def data(self, double[:] out_buffer, size_t numdata):
  *         return _c_api.FArrayDouble_data(self.handle, &out_buffer[0], numdata)             # <<<<<<<<<<<<<<
@@ -20747,15 +20702,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   } else if (unlikely(__pyx_t_1 >= __pyx_v_out_buffer.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 87, __pyx_L1_error)
+    __PYX_ERR(0, 84, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(FArrayDouble_data(__pyx_v_self->handle, (&(*((double *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) )))), __pyx_v_numdata)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(FArrayDouble_data(__pyx_v_self->handle, (&(*((double *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) )))), __pyx_v_numdata)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":86
+  /* "falcon_core/_capi/f_array_double.pyx":83
  *         return _c_api.FArrayDouble_shape(self.handle, &out_buffer[0], ndim)
  * 
  *     def data(self, double[:] out_buffer, size_t numdata):             # <<<<<<<<<<<<<<
@@ -20774,7 +20729,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":89
+/* "falcon_core/_capi/f_array_double.pyx":86
  *         return _c_api.FArrayDouble_data(self.handle, &out_buffer[0], numdata)
  * 
  *     def plus_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -20821,32 +20776,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 89, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 86, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 89, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 86, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_equals_farray", 0) < (0)) __PYX_ERR(0, 89, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_equals_farray", 0) < (0)) __PYX_ERR(0, 86, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 89, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 86, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 89, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 86, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("plus_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 89, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("plus_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 86, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20857,7 +20812,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_24plus_equals_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -20884,7 +20839,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("plus_equals_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":90
+  /* "falcon_core/_capi/f_array_double.pyx":87
  * 
  *     def plus_equals_farray(self, FArrayDouble other):
  *         _c_api.FArrayDouble_plus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
@@ -20899,7 +20854,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   }
   FArrayDouble_plus_equals_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":89
+  /* "falcon_core/_capi/f_array_double.pyx":86
  *         return _c_api.FArrayDouble_data(self.handle, &out_buffer[0], numdata)
  * 
  *     def plus_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -20914,7 +20869,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":92
+/* "falcon_core/_capi/f_array_double.pyx":89
  *         _c_api.FArrayDouble_plus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def plus_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -20961,32 +20916,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 92, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 89, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 89, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_equals_double", 0) < (0)) __PYX_ERR(0, 92, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_equals_double", 0) < (0)) __PYX_ERR(0, 89, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_equals_double", 1, 1, 1, i); __PYX_ERR(0, 92, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_equals_double", 1, 1, 1, i); __PYX_ERR(0, 89, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 89, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 89, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("plus_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 92, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("plus_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 89, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21012,7 +20967,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("plus_equals_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":93
+  /* "falcon_core/_capi/f_array_double.pyx":90
  * 
  *     def plus_equals_double(self, double other):
  *         _c_api.FArrayDouble_plus_equals_double(self.handle, other)             # <<<<<<<<<<<<<<
@@ -21021,7 +20976,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
 */
   FArrayDouble_plus_equals_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":92
+  /* "falcon_core/_capi/f_array_double.pyx":89
  *         _c_api.FArrayDouble_plus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def plus_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -21036,7 +20991,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":95
+/* "falcon_core/_capi/f_array_double.pyx":92
  *         _c_api.FArrayDouble_plus_equals_double(self.handle, other)
  * 
  *     def plus_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -21083,32 +21038,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 95, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 92, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_equals_int", 0) < (0)) __PYX_ERR(0, 95, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_equals_int", 0) < (0)) __PYX_ERR(0, 92, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_equals_int", 1, 1, 1, i); __PYX_ERR(0, 95, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_equals_int", 1, 1, 1, i); __PYX_ERR(0, 92, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 95, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 92, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("plus_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 95, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("plus_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 92, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21134,7 +21089,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("plus_equals_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":96
+  /* "falcon_core/_capi/f_array_double.pyx":93
  * 
  *     def plus_equals_int(self, int other):
  *         _c_api.FArrayDouble_plus_equals_int(self.handle, other)             # <<<<<<<<<<<<<<
@@ -21143,7 +21098,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
 */
   FArrayDouble_plus_equals_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":95
+  /* "falcon_core/_capi/f_array_double.pyx":92
  *         _c_api.FArrayDouble_plus_equals_double(self.handle, other)
  * 
  *     def plus_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -21158,12 +21113,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_2
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":98
+/* "falcon_core/_capi/f_array_double.pyx":95
  *         _c_api.FArrayDouble_plus_equals_int(self.handle, other)
  * 
  *     def plus_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -21205,32 +21160,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 98, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 95, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 98, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_farray", 0) < (0)) __PYX_ERR(0, 98, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_farray", 0) < (0)) __PYX_ERR(0, 95, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_farray", 1, 1, 1, i); __PYX_ERR(0, 98, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_farray", 1, 1, 1, i); __PYX_ERR(0, 95, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 98, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 95, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("plus_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 98, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("plus_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 95, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21241,7 +21196,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 95, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_30plus_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -21274,12 +21229,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("plus_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":99
+  /* "falcon_core/_capi/f_array_double.pyx":96
  * 
  *     def plus_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -21289,39 +21244,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   }
   __pyx_v_h_ret = FArrayDouble_plus_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":100
+  /* "falcon_core/_capi/f_array_double.pyx":97
  *     def plus_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":101
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":100
- *     def plus_farray(self, FArrayDouble other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":102
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":98
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def plus_double(self, double other):
@@ -21329,18 +21268,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":98
+  /* "falcon_core/_capi/f_array_double.pyx":95
  *         _c_api.FArrayDouble_plus_equals_int(self.handle, other)
  * 
  *     def plus_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -21354,12 +21293,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":104
+/* "falcon_core/_capi/f_array_double.pyx":100
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def plus_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -21401,32 +21340,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 104, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 100, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 104, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_double", 0) < (0)) __PYX_ERR(0, 104, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_double", 0) < (0)) __PYX_ERR(0, 100, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_double", 1, 1, 1, i); __PYX_ERR(0, 104, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_double", 1, 1, 1, i); __PYX_ERR(0, 100, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 104, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 100, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 104, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("plus_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 104, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("plus_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 100, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21459,48 +21398,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("plus_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":105
+  /* "falcon_core/_capi/f_array_double.pyx":101
  * 
  *     def plus_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_plus_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":106
+  /* "falcon_core/_capi/f_array_double.pyx":102
  *     def plus_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":107
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":106
- *     def plus_double(self, double other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":108
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":103
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def plus_int(self, int other):
@@ -21508,18 +21431,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":104
+  /* "falcon_core/_capi/f_array_double.pyx":100
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def plus_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -21533,12 +21456,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":110
+/* "falcon_core/_capi/f_array_double.pyx":105
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def plus_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -21580,32 +21503,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 110, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 105, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 110, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 105, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_int", 0) < (0)) __PYX_ERR(0, 110, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "plus_int", 0) < (0)) __PYX_ERR(0, 105, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_int", 1, 1, 1, i); __PYX_ERR(0, 110, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("plus_int", 1, 1, 1, i); __PYX_ERR(0, 105, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 110, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 105, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 110, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 105, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("plus_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 110, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("plus_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 105, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21638,48 +21561,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("plus_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":111
+  /* "falcon_core/_capi/f_array_double.pyx":106
  * 
  *     def plus_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_plus_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":112
+  /* "falcon_core/_capi/f_array_double.pyx":107
  *     def plus_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":113
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":112
- *     def plus_int(self, int other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":114
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":108
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def minus_equals_farray(self, FArrayDouble other):
@@ -21687,18 +21594,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":110
+  /* "falcon_core/_capi/f_array_double.pyx":105
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def plus_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -21712,7 +21619,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":116
+/* "falcon_core/_capi/f_array_double.pyx":110
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -21759,32 +21666,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 116, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 110, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 116, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 110, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_equals_farray", 0) < (0)) __PYX_ERR(0, 116, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_equals_farray", 0) < (0)) __PYX_ERR(0, 110, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 116, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 110, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 116, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 110, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minus_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 116, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minus_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 110, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21795,7 +21702,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 110, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_36minus_equals_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -21822,7 +21729,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("minus_equals_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":117
+  /* "falcon_core/_capi/f_array_double.pyx":111
  * 
  *     def minus_equals_farray(self, FArrayDouble other):
  *         _c_api.FArrayDouble_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
@@ -21837,7 +21744,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   }
   FArrayDouble_minus_equals_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":116
+  /* "falcon_core/_capi/f_array_double.pyx":110
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -21852,7 +21759,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":119
+/* "falcon_core/_capi/f_array_double.pyx":113
  *         _c_api.FArrayDouble_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def minus_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -21899,32 +21806,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 119, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 113, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 119, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 113, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_equals_double", 0) < (0)) __PYX_ERR(0, 119, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_equals_double", 0) < (0)) __PYX_ERR(0, 113, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_equals_double", 1, 1, 1, i); __PYX_ERR(0, 119, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_equals_double", 1, 1, 1, i); __PYX_ERR(0, 113, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 119, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 113, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 119, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 113, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minus_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 119, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minus_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 113, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21950,7 +21857,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("minus_equals_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":120
+  /* "falcon_core/_capi/f_array_double.pyx":114
  * 
  *     def minus_equals_double(self, double other):
  *         _c_api.FArrayDouble_minus_equals_double(self.handle, other)             # <<<<<<<<<<<<<<
@@ -21959,7 +21866,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
 */
   FArrayDouble_minus_equals_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":119
+  /* "falcon_core/_capi/f_array_double.pyx":113
  *         _c_api.FArrayDouble_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def minus_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -21974,7 +21881,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_3
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":122
+/* "falcon_core/_capi/f_array_double.pyx":116
  *         _c_api.FArrayDouble_minus_equals_double(self.handle, other)
  * 
  *     def minus_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -22021,32 +21928,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 122, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 116, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 122, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 116, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_equals_int", 0) < (0)) __PYX_ERR(0, 122, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_equals_int", 0) < (0)) __PYX_ERR(0, 116, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_equals_int", 1, 1, 1, i); __PYX_ERR(0, 122, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_equals_int", 1, 1, 1, i); __PYX_ERR(0, 116, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 122, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 116, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 122, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 116, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minus_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 122, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minus_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 116, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22072,7 +21979,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("minus_equals_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":123
+  /* "falcon_core/_capi/f_array_double.pyx":117
  * 
  *     def minus_equals_int(self, int other):
  *         _c_api.FArrayDouble_minus_equals_int(self.handle, other)             # <<<<<<<<<<<<<<
@@ -22081,7 +21988,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
 */
   FArrayDouble_minus_equals_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":122
+  /* "falcon_core/_capi/f_array_double.pyx":116
  *         _c_api.FArrayDouble_minus_equals_double(self.handle, other)
  * 
  *     def minus_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -22096,12 +22003,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":125
+/* "falcon_core/_capi/f_array_double.pyx":119
  *         _c_api.FArrayDouble_minus_equals_int(self.handle, other)
  * 
  *     def minus_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -22143,32 +22050,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 125, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 119, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 125, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 119, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_farray", 0) < (0)) __PYX_ERR(0, 125, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_farray", 0) < (0)) __PYX_ERR(0, 119, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_farray", 1, 1, 1, i); __PYX_ERR(0, 125, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_farray", 1, 1, 1, i); __PYX_ERR(0, 119, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 125, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 119, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minus_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 125, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minus_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 119, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22179,7 +22086,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 125, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 119, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_42minus_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -22212,12 +22119,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("minus_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":126
+  /* "falcon_core/_capi/f_array_double.pyx":120
  * 
  *     def minus_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -22227,39 +22134,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   }
   __pyx_v_h_ret = FArrayDouble_minus_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":127
+  /* "falcon_core/_capi/f_array_double.pyx":121
  *     def minus_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":128
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":127
- *     def minus_farray(self, FArrayDouble other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":129
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":122
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def minus_double(self, double other):
@@ -22267,18 +22158,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":125
+  /* "falcon_core/_capi/f_array_double.pyx":119
  *         _c_api.FArrayDouble_minus_equals_int(self.handle, other)
  * 
  *     def minus_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -22292,12 +22183,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":131
+/* "falcon_core/_capi/f_array_double.pyx":124
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -22339,32 +22230,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 131, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 124, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 131, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 124, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_double", 0) < (0)) __PYX_ERR(0, 131, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_double", 0) < (0)) __PYX_ERR(0, 124, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_double", 1, 1, 1, i); __PYX_ERR(0, 131, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_double", 1, 1, 1, i); __PYX_ERR(0, 124, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 131, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 124, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 131, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 124, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minus_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 131, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minus_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 124, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22397,48 +22288,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("minus_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":132
+  /* "falcon_core/_capi/f_array_double.pyx":125
  * 
  *     def minus_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_minus_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":133
+  /* "falcon_core/_capi/f_array_double.pyx":126
  *     def minus_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":134
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":133
- *     def minus_double(self, double other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":135
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":127
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def minus_int(self, int other):
@@ -22446,18 +22321,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":131
+  /* "falcon_core/_capi/f_array_double.pyx":124
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -22471,12 +22346,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":137
+/* "falcon_core/_capi/f_array_double.pyx":129
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -22518,32 +22393,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 137, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 129, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 137, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 129, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_int", 0) < (0)) __PYX_ERR(0, 137, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "minus_int", 0) < (0)) __PYX_ERR(0, 129, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_int", 1, 1, 1, i); __PYX_ERR(0, 137, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("minus_int", 1, 1, 1, i); __PYX_ERR(0, 129, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 137, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 129, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 137, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 129, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("minus_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 137, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("minus_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 129, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22576,67 +22451,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("minus_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":138
+  /* "falcon_core/_capi/f_array_double.pyx":130
  * 
  *     def minus_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_minus_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":139
+  /* "falcon_core/_capi/f_array_double.pyx":131
  *     def minus_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":140
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":139
- *     def minus_int(self, int other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":141
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":132
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- *     def negation(self, ):
+ *     def negation(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":137
+  /* "falcon_core/_capi/f_array_double.pyx":129
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -22650,12 +22509,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":143
+/* "falcon_core/_capi/f_array_double.pyx":134
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def negation(self, ):             # <<<<<<<<<<<<<<
+ *     def negation(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -22712,48 +22571,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("negation", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":144
+  /* "falcon_core/_capi/f_array_double.pyx":135
  * 
- *     def negation(self, ):
+ *     def negation(self):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_negation(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/f_array_double.pyx":145
- *     def negation(self, ):
+  /* "falcon_core/_capi/f_array_double.pyx":136
+ *     def negation(self):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":146
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":145
- *     def negation(self, ):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":147
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":137
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def __neg__(self):
@@ -22761,18 +22604,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 137, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":143
+  /* "falcon_core/_capi/f_array_double.pyx":134
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def negation(self, ):             # <<<<<<<<<<<<<<
+ *     def negation(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -22786,7 +22629,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_4
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":149
+/* "falcon_core/_capi/f_array_double.pyx":139
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def __neg__(self):             # <<<<<<<<<<<<<<
@@ -22820,7 +22663,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__neg__", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":150
+  /* "falcon_core/_capi/f_array_double.pyx":140
  * 
  *     def __neg__(self):
  *         return self.negation()             # <<<<<<<<<<<<<<
@@ -22835,14 +22678,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
     PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_negation, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":149
+  /* "falcon_core/_capi/f_array_double.pyx":139
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def __neg__(self):             # <<<<<<<<<<<<<<
@@ -22862,7 +22705,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":152
+/* "falcon_core/_capi/f_array_double.pyx":142
  *         return self.negation()
  * 
  *     def times_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -22909,32 +22752,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 152, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 142, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 152, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 142, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_equals_farray", 0) < (0)) __PYX_ERR(0, 152, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_equals_farray", 0) < (0)) __PYX_ERR(0, 142, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 152, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 142, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 152, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 142, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("times_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 152, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("times_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 142, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22945,7 +22788,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 142, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_52times_equals_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -22972,7 +22815,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("times_equals_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":153
+  /* "falcon_core/_capi/f_array_double.pyx":143
  * 
  *     def times_equals_farray(self, FArrayDouble other):
  *         _c_api.FArrayDouble_times_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
@@ -22987,7 +22830,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   }
   FArrayDouble_times_equals_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":152
+  /* "falcon_core/_capi/f_array_double.pyx":142
  *         return self.negation()
  * 
  *     def times_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -23002,7 +22845,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":155
+/* "falcon_core/_capi/f_array_double.pyx":145
  *         _c_api.FArrayDouble_times_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def times_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -23049,32 +22892,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 155, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 145, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 155, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 145, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_equals_double", 0) < (0)) __PYX_ERR(0, 155, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_equals_double", 0) < (0)) __PYX_ERR(0, 145, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_equals_double", 1, 1, 1, i); __PYX_ERR(0, 155, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_equals_double", 1, 1, 1, i); __PYX_ERR(0, 145, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 155, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 145, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 155, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 145, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("times_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 155, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("times_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 145, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23100,7 +22943,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("times_equals_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":156
+  /* "falcon_core/_capi/f_array_double.pyx":146
  * 
  *     def times_equals_double(self, double other):
  *         _c_api.FArrayDouble_times_equals_double(self.handle, other)             # <<<<<<<<<<<<<<
@@ -23109,7 +22952,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
 */
   FArrayDouble_times_equals_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":155
+  /* "falcon_core/_capi/f_array_double.pyx":145
  *         _c_api.FArrayDouble_times_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def times_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -23124,7 +22967,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":158
+/* "falcon_core/_capi/f_array_double.pyx":148
  *         _c_api.FArrayDouble_times_equals_double(self.handle, other)
  * 
  *     def times_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -23171,32 +23014,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 158, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 148, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 158, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 148, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_equals_int", 0) < (0)) __PYX_ERR(0, 158, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_equals_int", 0) < (0)) __PYX_ERR(0, 148, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_equals_int", 1, 1, 1, i); __PYX_ERR(0, 158, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_equals_int", 1, 1, 1, i); __PYX_ERR(0, 148, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 158, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 148, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 158, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 148, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("times_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 158, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("times_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 148, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23222,7 +23065,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("times_equals_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":159
+  /* "falcon_core/_capi/f_array_double.pyx":149
  * 
  *     def times_equals_int(self, int other):
  *         _c_api.FArrayDouble_times_equals_int(self.handle, other)             # <<<<<<<<<<<<<<
@@ -23231,7 +23074,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
 */
   FArrayDouble_times_equals_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":158
+  /* "falcon_core/_capi/f_array_double.pyx":148
  *         _c_api.FArrayDouble_times_equals_double(self.handle, other)
  * 
  *     def times_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -23246,12 +23089,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":161
+/* "falcon_core/_capi/f_array_double.pyx":151
  *         _c_api.FArrayDouble_times_equals_int(self.handle, other)
  * 
  *     def times_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -23293,32 +23136,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 161, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 151, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 161, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 151, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_farray", 0) < (0)) __PYX_ERR(0, 161, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_farray", 0) < (0)) __PYX_ERR(0, 151, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_farray", 1, 1, 1, i); __PYX_ERR(0, 161, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_farray", 1, 1, 1, i); __PYX_ERR(0, 151, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 161, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 151, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("times_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 161, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("times_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 151, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23329,7 +23172,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 151, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_58times_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -23362,12 +23205,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("times_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":162
+  /* "falcon_core/_capi/f_array_double.pyx":152
  * 
  *     def times_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -23377,39 +23220,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   }
   __pyx_v_h_ret = FArrayDouble_times_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":163
+  /* "falcon_core/_capi/f_array_double.pyx":153
  *     def times_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":164
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":163
- *     def times_farray(self, FArrayDouble other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":165
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":154
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def times_double(self, double other):
@@ -23417,18 +23244,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 165, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":161
+  /* "falcon_core/_capi/f_array_double.pyx":151
  *         _c_api.FArrayDouble_times_equals_int(self.handle, other)
  * 
  *     def times_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -23442,12 +23269,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_5
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":167
+/* "falcon_core/_capi/f_array_double.pyx":156
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def times_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -23489,32 +23316,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 167, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 156, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 167, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 156, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_double", 0) < (0)) __PYX_ERR(0, 167, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_double", 0) < (0)) __PYX_ERR(0, 156, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_double", 1, 1, 1, i); __PYX_ERR(0, 167, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_double", 1, 1, 1, i); __PYX_ERR(0, 156, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 167, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 156, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 167, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 156, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("times_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 167, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("times_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 156, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23547,48 +23374,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("times_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":168
+  /* "falcon_core/_capi/f_array_double.pyx":157
  * 
  *     def times_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_times_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":169
+  /* "falcon_core/_capi/f_array_double.pyx":158
  *     def times_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":170
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":169
- *     def times_double(self, double other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":171
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":159
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def times_int(self, int other):
@@ -23596,18 +23407,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 159, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":167
+  /* "falcon_core/_capi/f_array_double.pyx":156
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def times_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -23621,12 +23432,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":173
+/* "falcon_core/_capi/f_array_double.pyx":161
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def times_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -23668,32 +23479,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 173, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 161, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 173, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 161, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_int", 0) < (0)) __PYX_ERR(0, 173, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "times_int", 0) < (0)) __PYX_ERR(0, 161, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_int", 1, 1, 1, i); __PYX_ERR(0, 173, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("times_int", 1, 1, 1, i); __PYX_ERR(0, 161, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 173, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 161, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 173, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 161, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("times_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 173, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("times_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 161, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23726,48 +23537,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("times_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":174
+  /* "falcon_core/_capi/f_array_double.pyx":162
  * 
  *     def times_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_times_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":175
+  /* "falcon_core/_capi/f_array_double.pyx":163
  *     def times_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":176
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":175
- *     def times_int(self, int other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":177
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":164
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divides_equals_farray(self, FArrayDouble other):
@@ -23775,18 +23570,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 177, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 164, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":173
+  /* "falcon_core/_capi/f_array_double.pyx":161
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def times_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -23800,7 +23595,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":179
+/* "falcon_core/_capi/f_array_double.pyx":166
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -23847,32 +23642,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 179, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 166, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 179, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 166, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_equals_farray", 0) < (0)) __PYX_ERR(0, 179, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_equals_farray", 0) < (0)) __PYX_ERR(0, 166, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 179, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_equals_farray", 1, 1, 1, i); __PYX_ERR(0, 166, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 179, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 166, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divides_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 179, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divides_equals_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 166, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23883,7 +23678,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 179, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 166, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_64divides_equals_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -23910,7 +23705,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("divides_equals_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":180
+  /* "falcon_core/_capi/f_array_double.pyx":167
  * 
  *     def divides_equals_farray(self, FArrayDouble other):
  *         _c_api.FArrayDouble_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
@@ -23925,7 +23720,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   }
   FArrayDouble_divides_equals_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":179
+  /* "falcon_core/_capi/f_array_double.pyx":166
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -23940,7 +23735,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":182
+/* "falcon_core/_capi/f_array_double.pyx":169
  *         _c_api.FArrayDouble_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def divides_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -23987,32 +23782,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 182, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 169, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 182, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 169, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_equals_double", 0) < (0)) __PYX_ERR(0, 182, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_equals_double", 0) < (0)) __PYX_ERR(0, 169, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_equals_double", 1, 1, 1, i); __PYX_ERR(0, 182, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_equals_double", 1, 1, 1, i); __PYX_ERR(0, 169, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 182, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 169, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 182, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 169, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divides_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 182, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divides_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 169, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24038,7 +23833,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("divides_equals_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":183
+  /* "falcon_core/_capi/f_array_double.pyx":170
  * 
  *     def divides_equals_double(self, double other):
  *         _c_api.FArrayDouble_divides_equals_double(self.handle, other)             # <<<<<<<<<<<<<<
@@ -24047,7 +23842,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
 */
   FArrayDouble_divides_equals_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":182
+  /* "falcon_core/_capi/f_array_double.pyx":169
  *         _c_api.FArrayDouble_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def divides_equals_double(self, double other):             # <<<<<<<<<<<<<<
@@ -24062,7 +23857,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":185
+/* "falcon_core/_capi/f_array_double.pyx":172
  *         _c_api.FArrayDouble_divides_equals_double(self.handle, other)
  * 
  *     def divides_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -24109,32 +23904,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 185, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 172, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 185, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 172, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_equals_int", 0) < (0)) __PYX_ERR(0, 185, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_equals_int", 0) < (0)) __PYX_ERR(0, 172, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_equals_int", 1, 1, 1, i); __PYX_ERR(0, 185, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_equals_int", 1, 1, 1, i); __PYX_ERR(0, 172, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 185, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 172, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 172, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divides_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 185, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divides_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 172, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24160,7 +23955,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("divides_equals_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":186
+  /* "falcon_core/_capi/f_array_double.pyx":173
  * 
  *     def divides_equals_int(self, int other):
  *         _c_api.FArrayDouble_divides_equals_int(self.handle, other)             # <<<<<<<<<<<<<<
@@ -24169,7 +23964,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
 */
   FArrayDouble_divides_equals_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":185
+  /* "falcon_core/_capi/f_array_double.pyx":172
  *         _c_api.FArrayDouble_divides_equals_double(self.handle, other)
  * 
  *     def divides_equals_int(self, int other):             # <<<<<<<<<<<<<<
@@ -24184,12 +23979,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_6
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":188
+/* "falcon_core/_capi/f_array_double.pyx":175
  *         _c_api.FArrayDouble_divides_equals_int(self.handle, other)
  * 
  *     def divides_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -24231,32 +24026,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 188, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 175, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 188, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 175, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_farray", 0) < (0)) __PYX_ERR(0, 188, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_farray", 0) < (0)) __PYX_ERR(0, 175, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_farray", 1, 1, 1, i); __PYX_ERR(0, 188, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_farray", 1, 1, 1, i); __PYX_ERR(0, 175, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 188, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 175, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divides_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 188, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divides_farray", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 175, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24267,7 +24062,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 188, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 175, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_70divides_farray(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -24300,12 +24095,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divides_farray", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":189
+  /* "falcon_core/_capi/f_array_double.pyx":176
  * 
  *     def divides_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -24315,39 +24110,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   }
   __pyx_v_h_ret = FArrayDouble_divides_farray(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":190
+  /* "falcon_core/_capi/f_array_double.pyx":177
  *     def divides_farray(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":191
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":190
- *     def divides_farray(self, FArrayDouble other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":192
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":178
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divides_double(self, double other):
@@ -24355,18 +24134,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":188
+  /* "falcon_core/_capi/f_array_double.pyx":175
  *         _c_api.FArrayDouble_divides_equals_int(self.handle, other)
  * 
  *     def divides_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -24380,12 +24159,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":194
+/* "falcon_core/_capi/f_array_double.pyx":180
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -24427,32 +24206,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 194, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 180, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 194, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_double", 0) < (0)) __PYX_ERR(0, 194, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_double", 0) < (0)) __PYX_ERR(0, 180, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_double", 1, 1, 1, i); __PYX_ERR(0, 194, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_double", 1, 1, 1, i); __PYX_ERR(0, 180, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 194, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 194, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 180, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divides_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 194, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divides_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 180, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24485,48 +24264,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divides_double", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":195
+  /* "falcon_core/_capi/f_array_double.pyx":181
  * 
  *     def divides_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_divides_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":196
+  /* "falcon_core/_capi/f_array_double.pyx":182
  *     def divides_double(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":197
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":196
- *     def divides_double(self, double other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":198
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":183
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divides_int(self, int other):
@@ -24534,18 +24297,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":194
+  /* "falcon_core/_capi/f_array_double.pyx":180
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -24559,12 +24322,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":200
+/* "falcon_core/_capi/f_array_double.pyx":185
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -24606,32 +24369,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 200, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 185, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 200, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 185, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_int", 0) < (0)) __PYX_ERR(0, 200, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divides_int", 0) < (0)) __PYX_ERR(0, 185, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_int", 1, 1, 1, i); __PYX_ERR(0, 200, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divides_int", 1, 1, 1, i); __PYX_ERR(0, 185, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 200, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 185, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divides_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 200, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divides_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 185, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24664,48 +24427,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divides_int", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":201
+  /* "falcon_core/_capi/f_array_double.pyx":186
  * 
  *     def divides_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_divides_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":202
+  /* "falcon_core/_capi/f_array_double.pyx":187
  *     def divides_int(self, int other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":203
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":202
- *     def divides_int(self, int other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":204
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":188
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def pow(self, double other):
@@ -24713,18 +24460,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 188, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":200
+  /* "falcon_core/_capi/f_array_double.pyx":185
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -24738,12 +24485,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":206
+/* "falcon_core/_capi/f_array_double.pyx":190
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def pow(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -24785,32 +24532,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 206, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 190, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 206, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 190, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "pow", 0) < (0)) __PYX_ERR(0, 206, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "pow", 0) < (0)) __PYX_ERR(0, 190, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("pow", 1, 1, 1, i); __PYX_ERR(0, 206, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("pow", 1, 1, 1, i); __PYX_ERR(0, 190, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 206, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 190, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 206, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 190, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pow", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 206, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pow", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 190, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24843,48 +24590,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("pow", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":207
+  /* "falcon_core/_capi/f_array_double.pyx":191
  * 
  *     def pow(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_pow(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":208
+  /* "falcon_core/_capi/f_array_double.pyx":192
  *     def pow(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":209
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":208
- *     def pow(self, double other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":210
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":193
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def double_pow(self, double other):
@@ -24892,18 +24623,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":206
+  /* "falcon_core/_capi/f_array_double.pyx":190
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def pow(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -24917,12 +24648,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":212
+/* "falcon_core/_capi/f_array_double.pyx":195
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def double_pow(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -24964,32 +24695,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 212, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 195, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 212, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 195, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "double_pow", 0) < (0)) __PYX_ERR(0, 212, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "double_pow", 0) < (0)) __PYX_ERR(0, 195, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("double_pow", 1, 1, 1, i); __PYX_ERR(0, 212, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("double_pow", 1, 1, 1, i); __PYX_ERR(0, 195, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 212, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 195, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 212, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 195, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("double_pow", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 212, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("double_pow", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 195, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -25022,48 +24753,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("double_pow", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":213
+  /* "falcon_core/_capi/f_array_double.pyx":196
  * 
  *     def double_pow(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_double_pow(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":214
+  /* "falcon_core/_capi/f_array_double.pyx":197
  *     def double_pow(self, double other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":215
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":214
- *     def double_pow(self, double other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":216
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":198
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def pow_inplace(self, double other):
@@ -25071,18 +24786,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 216, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":212
+  /* "falcon_core/_capi/f_array_double.pyx":195
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def double_pow(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -25096,7 +24811,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_7
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":218
+/* "falcon_core/_capi/f_array_double.pyx":200
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def pow_inplace(self, double other):             # <<<<<<<<<<<<<<
@@ -25143,32 +24858,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 218, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 200, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 218, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 200, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "pow_inplace", 0) < (0)) __PYX_ERR(0, 218, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "pow_inplace", 0) < (0)) __PYX_ERR(0, 200, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("pow_inplace", 1, 1, 1, i); __PYX_ERR(0, 218, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("pow_inplace", 1, 1, 1, i); __PYX_ERR(0, 200, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 218, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 200, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 218, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 200, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("pow_inplace", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 218, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("pow_inplace", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 200, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -25194,16 +24909,16 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("pow_inplace", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":219
+  /* "falcon_core/_capi/f_array_double.pyx":201
  * 
  *     def pow_inplace(self, double other):
  *         _c_api.FArrayDouble_pow_inplace(self.handle, other)             # <<<<<<<<<<<<<<
  * 
- *     def abs(self, ):
+ *     def abs(self):
 */
   FArrayDouble_pow_inplace(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/f_array_double.pyx":218
+  /* "falcon_core/_capi/f_array_double.pyx":200
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def pow_inplace(self, double other):             # <<<<<<<<<<<<<<
@@ -25218,12 +24933,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":221
+/* "falcon_core/_capi/f_array_double.pyx":203
  *         _c_api.FArrayDouble_pow_inplace(self.handle, other)
  * 
- *     def abs(self, ):             # <<<<<<<<<<<<<<
+ *     def abs(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -25280,67 +24995,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("abs", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":222
+  /* "falcon_core/_capi/f_array_double.pyx":204
  * 
- *     def abs(self, ):
+ *     def abs(self):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_abs(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/f_array_double.pyx":223
- *     def abs(self, ):
+  /* "falcon_core/_capi/f_array_double.pyx":205
+ *     def abs(self):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":224
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":223
- *     def abs(self, ):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":225
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":206
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- *     def min(self, ):
+ *     def min(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 225, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":221
+  /* "falcon_core/_capi/f_array_double.pyx":203
  *         _c_api.FArrayDouble_pow_inplace(self.handle, other)
  * 
- *     def abs(self, ):             # <<<<<<<<<<<<<<
+ *     def abs(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -25354,10 +25053,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":227
+/* "falcon_core/_capi/f_array_double.pyx":208
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def min(self, ):             # <<<<<<<<<<<<<<
+ *     def min(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_min(self.handle)
  * 
 */
@@ -25413,24 +25112,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("min", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":228
+  /* "falcon_core/_capi/f_array_double.pyx":209
  * 
- *     def min(self, ):
+ *     def min(self):
  *         return _c_api.FArrayDouble_min(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def min_arraywise(self, FArrayDouble other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_min(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_min(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":227
+  /* "falcon_core/_capi/f_array_double.pyx":208
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def min(self, ):             # <<<<<<<<<<<<<<
+ *     def min(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_min(self.handle)
  * 
 */
@@ -25446,12 +25145,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":230
+/* "falcon_core/_capi/f_array_double.pyx":211
  *         return _c_api.FArrayDouble_min(self.handle)
  * 
  *     def min_arraywise(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -25493,32 +25192,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 230, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 211, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 230, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 211, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "min_arraywise", 0) < (0)) __PYX_ERR(0, 230, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "min_arraywise", 0) < (0)) __PYX_ERR(0, 211, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("min_arraywise", 1, 1, 1, i); __PYX_ERR(0, 230, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("min_arraywise", 1, 1, 1, i); __PYX_ERR(0, 211, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 230, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 211, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("min_arraywise", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 230, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("min_arraywise", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 211, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -25529,7 +25228,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 211, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_86min_arraywise(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -25562,12 +25261,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("min_arraywise", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":231
+  /* "falcon_core/_capi/f_array_double.pyx":212
  * 
  *     def min_arraywise(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -25577,58 +25276,42 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   }
   __pyx_v_h_ret = FArrayDouble_min_arraywise(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":232
+  /* "falcon_core/_capi/f_array_double.pyx":213
  *     def min_arraywise(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
+ * 
 */
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":233
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":232
- *     def min_arraywise(self, FArrayDouble other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":234
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":214
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- *     def max(self, ):
+ *     def max(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":230
+  /* "falcon_core/_capi/f_array_double.pyx":211
  *         return _c_api.FArrayDouble_min(self.handle)
  * 
  *     def min_arraywise(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -25642,10 +25325,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":236
+/* "falcon_core/_capi/f_array_double.pyx":216
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def max(self, ):             # <<<<<<<<<<<<<<
+ *     def max(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_max(self.handle)
  * 
 */
@@ -25701,24 +25384,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("max", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":237
+  /* "falcon_core/_capi/f_array_double.pyx":217
  * 
- *     def max(self, ):
+ *     def max(self):
  *         return _c_api.FArrayDouble_max(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def max_arraywise(self, FArrayDouble other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_max(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_max(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 217, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":236
+  /* "falcon_core/_capi/f_array_double.pyx":216
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def max(self, ):             # <<<<<<<<<<<<<<
+ *     def max(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_max(self.handle)
  * 
 */
@@ -25734,12 +25417,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_8
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":239
+/* "falcon_core/_capi/f_array_double.pyx":219
  *         return _c_api.FArrayDouble_max(self.handle)
  * 
  *     def max_arraywise(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -25781,32 +25464,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 239, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 219, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 239, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 219, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "max_arraywise", 0) < (0)) __PYX_ERR(0, 239, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "max_arraywise", 0) < (0)) __PYX_ERR(0, 219, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("max_arraywise", 1, 1, 1, i); __PYX_ERR(0, 239, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("max_arraywise", 1, 1, 1, i); __PYX_ERR(0, 219, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 239, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 219, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("max_arraywise", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 239, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("max_arraywise", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 219, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -25817,7 +25500,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 239, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 219, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_90max_arraywise(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -25850,12 +25533,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("max_arraywise", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":240
+  /* "falcon_core/_capi/f_array_double.pyx":220
  * 
  *     def max_arraywise(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -25865,39 +25548,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   }
   __pyx_v_h_ret = FArrayDouble_max_arraywise(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/f_array_double.pyx":241
+  /* "falcon_core/_capi/f_array_double.pyx":221
  *     def max_arraywise(self, FArrayDouble other):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":242
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":241
- *     def max_arraywise(self, FArrayDouble other):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":243
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":222
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def equal(self, FArrayDouble other):
@@ -25905,18 +25572,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 222, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":239
+  /* "falcon_core/_capi/f_array_double.pyx":219
  *         return _c_api.FArrayDouble_max(self.handle)
  * 
  *     def max_arraywise(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -25930,7 +25597,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":245
+/* "falcon_core/_capi/f_array_double.pyx":224
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def equal(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -25977,32 +25644,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 245, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 224, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 245, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 224, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 245, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 224, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 245, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 224, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 245, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 224, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 245, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 224, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26013,7 +25680,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 245, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 224, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_92equal(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -26044,7 +25711,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":246
+  /* "falcon_core/_capi/f_array_double.pyx":225
  * 
  *     def equal(self, FArrayDouble other):
  *         return _c_api.FArrayDouble_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
@@ -26058,13 +25725,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_FArrayDoubleHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(FArrayDouble_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 246, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(FArrayDouble_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":245
+  /* "falcon_core/_capi/f_array_double.pyx":224
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def equal(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -26083,12 +25750,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":248
+/* "falcon_core/_capi/f_array_double.pyx":227
  *         return _c_api.FArrayDouble_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def __eq__(self, FArrayDouble other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
 /* Python wrapper */
@@ -26102,7 +25769,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 248, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 227, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_94__eq__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_other));
 
   /* function exit code */
@@ -26129,41 +25796,25 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":249
+  /* "falcon_core/_capi/f_array_double.pyx":228
  * 
  *     def __eq__(self, FArrayDouble other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 228, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":250
- *     def __eq__(self, FArrayDouble other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":249
- * 
- *     def __eq__(self, FArrayDouble other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":251
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/f_array_double.pyx":229
+ *     def __eq__(self, FArrayDouble other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def not_equal(self, FArrayDouble other):
@@ -26176,19 +25827,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 251, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 229, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":248
+  /* "falcon_core/_capi/f_array_double.pyx":227
  *         return _c_api.FArrayDouble_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def __eq__(self, FArrayDouble other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
   /* function exit code */
@@ -26203,7 +25854,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":253
+/* "falcon_core/_capi/f_array_double.pyx":231
  *         return self.equal(other)
  * 
  *     def not_equal(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -26250,32 +25901,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 253, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 231, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 253, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 231, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 253, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 231, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 253, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 231, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 253, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 231, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 253, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 231, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26286,7 +25937,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 253, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 231, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_96not_equal(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -26317,7 +25968,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":254
+  /* "falcon_core/_capi/f_array_double.pyx":232
  * 
  *     def not_equal(self, FArrayDouble other):
  *         return _c_api.FArrayDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
@@ -26331,13 +25982,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_FArrayDoubleHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(FArrayDouble_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(FArrayDouble_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 232, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":253
+  /* "falcon_core/_capi/f_array_double.pyx":231
  *         return self.equal(other)
  * 
  *     def not_equal(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -26356,12 +26007,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":256
+/* "falcon_core/_capi/f_array_double.pyx":234
  *         return _c_api.FArrayDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def __ne__(self, FArrayDouble other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
 /* Python wrapper */
@@ -26375,7 +26026,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 256, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 234, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_98__ne__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_other));
 
   /* function exit code */
@@ -26402,41 +26053,25 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":257
+  /* "falcon_core/_capi/f_array_double.pyx":235
  * 
  *     def __ne__(self, FArrayDouble other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.not_equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 257, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 235, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":258
- *     def __ne__(self, FArrayDouble other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":257
- * 
- *     def __ne__(self, FArrayDouble other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.not_equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":259
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/f_array_double.pyx":236
+ *     def __ne__(self, FArrayDouble other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def greater_than(self, double value):
@@ -26449,19 +26084,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":256
+  /* "falcon_core/_capi/f_array_double.pyx":234
  *         return _c_api.FArrayDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def __ne__(self, FArrayDouble other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
   /* function exit code */
@@ -26476,7 +26111,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_9
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":261
+/* "falcon_core/_capi/f_array_double.pyx":238
  *         return self.not_equal(other)
  * 
  *     def greater_than(self, double value):             # <<<<<<<<<<<<<<
@@ -26523,32 +26158,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 261, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 238, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 261, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 238, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "greater_than", 0) < (0)) __PYX_ERR(0, 261, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "greater_than", 0) < (0)) __PYX_ERR(0, 238, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("greater_than", 1, 1, 1, i); __PYX_ERR(0, 261, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("greater_than", 1, 1, 1, i); __PYX_ERR(0, 238, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 261, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 238, __pyx_L3_error)
     }
-    __pyx_v_value = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 261, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("greater_than", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 261, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("greater_than", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 238, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26578,7 +26213,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("greater_than", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":262
+  /* "falcon_core/_capi/f_array_double.pyx":239
  * 
  *     def greater_than(self, double value):
  *         return _c_api.FArrayDouble_greater_than(self.handle, value)             # <<<<<<<<<<<<<<
@@ -26586,13 +26221,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
  *     def __gt__(self, double value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(FArrayDouble_greater_than(__pyx_v_self->handle, __pyx_v_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(FArrayDouble_greater_than(__pyx_v_self->handle, __pyx_v_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":261
+  /* "falcon_core/_capi/f_array_double.pyx":238
  *         return self.not_equal(other)
  * 
  *     def greater_than(self, double value):             # <<<<<<<<<<<<<<
@@ -26611,7 +26246,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":264
+/* "falcon_core/_capi/f_array_double.pyx":241
  *         return _c_api.FArrayDouble_greater_than(self.handle, value)
  * 
  *     def __gt__(self, double value):             # <<<<<<<<<<<<<<
@@ -26632,7 +26267,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_RefNannySetupContext("__gt__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   assert(__pyx_arg_value); {
-    __pyx_v_value = __Pyx_PyFloat_AsDouble(__pyx_arg_value); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 264, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyFloat_AsDouble(__pyx_arg_value); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 241, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26659,7 +26294,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__gt__", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":265
+  /* "falcon_core/_capi/f_array_double.pyx":242
  * 
  *     def __gt__(self, double value):
  *         return self.greater_than(value)             # <<<<<<<<<<<<<<
@@ -26669,7 +26304,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = ((PyObject *)__pyx_v_self);
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 265, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 242, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = 0;
   {
@@ -26677,14 +26312,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_greater_than, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 265, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":264
+  /* "falcon_core/_capi/f_array_double.pyx":241
  *         return _c_api.FArrayDouble_greater_than(self.handle, value)
  * 
  *     def __gt__(self, double value):             # <<<<<<<<<<<<<<
@@ -26705,7 +26340,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":267
+/* "falcon_core/_capi/f_array_double.pyx":244
  *         return self.greater_than(value)
  * 
  *     def less_than(self, double value):             # <<<<<<<<<<<<<<
@@ -26752,32 +26387,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 267, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 244, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 267, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 244, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "less_than", 0) < (0)) __PYX_ERR(0, 267, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "less_than", 0) < (0)) __PYX_ERR(0, 244, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("less_than", 1, 1, 1, i); __PYX_ERR(0, 267, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("less_than", 1, 1, 1, i); __PYX_ERR(0, 244, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 267, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 244, __pyx_L3_error)
     }
-    __pyx_v_value = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 267, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 244, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("less_than", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 267, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("less_than", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 244, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26807,7 +26442,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("less_than", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":268
+  /* "falcon_core/_capi/f_array_double.pyx":245
  * 
  *     def less_than(self, double value):
  *         return _c_api.FArrayDouble_less_than(self.handle, value)             # <<<<<<<<<<<<<<
@@ -26815,13 +26450,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
  *     def __lt__(self, double value):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyBool_FromLong(FArrayDouble_less_than(__pyx_v_self->handle, __pyx_v_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong(FArrayDouble_less_than(__pyx_v_self->handle, __pyx_v_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":267
+  /* "falcon_core/_capi/f_array_double.pyx":244
  *         return self.greater_than(value)
  * 
  *     def less_than(self, double value):             # <<<<<<<<<<<<<<
@@ -26840,7 +26475,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":270
+/* "falcon_core/_capi/f_array_double.pyx":247
  *         return _c_api.FArrayDouble_less_than(self.handle, value)
  * 
  *     def __lt__(self, double value):             # <<<<<<<<<<<<<<
@@ -26861,7 +26496,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_RefNannySetupContext("__lt__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
   assert(__pyx_arg_value); {
-    __pyx_v_value = __Pyx_PyFloat_AsDouble(__pyx_arg_value); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 270, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyFloat_AsDouble(__pyx_arg_value); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 247, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -26888,7 +26523,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__lt__", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":271
+  /* "falcon_core/_capi/f_array_double.pyx":248
  * 
  *     def __lt__(self, double value):
  *         return self.less_than(value)             # <<<<<<<<<<<<<<
@@ -26898,7 +26533,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = ((PyObject *)__pyx_v_self);
   __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_value); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 248, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_4 = 0;
   {
@@ -26906,14 +26541,14 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
     __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_less_than, __pyx_callargs+__pyx_t_4, (2-__pyx_t_4) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 248, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":270
+  /* "falcon_core/_capi/f_array_double.pyx":247
  *         return _c_api.FArrayDouble_less_than(self.handle, value)
  * 
  *     def __lt__(self, double value):             # <<<<<<<<<<<<<<
@@ -26934,7 +26569,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":273
+/* "falcon_core/_capi/f_array_double.pyx":250
  *         return self.less_than(value)
  * 
  *     def remove_offset(self, double offset):             # <<<<<<<<<<<<<<
@@ -26981,32 +26616,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_offset,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 273, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 250, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 273, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 250, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "remove_offset", 0) < (0)) __PYX_ERR(0, 273, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "remove_offset", 0) < (0)) __PYX_ERR(0, 250, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("remove_offset", 1, 1, 1, i); __PYX_ERR(0, 273, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("remove_offset", 1, 1, 1, i); __PYX_ERR(0, 250, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 273, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 250, __pyx_L3_error)
     }
-    __pyx_v_offset = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_offset == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 273, __pyx_L3_error)
+    __pyx_v_offset = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_offset == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 250, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("remove_offset", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 273, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("remove_offset", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 250, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27032,16 +26667,16 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("remove_offset", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":274
+  /* "falcon_core/_capi/f_array_double.pyx":251
  * 
  *     def remove_offset(self, double offset):
  *         _c_api.FArrayDouble_remove_offset(self.handle, offset)             # <<<<<<<<<<<<<<
  * 
- *     def sum(self, ):
+ *     def sum(self):
 */
   FArrayDouble_remove_offset(__pyx_v_self->handle, __pyx_v_offset);
 
-  /* "falcon_core/_capi/f_array_double.pyx":273
+  /* "falcon_core/_capi/f_array_double.pyx":250
  *         return self.less_than(value)
  * 
  *     def remove_offset(self, double offset):             # <<<<<<<<<<<<<<
@@ -27056,10 +26691,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":276
+/* "falcon_core/_capi/f_array_double.pyx":253
  *         _c_api.FArrayDouble_remove_offset(self.handle, offset)
  * 
- *     def sum(self, ):             # <<<<<<<<<<<<<<
+ *     def sum(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_sum(self.handle)
  * 
 */
@@ -27115,24 +26750,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sum", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":277
+  /* "falcon_core/_capi/f_array_double.pyx":254
  * 
- *     def sum(self, ):
+ *     def sum(self):
  *         return _c_api.FArrayDouble_sum(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def reshape(self, size_t[:] shape, size_t ndims):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_sum(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_sum(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":276
+  /* "falcon_core/_capi/f_array_double.pyx":253
  *         _c_api.FArrayDouble_remove_offset(self.handle, offset)
  * 
- *     def sum(self, ):             # <<<<<<<<<<<<<<
+ *     def sum(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_sum(self.handle)
  * 
 */
@@ -27148,12 +26783,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":279
+/* "falcon_core/_capi/f_array_double.pyx":256
  *         return _c_api.FArrayDouble_sum(self.handle)
  * 
  *     def reshape(self, size_t[:] shape, size_t ndims):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -27196,39 +26831,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_shape,&__pyx_mstate_global->__pyx_n_u_ndims,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 279, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 256, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 279, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 256, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 279, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 256, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "reshape", 0) < (0)) __PYX_ERR(0, 279, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "reshape", 0) < (0)) __PYX_ERR(0, 256, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("reshape", 1, 2, 2, i); __PYX_ERR(0, 279, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("reshape", 1, 2, 2, i); __PYX_ERR(0, 256, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 279, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 256, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 279, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 256, __pyx_L3_error)
     }
-    __pyx_v_shape = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_shape.memview)) __PYX_ERR(0, 279, __pyx_L3_error)
-    __pyx_v_ndims = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_ndims == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 279, __pyx_L3_error)
+    __pyx_v_shape = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_shape.memview)) __PYX_ERR(0, 256, __pyx_L3_error)
+    __pyx_v_ndims = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_ndims == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 256, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("reshape", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 279, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("reshape", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 256, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27265,12 +26900,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("reshape", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":280
+  /* "falcon_core/_capi/f_array_double.pyx":257
  * 
  *     def reshape(self, size_t[:] shape, size_t ndims):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_t_1 = 0;
   __pyx_t_2 = -1;
@@ -27280,43 +26915,27 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   } else if (unlikely(__pyx_t_1 >= __pyx_v_shape.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 280, __pyx_L1_error)
+    __PYX_ERR(0, 257, __pyx_L1_error)
   }
   __pyx_v_h_ret = FArrayDouble_reshape(__pyx_v_self->handle, (&(*((size_t *) ( /* dim=0 */ (__pyx_v_shape.data + __pyx_t_1 * __pyx_v_shape.strides[0]) )))), __pyx_v_ndims);
 
-  /* "falcon_core/_capi/f_array_double.pyx":281
+  /* "falcon_core/_capi/f_array_double.pyx":258
  *     def reshape(self, size_t[:] shape, size_t ndims):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_3 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_3) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":282
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_3 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_3) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":281
- *     def reshape(self, size_t[:] shape, size_t ndims):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":283
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":259
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def where(self, double value):
@@ -27324,18 +26943,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_5.__pyx_n = 1;
   __pyx_t_5.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_4 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_5)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_4 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_5)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":279
+  /* "falcon_core/_capi/f_array_double.pyx":256
  *         return _c_api.FArrayDouble_sum(self.handle)
  * 
  *     def reshape(self, size_t[:] shape, size_t ndims):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -27349,12 +26968,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":285
+/* "falcon_core/_capi/f_array_double.pyx":261
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def where(self, double value):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
- *         if h_ret == <_c_api.ListListSizeTHandle>0:
+ *         if h_ret == <_c_api.ListListSizeTHandle>0: return None
 */
 
 /* Python wrapper */
@@ -27396,32 +27015,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_value,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 285, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 261, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 285, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 261, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "where", 0) < (0)) __PYX_ERR(0, 285, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "where", 0) < (0)) __PYX_ERR(0, 261, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("where", 1, 1, 1, i); __PYX_ERR(0, 285, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("where", 1, 1, 1, i); __PYX_ERR(0, 261, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 285, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 261, __pyx_L3_error)
     }
-    __pyx_v_value = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 285, __pyx_L3_error)
+    __pyx_v_value = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_value == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 261, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("where", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 285, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("where", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 261, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27454,48 +27073,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("where", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":286
+  /* "falcon_core/_capi/f_array_double.pyx":262
  * 
  *     def where(self, double value):
  *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ListListSizeTHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ListListSizeTHandle>0: return None
+ *         return _list_list_size_t_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = FArrayDouble_where(__pyx_v_self->handle, __pyx_v_value);
 
-  /* "falcon_core/_capi/f_array_double.pyx":287
+  /* "falcon_core/_capi/f_array_double.pyx":263
  *     def where(self, double value):
  *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
- *         if h_ret == <_c_api.ListListSizeTHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _list_list_size_t_from_capi(h_ret, owned=True)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListListSizeTHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":288
- *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
- *         if h_ret == <_c_api.ListListSizeTHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ListListSizeTHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _list_list_size_t_from_capi(h_ret, owned=True)
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ListListSizeTHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":287
- *     def where(self, double value):
- *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
- *         if h_ret == <_c_api.ListListSizeTHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _list_list_size_t_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":289
- *         if h_ret == <_c_api.ListListSizeTHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":264
+ *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
+ *         if h_ret == <_c_api.ListListSizeTHandle>0: return None
  *         return _list_list_size_t_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
  *     def flip(self, size_t axis):
@@ -27503,18 +27106,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_list_size_t__list_list_size_t_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 289, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_16list_list_size_t__list_list_size_t_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 264, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":285
+  /* "falcon_core/_capi/f_array_double.pyx":261
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def where(self, double value):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
- *         if h_ret == <_c_api.ListListSizeTHandle>0:
+ *         if h_ret == <_c_api.ListListSizeTHandle>0: return None
 */
 
   /* function exit code */
@@ -27528,12 +27131,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":291
+/* "falcon_core/_capi/f_array_double.pyx":266
  *         return _list_list_size_t_from_capi(h_ret, owned=True)
  * 
  *     def flip(self, size_t axis):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -27575,32 +27178,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_axis,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 291, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 266, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 291, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 266, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "flip", 0) < (0)) __PYX_ERR(0, 291, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "flip", 0) < (0)) __PYX_ERR(0, 266, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("flip", 1, 1, 1, i); __PYX_ERR(0, 291, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("flip", 1, 1, 1, i); __PYX_ERR(0, 266, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 291, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 266, __pyx_L3_error)
     }
-    __pyx_v_axis = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_axis == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 291, __pyx_L3_error)
+    __pyx_v_axis = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_axis == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 266, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("flip", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 291, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("flip", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 266, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27633,48 +27236,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("flip", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":292
+  /* "falcon_core/_capi/f_array_double.pyx":267
  * 
  *     def flip(self, size_t axis):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_flip(__pyx_v_self->handle, __pyx_v_axis);
 
-  /* "falcon_core/_capi/f_array_double.pyx":293
+  /* "falcon_core/_capi/f_array_double.pyx":268
  *     def flip(self, size_t axis):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":294
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":293
- *     def flip(self, size_t axis):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":295
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":269
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
@@ -27682,18 +27269,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":291
+  /* "falcon_core/_capi/f_array_double.pyx":266
  *         return _list_list_size_t_from_capi(h_ret, owned=True)
  * 
  *     def flip(self, size_t axis):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -27707,7 +27294,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":297
+/* "falcon_core/_capi/f_array_double.pyx":271
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -27755,39 +27342,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_out_buffer,&__pyx_mstate_global->__pyx_n_u_buffer_size,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 297, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 271, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 297, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 271, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 297, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 271, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "full_gradient", 0) < (0)) __PYX_ERR(0, 297, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "full_gradient", 0) < (0)) __PYX_ERR(0, 271, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("full_gradient", 1, 2, 2, i); __PYX_ERR(0, 297, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("full_gradient", 1, 2, 2, i); __PYX_ERR(0, 271, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 297, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 271, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 297, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 271, __pyx_L3_error)
     }
-    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 297, __pyx_L3_error)
-    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 297, __pyx_L3_error)
+    __pyx_v_out_buffer = __Pyx_PyObject_to_MemoryviewSlice_ds_size_t(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_out_buffer.memview)) __PYX_ERR(0, 271, __pyx_L3_error)
+    __pyx_v_buffer_size = __Pyx_PyLong_As_size_t(values[1]); if (unlikely((__pyx_v_buffer_size == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 271, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("full_gradient", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 297, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("full_gradient", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 271, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27821,7 +27408,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("full_gradient", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":298
+  /* "falcon_core/_capi/f_array_double.pyx":272
  * 
  *     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):
  *         return _c_api.FArrayDouble_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)             # <<<<<<<<<<<<<<
@@ -27837,15 +27424,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   } else if (unlikely(__pyx_t_1 >= __pyx_v_out_buffer.shape[0])) __pyx_t_2 = 0;
   if (unlikely(__pyx_t_2 != -1)) {
     __Pyx_RaiseBufferIndexError(__pyx_t_2);
-    __PYX_ERR(0, 298, __pyx_L1_error)
+    __PYX_ERR(0, 272, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyLong_FromSize_t(FArrayDouble_full_gradient(__pyx_v_self->handle, ((__pyx_t_6_c_api_FArrayDoubleHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 298, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyLong_FromSize_t(FArrayDouble_full_gradient(__pyx_v_self->handle, ((__pyx_t_6_c_api_FArrayDoubleHandle *)(&(*((size_t *) ( /* dim=0 */ (__pyx_v_out_buffer.data + __pyx_t_1 * __pyx_v_out_buffer.strides[0]) ))))), __pyx_v_buffer_size)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":297
+  /* "falcon_core/_capi/f_array_double.pyx":271
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
@@ -27864,12 +27451,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":300
+/* "falcon_core/_capi/f_array_double.pyx":274
  *         return _c_api.FArrayDouble_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)
  * 
  *     def gradient(self, size_t axis):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
 /* Python wrapper */
@@ -27911,32 +27498,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_axis,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 300, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 274, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 300, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 274, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "gradient", 0) < (0)) __PYX_ERR(0, 300, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "gradient", 0) < (0)) __PYX_ERR(0, 274, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("gradient", 1, 1, 1, i); __PYX_ERR(0, 300, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("gradient", 1, 1, 1, i); __PYX_ERR(0, 274, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 300, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 274, __pyx_L3_error)
     }
-    __pyx_v_axis = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_axis == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 300, __pyx_L3_error)
+    __pyx_v_axis = __Pyx_PyLong_As_size_t(values[0]); if (unlikely((__pyx_v_axis == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 274, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("gradient", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 300, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("gradient", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 274, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -27969,67 +27556,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("gradient", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":301
+  /* "falcon_core/_capi/f_array_double.pyx":275
  * 
  *     def gradient(self, size_t axis):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
+ *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
 */
   __pyx_v_h_ret = FArrayDouble_gradient(__pyx_v_self->handle, __pyx_v_axis);
 
-  /* "falcon_core/_capi/f_array_double.pyx":302
+  /* "falcon_core/_capi/f_array_double.pyx":276
  *     def gradient(self, size_t axis):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":303
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":302
- *     def gradient(self, size_t axis):
- *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":304
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
- *             return None
+  /* "falcon_core/_capi/f_array_double.pyx":277
+ *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- *     def get_sum_of_squares(self, ):
+ *     def get_sum_of_squares(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_FArrayDoubleHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":300
+  /* "falcon_core/_capi/f_array_double.pyx":274
  *         return _c_api.FArrayDouble_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)
  * 
  *     def gradient(self, size_t axis):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
 
   /* function exit code */
@@ -28043,10 +27614,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":306
+/* "falcon_core/_capi/f_array_double.pyx":279
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def get_sum_of_squares(self, ):             # <<<<<<<<<<<<<<
+ *     def get_sum_of_squares(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)
  * 
 */
@@ -28102,24 +27673,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_sum_of_squares", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":307
+  /* "falcon_core/_capi/f_array_double.pyx":280
  * 
- *     def get_sum_of_squares(self, ):
+ *     def get_sum_of_squares(self):
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)             # <<<<<<<<<<<<<<
  * 
  *     def get_summed_diff_int_of_squares(self, int other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_get_sum_of_squares(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 307, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_get_sum_of_squares(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 280, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":306
+  /* "falcon_core/_capi/f_array_double.pyx":279
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def get_sum_of_squares(self, ):             # <<<<<<<<<<<<<<
+ *     def get_sum_of_squares(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)
  * 
 */
@@ -28135,7 +27706,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":309
+/* "falcon_core/_capi/f_array_double.pyx":282
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)
  * 
  *     def get_summed_diff_int_of_squares(self, int other):             # <<<<<<<<<<<<<<
@@ -28182,32 +27753,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 309, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 282, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 309, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 282, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_summed_diff_int_of_squares", 0) < (0)) __PYX_ERR(0, 309, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_summed_diff_int_of_squares", 0) < (0)) __PYX_ERR(0, 282, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_summed_diff_int_of_squares", 1, 1, 1, i); __PYX_ERR(0, 309, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_summed_diff_int_of_squares", 1, 1, 1, i); __PYX_ERR(0, 282, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 309, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 282, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 309, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 282, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_summed_diff_int_of_squares", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 309, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_summed_diff_int_of_squares", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 282, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -28237,7 +27808,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_summed_diff_int_of_squares", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":310
+  /* "falcon_core/_capi/f_array_double.pyx":283
  * 
  *     def get_summed_diff_int_of_squares(self, int other):
  *         return _c_api.FArrayDouble_get_summed_diff_int_of_squares(self.handle, other)             # <<<<<<<<<<<<<<
@@ -28245,13 +27816,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
  *     def get_summed_diff_double_of_squares(self, double other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_get_summed_diff_int_of_squares(__pyx_v_self->handle, __pyx_v_other)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_get_summed_diff_int_of_squares(__pyx_v_self->handle, __pyx_v_other)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":309
+  /* "falcon_core/_capi/f_array_double.pyx":282
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)
  * 
  *     def get_summed_diff_int_of_squares(self, int other):             # <<<<<<<<<<<<<<
@@ -28270,7 +27841,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":312
+/* "falcon_core/_capi/f_array_double.pyx":285
  *         return _c_api.FArrayDouble_get_summed_diff_int_of_squares(self.handle, other)
  * 
  *     def get_summed_diff_double_of_squares(self, double other):             # <<<<<<<<<<<<<<
@@ -28317,32 +27888,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 312, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 285, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 312, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 285, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_summed_diff_double_of_squares", 0) < (0)) __PYX_ERR(0, 312, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_summed_diff_double_of_squares", 0) < (0)) __PYX_ERR(0, 285, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_summed_diff_double_of_squares", 1, 1, 1, i); __PYX_ERR(0, 312, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_summed_diff_double_of_squares", 1, 1, 1, i); __PYX_ERR(0, 285, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 312, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 285, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 312, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 285, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_summed_diff_double_of_squares", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 312, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_summed_diff_double_of_squares", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 285, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -28372,7 +27943,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_summed_diff_double_of_squares", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":313
+  /* "falcon_core/_capi/f_array_double.pyx":286
  * 
  *     def get_summed_diff_double_of_squares(self, double other):
  *         return _c_api.FArrayDouble_get_summed_diff_double_of_squares(self.handle, other)             # <<<<<<<<<<<<<<
@@ -28380,13 +27951,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
  *     def get_summed_diff_array_of_squares(self, FArrayDouble other):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_get_summed_diff_double_of_squares(__pyx_v_self->handle, __pyx_v_other)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(FArrayDouble_get_summed_diff_double_of_squares(__pyx_v_self->handle, __pyx_v_other)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 286, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":312
+  /* "falcon_core/_capi/f_array_double.pyx":285
  *         return _c_api.FArrayDouble_get_summed_diff_int_of_squares(self.handle, other)
  * 
  *     def get_summed_diff_double_of_squares(self, double other):             # <<<<<<<<<<<<<<
@@ -28405,7 +27976,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":315
+/* "falcon_core/_capi/f_array_double.pyx":288
  *         return _c_api.FArrayDouble_get_summed_diff_double_of_squares(self.handle, other)
  * 
  *     def get_summed_diff_array_of_squares(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -28452,32 +28023,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 315, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 288, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 315, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 288, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_summed_diff_array_of_squares", 0) < (0)) __PYX_ERR(0, 315, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "get_summed_diff_array_of_squares", 0) < (0)) __PYX_ERR(0, 288, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_summed_diff_array_of_squares", 1, 1, 1, i); __PYX_ERR(0, 315, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("get_summed_diff_array_of_squares", 1, 1, 1, i); __PYX_ERR(0, 288, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 315, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 288, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("get_summed_diff_array_of_squares", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 315, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("get_summed_diff_array_of_squares", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 288, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -28488,7 +28059,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 315, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, 1, "other", 0))) __PYX_ERR(0, 288, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_128get_summed_diff_array_of_squares(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -28519,12 +28090,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("get_summed_diff_array_of_squares", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":316
+  /* "falcon_core/_capi/f_array_double.pyx":289
  * 
  *     def get_summed_diff_array_of_squares(self, FArrayDouble other):
  *         return _c_api.FArrayDouble_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def to_json(self, ):
+ *     def to_json(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
@@ -28533,13 +28104,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_FArrayDoubleHandle)0);
   }
-  __pyx_t_3 = PyFloat_FromDouble(FArrayDouble_get_summed_diff_array_of_squares(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 316, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(FArrayDouble_get_summed_diff_array_of_squares(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 289, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":315
+  /* "falcon_core/_capi/f_array_double.pyx":288
  *         return _c_api.FArrayDouble_get_summed_diff_double_of_squares(self.handle, other)
  * 
  *     def get_summed_diff_array_of_squares(self, FArrayDouble other):             # <<<<<<<<<<<<<<
@@ -28558,10 +28129,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":318
+/* "falcon_core/_capi/f_array_double.pyx":291
  *         return _c_api.FArrayDouble_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
 */
@@ -28629,70 +28200,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":320
- *     def to_json(self, ):
+  /* "falcon_core/_capi/f_array_double.pyx":293
+ *     def to_json(self):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
 */
   __pyx_v_s_ret = FArrayDouble_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/f_array_double.pyx":321
+  /* "falcon_core/_capi/f_array_double.pyx":294
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
+ *         if s_ret == <_c_api.StringHandle>0: return ""             # <<<<<<<<<<<<<<
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)
 */
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/f_array_double.pyx":322
- *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u__6);
     __pyx_r = __pyx_mstate_global->__pyx_kp_u__6;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/f_array_double.pyx":321
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":323
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
+  /* "falcon_core/_capi/f_array_double.pyx":295
+ *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally: _c_api.String_destroy(s_ret)
+ * 
 */
   /*try:*/ {
-
-    /* "falcon_core/_capi/f_array_double.pyx":324
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 324, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 295, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 324, __pyx_L5_error)
+      __PYX_ERR(0, 295, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 324, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 295, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -28700,10 +28247,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":326
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+  /* "falcon_core/_capi/f_array_double.pyx":296
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
  *     def __len__(self):
 */
@@ -28749,10 +28296,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
     }
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":318
+  /* "falcon_core/_capi/f_array_double.pyx":291
  *         return _c_api.FArrayDouble_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
 */
@@ -28769,11 +28316,11 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":328
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/f_array_double.pyx":298
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
- *         return self.size()
+ *         return self.size
  * 
 */
 
@@ -28796,41 +28343,121 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_
   Py_ssize_t __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  size_t __pyx_t_3;
-  Py_ssize_t __pyx_t_4;
+  Py_ssize_t __pyx_t_2;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__len__", 0);
 
-  /* "falcon_core/_capi/f_array_double.pyx":329
+  /* "falcon_core/_capi/f_array_double.pyx":299
  * 
  *     def __len__(self):
- *         return self.size()             # <<<<<<<<<<<<<<
+ *         return self.size             # <<<<<<<<<<<<<<
  * 
- * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):
+ *     def __repr__(self):
 */
-  __pyx_t_2 = ((PyObject *)__pyx_v_self);
-  __Pyx_INCREF(__pyx_t_2);
-  __pyx_t_3 = 0;
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
-    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_size, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 329, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-  }
-  __pyx_t_4 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_4 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 329, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 299, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyIndex_AsSsize_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_r = __pyx_t_4;
+  __pyx_r = __pyx_t_2;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":328
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/f_array_double.pyx":298
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def __len__(self):             # <<<<<<<<<<<<<<
- *         return self.size()
+ *         return self.size
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("falcon_core._capi.f_array_double.FArrayDouble.__len__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = -1;
+  __pyx_L0:;
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/f_array_double.pyx":301
+ *         return self.size
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__repr__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_134__repr__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_134__repr__(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4[4];
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__repr__", 0);
+
+  /* "falcon_core/_capi/f_array_double.pyx":302
+ * 
+ *     def __repr__(self):
+ *         return f"{self.__class__.__name__}({self.to_json()})"             # <<<<<<<<<<<<<<
+ * 
+ *     def __str__(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_to_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_4[0] = __pyx_t_1;
+  __pyx_t_4[1] = __pyx_mstate_global->__pyx_kp_u__7;
+  __pyx_t_4[2] = __pyx_t_2;
+  __pyx_t_4[3] = __pyx_mstate_global->__pyx_kp_u__5;
+  __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 302, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/f_array_double.pyx":301
+ *         return self.size
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
  * 
 */
 
@@ -28838,9 +28465,87 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_AddTraceback("falcon_core._capi.f_array_double.FArrayDouble.__len__", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.f_array_double.FArrayDouble.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
   __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/f_array_double.pyx":304
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__str__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__str__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__str__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_136__str__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_136__str__(struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__str__", 0);
+
+  /* "falcon_core/_capi/f_array_double.pyx":305
+ * 
+ *     def __str__(self):
+ *         return self.to_json()             # <<<<<<<<<<<<<<
+ * 
+ * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_v_self);
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_to_json, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 305, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/f_array_double.pyx":304
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.f_array_double.FArrayDouble.__str__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
@@ -28852,15 +28557,15 @@ static Py_ssize_t __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_139__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_139__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_139__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_139__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -28886,14 +28591,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_134__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_138__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_134__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_138__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -28933,15 +28638,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_141__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_141__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_141__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_141__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -29007,7 +28712,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_136__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_140__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -29017,7 +28722,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_136__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_140__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -29049,8 +28754,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_14f_array_double_12FArrayDouble_1
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/f_array_double.pyx":331
- *         return self.size()
+/* "falcon_core/_capi/f_array_double.pyx":307
+ *         return self.to_json()
  * 
  * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.FArrayDoubleHandle>0:
@@ -29074,7 +28779,7 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
     }
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":332
+  /* "falcon_core/_capi/f_array_double.pyx":308
  * 
  * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):
  *     if h == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
@@ -29084,7 +28789,7 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_FArrayDoubleHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/f_array_double.pyx":333
+    /* "falcon_core/_capi/f_array_double.pyx":309
  * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):
  *     if h == <_c_api.FArrayDoubleHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -29095,7 +28800,7 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/f_array_double.pyx":332
+    /* "falcon_core/_capi/f_array_double.pyx":308
  * 
  * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):
  *     if h == <_c_api.FArrayDoubleHandle>0:             # <<<<<<<<<<<<<<
@@ -29104,19 +28809,19 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
 */
   }
 
-  /* "falcon_core/_capi/f_array_double.pyx":334
+  /* "falcon_core/_capi/f_array_double.pyx":310
  *     if h == <_c_api.FArrayDoubleHandle>0:
  *         return None
  *     cdef FArrayDouble obj = FArrayDouble.__new__(FArrayDouble)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_14f_array_double_FArrayDouble(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 334, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_14f_array_double_FArrayDouble(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":335
+  /* "falcon_core/_capi/f_array_double.pyx":311
  *         return None
  *     cdef FArrayDouble obj = FArrayDouble.__new__(FArrayDouble)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -29125,7 +28830,7 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/f_array_double.pyx":336
+  /* "falcon_core/_capi/f_array_double.pyx":312
  *     cdef FArrayDouble obj = FArrayDouble.__new__(FArrayDouble)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -29133,7 +28838,7 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/f_array_double.pyx":337
+  /* "falcon_core/_capi/f_array_double.pyx":313
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -29143,8 +28848,8 @@ static struct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *__py
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":331
- *         return self.size()
+  /* "falcon_core/_capi/f_array_double.pyx":307
+ *         return self.to_json()
  * 
  * cdef FArrayDouble _f_array_double_from_capi(_c_api.FArrayDoubleHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.FArrayDoubleHandle>0:
@@ -29285,16 +28990,18 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_14f_array_double_FArrayDou
   {"get_summed_diff_double_of_squares", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_127get_summed_diff_double_of_squares, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"get_summed_diff_array_of_squares", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_129get_summed_diff_array_of_squares, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_131to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_139__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_141__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_14f_array_double_FArrayDouble_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_14f_array_double_FArrayDouble},
+  {Py_tp_repr, (void *)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__repr__},
   {Py_nb_negative, (void *)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_51__neg__},
   {Py_sq_length, (void *)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_133__len__},
   {Py_mp_length, (void *)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_133__len__},
+  {Py_tp_str, (void *)__pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__str__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_14f_array_double_FArrayDouble},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_14f_array_double_FArrayDouble},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_14f_array_double_FArrayDouble},
@@ -29377,13 +29084,13 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_14f_array_double_FArrayDoubl
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   0, /*tp_as_async*/
-  0, /*tp_repr*/
+  __pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__repr__, /*tp_repr*/
   &__pyx_tp_as_number_FArrayDouble, /*tp_as_number*/
   &__pyx_tp_as_sequence_FArrayDouble, /*tp_as_sequence*/
   &__pyx_tp_as_mapping_FArrayDouble, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
-  0, /*tp_str*/
+  __pyx_pw_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__str__, /*tp_str*/
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
@@ -31452,9 +31159,9 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
   /* "falcon_core/_capi/f_array_double.pyx":57
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_copy(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
   __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_11copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -31464,22 +31171,22 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_5) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":63
+  /* "falcon_core/_capi/f_array_double.pyx":62
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def from_shape(size_t[:] shape, size_t ndim):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_shape(&shape[0], ndim)
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_13from_shape, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_from_shape, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_13from_shape, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_from_shape, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_shape, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_shape, __pyx_t_5) < (0)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_4 = NULL;
-  __Pyx_GetNameInClass(__pyx_t_9, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_shape); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 63, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_9, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_shape); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_6 = 1;
   {
@@ -31487,28 +31194,28 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_staticmethod, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 63, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 62, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_shape, __pyx_t_5) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_shape, __pyx_t_5) < (0)) __PYX_ERR(0, 62, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":70
+  /* "falcon_core/_capi/f_array_double.pyx":68
  *         return _f_array_double_from_capi(h_ret)
  * 
  *     @staticmethod             # <<<<<<<<<<<<<<
  *     def from_data(double[:] data, size_t[:] shape, size_t ndim):
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_from_data(&data[0], &shape[0], ndim)
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_15from_data, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_from_data, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_15from_data, __Pyx_CYFUNCTION_STATICMETHOD | __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_from_data, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_data, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_data, __pyx_t_5) < (0)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_9 = NULL;
-  __Pyx_GetNameInClass(__pyx_t_4, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __Pyx_GetNameInClass(__pyx_t_4, (PyObject*)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_data); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = 1;
   {
@@ -31516,805 +31223,805 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
     __pyx_t_5 = __Pyx_PyObject_FastCall((PyObject*)__pyx_builtin_staticmethod, __pyx_callargs+__pyx_t_6, (2-__pyx_t_6) | (__pyx_t_6*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 70, __pyx_L1_error)
+    if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
   }
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_data, __pyx_t_5) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_from_data, __pyx_t_5) < (0)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+
+  /* "falcon_core/_capi/f_array_double.pyx":74
+ *         return _f_array_double_from_capi(h_ret)
+ * 
+ *     def size(self):             # <<<<<<<<<<<<<<
+ *         return _c_api.FArrayDouble_size(self.handle)
+ * 
+*/
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_17size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 74, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 74, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "falcon_core/_capi/f_array_double.pyx":77
- *         return _f_array_double_from_capi(h_ret)
- * 
- *     def size(self, ):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_size(self.handle)
  * 
-*/
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_17size, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_size, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_5);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_size, __pyx_t_5) < (0)) __PYX_ERR(0, 77, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-
-  /* "falcon_core/_capi/f_array_double.pyx":80
- *         return _c_api.FArrayDouble_size(self.handle)
- * 
- *     def dimension(self, ):             # <<<<<<<<<<<<<<
+ *     def dimension(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_dimension(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_19dimension, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_dimension, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_19dimension, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_dimension, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_dimension, __pyx_t_5) < (0)) __PYX_ERR(0, 80, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_dimension, __pyx_t_5) < (0)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":83
+  /* "falcon_core/_capi/f_array_double.pyx":80
  *         return _c_api.FArrayDouble_dimension(self.handle)
  * 
  *     def shape(self, size_t[:] out_buffer, size_t ndim):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_shape(self.handle, &out_buffer[0], ndim)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_21shape, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_shape, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_21shape, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_shape, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_shape, __pyx_t_5) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_shape, __pyx_t_5) < (0)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":86
+  /* "falcon_core/_capi/f_array_double.pyx":83
  *         return _c_api.FArrayDouble_shape(self.handle, &out_buffer[0], ndim)
  * 
  *     def data(self, double[:] out_buffer, size_t numdata):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_data(self.handle, &out_buffer[0], numdata)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_23data, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_data, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_23data, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_data, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_5) < (0)) __PYX_ERR(0, 86, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_data, __pyx_t_5) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":89
+  /* "falcon_core/_capi/f_array_double.pyx":86
  *         return _c_api.FArrayDouble_data(self.handle, &out_buffer[0], numdata)
  * 
  *     def plus_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_plus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_25plus_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_equals_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_25plus_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_equals_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 89, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":92
+  /* "falcon_core/_capi/f_array_double.pyx":89
  *         _c_api.FArrayDouble_plus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def plus_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_plus_equals_double(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_27plus_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_27plus_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":95
+  /* "falcon_core/_capi/f_array_double.pyx":92
  *         _c_api.FArrayDouble_plus_equals_double(self.handle, other)
  * 
  *     def plus_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_plus_equals_int(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_29plus_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_29plus_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 95, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 92, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":98
+  /* "falcon_core/_capi/f_array_double.pyx":95
  *         _c_api.FArrayDouble_plus_equals_int(self.handle, other)
  * 
  *     def plus_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_31plus_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_31plus_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":104
+  /* "falcon_core/_capi/f_array_double.pyx":100
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def plus_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_33plus_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_33plus_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_double, __pyx_t_5) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_double, __pyx_t_5) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":110
+  /* "falcon_core/_capi/f_array_double.pyx":105
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def plus_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_plus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_35plus_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_35plus_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_plus_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_int, __pyx_t_5) < (0)) __PYX_ERR(0, 110, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_plus_int, __pyx_t_5) < (0)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":116
+  /* "falcon_core/_capi/f_array_double.pyx":110
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_37minus_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_equals_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_37minus_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_equals_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":119
+  /* "falcon_core/_capi/f_array_double.pyx":113
  *         _c_api.FArrayDouble_minus_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def minus_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_minus_equals_double(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_39minus_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_39minus_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 119, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":122
+  /* "falcon_core/_capi/f_array_double.pyx":116
  *         _c_api.FArrayDouble_minus_equals_double(self.handle, other)
  * 
  *     def minus_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_minus_equals_int(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_41minus_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_41minus_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":125
+  /* "falcon_core/_capi/f_array_double.pyx":119
  *         _c_api.FArrayDouble_minus_equals_int(self.handle, other)
  * 
  *     def minus_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_43minus_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_43minus_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":131
+  /* "falcon_core/_capi/f_array_double.pyx":124
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_45minus_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 131, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_45minus_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_double, __pyx_t_5) < (0)) __PYX_ERR(0, 131, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_double, __pyx_t_5) < (0)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":137
+  /* "falcon_core/_capi/f_array_double.pyx":129
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def minus_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_minus_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_47minus_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_47minus_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_minus_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_int, __pyx_t_5) < (0)) __PYX_ERR(0, 137, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_minus_int, __pyx_t_5) < (0)) __PYX_ERR(0, 129, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":143
+  /* "falcon_core/_capi/f_array_double.pyx":134
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def negation(self, ):             # <<<<<<<<<<<<<<
+ *     def negation(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_negation(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_49negation, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_negation, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_49negation, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_negation, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_negation, __pyx_t_5) < (0)) __PYX_ERR(0, 143, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_negation, __pyx_t_5) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":152
+  /* "falcon_core/_capi/f_array_double.pyx":142
  *         return self.negation()
  * 
  *     def times_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_times_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_53times_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_equals_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 152, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_53times_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_equals_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 152, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":155
+  /* "falcon_core/_capi/f_array_double.pyx":145
  *         _c_api.FArrayDouble_times_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def times_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_times_equals_double(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_55times_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_55times_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 155, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":158
+  /* "falcon_core/_capi/f_array_double.pyx":148
  *         _c_api.FArrayDouble_times_equals_double(self.handle, other)
  * 
  *     def times_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_times_equals_int(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_57times_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_57times_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 158, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":161
+  /* "falcon_core/_capi/f_array_double.pyx":151
  *         _c_api.FArrayDouble_times_equals_int(self.handle, other)
  * 
  *     def times_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_59times_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_59times_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 161, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":167
+  /* "falcon_core/_capi/f_array_double.pyx":156
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def times_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_61times_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_61times_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_double, __pyx_t_5) < (0)) __PYX_ERR(0, 167, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_double, __pyx_t_5) < (0)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":173
+  /* "falcon_core/_capi/f_array_double.pyx":161
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def times_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_times_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_63times_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_63times_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_times_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_int, __pyx_t_5) < (0)) __PYX_ERR(0, 173, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_times_int, __pyx_t_5) < (0)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":179
+  /* "falcon_core/_capi/f_array_double.pyx":166
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_equals_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_65divides_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_equals_farr, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_65divides_equals_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_equals_farr, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 179, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_equals_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":182
+  /* "falcon_core/_capi/f_array_double.pyx":169
  *         _c_api.FArrayDouble_divides_equals_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
  *     def divides_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_divides_equals_double(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_67divides_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_equals_doub, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[30])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 182, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_67divides_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_equals_doub, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[30])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 182, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_equals_double, __pyx_t_5) < (0)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":185
+  /* "falcon_core/_capi/f_array_double.pyx":172
  *         _c_api.FArrayDouble_divides_equals_double(self.handle, other)
  * 
  *     def divides_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_divides_equals_int(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_69divides_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[31])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_69divides_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[31])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 185, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_equals_int, __pyx_t_5) < (0)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":188
+  /* "falcon_core/_capi/f_array_double.pyx":175
  *         _c_api.FArrayDouble_divides_equals_int(self.handle, other)
  * 
  *     def divides_farray(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_farray(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_71divides_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[32])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 188, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_71divides_farray, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_farray, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[32])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 188, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_farray, __pyx_t_5) < (0)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":194
+  /* "falcon_core/_capi/f_array_double.pyx":180
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_double(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_73divides_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[33])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_73divides_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[33])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_double, __pyx_t_5) < (0)) __PYX_ERR(0, 194, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_double, __pyx_t_5) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":200
+  /* "falcon_core/_capi/f_array_double.pyx":185
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def divides_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_divides_int(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_75divides_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[34])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_75divides_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_divides_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[34])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_int, __pyx_t_5) < (0)) __PYX_ERR(0, 200, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_divides_int, __pyx_t_5) < (0)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":206
+  /* "falcon_core/_capi/f_array_double.pyx":190
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def pow(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_77pow, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_pow, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[35])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_77pow, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_pow, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[35])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_pow, __pyx_t_5) < (0)) __PYX_ERR(0, 206, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_pow, __pyx_t_5) < (0)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":212
+  /* "falcon_core/_capi/f_array_double.pyx":195
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def double_pow(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_double_pow(self.handle, other)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_79double_pow, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_double_pow, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[36])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_79double_pow, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_double_pow, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[36])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_double_pow, __pyx_t_5) < (0)) __PYX_ERR(0, 212, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_double_pow, __pyx_t_5) < (0)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":218
+  /* "falcon_core/_capi/f_array_double.pyx":200
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def pow_inplace(self, double other):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_pow_inplace(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_81pow_inplace, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_pow_inplace, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[37])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_81pow_inplace, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_pow_inplace, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[37])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_pow_inplace, __pyx_t_5) < (0)) __PYX_ERR(0, 218, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_pow_inplace, __pyx_t_5) < (0)) __PYX_ERR(0, 200, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":221
+  /* "falcon_core/_capi/f_array_double.pyx":203
  *         _c_api.FArrayDouble_pow_inplace(self.handle, other)
  * 
- *     def abs(self, ):             # <<<<<<<<<<<<<<
+ *     def abs(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_abs(self.handle)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_83abs, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_abs, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[38])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_83abs, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_abs, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[38])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_abs, __pyx_t_5) < (0)) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_abs, __pyx_t_5) < (0)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":227
+  /* "falcon_core/_capi/f_array_double.pyx":208
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def min(self, ):             # <<<<<<<<<<<<<<
+ *     def min(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_min(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_85min, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_min, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[39])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 227, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_85min, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_min, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[39])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_min, __pyx_t_5) < (0)) __PYX_ERR(0, 227, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_min, __pyx_t_5) < (0)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":230
+  /* "falcon_core/_capi/f_array_double.pyx":211
  *         return _c_api.FArrayDouble_min(self.handle)
  * 
  *     def min_arraywise(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_min_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_87min_arraywise, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_min_arraywise, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[40])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_87min_arraywise, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_min_arraywise, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[40])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_min_arraywise, __pyx_t_5) < (0)) __PYX_ERR(0, 230, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_min_arraywise, __pyx_t_5) < (0)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":236
+  /* "falcon_core/_capi/f_array_double.pyx":216
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def max(self, ):             # <<<<<<<<<<<<<<
+ *     def max(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_max(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_89max, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_max, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[41])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_89max, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_max, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[41])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_max, __pyx_t_5) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_max, __pyx_t_5) < (0)) __PYX_ERR(0, 216, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":239
+  /* "falcon_core/_capi/f_array_double.pyx":219
  *         return _c_api.FArrayDouble_max(self.handle)
  * 
  *     def max_arraywise(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_max_arraywise(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_91max_arraywise, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_max_arraywise, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[42])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 239, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_91max_arraywise, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_max_arraywise, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[42])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_max_arraywise, __pyx_t_5) < (0)) __PYX_ERR(0, 239, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_max_arraywise, __pyx_t_5) < (0)) __PYX_ERR(0, 219, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":245
+  /* "falcon_core/_capi/f_array_double.pyx":224
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def equal(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_93equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[43])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_93equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[43])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 245, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":253
+  /* "falcon_core/_capi/f_array_double.pyx":231
  *         return self.equal(other)
  * 
  *     def not_equal(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_97not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[44])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_97not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[44])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 253, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_5) < (0)) __PYX_ERR(0, 231, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":261
+  /* "falcon_core/_capi/f_array_double.pyx":238
  *         return self.not_equal(other)
  * 
  *     def greater_than(self, double value):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_greater_than(self.handle, value)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_101greater_than, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_greater_than, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[45])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_101greater_than, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_greater_than, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[45])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_greater_than, __pyx_t_5) < (0)) __PYX_ERR(0, 261, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_greater_than, __pyx_t_5) < (0)) __PYX_ERR(0, 238, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":267
+  /* "falcon_core/_capi/f_array_double.pyx":244
  *         return self.greater_than(value)
  * 
  *     def less_than(self, double value):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_less_than(self.handle, value)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_105less_than, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_less_than, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[46])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 267, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_105less_than, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_less_than, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[46])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_less_than, __pyx_t_5) < (0)) __PYX_ERR(0, 267, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_less_than, __pyx_t_5) < (0)) __PYX_ERR(0, 244, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":273
+  /* "falcon_core/_capi/f_array_double.pyx":250
  *         return self.less_than(value)
  * 
  *     def remove_offset(self, double offset):             # <<<<<<<<<<<<<<
  *         _c_api.FArrayDouble_remove_offset(self.handle, offset)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_109remove_offset, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_remove_offset, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[47])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_109remove_offset, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_remove_offset, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[47])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_remove_offset, __pyx_t_5) < (0)) __PYX_ERR(0, 273, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_remove_offset, __pyx_t_5) < (0)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":276
+  /* "falcon_core/_capi/f_array_double.pyx":253
  *         _c_api.FArrayDouble_remove_offset(self.handle, offset)
  * 
- *     def sum(self, ):             # <<<<<<<<<<<<<<
+ *     def sum(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_sum(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_111sum, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_sum, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[48])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_111sum, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_sum, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[48])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_sum, __pyx_t_5) < (0)) __PYX_ERR(0, 276, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_sum, __pyx_t_5) < (0)) __PYX_ERR(0, 253, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":279
+  /* "falcon_core/_capi/f_array_double.pyx":256
  *         return _c_api.FArrayDouble_sum(self.handle)
  * 
  *     def reshape(self, size_t[:] shape, size_t ndims):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_reshape(self.handle, &shape[0], ndims)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_113reshape, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_reshape, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[49])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_113reshape, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_reshape, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[49])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_reshape, __pyx_t_5) < (0)) __PYX_ERR(0, 279, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_reshape, __pyx_t_5) < (0)) __PYX_ERR(0, 256, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":285
+  /* "falcon_core/_capi/f_array_double.pyx":261
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def where(self, double value):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ListListSizeTHandle h_ret = _c_api.FArrayDouble_where(self.handle, value)
- *         if h_ret == <_c_api.ListListSizeTHandle>0:
+ *         if h_ret == <_c_api.ListListSizeTHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_115where, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_where, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[50])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_115where, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_where, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[50])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_where, __pyx_t_5) < (0)) __PYX_ERR(0, 285, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_where, __pyx_t_5) < (0)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":291
+  /* "falcon_core/_capi/f_array_double.pyx":266
  *         return _list_list_size_t_from_capi(h_ret, owned=True)
  * 
  *     def flip(self, size_t axis):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_flip(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_117flip, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_flip, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[51])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 291, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_117flip, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_flip, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[51])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 266, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_flip, __pyx_t_5) < (0)) __PYX_ERR(0, 291, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_flip, __pyx_t_5) < (0)) __PYX_ERR(0, 266, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":297
+  /* "falcon_core/_capi/f_array_double.pyx":271
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
  *     def full_gradient(self, size_t[:] out_buffer, size_t buffer_size):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_119full_gradient, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_full_gradient, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[52])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 297, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_119full_gradient, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_full_gradient, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[52])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_full_gradient, __pyx_t_5) < (0)) __PYX_ERR(0, 297, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_full_gradient, __pyx_t_5) < (0)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":300
+  /* "falcon_core/_capi/f_array_double.pyx":274
  *         return _c_api.FArrayDouble_full_gradient(self.handle, <_c_api.FArrayDoubleHandle*>&out_buffer[0], buffer_size)
  * 
  *     def gradient(self, size_t axis):             # <<<<<<<<<<<<<<
  *         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.FArrayDouble_gradient(self.handle, axis)
- *         if h_ret == <_c_api.FArrayDoubleHandle>0:
+ *         if h_ret == <_c_api.FArrayDoubleHandle>0: return None
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_121gradient, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_gradient, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[53])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 300, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_121gradient, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_gradient, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[53])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_gradient, __pyx_t_5) < (0)) __PYX_ERR(0, 300, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_gradient, __pyx_t_5) < (0)) __PYX_ERR(0, 274, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":306
+  /* "falcon_core/_capi/f_array_double.pyx":279
  *         return _f_array_double_from_capi(h_ret, owned=(h_ret != <_c_api.FArrayDoubleHandle>self.handle))
  * 
- *     def get_sum_of_squares(self, ):             # <<<<<<<<<<<<<<
+ *     def get_sum_of_squares(self):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_123get_sum_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_sum_of_squares, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[54])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 306, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_123get_sum_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_sum_of_squares, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[54])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_sum_of_squares, __pyx_t_5) < (0)) __PYX_ERR(0, 306, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_sum_of_squares, __pyx_t_5) < (0)) __PYX_ERR(0, 279, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":309
+  /* "falcon_core/_capi/f_array_double.pyx":282
  *         return _c_api.FArrayDouble_get_sum_of_squares(self.handle)
  * 
  *     def get_summed_diff_int_of_squares(self, int other):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_get_summed_diff_int_of_squares(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_125get_summed_diff_int_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_summed_diff_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[55])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_125get_summed_diff_int_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_summed_diff_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[55])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_summed_diff_int_of_squares, __pyx_t_5) < (0)) __PYX_ERR(0, 309, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_summed_diff_int_of_squares, __pyx_t_5) < (0)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":312
+  /* "falcon_core/_capi/f_array_double.pyx":285
  *         return _c_api.FArrayDouble_get_summed_diff_int_of_squares(self.handle, other)
  * 
  *     def get_summed_diff_double_of_squares(self, double other):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_get_summed_diff_double_of_squares(self.handle, other)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_127get_summed_diff_double_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_summed_diff_dou, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[56])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_127get_summed_diff_double_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_summed_diff_dou, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[56])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_summed_diff_double_of_square, __pyx_t_5) < (0)) __PYX_ERR(0, 312, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_summed_diff_double_of_square, __pyx_t_5) < (0)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":315
+  /* "falcon_core/_capi/f_array_double.pyx":288
  *         return _c_api.FArrayDouble_get_summed_diff_double_of_squares(self.handle, other)
  * 
  *     def get_summed_diff_array_of_squares(self, FArrayDouble other):             # <<<<<<<<<<<<<<
  *         return _c_api.FArrayDouble_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_129get_summed_diff_array_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_summed_diff_arr, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[57])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 315, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_129get_summed_diff_array_of_squares, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_get_summed_diff_arr, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[57])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_summed_diff_array_of_squares, __pyx_t_5) < (0)) __PYX_ERR(0, 315, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_get_summed_diff_array_of_squares, __pyx_t_5) < (0)) __PYX_ERR(0, 288, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "falcon_core/_capi/f_array_double.pyx":318
+  /* "falcon_core/_capi/f_array_double.pyx":291
  *         return _c_api.FArrayDouble_get_summed_diff_array_of_squares(self.handle, other.handle if other is not None else <_c_api.FArrayDoubleHandle>0)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.FArrayDouble_to_json_string(self.handle)
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_131to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[58])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 318, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_131to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[58])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 318, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_14f_array_double_FArrayDouble, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_5) < (0)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
   /* "(tree fragment)":1
@@ -32322,7 +32029,7 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_135__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[59])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_139__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[59])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
@@ -32336,7 +32043,7 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_137__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[60])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_14f_array_double_12FArrayDouble_141__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_FArrayDouble___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_f_array_double, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[60])); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_5);
@@ -32392,8 +32099,8 @@ __Pyx_RefNannySetupContext("PyInit_f_array_double", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 63, __pyx_L1_error)
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_builtin_staticmethod = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_staticmethod); if (!__pyx_builtin_staticmethod) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 228, __pyx_L1_error)
   __pyx_builtin___import__ = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_import); if (!__pyx_builtin___import__) __PYX_ERR(1, 101, __pyx_L1_error)
   __pyx_builtin_enumerate = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_enumerate); if (!__pyx_builtin_enumerate) __PYX_ERR(1, 157, __pyx_L1_error)
   __pyx_builtin_Ellipsis = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_Ellipsis); if (!__pyx_builtin_Ellipsis) __PYX_ERR(1, 409, __pyx_L1_error)
@@ -32490,42 +32197,42 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{40},{20},{32},{22},{14},{30},{37},{5},{8},{12},{30},{32},{16},{17},{17},{22},{27},{34},{34},{31},{27},{24},{23},{18},{17},{22},{22},{23},{26},{31},{45},{46},{43},{21},{25},{22},{16},{26},{16},{26},{25},{32},{32},{29},{25},{22},{21},{22},{22},{22},{24},{31},{31},{28},{24},{21},{16},{24},{26},{20},{18},{17},{16},{25},{32},{32},{29},{25},{22},{20},{18},{14},{20},{8},{15},{3},{3},{15},{18},{4},{6},{4},{11},{1},{9},{17},{18},{3},{4},{5},{4},{8},{9},{14},{21},{21},{18},{14},{11},{10},{15},{6},{9},{5},{5},{32},{5},{4},{6},{7},{9},{9},{10},{13},{8},{18},{32},{33},{30},{12},{8},{12},{1},{5},{6},{2},{10},{5},{13},{5},{8},{4},{9},{8},{3},{13},{7},{3},{13},{12},{19},{19},{16},{12},{9},{4},{10},{4},{8},{4},{5},{8},{7},{9},{9},{9},{7},{3},{6},{5},{10},{4},{11},{18},{18},{15},{11},{8},{3},{3},{11},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{13},{7},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{12},{4},{4},{6},{3},{8},{12},{19},{19},{16},{12},{9},{7},{6},{6},{5},{6},{5},{1},{32},{13},{13},{37},{63},{54},{57},{54},{57},{69},{55},{58},{62},{58},{50},{58},{58},{88},{59},{89},{90},{60},{90},{14},{46},{75},{14},{13},{16},{32},{16},{43},{17},{101},{24},{31},{14},{13},{29},{13},{14},{13},{13},{16},{24},{33},{9},{239},{249},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (2422 bytes) */
-const char* const cstring = "(\265/\375`!\031eK\000\n`X\023D\360\224\323\006\314\300e\342\247\001K\214\242Q\342\022\243h\024\310\230\3709|\243'Zc\213\354F\222\302\nJ\263\224\"n\342\312\013\261\375qz\026 \372\025\301\223\001\233/$\027/\010\262K/\360\350\340E\355\004\t\001\004\0013\001\266\276\330\3734\357O,\210\275\354s\t\177\214\260\332\031\237\307\024\262\274jz<C\317\313\217_\375T\3060\373\372\264e\275k\364>\270\316L\247\306O\343\t\307\374=\031q\342\241e\245\345\325\034Y\3643\274\177\232\364\245\312g+\003&\306\t\324\353\340\361<O\364txi'\205\252:\222\237\257\3152=\322\200\347\nfxXVmO\357\262/k;\322V\024b\261\371\311\247\023\262\260\340\275\360Sm*\263\342\273\366\312t\206)\374X9\303V\246(\307\277\023Wx\263\347}\306\312/\225\347\314\303\354\275\236\236`\236w\306\203|6\277\212\232\030\303\017\353Z\354\261W\347\303\332j\324\314\325\306\207\347\3130\225O\017\276\317\360o|,Z\355\253P\005\277\2347\343\367\330f\253\307o\345\233\371\251z\367\257K\257\230\024\277l\353\223\025>\371\253\227u\276?\275\2145\366\344\205\207\252S~\374\233=\\\355\304\365\261)\037\245\241W\"\332FLc\217\010O\037\341\315\236\037\345\356\036\3751<\235\360\327\231\265\2756~\354\214\225\205\241\177>\326/]\357\222W/\303s\234\242\025\253\305]~\256\217=\315\260Q\2662\376~j\306b3c\232f\346\307\227\312b\177#\244\331\214\245\231g\213\337gP_u\235\217\347\314\nb\030?\365\353\3621\374\027\373e\035\323\330\363\243~JxQN\251\256\026\307\3705c3\317u^\024j\231W\2612\033\361\tf\230q~\354\376\301\023g\223\322\225\321H\245\024\372|`\206\362EK)\324)\037\257\266\270Nyb\305\312>\322\375\37203\030\375\303_\033#\205\327\207xq\212{\236uF\n\247j\336\354\241\332\252\345s\377\250\345_\367\227\251\206\327\313g+\210\207\342\304{\232\211%\2368\327\317\253\2372\303\213\250\307S\326\231r\"\236\340\207R\033W ^\206\357]J\230B\203'\345s\262\330\347\371\362}U\r\247}\322\261u\324\3305hl\032\245]r\331\262\203a\344\006\251e\213:P\367B\306\035w\354\0356\266\215\032\233\325\235t&\235\013\230\227=\nu\001:\031\216\305\213i\223\340\341\333U\354RK\265U\3208Z\006\005[\201\214""\366\001\324e\016r,\"\266\010\023\233\022\033\023\006FH]\250\243\301\325h\tha\330^\264\220\326\241\301.@r\003\252i\200\340\246D\323\340`7\250A!r\200\344Ff;\331L\266\020\0206\004\022#\241!\035\225\316\212\316\n\016\n\000\200#W\216\235\343e\253\272\027\234\226i\315\315\302V\262\201JZ\0056\221\006\3228$\350\021\263c\256}\375~\034\033\307\215}#e\333\330\034l\234\r\304\203\375\200\344&4d\2055\205*\231\351\252\361\347\034\365\265\031g\237\261|,\316{\321\307\030\337\317x\242V\257\252+\376\264G\234Y\325=\342\247\334\3353\233}*[w\307\030\254TK['\206=\266\232\020s\2776\303\246\273\234O\345_O\245\334c\325\227{\206\330\265\027FAz}>\327\336\373\230\256\377\322:\236.]\272\347\0323\334T\202\341\024\005\200\006\n\253\235\033\236cT\316^\207\026\036\035\305s\206\r\357\004$\302A \177\244\032\016D\014\004\270\341\014\351\204:*\204\2246L\307\201{!q\0168\016\027\263\221\266\021\2515\332\002lZ\000\31765\013\232\220 ;\210\313f\351&p+\241\026\211-kP\373\200\264l\003m0\260V{U\332,\272\2133\321zH\263\301\315\206\346`\013m'F@\230[\265`+\301\006B\223\261!`#*BABg\342B\234\250\363\3221\2318\254\025j\243H\273@'\342@\234J79\013\\\t\027\002\362c\377\200\033\266l\014\235\217\326\005\t\233I\206H\250\206DM\t\223VI+\302\026\265\0046\217\344\006\026!\025\341P\303\000\301\315\202]\"\022\202\323\022m\240\3555\022\203\335\240\000\200\001GBC8-\024\232\211\266av\026\272\222n\204\262QZr#m\"b\347\304\202\005\007\310\017\275\265\335Vn\t\263a\\\266\313\251\003YX8?|\344\235\353\256\244\335\002;<VV8>h\360\306\330\306L\333\324\262e\272\031\035\036\035\367\216H\304\241a\335}\351\246pC\035\245\235e\344x\331\272\2031H\333\024\003\202\020\250\222\203\030\225\312\024\321H\222\244\220\016b\020\004\303\003\323H\017\273>R\271H\211Q\312\030\303\0142\204\032\221@DD\024\024\244\240 \305\034U\016\275\243)M\333\336\261\257\031\246\250\037\024~\226\301\035]\231uu\030\210-\221\344q\370\244\027\346#\223\307\351\362Pl\303z\220\241S\323M\033\254\314F\010\035\314N\t\373\3211-\032\371\226X\0255/|(\365w\313\17782h\340\324\314|E\336\211""\362[\205\037\352m\035P\342\313e\367\006\0203\314\354\3111d\371\353\257\272\017\310e\232\327\342\357\005\033\332,C\020\006\274t[\\\372\366O\202\345\257f\337)\026\234\263\036\261\302im.1\272'\n\010\206k\206\3439\246'\266\321\242L\010\330\366\\j|K\366\307\030\357\035/\306\332\230\313b\014\255\025\226V\211h_+\205\247f}\2667\224;w\346\201\212\230RU\005\221\344\023j/\265\255\031\216*\200\035\211\216,\376\300_\363\321i)\246\216\263\320\247\337\202\3523\354u\n0\233$R=-\246\013 \241\213\021R\275\304q\n\346{\212\275\261l\266\275\312\267\035um\221r\272S\250\215\3626\203\010\361\024\357\nTK\274\036t#f\363\315W\301\2169\216\256\001\320\210\226\326A\346\204\334\252\325b\206]\331\0176MOS\020\342\251\025\312\342s0\262\026pP\313\246\331\033\213\311x\001q\014\021\037\274x\213\226\022\362\021(N\206]\302\352\022\323R\227\301\241\352U\200\263\177\034<B\323\234k\273\354\306\013r\245M\216\341\201\201\245\233\326\247\351\266\212\r#\250I\231jU\276^\337\205\324k\247\2728\005\207\310\313z;\221\365\303\236]\321\370\023\244\215\244'\252\341^d\274\207\003\031<O\205\226\371\226\244K\346u\355\224\230\t\336\301y\n\211\326\246B\341#O\323\302\333m\177\204)TW\272\212SK\370\273\320\256\323\362\223\342\205XH|q\200\265\213Hh\014k\275[t\356\325\032\254\273\005\346\365%\375\374\260\360\333-\304\352\263\034\377>a~\026\346\031\311z\371\354W\326\302+7\341\230\314\013s\327;\360x\327\270\331\241\215\373k\254\210\350\331\021\222\307O\221\371\005\215\204-<d\t\003,\355]\372v\241\345\214\206\035*./K=m\356\003\204\300x\301\215:e\341\010\311\310\014\026\347\030,\235\3157\241;\310\277w\300\305n|\214\307\343GGn1(x\311\013\335O\"z1\206\262\217\022K9\261\224\263\227\024\033yW\226\347\337\355)\272K\016IW\030J\204\376\303\014Q8\313\030<\201\223q\257\363\3761\346\310\001\"b5\013\205*,\272\023\375\322\214\014\003\354\002\256\200ty\007Y\313>f\204*\217w\206Hk.8K\205\275#pJANJ\247\346\315\020^\362\016\374\221\t\002\017_.\362\373\311[5\277\215T\235\330;\245W\221\214W\361Q\370\342\2046\351\214\334\000T\034\221\006\013\"\217\033B""g\370>\310X\330\226\311\375\\\r\032\235\031\203\301$\2377X\371:\254\232\036\372\335\235&\035\021\316\216I\341}4z\311\222\005q=\034\030\202&M-\322\215$\213YE\003\037\033Y\032\032\264\265\320H9\351J\252\035\247\343\r1\257\361d\231\313\026\356x;.\31073s\355\343Wf\331\177Q\353\r\021o\0141\340\331A\370\206\221|\037E\335?\2270\253z\327\2104\234\370i\342\234\367'\241\346]\271\330\221\037\022\304]\034\237\240\002\326\364\032\3025\270\362\361\241\334\307\002\362\206\335\236\303\347FJ2\233Z\334H\356m\353o\213\032/\033U\314\201\342\373\263\031\214+\001\014\211~Yv\\\316\360\212\216p\021\005\315\260\347p\232M\301\326rC\261iqHl\217J\344@\306\013h]\220\037<k^d\205X\373\032X\377\201\005J[\217\nC\370\253\353:\254v\177hT\001\217n\024\000\\D\272\017\360\247F\363\336\355\033.\341\024 D\2153v_C\320\333\334\247\0055\366\"\030]\033>\237\211\203\214\rt\026\306X\224Y+!H\316p\325\233\224\362;(\213\3368\332\ta\307i\306\273\037\270\202*\025\226hJ\016\311^\264\243\372\373a\336dr\211s@0\266YA\262\370\030\240u\036\271\034\325\006s-\216\034KXZ\021\236:\004";
-    PyObject *data = __Pyx_DecompressString(cstring, 2422, 3);
+    const struct { const unsigned int length: 8; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{0},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{8},{40},{20},{32},{22},{14},{30},{37},{5},{8},{12},{30},{32},{16},{17},{17},{22},{27},{34},{34},{31},{27},{24},{23},{18},{17},{22},{22},{23},{26},{31},{45},{46},{43},{21},{25},{22},{16},{26},{16},{26},{25},{32},{32},{29},{25},{22},{21},{22},{22},{22},{24},{31},{31},{28},{24},{21},{16},{24},{26},{20},{18},{17},{16},{25},{32},{32},{29},{25},{22},{20},{18},{14},{20},{8},{15},{3},{3},{15},{18},{4},{6},{4},{11},{1},{9},{17},{18},{3},{4},{5},{4},{8},{9},{14},{21},{21},{18},{14},{11},{10},{15},{6},{9},{5},{5},{32},{5},{4},{6},{7},{9},{9},{10},{13},{8},{18},{32},{33},{30},{12},{8},{12},{1},{5},{6},{2},{10},{5},{13},{5},{8},{4},{9},{8},{3},{13},{7},{3},{13},{12},{19},{19},{16},{12},{9},{4},{10},{4},{8},{4},{5},{8},{7},{9},{9},{9},{7},{3},{6},{5},{10},{4},{11},{18},{18},{15},{11},{8},{3},{3},{11},{12},{14},{11},{10},{19},{14},{12},{10},{17},{13},{8},{13},{7},{6},{5},{4},{12},{10},{12},{19},{5},{4},{5},{12},{4},{4},{6},{3},{8},{12},{19},{19},{16},{12},{9},{7},{6},{6},{5},{6},{5},{1},{32},{13},{13},{37},{61},{53},{56},{53},{56},{68},{54},{57},{61},{57},{49},{57},{57},{87},{58},{88},{89},{59},{89},{14},{45},{75},{14},{13},{16},{32},{16},{43},{17},{101},{24},{31},{14},{13},{29},{13},{14},{13},{13},{16},{24},{33},{9},{239},{249},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (2442 bytes) */
+const char* const cstring = "(\265/\375`\r\031\005L\000\252a\310\023F\000\223\323\006\374\277\253\276\367\032\372\245_\367\327/\375~?\315\367\352\307\\\003\331\321+\273\215\266\260\207\322,\245\210\333\252\252\212\330\376\200\310,\201\037RA\204%\334nH\000\205\0043\346\010\363P\200(\r\004\256\315\001\014\001\013\001<\001\025\356\374\255\213\357\014\316\177\003?\265\311\014j\277O\372\347\224\027\303\010\275\266\362\345[\025\024\267\004\301\375\032\336_m-\265\277\220\343\rb%\030\322\267n[\271~;S\272\346\263J\010\225\0161.1\360\356\271\331\3372\177\252\332\247-\277\361\013\032\027%T\220\003\010\004A\023\304\341)\256V\266n\211\376\316X\323x\351DW\2274\201\232^\216S\020\303ps\\\342\2304z\301\033\322\267U\276l2g\031\272x\265\267\t3\3064\276\345J\303mk\231K%\355\371\271\352+\363\006\301\327\266\rW\273\332\300\014g\354mJ\356\232m:P\2107\274\252\252\265\014m\031g\237\301[\241\346\230\253\352\276xB]\341\226\253\235\202\022\376\226\237'\334\354\305\360\312\026\375\264\346\255\341k\254\271^?\246\320\346k\013\346\3070\236\242Z\r7\276\220^\t\351\273\236\336\n?\005\267\346\031\244\030\240\352V\372\363\263\006\365\305U\337\317*\205\326\216\340\210\237\361\373Oq\3245\322Hc\334\227\343\251\355\3241e*\357\270_\025c\2143\276\226\251\224\376[7\307\031\317\020\256\363nZ\306\320\317\373'\354e\266\353_\304=+\311\265\305\304H\177\337\317\336jYi\343\027\237\177e\203\263\2723~S\367k\254\205\263\317SZ\315\006[-n\254?\332\250\376\362[_W\033\227\314\264~\033s\244\237\351\317:b8f\\\307\375\252\257TfU\264\226_\254k\"f\203\265\270o\305\254\344\254om\032\236:%\267\334z\277\2161\244\253\326\252\265.\245R\313i\024\n\311-)\234\330Z\311Y~f\216\365\255\264\204k\323B4F\014\245jrF\224\317xN+1\224\2315K\214\273\336:\255\254\255\232w\207\213/\2470\306\237\234~\216\021n\313%\366\024\342\233\002M\224\200\177S5\325u\337\337\225\232\300\251z]\351\255,%fJ\206\254\305\323\225\002\267\204\037)\225'LN@,\241\024\316~\0077N}\277\2601\323\371\347\302\324Q3\325S7\372\r\031]F\214\036\343\324O2\235\216\276\026Bh\230b:\351\023},\350\354\023G\3071\243""\317\220\321\267O\345+\371V\320\314\364\322\350\023\360\261<\230\031T\027\221#\366\210\242\237^\255\316\002\347\341L\026\364\005\";#/P\2479\024\321\267=\351\275|\350\037X:R'C\204\035\371\231>\225\267z=x\255t\317\231\270\016$=\006N\002\221\035Q\007\3039\340NH\272\203\234\025\234\003\";\254N\245+\351<@\350\020D\204\214\200|Z>)>)<*\000\000\206`6\272\215\231\336\372Xx\234\365\252\335\205n\244\023\215\274\nt$N\304mP\240\243\246\327`\035\373\3765z\r\032\235\006K\237\321\221t\236.\345A\177 \2623\002\342\322\334\312\026\325\370\345\372\367\236<\343\255\265\337\232~6k\306\354k\255\363o]U\256o]\227\370V\307\254\332\345:\346\257btmZ\214\032\326~\265q\214Qg\362ZN\361\255Y\366\231\253\312,\306\214\265\254\306H\353[\3729\256V1\316\313\261\030\267\3142\306\264JZ,\024\3128\3470\"\352\324\"\332\025\000'V^\\5\300\250U[\203\034T\304\031W\3426\321\000UD\037\242H\024\241)g\003\216\001\001;\036 \237\321\007\305\217S\247\3716x3&\217\304\363x5\235\251+\231^\245N@\307\342P8\001\240\256r\027\270\021\356\344\207\217\356C\246\277|\024<\227\321KD\2679\311\205D\334\336\\\335u\3520\037\346\221x\275\274\351d7\203#)\321\031\321)i \304\324\215:\025\004;\005D\204\210\264\347z\311\227\202.\205c\351\020\320!\005\2510\341Cy#\217\364\231\371\240P\236\315\245\352*S/\360\221<\221\327\362U\357\2027\342\215z\360\350<d\2271=\303\267\343\205\241\3445\241C\261pF9\"rF\214\274$t\223S\240\003Evd\020S\220\r9\r\020\3540\350'\034\017\236\027\251\023\2158\016\r\272\203\002\000\006\014\031\001\361\274Lp%\234\206\222\027\210.@\227R\277\013\337\310WZ\351+%/\332\231\272\017\363\223\202\201\361\364\340\301;\307\035\323Ni:\215L\227I}\344\313\213\207\307\216\335\367\355\327\324c\344'\207\213\213g\307\215\356:\353\031\252\243b:\353\203\361\311\361\211\361C\"yn\266\334\263\355Vv\031\202\013\250r{\230\225\312(4##I\222\2445R\030\010\006\210\325HP\273>R\271HIA\312\020\343\2141D\032\231@dD$H\220\202\2024mU;\275\013\250i\0333\261\243\035\337\325\333\010\037\227\362\275]\361\340\352\017\320M\260\344Gw\262\014c\225)\357DO\210y\303""\201$\007\245\352\3266\315\216\351E\350O\206\004\256\2060\315\353y\353\001\024\r\021\363\020\224\357$u\370\003?\340\274\331\321\312\334\010\311\267\n=\270\354_\340\204k\322\002\n\224\332\314\307\264\346\337\002t\216\365\007\205s\017\274\2669\2104\000\321o\3534\355\275\351\243\364LW\346\317r\366yI\032Sq\355\231\341\357\277\267\334\2646\264/[R\313\233I\201\312(\317\345\016\343M\263\035\226y\375\366N0\224\331\333D\207\025\"\314\333b/\035\266\213*\344jdv\303\273\361$\010\247\217\302 \334\250\301\270\264\224\307YA\364!\361\347\036\343W\233\3453p\225\2055L\025\304\035\206\254\220\374>\306FpXl*\207\2055&\007\305\017\006(\030\334\253\2216e\254\211\256\022\036J\"\302\002(\367\324\214\3065f\347\270$o\024\241\217\332\214\3344\211\256\233\201\032\347\361\316\230\024Py\374\013z\233\277\265\245\226\344,\234f7\272\312t\334\207\244\266\322\325\276\020\304\032\276\023\034\367S\235z\010\354\320\340\203\325\"\034\355P\0051\312\020D\030\304\005\242\251\301\340\306z\365P\366\021\006\263\320rv-\313\335\262\200\\\352\311\r\236\316f\031\312\363\013\225W\261\306\210`R^ZE/\221\357\002\325\262\233X\234b&\002\276^\275\221\231\023\317ne\030Pv\214\264'\252\251.\202\274\237#\217<\333s+\303\302\323\321f\200v\315\010\000\276b<\274\220*\370\243\004h\311\230Z\243\004\n\250\022u\025\241V2\356Jx\235\274\237U-\314\204\344\206#\244]\"\301QX \334B\304^\270\203\005\315\300\240\270\224\237\023\030_me\\\237\205\021\360\313\343fa?\223\354\213\317\276`\355f\271=>\223oa\216*R\324;\205;E\264Qx\r:\"p;\256\364\270\00329g\220\260u\200\360e\000\223\3751\337\304\261\234\204a\247\007\345\211UO\217\373\324#P\021\026aO-2B\334\3048\346\2511\030p\366\032\205\336 h\325\001\357\274q5\336\014\257\036\"E\253`Y.l\234\304\022b\254\213\217\215\225je\3515K^\036\375\032M}H\340~O\313\020c98\271bH\342\363\2335\244\24062`\206\363\303\275\337\373\307\254#'\227\210o\026\nz\263\234N\370\311\376e x\t@\226\240K`\020\264\010\270\227\250r\342a]\252@m[z\t\372\003\247\204\330\204=Ie|\240\300\227\350%\366\032\000\370\004\023\005I\2622\342\327""\221*j\006\256z)\311v\026\377\026\231Q\350(9\227\325\300\310\261\353LAMC\007!\014C7\231\021\264~\254?\245\343\242\014\177p\226\000\\yVg\017\341\351\235\350\016h\024\021\217\355h\017\211D\343\032Yf\021\360\340h\232h\036P\233\356\353\224)\2275\360\262\215\241\351\203\005\225 \311]\035\216\260\221\350'&\016n&,\365\316\302\n7\311%|\203$M9\276w&\253\014b\354\271f\007\257\205\323\035\033\3340\377wx\331\305\200\311rU\037[!\006\005\037\277\234\005\006\345l\236 \211\364\330#\315\273M\343\304j\200\215}=+\255\276}b}\216\224\003c\247\315\004\335\247\225\n{\226\232\334\\\343\tb\233\353\204\0325^\266\253\255\002\242\371\344b\344U\234\030\022\375\312\355\032\235s3\370\305\t@\350\200=H\343i*D\0132\314fyC\355$\212X\002i}\240\324\003\230\342\225\274\246\024\222\335ka\355\024N\203*\237\212\225\373\023u\205Q[7\204\244 }n\250\t<\360\357\341\360t\243\257\354\306\006*d2 \251B\214\305\327:PX^\323 \032i\"\004w\n\347\312dz\343\265N\3311\200\253\254_\210(\247\257\026\371\246t\004\302=^\006)\206\240\260i\300\"~\302JQ\277\331\027(\001\2635i/\320\317\204\341<\3443.\204\320\355\230\202\361\222\025\240\306i\370\262\364\020\334i9B/k\035D\345\206\026";
+    PyObject *data = __Pyx_DecompressString(cstring, 2442, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2652 bytes) */
-const char* const cstring = "BZh91AY&SY4\021=>\000\001\342\177\377\367\375\377mg\377\367\177\377\377\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000`\nk\347\r\213YZ\032t\000\000\000\003\310\000\356\001\204\224\2215<Bz\236\2313*\006\3651L\215<\243\324z\200\362j4\362j2d\000\332\200\320\362\217S\311\244='\223Pc\024h%\024\321\240\324\364\246\311#\364\223\365#&\203 \321\204\r\r\000\r\006@\000\031\006A\240h\032\000\331A\252x!\022z\247\345C\023\002\033Sj0j\036\202\032h\003 \310\014\010\321\246\230\010\302h=C'\242\000ES\377\324\251\351G\251\220\003@\000\003L \320\000\000\000\006\206\201\240\032\000\006@\000\020`\000\230\000\t\202`\000\000\000\000\230\004\300C\000\000F\000\000\002D\201\002d\005=\0016\2104\236\220\322z\232\236\221\3516\246#jdm=S#A\220z\206\200\000h\036\210zC\205\000\371\240$\014[\014`\230\215\235\317\305\333\327\260p\0020a\336z\365\355:\225u8\332\265\265\253\370<\375O\006w\242H\332\373\016s\236\371e\226\345\tBk\026\2605\233uPDE\024AUU\003\002\326\357<\314B\240\200\261O\376H&\2043\022X\320\224\211\035E\363\304\267\2666\010\360\177\372\010\220\"\205\367HK\021&:\315\027\322u\000\376\337\365>a\272\023\360\233\305\313kZ\243\325Y]\236\211\017:U\225\373\313\020|\260\007\304q\002/B\007c\306b@tN\021\216\203\250\003E\\\030\034\245,E\345\374\335e\254'\316s2\320\006\177y\250\005\224\310\3539\np\303\207\212\222\005$\232Y\002\210\347O\323\330\270c}q\320\201\032N \032e#D\001\212\007\006Y\321\361\313\\\352\362\345\013\241vX\342\215*A\230*\212A\271 7\215\226\337\233\255\307\200#\314^\370\300\351\014\024\002\263eY\036t`\333\233\322,\322\325\271\224\251\355S\253\360\234\243_k\354\354\304$\350?+\021\352i$z^\241\313\2379\234D\034IG.\360>P\355,r\346\344t\266\220P\216\243\366\177\027\313\201+\353\360\0102\r3\020JE\214\001\023\372\020\\]\3762;\367\033\374\347\203?\247w\277\332\033\031\323\354\370\246\001\367\253\227\352 \002y\221)\252\376\364/\316\230\210\203\372\370\223\374\260\354\342\030\264\3174\333\231\025\000\013\264\323\0354\222\313}\271is\310s\222\324\204\323^\323`\221\221W\365\372\317{\335\000\t\005""\0252\2125\"Ch0H\225ed\n\2345!b\254q\272\250\227\322Z\263e\203&\344\332\315\221\361mpa\254\255=N\260\225\320bH\363\362\202z\261\221\364i\007\311?@\254N\021\337\313G\253\310l\231\255\\w\027\022\235\342\331\376\207\336\222?Jf\237\217\324k\000\217\037\217\211xl\r\332l=4\016\252\343\331\265\321r\305\3158\336\303Q\373\271\330;\352@\017*\221\277g51\354;T\204@\213\270\001\367\030\221\023|\322\0147\224\374\223X~[\237\221.\236\210?\357\334o\320\035A\3322\204\244\337\256@N^\241Mb\211\357tLW8u0dbX$\212 \020\002\3008\300\360\t>!A\255I\257\232E\302\322\342\200\314\370\t\027\001}\233\276~\371y\207\371\307\254.\207\301^-\330\006u)\270O\334\250\0143 \206*\3574$\002\276\334\362\000\224\3072O`\311:\223\002\361\201\252\231|\177\202)+\261\304!\r\254\357+l\360\261)IP\031`\017e\240*;\007\263P\027H\006\\\024\245\207\033(\331\241\346\000\375\377\026\316\t\"\001\004\005o\013\351`r*\275a\255\265\027\225q\212MXA\315\330r\352\302\354\232\034\342\217\314hm\220\205t\313\354\035?[8W\240\371\210\223\230}\211k\232\016\010:\006j\002\002\375\000\343  !\204\005\270\361\340\026\305\342r\0271\250d\004\323\007\303\301\354w\276q\231#\305\234Aco 1\211$\210\324=\023\311\372/J*T\3524\316\376\363O\027w\3209\0338\036\177pS\2401\010\033I\261\266\305J\022\031n\322<>\216]~n\217-\372`I\244f\262\325h\256d4\364\277\266\362\264\243\243\236\334H\371\353\215\336\357\230_\031\300\364q\301(\367\246\266\006\264\214\2066\242EC.\3229\376\226\315w\241\243\375\261pC\221#y\nl^\326Zc\355>\377M\375&\t\335g!,\202\352\203\024\325\361\nf,\204\323>\254\2517\r\275\356\367\023U\262Jt\204\033\250c\353\275\027J\236\327yw\324\354\331\356\365\377V\212nQ\315\035so\327%\343\254\353\321B\314\3620I<aZd\004\244a \244\023\200\221\017\246/\223\272&Nv\224I\266\346x\251\006C/\013\322\256\022\226\246\276\026\206\356\213J0\311wS\21643\024M\\\214\342\352\375X%\217\212\244\254\3423\322\327\250\253f'\376\rX\340UKe\264\337J\001\330\233\211\274\007\325|\332\005\361{\364i\216\356l\211kQ\024\303\233\253C\206\343j\036M\266\333m\266\333m\266\334\267\315\021""\306\363\r[\360^\000;\260\2619\223p\312[\202X\241\231\033\231\343>w\207\177/\207p~\277F\317\251\3545\035}\002\270\014\253\367B\240\027\225K`\267\241\273\227*a\342\332t\373\334\322\310+\314\374\034f\243\n}(\370=vRU\253\324\333pKf\231\037\r,\307\237\000\323\033\324L\3621d\201\256\347\355\216\314\r\340\274\275$K\372;\265P\335\010\260)\203?A\2667\ter\317\247\n%0Ok\336\245\346\263)6\321\252\205r\315\354\272\340C\005\031\005\220\323w+\204zC\005;\211\317hS\347\013\001\337\253~u\313~:\261'Y\202\231\3404\273\373\316\317W\245\030\366F\360\223+\335\342G\273\317\342`\316\005(\023\025\363a\254h\020|\ru1]\312\005J\300[\267\236F\206\372\031j1\372\346\301|\232\036\217e\350\262\341\000,\035M\260l\005\255i,\"\255\250\001\214\313\243i\312^:\334\035\242\222/\310\007H\005\252\363.\310\253m\277}\362qp\256\276\231Y\007\273M\362Dn\264\271\367\033+\r\216'\335)M\014\210DD\014bo#\343\251#\216\245\024\236\216\344\031\336\255\276R\013\250\256%\253gL\213\344\3366\272\201\016\001\302%m\355\261\261\326\350\272\362\342\364d\006\022 bl\233 \232\200\206l\333\244\351@Y\221^\033x\360Fl.ff\301\351\251n0\364G]\202\310;\035rH\304\245\321\224\021\275\270P\352(Rl\247\337$\022\232o\253L\002E\273\007\002\306PT\2034\247!\354\324\233\033\017[\007\207G\241\000\266\261&\003\032\003\254\313N\225\246K\216\206\202\277\243uu\335~|\302gdC,\301VQ\0051\353\356x\266\354\3678\212g\257.69E1\353\327\257T\221\212e\367{l\025\0244\013 \037\227\330y\376\267\327\017\005\340L\254\204\031\\\323\026\376@\324.\200\001e\272\244\330n:\325\307\016\0027nlu\337\227H\021\235\014\262\240LR|\\\345\332\221t)\016\276\322\000\030\222\205 \212\242\022\354\363\346r\337\006\361\226\210\277\223\254R\263\336\010\300\250TGM\264\222,p9r\002\200\240(*\010 \202\010 \202\010 \240\240(\n\002\261Tp\002\200\240*1\266\221[b\264\330\340\313\010V7k\3321\233\363\305QN7\304;f\007\017\031Z\"+h\323\316\226\027\330\017\206\355i\215n\326\022`=\205Z\337=3\370\223\037\333\234\211\263g\232\353\300\236\031sr\337#\177Xs\307\026\2440\237V\362s0p\007\210\t2V<\254\315Ws""\255\363\306\273\214p(L1\270\200\2002\014}\350&\225\253VL\223\033K,\247\"\344OW\252\371P\214`\265\215\263X\270\014e\336\225\254\274Vtm\321\360q\267ar\332gs\300\311\005\370gZ\031l-:%\340\321[\346\212\304\212\340\235\335\021\034|\376S\234\363\227\360\374\310A\241\t\t\030\24349\360<\247\365\260\237\230\342^`\323\030\273\271\251\221M\261\344]\275\027\314+\233m\266\333m\266\333m\267\333/\276\327\037\016\022\261\324r\221(B\3519,5\370\000_zW\2151\247\273K\202\362\224\210%\301\304\020C\005\362\304\204\303G\247\330\327\341\272\314{\343\254\373\263@\007s\n4L`I\206\271\306\220\210>\327\224PY0\265\314K\321\302\231_\010:\331\005\271\342\246\362\013\331\360\331\247\r\0270\263+\333\342\253\227\3603_\247\356\212F\302'\320TH#\273\237\215\247\3261\236@\201:\t\353\335\276!a-\032`\213%\220F#\027\324\340h\206T\347\r\221L[\336E\313\361\202\034\010\305\201\202\n\3604!,\213\373\202u\241\321\\;E\3026/R\021\020\322\"'\032\265\222E\350\217\024\234\262\255,\270\347\262\014eV\323\033n\274vG\032\243\007\020\003w\233\225\177\001\204\236\330\324ydC\322\000\3142a\220\255{l9&\264#7\303\031\336\356d\013\231\237s\372\326\002\244Ba\220\337?_\375\023\027\t3\2403j\353&\266p\374\036\\q\214'\355\223\223\231\337\021\305\017\251\250\220k\235\341#\366%\276P\020kh\276\000\331\221$\240\326R\241+\263>\351-\254}\311D\271\264 \223'Pc\365\240\3536'6\027\225\341\005\345`7Ud\203=m\232\251\262\247N\335;6\366\213v\273\231\256\322\261\363\325\322\244\324\330\274\232\317\245v\371\216Mu\327\356\260\255\217\"S\362\031\220qR\006\tH2\241\001#\343\334 \237\254\240\2120\270\374Y\210\362s\372>O\263\325\177\377\213\271\"\234(H\032\010\236\237\000";
-    PyObject *data = __Pyx_DecompressString(cstring, 2652, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2678 bytes) */
+const char* const cstring = "BZh91AY&SYeI\207;\000\001\326\177\377\375\377\377\355g\377\367\377\377\377\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000`\nk\347gqc\032\001ZJ\205\000\002G\220\313G\000BQM\021\240\2464\321\247\221A\344\236\0224\364OD\310d\364'\244\320=A\243@\310\003M\251\246hL\232y c$\3101 \023@\232*oJ{T\375S\312zi<\247\251\204z\2154\r\032\000\r\000\000\000\006\206\200\001\241\241\246\205T\363Jz!\204\304\320\301\003\001\032i\200\001\001\200&\000L\214\000\214\000\230\r\020\321\240E?\324\251\351'\246\246\200\000\003@\000\000\000\000\000\000\000\000\000\006@\000\002\006L&\000L\230\000\004\304\014\000\000\000\230\023\000\214\000\000L\000\000\000\221!4\010\321150G\242\032i\251\352\215\211\250\321\3522\0316\246\20354d\000\032\r\000\000h\323@\304r \020\032\002h\251\242\252\"\241\361\335\374X\263f\327\010!j\336\373m\366\373\272Un\274\032\236*\331\377O;\334\364>i\3127[Z\326\353\251Jg\377\263\026=A\265\324\352\304\022J\010\020\222D\r\250\307\271\316\304*&\304T\247\376H&\2042\362\\4\224\211\034e\320 \302\275Ez~\000D\320\211\027]!+p\022\201\333\215\210\302\264\264\003\366\373g\272\177\002ZB@\234\233'\262\002w\300\303\315\010I\306\016B\244\210\033`\004\212\223\000\245\207\020\002\t0 \036\006\320\240\333\000\274\302\316\203\225\032\206s\337\333\315\256W\025\347\377{\376\243\347\217\257\030A\365\014\337\266\025\017\271\223\1771r\304@t\363:\300\364\354.\260<S\027\177\222\202\351\322V\265f\231\330\211\210`\364\316p\020Sg\\n\351\220ar\242\300\274^q=*\314\2334\301q\033l\2349\315\0073\374m\363hj\336:\020*\254A\003\321\373\205\003\324(0\016Cw!w\255P\263\340\360\024\372f\316\033\331\301\232\306\177\034\306\366|\271\236\355\330\004\235\203\355\261\035\346\222GS\3149p\347\231\210\203|\224r\364\001\354\2071S\223n\345\023#\210\366=\257f\342U\263\343\0100\014\371\204\022\221R\360Eh\361\0304;\367a\201vG\236`\251\257\037\032XFRN\236[`\032\020\"\347 \001q\014K\275:\264\036\001\317\004\221w\243\277\177\345\275\216\370\343\345}\226pM\020\000\035\\\262\226Y\nS\217\366l\356\351\214]\251\0140\354\371\020\016\242Z;""\356l\245(\314\004\341\270\366F\217I\315\t\300:\tQ\314\217x\203\334\224\245]0]\001\237\034t\274>\276\016\2176\227\303\271\333}\203Q\372+i\325\230T8on\202y\260\221\341\244\036\254\372\005Rp\216\346\354\236n\311\244\231\240-9\213I\334-?\320\372\262G\313\231\227\365\357\032\000#\257\327\332\\\032CV\366\223\312\240q\341\330\336s[\260wg,\365\354Z:\263H\376\303\r\006\332\323\373\337b\360a\177\270LAO\260\001\376\t*\027\373\262\013\365\016o\266\220\370\035^z'.KE\252*\270\001(&\n81\212\270\214\001\266a\224[D\203[\025\037k\305\337\360\337G;e|\313I\003\363\"\340\364\313\376A2'\337\313\252\227\316\372\313j\0039\361I\026\201u[\272~\022\342\377\345\036\000\266\036\305p\265^\031\354)\250O\252\300\030g \206+5\231\022\001]^\t\000Jc\231'\244d\235\204\300\270`f\246>?\265\024\225\270`\020\206\326{\213+\236\372\222\224\225\001\225\000\362V\002\301\324<\231\200\266@2\320\245*8\323F\314\216\330\007\373\377\217F\342\324\004A\305\2308.\214\023y\234\370\254\332e\267\3177\217ra\205\234>\216\336o\\\310\340\024{\346F\364\204+f]P\342\371\231\341\\\203\335\"Na\351KD\320lA\30230\020\027d\006\331\001\001\014 +\267n\300\256\017\003p\272\306a\334\241\220\006\r\3377\240/(bO!\253\314\204\252\210\210\204\214\2579\220de6e$\334Zy\243t(\031o\363w\315\306\235\207?\302\024\350\014B\006\322lm\261R\204\206W\224\216\236\332\335|m\235\332a`r$^m\272M\033\303\"\260\247aA\030AA?*\206\377cY\362x\302\361\233\016\215\267\245\035\351\255!\241#\021\215\250\221`c\312G\007\233\247E\310h\366\360pC\221#Y\nl]\334r\303\272\373\236U\334E\351\333W!,B\333\001\212f\214\305\342\2501E\016s\240\364\311-\n\211\236c\"K\340\304\014\360\025\341\241\023t;.(\2377k7'_\317\201zsl6\267\245\302\343\327\305\361\331\200\222\034T\001%U\215f@JE\362\nA8\t\020\370\242\351;bd\347YD\233nf\375 \304!@(Lls\256G\273D%6\223\232\313N\3444\326\002\360Y\346d^\323\217:\ta\277a*\270\214\371V\345\0266`\177\321\252\233\013\024\264\327-t\240\035\204\334M\336>;\246\320/?\303F\230\355\353bKB\210\245\375n<\215\232\215\344<[m\266\333m\266\333m\271k\232#m\305\371\265""\336\272@v\337Rs&\341\224\256\304\260C153\256{\316\376\341\273\305\250>\217\016\237;\310f98Eh\030\331\353\005\200\027\010\223\230\035\004%3\267\0138\231\r]\246\303\255\002;\013\2015\345\254\2071\273\216\031\027\030\305\\\333pKNX\236*U\217>\300\313\013\226yP\354\261f@\3273\352\035\254\017\217\260\027o\214\211\373]\234\250l\204T\024\301\236&\330\334%\232\325\227\035\364J`\236\267\276\245\317VRm\2435\0131\316\367\255\264\020\301F!T4\335\252\321\035Az\235\244\347\250)\357\005@\350\315\263=\230\353\3036\004\354\230)\236P\322\350\3508{\335H\303tk\t2\316\316\372<\276\r\366\014\330R\2011]6\032\006\201\007\232\327\033\025\274\260*Y\001^n\t\031\032\350c\230\303\3204\213\324\310\356\371.EV\310\001^\3547\240\322\013B\312W\305\215\250\001\214\307\207x\335.\275\226\207(\244\213\261\001\322\001f\270\307\261\0266\333\370\217s\213Em\324\306\250<\272k\222#Ue\301\250\323d68\2374\24542!\021\0201\211\274O\035\204\215\271\224Ry;Pg\271W\\\244\026\321ZK6\236)\027I\274+m\002\034\003\204J\272\333cc\262\330\266\342\322\344b\005\362 bl\233 \232\200\206i\336\312t\240,\344Y\263{n\304gak3\232G\226e\250\277\273\034\225\n\240\354;1H\300\245\261\214\021\255\270P\354\024)6S\330$\022\232o\217+\302E{\003\201a(, \316\224\344=9\223ca\3460w\360\364 \026\363\022`1\2409\014p\324p\264\351\300`\r6s\307\031\322\375\200P\332fBH\003\0273\010W^\342\252JK:f\205\370\333\246Cm\241]x\343s\210\251B\223\344 \014\013\"\001\264\000\267y\343\237\320\370l:WI2\314mi\213^\340j\027\010\000\261\325a6\032\216Ei\263`\215Z\233\035\232\361\342\0023\320\307\032\004\305'\265\316\\\251\026\302\220\354\356\240\001\211(R\010\261\020\227c\2379\273\\\032\306V\"\355\316\310\245\223\3262m\300THw\033G\254x:\350\n\002\200\240\250 \202\010 \202\010 \202\202\200\240(\n\305Q\340\n\002\200\250\307\033Eq\212\333\210*?\276\025MZ7\2063^|\025\024\343\\C\256p6u\313(\210\262\261\227:W\335P<V\350LkV\200\223\001\351,k\\\362\317\347\246?\2459\023f\236\335\267\001;\361\353n\020n\3313g\\8c\254\324\206\023\344\330Nf\016\000\332\004\231*\235\246d\254\326""\354\272xY\254\302\362\204\303\013H\010\003\020\303\275\004\322\255\2262d\230\2216\332\367\t\220\373\271Tt\003U\204\2443\274\3250\025v\3612\221\323%\004\224\027\0216Y\204\316B\371\253\005\244\nY|`-\314$\370\023\300\210\215\036DY\3026\027o\024G[\237\200\3409\313\266{\350A\221\t\t\030#:\034\366\035\243\3640\237l\332\217\221\321\241\004jrM\267\350\334j\316\265\002U\363\021\036\304\200\000\000\000\000\017\226^\303[zvJ\247\031\272D\241\013\210\334\257\321\322\001u\311\\4\306\236\254\255\013\212R \226\307\020A\014\027\340\211\t\206O/KGN\252\261\353\216C\326\232\0009\230Q\242c\002L4N2\204A\363\373B\202\251\205mb]\033)\213\342\021\036\032z\341\313\273\226\257.(2\273q\270\357\373\322\247\321X\213\374\031\"\276\313\216\253\004\260*$\030<\224\034\355c\2161\330X\260\315/\305\201\004\264o}L\340CT\342-\354\234\r\021\214\356\200\365\345\263\227\374\362#Y\340\203\341 \254(\201\247\013\243r\221l\356!/\372\302gyCl\3146\307\213zH!zT/RSZ\327$\212C\022u\361\325\0203\177o5\277(\367E}4k\254\2315\237W\306\263!\333\000\223\275'\367\302`\010\035;FT\243\211\217\342\027\247\254\001g\330\216F\330\367\353J\241\251tV\320z\377\3012\024\275\303\375\252\316\211\337\216R\"\275\207\205\307\037\213\220\303\244-r\225\361\311\246\315\277\233\355.^\311\214\017\317\324\037H\330\365Q\003<\250XT@\242\"o\224\304\016\2558 \037.|\322\253Q\322\234\356\276N\351\204\324M\311\305\032Y0\314.\246J\272\222e\256\227\351\340\260\226\004\013\t\256\026S\350\210\024\023\354xQ\343\267\213\211\332\257\265\262mlvfK\251\255\365\357\324\\8\362\253T\233\2279\376\234\271n\313R\264K\371\256\221\214\371\217\030\202P%\3315B\002\207\202\004NP\025\374\331\204vx:=_O\216\357\376.\344\212p\241 \312\223\016v";
+    PyObject *data = __Pyx_DecompressString(cstring, 2678, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2419 bytes) */
-const char* const cstring = "x\332\245X\313s\023G\032G*v\027\262)X\003I%\265[[\355*\300<\005J\031j\311\022o\004\266Ym\002X\310\346\025H\323\232i\311\r\243\231\361\364\214-\001I8r\364\221\243\217:\316QG\035\347\330G\037\371\023\362'\354\367\365\214\244\031=\300&\007k\246\277W\177\257\376\3657\376\226\224,\213\230\242\311m)\034[\022\327\343\0067\205\335\030\022\311)\2234\003\351\223\032'\3026y\213\233\204\331&\261\035\237HK\200\370\215\240^\347\036\331\024|\213\230\016\227\232\305[\256#9\221\276'L.o2\2338\266\325&\206\307\231\317\t#\265X\311_g>\021\222\030\216\355\213F\340\004\0226!M\336t\274v\001\264\320\024\223R4l\342;\004\224\315\213\332N,\201[&B\211\341-O\370\254f\361D v\252\3569\315\017\351\352\260\310\226\360\327\211\337v9\231K\350\276\307l\251\303\030\252\304b\240! U~*w\213\351\204\2118\t\261\320R\323\365\333D\25630\355\007.8Ww<b\264\375u\307.0\317c\355e&,H+D\230\204\261\\B\362\242\023@(e\355\235\023\370\304\251\223\232\023\330\246$gX\013\2668e\236-\217;\022W&p]\307\363\271Y\2667\231%\240\204\216\311/`U@\030\266\2323\346\01081\007\236`\224s\027H\003\264\372\302\261\257P\010\275\315\365\333:\372\373\030=\270p\307\001\007u\335n\352\0200X\223[\242\306=p\035\362\2135\207Mtqm\262\262\264rq\376_\363\272g<\376\034\266\227\340]\315\260\240\254\320+\030S ,\0376\303\334\313\002)\327I\333\t\210\315\343\214\270 \227V\360\327\271M$\367\361\205\314\351B1\037\342\246\240\016\215;\227$]lr\324^f\226\344\205\273\231\344\201\313I\3671\303\340\262\237\315\252\317]\322dm\235?h\366\227\334s\206\211^\263u[a\211\034{\223{\3205>o\342\332\251aP\205\205\271\263\377a\246ImL\017\006K C\227[\206cY\350\016\024\246\300j\306\365T\243\243P\354\354\302(\271\337_\013\246\220\270/\327\2737\014r\006\313\324\320\255\205\021\340I\345-\237\333\276>7\303C+d\254b\242\227R\274\344\344\372w\344\362X\343\331\016\224\256\316\002\313'\224z\334\014\014N)1\003\035\250\355\330\027\241\224\233\202Y\3005\204-|`\306\341.H\317\270Tg\026\370M\r\307\343\227\250\301\\q\251N\265Yj\352\316-\270\355\326\365\030\001\314L\264\3434l\306A\320\031~\226j7""\244\023x\006_\010\006\365`\226\345\030\032Tpkb2\237\025&p\343\236F\213\t&\025J\325\233\345\362\222e\tW\n\231>q\351\367\302 /q\336(\035\341B+J\350\300)|V\313X.\030\216\333\316\020\320\335,\241_\303\021\352&\372\234$v\"\213o\004\320\354{\220\250\307\230\363\001\ta\373\023\331\037\320\034S\321\017\352:[\031\262\336 C\251C\376\263\004@k:\226\026M}.G\322\242\251\272\262Yr`Y\264\3411S\360\021\267\032\334\2472hR\247N%\270\342q9\211\335\344&\305\003\226t\363\036\205\223\220\367(\r\t\233*:\321s}3x\024A5\303\260\000\302\306\251M\326\032]\307\321l\0014d9\302\036]O\227\014&6X\314\230\336\200\031\376\204&\312\360G;)fN\325\032\025\267yC\337\007#\304-\312\361\032\036\243\"\312g\263\017\000N\307\333\324\265&\207\256\351\323#O\263'\204\220f\217\006\242y\323t\306\204G\316\031\254A\306\265\230\221\365\307\203\253|\023{\264\016\2705\302\031?G\023(p\225d\tA3\263\366\001\276&f\"fL\317T\206?!\354\014\1774\374\2309UkL\334\031\207\222\255u\356q\230m\312M\230\320\000\202aJ\242t\245\335\202\277E\030g\350\035\270g\357\361z\025<\340\266\301q\032*\014\007#\270\332\001\352\373\227\r\215\347\013&\333\266!\034\000}\017\3067as\211\323DM\357]c\222\307R\024sj\300\005\213\003\016\245\375\027\300\013\274\273q\t\232\020\002\205A\315\3405f\2740,\211\367\210\001\343\214\217@I\001Q\300C:\270:\262\267\305\304\013b\342\2350~\rd\221?\005\366C|7qn\243B\322x2\200\344\300\250\311\355\240\251\347Am\212{\236\343\245\246\205\202\236\026\n\331i\241n\261\206\304\333\000\206\224&\363\223\311tp\033\014.\200!\346g`\236\322z`C\032\307\021\376c\240\376Q\034\3770t\353-\343\021`\340L\032\254\327\327a\202\300\027\323\342\002zJ4q2\207'\316\365\230\267A{\304\263Z2\260a\250\003h\247\264\311\204\376me\200\034\276K\360\243\004\2200\203\332i\240\236\200\315\023\340x\024\201\323\240;\300Y\374\206\000\037\0343\200\364P\2335\207\277\320z\370'\373\350\013$\000W:\300\335\001\324\016\320\025\032\004\313\nM\023\203\221\003\363<\346!9;.\364y\ns\307av\034YG\3004\205\237}\310t\035\370*\332Ja#\2450\242\352f\304\203\247\337\327\271\361\002""\373G\257\222\262\342\253\356r\375\026\330\2560^@\n\226\354\276\334\246\376\350D\033:4\235\223\341@=6B\016\010\320\000\360\332\020\022\232%\003\315\t\032K\335\361\022\033Hr\253\256\247\315$\345\360\226\214\356\251\031\224N\230GcC\320Q@\3664O\030MhH\307\204]]\351;\360\347\005\360Y\206\301\370 \005\277)\020\237\200\333\023\240z\024\235\323\200<\300\340\004v!\177P\334\300\205\362s\370\336\014\342\037\251\001\270\365\246\264{\350\013\365\305\3450\027\236\010\037\251\205\307\352\361O\352'\256x]\325\237\253\347/\200\177\344|\247\330Y\014\017wgpQ\014g\302\223\241\350n\244\027A\357\207hS\255=QO\352\277\0378\320\310\335\310\303\343F\376f\376M\351\375\241/\325\227\337\204\263\341|\270\261{\350\257o\257n\037W'\316vfv\077\077\276]\334=t\030\236\352\370\205N\251\263\026\236\356\376\251\373\260\367 *E\225\367\307fwfvf\321\273+\352\312r\217\365\374\2508P\277\324\331H\324\217\252\243g:\271\316?\303\315nU}\017\236SE\237e\264\256\251\325\265}*\336\352mD\007\243\322'i\225\325\332\375}*\376/\232\215\346\243\266z\370H=\372Y\375\014\034C\031\346>\215\374\020\025\243E\265R\37145\330\371\361\3365\337\243\346\217X\246\310T\367\252\252\372@=x\250\036>UO\301\375\232\252\031\323M\315$\373\242\366\252\252`\267\355s\337\333\260+\213\002\250\252Z\373\260\333\375\275n\307~\202\231'\373\314\316\035\330\311WUh\353\247\237\254\311\024\263\224\345)\257\rG\342en\021O\306b\236\342\203\346\237\345\367i\367n\264\241VV\325*\346\372\323U\241FM\325\224J\276\004/^\345\226\320\231%p\006\036\317\362l\277>\255@\333\251\n\224\003\252\017\235k+\333W\376+\260\365:\267\214&\227\301$<X\276\266_\313`\366\236\272w_\335G\332\037\3205\225\351('P\301k\360\343\227\334-t\347\026\270\003\217Z\336\330\227W\200\225W\302Jhv56]UW\313\321Lt2\022p\002\006f\000L\207f\316uf;\337usoJ\277\377\371\300\341\343\352\030B]\245\303\303b\270\330\315\241\3127o\253\352o\000\261\273\237\037\333>\377\256\362\216\355\036\";G:F\370Uw\246;\213\022\337n\353c}m\033v<\372v#q\003\r\255\206\032\223\343\327\257c\237\006\254\361\365\251\356\253\350\264Z""\201\343\n]\371Z\275\376%\341\227z3\275\223=\021\365M\337\354\025{\213\321aU\201\364\201dC5\240\250-\310V;\267\212I[\315\257\345\023\321\305^\251\267\032}\r0\200\347\363\037\357\026w\376\262\263\321\201\300.\207G\272\254\333\352I@\267\342{\304y\270\007\346\303R\330\307\366?\022;\326\346D\347Q\310\302\227\332u6B\347\335\177\367\352\321-U\205fo\251V;a\237\336a;~\247\210)+tX\307\017\257uK\351\305R\357\357\321\262\272\007\260\002}\374\253\372\3657d\302]\3259\331\021a\177\3579\210\357`G\353A\277\204\007\303r\267\202\213\230^\016+\211\\\2329\324\003~\370\274\227\353\235\350U\322\026\326z\347\243\373\252\nx\010\275\372\033\244\370\373|)\377&\267{\360\263\267\347\267+\361\300@\342\331\007&8Z,\246\246{z%\236\250\212\363\331\001?\363\2371r\356L2W\321\253\324\240(\237f\377W\217\313\027Hv'\327\007\203\r\271\307\355\350\310Z\1778\240(97\260\007\243*\263\264\321\263\007\246\312\3571\334\253\026HR\375\203\343\026D\366#\274\343_\025\226\253\023\"\316\360?%\344\361-\351\030\345\243aO\327\270\373\177s\021gP";
-    PyObject *data = __Pyx_DecompressString(cstring, 2419, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2437 bytes) */
+const char* const cstring = "x\332\245X\313w\323V\032\307.g&\264\035\230\360\350L\317\314\231ss\0164<\r\356\t\231\241C358\241\236\026\210q\302\253\320\313\265t\355\010dI\321\225\022\033h\3132K\226,\263\324RK/\275\324\362.\263\344O\350\2370\337w%;\222\037\220d\026\261t\277\327\375^\367w?\345\033R2M\242\033-n\t\303\266\004q\\\256q\335\260\232\273DrF'-_x\244\316\211a\351\274\315u\302,\235X\266G\204i\200\370\r\277\321\340.\3310\370&\321m.\024\213\267\035[p\"<\327\320\271\270\311,b[f\207h.g\036'\214\324c%o\215y\304\020D\263-\317h\372\266/`\023\322\342-\333\355\024@\013M1!\214\246E<\233\200\262~I\331\211%p\313D(1\274\351\032\036\253\233<\021\210\235j\270v\353C\272*,\262ixk\304\3538\234\314&t\317e\226Pa\354\252\304b\240a@\252\274T\356\312\351\204\031q\022b\241\305\226\343u\210Xc`\332\363\035p\256a\273D\353xk\266U`\256\313:K\3140!\255\020a\022\306R\t\311e\333\207P*\312;\333\367\210\335 u\333\267tA\316\2626lqF?W\031u$\256\214\3578\266\353q\275bm0\323\200\022\332:\277\210U\001a\330jV\233%\340\304,x\202Q\316^$M\320\352\013\307\276B!\3246\327o\253\350\357c\364\340\302\035\033\034Tu\273\251B\300`un\032u\356\202\353\220_\2549l\242\212k\221\345\305\345Ks\377\232S=\343\362\347\260\275\000\357\352\232\te\205^\301\230|\303\364`3\314\275(\220J\203tl\237X<\316\210\003ri\005o\215[Dp\017_\310\254*\024\363 n\n\352\320\270\263I\322\215\r\216\332K\314\024\274p7\223<p9\351>\246i\\\364\263Y\363\270CZ\254\243\362\007\315\376\222\273\366n\242W-\325VX\"\333\332\340.t\215\307[\270\266\353\030Taa\366\334\331\3770]\247\026\346\007\243%\220\242+m\3156M\364\007*S`u\355z\252\323Q(\366va\230\334o\260\005\335\020\2701W\33375r\026\353\324T\275\205!\340Q\345m\217[\236:8\273\247\326\020\261\212\216n\n\343%'\327\277%WF:\317\262\241v\r\346\233\036\241\324\345\272\257qJ\211\356\253H-\333\272\004\265\3340\230\t\\\315\260\014\017\230q\274\013\302\325.7\230\t~S\315v\371e\2521\307\270\334\240\312,\325U\353\026\234N\373z\014\001z&\332Q\032v\343 \350\014?K\265\232\302\366]\215/\370\203\2020\323\2645\205*\2705\321\231\307\nc\270qS\243\305\004""\224\n\245\332\315Je\3214\rG\030\"}\344\322\357\205A^\342\274Q:\304\205^\024\320\202\023\370\254\236\261\\\320l\247\223!\240\273YB\277\206C\324\r\3649I\354X\026_\367\241\333\367 \321\210A\347\003\022\206\345\215e\177@sDE=\250cof\310j\203\014\245\001\371\317\022\000\256\351HZ\024\365\271\030J\213\242\252\312f\311\276i\322\246\313t\203\017\271\325\344\036\025~\213\332\r*\300\025\227\213q\354\026\327)\036\260\244\233\367(\234\204\274GiH\330D\321\261\236\253\253\301\245\210\252\031\206\t\0306Jm\261\366\360:\216f\023\240!\3131\254\341\365dI\177l\203\305\214\311\r\230\341\217i\242\014\177\270\223b\346D\255aq\2137\325\2050D\334\244\034\357\341\021*\302|6\373\000\340t\264M\035s|\350\212>9\3624{L\010i\366p \2127IgDx\350\234\301\032d\034\223iY\177\\\270\3137\260G\033\200[C\234\321s4\206\002WI\226\340\2672k\017\340kl&b\306\344Le\370c\302\316\360\207\303\217\231\023\265F\304\355Q(\331\\\343.\207\341\246\322\202\021\r \030\306$J\227;m\370+\303<C\357\300={\2177j\340\001\2674\216\343Paw2\202\253\035\240\276\177\331\320x\300`\242ci\206\r\240\357\302\374fX\\\3408QW{\327\231\340\261\024\305\234jp\301\342\204Ci\377\005\360\002\357n\\\202&\204@aR\323x\235i/4S\340=\242\301<\343!PR@\024\360\220\016\256\216\354m1\366\202\030{'\214^\003Y\344O\201\375.\276\3538\270QC\320x2\200\344\300\254\311-\277\245\006Be\212\273\256\355\246\246\205\202\232\026\n\331i\241a\262\246\300\333\000\206\224\026\363\222\321tp\033\014.\200]\314\317\300<\245\r\337\2024\216\"\374\307@\375\2438\376a\350V[\306#\300\300\2314X\257\255\301\004\201/\272\311\r\350)\243\205\2439<q\260\307\274\r\332#\236\325\222\201\rC\035@;\245-f\250\337v\006\310\341\303\004\277J\000\t3\250\235\006\3521\330<\006\216\207\0218\r\272\003\234\305\217\010\360\301\326}H\017\265Xk\367\027Z\017\377D\037}\201\004\340J\007\270;\200\332\001\272B\203`Y\241ib0\262a\240\307<$g\307\201>Oa\356(\314\216\"\353\020\230\246\360\263\017\231\216\r\237E\233)l\244\024FT\325\214x\360\324\373\032\327^`\377\250URV|U]\256\336|\3131\264\027\220\202E\253/\267\241\276:""\321\206\nM\345dw\240\036\031!\007\004h\000xm\032\002\232%\003\315\t\032\013\325\361\002\033Hp\263\241\246\315$\345\360\226\214\356\251\031\224\216\231GcC\320Q@v\025\317\320Z\320\220\266\016\273:\302\263\341\317\365\341\273\014\203\361@\n~S >\006\267\307@\3650:\247\001y\200\301\t\354B\376\240\270\276\003\345\347\360\301\351\307?B\001p\373Mig\352\224<u%\314\205'\303Gr\341\261|\374\223\374\211K\336\220\215\347\362\371\013\340\037\275\020\024\203rx\244;\215\213b8\035\236\016\215\356zz\341\367~\2106\344\352\023\371\244\361\373\241C\315\334\215<<n\344o\346\337\224\336O}!\277\370:\234\t\347\302\365\235\251\317\266\346\337\236\220'\317\005'\202[aqg\352O[\017\344\311KA5\340\341|\367Tw\255\327\214\252\021\333\371\313W\333l\033w\230\272*\257.\365X\317\213\212\003\345\313\201\010g\273\323;S\307\344\261\263A.\370G\270\321\255\311\357\300m*\351\263\214\3225\271\262\272?\275[\275\365\350pT:\210RE\256\336\337\237\336\177\243\231h.\352\310\207\217\344\243\237\345\317\300\321\244\246\357\317\306\017Q1*\313\345\352\201\264`\337\307{V|\217\212?F%\250\220.\357\325d\355\201|\360P>|*\237\202\357uY\327&Z\232NvE\345\025Y\305\036\333\337\256\267\261+\"\037\252)W?\350s\177\247\333\261\223`\345\311\376\022s\007\366\361d\r:\371\351A\025\231d\2464]\351v\340\020\274\314\225\361,\224\363\024\0374\377,\277?\263w\243u\271\274\"W0\313\007\326\204\342\264dKH\361\022|x\225[DW\026\301\025x<\313\263}z\264\014\315&\253P\010\250:\264\253%-Oz\257\300\324\353\334\022Z\\\002\213\360`\371\372>\r\203\325{\362\336}y\037i\007W\325\245nK\333\227\376k\360\342\227\334-t\346\0268\003\217z^\333\217O\200\213W\303j\250wgp5/\347+\321tt:2\240\355\007V\256\204\237\204\377\354\316(+\347\203\231\340\333n\356M\351\367?\034:rB\036\277\030\224\024\262\025\303r7\207\032_o\325\344\237\001Mw>?\376\366\302\273\352;\2663E\266\217\006Z\370\327\3564\332\370l\353\233\267\352 _{\013\033\036\333ZO\274@C+\241\202\337\370\365\313\330\245\001kt}\246\373*\372J.\303\021\205v|-_\377\222\360K\275\351\336\351\236\021\365M\337\354\025{\345\350""\210\254B\362@\262)\233P\3206\344\252\223[\301\224\255\344W\363\211h\271W\352\255D_\302\321\307S\371\367w\345\355?n\257\007\020\330\225\360h\227u\333=\001pV|?ud\347s\200\374\271\260\024V\337\037\237\331\236\336\236\371\177b\307\322\234\014\036\205,|\251\\gCt\336\375w\257\021\335\2225\350\363\266lw\0226^ ^P\304\224\025\002\026x\341\265n)\275X\354\375-Z\222\367\000L\240\207\177\225\277\376\206\314s\301tp:0\302\376\336\263\020\337\341@\351]\016\326\303\303a\245[\305EL\257\204\325D.\315\334\325\003~\370\274\227\353\235\354U\323\026V{\027\242\373\262\006 \010\235\372\033\244\370\273|)\377&\267s\370\323\255\013o\253\361l@\3421\007\2065Z,\246\006yz5\036\236\212s\331Y>\363O0r\376l2B\321y\252Q\224O\263\277W\223\361E\222\335\311\361\300`S\354q;:\264V\337\010(J\316\017\354\301T\312Le\364\334\241\211\362{\014w\336\004I\252~p\262\202\310~\204w\374\253\301reL\304\031\376AB\036\335\222\216P>\032\366d\215\273\377\003j\300g ";
+    PyObject *data = __Pyx_DecompressString(cstring, 2437, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (6689 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create FArrayDoubleIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>src/falcon_core/_capi/f_array_double.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisFArrayDoubleFArrayDouble.__reduce_cython__FArrayDouble.__setstate_cython__FArrayDouble.absFArrayDouble.copyFArrayDouble.dataFArrayDouble.dimensionFArrayDouble.divides_doubleFArrayDouble.divides_equals_doubleFArrayDouble.divides_equals_farrayFArrayDouble.divides_equals_intFArrayDouble.divides_farrayFArrayDouble.divides_intFArrayDouble.double_powFArrayDouble.equalFArrayDouble.flipFArrayDouble.from_dataFArrayDouble.from_jsonFArrayDouble.from_shapeFArrayDouble.full_gradientFArrayDouble.get_sum_of_squaresFArrayDouble.get_summed_diff_array_of_squaresFArrayDouble.get_summed_diff_double_of_squaresFArrayDouble.get_summed_diff_int_of_squaresFArrayDouble.gradientFArrayDouble.greater_thanFArrayDouble.less_thanFA""rrayDouble.maxFArrayDouble.max_arraywiseFArrayDouble.minFArrayDouble.min_arraywiseFArrayDouble.minus_doubleFArrayDouble.minus_equals_doubleFArrayDouble.minus_equals_farrayFArrayDouble.minus_equals_intFArrayDouble.minus_farrayFArrayDouble.minus_intFArrayDouble.negationFArrayDouble.new_emptyFArrayDouble.new_zerosFArrayDouble.not_equalFArrayDouble.plus_doubleFArrayDouble.plus_equals_doubleFArrayDouble.plus_equals_farrayFArrayDouble.plus_equals_intFArrayDouble.plus_farrayFArrayDouble.plus_intFArrayDouble.powFArrayDouble.pow_inplaceFArrayDouble.remove_offsetFArrayDouble.reshapeFArrayDouble.shapeFArrayDouble.sizeFArrayDouble.sumFArrayDouble.times_doubleFArrayDouble.times_equals_doubleFArrayDouble.times_equals_farrayFArrayDouble.times_equals_intFArrayDouble.times_farrayFArrayDouble.times_intFArrayDouble.to_jsonFArrayDouble.whereNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcabsallocate_bufferasyncio.coroutinesaxisb_jsonbasebuffer_sizec__class____class_getitem__cline_in_tracebackclscopycountdata__dict__dimensiondivides_doubledivides_equals_doubledivides_equals_farraydivides_equals_intdivides_farraydivides_intdouble_powdtype_is_objectencodeenumerateequalerrorfalcon_core._capi.f_array_doubleflagsflipformatfortranfrom_datafrom_jsonfrom_shapefull_gradient__func__get_sum_of_squaresget_summed_diff_array_of_squaresget_summed_diff_double_of_squaresget_summed_diff_int_of_squares__getstate__gradientgreater_thanhh_rethandleid__import__index_is_coroutineitemsitemsizejsonless_than__main__maxmax_arraywisememviewminmin_arraywiseminus_doubleminus_equals_doubleminus_equals_farrayminus_equals_intminus_farrayminus_intmode__module__name__name__ndimndimsnegation__new__new_emptynew_zerosnot_equalnumdataobjoffsetotherout_bufferpackplus_doubleplus_equals_doubleplus_equals_farrayplus_equals_intplus_farrayplus_intpoppowpow_inplace__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registerremove_offsetreshap""es_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstaticmethodstepstopstructsum__test__times_doubletimes_equals_doubletimes_equals_farraytimes_equals_inttimes_farraytimes_intto_jsonunpackupdatevaluevalueswherex\200A\330\010\025\320\0250\260\001\260\024\260Y\320>Z\320Z[\320[e\320ef\320fj\320jk\200A\330\016+\2501\250D\260\t\270\021\200A\330\0161\260\021\260$\260i\270q\200A\330\0161\260\021\260$\260i\270u\300K\310v\320U\\\320\\f\360\000\000g\001B\002\360\000\000B\002C\002\200A\340\010\026\320\0262\260!\2604\260q\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\0105\3205F\300a\300t\3101\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205F\300a\300t\3109\320TU\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205G\300q\310\004\310A\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205G\300q\310\004\310I\320UV\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205J\310!\3104\310y\320XY\320Y^\320^_\320_c\320cd\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205K\3101\310D\320PQ\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205K\3101\310D\320PY\320YZ\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\340\0105\3205L\310A\310Q\310d\320RS\320SW\320WX\320X]\320]^\320^b\320bc\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320""\017(\250\001\250\021\200A\330\0105\3205L\310A\310T\320QZ\320Z[\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\340\0105\3205M\310Q\310a\310u\320TU\320UY\320YZ\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\021\200A\330\0105\3205M\310Q\310d\320R[\320[\\\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205N\310a\310t\320S\\\320\\]\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205N\310a\310t\320S\\\320\\a\320al\320lr\320ry\360\000\000z\001D\002\360\000\000D\002_\002\360\000\000_\002`\002\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205O\310q\320PT\320T]\320]^\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205O\310q\320PT\320T]\320]b\320bm\320ms\320sz\360\000\000{\001E\002\360\000\000E\002`\002\360\000\000`\002a\002\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205P\320PQ\320QU\320U^\320^c\320cn\320nt\320t{\360\000\000|\001F\002\360\000\000F\002a\002\360\000\000a\002b\002\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205Q\320QR\320RV\320V_\320_`\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205Q\320QR\320RV\320V_\320_d\320do\320ou\320u|\360\000\000}\001G\002\360\000\000G\002b\002\360\000\000b\002c\002\330\010\013\2106\220\023\320\024/\250q\330\014\023\2201\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\010""\025\320\0255\260Q\260d\270!\200A\330\0106\3206I\310\021\310$\310i\320WX\330\010\013\2106\220\023\320\0240\260\001\330\014\023\2201\330\010\017\320\017*\250!\250=\270\001\200A\360\006\000\t\023\320\022,\250A\250Q\250e\2601\260D\270\001\330\010\013\2102\210S\320\020+\2501\330\014\022\220+\230Q\230a\330\010 \240\016\250c\260\030\270\021\270!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\025,\250A\250T\260\021\200A\330\016,\250A\250T\260\031\270!\200A\330\010\025\320\025,\250A\250T\260\031\270!\200A\330\010\025\320\025,\250A\250T\260\031\270%\270{\310&\320PW\320Wa\320a|\320|}\200A\330\010\025\320\025A\300\021\300$\300i\310q\200A\330\010\025\320\025C\3001\300D\310\t\320QV\320Va\320ag\320gn\320nx\360\000\000y\001T\002\360\000\000T\002U\002\200A\330\010\025\320\025D\300A\300T\310\031\320RS\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0264\260A\260Q\340\022!\240\021\240!\330\010\013\2102\210S\320\020+\2501\330\014\022\220+\230Q\230a\330\010 \240\016\250c\260\030\270\021\270!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\025(\250\001\250\024\250Y\260a\260z\300\021\300$\300a\200A\330\010\025\320\025(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]x\320xy\200A\330\010\025\320\025&\240a\240t\2501\200A\330\016.\250a\250t\2609\270A\200A\330\016.\250a\250t\2609\270E\300\033\310F\320RY\320Yc\320c~\320~\177\200A\330\016)\250\021\250$\250i\260q\200A\330\010\025\320\025'\240q\250\004\250A\200A\330\016/\250q\260\004\260I\270Q\200A\330\016'\240q\250\004\250I\260Q\200A\330\010\025\320\025/\250q\260\004\260I\270Q\200A\330\010\025\320\025'\240q\250\004\250I\260Q\260j\300\001\300\024\300Q\200A\330\016/\250q\260\004\260I\270U\300+\310V\320SZ\320Zd\320d\177\360\000\000@\002A\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *(__pyx_t_6_c_api_FArrayDoubleHandle, struct __pyx_opt_args_11falcon_core_5_capi_""14f_array_double__f_array_double_from_capi *__pyx_optional_args)\000_f_array_double_from_capistruct __pyx_obj_11falcon_core_5_capi_16list_list_size_t_ListListSizeT *(__pyx_t_6_c_api_ListListSizeTHandle, struct __pyx_opt_args_11falcon_core_5_capi_16list_list_size_t__list_list_size_t_from_capi *__pyx_optional_args)\000_list_list_size_t_from_capiO";
+    #else /* compression: none (6669 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayFailed to create FArrayDoubleIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')(?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__ object>src/falcon_core/_capi/f_array_double.pyx<strided and direct><strided and direct or indirect><strided and indirect><stringsource>unable to allocate array data.unable to allocate shape and strides.ASCIIEllipsisFArrayDoubleFArrayDouble.__reduce_cython__FArrayDouble.__setstate_cython__FArrayDouble.absFArrayDouble.copyFArrayDouble.dataFArrayDouble.dimensionFArrayDouble.divides_doubleFArrayDouble.divides_equals_doubleFArrayDouble.divides_equals_farrayFArrayDouble.divides_equals_intFArrayDouble.divides_farrayFArrayDouble.divides_intFArrayDouble.double_powFArrayDouble.equalFArrayDouble.flipFArrayDouble.from_dataFArrayDouble.from_jsonFArrayDouble.from_shapeFArrayDouble.full_gradientFArrayDouble.get_sum_of_squaresFArrayDouble.get_summed_diff_array_of_squaresFArrayDouble.get_summed_diff_double_of_squaresFArrayDouble.get_summed_diff_int_of_squaresFArrayDouble.gradientFArrayDouble.greater_thanFArrayDouble.less_thanF""ArrayDouble.maxFArrayDouble.max_arraywiseFArrayDouble.minFArrayDouble.min_arraywiseFArrayDouble.minus_doubleFArrayDouble.minus_equals_doubleFArrayDouble.minus_equals_farrayFArrayDouble.minus_equals_intFArrayDouble.minus_farrayFArrayDouble.minus_intFArrayDouble.negationFArrayDouble.new_emptyFArrayDouble.new_zerosFArrayDouble.not_equalFArrayDouble.plus_doubleFArrayDouble.plus_equals_doubleFArrayDouble.plus_equals_farrayFArrayDouble.plus_equals_intFArrayDouble.plus_farrayFArrayDouble.plus_intFArrayDouble.powFArrayDouble.pow_inplaceFArrayDouble.remove_offsetFArrayDouble.reshapeFArrayDouble.shapeFArrayDouble.sizeFArrayDouble.sumFArrayDouble.times_doubleFArrayDouble.times_equals_doubleFArrayDouble.times_equals_farrayFArrayDouble.times_equals_intFArrayDouble.times_farrayFArrayDouble.times_intFArrayDouble.to_jsonFArrayDouble.whereNotImplemented__Pyx_PyDict_NextRefSequenceView.MemoryViewabcabsallocate_bufferasyncio.coroutinesaxisb_jsonbasebuffer_sizec__class____class_getitem__cline_in_tracebackclscopycountdata__dict__dimensiondivides_doubledivides_equals_doubledivides_equals_farraydivides_equals_intdivides_farraydivides_intdouble_powdtype_is_objectencodeenumerateequalerrorfalcon_core._capi.f_array_doubleflagsflipformatfortranfrom_datafrom_jsonfrom_shapefull_gradient__func__get_sum_of_squaresget_summed_diff_array_of_squaresget_summed_diff_double_of_squaresget_summed_diff_int_of_squares__getstate__gradientgreater_thanhh_rethandleid__import__index_is_coroutineitemsitemsizejsonless_than__main__maxmax_arraywisememviewminmin_arraywiseminus_doubleminus_equals_doubleminus_equals_farrayminus_equals_intminus_farrayminus_intmode__module__name__name__ndimndimsnegation__new__new_emptynew_zerosnot_equalnumdataobjoffsetotherout_bufferpackplus_doubleplus_equals_doubleplus_equals_farrayplus_equals_intplus_farrayplus_intpoppowpow_inplace__pyx_capi____pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname____reduce____reduce_cython____reduce_ex__registerremove_offsetresha""pes_jsons_retself__set_name__setdefault__setstate____setstate_cython__shapesizestartstaticmethodstepstopstructsum__test__times_doubletimes_equals_doubletimes_equals_farraytimes_equals_inttimes_farraytimes_intto_jsonunpackupdatevaluevalueswherex\200A\330\010\025\320\0250\260\001\260\024\260Y\320>Z\320Z[\320[e\320ef\320fj\320jk\200A\330\016+\2501\250D\260\t\270\021\200A\330\0161\260\021\260$\260i\270q\200A\330\0161\260\021\260$\260i\270u\300K\310v\320U\\\320\\f\360\000\000g\001B\002\360\000\000B\002C\002\200A\340\010\026\320\0262\260!\2604\260q\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\r\210W\320\024-\250Q\250e\2606\270\025\270h\300g\310Q\310a\330\027&\240a\240q\200A\330\0105\3205F\300a\300t\3101\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205F\300a\300t\3109\320TU\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205G\300q\310\004\310A\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205G\300q\310\004\310I\320UV\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205J\310!\3104\310y\320XY\320Y^\320^_\320_c\320cd\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205K\3101\310D\320PQ\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205K\3101\310D\320PY\320YZ\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\340\0105\3205L\310A\310Q\310d\320RS\320SW\320WX\320X]\320]^\320^b\320bc\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\021\200A\330\0105\3205L\310A""\310T\320QZ\320Z[\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\340\0105\3205M\310Q\310a\310u\320TU\320UY\320YZ\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\021\200A\330\0105\3205M\310Q\310d\320R[\320[\\\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205N\310a\310t\320S\\\320\\]\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205N\310a\310t\320S\\\320\\a\320al\320lr\320ry\360\000\000z\001D\002\360\000\000D\002_\002\360\000\000_\002`\002\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205O\310q\320PT\320T]\320]^\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205O\310q\320PT\320T]\320]b\320bm\320ms\320sz\360\000\000{\001E\002\360\000\000E\002`\002\360\000\000`\002a\002\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205P\320PQ\320QU\320U^\320^c\320cn\320nt\320t{\360\000\000|\001F\002\360\000\000F\002a\002\360\000\000a\002b\002\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205Q\320QR\320RV\320V_\320_`\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\0105\3205Q\320QR\320RV\320V_\320_d\320do\320ou\320u|\360\000\000}\001G\002\360\000\000G\002b\002\360\000\000b\002c\002\330\010\013\2106\220\023\320\024/\250s\260'\270\021\330\010\017\320\017(\250\001\250\036\260v\270S\320@[\320[_\320_`\200A\330\010\025\320\0255\260Q\260d\270!\200A\330\0106\3206I\310\021\310$\310i\320WX\330\010\013\2106""\220\023\320\0240\260\003\2607\270!\330\010\017\320\017*\250!\250=\270\001\200A\360\006\000\t\023\320\022,\250A\250Q\250e\2601\260D\270\001\330\010\013\2102\210S\320\020+\2501\330\014\022\220+\230Q\230a\330\010 \240\016\250c\260\030\270\021\270!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\025,\250A\250T\260\021\200A\330\016,\250A\250T\260\031\270!\200A\330\010\025\320\025,\250A\250T\260\031\270!\200A\330\010\025\320\025,\250A\250T\260\031\270%\270{\310&\320PW\320Wa\320a|\320|}\200A\330\010\025\320\025A\300\021\300$\300i\310q\200A\330\010\025\320\025C\3001\300D\310\t\320QV\320Va\320ag\320gn\320nx\360\000\000y\001T\002\360\000\000T\002U\002\200A\330\010\025\320\025D\300A\300T\310\031\320RS\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0264\260A\260Q\340\022!\240\021\240!\330\010\013\2102\210S\320\020+\2501\330\014\022\220+\230Q\230a\330\010 \240\016\250c\260\030\270\021\270!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\025(\250\001\250\024\250Y\260a\260z\300\021\300$\300a\200A\330\010\025\320\025(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]x\320xy\200A\330\010\025\320\025&\240a\240t\2501\200A\330\016.\250a\250t\2609\270A\200A\330\016.\250a\250t\2609\270E\300\033\310F\320RY\320Yc\320c~\320~\177\200A\330\016)\250\021\250$\250i\260q\200A\330\010\025\320\025'\240q\250\004\250A\200A\330\016/\250q\260\004\260I\270Q\200A\330\016'\240q\250\004\250I\260Q\200A\330\010\025\320\025/\250q\260\004\260I\270Q\200A\330\010\025\320\025'\240q\250\004\250I\260Q\260j\300\001\300\024\300Q\200A\330\016/\250q\260\004\260I\270U\300+\310V\320SZ\320Zd\320d\177\360\000\000@\002A\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_14f_array_double_FArrayDouble *(__pyx_t_6_c_api_FArrayDoubleHandle, struct __pyx_opt_args_11falcon_core_5_capi_14f_array_double__f_array_double_from_capi *__pyx_optional_args)\000_f_array_double_from_capistr""uct __pyx_obj_11falcon_core_5_capi_16list_list_size_t_ListListSizeT *(__pyx_t_6_c_api_ListListSizeTHandle, struct __pyx_opt_args_11falcon_core_5_capi_16list_list_size_t__list_list_size_t_from_capi *__pyx_optional_args)\000_list_list_size_t_from_capiO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 254; i++) {
+    for (int i = 0; i < 255; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 48) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 49) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -32533,7 +32240,7 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 254; i < 304; i++) {
+    for (int i = 255; i < 305; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -32544,14 +32251,14 @@ const char* const bytes = ": All dimensions preceding dimension %d must be index
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 304; i++) {
+    for (Py_ssize_t i = 0; i < 305; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 254;
+      PyObject **table = stringtab + 255;
       for (Py_ssize_t i=0; i<50; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -32642,282 +32349,282 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_55Gq_A_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_55Gq_A_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 62};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_shape, __pyx_mstate->__pyx_n_u_ndim, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_from_shape, __pyx_mstate->__pyx_kp_b_iso88591_A_55MQauTUUYYZ_6_q_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_from_shape, __pyx_mstate->__pyx_kp_b_iso88591_A_55MQauTUUYYZ_6_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 68};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_n_u_shape, __pyx_mstate->__pyx_n_u_ndim, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_from_data, __pyx_mstate->__pyx_kp_b_iso88591_A_55LAQdRSSWWXX_bbc_6_q_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_from_data, __pyx_mstate->__pyx_kp_b_iso88591_A_55LAQdRSSWWXX_bbc_6_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 77};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 74};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_size, __pyx_mstate->__pyx_kp_b_iso88591_A_q_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 80};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 77};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_dimension, __pyx_mstate->__pyx_kp_b_iso88591_A_AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 80};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_out_buffer, __pyx_mstate->__pyx_n_u_ndim};
     __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_shape, __pyx_mstate->__pyx_kp_b_iso88591_A_Yaz_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 86};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_out_buffer, __pyx_mstate->__pyx_n_u_numdata};
     __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_data, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQj_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 89};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 86};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_equals_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_at9E_FRYYcc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 92};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 89};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_at9A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 95};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 92};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_1D, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 98};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 95};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55NatS_aallrry_z_D_D_____6_q_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55NatS_aallrry_z_D_D_____6_s_v, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 104};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55NatS_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55NatS_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 110};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 105};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55K1DPYYZ_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_plus_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55K1DPYYZ_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 110};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_equals_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IU_VSZZdd_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 119};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 113};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 122};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_AT_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 125};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 119};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_bbmmssz_E_E_a_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_bbmmssz_E_E_a_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 131};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 124};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 137};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 129};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55LATQZZ_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_minus_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55LATQZZ_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 143};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 134};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_negation, __pyx_mstate->__pyx_kp_b_iso88591_A_55K1DPQ_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_negation, __pyx_mstate->__pyx_kp_b_iso88591_A_55K1DPQ_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 152};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 142};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_equals_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IU_VSZZdd_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 155};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 145};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 158};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 148};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[25] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_AT_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[25])) goto bad;
   }
   {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 151};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_bbmmssz_E_E_a_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 156};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
+  }
+  {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 161};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_bbmmssz_E_E_a_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[28] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55LATQZZ_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[28])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 167};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55OqPTT_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 173};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[28] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_times_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55LATQZZ_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[28])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 179};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 166};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[29] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_equals_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iuKvU_f_g_B_B_C, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[29])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 182};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 169};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[30] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[30])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 185};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 172};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[31] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_at9A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[31])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 188};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 175};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[32] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55QQRRVV__ddoouu_G_G_b_b_c_6_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[32])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[32] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_farray, __pyx_mstate->__pyx_kp_b_iso88591_A_55QQRRVV__ddoouu_G_G_b_b_c_6_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[32])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 194};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 180};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[33] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55QQRRVV___6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[33])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[33] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_double, __pyx_mstate->__pyx_kp_b_iso88591_A_55QQRRVV___6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[33])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 200};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 185};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[34] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55NatS_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[34])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[34] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_divides_int, __pyx_mstate->__pyx_kp_b_iso88591_A_55NatS_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[34])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 206};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 190};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[35] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_pow, __pyx_mstate->__pyx_kp_b_iso88591_A_55Fat9TU_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[35])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[35] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_pow, __pyx_mstate->__pyx_kp_b_iso88591_A_55Fat9TU_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[35])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 212};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 195};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[36] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_double_pow, __pyx_mstate->__pyx_kp_b_iso88591_A_55MQdR_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[36])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[36] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_double_pow, __pyx_mstate->__pyx_kp_b_iso88591_A_55MQdR_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[36])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 218};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 200};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[37] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_pow_inplace, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQ_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[37])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 221};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 203};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[38] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_abs, __pyx_mstate->__pyx_kp_b_iso88591_A_55Fat1_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[38])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[38] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_abs, __pyx_mstate->__pyx_kp_b_iso88591_A_55Fat1_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[38])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 227};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 208};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[39] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_min, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[39])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 230};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 211};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[40] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_min_arraywise, __pyx_mstate->__pyx_kp_b_iso88591_A_55PPQQUU_ccnntt_F_F_a_a_b_6_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[40])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[40] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_min_arraywise, __pyx_mstate->__pyx_kp_b_iso88591_A_55PPQQUU_ccnntt_F_F_a_a_b_6_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[40])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 236};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 216};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[41] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_max, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[41])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 239};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 219};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[42] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_max_arraywise, __pyx_mstate->__pyx_kp_b_iso88591_A_55PPQQUU_ccnntt_F_F_a_a_b_6_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[42])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[42] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_max_arraywise, __pyx_mstate->__pyx_kp_b_iso88591_A_55PPQQUU_ccnntt_F_F_a_a_b_6_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[42])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 245};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 224};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[43] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_Ye_fGS_xxy, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[43])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 253};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 231};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[44] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_AT_PWWaa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[44])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 261};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 238};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
     __pyx_mstate_global->__pyx_codeobj_tab[45] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_greater_than, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IQ_3, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[45])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 267};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 244};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value};
     __pyx_mstate_global->__pyx_codeobj_tab[46] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_less_than, __pyx_mstate->__pyx_kp_b_iso88591_A_AT_3, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[46])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 273};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 250};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_offset};
     __pyx_mstate_global->__pyx_codeobj_tab[47] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_remove_offset, __pyx_mstate->__pyx_kp_b_iso88591_A_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[47])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 276};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 253};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[48] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_sum, __pyx_mstate->__pyx_kp_b_iso88591_A_at1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[48])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 279};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 256};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_shape, __pyx_mstate->__pyx_n_u_ndims, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[49] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_reshape, __pyx_mstate->__pyx_kp_b_iso88591_A_55J_4yXYY___ccd_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[49])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[49] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_reshape, __pyx_mstate->__pyx_kp_b_iso88591_A_55J_4yXYY___ccd_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[49])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 285};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 261};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[50] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_where, __pyx_mstate->__pyx_kp_b_iso88591_A_66I_iWX_6_0_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[50])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[50] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_where, __pyx_mstate->__pyx_kp_b_iso88591_A_66I_iWX_6_0_7, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[50])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 291};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 266};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_axis, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[51] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_flip, __pyx_mstate->__pyx_kp_b_iso88591_A_55Gq_IUV_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[51])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[51] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_flip, __pyx_mstate->__pyx_kp_b_iso88591_A_55Gq_IUV_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[51])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 297};
+    const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 271};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_out_buffer, __pyx_mstate->__pyx_n_u_buffer_size};
     __pyx_mstate_global->__pyx_codeobj_tab[52] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_full_gradient, __pyx_mstate->__pyx_kp_b_iso88591_A_0_Y_ZZ_eeffjjk, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[52])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 300};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 274};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_axis, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[53] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_gradient, __pyx_mstate->__pyx_kp_b_iso88591_A_55K1DPYYZ_6_q_1_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[53])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[53] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_gradient, __pyx_mstate->__pyx_kp_b_iso88591_A_55K1DPYYZ_6_s_vS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[53])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 306};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 279};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[54] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_get_sum_of_squares, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[54])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 309};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 282};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[55] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_get_summed_diff_int_of_squares, __pyx_mstate->__pyx_kp_b_iso88591_A_A_iq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[55])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 312};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 285};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[56] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_get_summed_diff_double_of_square, __pyx_mstate->__pyx_kp_b_iso88591_A_DAT_RS, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[56])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 315};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 288};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[57] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_get_summed_diff_array_of_squares, __pyx_mstate->__pyx_kp_b_iso88591_A_C1D_QVVaaggnnx_y_T_T_U, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[57])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 318};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 291};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[58] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_2_4q_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[58])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[58] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_f_array_do, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_2_4q_6_G1_W_Qe6_hgQa_aq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[58])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
@@ -35790,6 +35497,12 @@ static CYTHON_INLINE PyObject* __Pyx_decode_c_bytes(
     }
 }
 
+/* PyObjectCallNoArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+    PyObject *arg[2] = {NULL, NULL};
+    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {
     if (is_final || likely(!__Pyx_PyType_HasFeature(t, Py_TPFLAGS_IS_ABSTRACT))) {
@@ -36026,12 +35739,6 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
         PyType_Modified(type);
 #endif  // PY_VERSION_HEX > 0x030900B1
     return 0;
-}
-
-/* PyObjectCallNoArg (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-    PyObject *arg[2] = {NULL, NULL};
-    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
 
 /* PyObjectGetMethod (used by PyObjectCallMethod0) */
@@ -40847,7 +40554,7 @@ static const char* __Pyx_BufFmt_CheckString(__Pyx_BufFmt_Context* ctx, const cha
           result = name;
           name = NULL;
       } else {
-          result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__7);
+          result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__8);
       }
       goto done;
   }

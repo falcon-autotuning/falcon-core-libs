@@ -246,11 +246,11 @@ class SymbolUnit:
         ret = self._c.copy()
         return SymbolUnit._from_capi(ret)
 
-    def equal(self, other: SymbolUnit) -> None:
+    def equal(self, other: SymbolUnit) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: SymbolUnit) -> None:
+    def not_equal(self, other: SymbolUnit) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -260,10 +260,6 @@ class SymbolUnit:
 
     def symbol(self, ) -> str:
         ret = self._c.symbol()
-        return ret
-
-    def name(self, ) -> str:
-        ret = self._c.name()
         return ret
 
     def multiplication(self, other: SymbolUnit) -> SymbolUnit:
@@ -282,13 +278,24 @@ class SymbolUnit:
         ret = self._c.with_prefix(prefix)
         return SymbolUnit._from_capi(ret)
 
-    def convert_value_to(self, value: Any, target: SymbolUnit) -> None:
+    def convert_value_to(self, value: Any, target: SymbolUnit) -> float:
         ret = self._c.convert_value_to(value, target._c if target is not None else None)
         return ret
 
-    def is_compatible_with(self, other: SymbolUnit) -> None:
+    def is_compatible_with(self, other: SymbolUnit) -> bool:
         ret = self._c.is_compatible_with(other._c if other is not None else None)
         return ret
+
+    @property
+    def name(self) -> str:
+        ret = self._c.name()
+        return ret
+
+    def __repr__(self):
+        return f"SymbolUnit({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __mul__(self, other):
         """Operator overload for *"""

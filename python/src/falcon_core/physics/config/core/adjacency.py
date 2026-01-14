@@ -32,11 +32,11 @@ class Adjacency:
         ret = self._c.copy()
         return Adjacency._from_capi(ret)
 
-    def equal(self, other: Adjacency) -> None:
+    def equal(self, other: Adjacency) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Adjacency) -> None:
+    def not_equal(self, other: Adjacency) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -54,24 +54,15 @@ class Adjacency:
         if ret is None: return None
         return Connections._from_capi(ret)
 
-    def get_true_pairs(self, ) -> List:
-        ret = self._c.get_true_pairs()
-        if ret is None: return None
-        return List(ret)
-
-    def size(self, ) -> None:
-        ret = self._c.size()
-        return ret
-
-    def dimension(self, ) -> None:
+    def dimension(self, ) -> int:
         ret = self._c.dimension()
         return ret
 
-    def shape(self, out_buffer: Any, ndim: Any) -> None:
+    def shape(self, out_buffer: Any, ndim: Any) -> int:
         ret = self._c.shape(out_buffer, ndim)
         return ret
 
-    def data(self, out_buffer: Any, numdata: Any) -> None:
+    def data(self, out_buffer: Any, numdata: Any) -> int:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
@@ -83,7 +74,7 @@ class Adjacency:
         ret = self._c.times_farray(other._c if other is not None else None)
         return Adjacency._from_capi(ret)
 
-    def sum(self, ) -> None:
+    def sum(self, ) -> int:
         ret = self._c.sum()
         return ret
 
@@ -96,8 +87,25 @@ class Adjacency:
         ret = self._c.flip(axis)
         return Adjacency._from_capi(ret)
 
+    @property
+    def size(self) -> int:
+        ret = self._c.size()
+        return ret
+
+    @property
+    def true_pairs(self) -> List:
+        ret = self._c.get_true_pairs()
+        if ret is None: return None
+        return List(ret)
+
     def __len__(self):
-        return self.size()
+        return self.size
+
+    def __repr__(self):
+        return f"Adjacency({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __mul__(self, other):
         """Operator overload for *"""

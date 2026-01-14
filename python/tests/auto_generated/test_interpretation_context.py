@@ -44,7 +44,7 @@ class TestInterpretationContext:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -52,7 +52,7 @@ class TestInterpretationContext:
         try:
             self.obj.equal(_make_test_interpretation_context())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -67,7 +67,7 @@ class TestInterpretationContext:
         try:
             self.obj.not_equal(_make_test_interpretation_context())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -82,7 +82,7 @@ class TestInterpretationContext:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_independent_variables(self):
         if self.obj is None:
@@ -90,7 +90,7 @@ class TestInterpretationContext:
         try:
             self.obj.independent_variables()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_dependent_variables(self):
         if self.obj is None:
@@ -98,7 +98,7 @@ class TestInterpretationContext:
         try:
             self.obj.dependent_variables()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_unit(self):
         if self.obj is None:
@@ -106,7 +106,7 @@ class TestInterpretationContext:
         try:
             self.obj.unit()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_dimension(self):
         if self.obj is None:
@@ -114,7 +114,7 @@ class TestInterpretationContext:
         try:
             self.obj.dimension()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_add_dependent_variable(self):
         if self.obj is None:
@@ -122,7 +122,7 @@ class TestInterpretationContext:
         try:
             self.obj.add_dependent_variable(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_replace_dependent_variable(self):
         if self.obj is None:
@@ -130,7 +130,7 @@ class TestInterpretationContext:
         try:
             self.obj.replace_dependent_variable(1, MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_independent_variables(self):
         if self.obj is None:
@@ -138,7 +138,7 @@ class TestInterpretationContext:
         try:
             self.obj.get_independent_variables(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_with_unit(self):
         if self.obj is None:
@@ -146,7 +146,7 @@ class TestInterpretationContext:
         try:
             self.obj.with_unit(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

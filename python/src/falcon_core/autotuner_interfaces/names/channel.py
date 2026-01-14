@@ -26,11 +26,11 @@ class Channel:
         ret = self._c.copy()
         return Channel._from_capi(ret)
 
-    def equal(self, other: Channel) -> None:
+    def equal(self, other: Channel) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Channel) -> None:
+    def not_equal(self, other: Channel) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -38,9 +38,16 @@ class Channel:
         ret = self._c.to_json()
         return ret
 
-    def name(self, ) -> str:
+    @property
+    def name(self) -> str:
         ret = self._c.name()
         return ret
+
+    def __repr__(self):
+        return f"Channel({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

@@ -59,10 +59,9 @@ cdef class MapInstrumentPortPortTransform:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.MapInstrumentPortPortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_copy(self.handle)
-        if h_ret == <_c_api.MapInstrumentPortPortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.MapInstrumentPortPortTransformHandle>0: return None
         return _map_instrument_port_port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.MapInstrumentPortPortTransformHandle>self.handle))
 
     def insert_or_assign(self, InstrumentPort key, PortTransform value):
@@ -73,77 +72,74 @@ cdef class MapInstrumentPortPortTransform:
 
     def at(self, InstrumentPort key):
         cdef _c_api.PortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_at(self.handle, key.handle if key is not None else <_c_api.InstrumentPortHandle>0)
-        if h_ret == <_c_api.PortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.PortTransformHandle>0: return None
         return _port_transform_from_capi(h_ret, owned=False)
 
     def erase(self, InstrumentPort key):
         _c_api.MapInstrumentPortPortTransform_erase(self.handle, key.handle if key is not None else <_c_api.InstrumentPortHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.MapInstrumentPortPortTransform_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.MapInstrumentPortPortTransform_empty(self.handle)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.MapInstrumentPortPortTransform_clear(self.handle)
 
     def contains(self, InstrumentPort key):
         return _c_api.MapInstrumentPortPortTransform_contains(self.handle, key.handle if key is not None else <_c_api.InstrumentPortHandle>0)
 
-    def keys(self, ):
+    def keys(self):
         cdef _c_api.ListInstrumentPortHandle h_ret = _c_api.MapInstrumentPortPortTransform_keys(self.handle)
-        if h_ret == <_c_api.ListInstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.ListInstrumentPortHandle>0: return None
         return _list_instrument_port_from_capi(h_ret, owned=False)
 
-    def values(self, ):
+    def values(self):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_values(self.handle)
-        if h_ret == <_c_api.ListPortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.ListPortTransformHandle>0: return None
         return _list_port_transform_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPairInstrumentPortPortTransformHandle h_ret = _c_api.MapInstrumentPortPortTransform_items(self.handle)
-        if h_ret == <_c_api.ListPairInstrumentPortPortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairInstrumentPortPortTransformHandle>0: return None
         return _list_pair_instrument_port_port_transform_from_capi(h_ret, owned=False)
 
     def equal(self, MapInstrumentPortPortTransform other):
         return _c_api.MapInstrumentPortPortTransform_equal(self.handle, other.handle if other is not None else <_c_api.MapInstrumentPortPortTransformHandle>0)
 
     def __eq__(self, MapInstrumentPortPortTransform other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, MapInstrumentPortPortTransform other):
         return _c_api.MapInstrumentPortPortTransform_not_equal(self.handle, other.handle if other is not None else <_c_api.MapInstrumentPortPortTransformHandle>0)
 
     def __ne__(self, MapInstrumentPortPortTransform other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MapInstrumentPortPortTransform_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise KeyError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef MapInstrumentPortPortTransform _map_instrument_port_port_transform_from_capi(_c_api.MapInstrumentPortPortTransformHandle h, bint owned=True):
     if h == <_c_api.MapInstrumentPortPortTransformHandle>0:

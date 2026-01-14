@@ -61,70 +61,57 @@ cdef class AcquisitionContext:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_copy(self.handle)
-        if h_ret == <_c_api.AcquisitionContextHandle>0:
-            return None
+        if h_ret == <_c_api.AcquisitionContextHandle>0: return None
         return _acquisition_context_from_capi(h_ret, owned=(h_ret != <_c_api.AcquisitionContextHandle>self.handle))
 
     def equal(self, AcquisitionContext other):
         return _c_api.AcquisitionContext_equal(self.handle, other.handle if other is not None else <_c_api.AcquisitionContextHandle>0)
 
     def __eq__(self, AcquisitionContext other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, AcquisitionContext other):
         return _c_api.AcquisitionContext_not_equal(self.handle, other.handle if other is not None else <_c_api.AcquisitionContextHandle>0)
 
     def __ne__(self, AcquisitionContext other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.AcquisitionContext_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def connection(self, ):
+    def connection(self):
         cdef _c_api.ConnectionHandle h_ret = _c_api.AcquisitionContext_connection(self.handle)
-        if h_ret == <_c_api.ConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ConnectionHandle>0: return None
         return _connection_from_capi(h_ret, owned=False)
 
-    def instrument_type(self, ):
+    def instrument_type(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.AcquisitionContext_instrument_type(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def units(self, ):
+    def units(self):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.AcquisitionContext_units(self.handle)
-        if h_ret == <_c_api.SymbolUnitHandle>0:
-            return None
+        if h_ret == <_c_api.SymbolUnitHandle>0: return None
         return _symbol_unit_from_capi(h_ret, owned=True)
 
     def division_unit(self, SymbolUnit other):
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_division_unit(self.handle, other.handle if other is not None else <_c_api.SymbolUnitHandle>0)
-        if h_ret == <_c_api.AcquisitionContextHandle>0:
-            return None
+        if h_ret == <_c_api.AcquisitionContextHandle>0: return None
         return _acquisition_context_from_capi(h_ret, owned=(h_ret != <_c_api.AcquisitionContextHandle>self.handle))
 
     def division(self, AcquisitionContext other):
         cdef _c_api.AcquisitionContextHandle h_ret = _c_api.AcquisitionContext_division(self.handle, other.handle if other is not None else <_c_api.AcquisitionContextHandle>0)
-        if h_ret == <_c_api.AcquisitionContextHandle>0:
-            return None
+        if h_ret == <_c_api.AcquisitionContextHandle>0: return None
         return _acquisition_context_from_capi(h_ret, owned=(h_ret != <_c_api.AcquisitionContextHandle>self.handle))
 
     def __truediv__(self, AcquisitionContext other):
@@ -142,6 +129,12 @@ cdef class AcquisitionContext:
         finally:
             _c_api.String_destroy(s_other)
         return ret_val
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef AcquisitionContext _acquisition_context_from_capi(_c_api.AcquisitionContextHandle h, bint owned=True):
     if h == <_c_api.AcquisitionContextHandle>0:

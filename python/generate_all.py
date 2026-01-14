@@ -585,12 +585,25 @@ def generate_generic_wrapper(base, instances):
         
         lines.append("")
     
-    # Add __repr__
+    # Add __repr__ and __str__
     lines.append(f"    def __repr__(self):")
-    lines.append(f'        return f"{base}[{{self._element_type}}]({{self._c}})"')
+    lines.append(f"        if hasattr(self._c, 'to_json'):")
+    lines.append(f"            try:")
+    lines.append(f"                return f'{{self.__class__.__name__}}[{{self._element_type}}]( {{self._c.to_json()}} )'")
+    lines.append(f"            except Exception:")
+    lines.append(f"                pass")
+    lines.append(f'        return f"{{self.__class__.__name__}}[{{self._element_type}}]({{self._c}})"')
+    lines.append("")
+    lines.append(f"    def __str__(self):")
+    lines.append(f"        if hasattr(self._c, 'to_json'):")
+    lines.append(f"            try:")
+    lines.append(f"                return self._c.to_json()")
+    lines.append(f"            except Exception:")
+    lines.append(f"                pass")
+    lines.append(f"        return str(self._c)")
     lines.append("")
 
-    # Add iteration methods
+    # Add iteration and collection methods
     lines.append(f"    def __len__(self):")
     lines.append(f"        if hasattr(self._c, '__len__'):")
     lines.append(f"            return len(self._c)")
@@ -603,7 +616,11 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"        if hasattr(self._c, '__getitem__'):")
     lines.append(f"            return self._c[key]")
     lines.append(f"        if hasattr(self._c, 'at'):")
-    lines.append(f"            return self._c.at(key)")
+    lines.append(f"            ret = self._c.at(key)")
+    lines.append(f"            if ret is None:")
+    lines.append(f"                exc = KeyError if \"{base}\" == \"Map\" else IndexError")
+    lines.append(f"                raise exc(f'{{key!r}} not found in {{self.__class__.__name__}}')")
+    lines.append(f"            return ret")
     lines.append(f"        raise TypeError(f'Underlying object {{type(self._c)}} does not support indexing')")
     lines.append("")
 
@@ -618,7 +635,19 @@ def generate_generic_wrapper(base, instances):
     lines.append(f"            raise TypeError(f'Underlying object {{type(self._c)}} does not support item assignment')")
     lines.append("")
     
+    lines.append(f"    def __contains__(self, key):")
+    lines.append(f"        if hasattr(self._c, '__contains__'):")
+    lines.append(f"            return key in self._c")
+    lines.append(f"        if hasattr(self._c, 'contains'):")
+    lines.append(f"            return self._c.contains(key)")
+    lines.append(f"        if hasattr(self._c, 'has'):")
+    lines.append(f"            return self._c.has(key)")
+    lines.append(f"        return False")
+    lines.append("")
+
     lines.append(f"    def __iter__(self):")
+    lines.append(f"        if hasattr(self._c, 'keys'):")
+    lines.append(f"            return iter(self._c.keys())")
     lines.append(f"        for i in range(len(self)):")
     lines.append(f"            yield self[i]")
     lines.append("")

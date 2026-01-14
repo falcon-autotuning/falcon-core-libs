@@ -173,8 +173,8 @@
         ],
         "include_dirs": [
             "/usr/local/include/falcon-core-c-api",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi",
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src"
         ],
         "language": "c++",
         "libraries": [
@@ -188,7 +188,7 @@
             "/usr/local/lib"
         ],
         "sources": [
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi/quantity.pyx"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi/quantity.pyx"
         ]
     },
     "module_name": "falcon_core._capi.quantity"
@@ -1327,51 +1327,56 @@ static int __Pyx_init_co_variables(void) {
 #include <stddef.h>
 #include <stdint.h>
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
-#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
-#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include "falcon_core/generic/MapConnectionDouble_c_api.h"
@@ -1379,51 +1384,46 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
-#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/communications/messages/StandardRequest_c_api.h"
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
@@ -1486,10 +1486,10 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
-#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
+#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
 #include <string.h>
@@ -1961,7 +1961,7 @@ typedef void *__pyx_t_6_c_api_ChannelHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle             # <<<<<<<<<<<<<<
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
+ * ctypedef void* HDF5DataHandle
 */
 typedef void *__pyx_t_6_c_api_ChannelsHandle;
 
@@ -1969,32 +1969,32 @@ typedef void *__pyx_t_6_c_api_ChannelsHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle             # <<<<<<<<<<<<<<
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
 */
 typedef void *__pyx_t_6_c_api_GnameHandle;
 
 /* "_c_api.pxd":19
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
- * ctypedef void* HDF5DataHandle
- * ctypedef void* MeasurementRequestHandle
-*/
-typedef void *__pyx_t_6_c_api_TimeHandle;
-
-/* "_c_api.pxd":20
- * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
- * ctypedef void* MeasurementResponseHandle
 */
 typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 
-/* "_c_api.pxd":21
- * ctypedef void* TimeHandle
+/* "_c_api.pxd":20
+ * ctypedef void* GnameHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* MeasurementRequestHandle
+ * ctypedef void* MeasurementResponseHandle
+*/
+typedef void *__pyx_t_6_c_api_TimeHandle;
+
+/* "_c_api.pxd":21
+ * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle             # <<<<<<<<<<<<<<
  * ctypedef void* MeasurementResponseHandle
  * ctypedef void* StandardRequestHandle
@@ -2002,7 +2002,7 @@ typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 typedef void *__pyx_t_6_c_api_MeasurementRequestHandle;
 
 /* "_c_api.pxd":22
- * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
  * ctypedef void* MeasurementResponseHandle             # <<<<<<<<<<<<<<
  * ctypedef void* StandardRequestHandle
@@ -2915,7 +2915,7 @@ typedef void *__pyx_t_6_c_api_PortTransformsHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle             # <<<<<<<<<<<<<<
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
 */
 typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
 
@@ -2923,7 +2923,7 @@ typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
 */
 typedef void *__pyx_t_6_c_api_PointHandle;
@@ -2931,32 +2931,41 @@ typedef void *__pyx_t_6_c_api_PointHandle;
 /* "_c_api.pxd":125
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
  * ctypedef void* UnitSpaceHandle
- * ctypedef void* AxesDoubleHandle
+ * ctypedef void* VectorHandle
 */
-typedef void *__pyx_t_6_c_api_VectorHandle;
+typedef void *__pyx_t_6_c_api_QuantityHandle;
 
 /* "_c_api.pxd":126
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
- * ctypedef void* AxesIntHandle
 */
 typedef void *__pyx_t_6_c_api_UnitSpaceHandle;
 
 /* "_c_api.pxd":127
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AxesDoubleHandle
+ * ctypedef void* AxesIntHandle
+*/
+typedef void *__pyx_t_6_c_api_VectorHandle;
+
+/* "_c_api.pxd":128
+ * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
 */
 typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 
-/* "_c_api.pxd":128
- * ctypedef void* UnitSpaceHandle
+/* "_c_api.pxd":129
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesDiscretizerHandle
@@ -2964,7 +2973,7 @@ typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesIntHandle;
 
-/* "_c_api.pxd":129
+/* "_c_api.pxd":130
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle             # <<<<<<<<<<<<<<
@@ -2973,7 +2982,7 @@ typedef void *__pyx_t_6_c_api_AxesIntHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 
-/* "_c_api.pxd":130
+/* "_c_api.pxd":131
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle             # <<<<<<<<<<<<<<
@@ -2982,7 +2991,7 @@ typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 
-/* "_c_api.pxd":131
+/* "_c_api.pxd":132
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -2991,7 +3000,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 
-/* "_c_api.pxd":132
+/* "_c_api.pxd":133
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle             # <<<<<<<<<<<<<<
@@ -3000,7 +3009,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 
-/* "_c_api.pxd":133
+/* "_c_api.pxd":134
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle             # <<<<<<<<<<<<<<
@@ -3009,7 +3018,7 @@ typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 
-/* "_c_api.pxd":134
+/* "_c_api.pxd":135
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle             # <<<<<<<<<<<<<<
@@ -3018,7 +3027,7 @@ typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 
-/* "_c_api.pxd":135
+/* "_c_api.pxd":136
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle             # <<<<<<<<<<<<<<
@@ -3027,7 +3036,7 @@ typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 
-/* "_c_api.pxd":136
+/* "_c_api.pxd":137
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3036,7 +3045,7 @@ typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 
-/* "_c_api.pxd":137
+/* "_c_api.pxd":138
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3045,63 +3054,54 @@ typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArray1DHandle;
 
-/* "_c_api.pxd":138
+/* "_c_api.pxd":139
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
+ * ctypedef void* ControlArray1DHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArrayHandle;
 
-/* "_c_api.pxd":139
+/* "_c_api.pxd":140
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle             # <<<<<<<<<<<<<<
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
+ * ctypedef void* ControlArray1DHandle
+ * ctypedef void* ControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArray1DHandle;
 
-/* "_c_api.pxd":140
+/* "_c_api.pxd":141
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
- * ctypedef void* IncreasingAlignmentHandle
- * ctypedef void* ControlArray1DHandle
-*/
-typedef void *__pyx_t_6_c_api_QuantityHandle;
-
-/* "_c_api.pxd":141
- * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ControlArray1DHandle
- * ctypedef void* ControlArrayHandle
-*/
-typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
-
-/* "_c_api.pxd":142
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* ControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* ControlArrayHandle
- * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* IncreasingAlignmentHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArray1DHandle;
 
-/* "_c_api.pxd":143
- * ctypedef void* IncreasingAlignmentHandle
+/* "_c_api.pxd":142
+ * ctypedef void* AxesLabelledMeasuredArray1DHandle
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
- * ctypedef void* LabelledControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 
-/* "_c_api.pxd":144
+/* "_c_api.pxd":143
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* LabelledControlArrayHandle
+*/
+typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
+
+/* "_c_api.pxd":144
+ * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledControlArrayHandle
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3109,7 +3109,7 @@ typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 typedef void *__pyx_t_6_c_api_LabelledControlArray1DHandle;
 
 /* "_c_api.pxd":145
- * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
  * ctypedef void* LabelledControlArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3230,7 +3230,7 @@ typedef void *__pyx_t_6_c_api_DomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
+ * ctypedef void* AdjacencyHandle
 */
 typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
 
@@ -3238,131 +3238,131 @@ typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AdjacencyHandle
  * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
 */
 typedef void *__pyx_t_6_c_api_LoaderHandle;
 
 /* "_c_api.pxd":160
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
 */
-typedef void *__pyx_t_6_c_api_ConfigHandle;
+typedef void *__pyx_t_6_c_api_AdjacencyHandle;
 
 /* "_c_api.pxd":161
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GroupHandle
  * ctypedef void* AdjacencyHandle
+ * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GroupHandle
+ * ctypedef void* VoltageConstraintsHandle
 */
-typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
+typedef void *__pyx_t_6_c_api_ConfigHandle;
 
 /* "_c_api.pxd":162
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
- * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AdjacencyHandle
- * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* ConfigHandle
+ * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
 */
 typedef void *__pyx_t_6_c_api_GroupHandle;
 
 /* "_c_api.pxd":163
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GateGeometryArray1DHandle
- * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+ * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
 */
-typedef void *__pyx_t_6_c_api_AdjacencyHandle;
+typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
 
 /* "_c_api.pxd":164
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* GateGeometryArray1DHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
+
+/* "_c_api.pxd":165
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
+
+/* "_c_api.pxd":166
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
 */
 typedef void *__pyx_t_6_c_api_GateGeometryArray1DHandle;
 
-/* "_c_api.pxd":165
- * ctypedef void* AdjacencyHandle
+/* "_c_api.pxd":167
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
 */
 typedef void *__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":166
+/* "_c_api.pxd":168
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
+ * ctypedef void* ConnectionsHandle
 */
 typedef void *__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":167
+/* "_c_api.pxd":169
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGateWithNeighborsHandle
- * ctypedef void* ConnectionHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
-
-/* "_c_api.pxd":168
- * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
-
-/* "_c_api.pxd":169
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
  * ctypedef void* ConnectionHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConnectionsHandle
  * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionHandle;
 
 /* "_c_api.pxd":170
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* RightReservoirWithImplantedOhmicHandle
  * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedanceHandle
- * ctypedef void* ConnectionsHandle
-*/
-typedef void *__pyx_t_6_c_api_GateRelationsHandle;
-
-/* "_c_api.pxd":171
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionsHandle
- * ctypedef void* ImpedancesHandle
-*/
-typedef void *__pyx_t_6_c_api_ImpedanceHandle;
-
-/* "_c_api.pxd":172
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
  * ctypedef void* ConnectionsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedancesHandle
- * ctypedef void* SymbolUnitHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 
-/* "_c_api.pxd":173
- * ctypedef void* ImpedanceHandle
+/* "_c_api.pxd":171
+ * ctypedef void* ConnectionHandle
  * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedanceHandle
+ * ctypedef void* ImpedancesHandle
+*/
+typedef void *__pyx_t_6_c_api_GateRelationsHandle;
+
+/* "_c_api.pxd":172
+ * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedancesHandle
+ * ctypedef void* SymbolUnitHandle
+*/
+typedef void *__pyx_t_6_c_api_ImpedanceHandle;
+
+/* "_c_api.pxd":173
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle             # <<<<<<<<<<<<<<
  * ctypedef void* SymbolUnitHandle
  * 
@@ -3370,7 +3370,7 @@ typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 typedef void *__pyx_t_6_c_api_ImpedancesHandle;
 
 /* "_c_api.pxd":174
- * ctypedef void* ConnectionsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle
  * ctypedef void* SymbolUnitHandle             # <<<<<<<<<<<<<<
  * 
@@ -3867,6 +3867,30 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
 #endif
 
+/* PyObjectFormatSimple.proto */
+#if CYTHON_COMPILING_IN_PYPY
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#elif CYTHON_USE_TYPE_SLOTS
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        likely(PyLong_CheckExact(s)) ? PyLong_Type.tp_repr(s) :\
+        likely(PyFloat_CheckExact(s)) ? PyFloat_Type.tp_repr(s) :\
+        PyObject_Format(s, f))
+#else
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#endif
+
+/* PyObjectCallNoArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+
+/* JoinPyUnicode.export */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char);
+
 /* PyTypeError_Check.proto */
 #define __Pyx_PyExc_TypeError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_TypeError)
 
@@ -3890,9 +3914,6 @@ static int __Pyx__SetItemOnTypeDict(PyTypeObject *tp, PyObject *k, PyObject *v);
 
 /* FixUpExtensionType.proto */
 static CYTHON_INLINE int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type);
-
-/* PyObjectCallNoArg.proto (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 
 /* PyObjectGetMethod.proto (used by PyObjectCallMethod0) */
 #if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
@@ -4368,8 +4389,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_56subtract_qu
 static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_58subtract_equals_quantity(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self, struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_other); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_60negate(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_62abs(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__repr__(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__str__(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_68__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_70__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_8quantity_Quantity(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -4399,7 +4422,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[30];
-  PyObject *__pyx_string_tab[138];
+  PyObject *__pyx_string_tab[141];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -4444,140 +4467,143 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Failed_to_create_Quantity __pyx_string_tab[1]
 #define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[2]
 #define __pyx_kp_u__2 __pyx_string_tab[3]
-#define __pyx_kp_u_add_note __pyx_string_tab[4]
-#define __pyx_kp_u_disable __pyx_string_tab[5]
-#define __pyx_kp_u_enable __pyx_string_tab[6]
-#define __pyx_kp_u_gc __pyx_string_tab[7]
-#define __pyx_kp_u_isenabled __pyx_string_tab[8]
-#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[9]
-#define __pyx_kp_u_src_falcon_core__capi_quantity_p __pyx_string_tab[10]
-#define __pyx_kp_u_stringsource __pyx_string_tab[11]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[12]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[13]
-#define __pyx_n_u_Quantity __pyx_string_tab[14]
-#define __pyx_n_u_Quantity___reduce_cython __pyx_string_tab[15]
-#define __pyx_n_u_Quantity___setstate_cython __pyx_string_tab[16]
-#define __pyx_n_u_Quantity_abs __pyx_string_tab[17]
-#define __pyx_n_u_Quantity_add_equals_quantity __pyx_string_tab[18]
-#define __pyx_n_u_Quantity_add_quantity __pyx_string_tab[19]
-#define __pyx_n_u_Quantity_convert_to __pyx_string_tab[20]
-#define __pyx_n_u_Quantity_copy __pyx_string_tab[21]
-#define __pyx_n_u_Quantity_divide_double __pyx_string_tab[22]
-#define __pyx_n_u_Quantity_divide_equals_double __pyx_string_tab[23]
-#define __pyx_n_u_Quantity_divide_equals_int __pyx_string_tab[24]
-#define __pyx_n_u_Quantity_divide_equals_quantity __pyx_string_tab[25]
-#define __pyx_n_u_Quantity_divide_int __pyx_string_tab[26]
-#define __pyx_n_u_Quantity_divide_quantity __pyx_string_tab[27]
-#define __pyx_n_u_Quantity_equal __pyx_string_tab[28]
-#define __pyx_n_u_Quantity_from_json __pyx_string_tab[29]
-#define __pyx_n_u_Quantity_multiply_double __pyx_string_tab[30]
-#define __pyx_n_u_Quantity_multiply_equals_double __pyx_string_tab[31]
-#define __pyx_n_u_Quantity_multiply_equals_int __pyx_string_tab[32]
-#define __pyx_n_u_Quantity_multiply_equals_quantit __pyx_string_tab[33]
-#define __pyx_n_u_Quantity_multiply_int __pyx_string_tab[34]
-#define __pyx_n_u_Quantity_multiply_quantity __pyx_string_tab[35]
-#define __pyx_n_u_Quantity_negate __pyx_string_tab[36]
-#define __pyx_n_u_Quantity_new __pyx_string_tab[37]
-#define __pyx_n_u_Quantity_not_equal __pyx_string_tab[38]
-#define __pyx_n_u_Quantity_power __pyx_string_tab[39]
-#define __pyx_n_u_Quantity_subtract_equals_quantit __pyx_string_tab[40]
-#define __pyx_n_u_Quantity_subtract_quantity __pyx_string_tab[41]
-#define __pyx_n_u_Quantity_to_json __pyx_string_tab[42]
-#define __pyx_n_u_Quantity_unit __pyx_string_tab[43]
-#define __pyx_n_u_Quantity_value __pyx_string_tab[44]
-#define __pyx_n_u_abs __pyx_string_tab[45]
-#define __pyx_n_u_add_equals_quantity __pyx_string_tab[46]
-#define __pyx_n_u_add_quantity __pyx_string_tab[47]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[48]
-#define __pyx_n_u_b_json __pyx_string_tab[49]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[50]
-#define __pyx_n_u_cls __pyx_string_tab[51]
-#define __pyx_n_u_convert_to __pyx_string_tab[52]
-#define __pyx_n_u_copy __pyx_string_tab[53]
-#define __pyx_n_u_dict __pyx_string_tab[54]
-#define __pyx_n_u_divide_double __pyx_string_tab[55]
-#define __pyx_n_u_divide_equals_double __pyx_string_tab[56]
-#define __pyx_n_u_divide_equals_int __pyx_string_tab[57]
-#define __pyx_n_u_divide_equals_quantity __pyx_string_tab[58]
-#define __pyx_n_u_divide_int __pyx_string_tab[59]
-#define __pyx_n_u_divide_quantity __pyx_string_tab[60]
-#define __pyx_n_u_equal __pyx_string_tab[61]
-#define __pyx_n_u_falcon_core__capi_quantity __pyx_string_tab[62]
-#define __pyx_n_u_from_json __pyx_string_tab[63]
-#define __pyx_n_u_func __pyx_string_tab[64]
-#define __pyx_n_u_getstate __pyx_string_tab[65]
-#define __pyx_n_u_h __pyx_string_tab[66]
-#define __pyx_n_u_h_ret __pyx_string_tab[67]
-#define __pyx_n_u_handle __pyx_string_tab[68]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[69]
-#define __pyx_n_u_items __pyx_string_tab[70]
-#define __pyx_n_u_json __pyx_string_tab[71]
-#define __pyx_n_u_main __pyx_string_tab[72]
-#define __pyx_n_u_module __pyx_string_tab[73]
-#define __pyx_n_u_multiply_double __pyx_string_tab[74]
-#define __pyx_n_u_multiply_equals_double __pyx_string_tab[75]
-#define __pyx_n_u_multiply_equals_int __pyx_string_tab[76]
-#define __pyx_n_u_multiply_equals_quantity __pyx_string_tab[77]
-#define __pyx_n_u_multiply_int __pyx_string_tab[78]
-#define __pyx_n_u_multiply_quantity __pyx_string_tab[79]
-#define __pyx_n_u_name __pyx_string_tab[80]
-#define __pyx_n_u_negate __pyx_string_tab[81]
-#define __pyx_n_u_new __pyx_string_tab[82]
-#define __pyx_n_u_not_equal __pyx_string_tab[83]
-#define __pyx_n_u_obj __pyx_string_tab[84]
-#define __pyx_n_u_other __pyx_string_tab[85]
-#define __pyx_n_u_pop __pyx_string_tab[86]
-#define __pyx_n_u_power __pyx_string_tab[87]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[88]
-#define __pyx_n_u_pyx_state __pyx_string_tab[89]
-#define __pyx_n_u_qualname __pyx_string_tab[90]
-#define __pyx_n_u_reduce __pyx_string_tab[91]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[92]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[93]
-#define __pyx_n_u_s_json __pyx_string_tab[94]
-#define __pyx_n_u_s_ret __pyx_string_tab[95]
-#define __pyx_n_u_self __pyx_string_tab[96]
-#define __pyx_n_u_set_name __pyx_string_tab[97]
-#define __pyx_n_u_setdefault __pyx_string_tab[98]
-#define __pyx_n_u_setstate __pyx_string_tab[99]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[100]
-#define __pyx_n_u_subtract_equals_quantity __pyx_string_tab[101]
-#define __pyx_n_u_subtract_quantity __pyx_string_tab[102]
-#define __pyx_n_u_target_unit __pyx_string_tab[103]
-#define __pyx_n_u_test __pyx_string_tab[104]
-#define __pyx_n_u_to_json __pyx_string_tab[105]
-#define __pyx_n_u_unit __pyx_string_tab[106]
-#define __pyx_n_u_value __pyx_string_tab[107]
-#define __pyx_n_u_values __pyx_string_tab[108]
-#define __pyx_kp_b_iso88591_A_11A_a_6_1_1_s_QQUUV __pyx_string_tab[109]
-#define __pyx_kp_b_iso88591_A_11EQd_ST_6_1_1_s_QQUUV __pyx_string_tab[110]
-#define __pyx_kp_b_iso88591_A_11Gq_IUV_6_1_1_s_QQUUV __pyx_string_tab[111]
-#define __pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_1_1_s __pyx_string_tab[112]
-#define __pyx_kp_b_iso88591_A_11H_YVW_6_1_1_s_QQUUV __pyx_string_tab[113]
-#define __pyx_kp_b_iso88591_A_11J_4yXY_6_1_1_s_QQUUV __pyx_string_tab[114]
-#define __pyx_kp_b_iso88591_A_11J_4yX_hhnnuu_W_W_X_6_1_1_s_Q __pyx_string_tab[115]
-#define __pyx_kp_b_iso88591_A_11LATQZZ_6_1_1_s_QQUUV __pyx_string_tab[116]
-#define __pyx_kp_b_iso88591_A_11LATQZZ__jjppw_x_B_B_Y_Y_Z_6 __pyx_string_tab[117]
-#define __pyx_kp_b_iso88591_A_11NatS_6_1_1_s_QQUUV __pyx_string_tab[118]
-#define __pyx_kp_b_iso88591_A_11NatS_aallrry_z_D_D_6_1_1_s_Q __pyx_string_tab[119]
-#define __pyx_kp_b_iso88591_A_11OqPTT_6_1_1_s_QQUUV __pyx_string_tab[120]
-#define __pyx_kp_b_iso88591_A_11QQRRVV___6_1_1_s_QQUUV __pyx_string_tab[121]
-#define __pyx_kp_b_iso88591_A_11QQRRVV__ddoouu_G_G___6_1_1_s __pyx_string_tab[122]
-#define __pyx_kp_b_iso88591_A_11SSTTXXaaffqqww_I_I_a_6_1_1_s __pyx_string_tab[123]
-#define __pyx_kp_b_iso88591_A_1_Ya_6_1_1_s_QQUUV __pyx_string_tab[124]
-#define __pyx_kp_b_iso88591_A_1_at1_6_1_1_s_QQUUV __pyx_string_tab[125]
-#define __pyx_kp_b_iso88591_A_1_q_A_6_1_1_s_QQUUV __pyx_string_tab[126]
-#define __pyx_kp_b_iso88591_A_3_a_6_Q_1_Qm1 __pyx_string_tab[127]
-#define __pyx_kp_b_iso88591_A_4y_lRYYcc __pyx_string_tab[128]
-#define __pyx_kp_b_iso88591_A_7_k_gZOhhi_2S_q_Qa_Jc_Q_9A_q __pyx_string_tab[129]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_0_2S_q_Qa_Jc_Q_9A __pyx_string_tab[130]
-#define __pyx_kp_b_iso88591_A_Ye_fGS_ttu __pyx_string_tab[131]
-#define __pyx_kp_b_iso88591_A__AT __pyx_string_tab[132]
-#define __pyx_kp_b_iso88591_A__AT_zYppq __pyx_string_tab[133]
-#define __pyx_kp_b_iso88591_A_at1_6_1_AU_XWAQ __pyx_string_tab[134]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[135]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[136]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[137]
+#define __pyx_kp_u__3 __pyx_string_tab[4]
+#define __pyx_kp_u__4 __pyx_string_tab[5]
+#define __pyx_kp_u_add_note __pyx_string_tab[6]
+#define __pyx_kp_u_disable __pyx_string_tab[7]
+#define __pyx_kp_u_enable __pyx_string_tab[8]
+#define __pyx_kp_u_gc __pyx_string_tab[9]
+#define __pyx_kp_u_isenabled __pyx_string_tab[10]
+#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[11]
+#define __pyx_kp_u_src_falcon_core__capi_quantity_p __pyx_string_tab[12]
+#define __pyx_kp_u_stringsource __pyx_string_tab[13]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[14]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[15]
+#define __pyx_n_u_Quantity __pyx_string_tab[16]
+#define __pyx_n_u_Quantity___reduce_cython __pyx_string_tab[17]
+#define __pyx_n_u_Quantity___setstate_cython __pyx_string_tab[18]
+#define __pyx_n_u_Quantity_abs __pyx_string_tab[19]
+#define __pyx_n_u_Quantity_add_equals_quantity __pyx_string_tab[20]
+#define __pyx_n_u_Quantity_add_quantity __pyx_string_tab[21]
+#define __pyx_n_u_Quantity_convert_to __pyx_string_tab[22]
+#define __pyx_n_u_Quantity_copy __pyx_string_tab[23]
+#define __pyx_n_u_Quantity_divide_double __pyx_string_tab[24]
+#define __pyx_n_u_Quantity_divide_equals_double __pyx_string_tab[25]
+#define __pyx_n_u_Quantity_divide_equals_int __pyx_string_tab[26]
+#define __pyx_n_u_Quantity_divide_equals_quantity __pyx_string_tab[27]
+#define __pyx_n_u_Quantity_divide_int __pyx_string_tab[28]
+#define __pyx_n_u_Quantity_divide_quantity __pyx_string_tab[29]
+#define __pyx_n_u_Quantity_equal __pyx_string_tab[30]
+#define __pyx_n_u_Quantity_from_json __pyx_string_tab[31]
+#define __pyx_n_u_Quantity_multiply_double __pyx_string_tab[32]
+#define __pyx_n_u_Quantity_multiply_equals_double __pyx_string_tab[33]
+#define __pyx_n_u_Quantity_multiply_equals_int __pyx_string_tab[34]
+#define __pyx_n_u_Quantity_multiply_equals_quantit __pyx_string_tab[35]
+#define __pyx_n_u_Quantity_multiply_int __pyx_string_tab[36]
+#define __pyx_n_u_Quantity_multiply_quantity __pyx_string_tab[37]
+#define __pyx_n_u_Quantity_negate __pyx_string_tab[38]
+#define __pyx_n_u_Quantity_new __pyx_string_tab[39]
+#define __pyx_n_u_Quantity_not_equal __pyx_string_tab[40]
+#define __pyx_n_u_Quantity_power __pyx_string_tab[41]
+#define __pyx_n_u_Quantity_subtract_equals_quantit __pyx_string_tab[42]
+#define __pyx_n_u_Quantity_subtract_quantity __pyx_string_tab[43]
+#define __pyx_n_u_Quantity_to_json __pyx_string_tab[44]
+#define __pyx_n_u_Quantity_unit __pyx_string_tab[45]
+#define __pyx_n_u_Quantity_value __pyx_string_tab[46]
+#define __pyx_n_u_abs __pyx_string_tab[47]
+#define __pyx_n_u_add_equals_quantity __pyx_string_tab[48]
+#define __pyx_n_u_add_quantity __pyx_string_tab[49]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[50]
+#define __pyx_n_u_b_json __pyx_string_tab[51]
+#define __pyx_n_u_class __pyx_string_tab[52]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[53]
+#define __pyx_n_u_cls __pyx_string_tab[54]
+#define __pyx_n_u_convert_to __pyx_string_tab[55]
+#define __pyx_n_u_copy __pyx_string_tab[56]
+#define __pyx_n_u_dict __pyx_string_tab[57]
+#define __pyx_n_u_divide_double __pyx_string_tab[58]
+#define __pyx_n_u_divide_equals_double __pyx_string_tab[59]
+#define __pyx_n_u_divide_equals_int __pyx_string_tab[60]
+#define __pyx_n_u_divide_equals_quantity __pyx_string_tab[61]
+#define __pyx_n_u_divide_int __pyx_string_tab[62]
+#define __pyx_n_u_divide_quantity __pyx_string_tab[63]
+#define __pyx_n_u_equal __pyx_string_tab[64]
+#define __pyx_n_u_falcon_core__capi_quantity __pyx_string_tab[65]
+#define __pyx_n_u_from_json __pyx_string_tab[66]
+#define __pyx_n_u_func __pyx_string_tab[67]
+#define __pyx_n_u_getstate __pyx_string_tab[68]
+#define __pyx_n_u_h __pyx_string_tab[69]
+#define __pyx_n_u_h_ret __pyx_string_tab[70]
+#define __pyx_n_u_handle __pyx_string_tab[71]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[72]
+#define __pyx_n_u_items __pyx_string_tab[73]
+#define __pyx_n_u_json __pyx_string_tab[74]
+#define __pyx_n_u_main __pyx_string_tab[75]
+#define __pyx_n_u_module __pyx_string_tab[76]
+#define __pyx_n_u_multiply_double __pyx_string_tab[77]
+#define __pyx_n_u_multiply_equals_double __pyx_string_tab[78]
+#define __pyx_n_u_multiply_equals_int __pyx_string_tab[79]
+#define __pyx_n_u_multiply_equals_quantity __pyx_string_tab[80]
+#define __pyx_n_u_multiply_int __pyx_string_tab[81]
+#define __pyx_n_u_multiply_quantity __pyx_string_tab[82]
+#define __pyx_n_u_name __pyx_string_tab[83]
+#define __pyx_n_u_negate __pyx_string_tab[84]
+#define __pyx_n_u_new __pyx_string_tab[85]
+#define __pyx_n_u_not_equal __pyx_string_tab[86]
+#define __pyx_n_u_obj __pyx_string_tab[87]
+#define __pyx_n_u_other __pyx_string_tab[88]
+#define __pyx_n_u_pop __pyx_string_tab[89]
+#define __pyx_n_u_power __pyx_string_tab[90]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[91]
+#define __pyx_n_u_pyx_state __pyx_string_tab[92]
+#define __pyx_n_u_qualname __pyx_string_tab[93]
+#define __pyx_n_u_reduce __pyx_string_tab[94]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[95]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[96]
+#define __pyx_n_u_s_json __pyx_string_tab[97]
+#define __pyx_n_u_s_ret __pyx_string_tab[98]
+#define __pyx_n_u_self __pyx_string_tab[99]
+#define __pyx_n_u_set_name __pyx_string_tab[100]
+#define __pyx_n_u_setdefault __pyx_string_tab[101]
+#define __pyx_n_u_setstate __pyx_string_tab[102]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[103]
+#define __pyx_n_u_subtract_equals_quantity __pyx_string_tab[104]
+#define __pyx_n_u_subtract_quantity __pyx_string_tab[105]
+#define __pyx_n_u_target_unit __pyx_string_tab[106]
+#define __pyx_n_u_test __pyx_string_tab[107]
+#define __pyx_n_u_to_json __pyx_string_tab[108]
+#define __pyx_n_u_unit __pyx_string_tab[109]
+#define __pyx_n_u_value __pyx_string_tab[110]
+#define __pyx_n_u_values __pyx_string_tab[111]
+#define __pyx_kp_b_iso88591_A_11A_a_6_3gQ_s_QQUUV __pyx_string_tab[112]
+#define __pyx_kp_b_iso88591_A_11EQd_ST_6_3gQ_s_QQUUV __pyx_string_tab[113]
+#define __pyx_kp_b_iso88591_A_11Gq_IUV_6_3gQ_s_QQUUV __pyx_string_tab[114]
+#define __pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_3gQ_s __pyx_string_tab[115]
+#define __pyx_kp_b_iso88591_A_11H_YVW_6_3gQ_s_QQUUV __pyx_string_tab[116]
+#define __pyx_kp_b_iso88591_A_11J_4yXY_6_3gQ_s_QQUUV __pyx_string_tab[117]
+#define __pyx_kp_b_iso88591_A_11J_4yX_hhnnuu_W_W_X_6_3gQ_s_Q __pyx_string_tab[118]
+#define __pyx_kp_b_iso88591_A_11LATQZZ_6_3gQ_s_QQUUV __pyx_string_tab[119]
+#define __pyx_kp_b_iso88591_A_11LATQZZ__jjppw_x_B_B_Y_Y_Z_6 __pyx_string_tab[120]
+#define __pyx_kp_b_iso88591_A_11NatS_6_3gQ_s_QQUUV __pyx_string_tab[121]
+#define __pyx_kp_b_iso88591_A_11NatS_aallrry_z_D_D_6_3gQ_s_Q __pyx_string_tab[122]
+#define __pyx_kp_b_iso88591_A_11OqPTT_6_3gQ_s_QQUUV __pyx_string_tab[123]
+#define __pyx_kp_b_iso88591_A_11QQRRVV___6_3gQ_s_QQUUV __pyx_string_tab[124]
+#define __pyx_kp_b_iso88591_A_11QQRRVV__ddoouu_G_G___6_3gQ_s __pyx_string_tab[125]
+#define __pyx_kp_b_iso88591_A_11SSTTXXaaffqqww_I_I_a_6_3gQ_s __pyx_string_tab[126]
+#define __pyx_kp_b_iso88591_A_1_Ya_6_3gQ_s_QQUUV __pyx_string_tab[127]
+#define __pyx_kp_b_iso88591_A_1_at1_6_3gQ_s_QQUUV __pyx_string_tab[128]
+#define __pyx_kp_b_iso88591_A_1_q_A_6_3gQ_s_QQUUV __pyx_string_tab[129]
+#define __pyx_kp_b_iso88591_A_3_a_6_S_q_Qm1 __pyx_string_tab[130]
+#define __pyx_kp_b_iso88591_A_4y_lRYYcc __pyx_string_tab[131]
+#define __pyx_kp_b_iso88591_A_7_k_gZOhhi_2S_q_Qa_Jc_Q_9A_q __pyx_string_tab[132]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_0_2S_q_Qa_Jc_Q_9A __pyx_string_tab[133]
+#define __pyx_kp_b_iso88591_A_Ye_fGS_ttu __pyx_string_tab[134]
+#define __pyx_kp_b_iso88591_A__AT __pyx_string_tab[135]
+#define __pyx_kp_b_iso88591_A__AT_zYppq __pyx_string_tab[136]
+#define __pyx_kp_b_iso88591_A_at1_6_G1_W_Qe6_hgQa_aq __pyx_string_tab[137]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[138]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[139]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[140]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -4597,7 +4623,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity);
   Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_8quantity_Quantity);
   for (int i=0; i<30; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<138; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<141; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -4625,7 +4651,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity);
   Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_8quantity_Quantity);
   for (int i=0; i<30; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<138; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<141; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -5300,7 +5326,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_6new(PyTypeOb
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def copy(self, ):
+ *     def copy(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -5331,9 +5357,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_6new(PyTypeOb
 /* "falcon_core/_capi/quantity.pyx":46
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -5392,46 +5418,30 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_8copy(struct 
 
   /* "falcon_core/_capi/quantity.pyx":47
  * 
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/quantity.pyx":48
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":49
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":48
- *     def copy(self, ):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":50
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":49
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def equal(self, Quantity other):
@@ -5439,7 +5449,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_8copy(struct 
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 50, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5448,9 +5458,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_8copy(struct 
   /* "falcon_core/_capi/quantity.pyx":46
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -5464,7 +5474,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_8copy(struct 
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":52
+/* "falcon_core/_capi/quantity.pyx":51
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def equal(self, Quantity other):             # <<<<<<<<<<<<<<
@@ -5511,32 +5521,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 52, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 51, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 52, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 51, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 52, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 51, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 52, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 51, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 52, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 51, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 52, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 51, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5547,7 +5557,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 51, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_10equal(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -5578,7 +5588,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_10equal(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":53
+  /* "falcon_core/_capi/quantity.pyx":52
  * 
  *     def equal(self, Quantity other):
  *         return _c_api.Quantity_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
@@ -5592,13 +5602,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_10equal(struc
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_QuantityHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(Quantity_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 53, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(Quantity_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 52, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":52
+  /* "falcon_core/_capi/quantity.pyx":51
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def equal(self, Quantity other):             # <<<<<<<<<<<<<<
@@ -5617,12 +5627,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_10equal(struc
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":55
+/* "falcon_core/_capi/quantity.pyx":54
  *         return _c_api.Quantity_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
  * 
  *     def __eq__(self, Quantity other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
 /* Python wrapper */
@@ -5636,7 +5646,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_13__eq__(PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 55, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 54, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_12__eq__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_other));
 
   /* function exit code */
@@ -5663,41 +5673,25 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_12__eq__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":56
+  /* "falcon_core/_capi/quantity.pyx":55
  * 
  *     def __eq__(self, Quantity other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 56, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 55, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":57
- *     def __eq__(self, Quantity other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":56
- * 
- *     def __eq__(self, Quantity other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":58
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/quantity.pyx":56
+ *     def __eq__(self, Quantity other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def not_equal(self, Quantity other):
@@ -5710,19 +5704,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_12__eq__(stru
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":55
+  /* "falcon_core/_capi/quantity.pyx":54
  *         return _c_api.Quantity_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
  * 
  *     def __eq__(self, Quantity other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
   /* function exit code */
@@ -5737,7 +5731,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_12__eq__(stru
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":60
+/* "falcon_core/_capi/quantity.pyx":58
  *         return self.equal(other)
  * 
  *     def not_equal(self, Quantity other):             # <<<<<<<<<<<<<<
@@ -5784,32 +5778,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 60, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 58, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 60, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 58, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 58, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 60, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 58, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 60, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 58, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 60, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 58, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5820,7 +5814,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 58, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_14not_equal(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -5851,7 +5845,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_14not_equal(s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":61
+  /* "falcon_core/_capi/quantity.pyx":59
  * 
  *     def not_equal(self, Quantity other):
  *         return _c_api.Quantity_not_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
@@ -5865,13 +5859,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_14not_equal(s
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_QuantityHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(Quantity_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(Quantity_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":60
+  /* "falcon_core/_capi/quantity.pyx":58
  *         return self.equal(other)
  * 
  *     def not_equal(self, Quantity other):             # <<<<<<<<<<<<<<
@@ -5890,12 +5884,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_14not_equal(s
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":63
+/* "falcon_core/_capi/quantity.pyx":61
  *         return _c_api.Quantity_not_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
  * 
  *     def __ne__(self, Quantity other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
 /* Python wrapper */
@@ -5909,7 +5903,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_17__ne__(PyOb
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 63, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 61, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_16__ne__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_other));
 
   /* function exit code */
@@ -5936,44 +5930,28 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_16__ne__(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":64
+  /* "falcon_core/_capi/quantity.pyx":62
  * 
  *     def __ne__(self, Quantity other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.not_equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 64, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 62, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":65
- *     def __ne__(self, Quantity other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":64
- * 
- *     def __ne__(self, Quantity other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.not_equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":66
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/quantity.pyx":63
+ *     def __ne__(self, Quantity other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
- *     def to_json(self, ):
+ *     def to_json(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = ((PyObject *)__pyx_v_self);
@@ -5983,19 +5961,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_16__ne__(stru
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":63
+  /* "falcon_core/_capi/quantity.pyx":61
  *         return _c_api.Quantity_not_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
  * 
  *     def __ne__(self, Quantity other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
   /* function exit code */
@@ -6010,10 +5988,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_16__ne__(stru
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":68
+/* "falcon_core/_capi/quantity.pyx":65
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Quantity_to_json_string(self.handle)
 */
@@ -6081,70 +6059,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_18to_json(str
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":70
- *     def to_json(self, ):
+  /* "falcon_core/_capi/quantity.pyx":67
+ *     def to_json(self):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Quantity_to_json_string(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
 */
   __pyx_v_s_ret = Quantity_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/quantity.pyx":71
+  /* "falcon_core/_capi/quantity.pyx":68
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Quantity_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
+ *         if s_ret == <_c_api.StringHandle>0: return ""             # <<<<<<<<<<<<<<
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)
 */
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":72
- *         s_ret = _c_api.Quantity_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
     __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":71
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.Quantity_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":73
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
+  /* "falcon_core/_capi/quantity.pyx":69
+ *         s_ret = _c_api.Quantity_to_json_string(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally: _c_api.String_destroy(s_ret)
+ * 
 */
   /*try:*/ {
-
-    /* "falcon_core/_capi/quantity.pyx":74
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 69, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 74, __pyx_L5_error)
+      __PYX_ERR(0, 69, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -6152,12 +6106,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_18to_json(str
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/quantity.pyx":76
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+  /* "falcon_core/_capi/quantity.pyx":70
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
- *     def value(self, ):
+ *     def value(self):
 */
   /*finally:*/ {
     __pyx_L5_error:;
@@ -6201,10 +6155,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_18to_json(str
     }
   }
 
-  /* "falcon_core/_capi/quantity.pyx":68
+  /* "falcon_core/_capi/quantity.pyx":65
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Quantity_to_json_string(self.handle)
 */
@@ -6221,10 +6175,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_18to_json(str
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":78
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/quantity.pyx":72
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def value(self, ):             # <<<<<<<<<<<<<<
+ *     def value(self):             # <<<<<<<<<<<<<<
  *         return _c_api.Quantity_value(self.handle)
  * 
 */
@@ -6280,24 +6234,24 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_20value(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("value", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":79
+  /* "falcon_core/_capi/quantity.pyx":73
  * 
- *     def value(self, ):
+ *     def value(self):
  *         return _c_api.Quantity_value(self.handle)             # <<<<<<<<<<<<<<
  * 
- *     def unit(self, ):
+ *     def unit(self):
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(Quantity_value(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(Quantity_value(__pyx_v_self->handle)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":78
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/quantity.pyx":72
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def value(self, ):             # <<<<<<<<<<<<<<
+ *     def value(self):             # <<<<<<<<<<<<<<
  *         return _c_api.Quantity_value(self.handle)
  * 
 */
@@ -6313,12 +6267,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_20value(struc
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":81
+/* "falcon_core/_capi/quantity.pyx":75
  *         return _c_api.Quantity_value(self.handle)
  * 
- *     def unit(self, ):             # <<<<<<<<<<<<<<
+ *     def unit(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
- *         if h_ret == <_c_api.SymbolUnitHandle>0:
+ *         if h_ret == <_c_api.SymbolUnitHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6375,48 +6329,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_22unit(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("unit", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":82
+  /* "falcon_core/_capi/quantity.pyx":76
  * 
- *     def unit(self, ):
+ *     def unit(self):
  *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.SymbolUnitHandle>0:
- *             return None
+ *         if h_ret == <_c_api.SymbolUnitHandle>0: return None
+ *         return _symbol_unit_from_capi(h_ret, owned=False)
 */
   __pyx_v_h_ret = Quantity_unit(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/quantity.pyx":83
- *     def unit(self, ):
+  /* "falcon_core/_capi/quantity.pyx":77
+ *     def unit(self):
  *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
- *         if h_ret == <_c_api.SymbolUnitHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _symbol_unit_from_capi(h_ret, owned=False)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_SymbolUnitHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":84
- *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
- *         if h_ret == <_c_api.SymbolUnitHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.SymbolUnitHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _symbol_unit_from_capi(h_ret, owned=False)
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_SymbolUnitHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":83
- *     def unit(self, ):
- *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
- *         if h_ret == <_c_api.SymbolUnitHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _symbol_unit_from_capi(h_ret, owned=False)
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":85
- *         if h_ret == <_c_api.SymbolUnitHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":78
+ *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
+ *         if h_ret == <_c_api.SymbolUnitHandle>0: return None
  *         return _symbol_unit_from_capi(h_ret, owned=False)             # <<<<<<<<<<<<<<
  * 
  *     def convert_to(self, SymbolUnit target_unit):
@@ -6424,18 +6362,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_22unit(struct
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 0;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11symbol_unit__symbol_unit_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11symbol_unit__symbol_unit_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":81
+  /* "falcon_core/_capi/quantity.pyx":75
  *         return _c_api.Quantity_value(self.handle)
  * 
- *     def unit(self, ):             # <<<<<<<<<<<<<<
+ *     def unit(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
- *         if h_ret == <_c_api.SymbolUnitHandle>0:
+ *         if h_ret == <_c_api.SymbolUnitHandle>0: return None
 */
 
   /* function exit code */
@@ -6449,7 +6387,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_22unit(struct
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":87
+/* "falcon_core/_capi/quantity.pyx":80
  *         return _symbol_unit_from_capi(h_ret, owned=False)
  * 
  *     def convert_to(self, SymbolUnit target_unit):             # <<<<<<<<<<<<<<
@@ -6496,32 +6434,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_target_unit,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 87, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 80, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 87, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "convert_to", 0) < (0)) __PYX_ERR(0, 87, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "convert_to", 0) < (0)) __PYX_ERR(0, 80, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("convert_to", 1, 1, 1, i); __PYX_ERR(0, 87, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("convert_to", 1, 1, 1, i); __PYX_ERR(0, 80, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 87, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 80, __pyx_L3_error)
     }
     __pyx_v_target_unit = ((struct __pyx_obj_11falcon_core_5_capi_11symbol_unit_SymbolUnit *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("convert_to", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 87, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("convert_to", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 80, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6532,7 +6470,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_target_unit), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11symbol_unit_SymbolUnit, 1, "target_unit", 0))) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_target_unit), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_11symbol_unit_SymbolUnit, 1, "target_unit", 0))) __PYX_ERR(0, 80, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_24convert_to(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_target_unit);
 
   /* function exit code */
@@ -6559,7 +6497,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_24convert_to(
   int __pyx_t_2;
   __Pyx_RefNannySetupContext("convert_to", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":88
+  /* "falcon_core/_capi/quantity.pyx":81
  * 
  *     def convert_to(self, SymbolUnit target_unit):
  *         _c_api.Quantity_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)             # <<<<<<<<<<<<<<
@@ -6574,7 +6512,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_24convert_to(
   }
   Quantity_convert_to(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":87
+  /* "falcon_core/_capi/quantity.pyx":80
  *         return _symbol_unit_from_capi(h_ret, owned=False)
  * 
  *     def convert_to(self, SymbolUnit target_unit):             # <<<<<<<<<<<<<<
@@ -6589,12 +6527,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_24convert_to(
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":90
+/* "falcon_core/_capi/quantity.pyx":83
  *         _c_api.Quantity_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)
  * 
  *     def multiply_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6636,32 +6574,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 90, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 90, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_int", 0) < (0)) __PYX_ERR(0, 90, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_int", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_int", 1, 1, 1, i); __PYX_ERR(0, 90, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_int", 1, 1, 1, i); __PYX_ERR(0, 83, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 90, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 90, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("multiply_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 90, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("multiply_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6694,48 +6632,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_26multiply_in
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("multiply_int", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":91
+  /* "falcon_core/_capi/quantity.pyx":84
  * 
  *     def multiply_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_multiply_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":92
+  /* "falcon_core/_capi/quantity.pyx":85
  *     def multiply_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":93
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":92
- *     def multiply_int(self, int other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":94
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":86
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def multiply_double(self, double other):
@@ -6743,18 +6665,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_26multiply_in
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":90
+  /* "falcon_core/_capi/quantity.pyx":83
  *         _c_api.Quantity_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)
  * 
  *     def multiply_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -6768,12 +6690,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_26multiply_in
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":96
+/* "falcon_core/_capi/quantity.pyx":88
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6815,32 +6737,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 96, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 88, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 96, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_double", 0) < (0)) __PYX_ERR(0, 96, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_double", 0) < (0)) __PYX_ERR(0, 88, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_double", 1, 1, 1, i); __PYX_ERR(0, 96, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_double", 1, 1, 1, i); __PYX_ERR(0, 88, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 96, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 88, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 96, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 88, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("multiply_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 96, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("multiply_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 88, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6873,48 +6795,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_28multiply_do
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("multiply_double", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":97
+  /* "falcon_core/_capi/quantity.pyx":89
  * 
  *     def multiply_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_multiply_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":98
+  /* "falcon_core/_capi/quantity.pyx":90
  *     def multiply_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":99
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":98
- *     def multiply_double(self, double other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":100
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":91
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def multiply_quantity(self, Quantity other):
@@ -6922,18 +6828,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_28multiply_do
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":96
+  /* "falcon_core/_capi/quantity.pyx":88
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -6947,12 +6853,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_28multiply_do
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":102
+/* "falcon_core/_capi/quantity.pyx":93
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6994,32 +6900,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 102, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 93, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 102, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 93, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_quantity", 0) < (0)) __PYX_ERR(0, 102, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_quantity", 0) < (0)) __PYX_ERR(0, 93, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_quantity", 1, 1, 1, i); __PYX_ERR(0, 102, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_quantity", 1, 1, 1, i); __PYX_ERR(0, 93, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 102, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 93, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("multiply_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 102, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("multiply_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 93, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7030,7 +6936,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 93, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_30multiply_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -7063,12 +6969,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_30multiply_qu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("multiply_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":103
+  /* "falcon_core/_capi/quantity.pyx":94
  * 
  *     def multiply_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -7078,39 +6984,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_30multiply_qu
   }
   __pyx_v_h_ret = Quantity_multiply_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":104
+  /* "falcon_core/_capi/quantity.pyx":95
  *     def multiply_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":105
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":104
- *     def multiply_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":106
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":96
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def multiply_equals_int(self, int other):
@@ -7118,18 +7008,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_30multiply_qu
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":102
+  /* "falcon_core/_capi/quantity.pyx":93
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -7143,12 +7033,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_30multiply_qu
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":108
+/* "falcon_core/_capi/quantity.pyx":98
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7190,32 +7080,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 98, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 98, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_equals_int", 0) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_equals_int", 0) < (0)) __PYX_ERR(0, 98, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_equals_int", 1, 1, 1, i); __PYX_ERR(0, 108, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_equals_int", 1, 1, 1, i); __PYX_ERR(0, 98, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 98, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("multiply_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("multiply_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 98, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7248,48 +7138,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_32multiply_eq
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("multiply_equals_int", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":109
+  /* "falcon_core/_capi/quantity.pyx":99
  * 
  *     def multiply_equals_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_multiply_equals_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":110
+  /* "falcon_core/_capi/quantity.pyx":100
  *     def multiply_equals_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":111
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":110
- *     def multiply_equals_int(self, int other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":112
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":101
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def multiply_equals_double(self, double other):
@@ -7297,18 +7171,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_32multiply_eq
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":108
+  /* "falcon_core/_capi/quantity.pyx":98
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -7322,12 +7196,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_32multiply_eq
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":114
+/* "falcon_core/_capi/quantity.pyx":103
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7369,32 +7243,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 114, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 103, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 103, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_equals_double", 0) < (0)) __PYX_ERR(0, 114, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_equals_double", 0) < (0)) __PYX_ERR(0, 103, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_equals_double", 1, 1, 1, i); __PYX_ERR(0, 114, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_equals_double", 1, 1, 1, i); __PYX_ERR(0, 103, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 114, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 103, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 114, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 103, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("multiply_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 114, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("multiply_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 103, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7427,48 +7301,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_34multiply_eq
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("multiply_equals_double", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":115
+  /* "falcon_core/_capi/quantity.pyx":104
  * 
  *     def multiply_equals_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_multiply_equals_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":116
+  /* "falcon_core/_capi/quantity.pyx":105
  *     def multiply_equals_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":117
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":116
- *     def multiply_equals_double(self, double other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":118
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":106
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def multiply_equals_quantity(self, Quantity other):
@@ -7476,18 +7334,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_34multiply_eq
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":114
+  /* "falcon_core/_capi/quantity.pyx":103
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -7501,12 +7359,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_34multiply_eq
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":120
+/* "falcon_core/_capi/quantity.pyx":108
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7548,32 +7406,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 120, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 108, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 120, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_equals_quantity", 0) < (0)) __PYX_ERR(0, 120, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "multiply_equals_quantity", 0) < (0)) __PYX_ERR(0, 108, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 120, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("multiply_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 108, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 120, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 108, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("multiply_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 120, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("multiply_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7584,7 +7442,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 108, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_36multiply_equals_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -7617,12 +7475,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_36multiply_eq
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("multiply_equals_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":121
+  /* "falcon_core/_capi/quantity.pyx":109
  * 
  *     def multiply_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -7632,39 +7490,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_36multiply_eq
   }
   __pyx_v_h_ret = Quantity_multiply_equals_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":122
+  /* "falcon_core/_capi/quantity.pyx":110
  *     def multiply_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":123
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":122
- *     def multiply_equals_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":124
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":111
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divide_int(self, int other):
@@ -7672,18 +7514,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_36multiply_eq
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":120
+  /* "falcon_core/_capi/quantity.pyx":108
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -7697,12 +7539,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_36multiply_eq
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":126
+/* "falcon_core/_capi/quantity.pyx":113
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7744,32 +7586,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 126, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 113, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 126, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 113, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_int", 0) < (0)) __PYX_ERR(0, 126, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_int", 0) < (0)) __PYX_ERR(0, 113, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_int", 1, 1, 1, i); __PYX_ERR(0, 126, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_int", 1, 1, 1, i); __PYX_ERR(0, 113, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 126, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 113, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 126, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 113, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divide_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 126, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divide_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 113, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7802,48 +7644,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_38divide_int(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divide_int", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":127
+  /* "falcon_core/_capi/quantity.pyx":114
  * 
  *     def divide_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_divide_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":128
+  /* "falcon_core/_capi/quantity.pyx":115
  *     def divide_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":129
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":128
- *     def divide_int(self, int other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":130
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":116
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divide_double(self, double other):
@@ -7851,18 +7677,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_38divide_int(
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":126
+  /* "falcon_core/_capi/quantity.pyx":113
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -7876,12 +7702,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_38divide_int(
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":132
+/* "falcon_core/_capi/quantity.pyx":118
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7923,32 +7749,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 132, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 118, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 132, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 118, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_double", 0) < (0)) __PYX_ERR(0, 132, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_double", 0) < (0)) __PYX_ERR(0, 118, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_double", 1, 1, 1, i); __PYX_ERR(0, 132, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_double", 1, 1, 1, i); __PYX_ERR(0, 118, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 132, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 118, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 132, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 118, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divide_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 132, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divide_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 118, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -7981,48 +7807,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_40divide_doub
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divide_double", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":133
+  /* "falcon_core/_capi/quantity.pyx":119
  * 
  *     def divide_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_divide_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":134
+  /* "falcon_core/_capi/quantity.pyx":120
  *     def divide_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":135
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":134
- *     def divide_double(self, double other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":136
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":121
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divide_quantity(self, Quantity other):
@@ -8030,18 +7840,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_40divide_doub
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":132
+  /* "falcon_core/_capi/quantity.pyx":118
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -8055,12 +7865,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_40divide_doub
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":138
+/* "falcon_core/_capi/quantity.pyx":123
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -8102,32 +7912,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 138, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 123, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 123, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_quantity", 0) < (0)) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_quantity", 0) < (0)) __PYX_ERR(0, 123, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_quantity", 1, 1, 1, i); __PYX_ERR(0, 138, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_quantity", 1, 1, 1, i); __PYX_ERR(0, 123, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 123, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divide_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 138, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divide_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 123, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8138,7 +7948,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 138, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 123, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_42divide_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -8171,12 +7981,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_42divide_quan
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divide_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":139
+  /* "falcon_core/_capi/quantity.pyx":124
  * 
  *     def divide_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -8186,39 +7996,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_42divide_quan
   }
   __pyx_v_h_ret = Quantity_divide_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":140
+  /* "falcon_core/_capi/quantity.pyx":125
  *     def divide_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":141
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":140
- *     def divide_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":142
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":126
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divide_equals_int(self, int other):
@@ -8226,18 +8020,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_42divide_quan
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 142, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":138
+  /* "falcon_core/_capi/quantity.pyx":123
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -8251,12 +8045,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_42divide_quan
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":144
+/* "falcon_core/_capi/quantity.pyx":128
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -8298,32 +8092,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 144, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 128, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 144, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 128, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_equals_int", 0) < (0)) __PYX_ERR(0, 144, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_equals_int", 0) < (0)) __PYX_ERR(0, 128, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_equals_int", 1, 1, 1, i); __PYX_ERR(0, 144, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_equals_int", 1, 1, 1, i); __PYX_ERR(0, 128, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 144, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 128, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 144, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 128, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divide_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 144, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divide_equals_int", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 128, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8356,48 +8150,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_44divide_equa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divide_equals_int", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":145
+  /* "falcon_core/_capi/quantity.pyx":129
  * 
  *     def divide_equals_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_divide_equals_int(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":146
+  /* "falcon_core/_capi/quantity.pyx":130
  *     def divide_equals_int(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":147
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":146
- *     def divide_equals_int(self, int other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":148
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":131
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divide_equals_double(self, double other):
@@ -8405,18 +8183,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_44divide_equa
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":144
+  /* "falcon_core/_capi/quantity.pyx":128
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_equals_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -8430,12 +8208,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_44divide_equa
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":150
+/* "falcon_core/_capi/quantity.pyx":133
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -8477,32 +8255,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 150, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 133, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 150, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 133, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_equals_double", 0) < (0)) __PYX_ERR(0, 150, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_equals_double", 0) < (0)) __PYX_ERR(0, 133, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_equals_double", 1, 1, 1, i); __PYX_ERR(0, 150, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_equals_double", 1, 1, 1, i); __PYX_ERR(0, 133, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 150, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 133, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 150, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_other == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 133, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divide_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 150, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divide_equals_double", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 133, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8535,48 +8313,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_46divide_equa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divide_equals_double", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":151
+  /* "falcon_core/_capi/quantity.pyx":134
  * 
  *     def divide_equals_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_divide_equals_double(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":152
+  /* "falcon_core/_capi/quantity.pyx":135
  *     def divide_equals_double(self, double other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":153
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":152
- *     def divide_equals_double(self, double other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":154
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":136
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def divide_equals_quantity(self, Quantity other):
@@ -8584,18 +8346,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_46divide_equa
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":150
+  /* "falcon_core/_capi/quantity.pyx":133
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_equals_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -8609,12 +8371,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_46divide_equa
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":156
+/* "falcon_core/_capi/quantity.pyx":138
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -8656,32 +8418,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 156, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 138, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 156, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_equals_quantity", 0) < (0)) __PYX_ERR(0, 156, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "divide_equals_quantity", 0) < (0)) __PYX_ERR(0, 138, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 156, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("divide_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 138, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 156, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 138, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("divide_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 156, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("divide_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 138, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8692,7 +8454,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 138, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_48divide_equals_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -8725,12 +8487,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_48divide_equa
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divide_equals_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":157
+  /* "falcon_core/_capi/quantity.pyx":139
  * 
  *     def divide_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -8740,39 +8502,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_48divide_equa
   }
   __pyx_v_h_ret = Quantity_divide_equals_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":158
+  /* "falcon_core/_capi/quantity.pyx":140
  *     def divide_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":159
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":158
- *     def divide_equals_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":160
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":141
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def power(self, int other):
@@ -8780,18 +8526,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_48divide_equa
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":156
+  /* "falcon_core/_capi/quantity.pyx":138
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -8805,12 +8551,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_48divide_equa
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":162
+/* "falcon_core/_capi/quantity.pyx":143
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def power(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -8852,32 +8598,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 162, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 143, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 162, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 143, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "power", 0) < (0)) __PYX_ERR(0, 162, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "power", 0) < (0)) __PYX_ERR(0, 143, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("power", 1, 1, 1, i); __PYX_ERR(0, 162, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("power", 1, 1, 1, i); __PYX_ERR(0, 143, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 162, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 143, __pyx_L3_error)
     }
-    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 162, __pyx_L3_error)
+    __pyx_v_other = __Pyx_PyLong_As_int(values[0]); if (unlikely((__pyx_v_other == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 143, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("power", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 162, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("power", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 143, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -8910,48 +8656,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_50power(struc
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("power", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":163
+  /* "falcon_core/_capi/quantity.pyx":144
  * 
  *     def power(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_power(__pyx_v_self->handle, __pyx_v_other);
 
-  /* "falcon_core/_capi/quantity.pyx":164
+  /* "falcon_core/_capi/quantity.pyx":145
  *     def power(self, int other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":165
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":164
- *     def power(self, int other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":166
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":146
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def add_quantity(self, Quantity other):
@@ -8959,18 +8689,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_50power(struc
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 166, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":162
+  /* "falcon_core/_capi/quantity.pyx":143
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def power(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -8984,12 +8714,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_50power(struc
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":168
+/* "falcon_core/_capi/quantity.pyx":148
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def add_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -9031,32 +8761,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 168, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 148, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 168, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 148, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add_quantity", 0) < (0)) __PYX_ERR(0, 168, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add_quantity", 0) < (0)) __PYX_ERR(0, 148, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add_quantity", 1, 1, 1, i); __PYX_ERR(0, 168, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add_quantity", 1, 1, 1, i); __PYX_ERR(0, 148, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 168, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 148, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 168, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 148, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9067,7 +8797,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 168, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 148, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_52add_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -9100,12 +8830,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_52add_quantit
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":169
+  /* "falcon_core/_capi/quantity.pyx":149
  * 
  *     def add_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -9115,39 +8845,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_52add_quantit
   }
   __pyx_v_h_ret = Quantity_add_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":170
+  /* "falcon_core/_capi/quantity.pyx":150
  *     def add_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":171
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":170
- *     def add_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":172
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":151
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def add_equals_quantity(self, Quantity other):
@@ -9155,18 +8869,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_52add_quantit
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":168
+  /* "falcon_core/_capi/quantity.pyx":148
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def add_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -9180,12 +8894,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_52add_quantit
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":174
+/* "falcon_core/_capi/quantity.pyx":153
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def add_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -9227,32 +8941,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 174, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 153, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 174, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 153, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add_equals_quantity", 0) < (0)) __PYX_ERR(0, 174, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "add_equals_quantity", 0) < (0)) __PYX_ERR(0, 153, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 174, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("add_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 153, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 174, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 153, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("add_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 174, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("add_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 153, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9263,7 +8977,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 174, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 153, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_54add_equals_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -9296,12 +9010,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_54add_equals_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add_equals_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":175
+  /* "falcon_core/_capi/quantity.pyx":154
  * 
  *     def add_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -9311,39 +9025,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_54add_equals_
   }
   __pyx_v_h_ret = Quantity_add_equals_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":176
+  /* "falcon_core/_capi/quantity.pyx":155
  *     def add_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":177
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":176
- *     def add_equals_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":178
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":156
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def subtract_quantity(self, Quantity other):
@@ -9351,18 +9049,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_54add_equals_
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":174
+  /* "falcon_core/_capi/quantity.pyx":153
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def add_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -9376,12 +9074,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_54add_equals_
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":180
+/* "falcon_core/_capi/quantity.pyx":158
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def subtract_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -9423,32 +9121,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 180, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 158, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 158, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "subtract_quantity", 0) < (0)) __PYX_ERR(0, 180, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "subtract_quantity", 0) < (0)) __PYX_ERR(0, 158, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("subtract_quantity", 1, 1, 1, i); __PYX_ERR(0, 180, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("subtract_quantity", 1, 1, 1, i); __PYX_ERR(0, 158, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 180, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 158, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("subtract_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 180, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("subtract_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 158, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9459,7 +9157,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 180, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 158, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_56subtract_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -9492,12 +9190,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_56subtract_qu
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("subtract_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":181
+  /* "falcon_core/_capi/quantity.pyx":159
  * 
  *     def subtract_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -9507,39 +9205,23 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_56subtract_qu
   }
   __pyx_v_h_ret = Quantity_subtract_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":182
+  /* "falcon_core/_capi/quantity.pyx":160
  *     def subtract_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
-  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
-  if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":183
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
 */
+  __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
+  if (__pyx_t_2) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":182
- *     def subtract_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":184
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":161
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def subtract_equals_quantity(self, Quantity other):
@@ -9547,18 +9229,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_56subtract_qu
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":180
+  /* "falcon_core/_capi/quantity.pyx":158
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def subtract_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -9572,12 +9254,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_56subtract_qu
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":186
+/* "falcon_core/_capi/quantity.pyx":163
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def subtract_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -9619,32 +9301,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 186, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 163, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 186, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 163, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "subtract_equals_quantity", 0) < (0)) __PYX_ERR(0, 186, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "subtract_equals_quantity", 0) < (0)) __PYX_ERR(0, 163, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("subtract_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 186, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("subtract_equals_quantity", 1, 1, 1, i); __PYX_ERR(0, 163, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 186, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 163, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("subtract_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 186, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("subtract_equals_quantity", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 163, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9655,7 +9337,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 186, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, 1, "other", 0))) __PYX_ERR(0, 163, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_58subtract_equals_quantity(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -9688,12 +9370,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_58subtract_eq
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("subtract_equals_quantity", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":187
+  /* "falcon_core/_capi/quantity.pyx":164
  * 
  *     def subtract_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_other) != Py_None);
   if (__pyx_t_2) {
@@ -9703,58 +9385,42 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_58subtract_eq
   }
   __pyx_v_h_ret = Quantity_subtract_equals_quantity(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/quantity.pyx":188
+  /* "falcon_core/_capi/quantity.pyx":165
  *     def subtract_equals_quantity(self, Quantity other):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
 */
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/quantity.pyx":189
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":188
- *     def subtract_equals_quantity(self, Quantity other):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":190
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":166
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- *     def negate(self, ):
+ *     def negate(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":186
+  /* "falcon_core/_capi/quantity.pyx":163
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def subtract_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -9768,12 +9434,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_58subtract_eq
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":192
+/* "falcon_core/_capi/quantity.pyx":168
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def negate(self, ):             # <<<<<<<<<<<<<<
+ *     def negate(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -9830,67 +9496,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_60negate(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("negate", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":193
+  /* "falcon_core/_capi/quantity.pyx":169
  * 
- *     def negate(self, ):
+ *     def negate(self):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_negate(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/quantity.pyx":194
- *     def negate(self, ):
+  /* "falcon_core/_capi/quantity.pyx":170
+ *     def negate(self):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":195
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":194
- *     def negate(self, ):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":196
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":171
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- *     def abs(self, ):
+ *     def abs(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":192
+  /* "falcon_core/_capi/quantity.pyx":168
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def negate(self, ):             # <<<<<<<<<<<<<<
+ *     def negate(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
@@ -9904,12 +9554,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_60negate(stru
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":198
+/* "falcon_core/_capi/quantity.pyx":173
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def abs(self, ):             # <<<<<<<<<<<<<<
+ *     def abs(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
 /* Python wrapper */
@@ -9966,73 +9616,226 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_62abs(struct 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("abs", 0);
 
-  /* "falcon_core/_capi/quantity.pyx":199
+  /* "falcon_core/_capi/quantity.pyx":174
  * 
- *     def abs(self, ):
+ *     def abs(self):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
 */
   __pyx_v_h_ret = Quantity_abs(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/quantity.pyx":200
- *     def abs(self, ):
+  /* "falcon_core/_capi/quantity.pyx":175
+ *     def abs(self):
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.QuantityHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_QuantityHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/quantity.pyx":201
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/quantity.pyx":200
- *     def abs(self, ):
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/quantity.pyx":202
- *         if h_ret == <_c_api.QuantityHandle>0:
- *             return None
+  /* "falcon_core/_capi/quantity.pyx":176
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
- * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
+ *     def __repr__(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_QuantityHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 202, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_8quantity__quantity_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 176, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":198
+  /* "falcon_core/_capi/quantity.pyx":173
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def abs(self, ):             # <<<<<<<<<<<<<<
+ *     def abs(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("falcon_core._capi.quantity.Quantity.abs", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/quantity.pyx":178
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__repr__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__repr__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__repr__(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4[4];
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__repr__", 0);
+
+  /* "falcon_core/_capi/quantity.pyx":179
+ * 
+ *     def __repr__(self):
+ *         return f"{self.__class__.__name__}({self.to_json()})"             # <<<<<<<<<<<<<<
+ * 
+ *     def __str__(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_to_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_4[0] = __pyx_t_1;
+  __pyx_t_4[1] = __pyx_mstate_global->__pyx_kp_u__2;
+  __pyx_t_4[2] = __pyx_t_2;
+  __pyx_t_4[3] = __pyx_mstate_global->__pyx_kp_u__3;
+  __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/quantity.pyx":178
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.quantity.Quantity.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/quantity.pyx":181
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__str__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__str__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__str__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__str__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__str__(struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__str__", 0);
+
+  /* "falcon_core/_capi/quantity.pyx":182
+ * 
+ *     def __str__(self):
+ *         return self.to_json()             # <<<<<<<<<<<<<<
+ * 
+ * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_v_self);
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_to_json, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 182, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/quantity.pyx":181
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.quantity.Quantity.__str__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -10047,15 +9850,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_62abs(struct 
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_69__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_65__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_69__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_69__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_69__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10081,14 +9884,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_68__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_68__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -10128,15 +9931,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_64__reduce_cy
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_71__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_67__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_71__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_71__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_71__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -10202,7 +10005,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_70__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -10212,7 +10015,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_70__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -10244,8 +10047,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_8quantity_8Quantity_66__setstate_
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/quantity.pyx":204
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+/* "falcon_core/_capi/quantity.pyx":184
+ *         return self.to_json()
  * 
  * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.QuantityHandle>0:
@@ -10269,7 +10072,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
     }
   }
 
-  /* "falcon_core/_capi/quantity.pyx":205
+  /* "falcon_core/_capi/quantity.pyx":185
  * 
  * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
  *     if h == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
@@ -10279,7 +10082,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_QuantityHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/quantity.pyx":206
+    /* "falcon_core/_capi/quantity.pyx":186
  * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
  *     if h == <_c_api.QuantityHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -10290,7 +10093,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/quantity.pyx":205
+    /* "falcon_core/_capi/quantity.pyx":185
  * 
  * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):
  *     if h == <_c_api.QuantityHandle>0:             # <<<<<<<<<<<<<<
@@ -10299,19 +10102,19 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
 */
   }
 
-  /* "falcon_core/_capi/quantity.pyx":207
+  /* "falcon_core/_capi/quantity.pyx":187
  *     if h == <_c_api.QuantityHandle>0:
  *         return None
  *     cdef Quantity obj = Quantity.__new__(Quantity)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_8quantity_Quantity(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_8quantity_Quantity(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":208
+  /* "falcon_core/_capi/quantity.pyx":188
  *         return None
  *     cdef Quantity obj = Quantity.__new__(Quantity)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -10320,7 +10123,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/quantity.pyx":209
+  /* "falcon_core/_capi/quantity.pyx":189
  *     cdef Quantity obj = Quantity.__new__(Quantity)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -10328,7 +10131,7 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/quantity.pyx":210
+  /* "falcon_core/_capi/quantity.pyx":190
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -10338,8 +10141,8 @@ static struct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *__pyx_f_11falco
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/quantity.pyx":204
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+  /* "falcon_core/_capi/quantity.pyx":184
+ *         return self.to_json()
  * 
  * cdef Quantity _quantity_from_capi(_c_api.QuantityHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.QuantityHandle>0:
@@ -10443,13 +10246,15 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_8quantity_Quantity[] = {
   {"subtract_equals_quantity", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_59subtract_equals_quantity, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"negate", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_61negate, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"abs", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_63abs, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_69__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_71__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_8quantity_Quantity_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_8quantity_Quantity},
+  {Py_tp_repr, (void *)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__repr__},
+  {Py_tp_str, (void *)__pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__str__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_8quantity_Quantity},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_8quantity_Quantity},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_8quantity_Quantity},
@@ -10474,13 +10279,13 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_8quantity_Quantity = {
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   0, /*tp_as_async*/
-  0, /*tp_repr*/
+  __pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_65__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
-  0, /*tp_str*/
+  __pyx_pw_11falcon_core_5_capi_8quantity_8Quantity_67__str__, /*tp_str*/
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
@@ -11047,9 +10852,9 @@ __Pyx_RefNannySetupContext("PyInit_quantity", 0);
   /* "falcon_core/_capi/quantity.pyx":46
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_copy(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_9copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -11059,379 +10864,379 @@ __Pyx_RefNannySetupContext("PyInit_quantity", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_2) < (0)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":52
+  /* "falcon_core/_capi/quantity.pyx":51
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def equal(self, Quantity other):             # <<<<<<<<<<<<<<
  *         return _c_api.Quantity_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 52, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 52, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":60
+  /* "falcon_core/_capi/quantity.pyx":58
  *         return self.equal(other)
  * 
  *     def not_equal(self, Quantity other):             # <<<<<<<<<<<<<<
  *         return _c_api.Quantity_not_equal(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":68
+  /* "falcon_core/_capi/quantity.pyx":65
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.Quantity_to_json_string(self.handle)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 68, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":78
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/quantity.pyx":72
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def value(self, ):             # <<<<<<<<<<<<<<
+ *     def value(self):             # <<<<<<<<<<<<<<
  *         return _c_api.Quantity_value(self.handle)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_21value, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_value, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 78, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_21value, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_value, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_2) < (0)) __PYX_ERR(0, 78, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_value, __pyx_t_2) < (0)) __PYX_ERR(0, 72, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":81
+  /* "falcon_core/_capi/quantity.pyx":75
  *         return _c_api.Quantity_value(self.handle)
  * 
- *     def unit(self, ):             # <<<<<<<<<<<<<<
+ *     def unit(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Quantity_unit(self.handle)
- *         if h_ret == <_c_api.SymbolUnitHandle>0:
+ *         if h_ret == <_c_api.SymbolUnitHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_23unit, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_unit, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_23unit, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_unit, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_unit, __pyx_t_2) < (0)) __PYX_ERR(0, 81, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_unit, __pyx_t_2) < (0)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":87
+  /* "falcon_core/_capi/quantity.pyx":80
  *         return _symbol_unit_from_capi(h_ret, owned=False)
  * 
  *     def convert_to(self, SymbolUnit target_unit):             # <<<<<<<<<<<<<<
  *         _c_api.Quantity_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_25convert_to, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_convert_to, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_25convert_to, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_convert_to, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_convert_to, __pyx_t_2) < (0)) __PYX_ERR(0, 87, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_convert_to, __pyx_t_2) < (0)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":90
+  /* "falcon_core/_capi/quantity.pyx":83
  *         _c_api.Quantity_convert_to(self.handle, target_unit.handle if target_unit is not None else <_c_api.SymbolUnitHandle>0)
  * 
  *     def multiply_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_27multiply_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_27multiply_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_int, __pyx_t_2) < (0)) __PYX_ERR(0, 90, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_int, __pyx_t_2) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":96
+  /* "falcon_core/_capi/quantity.pyx":88
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_29multiply_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_29multiply_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_double, __pyx_t_2) < (0)) __PYX_ERR(0, 96, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_double, __pyx_t_2) < (0)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":102
+  /* "falcon_core/_capi/quantity.pyx":93
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def multiply_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_31multiply_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_31multiply_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":98
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def multiply_equals_int(self, int other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_33multiply_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_equals_int, __pyx_t_2) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":103
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def multiply_equals_double(self, double other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_35multiply_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_equals_double, __pyx_t_2) < (0)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/quantity.pyx":108
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def multiply_equals_int(self, int other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_33multiply_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_equals_int, __pyx_t_2) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":114
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def multiply_equals_double(self, double other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_35multiply_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_equals_double, __pyx_t_2) < (0)) __PYX_ERR(0, 114, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":120
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
  *     def multiply_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_multiply_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_37multiply_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_equals_quantit, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_37multiply_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_multiply_equals_quantit, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 120, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_multiply_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":126
+  /* "falcon_core/_capi/quantity.pyx":113
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_int(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_39divide_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_39divide_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_int, __pyx_t_2) < (0)) __PYX_ERR(0, 126, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_int, __pyx_t_2) < (0)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":132
+  /* "falcon_core/_capi/quantity.pyx":118
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def divide_double(self, double other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_41divide_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_41divide_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_double, __pyx_t_2) < (0)) __PYX_ERR(0, 132, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_double, __pyx_t_2) < (0)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":123
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def divide_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_43divide_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":128
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def divide_equals_int(self, int other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_45divide_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_equals_int, __pyx_t_2) < (0)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":133
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def divide_equals_double(self, double other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_47divide_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_equals_double, __pyx_t_2) < (0)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/quantity.pyx":138
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def divide_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_43divide_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":144
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def divide_equals_int(self, int other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_int(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_45divide_equals_int, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_equals_int, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_equals_int, __pyx_t_2) < (0)) __PYX_ERR(0, 144, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":150
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def divide_equals_double(self, double other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_double(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_47divide_equals_double, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_equals_double, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_equals_double, __pyx_t_2) < (0)) __PYX_ERR(0, 150, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":156
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
  *     def divide_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_divide_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_49divide_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_equals_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_49divide_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_divide_equals_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[20])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 156, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_divide_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":162
+  /* "falcon_core/_capi/quantity.pyx":143
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
  *     def power(self, int other):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_power(self.handle, other)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_51power, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_power, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_51power, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_power, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[21])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_power, __pyx_t_2) < (0)) __PYX_ERR(0, 162, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_power, __pyx_t_2) < (0)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":148
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def add_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_53add_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_add_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_add_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":153
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def add_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_55add_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_add_equals_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_add_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":158
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def subtract_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_57subtract_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_subtract_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_subtract_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/quantity.pyx":163
+ *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
+ * 
+ *     def subtract_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_59subtract_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_subtract_equals_quantit, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_subtract_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 163, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/quantity.pyx":168
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def add_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_53add_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_add_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[22])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_add_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 168, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":174
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def add_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_add_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_55add_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_add_equals_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[23])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_add_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 174, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":180
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def subtract_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_57subtract_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_subtract_quantity, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[24])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_subtract_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":186
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def subtract_equals_quantity(self, Quantity other):             # <<<<<<<<<<<<<<
- *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_subtract_equals_quantity(self.handle, other.handle if other is not None else <_c_api.QuantityHandle>0)
- *         if h_ret == <_c_api.QuantityHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_59subtract_equals_quantity, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_subtract_equals_quantit, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[25])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_subtract_equals_quantity, __pyx_t_2) < (0)) __PYX_ERR(0, 186, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/quantity.pyx":192
- *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
- * 
- *     def negate(self, ):             # <<<<<<<<<<<<<<
+ *     def negate(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_negate(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_61negate, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_negate, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_61negate, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_negate, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[26])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_negate, __pyx_t_2) < (0)) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_negate, __pyx_t_2) < (0)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/quantity.pyx":198
+  /* "falcon_core/_capi/quantity.pyx":173
  *         return _quantity_from_capi(h_ret, owned=(h_ret != <_c_api.QuantityHandle>self.handle))
  * 
- *     def abs(self, ):             # <<<<<<<<<<<<<<
+ *     def abs(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.QuantityHandle h_ret = _c_api.Quantity_abs(self.handle)
- *         if h_ret == <_c_api.QuantityHandle>0:
+ *         if h_ret == <_c_api.QuantityHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_63abs, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_abs, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_63abs, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity_abs, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[27])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_abs, __pyx_t_2) < (0)) __PYX_ERR(0, 198, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_8quantity_Quantity, __pyx_mstate_global->__pyx_n_u_abs, __pyx_t_2) < (0)) __PYX_ERR(0, 173, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
@@ -11439,7 +11244,7 @@ __Pyx_RefNannySetupContext("PyInit_quantity", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_65__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_69__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity___reduce_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[28])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -11453,7 +11258,7 @@ __Pyx_RefNannySetupContext("PyInit_quantity", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_67__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_8quantity_8Quantity_71__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Quantity___setstate_cython, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_quantity, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[29])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -11508,7 +11313,7 @@ __Pyx_RefNannySetupContext("PyInit_quantity", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 55, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
@@ -11535,42 +11340,42 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{0},{25},{179},{1},{8},{7},{6},{2},{9},{50},{34},{14},{14},{20},{8},{26},{28},{12},{28},{21},{19},{13},{22},{29},{26},{31},{19},{24},{14},{18},{24},{31},{28},{33},{21},{26},{15},{12},{18},{14},{33},{26},{16},{13},{14},{3},{19},{12},{18},{6},{18},{3},{10},{4},{8},{13},{20},{17},{22},{10},{15},{5},{26},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{10},{15},{22},{19},{24},{12},{17},{8},{6},{3},{9},{3},{5},{3},{5},{12},{11},{12},{10},{17},{13},{6},{5},{4},{12},{10},{12},{19},{24},{17},{11},{8},{7},{4},{5},{6},{54},{57},{57},{83},{57},{57},{83},{58},{88},{58},{88},{59},{60},{90},{90},{55},{53},{53},{42},{29},{83},{101},{31},{13},{29},{63},{9},{205},{223}};
-    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1402 bytes) */
-const char* const cstring = "(\265/\375`\241\r\205+\000J@\214\r9\340\032\3470\3148\221\247\301\354\010\003a0>\302@\030\214q\"O\214a\245\032MD\2665\221\353k\242\205[\271\\+\372\323\025\250\247\332E\324\351\005\332\017\234\350\023\371\344\303\271\000\267\000\327\000w4O\275M\276c\244z;\030\257\004\357\354\370%\327\324\343g=\226\026W2\232\373\237\343\214\307\322b(lr\222\254\363I\212\377w<\311k\376\213\274<-Ngr\343\261)\337[\336\354\306\344}\222\2643\260\273K\233s\241\260\211I\321\243)\343\317\032s\313u\316\326C\344w\213\371\346\370\266\273\233\305S\367D\034\217\010\333w\327\343b\306\274\304\347M\304iq\337\275m9\336\316-n>^\247k\212d\266bJK\nI\020N\220\230\315\313Gl\362-\366J\363\336pyIqc1\353\034\357\331\210\334\346\270\376\351q\314\263=g\342\345\366\232\243\250\271H\336\022\333\234\375\301\267\242\205P\020\264\352\206\332\240\312b=V\020\224e\355}\371\371\246\345\217+\357\336\373_\352\376\377\357\364\316\2749\256\235n\372\377\352l\376\377\223\324\330\352\266\356r\374\033\377-\311k~.\367M\377\377c>q\3770\330\223\377\273\034\237F{\273\237\361\227\343m\337\214\371\251a\032\217\271\267\367\315\336\263\264P8\237\232\363\321\232\334\274Qz\367\\G]n\233n\356\225;\314\313S\227\365vz\2356q<\343[\336NM\376%\311\235\346\317\315\013\365'\357\356\233\345\226o~\367\377\010\303]!.u\177\236\217\370F\252\027\364O^\236\257\356\226;\035\017\327?2\001$2)\212L\rPy\300\213\230\312\201\026haW\233\n\241\276T\214\324\206LL!\017\317\013\353*\252G\361:\017\327qF\335\210\326i\037.-\205::g?u\327d'\231\276?Q'\022\352BK\265^\013\352\274\025()DB\non^S=\263\233e/m\267JI=\211\326\371j\327\237\243\320f\013kj^RQ\273\276s\352N\337\037i\326k\253l\3651\n\213\212B\032\254\263\237\271\347\\\317)u%\233Q\357\255)k\306\332SD\324m+\304\372Zw\302\241\260\026\326^V\000\000]Uf7\237\372\323\355\367\250\037\361\254\001+O\325\251\321:\310J\2523\025\207h\250\017\315\372\354\245\357T\"\225\371e\3744\026\372BA0\346{H\010\306P\021\210?D+\365M\327\333\000 \245\315\032\207\210\277\237\357\304\221\235\037\177\345\371G\2108kQ\371X\354E>\236&\3373\237\210""\326A@\360\2255[ek\221j\004\024\000v\244C\250\014\035y\350\006\r(H\312Q\213\302l}j%X;T\252\224#\245h@k?\331\357}'\357\234\326uV\334Mm(\004\372B?\"zD\306\257\341\227\341\300\325\220\276R\023\211.\221\0204(\340\212mUJ!5)\010\276P\336\217\340w\303%\313\342i\311|.3\337KF\332\220N\240\343\257g\253bk\266%\342sH\010\362~\036\014\235\246u\202\201\372\221\332\004\214\000>\241\033(\213C\1770\000\030\350\222eYU\365\252\261\217\266n\023\352\245\n\003DH{\277\024\205X\252\373\315~\03434\200\342\250A!\262d\204Hh\244$IZ\0030\204 Td\263\r\262\221\030\244(\022c\304\030$`\202$\301\004\022#\221H$\211\314\003P\225\257\333A\370\025\230\261\177\201\212\325\277\265=\177\034\366*\306\007\332\\\215>-\312a\240\003\355\246\310\274,\353(\347ZA\200'\034\036$p\230@]o\243\243\302\373\226\300\237\367v\016\222A\313\202}<1\005R\037\373\017\324\266Z\nElW\363\326E\220\202\204\265kw\334\222\304\374v\250\007\276\371Ihz\007z.\022YY\0228\263\315:\312&j\241h\220\263\031\031\224\313\"\007\364\367\307\344dMB\356D5\264\245\300\003eE+%w\324\r\232\361\314\331\202s\343\257\0023\370\016\363\364\2663\347\357\001\357\350>\252*\263\232v|p\360\216{\323\031\332\323\033\3441AO\250W\007]<V\242!\215\025\030\275g\370jty\n\034\253z\014u\257\332p\210\276\226&\005\235\325L\274\250w\2130\253,\037\252\205+X\014\263\225\310\353\241\3453JS\304\202\010H\240\355\021\001\264pv\270\213\360\217\271\211\232\332\300M\003\3648;#\245\034\301\030\312kgi+\006\326\232_\244\323\227\006c\026m\315C\274\236=\316\2508\262\030k\020\t\014pd\333\026\271Z\340l\203\316\217+\2204s\024\010i9 X\335\302O2/\375\027u\213cQ+l\177\006KV\022{\300nP\226pv2\"5\207\r\310\216\016\024+3x\206\234\204+\235\311V\023_\241\257o8j\013.\337\227}\273\317R\257\313\201\242\241\354\334T\377BArd\00770\324Bn3\264\t\331\017\272h\201\264\026\214\341\177\2773\365 \254\177\342\203\340\343\277\337^\013G\343\370&\273c\372\336\343S\334B\236h\025\272\316\207\332X\035V\353\320\206u\036(F\241R\320\021\027\200r\025\016|\025\331\022\345\250\001\366\376";
-    PyObject *data = __Pyx_DecompressString(cstring, 1402, 3);
+    const struct { const unsigned int length: 8; } index[] = {{0},{25},{179},{1},{1},{1},{8},{7},{6},{2},{9},{50},{34},{14},{14},{20},{8},{26},{28},{12},{28},{21},{19},{13},{22},{29},{26},{31},{19},{24},{14},{18},{24},{31},{28},{33},{21},{26},{15},{12},{18},{14},{33},{26},{16},{13},{14},{3},{19},{12},{18},{6},{9},{18},{3},{10},{4},{8},{13},{20},{17},{22},{10},{15},{5},{26},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{10},{15},{22},{19},{24},{12},{17},{8},{6},{3},{9},{3},{5},{3},{5},{12},{11},{12},{10},{17},{13},{6},{5},{4},{12},{10},{12},{19},{24},{17},{11},{8},{7},{4},{5},{6},{53},{56},{56},{82},{56},{56},{82},{57},{87},{57},{87},{58},{59},{89},{89},{54},{52},{52},{41},{29},{83},{101},{31},{13},{29},{61},{9},{205},{223}};
+    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1414 bytes) */
+const char* const cstring = "(\265/\375`\227\r\345+\000\252@\244\rD\340\2646\0070\3149\006k\341Z\010\003a\260\026\302@\030\010\323<c3\226\261S\n?I!KD<\375b\326r\211\222.\207#}\233\276\251\340437\217n.>\333\026~\224Gn\273il[v6\024\264\000\262\000\330\000\215q\235\275\234\337\0259\336\006Z\201\240\333\304\030Ds\026\343j1m\236@`\334evZ)\246MzC9\377Pm\3552\311\334X\2275\307,]\353\346\311\326\354R\014U\2735\323\2744k\316\262\331\002e\003\250\2576e\364\r\345h&5\240*\345j\251O\267\265N\r\322\373\312\332)\277s\353*;\353\311\023\213\004\335\336<\227\225\272F;\223<Yy\373\336\251a\246\356\312\353X\3274'\263:e\312\211\224\017.1\\d\345\3321\312\371\225\236\306\265\211j\235\311Ke\265)\367`H\237)\267-\236S\257\263\273d\373l\016\223\326e\326\032\2352\002\035L\236\301N\t\235\002$=S\274 \226\210\242\320\207HzDB\356m\357\230\233\316'\255\357\275\3149\315\314\274\331\215\353\224\333\032\223en\325\254\314\334e\226N\325U\265S\276\224[\313\232\343T\212Q\314\314X\355N\314 \020g\314W\303l\260ij\256\224\231M\267+\365\316\202,\305\252w\257iv\247\315\033Z;\353\216M\316\271\306\261\033\273\305i\237\250\256\236\266Q\327:U\265\267\206U\226;y\245\255\231:\233qg\331f\235\235\353\033\356V}M\323\247_\357\313\214\201N\375\3429\335\302\216Q\225\034\317\2059k\257\255jmS\261\270ma\021\241\200p\004~`\021\216\020\211\000\304\025\017\205\220\350<\223g\302\034K\242\211\370\021+\204\323\332\261\303ba\371\004\001\202\3638\253_\235\3764\3633\243\037\261\245C\207\265\262\322}g\337f\237\355\340\347\230\217y\371\027\035\244'\271\374j\264\201\303\272q\303RQ\371\360\360\270\347\264\327\346\317\0348\036\307\350}\234c\013\215U*Y/^|rp\266\337j\276\206\237o\\O\032Ec\215\031KF\306r\021\244\373\256~M}*\307\347(\315\2747\246\214'#\r\231\230/\215&\343g\234a\301X$\213\364\37112R\304\007\367\234\315\333\3647\315\323\260\214\000\306\225\270B\032=\312\230\211\227\030#\006\346a\256\277R\374\r\035\204,\276\223\317B\202O@\322s\205(p\004\030\0143\322\254I\345\335\021\024mVK9H\276\354\233\3640\2031.\301\276\201\203\274N\220\340P\210\245c\035\347\367\332\351""\240C\000@\317G\310\352\233_\206\007\327\210\022S%\302\006/\031\235\003+ \003\020%tp\202\240\322\363\030\005\214\031\304\036!\2060B\tH\372D\037\357t\376>\372\225\361\324a\t4\001?\340\206\006\337\340\344+\371N\026\020)\t?a\010\007\357\300@\317\000\022\"\241+\346 \010C\220\364|\300\325'\340S!\"\022\262\322\021\355\240\270vR\234\204%!\004\020\373h\014\2210\344\032\322ag\201\201\236\325\247A\301\217tDP\033O#\242x\032\360\330\200\027@\023\013\236\301\200\221\000EDB~\370x\037\330c\245/\275\274&\252\340)\020z_\n\202P\250\372\256\017\303*\200\345\2501!\262\204\204Hh\244$IZ\003 \204(dT\324\r\342\231\032\204(\222R\304\030$`\202$\301\004\022#\221HR\262\035PP\337\361\302\3215\344X\013`\263\225\304\342^\245cZ\024c\n\372\267F\236\313s\030h\301X$\242\255\2242f\n\273]\365\016\345\004I\034\001h\351\025p,6\332\322\247\362\016&A>\313\262\000\205\027=x\260\007Z\226\356NJ3\033\244\364\307j\273\335\"\010ZH0\361\3144\333\232\346\262\207\336\214\247\276\207x\177\245\377W\201\322?\275w\032\300\035\266\250\305\220\200%3\374\200\010\212\324\014\233x\351o\266\260\034\212\306W\017p\340\234 \237\374L\224\204T\211CX\021\366}[$u\247\217\0161\005\004\240\003\200[\261\334\207\230\214\2525c\203\302\"\345$W 9 )N\3067VDp\361\023\374\325\023\251\210\010\221.\363\333\035\031\246\205!-\253\026\316\030Aj\3250\271Idy\325x\261\036\002#2-\213\310j\261\\\013\307\353\311R\036\3308\243\022E_Df\013m\ny`\315gg\236\267\337UR\226\371\343}\217\273\221\367<9\r\312\215g\371\266\230\217k.E\347\020\373\234\323hj\221m\026\r\372\370\311F\307\265\365\353\303B\201?\322\335\200U\253\215k?\236\216\344\275(7\322r\365c\236\032^\220y\2666\237\216\360\305Tu\203\233\343\030\320\n\375\177\330r-\t\027`\263\224%\216]N\330\317Q\022i\034\221h\345Q\276\003\221W\245\331L\030q%\\\370g\007+!\341\333\276g\371\341\353\205p\3047\200p\246\332]\254#qi\020\002\263\267\371\021\0316!\320\303\374\354#\345\2168\3778w\246\022R\364\035\177T?\230\364\2376\031\032V\2141P\206\350\335\372\026\016\310\024\245\302\370\234D#\035a\031\021\036\271\tA\376\350""\325\005\000q%\250C\341\300\252\210I\224\247\006\323\373\003";
+    PyObject *data = __Pyx_DecompressString(cstring, 1414, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1582 bytes) */
-const char* const cstring = "BZh91AY&SY\016g8U\000\001\206\377\377\367\375\377g\367\377\377\375\377\365\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000P\005\257n\306\333an\271\332k[b\034\010ID\224\320`G\212m1O\325\017Q\352z\2151\036Q\220\323\365CCe4\006\206\203\311\351#\322<\241\350\217P4\320\332ze\010\022\210LM\0204S\324\364\321\251\221\2044i\240\000h\000\r\000\000\000\000\000\r\000\000i\242\002L\223Q\350\236\246\023\324\311\247\224\320\032z\201\240\000\0004\000\000\000\006\200\r\017H\001\006\230\230\230\230\t\200\230\000\000\000\004\300\000\023\000\000\230\000\000\000\t\240I\"jb\006\201\246\230\212ze\t\352z\232d\300L\023\023\321\014\201\240\000\300L\214A\223C\021\204\364\304\377\000_4G,g\255&#\355\370\375~\331\005\350\2676\343z\251\326\320\177\303\251\243c\317\253\356\324\366\330\325\227\203\201\177f\364\323M4\333S\316l\347\331|6\330@\230a#>\251\273a\0134H\023m\244\rA\0050N8\244k'&\325\212\240\206Z\377A\006\202\017\205f\310\260\254(\010\002\312(\250\311\352\374\337\367\203\237\233\237\017\243\320u>\021\027\363n\317A\357?'W\351\007\215\n\3653\243f\216\336]q\201\024\246\304s\"\346\2102e\035\001\336?\227\234}gB\371\320\273`6\267DB\014GG\371\236)aP\314\212\331 \322\310\370\242\362D\375\336\201j\244\272\202\311\020\202\363\2629 \250A>\"\307\345\323\317\002\330\254\002\037\252\361\345\301\003\033\303\337\303\030\201cU\256ib\252\311UF\374A!\305\305c0\277\330\262\277\010A\305\031s\266i\2373\311\307\206\223\3176\026\216t\332\000\204A\200\260#\035F9\264*Rod\2709\304\257\355\371n\020\204\355\357\257\225S\200\356\210/\225\343\304\255\377\203\221p\320KUP.\022\236<\315\363\300\021Av\260\200\324\343\010\037!i\205\275\006=2\270/s\211B\274\263\336\364\232\222\231\346\317W\226\005Jf\334\270\303\353i\021M\373\204\345\013\200c\005\007]\rI\016qTG\356\356\006D\331\253\336\024\335\224\234\342X\352\236\006`\362\007=\331uk\037C\215\0054\265\r@a\234?\002>\205\365\201J\331\254\023\n\240\030\025\260T\251\257Hs\211$\234%VffUP`\032\004\261R\253-\211\276\366\234RFu\202(A\00634\030+\361]\003\002 \361\240\312\022D\203\006L""\253X\250b\231\246Y\217\035$V2]\025lKj\r\233\340\312\255\350]\305\341\224\230\004rA\017J\216\013&\177\370w\303 \thA8\305n\r\214\245\371(\370#E\016v\002\215\"\221\223\220\332'Xw\00292\202h\237L\035\023F\204\276$\311HM\214\215\363\221\2449\240~\305\"\3213\\\225'[\264\027K@\323\026\003?\266}\267`\267\210\221\022\002\263\225\2500\245\212\222\\m\225\2329\340\nU\004k\332}\271\014\235\025\221f\320\310` \3006\031`\346R\312N\010\001l(y\022\213\315\347\330\220Tr\t.d\303\006.\321\322\370\275T\256\351\335Z\335\233\212\200;8\303\236\331#\"\314.8\300\265\n\305\0331G\347}\231\177\253rs\205\313\007\224\331\n(vmI\243Xw\354\017\326\246\201Klr68\365\002\257\017SR\344@\226p\344\312b\322xc\314\002\271\021'\310s\034\373H\026\326\010\010\221x%\254a\353T\223\025B\206\346>\302`\024P\230`\222'\013L\312j\026T\213\326\014$\240\0052\021 \"\243\342\002a\265\001)\304\010\311\014Kk\215\002\244\234\023\022\271R\234*T\025D\025X)zr\274\235\000\205\352 \321\223\260\316'\030\250B\344a\223~TN+R\200\223\207\316\3057\311\030\203)\013\316\365\256d\025b\226Z\307&\032\241ZOF\027\351\006\010d\301\025u\027\256\201\032\n\244:\273\355\202*\331\256\t\033\261\271%\002CXD\305#W\201i\030\240\002\342\2008\344\220\221)>\rcn\356@\330^p\245-\240\324\350\302,\330\346\235\230\251\305(\262\255\212B\322x`57\326\241\013\256\336\215\245\304#\002\225\003\031\263=\304]\022\274B\306\223\021\022\227ZJ$5H\375\250\336\2641\036\272\\\301\244\245\207\232 I\330Am\356\275t\031\270\221\006\254\030\227q\210\223\016'a\2202\304\020{h)j\210\3062+\032-AQ\363\241N\0025\206\202P\002$\224\210J\245J\202\351\321`\216\3523^I\nY\034{:t\236\326/J\021X\204\314\003!\027\007\200\301\254\214\200\330\226\007c4\002\335c\276\212-,F\243\237\014qO\020\310O\200\326/S\271\312A\2045\026p2Is\331\021\262L\303\300a\201\221\3161\203\232\267\007\377\230#\221\204z\371\212\346v\234\022h\261`\332\337\272/\355\277\2125\326\026Ik<\374\377{\202\025\322\261\340\004i\225A\027\213\272C\346\302p\242g\311$\177\001\014h#(\332\210\3348\033>S\331V^\236\305~`\344Q\304\037\016\346""\035\227\240\316\205\346m\030VD\030\352iw\323M\350\275\026\304\034\230\264\252R\202\365\314\250e\021Ow\026V)\275'g\353\362\234\374\343\241\272@?\257\303&\342g\345\225\272\252\r\341\371\0062\217h\241m\3234z\242AT\246$O\311)$\244\2105\261\235\004<k\217\337\347P'_\031\202\rc\213\242<c\271\273\210\256\026V\202\232T\241\233?\346[\354J\265f\300\355rea\372\3759\375+M\222\317\273gr\034\313\343\266\026q\231\014-\314\341d\030C\206\n@\305\030\303rA9\257\001\004~b\017a\361l\331\021>\2663nOP\273\222)\302\204\200s9\302\250";
-    PyObject *data = __Pyx_DecompressString(cstring, 1582, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1588 bytes) */
+const char* const cstring = "BZh91AY&SY?E\344\362\000\001g\377\377\365\377\377\347\367\377\377\375\377\365\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000P\005\254\274e)\t!*\251LT4\22254\014\231\r\036\246\214\232h\323\324\001\241\265\006\206\203\324h\003@0A\352i\246\200\3204\033P\362\236P\020d\300\t\200\000\230\000\000\000\004\3010\0010\000\004\304\300\000\004\304\304\002SD\020\232OH\001\241\251\224\363Jz\215\006\324\320\003@\000\036\240\000\000\001\240\000\003\324\032=D\0310\002`\000&\000\000\000\0010L\000L\000\00110\000\00111\000\222B\t\243)\206\206\246\321\014\210\304\233&\246\324hh\331C\324='\250\006\206\203\324h\001\243&\200i\345\032=4#\370\000\0178\020\202\r$\210\304<h\372\3222\377L\375\254\326Diz\234:\374{\\\273\263y\270\324\345\232\361\275]U\3310\303\0140\377\265uL\335M\210\346\24302\020\314f\317\300\206\032\222gO\314\314\020\303\010\333\266F![>\264\247\027\372\014I\206\"\270\342\343\230N\\0=\267\330\320MJ\203\013Q\006V:\264\324\217!#\315\260Z=\315B\347\236oV\2567\301\341w\r\332\034\330\306mW\236\370\004bMI\273\017<AVA\321o\277\213\332\364\212\372\347\253x\353\360\\\224<Z\244\004\030O\327\013\313\020\3063##$\032l\217b\034p\1777LZ\351.\300\261@@\331\355z\351\214A\027\327\362\345\214\262)\001\022\303^\004\013B\0066\r\373\262\010%\352\355\274\271h\271Y\341\2145<\214\316\373<\334\353\262\326\265\331\231\177]tR\225\235\013\212\006\267N\3305\327\325lPC1\221\350\215\3277V\271\215\322\350\357\310\224\222~\244\370\344R\226\337\320\3212\353e\325\324:c\005\343 \202\372\237\2729\024\023e,W\\e\004\347\026\203u\242\004TN r\365\306\017\320X\251\217\365z7\2138\203&\266\205\334\224\243N\362\373g\310\250`&\276\330\344\255?mfg\\\271\322\3423\206\320\342\347\323\201\022\222vi\367\231\310f\350\274\346:\341{\255\266&\223\333V0\362\216\221\010\241\345\321\316\212h4\314\252\240\314<\356\034\204\235\247~Ai\324\253\"\2758@\237\"t\353B\362RI$\265]\342\"!\335\305B(\224'N\366t9^qmZ\305n!\234b\220\255W*<\366\245EDRg\363\0165\210\253\2174\323\227G1\3205\3159t%ifk\363\343\245\201\361w]v\367\036\r\036\251h\310'$\021x""\024\221*\264\177\261\336\264\240%\225\005\361\212\334\034\270\325\311p\357\310\214.u\323\310\350\356\233f\316\303\272'Lv\214\364\230\365\223\205\362&4D\341\301]\354y\350N\202\"|/\275\371\206\345\304,\331\315<I:\325\220\240\230\0338\2144\252>\033q/\031\022\242PSci\232;P\235%%\231=\255)\201{\261]\r\211\346\260\337\321\3234\365\315\350\n@F\312\202P\352\035-@\037#\223E\225\232\343\236K\007i1c\366\326\220B\226\225\363\255\022(\205\210Oz\335,\200\206\341]\213\304\306\245\271)\201\221\256\214\346\037\021g\277\251\271\261_\r\374\006\336\350<\305d*\251\332\031m\310\251\332`}\301\007:LU\ni\307\"._2\260X\351\354oa m-\274O\216\310-\257\004\300Rfks\311\345M6\rUV\006k(\r\245\274Qi\334\033\251\261F\2650m\301\010&\3165\305\241\242\3740\306DYEW.@\016\254*\201\235\247Pm\210\270k\362\215\rL\271\237n\211\322Z\212\251\370\254\266\230\335\204\231\204\234F\305\246\205\325\n\354b\244\017k\235\"\301\323\025\324\262\271\362\335=\201Y\260\002N\037}\214\373\204\254D\312R\333\271\263\324*\305b\305c\223&\304+)\343\214V\201\3029\222&mj\260\001-\222\354\304(\216\360&kt\002\227\004\264\314\201\"23m#\254\303]\2410\031\334\017\035$5S[\271\337^\237\207x\353\370\371\363'Z(lY\251\026\206\033x\031\212\334bD\312qJYO\013\306]\2331EC\266\006\323r'P/@oE+\"\311T\320\2600\347n3_-\020\305q\010\263\227\027\177\001\2226\315\262<\232lu\210&\206x^\216\025`\007y\263\022=\244r\301\244JD@\260\343\200|*\305#\021|!\235\336\305f-\032\246\245\254_\270Y\214\200l@3\\\211Bk\254\261\005\007\003\004\224#%\264\220\254J\343\237\2331\320\247\300\204V!3\000\310D\343\300`\327E@\324\253\256\300e\005\251\202\3420\331T\232N|X!~Ba\242b\246M\235\375\262hak\335\244\231\231\274$\305S2D\000\204\014\215\343\0009\253pw\362\004\222\260\215l\205y\316\315v\\\261\306x\266\235\013\355\370\273\320WY%\254\363\355\355v\304.\361\334\370\316\000G\t\310w\272\307\t\373\247\233F\367\027\030\"\373\201\030\003\341\220\267\330\250K\333l)*\322b\234WA\243.\301\000\252c\236+\226A\000\305k1\"\234\260s<\020\027\345j\027\215\025T\353#\202\003}\377`  \356\302""\247\207\365\337\0100\3602\215\372\026H\017\333\032]\367\010@\026\377\212\031\360\225\326\350Cr\232BF9~\2115\301\322\002\272hF\276{\321\020]\246D\006\030H\0029\033\231\260x\351,\"\016\315t\002:g\336|V\2675M8\317\270A\3310\373'\234v\337\341\266T\004\342\323'\2425\324Da\016\234\264'sr\007\323\005\234\221.bP\347\"\354\336\007@~\322\372\324\346\014\364\3140\356\224\334\362\202x\017\020_r\210\266\344\201\347\372\350F\343{\3030\213\372\370\017\372O\374]\311\024\341B@\375\027\223\310";
+    PyObject *data = __Pyx_DecompressString(cstring, 1588, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1386 bytes) */
-const char* const cstring = "x\332\245W\313s\323F\030\217=\264\204\302@C\002\323\316\364\241tx?\014nSJi\207\3264\020\302t N\234\207\303cYK\353X\211\254\265\265\253$\242Pr\314\321G\216:\352\250\243\217:\352\270G\037\371\023\370\023\372\255\354\310\216\255\224:\365\214\265\217\357\261\277\357\333\337~+=\300\272A4\205SE\265\010\346D\311\333\330\344:w\036S\030\360\n\346\312\037\016\257PS\321\231\242\021C/\021\013\324\014Ga\334\322UN,\251d*s\367\347\256O\335\236R\260\251)\026Y'*g\n\263K\252\201\031#L\241e\245d\353\006\327M\205;5\3022\312lYq\250\255\230\244\275z\r\364z\rx\205\230\n#\\v\224\213\3304)\307\\\247&\002s\335\\\273\250h\272\005\213\350\233DZ?\300\006#\231\337\260\246!P$\232\316p\311 \304\224\3175Ug\355\236fR\010\241\214m\203+\010YD\263U\202\220\242\331\221\017\223\232\327!\244M\035\033 UuS\347\0101K\275Q\306\206\n\013\253\324\"7\220\212k\372\215z'G\231\232\263\375\253\314\203\271\306\250m\251\344.dm\266Z3H\225\230\000\003\2419g\033\376\323\220(\364\230l\363yR\336\313\357^\233\211\221\250Q\236\021\352\221@\002\030\304\235 \303%\326\355C\330\0040\031\014\325\373\275K\331\300$\204\263I,\2168\355\231\252u\345\032dA#H\2436d\255\177\266\263\322\277\nu\223\037 \031\300\322\021'X\014\250F.\342Q\331\242U\264\316\250\031\317Tac\365\232\341\364c\213\347\223\241\367\213{\241\364\313\0060\305\n\211V\003\352&Y\203\355\354\031nu\373\224\243\375\021\326\350\026\261\342\021\034\016na\225\037\010%V\030\220p\272?Q6p;\036lb\303&@\247\004\026\365\222\0073\307Tu\nD\261\250\r\347\230\260R\344T5\240\017\321#\2716)auC5X\227`\222W\010i\362\000\240}\264Jb\323\000\211\222\271\323\245L\037S\"\275\236\343\232\211\216kfO\0343\006\241\262m\252\010~k{\007\014U*p\016e)\323\014p\315P\034\247\316I\225\265\255\252\030\342\204_\225j6h\241>\302%\363,\201^\007\261\252\227L\003\034B\310\304UX\264M!`NL\030ZZ\247P&\255\032\255E\224A\010\352R\024\272\004+\373\235\030\245r\333I\267\374\r\224\237x\202lC\001\212\362\305dj\0301\312QE\352\340\200^\247\230\366\324)\224P\263\016\"\356\000_9\266`?\220\035U^N\230|\266\231+\247\"\236F\017\266""\223k\215fE6\027\214\005\347\002\334\032=\276{\2531.&\256z\331\326\211\361F\2665zJ\234\372\316\235t\357\372g}&\356\344E~Q,.u\254\356\007\371@\013/\213\205\302\220\2063A=<\022\316\302\304a\rW\305*\021dClX\302z\375ad\344M\252\220\206\246\220^L\017\351\362a\230\n'\302\242XZ\036\322\360Q8\031N\205\216X)\036\326\360\271x^\021\025S\230\266\260\337\002\372\337\323\3132\210\345\364\312\260A\374\031\346\302\202\310CV\236\036\332\022\t\264.\326k\242\266\005\030\266S\367$\224{\351\242l\212\351\325a\021=\016q\310\305\3023\361\354\371\241-\261\300\2060`\207\035\300\360*5-\241L\247\237\312\346i\372\331\260\210\236\204u1W\020\005\310\372\213!Ma4/\346\227\304\022\344\350\345\377\260\325\204F\005\205\335nSvFF2\223~!\233\027i4l@\013p\360DaE\254@\236\312\242\\\027\365-\261\3657\370z\233\232\225.g\323/e\3632\215\207\363\354\177\033\244\202\211\240\030\016W\017\374\257\233\270\311\203\354pF\3374\353\301\221 7\214\321\017\376\335\276ru\335\313w\215\316\273y\267\352gA\363\244\264\237r\035\377x\363\227\300\020\363EQT\205\372Z\274~\263\223\373\360\351\310\261qqZj\374\344\235\3636\232g\232k\301\252x\002\007R\227~\277\337]\020\237_t\353\255\023\247\033W\337\345\337\301b_\275{\344\252\336\027\376\230?)5\3564\362\262\371\271\001\220N\355\326wr\357Ac\332=\352\326\275Tk\364\246\177\022\322\261\03508\354\331\367\243\307Z'\316\212\2637\375\224?\366\376\364\244;\346N\036r\221\326\350\031q\346\222\227\362&\274\242O \256r8#\026\200\323\\p;\0227\220\233s\013\336X\357\340K\377\274\377Wp!<\032\276\022E8\342\021Z\000\224\361\260\307\375\356\226]\366\306:\211\004\300\343b\374\232\227\363\026\375\013\315O\232+\3012T\212|\007\374N\252u\344\263\335\253\215<\274\262\333\252\374\006\220w#\334\236(\233\355yk@?\266\357\316\333\361\315\273\367\256\244\\\271\324\266\341\350\026R\221T\332\023=\214^\034\256)\373]\3278\202;\215}\314\177\367\216\217^Q\244T\271\022\273\200\257\036lD~.\217$h\376\267`\262Y\346TK\324h\337\256\013Q\177\021\272\t!u\205\207\010j\377:\250w\360\321\330\022\225\377\001U\330\342\344";
-    PyObject *data = __Pyx_DecompressString(cstring, 1386, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1396 bytes) */
+const char* const cstring = "x\332\235WKw\323F\024\216}8%\024\n\r\t\264=\247\017\245\207G\002\305\340\222RJ{hM\003!\234\036\210c\347\341\360\030\306\322\330V\"kd\315(\211)\224,\263\314\222\245\226Zj\231\245\226Z\316\322K~\002?\241wdGvl\247\324\3669\321<\356c\276{\365\335;\312\003\254\033DS8UT\233`N\224\254\203M\256\363\372c\n\013^\301\\\371\263\316+\324Tt\246h\304\320\213\304\0065\243\2560n\353*'\266T2\225\205\373\013\327fn\317(\330\324\024\233\254\023\2253\2059E\325\300\214\021\246\320\222Rtt\203\353\246\302\353\026a)e\276\244\324\251\243\230\244y\272\005z\235\006\274BL\205\021.'\312el\232\224c\256S\023\201\271n\226/+\232n\303!\372&\221\326\017\260\301Hjj\372w\254i\010T\211\2463\\4\0101\345\263\254\352\2549\323L\nA\224\260cp\005!\233h\216J\020R4'\362bR\363\032\004\265\251c\003\244\252n\352\034!f\253\327K\330P\341h\225\332\344:R\261\245_\257\265\262\224\262\352\333\277\311L\230eF\035[%w!o\363U\313 Ub\002\014\204\026\352\333\3607\013\251B\217\3116_$\245\203\014\037\214\251\030\211\032e\032\241\016\t\244\200A\344}d\270\310\332s\010\233\000&\203\241Z\267w)\353\331\204p6\211\315\021\247\035[V[\256A\0264\2024\352@\326\272w['\375\247P7\371\021\222\036,-q\037\213\036\325\310E\274*\331\264\212\326\0315\343\235*\274X\3352\352\335\330\342\375\376\320\273\305\235P\272e=\230b\205\276V=\352&)\303\353\354Xn\265\347\224\243\303\021Zt\213\330\361\n\312\203\333X\345GB\211\025z$\234\036N\224\003\334\216\027\233\330p\010\320\251\017\213:\311\203Y\335Tu\nD\261\251\003\225LX1r\n\245\"\213V\016\260\ti@\022\004)buC5X\233i\222`\010i\262\022\320!~\365\243U\017\233\372\223\250\315\235.\312Dz\035u\233\212\3526u \216\251\203P\3111U\004\277\362A\245\241J\005\nRv5\315\000\327\014\305\001\353\234TY\323\252\212!N\370U\251\346\200\026\352b^\177\302\365\341\331Q\364\352dU\017\231\0202q\025\016mr\t(\0243\207\026\327)tL\333\242V\304\035\204\240AE\241K\260r\336\212Q*7\235\264\373`O\037\2127\3106t\242(_L\246\206\021\243\024\265\246\026\016\230\265\272jG\303B}\232\327Q\014\356!.\3076\274\017\344D-\230\023&\237M\n\313\255\210\260""\321\203\355d\032\243i\221\316\004c\301\205\0007FO\356\336\332\033\027\023W\275\233^\331\3176F\317\2103\337\273\223\356]\377\274\317\304\235\254\310.\211\245\345\226\321\375 \033h\341\264\310\345\007\263\233\013j\341\261p\0366\206\264[\023kD\220\r\261a\013\373\365\207\221\2217\211|\022\206|r)9\230\307\207a\"\234\010\013bye0\273G\341d8\023\326\305jaH\273\347\342yETLa:\302y\013\320\377H\256\310\010V\222\253\003F\360W\230\t\363\"\013\031y:\254!\022h]\254[\302\332\002\004\333\211{\022\310\275dA\016\205\344\332\200x\036\2078\344\"\367L<{>\254!\026\330\020\006\274\332: x\225\230\225@f\223O\345\3604\371l@<O\302\232X\310\213<$\374\305`\226\260Z\024\213\313b\031\362\363rxSMhTPx\315M\242\316\3110\346\222/\344\360\"\211\006\214&\007\265&\362\253b\025rT\022\245\232\250m\211\255\177\300\325\333\304\274\3648\237|)\207\227I<\220c\377\273 \021L\004\205p\240\006\340\177\263\217\367y\220\036\310\346\333\375Zp,\310\014`s\323\277\333\325\234\256y9\377\270_\213l.\272Y\267\352\247A\361\2644\237q\353\376\311\375_\003C,\026DA\025\352k\361\372\315N\346\303'#'\306\305Y\251\361\263w\301\333\330?\267_\016\326\304\023\250A]\272\375q7'>\277\354\326\032\247\316\356]}\227}\007g}\375\356\221\253z_\372c\376\244\324\270\263\227\225\303/{\200\350\314nm'\363\0364f\335\343n\315K4Fo\370\247!\027\333\001\203\372N\277\037=\3218u^\234\277\341'\374\261\367g'\3351wr\310C\032\243\347\304\271)/\341Mx\005\237@\\\245pN\344\200\313\\p'\022\357!7\343\346\275\261\316\305W\376E\377\357\340Rx<|%\nP\327\021Z\000\224\362\260\307\375\366\373\232\366\306\2759\271\376lwEf5\353\021\377\026\244\246\022\224\303,p\341\213K.vk;\211\306\261Ow\257\356e\3413\335Q\345w\277\274\006\341\242D\351t\307\007\002\372\251yM\336\216/\331\203\357#\345\312T\323\206\243[HER\351@\3640\372F\370A9\354\332\342\010\256/\3661\377\355\353<\372\032\221R\345J\354\002\376\327\301F\344gz\244\217\346\377\013&\235f\365j\221\032\315\2134\027\315\227`\332'\244\266p\210\240\016\237\203:\027\037\215\255\257\362\277\345\340\356g";
+    PyObject *data = __Pyx_DecompressString(cstring, 1396, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (3745 bytes) */
-const char* const bytes = "Failed to create QuantityNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/quantity.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefQuantityQuantity.__reduce_cython__Quantity.__setstate_cython__Quantity.absQuantity.add_equals_quantityQuantity.add_quantityQuantity.convert_toQuantity.copyQuantity.divide_doubleQuantity.divide_equals_doubleQuantity.divide_equals_intQuantity.divide_equals_quantityQuantity.divide_intQuantity.divide_quantityQuantity.equalQuantity.from_jsonQuantity.multiply_doubleQuantity.multiply_equals_doubleQuantity.multiply_equals_intQuantity.multiply_equals_quantityQuantity.multiply_intQuantity.multiply_quantityQuantity.negateQuantity.newQuantity.not_equalQuantity.powerQuantity.subtract_equals_quantityQuantity.subtract_quantityQuantity.to_jsonQuantity.unitQuantity.valueabsadd_equals_quantityadd_quantityasyncio.coroutinesb_jsoncline_in_tracebackclsconvert_tocopy__dict__divide_doubledivide_equals_doubledivide_equals_intdivide_equals_quantitydivide_intdivide_quantityequalfalcon_core._capi.quantityfrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main____module__multiply_doublemultiply_equals_doublemultiply_equals_intmultiply_equals_quantitymultiply_intmultiply_quantity__name__negatenewnot_equalobjotherpoppower__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_retself__set_name__setdefault__setstate____setstate_cython__subtract_equals_quantitysubtract_quantitytarget_unit__test__to_jsonunitvaluevalues\200A\330\0101\3201A\300\021\300$\300a\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201E\300Q\300d\310)\320ST\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!""\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201G\300q\310\004\310I\320UV\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201G\300q\310\004\310I\320UZ\320Ze\320ek\320kr\320r|\360\000\000}\001T\002\360\000\000T\002U\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201H\310\001\310\024\310Y\320VW\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201J\310!\3104\310y\320XY\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201J\310!\3104\310y\320X]\320]h\320hn\320nu\320u\177\360\000\000@\002W\002\360\000\000W\002X\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201L\310A\310T\320QZ\320Z[\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201L\310A\310T\320QZ\320Z_\320_j\320jp\320pw\360\000\000x\001B\002\360\000\000B\002Y\002\360\000\000Y\002Z\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201N\310a\310t\320S\\\320\\]\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201N\310a\310t\320S\\\320\\a\320al\320lr\320ry\360\000\000z\001D\002\360\000\000D\002[\002\360\000\000[\002\\\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201O\310q\320PT\320T]\320]^\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201Q\320QR\320RV""\320V_\320_`\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201Q\320QR\320RV\320V_\320_d\320do\320ou\320u|\360\000\000}\001G\002\360\000\000G\002^\002\360\000\000^\002_\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201S\320ST\320TX\320Xa\320af\320fq\320qw\320w~\360\000\000\177\001I\002\360\000\000I\002`\002\360\000\000`\002a\002\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\260\037\300\001\300\024\300Y\310a\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\260\035\270a\270t\3001\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\260\036\270q\300\004\300A\330\010\013\2106\220\023\320\024+\2501\330\014\023\2201\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0103\260>\300\021\300$\300a\330\010\013\2106\220\023\320\024-\250Q\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\016\"\240!\2404\240y\260\013\270;\300l\320RY\320Yc\320c|\320|}\200A\360\006\000\t\023\320\022\"\240!\2407\250$\250k\270\025\270g\300Z\320Oh\320hi\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0260\260\001\260\021\340\022!\240\021\240!\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\025(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]t\320tu\200A\330\010\025\220_\240A\240T""\250\021\200A\330\010\025\220_\240A\240T\250\031\260%\260{\300&\310\007\310z\320Yp\320pq\200A\340\010\026\320\026.\250a\250t\2601\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *(__pyx_t_6_c_api_QuantityHandle, struct __pyx_opt_args_11falcon_core_5_capi_8quantity__quantity_from_capi *__pyx_optional_args)\000_quantity_from_capistruct __pyx_obj_11falcon_core_5_capi_11symbol_unit_SymbolUnit *(__pyx_t_6_c_api_SymbolUnitHandle, struct __pyx_opt_args_11falcon_core_5_capi_11symbol_unit__symbol_unit_from_capi *__pyx_optional_args)\000_symbol_unit_from_capi";
+    #else /* compression: none (3735 bytes) */
+const char* const bytes = "Failed to create QuantityNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.()?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/quantity.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefQuantityQuantity.__reduce_cython__Quantity.__setstate_cython__Quantity.absQuantity.add_equals_quantityQuantity.add_quantityQuantity.convert_toQuantity.copyQuantity.divide_doubleQuantity.divide_equals_doubleQuantity.divide_equals_intQuantity.divide_equals_quantityQuantity.divide_intQuantity.divide_quantityQuantity.equalQuantity.from_jsonQuantity.multiply_doubleQuantity.multiply_equals_doubleQuantity.multiply_equals_intQuantity.multiply_equals_quantityQuantity.multiply_intQuantity.multiply_quantityQuantity.negateQuantity.newQuantity.not_equalQuantity.powerQuantity.subtract_equals_quantityQuantity.subtract_quantityQuantity.to_jsonQuantity.unitQuantity.valueabsadd_equals_quantityadd_quantityasyncio.coroutinesb_json__class__cline_in_tracebackclsconvert_tocopy__dict__divide_doubledivide_equals_doubledivide_equals_intdivide_equals_quantitydivide_intdivide_quantityequalfalcon_core._capi.quantityfrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main____module__multiply_doublemultiply_equals_doublemultiply_equals_intmultiply_equals_quantitymultiply_intmultiply_quantity__name__negatenewnot_equalobjotherpoppower__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_retself__set_name__setdefault__setstate____setstate_cython__subtract_equals_quantitysubtract_quantitytarget_unit__test__to_jsonunitvaluevalues\200A\330\0101\3201A\300\021\300$\300a\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201E\300Q\300d\310)\320ST\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>""\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201G\300q\310\004\310I\320UV\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201G\300q\310\004\310I\320UZ\320Ze\320ek\320kr\320r|\360\000\000}\001T\002\360\000\000T\002U\002\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201H\310\001\310\024\310Y\320VW\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201J\310!\3104\310y\320XY\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201J\310!\3104\310y\320X]\320]h\320hn\320nu\320u\177\360\000\000@\002W\002\360\000\000W\002X\002\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201L\310A\310T\320QZ\320Z[\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201L\310A\310T\320QZ\320Z_\320_j\320jp\320pw\360\000\000x\001B\002\360\000\000B\002Y\002\360\000\000Y\002Z\002\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201N\310a\310t\320S\\\320\\]\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201N\310a\310t\320S\\\320\\a\320al\320lr\320ry\360\000\000z\001D\002\360\000\000D\002[\002\360\000\000[\002\\\002\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201O\310q\320PT\320T]\320]^\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201Q\320QR\320RV\320V_\320_`\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017""\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201Q\320QR\320RV\320V_\320_d\320do\320ou\320u|\360\000\000}\001G\002\360\000\000G\002^\002\360\000\000^\002_\002\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\3201S\320ST\320TX\320Xa\320af\320fq\320qw\320w~\360\000\000\177\001I\002\360\000\000I\002`\002\360\000\000`\002a\002\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\260\037\300\001\300\024\300Y\310a\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\260\035\270a\270t\3001\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0101\260\036\270q\300\004\300A\330\010\013\2106\220\023\320\024+\2503\250g\260Q\330\010\017\320\017\"\240!\240>\260\026\260s\320:Q\320QU\320UV\200A\330\0103\260>\300\021\300$\300a\330\010\013\2106\220\023\320\024-\250S\260\007\260q\330\010\017\320\017%\240Q\240m\2601\200A\330\016\"\240!\2404\240y\260\013\270;\300l\320RY\320Yc\320c|\320|}\200A\360\006\000\t\023\320\022\"\240!\2407\250$\250k\270\025\270g\300Z\320Oh\320hi\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\0260\260\001\260\021\340\022!\240\021\240!\330\010\013\2102\210S\320\020'\240q\330\014\022\220+\230Q\230a\330\010\034\230J\240c\250\030\260\021\260!\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010\025\320\025(\250\001\250\024\250Y\260e\270;\300f\310G\320S]\320]t\320tu\200A\330\010\025\220_\240A\240T\250\021\200A\330\010\025\220_\240A\240T\250\031\260%\260{\300&\310\007\310z\320Yp\320pq\200A\340\010\026\320\026.\250a""\250t\2601\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\r\210W\320\024-\250Q\250e\2606\270\025\270h\300g\310Q\310a\330\027&\240a\240q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_8quantity_Quantity *(__pyx_t_6_c_api_QuantityHandle, struct __pyx_opt_args_11falcon_core_5_capi_8quantity__quantity_from_capi *__pyx_optional_args)\000_quantity_from_capistruct __pyx_obj_11falcon_core_5_capi_11symbol_unit_SymbolUnit *(__pyx_t_6_c_api_SymbolUnitHandle, struct __pyx_opt_args_11falcon_core_5_capi_11symbol_unit__symbol_unit_from_capi *__pyx_optional_args)\000_symbol_unit_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 109; i++) {
+    for (int i = 0; i < 112; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 12) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 14) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -11578,7 +11383,7 @@ const char* const bytes = "Failed to create QuantityNote that Cython is delibera
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 109; i < 138; i++) {
+    for (int i = 112; i < 141; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -11589,14 +11394,14 @@ const char* const bytes = "Failed to create QuantityNote that Cython is delibera
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 138; i++) {
+    for (Py_ssize_t i = 0; i < 141; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 109;
+      PyObject **table = stringtab + 112;
       for (Py_ssize_t i=0; i<29; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -11654,132 +11459,132 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 46};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_1_q_A_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_1_q_A_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 52};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 51};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A__AT_zYppq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 60};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 58};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_Ye_fGS_ttu, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 68};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 65};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_at1_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_at1_6_G1_W_Qe6_hgQa_aq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 78};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 72};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self};
     __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_value, __pyx_mstate->__pyx_kp_b_iso88591_A__AT, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 81};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 75};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_unit, __pyx_mstate->__pyx_kp_b_iso88591_A_3_a_6_Q_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_unit, __pyx_mstate->__pyx_kp_b_iso88591_A_3_a_6_S_q_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 87};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 80};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_target_unit};
     __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_convert_to, __pyx_mstate->__pyx_kp_b_iso88591_A_4y_lRYYcc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 90};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11Gq_IUV_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11Gq_IUV_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 96};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 88};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11J_4yXY_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11J_4yXY_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 102};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 93};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
     __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11LATQZZ__jjppw_x_B_B_Y_Y_Z_6, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
   }
   {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 98};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11NatS_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 103};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11QQRRVV___6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+  }
+  {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 108};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11NatS_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11SSTTXXaaffqqww_I_I_a_6_3gQ_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 114};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 113};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11QQRRVV___6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11EQd_ST_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 120};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 118};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_multiply_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11SSTTXXaaffqqww_I_I_a_6_1_1_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11H_YVW_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 126};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 123};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11EQd_ST_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11J_4yX_hhnnuu_W_W_X_6_3gQ_s_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 132};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 128};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11H_YVW_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11LATQZZ_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 133};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11OqPTT_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 138};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11J_4yX_hhnnuu_W_W_X_6_1_1_s_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11QQRRVV__ddoouu_G_G___6_3gQ_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 144};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 143};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[18] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_equals_int, __pyx_mstate->__pyx_kp_b_iso88591_A_11LATQZZ_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[18])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_power, __pyx_mstate->__pyx_kp_b_iso88591_A_1_Ya_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 150};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 148};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[19] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_equals_double, __pyx_mstate->__pyx_kp_b_iso88591_A_11OqPTT_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[19])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_add_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_3gQ_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 156};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 153};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[20] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_divide_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11QQRRVV__ddoouu_G_G___6_1_1_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[20])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_add_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11NatS_aallrry_z_D_D_6_3gQ_s_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 162};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[21] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_power, __pyx_mstate->__pyx_kp_b_iso88591_A_1_Ya_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[21])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 168};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[22] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_add_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11Gq_IUZZeekkrr_T_T_U_6_1_1_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[22])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 174};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[23] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_add_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11NatS_aallrry_z_D_D_6_1_1_s_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[23])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 180};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 158};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
     __pyx_mstate_global->__pyx_codeobj_tab[24] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_subtract_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11LATQZZ__jjppw_x_B_B_Y_Y_Z_6, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[24])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 186};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 163};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[25] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_subtract_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11SSTTXXaaffqqww_I_I_a_6_1_1_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[25])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[25] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_subtract_equals_quantity, __pyx_mstate->__pyx_kp_b_iso88591_A_11SSTTXXaaffqqww_I_I_a_6_3gQ_s, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[25])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 192};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 168};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_negate, __pyx_mstate->__pyx_kp_b_iso88591_A_11A_a_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[26] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_negate, __pyx_mstate->__pyx_kp_b_iso88591_A_11A_a_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[26])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 198};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 173};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_abs, __pyx_mstate->__pyx_kp_b_iso88591_A_1_at1_6_1_1_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[27] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_quantity_p, __pyx_mstate->__pyx_n_u_abs, __pyx_mstate->__pyx_kp_b_iso88591_A_1_at1_6_3gQ_s_QQUUV, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[27])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
@@ -13563,6 +13368,90 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 }
 #endif
 
+/* PyObjectCallNoArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+    PyObject *arg[2] = {NULL, NULL};
+    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* JoinPyUnicode */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char) {
+#if CYTHON_USE_UNICODE_INTERNALS && CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    PyObject *result_uval;
+    int result_ukind, kind_shift;
+    Py_ssize_t i, char_pos;
+    void *result_udata;
+    if (max_char > 1114111) max_char = 1114111;
+    result_uval = PyUnicode_New(result_ulength, max_char);
+    if (unlikely(!result_uval)) return NULL;
+    result_ukind = (max_char <= 255) ? PyUnicode_1BYTE_KIND : (max_char <= 65535) ? PyUnicode_2BYTE_KIND : PyUnicode_4BYTE_KIND;
+    kind_shift = (result_ukind == PyUnicode_4BYTE_KIND) ? 2 : result_ukind - 1;
+    result_udata = PyUnicode_DATA(result_uval);
+    assert(kind_shift == 2 || kind_shift == 1 || kind_shift == 0);
+    if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - result_ulength < 0))
+        goto overflow;
+    char_pos = 0;
+    for (i=0; i < value_count; i++) {
+        int ukind;
+        Py_ssize_t ulength;
+        void *udata;
+        PyObject *uval = values[i];
+        #if !CYTHON_COMPILING_IN_LIMITED_API
+        if (__Pyx_PyUnicode_READY(uval) == (-1))
+            goto bad;
+        #endif
+        ulength = __Pyx_PyUnicode_GET_LENGTH(uval);
+        #if !CYTHON_ASSUME_SAFE_SIZE
+        if (unlikely(ulength < 0)) goto bad;
+        #endif
+        if (unlikely(!ulength))
+            continue;
+        if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - ulength < char_pos))
+            goto overflow;
+        ukind = __Pyx_PyUnicode_KIND(uval);
+        udata = __Pyx_PyUnicode_DATA(uval);
+        if (ukind == result_ukind) {
+            memcpy((char *)result_udata + (char_pos << kind_shift), udata, (size_t) (ulength << kind_shift));
+        } else {
+            #if PY_VERSION_HEX >= 0x030d0000
+            if (unlikely(PyUnicode_CopyCharacters(result_uval, char_pos, uval, 0, ulength) < 0)) goto bad;
+            #elif CYTHON_COMPILING_IN_CPYTHON || defined(_PyUnicode_FastCopyCharacters)
+            _PyUnicode_FastCopyCharacters(result_uval, char_pos, uval, 0, ulength);
+            #else
+            Py_ssize_t j;
+            for (j=0; j < ulength; j++) {
+                Py_UCS4 uchar = __Pyx_PyUnicode_READ(ukind, udata, j);
+                __Pyx_PyUnicode_WRITE(result_ukind, result_udata, char_pos+j, uchar);
+            }
+            #endif
+        }
+        char_pos += ulength;
+    }
+    return result_uval;
+overflow:
+    PyErr_SetString(PyExc_OverflowError, "join() result is too long for a Python string");
+bad:
+    Py_DECREF(result_uval);
+    return NULL;
+#else
+    Py_ssize_t i;
+    PyObject *result = NULL;
+    PyObject *value_tuple = PyTuple_New(value_count);
+    if (unlikely(!value_tuple)) return NULL;
+    CYTHON_UNUSED_VAR(max_char);
+    CYTHON_UNUSED_VAR(result_ulength);
+    for (i=0; i<value_count; i++) {
+        if (__Pyx_PyTuple_SET_ITEM(value_tuple, i, values[i]) != (0)) goto bad;
+        Py_INCREF(values[i]);
+    }
+    result = PyUnicode_Join(__pyx_mstate_global->__pyx_empty_unicode, value_tuple);
+bad:
+    Py_DECREF(value_tuple);
+    return result;
+#endif
+}
+
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {
     if (is_final || likely(!__Pyx_PyType_HasFeature(t, Py_TPFLAGS_IS_ABSTRACT))) {
@@ -13780,12 +13669,6 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
         PyType_Modified(type);
 #endif  // PY_VERSION_HEX > 0x030900B1
     return 0;
-}
-
-/* PyObjectCallNoArg (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-    PyObject *arg[2] = {NULL, NULL};
-    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
 
 /* PyObjectGetMethod (used by PyObjectCallMethod0) */
@@ -16467,7 +16350,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__2);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
     }
     goto done;
 }

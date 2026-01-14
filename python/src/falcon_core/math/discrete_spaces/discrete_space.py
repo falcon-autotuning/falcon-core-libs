@@ -58,11 +58,11 @@ class DiscreteSpace:
         ret = self._c.copy()
         return DiscreteSpace._from_capi(ret)
 
-    def equal(self, other: DiscreteSpace) -> None:
+    def equal(self, other: DiscreteSpace) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: DiscreteSpace) -> None:
+    def not_equal(self, other: DiscreteSpace) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -98,7 +98,7 @@ class DiscreteSpace:
         ret = self._c.validate_knob_uniqueness()
         return ret
 
-    def get_axis(self, knob: InstrumentPort) -> None:
+    def get_axis(self, knob: InstrumentPort) -> int:
         ret = self._c.get_axis(knob._c if knob is not None else None)
         return ret
 
@@ -111,6 +111,12 @@ class DiscreteSpace:
         ret = self._c.get_projection(projection._c if projection is not None else None)
         if ret is None: return None
         return Axes(ret)
+
+    def __repr__(self):
+        return f"DiscreteSpace({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

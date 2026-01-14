@@ -97,7 +97,7 @@ class TestConfig:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -105,7 +105,7 @@ class TestConfig:
         try:
             self.obj.equal(_make_test_config())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -120,7 +120,7 @@ class TestConfig:
         try:
             self.obj.not_equal(_make_test_config())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -135,7 +135,7 @@ class TestConfig:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_num_unique_channels(self):
         if self.obj is None:
@@ -143,39 +143,39 @@ class TestConfig:
         try:
             self.obj.num_unique_channels()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_voltage_constraints(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.voltage_constraints()
+            self.obj.voltage_constraints
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_groups(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.groups()
+            self.obj.groups
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_wiring_DC(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.wiring_DC()
+            self.obj.wiring_DC
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_channels(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.channels()
+            self.obj.channels
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_impedance(self):
         if self.obj is None:
@@ -183,23 +183,23 @@ class TestConfig:
         try:
             self.obj.get_impedance(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_all_gnames(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_all_gnames()
+            self.obj.all_gnames
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_all_groups(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_all_groups()
+            self.obj.all_groups
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_channel(self):
         if self.obj is None:
@@ -207,7 +207,7 @@ class TestConfig:
         try:
             self.obj.has_channel(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_gname(self):
         if self.obj is None:
@@ -215,7 +215,7 @@ class TestConfig:
         try:
             self.obj.has_gname(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_select_group(self):
         if self.obj is None:
@@ -223,7 +223,7 @@ class TestConfig:
         try:
             self.obj.select_group(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_dot_number(self):
         if self.obj is None:
@@ -231,15 +231,15 @@ class TestConfig:
         try:
             self.obj.get_dot_number(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_charge_sense_groups(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_charge_sense_groups()
+            self.obj.charge_sense_groups
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ohmic_in_charge_sensor(self):
         if self.obj is None:
@@ -247,7 +247,7 @@ class TestConfig:
         try:
             self.obj.ohmic_in_charge_sensor(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_associated_ohmic(self):
         if self.obj is None:
@@ -255,15 +255,15 @@ class TestConfig:
         try:
             self.obj.get_associated_ohmic(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_current_channels(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_current_channels()
+            self.obj.current_channels
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_gname(self):
         if self.obj is None:
@@ -271,7 +271,7 @@ class TestConfig:
         try:
             self.obj.get_gname(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_group_barrier_gates(self):
         if self.obj is None:
@@ -279,7 +279,7 @@ class TestConfig:
         try:
             self.obj.get_group_barrier_gates(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_group_plunger_gates(self):
         if self.obj is None:
@@ -287,7 +287,7 @@ class TestConfig:
         try:
             self.obj.get_group_plunger_gates(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_group_reservoir_gates(self):
         if self.obj is None:
@@ -295,7 +295,7 @@ class TestConfig:
         try:
             self.obj.get_group_reservoir_gates(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_group_screening_gates(self):
         if self.obj is None:
@@ -303,7 +303,7 @@ class TestConfig:
         try:
             self.obj.get_group_screening_gates(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_group_dot_gates(self):
         if self.obj is None:
@@ -311,7 +311,7 @@ class TestConfig:
         try:
             self.obj.get_group_dot_gates(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_group_gates(self):
         if self.obj is None:
@@ -319,7 +319,7 @@ class TestConfig:
         try:
             self.obj.get_group_gates(Gname.new('test_gname'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_barrier_gates(self):
         if self.obj is None:
@@ -327,7 +327,7 @@ class TestConfig:
         try:
             self.obj.get_channel_barrier_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_plunger_gates(self):
         if self.obj is None:
@@ -335,7 +335,7 @@ class TestConfig:
         try:
             self.obj.get_channel_plunger_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_reservoir_gates(self):
         if self.obj is None:
@@ -343,7 +343,7 @@ class TestConfig:
         try:
             self.obj.get_channel_reservoir_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_screening_gates(self):
         if self.obj is None:
@@ -351,7 +351,7 @@ class TestConfig:
         try:
             self.obj.get_channel_screening_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_dot_gates(self):
         if self.obj is None:
@@ -359,7 +359,7 @@ class TestConfig:
         try:
             self.obj.get_channel_dot_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_gates(self):
         if self.obj is None:
@@ -367,7 +367,7 @@ class TestConfig:
         try:
             self.obj.get_channel_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_ohmics(self):
         if self.obj is None:
@@ -375,7 +375,7 @@ class TestConfig:
         try:
             self.obj.get_channel_ohmics(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_channel_order_no_ohmics(self):
         if self.obj is None:
@@ -383,15 +383,15 @@ class TestConfig:
         try:
             self.obj.get_channel_order_no_ohmics(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_num_unique_channels(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_num_unique_channels()
+            self.obj.num_unique_channels
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_return_channels_from_gate(self):
         if self.obj is None:
@@ -399,7 +399,7 @@ class TestConfig:
         try:
             self.obj.return_channels_from_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_return_channel_from_gate(self):
         if self.obj is None:
@@ -407,7 +407,7 @@ class TestConfig:
         try:
             self.obj.return_channel_from_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ohmic_in_channel(self):
         if self.obj is None:
@@ -415,7 +415,7 @@ class TestConfig:
         try:
             self.obj.ohmic_in_channel(Connection.new_barrier('test_conn'), Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_dot_channel_neighbors(self):
         if self.obj is None:
@@ -423,151 +423,151 @@ class TestConfig:
         try:
             self.obj.get_dot_channel_neighbors(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_barrier_gate_dict(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_barrier_gate_dict()
+            self.obj.barrier_gate_dict
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_plunger_gate_dict(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_plunger_gate_dict()
+            self.obj.plunger_gate_dict
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_reservoir_gate_dict(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_reservoir_gate_dict()
+            self.obj.reservoir_gate_dict
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_screening_gate_dict(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_screening_gate_dict()
+            self.obj.screening_gate_dict
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_dot_gate_dict(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_dot_gate_dict()
+            self.obj.dot_gate_dict
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_gate_dict(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_gate_dict()
+            self.obj.gate_dict
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_barrier_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_barrier_gates()
+            self.obj.isolated_barrier_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_plunger_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_plunger_gates()
+            self.obj.isolated_plunger_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_reservoir_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_reservoir_gates()
+            self.obj.isolated_reservoir_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_screening_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_screening_gates()
+            self.obj.isolated_screening_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_dot_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_dot_gates()
+            self.obj.isolated_dot_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_gates()
+            self.obj.isolated_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_barrier_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_barrier_gates()
+            self.obj.shared_barrier_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_plunger_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_plunger_gates()
+            self.obj.shared_plunger_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_reservoir_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_reservoir_gates()
+            self.obj.shared_reservoir_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_screening_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_screening_gates()
+            self.obj.shared_screening_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_dot_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_dot_gates()
+            self.obj.shared_dot_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_shared_gates()
+            self.obj.shared_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_channel_barrier_gates(self):
         if self.obj is None:
@@ -575,7 +575,7 @@ class TestConfig:
         try:
             self.obj.get_shared_channel_barrier_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_channel_plunger_gates(self):
         if self.obj is None:
@@ -583,7 +583,7 @@ class TestConfig:
         try:
             self.obj.get_shared_channel_plunger_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_channel_reservoir_gates(self):
         if self.obj is None:
@@ -591,7 +591,7 @@ class TestConfig:
         try:
             self.obj.get_shared_channel_reservoir_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_channel_screening_gates(self):
         if self.obj is None:
@@ -599,7 +599,7 @@ class TestConfig:
         try:
             self.obj.get_shared_channel_screening_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_channel_dot_gates(self):
         if self.obj is None:
@@ -607,7 +607,7 @@ class TestConfig:
         try:
             self.obj.get_shared_channel_dot_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_shared_channel_gates(self):
         if self.obj is None:
@@ -615,7 +615,7 @@ class TestConfig:
         try:
             self.obj.get_shared_channel_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_channel_barrier_gates(self):
         if self.obj is None:
@@ -623,7 +623,7 @@ class TestConfig:
         try:
             self.obj.get_isolated_channel_barrier_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_channel_plunger_gates(self):
         if self.obj is None:
@@ -631,7 +631,7 @@ class TestConfig:
         try:
             self.obj.get_isolated_channel_plunger_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_channel_reservoir_gates(self):
         if self.obj is None:
@@ -639,7 +639,7 @@ class TestConfig:
         try:
             self.obj.get_isolated_channel_reservoir_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_channel_screening_gates(self):
         if self.obj is None:
@@ -647,7 +647,7 @@ class TestConfig:
         try:
             self.obj.get_isolated_channel_screening_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_channel_dot_gates(self):
         if self.obj is None:
@@ -655,7 +655,7 @@ class TestConfig:
         try:
             self.obj.get_isolated_channel_dot_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_channel_gates(self):
         if self.obj is None:
@@ -663,55 +663,55 @@ class TestConfig:
         try:
             self.obj.get_isolated_channel_gates(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_barrier_gates_by_channel(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_barrier_gates_by_channel()
+            self.obj.isolated_barrier_gates_by_channel
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_plunger_gates_by_channel(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_plunger_gates_by_channel()
+            self.obj.isolated_plunger_gates_by_channel
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_reservoir_gates_by_channel(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_reservoir_gates_by_channel()
+            self.obj.isolated_reservoir_gates_by_channel
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_screening_gates_by_channel(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_screening_gates_by_channel()
+            self.obj.isolated_screening_gates_by_channel
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_dot_gates_by_channel(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_dot_gates_by_channel()
+            self.obj.isolated_dot_gates_by_channel
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_isolated_gates_by_channel(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_isolated_gates_by_channel()
+            self.obj.isolated_gates_by_channel
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_generate_gate_relations(self):
         if self.obj is None:
@@ -719,127 +719,127 @@ class TestConfig:
         try:
             self.obj.generate_gate_relations()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_screening_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.screening_gates()
+            self.obj.screening_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_reservoir_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.reservoir_gates()
+            self.obj.reservoir_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_plunger_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.plunger_gates()
+            self.obj.plunger_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_barrier_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.barrier_gates()
+            self.obj.barrier_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ohmics(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.ohmics()
+            self.obj.ohmics
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_dot_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.dot_gates()
+            self.obj.dot_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_ohmic(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_ohmic()
+            self.obj.ohmic
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_barrier_gate(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_barrier_gate()
+            self.obj.barrier_gate
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_plunger_gate(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_plunger_gate()
+            self.obj.plunger_gate
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_reservoir_gate(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_reservoir_gate()
+            self.obj.reservoir_gate
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_screening_gate(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_screening_gate()
+            self.obj.screening_gate
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_dot_gate(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_dot_gate()
+            self.obj.dot_gate
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_gate(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_gate()
+            self.obj.gate
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_all_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_all_gates()
+            self.obj.all_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_all_connections(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_all_connections()
+            self.obj.all_connections
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_ohmic(self):
         if self.obj is None:
@@ -847,7 +847,7 @@ class TestConfig:
         try:
             self.obj.has_ohmic(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_gate(self):
         if self.obj is None:
@@ -855,7 +855,7 @@ class TestConfig:
         try:
             self.obj.has_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_barrier_gate(self):
         if self.obj is None:
@@ -863,7 +863,7 @@ class TestConfig:
         try:
             self.obj.has_barrier_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_plunger_gate(self):
         if self.obj is None:
@@ -871,7 +871,7 @@ class TestConfig:
         try:
             self.obj.has_plunger_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_reservoir_gate(self):
         if self.obj is None:
@@ -879,7 +879,7 @@ class TestConfig:
         try:
             self.obj.has_reservoir_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_has_screening_gate(self):
         if self.obj is None:
@@ -887,7 +887,7 @@ class TestConfig:
         try:
             self.obj.has_screening_gate(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

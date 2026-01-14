@@ -53,11 +53,11 @@ class InstrumentPort:
         ret = self._c.copy()
         return InstrumentPort._from_capi(ret)
 
-    def equal(self, other: InstrumentPort) -> None:
+    def equal(self, other: InstrumentPort) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: InstrumentPort) -> None:
+    def not_equal(self, other: InstrumentPort) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -83,25 +83,32 @@ class InstrumentPort:
         if ret is None: return None
         return SymbolUnit._from_capi(ret)
 
-    def description(self, ) -> str:
-        ret = self._c.description()
-        return ret
-
     def instrument_facing_name(self, ) -> str:
         ret = self._c.instrument_facing_name()
         return ret
 
-    def is_knob(self, ) -> None:
+    def is_knob(self, ) -> bool:
         ret = self._c.is_knob()
         return ret
 
-    def is_meter(self, ) -> None:
+    def is_meter(self, ) -> bool:
         ret = self._c.is_meter()
         return ret
 
-    def is_port(self, ) -> None:
+    def is_port(self, ) -> bool:
         ret = self._c.is_port()
         return ret
+
+    @property
+    def description(self) -> str:
+        ret = self._c.description()
+        return ret
+
+    def __repr__(self):
+        return f"InstrumentPort({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

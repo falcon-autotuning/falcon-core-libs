@@ -54,81 +54,71 @@ cdef class MeasurementRequest:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.MeasurementRequestHandle h_ret = _c_api.MeasurementRequest_copy(self.handle)
-        if h_ret == <_c_api.MeasurementRequestHandle>0:
-            return None
+        if h_ret == <_c_api.MeasurementRequestHandle>0: return None
         return _measurement_request_from_capi(h_ret, owned=(h_ret != <_c_api.MeasurementRequestHandle>self.handle))
 
     def equal(self, MeasurementRequest other):
         return _c_api.MeasurementRequest_equal(self.handle, other.handle if other is not None else <_c_api.MeasurementRequestHandle>0)
 
     def __eq__(self, MeasurementRequest other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, MeasurementRequest other):
         return _c_api.MeasurementRequest_not_equal(self.handle, other.handle if other is not None else <_c_api.MeasurementRequestHandle>0)
 
     def __ne__(self, MeasurementRequest other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MeasurementRequest_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def measurement_name(self, ):
+    def measurement_name(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MeasurementRequest_measurement_name(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def getters(self, ):
+    def getters(self):
         cdef _c_api.PortsHandle h_ret = _c_api.MeasurementRequest_getters(self.handle)
-        if h_ret == <_c_api.PortsHandle>0:
-            return None
+        if h_ret == <_c_api.PortsHandle>0: return None
         return _ports_from_capi(h_ret, owned=True)
 
-    def waveforms(self, ):
+    def waveforms(self):
         cdef _c_api.ListWaveformHandle h_ret = _c_api.MeasurementRequest_waveforms(self.handle)
-        if h_ret == <_c_api.ListWaveformHandle>0:
-            return None
+        if h_ret == <_c_api.ListWaveformHandle>0: return None
         return _list_waveform_from_capi(h_ret, owned=True)
 
-    def meter_transforms(self, ):
+    def meter_transforms(self):
         cdef _c_api.MapInstrumentPortPortTransformHandle h_ret = _c_api.MeasurementRequest_meter_transforms(self.handle)
-        if h_ret == <_c_api.MapInstrumentPortPortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.MapInstrumentPortPortTransformHandle>0: return None
         return _map_instrument_port_port_transform_from_capi(h_ret, owned=True)
 
-    def time_domain(self, ):
+    def time_domain(self):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.MeasurementRequest_time_domain(self.handle)
-        if h_ret == <_c_api.LabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledDomainHandle>0: return None
         return _labelled_domain_from_capi(h_ret, owned=True)
 
-    def message(self, ):
+    def message(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MeasurementRequest_message(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef MeasurementRequest _measurement_request_from_capi(_c_api.MeasurementRequestHandle h, bint owned=True):
     if h == <_c_api.MeasurementRequestHandle>0:

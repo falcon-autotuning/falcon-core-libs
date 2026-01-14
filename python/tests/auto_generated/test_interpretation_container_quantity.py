@@ -62,7 +62,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_unit(self):
         if self.obj is None:
@@ -70,7 +70,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.unit()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_select_by_connection(self):
         if self.obj is None:
@@ -78,7 +78,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.select_by_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_select_by_connections(self):
         if self.obj is None:
@@ -86,7 +86,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.select_by_connections(Connections.new_empty())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_select_by_independent_connection(self):
         if self.obj is None:
@@ -94,7 +94,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.select_by_independent_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_select_by_dependent_connection(self):
         if self.obj is None:
@@ -102,7 +102,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.select_by_dependent_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_select_contexts(self):
         if self.obj is None:
@@ -110,7 +110,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.select_contexts(None, None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_insert_or_assign(self):
         if self.obj is None:
@@ -118,7 +118,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.insert_or_assign(_make_test_interpretation_context(), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_insert(self):
         if self.obj is None:
@@ -126,7 +126,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.insert(_make_test_interpretation_context(), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_at(self):
         if self.obj is None:
@@ -134,7 +134,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.at(_make_test_interpretation_context())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_erase(self):
         if self.obj is None:
@@ -142,15 +142,15 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.erase(_make_test_interpretation_context())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_size(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.size()
+            self.obj.size
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_empty(self):
         if self.obj is None:
@@ -158,7 +158,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_clear(self):
         if self.obj is None:
@@ -166,7 +166,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.clear()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -174,7 +174,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.contains(_make_test_interpretation_context())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_keys(self):
         if self.obj is None:
@@ -182,7 +182,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.keys()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_values(self):
         if self.obj is None:
@@ -190,7 +190,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.values()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_items(self):
         if self.obj is None:
@@ -198,7 +198,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.items()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -206,7 +206,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.equal(_make_test_interpretation_container_quantity())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -221,7 +221,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.not_equal(_make_test_interpretation_container_quantity())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -236,7 +236,7 @@ class TestInterpretationContainerQuantity:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new(self):
         try:

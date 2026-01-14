@@ -46,11 +46,11 @@ class PortTransform:
         ret = self._c.copy()
         return PortTransform._from_capi(ret)
 
-    def equal(self, other: PortTransform) -> None:
+    def equal(self, other: PortTransform) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: PortTransform) -> None:
+    def not_equal(self, other: PortTransform) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -68,7 +68,7 @@ class PortTransform:
         if ret is None: return None
         return List(ret)
 
-    def evaluate(self, args: Map, time: Any) -> None:
+    def evaluate(self, args: Map, time: Any) -> float:
         ret = self._c.evaluate(args._c if args is not None else None, time)
         return ret
 
@@ -76,6 +76,12 @@ class PortTransform:
         ret = self._c.evaluate_arraywise(args._c if args is not None else None, deltaT, maxTime)
         if ret is None: return None
         return FArray(ret)
+
+    def __repr__(self):
+        return f"PortTransform({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

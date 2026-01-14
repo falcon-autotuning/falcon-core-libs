@@ -66,7 +66,7 @@ class TestHDF5Data:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -74,7 +74,7 @@ class TestHDF5Data:
         try:
             self.obj.equal(HDF5Data.from_json('{"unique_id": 0}'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -89,7 +89,7 @@ class TestHDF5Data:
         try:
             self.obj.not_equal(HDF5Data.from_json('{"unique_id": 0}'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -104,7 +104,7 @@ class TestHDF5Data:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_to_file(self):
         if self.obj is None:
@@ -112,7 +112,7 @@ class TestHDF5Data:
         try:
             self.obj.to_file("test_string")
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_to_communications(self):
         if self.obj is None:
@@ -120,7 +120,7 @@ class TestHDF5Data:
         try:
             self.obj.to_communications()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_shape(self):
         if self.obj is None:
@@ -128,7 +128,7 @@ class TestHDF5Data:
         try:
             self.obj.shape()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_unit_domain(self):
         if self.obj is None:
@@ -136,7 +136,7 @@ class TestHDF5Data:
         try:
             self.obj.unit_domain()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_domain_labels(self):
         if self.obj is None:
@@ -144,7 +144,7 @@ class TestHDF5Data:
         try:
             self.obj.domain_labels()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ranges(self):
         if self.obj is None:
@@ -152,7 +152,7 @@ class TestHDF5Data:
         try:
             self.obj.ranges()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_metadata(self):
         if self.obj is None:
@@ -160,7 +160,7 @@ class TestHDF5Data:
         try:
             self.obj.metadata()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_measurement_title(self):
         if self.obj is None:
@@ -168,7 +168,7 @@ class TestHDF5Data:
         try:
             self.obj.measurement_title()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_unique_id(self):
         if self.obj is None:
@@ -176,7 +176,7 @@ class TestHDF5Data:
         try:
             self.obj.unique_id()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_timestamp(self):
         if self.obj is None:
@@ -184,7 +184,7 @@ class TestHDF5Data:
         try:
             self.obj.timestamp()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

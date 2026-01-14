@@ -18,7 +18,7 @@ class TestVoltageStatesResponse:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -26,7 +26,7 @@ class TestVoltageStatesResponse:
         try:
             self.obj.equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -41,7 +41,7 @@ class TestVoltageStatesResponse:
         try:
             self.obj.not_equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -56,7 +56,7 @@ class TestVoltageStatesResponse:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_message(self):
         if self.obj is None:
@@ -64,7 +64,7 @@ class TestVoltageStatesResponse:
         try:
             self.obj.message()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_states(self):
         if self.obj is None:
@@ -72,7 +72,7 @@ class TestVoltageStatesResponse:
         try:
             self.obj.states()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

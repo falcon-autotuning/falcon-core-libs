@@ -20,7 +20,7 @@ class TestPairConnectionConnections:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_first(self):
         if self.obj is None:
@@ -28,7 +28,7 @@ class TestPairConnectionConnections:
         try:
             self.obj.first()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_second(self):
         if self.obj is None:
@@ -36,7 +36,7 @@ class TestPairConnectionConnections:
         try:
             self.obj.second()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -44,7 +44,7 @@ class TestPairConnectionConnections:
         try:
             self.obj.equal(Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -59,7 +59,7 @@ class TestPairConnectionConnections:
         try:
             self.obj.not_equal(Pair[Connection, Connections](Connection.new_barrier('test'), Connections.new_empty()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -74,7 +74,7 @@ class TestPairConnectionConnections:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new(self):
         try:

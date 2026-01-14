@@ -54,55 +54,54 @@ cdef class Discretizer:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.DiscretizerHandle h_ret = _c_api.Discretizer_copy(self.handle)
-        if h_ret == <_c_api.DiscretizerHandle>0:
-            return None
+        if h_ret == <_c_api.DiscretizerHandle>0: return None
         return _discretizer_from_capi(h_ret, owned=(h_ret != <_c_api.DiscretizerHandle>self.handle))
 
     def equal(self, Discretizer other):
         return _c_api.Discretizer_equal(self.handle, other.handle if other is not None else <_c_api.DiscretizerHandle>0)
 
     def __eq__(self, Discretizer other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, Discretizer other):
         return _c_api.Discretizer_not_equal(self.handle, other.handle if other is not None else <_c_api.DiscretizerHandle>0)
 
     def __ne__(self, Discretizer other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Discretizer_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def delta(self, ):
+    def delta(self):
         return _c_api.Discretizer_delta(self.handle)
 
     def set_delta(self, double delta):
         _c_api.Discretizer_set_delta(self.handle, delta)
 
-    def domain(self, ):
+    def domain(self):
         cdef _c_api.DomainHandle h_ret = _c_api.Discretizer_domain(self.handle)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=False)
 
-    def is_cartesian(self, ):
+    def is_cartesian(self):
         return _c_api.Discretizer_is_cartesian(self.handle)
 
-    def is_polar(self, ):
+    def is_polar(self):
         return _c_api.Discretizer_is_polar(self.handle)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef Discretizer _discretizer_from_capi(_c_api.DiscretizerHandle h, bint owned=True):
     if h == <_c_api.DiscretizerHandle>0:

@@ -833,9 +833,34 @@ def generate_test_content(cls: ClassDef, module_path: str, class_name_to_import:
         if call_method_name in PYTHON_KEYWORD_RENAMES:
             call_method_name = PYTHON_KEYWORD_RENAMES[call_method_name]
             
-        lines.append(f"            self.obj.{call_method_name}({', '.join(args)})")
+        # Property and Setter heuristic
+        is_property = False
+        is_setter = False
+        prop_name = call_method_name
+        
+        if not args:
+            if call_method_name.startswith('get_') and len(call_method_name) > 4:
+                is_property = True
+                prop_name = call_method_name[4:]
+            elif call_method_name in ['size', 'count', 'name', 'length', 'id', 'description', 
+                                     'voltage_constraints', 'groups', 'wiring_DC', 'channels', 
+                                     'screening_gates', 'plunger_gates', 'barrier_gates', 
+                                     'reservoir_gates', 'ohmics', 'dot_gates']:
+                is_property = True
+        elif len(args) == 1:
+            if call_method_name.startswith('set_') and len(call_method_name) > 4:
+                is_setter = True
+                prop_name = call_method_name[4:]
+
+        if is_property:
+            lines.append(f"            self.obj.{prop_name}")
+        elif is_setter:
+            lines.append(f"            self.obj.{prop_name} = {args[0]}")
+        else:
+            lines.append(f"            self.obj.{call_method_name}({', '.join(args)})")
+            
         lines.append("        except Exception as e:")
-        lines.append(f"            print(f'Method call failed as expected: {{e}}')")
+        lines.append(f"            print(f'Method call failed: {{e}}')")
         lines.append("")
 
         # Add operator test if applicable

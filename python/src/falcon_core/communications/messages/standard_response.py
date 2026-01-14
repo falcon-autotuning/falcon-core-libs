@@ -26,11 +26,11 @@ class StandardResponse:
         ret = self._c.copy()
         return StandardResponse._from_capi(ret)
 
-    def equal(self, other: StandardResponse) -> None:
+    def equal(self, other: StandardResponse) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: StandardResponse) -> None:
+    def not_equal(self, other: StandardResponse) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -41,6 +41,12 @@ class StandardResponse:
     def message(self, ) -> str:
         ret = self._c.message()
         return ret
+
+    def __repr__(self):
+        return f"StandardResponse({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

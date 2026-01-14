@@ -34,11 +34,11 @@ class InterpretationContext:
         ret = self._c.copy()
         return InterpretationContext._from_capi(ret)
 
-    def equal(self, other: InterpretationContext) -> None:
+    def equal(self, other: InterpretationContext) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: InterpretationContext) -> None:
+    def not_equal(self, other: InterpretationContext) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -61,7 +61,7 @@ class InterpretationContext:
         if ret is None: return None
         return SymbolUnit._from_capi(ret)
 
-    def dimension(self, ) -> None:
+    def dimension(self, ) -> int:
         ret = self._c.dimension()
         return ret
 
@@ -81,6 +81,12 @@ class InterpretationContext:
     def with_unit(self, unit: SymbolUnit) -> InterpretationContext:
         ret = self._c.with_unit(unit._c if unit is not None else None)
         return InterpretationContext._from_capi(ret)
+
+    def __repr__(self):
+        return f"InterpretationContext({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""

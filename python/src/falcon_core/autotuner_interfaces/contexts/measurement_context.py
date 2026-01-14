@@ -36,11 +36,11 @@ class MeasurementContext:
         ret = self._c.copy()
         return MeasurementContext._from_capi(ret)
 
-    def equal(self, other: MeasurementContext) -> None:
+    def equal(self, other: MeasurementContext) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: MeasurementContext) -> None:
+    def not_equal(self, other: MeasurementContext) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -56,6 +56,12 @@ class MeasurementContext:
     def instrument_type(self, ) -> str:
         ret = self._c.instrument_type()
         return ret
+
+    def __repr__(self):
+        return f"MeasurementContext({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

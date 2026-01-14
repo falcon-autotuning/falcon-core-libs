@@ -72,42 +72,35 @@ cdef class AnalyticFunction:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.AnalyticFunctionHandle h_ret = _c_api.AnalyticFunction_copy(self.handle)
-        if h_ret == <_c_api.AnalyticFunctionHandle>0:
-            return None
+        if h_ret == <_c_api.AnalyticFunctionHandle>0: return None
         return _analytic_function_from_capi(h_ret, owned=(h_ret != <_c_api.AnalyticFunctionHandle>self.handle))
 
     def equal(self, AnalyticFunction other):
         return _c_api.AnalyticFunction_equal(self.handle, other.handle if other is not None else <_c_api.AnalyticFunctionHandle>0)
 
     def __eq__(self, AnalyticFunction other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, AnalyticFunction other):
         return _c_api.AnalyticFunction_not_equal(self.handle, other.handle if other is not None else <_c_api.AnalyticFunctionHandle>0)
 
     def __ne__(self, AnalyticFunction other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.AnalyticFunction_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def labels(self, ):
+    def labels(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.AnalyticFunction_labels(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=True)
 
     def evaluate(self, MapStringDouble args, double time):
@@ -115,9 +108,14 @@ cdef class AnalyticFunction:
 
     def evaluate_arraywise(self, MapStringDouble args, double deltaT, double maxTime):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.AnalyticFunction_evaluate_arraywise(self.handle, args.handle if args is not None else <_c_api.MapStringDoubleHandle>0, deltaT, maxTime)
-        if h_ret == <_c_api.FArrayDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.FArrayDoubleHandle>0: return None
         return _f_array_double_from_capi(h_ret, owned=True)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef AnalyticFunction _analytic_function_from_capi(_c_api.AnalyticFunctionHandle h, bint owned=True):
     if h == <_c_api.AnalyticFunctionHandle>0:

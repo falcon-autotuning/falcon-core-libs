@@ -23,7 +23,7 @@ class TestDiscreteSpace:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -31,7 +31,7 @@ class TestDiscreteSpace:
         try:
             self.obj.equal(DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -46,7 +46,7 @@ class TestDiscreteSpace:
         try:
             self.obj.not_equal(DiscreteSpace.new_cartesian_discrete_space_1D(10, CoupledLabelledDomain.new_empty(), Map[str, bool](), Domain.new(0.0, 1.0, True, True)))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -61,7 +61,7 @@ class TestDiscreteSpace:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_space(self):
         if self.obj is None:
@@ -69,7 +69,7 @@ class TestDiscreteSpace:
         try:
             self.obj.space()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_axes(self):
         if self.obj is None:
@@ -77,7 +77,7 @@ class TestDiscreteSpace:
         try:
             self.obj.axes()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_increasing(self):
         if self.obj is None:
@@ -85,7 +85,7 @@ class TestDiscreteSpace:
         try:
             self.obj.increasing()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_knobs(self):
         if self.obj is None:
@@ -93,7 +93,7 @@ class TestDiscreteSpace:
         try:
             self.obj.knobs()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_validate_unit_space_dimensionality_matches_knobs(self):
         if self.obj is None:
@@ -101,7 +101,7 @@ class TestDiscreteSpace:
         try:
             self.obj.validate_unit_space_dimensionality_matches_knobs()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_validate_knob_uniqueness(self):
         if self.obj is None:
@@ -109,7 +109,7 @@ class TestDiscreteSpace:
         try:
             self.obj.validate_knob_uniqueness()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_axis(self):
         if self.obj is None:
@@ -117,7 +117,7 @@ class TestDiscreteSpace:
         try:
             self.obj.get_axis(InstrumentPort.new_timer())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_domain(self):
         if self.obj is None:
@@ -125,7 +125,7 @@ class TestDiscreteSpace:
         try:
             self.obj.get_domain(InstrumentPort.new_timer())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_projection(self):
         if self.obj is None:
@@ -133,7 +133,7 @@ class TestDiscreteSpace:
         try:
             self.obj.get_projection(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

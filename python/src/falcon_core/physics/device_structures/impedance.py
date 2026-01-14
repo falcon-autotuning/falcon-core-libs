@@ -29,11 +29,11 @@ class Impedance:
         ret = self._c.copy()
         return Impedance._from_capi(ret)
 
-    def equal(self, other: Impedance) -> None:
+    def equal(self, other: Impedance) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Impedance) -> None:
+    def not_equal(self, other: Impedance) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -46,13 +46,19 @@ class Impedance:
         if ret is None: return None
         return Connection._from_capi(ret)
 
-    def resistance(self, ) -> None:
+    def resistance(self, ) -> float:
         ret = self._c.resistance()
         return ret
 
-    def capacitance(self, ) -> None:
+    def capacitance(self, ) -> float:
         ret = self._c.capacitance()
         return ret
+
+    def __repr__(self):
+        return f"Impedance({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

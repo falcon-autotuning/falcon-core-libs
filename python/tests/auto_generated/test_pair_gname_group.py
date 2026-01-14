@@ -59,7 +59,7 @@ class TestPairGnameGroup:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_first(self):
         if self.obj is None:
@@ -67,7 +67,7 @@ class TestPairGnameGroup:
         try:
             self.obj.first()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_second(self):
         if self.obj is None:
@@ -75,7 +75,7 @@ class TestPairGnameGroup:
         try:
             self.obj.second()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -83,7 +83,7 @@ class TestPairGnameGroup:
         try:
             self.obj.equal(Pair[Gname, Group](Gname.new('test'), _make_test_group()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -98,7 +98,7 @@ class TestPairGnameGroup:
         try:
             self.obj.not_equal(Pair[Gname, Group](Gname.new('test'), _make_test_group()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -113,7 +113,7 @@ class TestPairGnameGroup:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new(self):
         try:

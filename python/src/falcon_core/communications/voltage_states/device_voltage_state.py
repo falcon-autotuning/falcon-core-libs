@@ -32,11 +32,11 @@ class DeviceVoltageState:
         if ret is None: return None
         return Connection._from_capi(ret)
 
-    def voltage(self, ) -> None:
+    def voltage(self, ) -> float:
         ret = self._c.voltage()
         return ret
 
-    def value(self, ) -> None:
+    def value(self, ) -> float:
         ret = self._c.value()
         return ret
 
@@ -125,17 +125,23 @@ class DeviceVoltageState:
         ret = self._c.abs()
         return DeviceVoltageState._from_capi(ret)
 
-    def equal(self, b: DeviceVoltageState) -> None:
+    def equal(self, b: DeviceVoltageState) -> bool:
         ret = self._c.equal(b._c if b is not None else None)
         return ret
 
-    def not_equal(self, b: DeviceVoltageState) -> None:
+    def not_equal(self, b: DeviceVoltageState) -> bool:
         ret = self._c.not_equal(b._c if b is not None else None)
         return ret
 
     def to_json(self, ) -> str:
         ret = self._c.to_json()
         return ret
+
+    def __repr__(self):
+        return f"DeviceVoltageState({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""

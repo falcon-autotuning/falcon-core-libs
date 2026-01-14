@@ -18,7 +18,7 @@ class TestSymbolUnit:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -26,7 +26,7 @@ class TestSymbolUnit:
         try:
             self.obj.equal(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -41,7 +41,7 @@ class TestSymbolUnit:
         try:
             self.obj.not_equal(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -56,7 +56,7 @@ class TestSymbolUnit:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_symbol(self):
         if self.obj is None:
@@ -64,15 +64,15 @@ class TestSymbolUnit:
         try:
             self.obj.symbol()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_name(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.name()
+            self.obj.name
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_multiplication(self):
         if self.obj is None:
@@ -80,7 +80,7 @@ class TestSymbolUnit:
         try:
             self.obj.multiplication(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_multiplication(self):
         if self.obj is None: pytest.skip()
@@ -95,7 +95,7 @@ class TestSymbolUnit:
         try:
             self.obj.division(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_division(self):
         if self.obj is None: pytest.skip()
@@ -110,7 +110,7 @@ class TestSymbolUnit:
         try:
             self.obj.power(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_power(self):
         if self.obj is None: pytest.skip()
@@ -125,7 +125,7 @@ class TestSymbolUnit:
         try:
             self.obj.with_prefix("test_string")
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_convert_value_to(self):
         if self.obj is None:
@@ -133,7 +133,7 @@ class TestSymbolUnit:
         try:
             self.obj.convert_value_to(1.0, SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_is_compatible_with(self):
         if self.obj is None:
@@ -141,7 +141,7 @@ class TestSymbolUnit:
         try:
             self.obj.is_compatible_with(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

@@ -25,11 +25,11 @@ class MeasuredArray1D:
         ret = self._c.copy()
         return MeasuredArray1D._from_capi(ret)
 
-    def equal(self, other: MeasuredArray1D) -> None:
+    def equal(self, other: MeasuredArray1D) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: MeasuredArray1D) -> None:
+    def not_equal(self, other: MeasuredArray1D) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -47,7 +47,7 @@ class MeasuredArray1D:
         ret = _CMeasuredArray1D.from_farray(farray._c if farray is not None else None)
         return MeasuredArray1D._from_capi(ret)
 
-    def is_1D(self, ) -> None:
+    def is_1D(self, ) -> bool:
         ret = self._c.is_1D()
         return ret
 
@@ -56,39 +56,19 @@ class MeasuredArray1D:
         if ret is None: return None
         return FArray(ret)
 
-    def get_start(self, ) -> None:
-        ret = self._c.get_start()
-        return ret
-
-    def get_end(self, ) -> None:
-        ret = self._c.get_end()
-        return ret
-
-    def is_decreasing(self, ) -> None:
+    def is_decreasing(self, ) -> bool:
         ret = self._c.is_decreasing()
         return ret
 
-    def is_increasing(self, ) -> None:
+    def is_increasing(self, ) -> bool:
         ret = self._c.is_increasing()
-        return ret
-
-    def get_distance(self, ) -> None:
-        ret = self._c.get_distance()
-        return ret
-
-    def get_mean(self, ) -> None:
-        ret = self._c.get_mean()
-        return ret
-
-    def get_std(self, ) -> None:
-        ret = self._c.get_std()
         return ret
 
     def reverse(self, ) -> None:
         ret = self._c.reverse()
         return ret
 
-    def get_closest_index(self, value: Any) -> None:
+    def get_closest_index(self, value: Any) -> int:
         ret = self._c.get_closest_index(value)
         return ret
 
@@ -97,19 +77,15 @@ class MeasuredArray1D:
         if ret is None: return None
         return List(ret)
 
-    def size(self, ) -> None:
-        ret = self._c.size()
-        return ret
-
-    def dimension(self, ) -> None:
+    def dimension(self, ) -> int:
         ret = self._c.dimension()
         return ret
 
-    def shape(self, out_buffer: Any, ndim: Any) -> None:
+    def shape(self, out_buffer: Any, ndim: Any) -> int:
         ret = self._c.shape(out_buffer, ndim)
         return ret
 
-    def data(self, out_buffer: Any, numdata: Any) -> None:
+    def data(self, out_buffer: Any, numdata: Any) -> int:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
@@ -241,7 +217,7 @@ class MeasuredArray1D:
         ret = self._c.abs()
         return MeasuredArray1D._from_capi(ret)
 
-    def min(self, ) -> None:
+    def min(self, ) -> float:
         ret = self._c.min()
         return ret
 
@@ -253,7 +229,7 @@ class MeasuredArray1D:
         ret = self._c.min_measured_array(other._c if other is not None else None)
         return MeasuredArray1D._from_capi(ret)
 
-    def max(self, ) -> None:
+    def max(self, ) -> float:
         ret = self._c.max()
         return ret
 
@@ -265,11 +241,11 @@ class MeasuredArray1D:
         ret = self._c.max_measured_array(other._c if other is not None else None)
         return MeasuredArray1D._from_capi(ret)
 
-    def greater_than(self, value: Any) -> None:
+    def greater_than(self, value: Any) -> bool:
         ret = self._c.greater_than(value)
         return ret
 
-    def less_than(self, value: Any) -> None:
+    def less_than(self, value: Any) -> bool:
         ret = self._c.less_than(value)
         return ret
 
@@ -277,7 +253,7 @@ class MeasuredArray1D:
         ret = self._c.remove_offset(offset)
         return ret
 
-    def sum(self, ) -> None:
+    def sum(self, ) -> float:
         ret = self._c.sum()
         return ret
 
@@ -294,7 +270,7 @@ class MeasuredArray1D:
         ret = self._c.flip(axis)
         return MeasuredArray1D._from_capi(ret)
 
-    def full_gradient(self, out_buffer: MeasuredArray1D, buffer_size: Any) -> None:
+    def full_gradient(self, out_buffer: MeasuredArray1D, buffer_size: Any) -> int:
         ret = self._c.full_gradient(out_buffer._c if out_buffer is not None else None, buffer_size)
         return ret
 
@@ -302,24 +278,61 @@ class MeasuredArray1D:
         ret = self._c.gradient(axis)
         return MeasuredArray1D._from_capi(ret)
 
-    def get_sum_of_squares(self, ) -> None:
-        ret = self._c.get_sum_of_squares()
-        return ret
-
-    def get_summed_diff_int_of_squares(self, other: Any) -> None:
+    def get_summed_diff_int_of_squares(self, other: Any) -> float:
         ret = self._c.get_summed_diff_int_of_squares(other)
         return ret
 
-    def get_summed_diff_double_of_squares(self, other: Any) -> None:
+    def get_summed_diff_double_of_squares(self, other: Any) -> float:
         ret = self._c.get_summed_diff_double_of_squares(other)
         return ret
 
-    def get_summed_diff_array_of_squares(self, other: MeasuredArray1D) -> None:
+    def get_summed_diff_array_of_squares(self, other: MeasuredArray1D) -> float:
         ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
         return ret
 
+    @property
+    def distance(self) -> float:
+        ret = self._c.get_distance()
+        return ret
+
+    @property
+    def end(self) -> float:
+        ret = self._c.get_end()
+        return ret
+
+    @property
+    def mean(self) -> float:
+        ret = self._c.get_mean()
+        return ret
+
+    @property
+    def size(self) -> int:
+        ret = self._c.size()
+        return ret
+
+    @property
+    def start(self) -> float:
+        ret = self._c.get_start()
+        return ret
+
+    @property
+    def std(self) -> float:
+        ret = self._c.get_std()
+        return ret
+
+    @property
+    def sum_of_squares(self) -> float:
+        ret = self._c.get_sum_of_squares()
+        return ret
+
     def __len__(self):
-        return self.size()
+        return self.size
+
+    def __repr__(self):
+        return f"MeasuredArray1D({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""

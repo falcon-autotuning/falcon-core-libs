@@ -22,7 +22,7 @@ class TestLabelledDomain:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -30,7 +30,7 @@ class TestLabelledDomain:
         try:
             self.obj.equal(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -45,7 +45,7 @@ class TestLabelledDomain:
         try:
             self.obj.not_equal(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -60,7 +60,7 @@ class TestLabelledDomain:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_port(self):
         if self.obj is None:
@@ -68,7 +68,7 @@ class TestLabelledDomain:
         try:
             self.obj.port()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_domain(self):
         if self.obj is None:
@@ -76,7 +76,7 @@ class TestLabelledDomain:
         try:
             self.obj.domain()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_matching_port(self):
         if self.obj is None:
@@ -84,7 +84,7 @@ class TestLabelledDomain:
         try:
             self.obj.matching_port(InstrumentPort.new_timer())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_lesser_bound(self):
         if self.obj is None:
@@ -92,7 +92,7 @@ class TestLabelledDomain:
         try:
             self.obj.lesser_bound()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_greater_bound(self):
         if self.obj is None:
@@ -100,7 +100,7 @@ class TestLabelledDomain:
         try:
             self.obj.greater_bound()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_lesser_bound_contained(self):
         if self.obj is None:
@@ -108,7 +108,7 @@ class TestLabelledDomain:
         try:
             self.obj.lesser_bound_contained()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_greater_bound_contained(self):
         if self.obj is None:
@@ -116,7 +116,7 @@ class TestLabelledDomain:
         try:
             self.obj.greater_bound_contained()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -124,15 +124,15 @@ class TestLabelledDomain:
         try:
             self.obj.contains(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_get_range(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.get_range()
+            self.obj.range
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_center(self):
         if self.obj is None:
@@ -140,7 +140,7 @@ class TestLabelledDomain:
         try:
             self.obj.center()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_intersection(self):
         if self.obj is None:
@@ -148,7 +148,7 @@ class TestLabelledDomain:
         try:
             self.obj.intersection(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_union(self):
         if self.obj is None:
@@ -156,7 +156,7 @@ class TestLabelledDomain:
         try:
             self.obj.union(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_is_empty(self):
         if self.obj is None:
@@ -164,7 +164,7 @@ class TestLabelledDomain:
         try:
             self.obj.is_empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains_domain(self):
         if self.obj is None:
@@ -172,7 +172,7 @@ class TestLabelledDomain:
         try:
             self.obj.contains_domain(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_shift(self):
         if self.obj is None:
@@ -180,7 +180,7 @@ class TestLabelledDomain:
         try:
             self.obj.shift(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_scale(self):
         if self.obj is None:
@@ -188,7 +188,7 @@ class TestLabelledDomain:
         try:
             self.obj.scale(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_transform(self):
         if self.obj is None:
@@ -196,7 +196,7 @@ class TestLabelledDomain:
         try:
             self.obj.transform(LabelledDomain.new_from_domain(Domain.new(0.0, 1.0, True, True), 'test_name', Connection.new_barrier('test'), 'DAC', SymbolUnit.new_volt(), 'test description'), 1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

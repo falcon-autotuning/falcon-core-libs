@@ -32,10 +32,9 @@ cdef class Loader:
         obj.owned = True
         return obj
 
-    def config(self, ):
+    def config(self):
         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
-        if h_ret == <_c_api.ConfigHandle>0:
-            return None
+        if h_ret == <_c_api.ConfigHandle>0: return None
         return _config_from_capi(h_ret, owned=True)
 
 cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):

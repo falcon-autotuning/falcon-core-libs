@@ -21,7 +21,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_push_back(self):
         if self.obj is None:
@@ -29,15 +29,15 @@ class TestAxesMeasurementContext:
         try:
             self.obj.push_back(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_size(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.size()
+            self.obj.size
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_empty(self):
         if self.obj is None:
@@ -45,7 +45,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_erase_at(self):
         if self.obj is None:
@@ -53,7 +53,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.erase_at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_clear(self):
         if self.obj is None:
@@ -61,7 +61,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.clear()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_at(self):
         if self.obj is None:
@@ -69,7 +69,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_items(self):
         if self.obj is None:
@@ -77,7 +77,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.items(array.array('L', [0]), 1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -85,7 +85,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.contains(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_index(self):
         if self.obj is None:
@@ -93,7 +93,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.index(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_intersection(self):
         if self.obj is None:
@@ -101,7 +101,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.intersection(Axes[MeasurementContext]())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -109,7 +109,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.equal(Axes[MeasurementContext]())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -124,7 +124,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.not_equal(Axes[MeasurementContext]())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -139,7 +139,7 @@ class TestAxesMeasurementContext:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new_empty(self):
         try:

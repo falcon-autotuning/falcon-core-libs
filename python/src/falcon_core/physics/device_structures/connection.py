@@ -42,11 +42,11 @@ class Connection:
         ret = self._c.copy()
         return Connection._from_capi(ret)
 
-    def equal(self, other: Connection) -> None:
+    def equal(self, other: Connection) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Connection) -> None:
+    def not_equal(self, other: Connection) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -54,41 +54,48 @@ class Connection:
         ret = self._c.to_json()
         return ret
 
-    def name(self, ) -> str:
-        ret = self._c.name()
-        return ret
-
     def type(self, ) -> str:
         ret = self._c.type()
         return ret
 
-    def is_dot_gate(self, ) -> None:
+    def is_dot_gate(self, ) -> bool:
         ret = self._c.is_dot_gate()
         return ret
 
-    def is_barrier_gate(self, ) -> None:
+    def is_barrier_gate(self, ) -> bool:
         ret = self._c.is_barrier_gate()
         return ret
 
-    def is_plunger_gate(self, ) -> None:
+    def is_plunger_gate(self, ) -> bool:
         ret = self._c.is_plunger_gate()
         return ret
 
-    def is_reservoir_gate(self, ) -> None:
+    def is_reservoir_gate(self, ) -> bool:
         ret = self._c.is_reservoir_gate()
         return ret
 
-    def is_screening_gate(self, ) -> None:
+    def is_screening_gate(self, ) -> bool:
         ret = self._c.is_screening_gate()
         return ret
 
-    def is_ohmic(self, ) -> None:
+    def is_ohmic(self, ) -> bool:
         ret = self._c.is_ohmic()
         return ret
 
-    def is_gate(self, ) -> None:
+    def is_gate(self, ) -> bool:
         ret = self._c.is_gate()
         return ret
+
+    @property
+    def name(self) -> str:
+        ret = self._c.name()
+        return ret
+
+    def __repr__(self):
+        return f"Connection({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

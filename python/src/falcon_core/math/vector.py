@@ -79,11 +79,11 @@ class Vector:
         ret = self._c.copy()
         return Vector._from_capi(ret)
 
-    def equal(self, other: Vector) -> None:
+    def equal(self, other: Vector) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Vector) -> None:
+    def not_equal(self, other: Vector) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -136,7 +136,7 @@ class Vector:
         if ret is None: return None
         return Connection._from_capi(ret)
 
-    def magnitude(self, ) -> None:
+    def magnitude(self, ) -> float:
         ret = self._c.magnitude()
         return ret
 
@@ -157,11 +157,7 @@ class Vector:
         ret = self._c.erase(key._c if key is not None else None)
         return ret
 
-    def size(self, ) -> None:
-        ret = self._c.size()
-        return ret
-
-    def empty(self, ) -> None:
+    def empty(self, ) -> bool:
         ret = self._c.empty()
         return ret
 
@@ -169,7 +165,7 @@ class Vector:
         ret = self._c.clear()
         return ret
 
-    def contains(self, key: Connection) -> None:
+    def contains(self, key: Connection) -> bool:
         ret = self._c.contains(key._c if key is not None else None)
         return ret
 
@@ -268,14 +264,35 @@ class Vector:
         ret = self._c.update_unit(unit._c if unit is not None else None)
         return ret
 
-    def __len__(self):
-        return self.size()
-
-    def __getitem__(self, idx):
-        ret = self.at(idx)
-        if ret is None:
-            raise IndexError("Index out of bounds")
+    @property
+    def size(self) -> int:
+        ret = self._c.size()
         return ret
+
+    def __len__(self):
+        return self.size
+
+    def __getitem__(self, key):
+        ret = self.at(key)
+        if ret is None:
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
+        return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
+
+    def __setitem__(self, key, value):
+        self.insert_or_assign(key, value)
+
+    def __contains__(self, key):
+        return self.contains(key)
+
+    def __repr__(self):
+        return f"Vector({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""

@@ -42,72 +42,64 @@ cdef class Domain:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_copy(self.handle)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def equal(self, Domain other):
         return _c_api.Domain_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
 
     def __eq__(self, Domain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, Domain other):
         return _c_api.Domain_not_equal(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
 
     def __ne__(self, Domain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Domain_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def lesser_bound(self, ):
+    def lesser_bound(self):
         return _c_api.Domain_lesser_bound(self.handle)
 
-    def greater_bound(self, ):
+    def greater_bound(self):
         return _c_api.Domain_greater_bound(self.handle)
 
-    def lesser_bound_contained(self, ):
+    def lesser_bound_contained(self):
         return _c_api.Domain_lesser_bound_contained(self.handle)
 
-    def greater_bound_contained(self, ):
+    def greater_bound_contained(self):
         return _c_api.Domain_greater_bound_contained(self.handle)
 
     def contains(self, double value):
         return _c_api.Domain_in(self.handle, value)
 
-    def get_range(self, ):
+    def get_range(self):
         return _c_api.Domain_range(self.handle)
 
-    def center(self, ):
+    def center(self):
         return _c_api.Domain_center(self.handle)
 
     def intersection(self, Domain other):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_intersection(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def union(self, Domain other):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_union(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
-    def is_empty(self, ):
+    def is_empty(self):
         return _c_api.Domain_is_empty(self.handle)
 
     def contains_domain(self, Domain other):
@@ -115,18 +107,22 @@ cdef class Domain:
 
     def shift(self, double offset):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_shift(self.handle, offset)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def scale(self, double scale):
         cdef _c_api.DomainHandle h_ret = _c_api.Domain_scale(self.handle, scale)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=(h_ret != <_c_api.DomainHandle>self.handle))
 
     def transform(self, Domain other, double value):
         return _c_api.Domain_transform(self.handle, other.handle if other is not None else <_c_api.DomainHandle>0, value)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef Domain _domain_from_capi(_c_api.DomainHandle h, bint owned=True):
     if h == <_c_api.DomainHandle>0:

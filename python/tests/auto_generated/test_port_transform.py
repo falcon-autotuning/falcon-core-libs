@@ -20,7 +20,7 @@ class TestPortTransform:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -28,7 +28,7 @@ class TestPortTransform:
         try:
             self.obj.equal(PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -43,7 +43,7 @@ class TestPortTransform:
         try:
             self.obj.not_equal(PortTransform.new_identity_transform(InstrumentPort.new_timer()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -58,7 +58,7 @@ class TestPortTransform:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_port(self):
         if self.obj is None:
@@ -66,7 +66,7 @@ class TestPortTransform:
         try:
             self.obj.port()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_labels(self):
         if self.obj is None:
@@ -74,7 +74,7 @@ class TestPortTransform:
         try:
             self.obj.labels()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_evaluate(self):
         if self.obj is None:
@@ -82,7 +82,7 @@ class TestPortTransform:
         try:
             self.obj.evaluate(None, 1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_evaluate_arraywise(self):
         if self.obj is None:
@@ -90,7 +90,7 @@ class TestPortTransform:
         try:
             self.obj.evaluate_arraywise(None, 1.0, 1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

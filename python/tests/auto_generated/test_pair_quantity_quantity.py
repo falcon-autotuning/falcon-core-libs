@@ -21,7 +21,7 @@ class TestPairQuantityQuantity:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_first(self):
         if self.obj is None:
@@ -29,7 +29,7 @@ class TestPairQuantityQuantity:
         try:
             self.obj.first()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_second(self):
         if self.obj is None:
@@ -37,7 +37,7 @@ class TestPairQuantityQuantity:
         try:
             self.obj.second()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -45,7 +45,7 @@ class TestPairQuantityQuantity:
         try:
             self.obj.equal(Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -60,7 +60,7 @@ class TestPairQuantityQuantity:
         try:
             self.obj.not_equal(Pair[Quantity, Quantity](Quantity.new(1.0, SymbolUnit.new_meter()), Quantity.new(2.0, SymbolUnit.new_meter())))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -75,7 +75,7 @@ class TestPairQuantityQuantity:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new(self):
         try:

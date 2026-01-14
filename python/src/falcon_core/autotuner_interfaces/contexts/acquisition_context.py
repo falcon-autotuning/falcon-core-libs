@@ -38,11 +38,11 @@ class AcquisitionContext:
         ret = self._c.copy()
         return AcquisitionContext._from_capi(ret)
 
-    def equal(self, other: AcquisitionContext) -> None:
+    def equal(self, other: AcquisitionContext) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: AcquisitionContext) -> None:
+    def not_equal(self, other: AcquisitionContext) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -72,13 +72,19 @@ class AcquisitionContext:
         ret = self._c.division(other._c if other is not None else None)
         return AcquisitionContext._from_capi(ret)
 
-    def match_connection(self, other: Connection) -> None:
+    def match_connection(self, other: Connection) -> bool:
         ret = self._c.match_connection(other._c if other is not None else None)
         return ret
 
-    def match_instrument_type(self, other: str) -> None:
+    def match_instrument_type(self, other: str) -> bool:
         ret = self._c.match_instrument_type(other)
         return ret
+
+    def __repr__(self):
+        return f"AcquisitionContext({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __truediv__(self, other):
         """Operator overload for /"""

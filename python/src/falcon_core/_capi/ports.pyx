@@ -58,72 +58,60 @@ cdef class Ports:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.PortsHandle h_ret = _c_api.Ports_copy(self.handle)
-        if h_ret == <_c_api.PortsHandle>0:
-            return None
+        if h_ret == <_c_api.PortsHandle>0: return None
         return _ports_from_capi(h_ret, owned=(h_ret != <_c_api.PortsHandle>self.handle))
 
     def equal(self, Ports other):
         return _c_api.Ports_equal(self.handle, other.handle if other is not None else <_c_api.PortsHandle>0)
 
     def __eq__(self, Ports other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, Ports other):
         return _c_api.Ports_not_equal(self.handle, other.handle if other is not None else <_c_api.PortsHandle>0)
 
     def __ne__(self, Ports other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Ports_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def ports(self, ):
+    def ports(self):
         cdef _c_api.ListInstrumentPortHandle h_ret = _c_api.Ports_ports(self.handle)
-        if h_ret == <_c_api.ListInstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.ListInstrumentPortHandle>0: return None
         return _list_instrument_port_from_capi(h_ret, owned=True)
 
-    def default_names(self, ):
+    def default_names(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports_default_names(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=True)
 
-    def get_psuedo_names(self, ):
+    def get_psuedo_names(self):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Ports_get_psuedo_names(self.handle)
-        if h_ret == <_c_api.ListConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ListConnectionHandle>0: return None
         return _list_connection_from_capi(h_ret, owned=False)
 
-    def _get_raw_names(self, ):
+    def _get_raw_names(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports__get_raw_names(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=True)
 
-    def _get_instrument_facing_names(self, ):
+    def _get_instrument_facing_names(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports__get_instrument_facing_names(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=True)
 
     def _get_psuedoname_matching_port(self, Connection name):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports__get_psuedoname_matching_port(self.handle, name.handle if name is not None else <_c_api.ConnectionHandle>0)
-        if h_ret == <_c_api.InstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.InstrumentPortHandle>0: return None
         return _instrument_port_from_capi(h_ret, owned=True)
 
     def _get_instrument_type_matching_port(self, str insttype):
@@ -131,47 +119,43 @@ cdef class Ports:
         cdef _c_api.StringHandle s_insttype = _c_api.String_create(b_insttype, len(b_insttype))
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports__get_instrument_type_matching_port(self.handle, s_insttype)
         _c_api.String_destroy(s_insttype)
-        if h_ret == <_c_api.InstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.InstrumentPortHandle>0: return None
         return _instrument_port_from_capi(h_ret, owned=True)
 
-    def is_knobs(self, ):
+    def is_knobs(self):
         return _c_api.Ports_is_knobs(self.handle)
 
-    def is_meters(self, ):
+    def is_meters(self):
         return _c_api.Ports_is_meters(self.handle)
 
     def intersection(self, Ports other):
         cdef _c_api.PortsHandle h_ret = _c_api.Ports_intersection(self.handle, other.handle if other is not None else <_c_api.PortsHandle>0)
-        if h_ret == <_c_api.PortsHandle>0:
-            return None
+        if h_ret == <_c_api.PortsHandle>0: return None
         return _ports_from_capi(h_ret, owned=(h_ret != <_c_api.PortsHandle>self.handle))
 
     def push_back(self, InstrumentPort value):
         _c_api.Ports_push_back(self.handle, value.handle if value is not None else <_c_api.InstrumentPortHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.Ports_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.Ports_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.Ports_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.Ports_clear(self.handle)
 
     def at(self, size_t idx):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.Ports_at(self.handle, idx)
-        if h_ret == <_c_api.InstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.InstrumentPortHandle>0: return None
         return _instrument_port_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.Ports_items(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=False)
 
     def contains(self, InstrumentPort value):
@@ -181,13 +165,17 @@ cdef class Ports:
         return _c_api.Ports_index(self.handle, value.handle if value is not None else <_c_api.InstrumentPortHandle>0)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
@@ -200,6 +188,12 @@ cdef class Ports:
                 item = item._c
             obj.push_back(item)
         return obj
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef Ports _ports_from_capi(_c_api.PortsHandle h, bint owned=True):
     if h == <_c_api.PortsHandle>0:

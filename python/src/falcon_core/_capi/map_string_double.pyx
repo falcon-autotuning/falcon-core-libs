@@ -57,10 +57,9 @@ cdef class MapStringDouble:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.MapStringDoubleHandle h_ret = _c_api.MapStringDouble_copy(self.handle)
-        if h_ret == <_c_api.MapStringDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.MapStringDoubleHandle>0: return None
         return _map_string_double_from_capi(h_ret, owned=(h_ret != <_c_api.MapStringDoubleHandle>self.handle))
 
     def insert_or_assign(self, str key, double value):
@@ -91,13 +90,13 @@ cdef class MapStringDouble:
         _c_api.MapStringDouble_erase(self.handle, s_key)
         _c_api.String_destroy(s_key)
 
-    def size(self, ):
+    def size(self):
         return _c_api.MapStringDouble_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.MapStringDouble_empty(self.handle)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.MapStringDouble_clear(self.handle)
 
     def contains(self, str key):
@@ -110,58 +109,56 @@ cdef class MapStringDouble:
             _c_api.String_destroy(s_key)
         return ret_val
 
-    def keys(self, ):
+    def keys(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.MapStringDouble_keys(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=False)
 
-    def values(self, ):
+    def values(self):
         cdef _c_api.ListDoubleHandle h_ret = _c_api.MapStringDouble_values(self.handle)
-        if h_ret == <_c_api.ListDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.ListDoubleHandle>0: return None
         return _list_double_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPairStringDoubleHandle h_ret = _c_api.MapStringDouble_items(self.handle)
-        if h_ret == <_c_api.ListPairStringDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairStringDoubleHandle>0: return None
         return _list_pair_string_double_from_capi(h_ret, owned=False)
 
     def equal(self, MapStringDouble other):
         return _c_api.MapStringDouble_equal(self.handle, other.handle if other is not None else <_c_api.MapStringDoubleHandle>0)
 
     def __eq__(self, MapStringDouble other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, MapStringDouble other):
         return _c_api.MapStringDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.MapStringDoubleHandle>0)
 
     def __ne__(self, MapStringDouble other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MapStringDouble_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise KeyError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef MapStringDouble _map_string_double_from_capi(_c_api.MapStringDoubleHandle h, bint owned=True):
     if h == <_c_api.MapStringDoubleHandle>0:

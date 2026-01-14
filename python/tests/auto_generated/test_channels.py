@@ -18,7 +18,7 @@ class TestChannels:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -26,7 +26,7 @@ class TestChannels:
         try:
             self.obj.equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -41,7 +41,7 @@ class TestChannels:
         try:
             self.obj.not_equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -56,7 +56,7 @@ class TestChannels:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_intersection(self):
         if self.obj is None:
@@ -64,7 +64,7 @@ class TestChannels:
         try:
             self.obj.intersection(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_push_back(self):
         if self.obj is None:
@@ -72,15 +72,15 @@ class TestChannels:
         try:
             self.obj.push_back(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_size(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.size()
+            self.obj.size
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_empty(self):
         if self.obj is None:
@@ -88,7 +88,7 @@ class TestChannels:
         try:
             self.obj.empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_erase_at(self):
         if self.obj is None:
@@ -96,7 +96,7 @@ class TestChannels:
         try:
             self.obj.erase_at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_clear(self):
         if self.obj is None:
@@ -104,7 +104,7 @@ class TestChannels:
         try:
             self.obj.clear()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_at(self):
         if self.obj is None:
@@ -112,7 +112,7 @@ class TestChannels:
         try:
             self.obj.at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_items(self):
         if self.obj is None:
@@ -120,7 +120,7 @@ class TestChannels:
         try:
             self.obj.items()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -128,7 +128,7 @@ class TestChannels:
         try:
             self.obj.contains(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_index(self):
         if self.obj is None:
@@ -136,7 +136,7 @@ class TestChannels:
         try:
             self.obj.index(Channel.new('test_channel'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

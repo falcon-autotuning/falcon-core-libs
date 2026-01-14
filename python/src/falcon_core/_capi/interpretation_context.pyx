@@ -46,57 +46,48 @@ cdef class InterpretationContext:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.InterpretationContext_copy(self.handle)
-        if h_ret == <_c_api.InterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.InterpretationContextHandle>0: return None
         return _interpretation_context_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContextHandle>self.handle))
 
     def equal(self, InterpretationContext other):
         return _c_api.InterpretationContext_equal(self.handle, other.handle if other is not None else <_c_api.InterpretationContextHandle>0)
 
     def __eq__(self, InterpretationContext other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, InterpretationContext other):
         return _c_api.InterpretationContext_not_equal(self.handle, other.handle if other is not None else <_c_api.InterpretationContextHandle>0)
 
     def __ne__(self, InterpretationContext other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InterpretationContext_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def independent_variables(self, ):
+    def independent_variables(self):
         cdef _c_api.AxesMeasurementContextHandle h_ret = _c_api.InterpretationContext_independent_variables(self.handle)
-        if h_ret == <_c_api.AxesMeasurementContextHandle>0:
-            return None
+        if h_ret == <_c_api.AxesMeasurementContextHandle>0: return None
         return _axes_measurement_context_from_capi(h_ret, owned=True)
 
-    def dependent_variables(self, ):
+    def dependent_variables(self):
         cdef _c_api.ListMeasurementContextHandle h_ret = _c_api.InterpretationContext_dependent_variables(self.handle)
-        if h_ret == <_c_api.ListMeasurementContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListMeasurementContextHandle>0: return None
         return _list_measurement_context_from_capi(h_ret, owned=True)
 
-    def unit(self, ):
+    def unit(self):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContext_unit(self.handle)
-        if h_ret == <_c_api.SymbolUnitHandle>0:
-            return None
+        if h_ret == <_c_api.SymbolUnitHandle>0: return None
         return _symbol_unit_from_capi(h_ret, owned=False)
 
-    def dimension(self, ):
+    def dimension(self):
         return _c_api.InterpretationContext_dimension(self.handle)
 
     def add_dependent_variable(self, MeasurementContext variable):
@@ -107,15 +98,19 @@ cdef class InterpretationContext:
 
     def get_independent_variables(self, int index):
         cdef _c_api.MeasurementContextHandle h_ret = _c_api.InterpretationContext_get_independent_variables(self.handle, index)
-        if h_ret == <_c_api.MeasurementContextHandle>0:
-            return None
+        if h_ret == <_c_api.MeasurementContextHandle>0: return None
         return _measurement_context_from_capi(h_ret, owned=False)
 
     def with_unit(self, SymbolUnit unit):
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.InterpretationContext_with_unit(self.handle, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
-        if h_ret == <_c_api.InterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.InterpretationContextHandle>0: return None
         return _interpretation_context_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContextHandle>self.handle))
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef InterpretationContext _interpretation_context_from_capi(_c_api.InterpretationContextHandle h, bint owned=True):
     if h == <_c_api.InterpretationContextHandle>0:

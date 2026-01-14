@@ -50,11 +50,11 @@ class Config:
         ret = self._c.copy()
         return Config._from_capi(ret)
 
-    def equal(self, other: Config) -> None:
+    def equal(self, other: Config) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Config) -> None:
+    def not_equal(self, other: Config) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -62,50 +62,20 @@ class Config:
         ret = self._c.to_json()
         return ret
 
-    def num_unique_channels(self, ) -> None:
+    def num_unique_channels(self, ) -> int:
         ret = self._c.num_unique_channels()
         return ret
-
-    def voltage_constraints(self, ) -> VoltageConstraints:
-        ret = self._c.voltage_constraints()
-        if ret is None: return None
-        return VoltageConstraints._from_capi(ret)
-
-    def groups(self, ) -> Map:
-        ret = self._c.groups()
-        if ret is None: return None
-        return Map(ret)
-
-    def wiring_DC(self, ) -> Impedances:
-        ret = self._c.wiring_DC()
-        if ret is None: return None
-        return Impedances._from_capi(ret)
-
-    def channels(self, ) -> Channels:
-        ret = self._c.channels()
-        if ret is None: return None
-        return Channels._from_capi(ret)
 
     def get_impedance(self, connection: Connection) -> Impedance:
         ret = self._c.get_impedance(connection._c if connection is not None else None)
         if ret is None: return None
         return Impedance._from_capi(ret)
 
-    def get_all_gnames(self, ) -> List:
-        ret = self._c.get_all_gnames()
-        if ret is None: return None
-        return List(ret)
-
-    def get_all_groups(self, ) -> List:
-        ret = self._c.get_all_groups()
-        if ret is None: return None
-        return List(ret)
-
-    def has_channel(self, channel: Channel) -> None:
+    def has_channel(self, channel: Channel) -> bool:
         ret = self._c.has_channel(channel._c if channel is not None else None)
         return ret
 
-    def has_gname(self, gname: Gname) -> None:
+    def has_gname(self, gname: Gname) -> bool:
         ret = self._c.has_gname(gname._c if gname is not None else None)
         return ret
 
@@ -114,16 +84,11 @@ class Config:
         if ret is None: return None
         return Group._from_capi(ret)
 
-    def get_dot_number(self, channel: Channel) -> None:
+    def get_dot_number(self, channel: Channel) -> int:
         ret = self._c.get_dot_number(channel._c if channel is not None else None)
         return ret
 
-    def get_charge_sense_groups(self, ) -> List:
-        ret = self._c.get_charge_sense_groups()
-        if ret is None: return None
-        return List(ret)
-
-    def ohmic_in_charge_sensor(self, ohmic: Connection) -> None:
+    def ohmic_in_charge_sensor(self, ohmic: Connection) -> bool:
         ret = self._c.ohmic_in_charge_sensor(ohmic._c if ohmic is not None else None)
         return ret
 
@@ -131,11 +96,6 @@ class Config:
         ret = self._c.get_associated_ohmic(reservoir_gate._c if reservoir_gate is not None else None)
         if ret is None: return None
         return Connection._from_capi(ret)
-
-    def get_current_channels(self, ) -> Channels:
-        ret = self._c.get_current_channels()
-        if ret is None: return None
-        return Channels._from_capi(ret)
 
     def get_gname(self, channel: Channel) -> Gname:
         ret = self._c.get_gname(channel._c if channel is not None else None)
@@ -212,10 +172,6 @@ class Config:
         if ret is None: return None
         return Connections._from_capi(ret)
 
-    def get_num_unique_channels(self, ) -> None:
-        ret = self._c.get_num_unique_channels()
-        return ret
-
     def return_channels_from_gate(self, gate: Connection) -> Channels:
         ret = self._c.return_channels_from_gate(gate._c if gate is not None else None)
         if ret is None: return None
@@ -226,7 +182,7 @@ class Config:
         if ret is None: return None
         return Channel._from_capi(ret)
 
-    def ohmic_in_channel(self, ohmic: Connection, channel: Channel) -> None:
+    def ohmic_in_channel(self, ohmic: Connection, channel: Channel) -> bool:
         ret = self._c.ohmic_in_channel(ohmic._c if ohmic is not None else None, channel._c if channel is not None else None)
         return ret
 
@@ -234,96 +190,6 @@ class Config:
         ret = self._c.get_dot_channel_neighbors(dot_gate._c if dot_gate is not None else None)
         if ret is None: return None
         return Pair(ret)
-
-    def get_barrier_gate_dict(self, ) -> Map:
-        ret = self._c.get_barrier_gate_dict()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_plunger_gate_dict(self, ) -> Map:
-        ret = self._c.get_plunger_gate_dict()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_reservoir_gate_dict(self, ) -> Map:
-        ret = self._c.get_reservoir_gate_dict()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_screening_gate_dict(self, ) -> Map:
-        ret = self._c.get_screening_gate_dict()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_dot_gate_dict(self, ) -> Map:
-        ret = self._c.get_dot_gate_dict()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_gate_dict(self, ) -> Map:
-        ret = self._c.get_gate_dict()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_isolated_barrier_gates(self, ) -> Connections:
-        ret = self._c.get_isolated_barrier_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_isolated_plunger_gates(self, ) -> Connections:
-        ret = self._c.get_isolated_plunger_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_isolated_reservoir_gates(self, ) -> Connections:
-        ret = self._c.get_isolated_reservoir_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_isolated_screening_gates(self, ) -> Connections:
-        ret = self._c.get_isolated_screening_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_isolated_dot_gates(self, ) -> Connections:
-        ret = self._c.get_isolated_dot_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_isolated_gates(self, ) -> Connections:
-        ret = self._c.get_isolated_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_shared_barrier_gates(self, ) -> Connections:
-        ret = self._c.get_shared_barrier_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_shared_plunger_gates(self, ) -> Connections:
-        ret = self._c.get_shared_plunger_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_shared_reservoir_gates(self, ) -> Connections:
-        ret = self._c.get_shared_reservoir_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_shared_screening_gates(self, ) -> Connections:
-        ret = self._c.get_shared_screening_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_shared_dot_gates(self, ) -> Connections:
-        ret = self._c.get_shared_dot_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_shared_gates(self, ) -> Connections:
-        ret = self._c.get_shared_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
 
     def get_shared_channel_barrier_gates(self, channel: Channel) -> Connections:
         ret = self._c.get_shared_channel_barrier_gates(channel._c if channel is not None else None)
@@ -385,139 +251,327 @@ class Config:
         if ret is None: return None
         return Connections._from_capi(ret)
 
-    def get_isolated_barrier_gates_by_channel(self, ) -> Map:
-        ret = self._c.get_isolated_barrier_gates_by_channel()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_isolated_plunger_gates_by_channel(self, ) -> Map:
-        ret = self._c.get_isolated_plunger_gates_by_channel()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_isolated_reservoir_gates_by_channel(self, ) -> Map:
-        ret = self._c.get_isolated_reservoir_gates_by_channel()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_isolated_screening_gates_by_channel(self, ) -> Map:
-        ret = self._c.get_isolated_screening_gates_by_channel()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_isolated_dot_gates_by_channel(self, ) -> Map:
-        ret = self._c.get_isolated_dot_gates_by_channel()
-        if ret is None: return None
-        return Map(ret)
-
-    def get_isolated_gates_by_channel(self, ) -> Map:
-        ret = self._c.get_isolated_gates_by_channel()
-        if ret is None: return None
-        return Map(ret)
-
     def generate_gate_relations(self, ) -> GateRelations:
         ret = self._c.generate_gate_relations()
         if ret is None: return None
         return GateRelations._from_capi(ret)
 
-    def screening_gates(self, ) -> Connections:
-        ret = self._c.screening_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
+    def has_ohmic(self, ohmic: Connection) -> bool:
+        ret = self._c.has_ohmic(ohmic._c if ohmic is not None else None)
+        return ret
 
-    def reservoir_gates(self, ) -> Connections:
-        ret = self._c.reservoir_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
+    def has_gate(self, gate: Connection) -> bool:
+        ret = self._c.has_gate(gate._c if gate is not None else None)
+        return ret
 
-    def plunger_gates(self, ) -> Connections:
-        ret = self._c.plunger_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
+    def has_barrier_gate(self, barrier_gate: Connection) -> bool:
+        ret = self._c.has_barrier_gate(barrier_gate._c if barrier_gate is not None else None)
+        return ret
 
-    def barrier_gates(self, ) -> Connections:
-        ret = self._c.barrier_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
+    def has_plunger_gate(self, plunger_gate: Connection) -> bool:
+        ret = self._c.has_plunger_gate(plunger_gate._c if plunger_gate is not None else None)
+        return ret
 
-    def ohmics(self, ) -> Connections:
-        ret = self._c.ohmics()
-        if ret is None: return None
-        return Connections._from_capi(ret)
+    def has_reservoir_gate(self, reservoir_gate: Connection) -> bool:
+        ret = self._c.has_reservoir_gate(reservoir_gate._c if reservoir_gate is not None else None)
+        return ret
 
-    def dot_gates(self, ) -> Connections:
-        ret = self._c.dot_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
+    def has_screening_gate(self, screening_gate: Connection) -> bool:
+        ret = self._c.has_screening_gate(screening_gate._c if screening_gate is not None else None)
+        return ret
 
-    def get_ohmic(self, ) -> Connection:
-        ret = self._c.get_ohmic()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_barrier_gate(self, ) -> Connection:
-        ret = self._c.get_barrier_gate()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_plunger_gate(self, ) -> Connection:
-        ret = self._c.get_plunger_gate()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_reservoir_gate(self, ) -> Connection:
-        ret = self._c.get_reservoir_gate()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_screening_gate(self, ) -> Connection:
-        ret = self._c.get_screening_gate()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_dot_gate(self, ) -> Connection:
-        ret = self._c.get_dot_gate()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_gate(self, ) -> Connection:
-        ret = self._c.get_gate()
-        if ret is None: return None
-        return Connection._from_capi(ret)
-
-    def get_all_gates(self, ) -> Connections:
-        ret = self._c.get_all_gates()
-        if ret is None: return None
-        return Connections._from_capi(ret)
-
-    def get_all_connections(self, ) -> Connections:
+    @property
+    def all_connections(self) -> Connections:
         ret = self._c.get_all_connections()
         if ret is None: return None
         return Connections._from_capi(ret)
 
-    def has_ohmic(self, ohmic: Connection) -> None:
-        ret = self._c.has_ohmic(ohmic._c if ohmic is not None else None)
+    @property
+    def all_gates(self) -> Connections:
+        ret = self._c.get_all_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def all_gnames(self) -> List:
+        ret = self._c.get_all_gnames()
+        if ret is None: return None
+        return List(ret)
+
+    @property
+    def all_groups(self) -> List:
+        ret = self._c.get_all_groups()
+        if ret is None: return None
+        return List(ret)
+
+    @property
+    def barrier_gate(self) -> Connection:
+        ret = self._c.get_barrier_gate()
+        if ret is None: return None
+        return Connection._from_capi(ret)
+
+    @property
+    def barrier_gate_dict(self) -> Map:
+        ret = self._c.get_barrier_gate_dict()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def barrier_gates(self) -> Connections:
+        ret = self._c.barrier_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def channels(self) -> Channels:
+        ret = self._c.channels()
+        if ret is None: return None
+        return Channels._from_capi(ret)
+
+    @property
+    def charge_sense_groups(self) -> List:
+        ret = self._c.get_charge_sense_groups()
+        if ret is None: return None
+        return List(ret)
+
+    @property
+    def current_channels(self) -> Channels:
+        ret = self._c.get_current_channels()
+        if ret is None: return None
+        return Channels._from_capi(ret)
+
+    @property
+    def dot_gate(self) -> Connection:
+        ret = self._c.get_dot_gate()
+        if ret is None: return None
+        return Connection._from_capi(ret)
+
+    @property
+    def dot_gate_dict(self) -> Map:
+        ret = self._c.get_dot_gate_dict()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def dot_gates(self) -> Connections:
+        ret = self._c.dot_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def gate(self) -> Connection:
+        ret = self._c.get_gate()
+        if ret is None: return None
+        return Connection._from_capi(ret)
+
+    @property
+    def gate_dict(self) -> Map:
+        ret = self._c.get_gate_dict()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def groups(self) -> Map:
+        ret = self._c.groups()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def isolated_barrier_gates(self) -> Connections:
+        ret = self._c.get_isolated_barrier_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def isolated_barrier_gates_by_channel(self) -> Map:
+        ret = self._c.get_isolated_barrier_gates_by_channel()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def isolated_dot_gates(self) -> Connections:
+        ret = self._c.get_isolated_dot_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def isolated_dot_gates_by_channel(self) -> Map:
+        ret = self._c.get_isolated_dot_gates_by_channel()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def isolated_gates(self) -> Connections:
+        ret = self._c.get_isolated_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def isolated_gates_by_channel(self) -> Map:
+        ret = self._c.get_isolated_gates_by_channel()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def isolated_plunger_gates(self) -> Connections:
+        ret = self._c.get_isolated_plunger_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def isolated_plunger_gates_by_channel(self) -> Map:
+        ret = self._c.get_isolated_plunger_gates_by_channel()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def isolated_reservoir_gates(self) -> Connections:
+        ret = self._c.get_isolated_reservoir_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def isolated_reservoir_gates_by_channel(self) -> Map:
+        ret = self._c.get_isolated_reservoir_gates_by_channel()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def isolated_screening_gates(self) -> Connections:
+        ret = self._c.get_isolated_screening_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def isolated_screening_gates_by_channel(self) -> Map:
+        ret = self._c.get_isolated_screening_gates_by_channel()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def num_unique_channels(self) -> int:
+        ret = self._c.get_num_unique_channels()
         return ret
 
-    def has_gate(self, gate: Connection) -> None:
-        ret = self._c.has_gate(gate._c if gate is not None else None)
-        return ret
+    @property
+    def ohmic(self) -> Connection:
+        ret = self._c.get_ohmic()
+        if ret is None: return None
+        return Connection._from_capi(ret)
 
-    def has_barrier_gate(self, barrier_gate: Connection) -> None:
-        ret = self._c.has_barrier_gate(barrier_gate._c if barrier_gate is not None else None)
-        return ret
+    @property
+    def ohmics(self) -> Connections:
+        ret = self._c.ohmics()
+        if ret is None: return None
+        return Connections._from_capi(ret)
 
-    def has_plunger_gate(self, plunger_gate: Connection) -> None:
-        ret = self._c.has_plunger_gate(plunger_gate._c if plunger_gate is not None else None)
-        return ret
+    @property
+    def plunger_gate(self) -> Connection:
+        ret = self._c.get_plunger_gate()
+        if ret is None: return None
+        return Connection._from_capi(ret)
 
-    def has_reservoir_gate(self, reservoir_gate: Connection) -> None:
-        ret = self._c.has_reservoir_gate(reservoir_gate._c if reservoir_gate is not None else None)
-        return ret
+    @property
+    def plunger_gate_dict(self) -> Map:
+        ret = self._c.get_plunger_gate_dict()
+        if ret is None: return None
+        return Map(ret)
 
-    def has_screening_gate(self, screening_gate: Connection) -> None:
-        ret = self._c.has_screening_gate(screening_gate._c if screening_gate is not None else None)
-        return ret
+    @property
+    def plunger_gates(self) -> Connections:
+        ret = self._c.plunger_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def reservoir_gate(self) -> Connection:
+        ret = self._c.get_reservoir_gate()
+        if ret is None: return None
+        return Connection._from_capi(ret)
+
+    @property
+    def reservoir_gate_dict(self) -> Map:
+        ret = self._c.get_reservoir_gate_dict()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def reservoir_gates(self) -> Connections:
+        ret = self._c.reservoir_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def screening_gate(self) -> Connection:
+        ret = self._c.get_screening_gate()
+        if ret is None: return None
+        return Connection._from_capi(ret)
+
+    @property
+    def screening_gate_dict(self) -> Map:
+        ret = self._c.get_screening_gate_dict()
+        if ret is None: return None
+        return Map(ret)
+
+    @property
+    def screening_gates(self) -> Connections:
+        ret = self._c.screening_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def shared_barrier_gates(self) -> Connections:
+        ret = self._c.get_shared_barrier_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def shared_dot_gates(self) -> Connections:
+        ret = self._c.get_shared_dot_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def shared_gates(self) -> Connections:
+        ret = self._c.get_shared_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def shared_plunger_gates(self) -> Connections:
+        ret = self._c.get_shared_plunger_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def shared_reservoir_gates(self) -> Connections:
+        ret = self._c.get_shared_reservoir_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def shared_screening_gates(self) -> Connections:
+        ret = self._c.get_shared_screening_gates()
+        if ret is None: return None
+        return Connections._from_capi(ret)
+
+    @property
+    def voltage_constraints(self) -> VoltageConstraints:
+        ret = self._c.voltage_constraints()
+        if ret is None: return None
+        return VoltageConstraints._from_capi(ret)
+
+    @property
+    def wiring_DC(self) -> Impedances:
+        ret = self._c.wiring_DC()
+        if ret is None: return None
+        return Impedances._from_capi(ret)
+
+    def __repr__(self):
+        return f"Config({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

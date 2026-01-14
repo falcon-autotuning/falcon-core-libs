@@ -30,11 +30,11 @@ class IncreasingAlignment:
         ret = self._c.copy()
         return IncreasingAlignment._from_capi(ret)
 
-    def equal(self, other: IncreasingAlignment) -> None:
+    def equal(self, other: IncreasingAlignment) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: IncreasingAlignment) -> None:
+    def not_equal(self, other: IncreasingAlignment) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -42,9 +42,15 @@ class IncreasingAlignment:
         ret = self._c.to_json()
         return ret
 
-    def alignment(self, ) -> None:
+    def alignment(self, ) -> int:
         ret = self._c.alignment()
         return ret
+
+    def __repr__(self):
+        return f"IncreasingAlignment({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

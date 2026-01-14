@@ -57,10 +57,9 @@ cdef class DeviceVoltageStates:
         obj.owned = True
         return obj
 
-    def states(self, ):
+    def states(self):
         cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageStates_states(self.handle)
-        if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
-            return None
+        if h_ret == <_c_api.ListDeviceVoltageStateHandle>0: return None
         return _list_device_voltage_state_from_capi(h_ret, owned=True)
 
     def add_state(self, DeviceVoltageState state):
@@ -68,47 +67,42 @@ cdef class DeviceVoltageStates:
 
     def find_state(self, Connection connection):
         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.DeviceVoltageStates_find_state(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
-        if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
-            return None
+        if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
         return _device_voltage_states_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStatesHandle>self.handle))
 
-    def to_point(self, ):
+    def to_point(self):
         cdef _c_api.PointHandle h_ret = _c_api.DeviceVoltageStates_to_point(self.handle)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=True)
 
     def intersection(self, DeviceVoltageStates other):
         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.DeviceVoltageStates_intersection(self.handle, other.handle if other is not None else <_c_api.DeviceVoltageStatesHandle>0)
-        if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
-            return None
+        if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
         return _device_voltage_states_from_capi(h_ret, owned=(h_ret != <_c_api.DeviceVoltageStatesHandle>self.handle))
 
     def push_back(self, DeviceVoltageState value):
         _c_api.DeviceVoltageStates_push_back(self.handle, value.handle if value is not None else <_c_api.DeviceVoltageStateHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.DeviceVoltageStates_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.DeviceVoltageStates_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.DeviceVoltageStates_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.DeviceVoltageStates_clear(self.handle)
 
     def at(self, size_t idx):
         cdef _c_api.DeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageStates_at(self.handle, idx)
-        if h_ret == <_c_api.DeviceVoltageStateHandle>0:
-            return None
+        if h_ret == <_c_api.DeviceVoltageStateHandle>0: return None
         return _device_voltage_state_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListDeviceVoltageStateHandle h_ret = _c_api.DeviceVoltageStates_items(self.handle)
-        if h_ret == <_c_api.ListDeviceVoltageStateHandle>0:
-            return None
+        if h_ret == <_c_api.ListDeviceVoltageStateHandle>0: return None
         return _list_device_voltage_state_from_capi(h_ret, owned=False)
 
     def contains(self, DeviceVoltageState value):
@@ -121,36 +115,35 @@ cdef class DeviceVoltageStates:
         return _c_api.DeviceVoltageStates_equal(self.handle, b.handle if b is not None else <_c_api.DeviceVoltageStatesHandle>0)
 
     def __eq__(self, DeviceVoltageStates b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
+        if not hasattr(b, "handle"): return NotImplemented
         return self.equal(b)
 
     def not_equal(self, DeviceVoltageStates b):
         return _c_api.DeviceVoltageStates_not_equal(self.handle, b.handle if b is not None else <_c_api.DeviceVoltageStatesHandle>0)
 
     def __ne__(self, DeviceVoltageStates b):
-        if not hasattr(b, "handle"):
-            return NotImplemented
+        if not hasattr(b, "handle"): return NotImplemented
         return self.not_equal(b)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.DeviceVoltageStates_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
@@ -163,6 +156,12 @@ cdef class DeviceVoltageStates:
                 item = item._c
             obj.push_back(item)
         return obj
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef DeviceVoltageStates _device_voltage_states_from_capi(_c_api.DeviceVoltageStatesHandle h, bint owned=True):
     if h == <_c_api.DeviceVoltageStatesHandle>0:

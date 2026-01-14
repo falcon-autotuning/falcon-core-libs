@@ -72,42 +72,35 @@ cdef class Point:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.PointHandle h_ret = _c_api.Point_copy(self.handle)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def equal(self, Point other):
         return _c_api.Point_equal(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
 
     def __eq__(self, Point other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, Point other):
         return _c_api.Point_not_equal(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
 
     def __ne__(self, Point other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.Point_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def unit(self, ):
+    def unit(self):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.Point_unit(self.handle)
-        if h_ret == <_c_api.SymbolUnitHandle>0:
-            return None
+        if h_ret == <_c_api.SymbolUnitHandle>0: return None
         return _symbol_unit_from_capi(h_ret, owned=False)
 
     def insert_or_assign(self, Connection key, Quantity value):
@@ -118,59 +111,52 @@ cdef class Point:
 
     def at(self, Connection key):
         cdef _c_api.QuantityHandle h_ret = _c_api.Point_at(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0)
-        if h_ret == <_c_api.QuantityHandle>0:
-            return None
+        if h_ret == <_c_api.QuantityHandle>0: return None
         return _quantity_from_capi(h_ret, owned=False)
 
     def erase(self, Connection key):
         _c_api.Point_erase(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.Point_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.Point_empty(self.handle)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.Point_clear(self.handle)
 
     def contains(self, Connection key):
         return _c_api.Point_contains(self.handle, key.handle if key is not None else <_c_api.ConnectionHandle>0)
 
-    def keys(self, ):
+    def keys(self):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Point_keys(self.handle)
-        if h_ret == <_c_api.ListConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ListConnectionHandle>0: return None
         return _list_connection_from_capi(h_ret, owned=False)
 
-    def values(self, ):
+    def values(self):
         cdef _c_api.ListQuantityHandle h_ret = _c_api.Point_values(self.handle)
-        if h_ret == <_c_api.ListQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.ListQuantityHandle>0: return None
         return _list_quantity_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPairConnectionQuantityHandle h_ret = _c_api.Point_items(self.handle)
-        if h_ret == <_c_api.ListPairConnectionQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairConnectionQuantityHandle>0: return None
         return _list_pair_connection_quantity_from_capi(h_ret, owned=False)
 
-    def coordinates(self, ):
+    def coordinates(self):
         cdef _c_api.MapConnectionQuantityHandle h_ret = _c_api.Point_coordinates(self.handle)
-        if h_ret == <_c_api.MapConnectionQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.MapConnectionQuantityHandle>0: return None
         return _map_connection_quantity_from_capi(h_ret, owned=True)
 
-    def connections(self, ):
+    def connections(self):
         cdef _c_api.ListConnectionHandle h_ret = _c_api.Point_connections(self.handle)
-        if h_ret == <_c_api.ListConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ListConnectionHandle>0: return None
         return _list_connection_from_capi(h_ret, owned=False)
 
     def addition(self, Point other):
         cdef _c_api.PointHandle h_ret = _c_api.Point_addition(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __add__(self, Point other):
@@ -178,8 +164,7 @@ cdef class Point:
 
     def subtraction(self, Point other):
         cdef _c_api.PointHandle h_ret = _c_api.Point_subtraction(self.handle, other.handle if other is not None else <_c_api.PointHandle>0)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __sub__(self, Point other):
@@ -187,8 +172,7 @@ cdef class Point:
 
     def multiplication(self, double scalar):
         cdef _c_api.PointHandle h_ret = _c_api.Point_multiplication(self.handle, scalar)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __mul__(self, double scalar):
@@ -196,17 +180,15 @@ cdef class Point:
 
     def division(self, double scalar):
         cdef _c_api.PointHandle h_ret = _c_api.Point_division(self.handle, scalar)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __truediv__(self, double scalar):
         return self.division(scalar)
 
-    def negation(self, ):
+    def negation(self):
         cdef _c_api.PointHandle h_ret = _c_api.Point_negation(self.handle)
-        if h_ret == <_c_api.PointHandle>0:
-            return None
+        if h_ret == <_c_api.PointHandle>0: return None
         return _point_from_capi(h_ret, owned=(h_ret != <_c_api.PointHandle>self.handle))
 
     def __neg__(self):
@@ -216,13 +198,23 @@ cdef class Point:
         _c_api.Point_set_unit(self.handle, unit.handle if unit is not None else <_c_api.SymbolUnitHandle>0)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef Point _point_from_capi(_c_api.PointHandle h, bint owned=True):
     if h == <_c_api.PointHandle>0:

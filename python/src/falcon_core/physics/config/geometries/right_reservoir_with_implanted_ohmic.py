@@ -30,20 +30,16 @@ class RightReservoirWithImplantedOhmic:
         ret = self._c.copy()
         return RightReservoirWithImplantedOhmic._from_capi(ret)
 
-    def equal(self, other: RightReservoirWithImplantedOhmic) -> None:
+    def equal(self, other: RightReservoirWithImplantedOhmic) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: RightReservoirWithImplantedOhmic) -> None:
+    def not_equal(self, other: RightReservoirWithImplantedOhmic) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
     def to_json(self, ) -> str:
         ret = self._c.to_json()
-        return ret
-
-    def name(self, ) -> str:
-        ret = self._c.name()
         return ret
 
     def type(self, ) -> str:
@@ -59,6 +55,17 @@ class RightReservoirWithImplantedOhmic:
         ret = self._c.left_neighbor()
         if ret is None: return None
         return Connection._from_capi(ret)
+
+    @property
+    def name(self) -> str:
+        ret = self._c.name()
+        return ret
+
+    def __repr__(self):
+        return f"RightReservoirWithImplantedOhmic({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

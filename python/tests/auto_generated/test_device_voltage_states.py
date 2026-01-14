@@ -21,7 +21,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.states()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_add_state(self):
         if self.obj is None:
@@ -29,7 +29,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.add_state(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_find_state(self):
         if self.obj is None:
@@ -37,7 +37,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.find_state(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_to_point(self):
         if self.obj is None:
@@ -45,7 +45,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.to_point()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_intersection(self):
         if self.obj is None:
@@ -53,7 +53,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.intersection(DeviceVoltageStates.new_empty())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_push_back(self):
         if self.obj is None:
@@ -61,15 +61,15 @@ class TestDeviceVoltageStates:
         try:
             self.obj.push_back(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_size(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.size()
+            self.obj.size
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_empty(self):
         if self.obj is None:
@@ -77,7 +77,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_erase_at(self):
         if self.obj is None:
@@ -85,7 +85,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.erase_at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_clear(self):
         if self.obj is None:
@@ -93,7 +93,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.clear()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_at(self):
         if self.obj is None:
@@ -101,7 +101,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_items(self):
         if self.obj is None:
@@ -109,7 +109,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.items()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -117,7 +117,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.contains(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_index(self):
         if self.obj is None:
@@ -125,7 +125,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.index(DeviceVoltageState.new(Connection.new_barrier('test'), 1.0, SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -133,7 +133,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.equal(DeviceVoltageStates.new_empty())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -148,7 +148,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.not_equal(DeviceVoltageStates.new_empty())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -163,7 +163,7 @@ class TestDeviceVoltageStates:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new_empty(self):
         try:

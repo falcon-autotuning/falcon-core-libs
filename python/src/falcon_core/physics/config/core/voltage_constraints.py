@@ -32,11 +32,11 @@ class VoltageConstraints:
         ret = self._c.copy()
         return VoltageConstraints._from_capi(ret)
 
-    def equal(self, other: VoltageConstraints) -> None:
+    def equal(self, other: VoltageConstraints) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: VoltageConstraints) -> None:
+    def not_equal(self, other: VoltageConstraints) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -58,6 +58,12 @@ class VoltageConstraints:
         ret = self._c.limits()
         if ret is None: return None
         return FArray(ret)
+
+    def __repr__(self):
+        return f"VoltageConstraints({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

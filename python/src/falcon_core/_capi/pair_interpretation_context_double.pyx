@@ -43,46 +43,45 @@ cdef class PairInterpretationContextDouble:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.PairInterpretationContextDoubleHandle h_ret = _c_api.PairInterpretationContextDouble_copy(self.handle)
-        if h_ret == <_c_api.PairInterpretationContextDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.PairInterpretationContextDoubleHandle>0: return None
         return _pair_interpretation_context_double_from_capi(h_ret, owned=(h_ret != <_c_api.PairInterpretationContextDoubleHandle>self.handle))
 
-    def first(self, ):
+    def first(self):
         cdef _c_api.InterpretationContextHandle h_ret = _c_api.PairInterpretationContextDouble_first(self.handle)
-        if h_ret == <_c_api.InterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.InterpretationContextHandle>0: return None
         return _interpretation_context_from_capi(h_ret, owned=True)
 
-    def second(self, ):
+    def second(self):
         return _c_api.PairInterpretationContextDouble_second(self.handle)
 
     def equal(self, PairInterpretationContextDouble other):
         return _c_api.PairInterpretationContextDouble_equal(self.handle, other.handle if other is not None else <_c_api.PairInterpretationContextDoubleHandle>0)
 
     def __eq__(self, PairInterpretationContextDouble other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, PairInterpretationContextDouble other):
         return _c_api.PairInterpretationContextDouble_not_equal(self.handle, other.handle if other is not None else <_c_api.PairInterpretationContextDoubleHandle>0)
 
     def __ne__(self, PairInterpretationContextDouble other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PairInterpretationContextDouble_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef PairInterpretationContextDouble _pair_interpretation_context_double_from_capi(_c_api.PairInterpretationContextDoubleHandle h, bint owned=True):
     if h == <_c_api.PairInterpretationContextDoubleHandle>0:

@@ -88,37 +88,31 @@ cdef class HDF5Data:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.HDF5DataHandle h_ret = _c_api.HDF5Data_copy(self.handle)
-        if h_ret == <_c_api.HDF5DataHandle>0:
-            return None
+        if h_ret == <_c_api.HDF5DataHandle>0: return None
         return _hdf5_data_from_capi(h_ret, owned=(h_ret != <_c_api.HDF5DataHandle>self.handle))
 
     def equal(self, HDF5Data other):
         return _c_api.HDF5Data_equal(self.handle, other.handle if other is not None else <_c_api.HDF5DataHandle>0)
 
     def __eq__(self, HDF5Data other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, HDF5Data other):
         return _c_api.HDF5Data_not_equal(self.handle, other.handle if other is not None else <_c_api.HDF5DataHandle>0)
 
     def __ne__(self, HDF5Data other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.HDF5Data_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def to_file(self, str path):
         cdef bytes b_path = path.encode("utf-8")
@@ -126,57 +120,54 @@ cdef class HDF5Data:
         _c_api.HDF5Data_to_file(self.handle, s_path)
         _c_api.String_destroy(s_path)
 
-    def to_communications(self, ):
+    def to_communications(self):
         cdef _c_api.PairMeasurementResponseMeasurementRequestHandle h_ret = _c_api.HDF5Data_to_communications(self.handle)
-        if h_ret == <_c_api.PairMeasurementResponseMeasurementRequestHandle>0:
-            return None
+        if h_ret == <_c_api.PairMeasurementResponseMeasurementRequestHandle>0: return None
         return _pair_measurement_response_measurement_request_from_capi(h_ret, owned=True)
 
-    def shape(self, ):
+    def shape(self):
         cdef _c_api.AxesIntHandle h_ret = _c_api.HDF5Data_shape(self.handle)
-        if h_ret == <_c_api.AxesIntHandle>0:
-            return None
+        if h_ret == <_c_api.AxesIntHandle>0: return None
         return _axes_int_from_capi(h_ret, owned=True)
 
-    def unit_domain(self, ):
+    def unit_domain(self):
         cdef _c_api.AxesControlArrayHandle h_ret = _c_api.HDF5Data_unit_domain(self.handle)
-        if h_ret == <_c_api.AxesControlArrayHandle>0:
-            return None
+        if h_ret == <_c_api.AxesControlArrayHandle>0: return None
         return _axes_control_array_from_capi(h_ret, owned=True)
 
-    def domain_labels(self, ):
+    def domain_labels(self):
         cdef _c_api.AxesCoupledLabelledDomainHandle h_ret = _c_api.HDF5Data_domain_labels(self.handle)
-        if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.AxesCoupledLabelledDomainHandle>0: return None
         return _axes_coupled_labelled_domain_from_capi(h_ret, owned=True)
 
-    def ranges(self, ):
+    def ranges(self):
         cdef _c_api.LabelledArraysLabelledMeasuredArrayHandle h_ret = _c_api.HDF5Data_ranges(self.handle)
-        if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledArraysLabelledMeasuredArrayHandle>0: return None
         return _labelled_arrays_labelled_measured_array_from_capi(h_ret, owned=True)
 
-    def metadata(self, ):
+    def metadata(self):
         cdef _c_api.MapStringStringHandle h_ret = _c_api.HDF5Data_metadata(self.handle)
-        if h_ret == <_c_api.MapStringStringHandle>0:
-            return None
+        if h_ret == <_c_api.MapStringStringHandle>0: return None
         return _map_string_string_from_capi(h_ret, owned=True)
 
-    def measurement_title(self, ):
+    def measurement_title(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.HDF5Data_measurement_title(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def unique_id(self, ):
+    def unique_id(self):
         return _c_api.HDF5Data_unique_id(self.handle)
 
-    def timestamp(self, ):
+    def timestamp(self):
         return _c_api.HDF5Data_timestamp(self.handle)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef HDF5Data _hdf5_data_from_capi(_c_api.HDF5DataHandle h, bint owned=True):
     if h == <_c_api.HDF5DataHandle>0:

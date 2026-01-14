@@ -17,7 +17,7 @@ class TestLoader:
         try:
             self.obj.config()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new(self):
         try:

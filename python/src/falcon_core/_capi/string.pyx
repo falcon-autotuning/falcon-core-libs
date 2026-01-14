@@ -30,12 +30,9 @@ cdef class String:
     def wrap(char[:] raw):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.String_wrap(&raw[0])
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
 cdef String _string_from_capi(_c_api.StringHandle h, bint owned=True):
     if h == <_c_api.StringHandle>0:

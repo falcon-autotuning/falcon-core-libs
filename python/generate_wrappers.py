@@ -600,42 +600,37 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
         lines.append(f'        return obj')
         lines.append('')
 
-    # Methods
+    # Pass 1: Generate methods
     for method in cls.methods:
         # Strip the class name prefix to get the actual method name
         if method.name.startswith(cls.name + '_'):
-            method_name = method.name[len(cls.name)+1:]
+            m_name = method.name[len(cls.name)+1:]
         else:
-            method_name = method.name
-            
-        # Debug print for LabelledDomain
-        if cls.name == "LabelledDomain" and method_name == "in":
-            print(f"DEBUG: Found 'in' method in LabelledDomain. Original: {method.name}")
-
+            m_name = method.name
+        
         # Rename Python keywords
-        if method_name in PYTHON_KEYWORD_RENAMES:
-            method_name = PYTHON_KEYWORD_RENAMES[method_name]
-        elif method_name == "in": # Fallback
-            method_name = "contains"
+        orig_m_name = m_name
+        if m_name in PYTHON_KEYWORD_RENAMES:
+            m_name = PYTHON_KEYWORD_RENAMES[m_name]
+        elif m_name == "in": # Fallback
+            m_name = "contains"
+        if m_name == "to_json_string":
+            m_name = "to_json"
             
-        if method_name == "to_json_string":
-            method_name = "to_json"
-        
         # Determine if static or instance
-        is_static = True
+        is_stat = True
         start_idx = 0
-        
         if len(method.args) > 0 and method.args[0].type_name == cls.handle_type:
-            is_static = False
+            is_stat = False
             start_idx = 1
             
         py_args = []
         call_args = []
-        pre_call_lines = []
-        post_call_lines = []
+        pre_call = []
+        post_call = []
         arg_names = []
         
-        if not is_static:
+        if not is_stat:
             call_args.append("self.handle")
             
         for i in range(start_idx, len(method.args)):
@@ -643,152 +638,103 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
             arg_names.append(arg.name)
             if arg.type_name == "StringHandle" and not arg.is_ptr:
                 py_args.append(f'str {arg.name}')
-                # Convert str to StringHandle
-                pre_call_lines.append(f'        cdef bytes b_{arg.name} = {arg.name}.encode("utf-8")')
-                pre_call_lines.append(f'        cdef _c_api.StringHandle s_{arg.name} = _c_api.String_create(b_{arg.name}, len(b_{arg.name}))')
+                pre_call.append(f'        cdef bytes b_{arg.name} = {arg.name}.encode("utf-8")')
+                pre_call.append(f'        cdef _c_api.StringHandle s_{arg.name} = _c_api.String_create(b_{arg.name}, len(b_{arg.name}))')
                 call_args.append(f's_{arg.name}')
-                post_call_lines.append(f'_c_api.String_destroy(s_{arg.name})')
+                post_call.append(f'_c_api.String_destroy(s_{arg.name})')
             elif arg.type_name.endswith("Handle") and not arg.is_ptr:
-                # For handles, we expect the wrapper object
                 wrapper_type = arg.type_name[:-6]
                 py_args.append(f'{wrapper_type} {arg.name}')
                 call_args.append(f'{arg.name}.handle if {arg.name} is not None else <_c_api.{arg.type_name}>0')
             else:
                 type_name = arg.type_name
                 if type_name == "bool":
-                    if arg.is_ptr:
-                        type_name = "uint8_t"
-                    else:
-                        type_name = "bint"
+                    if arg.is_ptr: type_name = "uint8_t"
+                    else: type_name = "bint"
                 if arg.is_ptr and (type_name in PRIMITIVE_TYPES or type_name.endswith("Handle")):
-                    # Use memoryview for primitive pointers or handle arrays
                     if type_name.endswith("Handle"):
-                        # For handles, Cython doesn't support memoryviews of void*
-                        # Use size_t[:] and cast to the handle pointer type
                         py_args.append(f'size_t[:] {arg.name}')
                         call_args.append(f'<_c_api.{type_name}*>&{arg.name}[0]')
                     else:
                         py_args.append(f'{type_name}[:] {arg.name}')
-                        if arg.type_name == "bool":
-                            call_args.append(f'<bool*>&{arg.name}[0]')
-                        else:
-                            call_args.append(f'&{arg.name}[0]')
+                        if arg.type_name == "bool": call_args.append(f'<bool*>&{arg.name}[0]')
+                        else: call_args.append(f'&{arg.name}[0]')
                 elif arg.is_ptr:
                     py_args.append(f'{type_name}* {arg.name}')
                     call_args.append(arg.name)
                 else:
                     py_args.append(f'{type_name} {arg.name}')
                     call_args.append(arg.name)
+
+        if is_stat: lines.append(f'    @staticmethod')
+        sig_args = (['self'] if not is_stat else []) + py_args
+        lines.append(f'    def {m_name}({", ".join(sig_args)}):')
         
-        if is_static:
-            lines.append(f'    @staticmethod')
-            lines.append(f'    def {method_name}({", ".join(py_args)}):')
-        else:
-            lines.append(f'    def {method_name}(self, {", ".join(py_args)}):')
-        
-        for l in pre_call_lines:
-            lines.append(l)
-            
+        for l in pre_call: lines.append(l)
         call_expr = f'_c_api.{method.name}({", ".join(call_args)})'
         ret = method.return_type
         
         if ret == "void":
             lines.append(f'        {call_expr}')
-            for l in post_call_lines:
-                lines.append(f'        {l}')
+            for l in post_call: lines.append(f'        {l}')
         elif ret == "StringHandle":
-            # Convert StringHandle to str
             lines.append(f'        cdef _c_api.StringHandle s_ret')
-            if post_call_lines:
-                 lines.append(f'        try:')
-                 lines.append(f'            s_ret = {call_expr}')
-                 lines.append(f'        finally:')
-                 for l in post_call_lines:
-                     lines.append(f'            {l}')
+            if post_call:
+                lines.append(f'        try:')
+                lines.append(f'            s_ret = {call_expr}')
+                lines.append(f'        finally:')
+                for l in post_call: lines.append(f'            {l}')
             else:
-                 lines.append(f'        s_ret = {call_expr}')
-                 
-            lines.append(f'        if s_ret == <_c_api.StringHandle>0:')
-            lines.append(f'            return ""')
-            lines.append(f'        try:')
-            lines.append(f'            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")')
-            lines.append(f'        finally:')
-            lines.append(f'            _c_api.String_destroy(s_ret)')
+                lines.append(f'        s_ret = {call_expr}')
+            lines.append(f'        if s_ret == <_c_api.StringHandle>0: return ""')
+            lines.append(f'        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")')
+            lines.append(f'        finally: _c_api.String_destroy(s_ret)')
         elif ret.endswith("Handle"):
-             # Wrap returned handle
-             wrapper_class = ret[:-6] # Remove Handle
-             lines.append(f'        cdef _c_api.{ret} h_ret = {call_expr}')
-             for l in post_call_lines:
-                 lines.append(f'        {l}')
-             
-             lines.append(f'        if h_ret == <_c_api.{ret}>0:')
-             lines.append(f'            return None')
-             
-             # Use factory function
-             accessor_prefixes = ["get_", "as_", "is_", "has_", "connection", "at", "front", "back", "items", "keys", "values"]
-             is_accessor = any(method_name.startswith(p) for p in accessor_prefixes) or method_name in ["connection", "at", "front", "back", "unit", "domain", "parent"]
-             
-             # Methods that definitely create new objects or return owned handles
-             factory_prefixes = ["new", "create", "from_", "copy", "clone", "plus", "minus", "times", "divides", "negation", "gradient", "where", "reshape", "flip",
-                                "add", "subtract", "multiply", "divide", "power", "abs", "negat", "invert", "sqrt", "exp", "log", "sin", "cos", "tan"]
-             is_factory = any(method_name.startswith(p) for p in factory_prefixes)
-             
-             if is_static:
-                 is_accessor = False # Static methods are usually factories (constructors)
-                 is_owning_factory = True
-             elif is_factory:
-                 is_accessor = False
-                 is_owning_factory = True
-             elif is_accessor:
-                 is_owning_factory = False
-             else:
-                 # Default for unknown non-static methods: treat as factory but check for in-place
-                 is_owning_factory = True
-                 is_accessor = False
-             
-             if wrapper_class == cls.name:
-                 snake_name = to_snake_case(cls.name)
-                 if is_accessor:
-                     owned_arg = ", owned=False"
-                 elif not is_static:
-                     # If it's an operator/method returning the same type, check if it's in-place
-                     owned_arg = ", owned=(h_ret != <_c_api.{}Handle>self.handle)".format(cls.name)
-                 else:
-                     owned_arg = "" # Default is True for static methods (factories)
-                 lines.append(f'        return _{snake_name}_from_capi(h_ret{owned_arg})')
-             else:
-                 snake_wrapper = to_snake_case(wrapper_class)
-                 owned_arg = ", owned=True" if is_owning_factory else ", owned=False"
-                 lines.append(f'        return _{snake_wrapper}_from_capi(h_ret{owned_arg})')
-
-        else:
-            if post_call_lines:
-                 ret_type = ret
-                 if ret_type == "bool": ret_type = "bint"
-                 lines.append(f'        cdef {ret_type} ret_val')
-                 lines.append(f'        try:')
-                 lines.append(f'            ret_val = {call_expr}')
-                 lines.append(f'        finally:')
-                 for l in post_call_lines:
-                     lines.append(f'            {l}')
-                 lines.append(f'        return ret_val')
-            else:
-                 lines.append(f'        return {call_expr}')
+            wrapper_class = ret[:-6]
+            lines.append(f'        cdef _c_api.{ret} h_ret = {call_expr}')
+            for l in post_call: lines.append(f'        {l}')
+            lines.append(f'        if h_ret == <_c_api.{ret}>0: return None')
             
+            accessor_prefixes = ["get_", "as_", "is_", "has_", "connection", "at", "front", "back", "items", "keys", "values"]
+            is_acc = any(m_name.startswith(p) for p in accessor_prefixes) or m_name in ["connection", "at", "front", "back", "unit", "domain", "parent"]
+            factory_prefixes = ["new", "create", "from_", "copy", "clone", "plus", "minus", "times", "divides", "negation", "gradient", "where", "reshape", "flip", "add", "subtract", "multiply", "divide", "power", "abs", "negat", "invert", "sqrt", "exp", "log", "sin", "cos", "tan"]
+            is_fac = any(m_name.startswith(p) for p in factory_prefixes)
+            
+            if is_stat or is_fac: is_own = True; is_acc = False
+            elif is_acc: is_own = False
+            else: is_own = True; is_acc = False
+            
+            if wrapper_class == cls.name:
+                snake = to_snake_case(cls.name)
+                if is_acc: arg_o = ", owned=False"
+                elif not is_stat: arg_o = f", owned=(h_ret != <_c_api.{cls.name}Handle>self.handle)"
+                else: arg_o = ""
+                lines.append(f'        return _{snake}_from_capi(h_ret{arg_o})')
+            else:
+                snake = to_snake_case(wrapper_class)
+                arg_o = ", owned=True" if is_own else ", owned=False"
+                lines.append(f'        return _{snake}_from_capi(h_ret{arg_o})')
+        else:
+            if post_call:
+                r_type = "bint" if ret == "bool" else ret
+                lines.append(f'        cdef {r_type} ret_val')
+                lines.append(f'        try:')
+                lines.append(f'            ret_val = {call_expr}')
+                lines.append(f'        finally:')
+                for l in post_call: lines.append(f'            {l}')
+                lines.append(f'        return ret_val')
+            else:
+                lines.append(f'        return {call_expr}')
         lines.append('')
         
-        # Generate operator overload if applicable
-        if method_name in operator_mapping:
-            op_name = operator_mapping[method_name]
-            lines.append(f'    def {op_name}(self{", " if py_args else ""}{", ".join(py_args)}):')
-            
-            # Special handling for __eq__ and __ne__ to return NotImplemented if types mismatch
-            if op_name in ["__eq__", "__ne__"]:
-                 if py_args:
-                     lines.append(f'        if not hasattr({arg_names[0]}, "handle"):')
-                     lines.append(f'            return NotImplemented')
-                 
-            lines.append(f'        return self.{method_name}({", ".join(arg_names)})')
+        # Operator overloads
+        if orig_m_name in operator_mapping:
+            op = operator_mapping[orig_m_name]
+            sig_args = ['self'] + py_args
+            lines.append(f'    def {op}({", ".join(sig_args)}):')
+            if op in ["__eq__", "__ne__"] and py_args:
+                lines.append(f'        if not hasattr({arg_names[0]}, "handle"): return NotImplemented')
+            lines.append(f'        return self.{m_name}({", ".join(arg_names)})')
             lines.append('')
 
     # Add list-like aliases and factories
@@ -796,18 +742,27 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
     has_size = any(m.name == "size" or m.name.endswith("_size") for m in cls.methods)
     has_at = any(m.name == "at" or m.name.endswith("_at") for m in cls.methods)
     has_push_back = any(m.name == "push_back" or m.name.endswith("_push_back") for m in cls.methods)
+    has_to_json = any(m.name == "to_json" or m.name.endswith("_to_json") or m.name == "to_json_string" or m.name.endswith("_to_json_string") for m in cls.methods)
     
     if has_size:
         lines.append(f'    def __len__(self):')
-        lines.append(f'        return self.size()')
+        lines.append(f'        return self.size')
         lines.append('')
         
     if has_at:
-        lines.append(f'    def __getitem__(self, idx):')
-        lines.append(f'        ret = self.at(idx)')
+        is_map = cls.name.startswith("Map")
+        exc = "KeyError" if is_map else "IndexError"
+        lines.append(f'    def __getitem__(self, key):')
+        lines.append(f'        ret = self.at(key)')
         lines.append(f'        if ret is None:')
-        lines.append(f'            raise IndexError("Index out of bounds")')
+        lines.append(f'            raise {exc}(f"{{key}} not found in {{self.__class__.__name__}}")')
         lines.append(f'        return ret')
+        lines.append('')
+        
+    if has_at and has_size and not cls.name.startswith("Map"):
+        lines.append(f'    def __iter__(self):')
+        lines.append(f'        for i in range(len(self)):')
+        lines.append(f'            yield self[i]')
         lines.append('')
         
     if has_push_back:
@@ -844,6 +799,14 @@ def generate_pyx(cls: ClassDef, all_classes: List[ClassDef]) -> str:
                 lines.append(f'            obj.push_back(item)')
                 lines.append(f'        return obj')
                 lines.append('')
+
+    if has_to_json:
+        lines.append(f'    def __repr__(self):')
+        lines.append(f'        return f"{{self.__class__.__name__}}({{self.to_json()}})"')
+        lines.append('')
+        lines.append(f'    def __str__(self):')
+        lines.append(f'        return self.to_json()')
+        lines.append('')
 
     # Factory function for creating from handle
     lines.append(f'cdef {cls.name} _{to_snake_case(cls.name)}_from_capi(_c_api.{cls.handle_type} h, bint owned=True):')
@@ -1057,56 +1020,108 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
                     py_type = classification[0] # Use generic base name
                 else:
                     py_type = base
+    # Pass 1: Categorize methods
+    props = {} # prop_name -> {'get': data, 'set': data}
+    reg_methods = []
+    
+    for method in cls.methods:
+        # Strip the class name prefix to get the actual method name
+        method_name = method.name[len(cls.name)+1:] if method.name.startswith(cls.name + '_') else method.name
+        if method_name in PYTHON_KEYWORD_RENAMES: method_name = PYTHON_KEYWORD_RENAMES[method_name]
+        if method_name == "to_json_string": method_name = "to_json"
+        if method_name == "destroy": continue
             
-            py_args.append(f"{arg_name}: {py_type}")
-            
-            # Call arg conversion
-            if arg_type.endswith("Handle") and arg_type != "StringHandle":
-                # If it's a wrapper, pass ._c
-                # Check if it's generic
+        is_static = True
+        start_idx = 0
+        if method.args:
+            first_arg = method.args[0]
+            if first_arg.type_name == cls.handle_type or first_arg.type_name == cls.name:
+                is_static = False
+                start_idx = 1
+        
+        py_args = []
+        call_args = []
+        for arg in method.args[start_idx:]:
+            arg_name = arg.name
+            arg_type = arg.type_name
+            py_type = "Any"
+            if arg_type == "StringHandle": py_type = "str"
+            elif arg_type in ["Int", "SizeT"]: py_type = "int"
+            elif arg_type in ["Double", "Float"]: py_type = "float"
+            elif arg_type == "Bool": py_type = "bool"
+            elif arg_type.endswith("Handle"):
                 base = arg_type[:-6]
-                if classify_template_type(base): # Check if it's a generic type
-                     call_args.append(f"{arg_name}._c if {arg_name} is not None else None")
-                else:
-                     call_args.append(f"{arg_name}._c if {arg_name} is not None else None")
+                classification = classify_template_type(base)
+                py_type = classification[0] if classification else base
+            py_args.append(f"{arg_name}: {py_type}")
+            if arg_type.endswith("Handle") and arg_type != "StringHandle":
+                call_args.append(f"{arg_name}._c if {arg_name} is not None else None")
             else:
                 call_args.append(arg_name)
                 
-        # Return type
         ret = method.return_type
-        py_ret = "None"
-        if ret == "StringHandle": py_ret = "str"
-        elif ret in ["Int", "SizeT"]: py_ret = "int"
-        elif ret in ["Double", "Float"]: py_ret = "float"
-        elif ret == "Bool": py_ret = "bool"
+        py_ret = "Any"
+        if ret == "void": py_ret = "None"
+        elif ret == "StringHandle": py_ret = "str"
+        elif ret in ["Int", "SizeT", "int", "size_t", "int32_t", "int64_t", "uint32_t", "uint64_t"]: py_ret = "int"
+        elif ret in ["Double", "Float", "double", "float"]: py_ret = "float"
+        elif ret in ["Bool", "bool", "bint"]: py_ret = "bool"
         elif ret.endswith("Handle"):
             base = ret[:-6]
             classification = classify_template_type(base)
-            if classification:
-                py_ret = classification[0]
-            else:
-                py_ret = base
-            
-        # Generate method
-        if is_static:
-            lines.append(f'    @classmethod')
-            lines.append(f'    def {method_name}(cls, {", ".join(py_args)}) -> {py_ret}:')
-            lines.append(f'        ret = _C{cls.name}.{method_name}({", ".join(call_args)})')
+            py_ret = classification[0] if classification else base
+
+        is_property = False
+        is_setter = False
+        prop_name = method_name
+        
+        if not is_static:
+            if not py_args and py_ret != "None":
+                if method_name.startswith('get_') and len(method_name) > 4:
+                    is_property = True
+                    prop_name = method_name[4:]
+                elif method_name in ['size', 'count', 'name', 'length', 'id', 'description', 'voltage_constraints', 'groups', 'wiring_DC', 'channels', 'screening_gates', 'plunger_gates', 'barrier_gates', 'reservoir_gates', 'ohmics', 'dot_gates']:
+                    is_property = True
+            elif len(py_args) == 1 and method_name.startswith('set_') and len(method_name) > 4:
+                is_setter = True
+                prop_name = method_name[4:]
+
+        method_data = (method, method_name, is_static, py_args, call_args, py_ret, ret, start_idx)
+        if is_property:
+            props.setdefault(prop_name, {})['get'] = method_data
+        elif is_setter:
+            props.setdefault(prop_name, {})['set'] = method_data
         else:
-            lines.append(f'    def {method_name}(self, {", ".join(py_args)}) -> {py_ret}:')
-            lines.append(f'        ret = self._c.{method_name}({", ".join(call_args)})')
-            
-        # Return handling
+            reg_methods.append(method_data)
+
+    def generate_prop_or_method(data, is_prop=False, is_set=False, p_name=None):
+        m, m_name, is_stat, py_args, call_args, py_ret, ret, s_idx = data
+        if is_stat:
+            lines.append(f'    @classmethod')
+            lines.append(f'    def {m_name}(cls, {", ".join(py_args)}) -> {py_ret}:')
+            lines.append(f'        ret = _C{cls.name}.{m_name}({", ".join(call_args)})')
+        elif is_prop:
+            lines.append(f'    @property')
+            lines.append(f'    def {p_name}(self) -> {py_ret}:')
+            lines.append(f'        ret = self._c.{m_name}()')
+        elif is_set:
+            lines.append(f'    @{p_name}.setter')
+            lines.append(f'    def {p_name}(self, {py_args[0]}) -> None:')
+            lines.append(f'        self._c.{m_name}({m.args[s_idx].name})')
+            lines.append(f'        return')
+            return
+        else:
+            lines.append(f'    def {m_name}(self, {", ".join(py_args)}) -> {py_ret}:')
+            lines.append(f'        ret = self._c.{m_name}({", ".join(call_args)})')
+
         if ret == "StringHandle":
             lines.append(f'        return ret')
         elif ret.endswith("Handle") and ret != "StringHandle":
             base = ret[:-6]
             classification = classify_template_type(base)
-            
             if classification:
-                generic_base = classification[0]
                 lines.append(f'        if ret is None: return None')
-                lines.append(f'        return {generic_base}(ret)')
+                lines.append(f'        return {classification[0]}(ret)')
             elif base == cls.name:
                 lines.append(f'        return {cls.name}._from_capi(ret)')
             else:
@@ -1114,26 +1129,75 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
                 lines.append(f'        return {base}._from_capi(ret)')
         else:
             lines.append(f'        return ret')
-            
         lines.append('')
 
-    # Add list-like aliases and factories
+    # Pass 2: Generate methods
+    for data in reg_methods:
+        generate_prop_or_method(data)
+
+    # Pass 3: Generate properties
+    # Sort to ensure stable output
+    for p_name in sorted(props.keys()):
+        p_data = props[p_name]
+        # Only make it a property if it has a getter.
+        if 'get' in p_data:
+            generate_prop_or_method(p_data['get'], is_prop=True, p_name=p_name)
+            if 'set' in p_data:
+                generate_prop_or_method(p_data['set'], is_set=True, p_name=p_name)
+        else:
+            # If it only has a setter, or something went wrong, just treat as methods
+            if 'set' in p_data: generate_prop_or_method(p_data['set'])
+
+    # Add list/map-like aliases and factories
     # Check for methods by suffix (handling class prefix)
     has_size = any(m.name == "size" or m.name.endswith("_size") for m in cls.methods)
     has_at = any(m.name == "at" or m.name.endswith("_at") for m in cls.methods)
     has_push_back = any(m.name == "push_back" or m.name.endswith("_push_back") for m in cls.methods)
+    has_insert = any(m.name == "insert" or m.name.endswith("_insert") or m.name == "insert_or_assign" or m.name.endswith("_insert_or_assign") for m in cls.methods)
+    has_contains = any(m.name == "contains" or m.name.endswith("_contains") or m.name == "has" or m.name.endswith("_has") for m in cls.methods)
+    has_to_json = any(m.name == "to_json" or m.name.endswith("_to_json") or m.name == "to_json_string" or m.name.endswith("_to_json_string") for m in cls.methods)
+    
+    is_map = cls.name.startswith("Map")
     
     if has_size:
         lines.append(f'    def __len__(self):')
-        lines.append(f'        return self.size()')
+        lines.append(f'        return self.size')
         lines.append('')
         
     if has_at:
-        lines.append(f'    def __getitem__(self, idx):')
-        lines.append(f'        ret = self.at(idx)')
+        exc = "KeyError" if is_map else "IndexError"
+        lines.append(f'    def __getitem__(self, key):')
+        lines.append(f'        ret = self.at(key)')
         lines.append(f'        if ret is None:')
-        lines.append(f'            raise IndexError("Index out of bounds")')
+        lines.append(f'            raise {exc}(f"{{key}} not found in {{self.__class__.__name__}}")')
         lines.append(f'        return ret')
+        lines.append('')
+        
+    if has_at and has_size and not is_map:
+        lines.append(f'    def __iter__(self):')
+        lines.append(f'        for i in range(len(self)):')
+        lines.append(f'            yield self[i]')
+        lines.append('')
+
+    if is_map:
+        # Standard dict-like iterators if keys/values/items exist
+        has_keys = any(m.name == "keys" or m.name.endswith("_keys") for m in cls.methods)
+        if has_keys:
+            lines.append(f'    def __iter__(self):')
+            lines.append(f'        return iter(self.keys())')
+            lines.append('')
+
+    if has_insert:
+        lines.append(f'    def __setitem__(self, key, value):')
+        if any(m.name == "insert_or_assign" or m.name.endswith("_insert_or_assign") for m in cls.methods):
+            lines.append(f'        self.insert_or_assign(key, value)')
+        else:
+            lines.append(f'        self.insert(key, value)')
+        lines.append('')
+
+    if has_contains:
+        lines.append(f'    def __contains__(self, key):')
+        lines.append(f'        return self.contains(key)')
         lines.append('')
         
     if has_push_back:
@@ -1144,7 +1208,17 @@ def generate_python_class(cls: ClassDef, current_module_path: List[str], type_ma
         # Add from_list factory
         lines.append(f'    @classmethod')
         lines.append(f'    def from_list(cls, items):')
-        lines.append(f'        return cls(_C{cls.name}.from_list(items))')
+        lines.append(f'        obj = cls(_C{cls.name}.from_list(items))')
+        lines.append(f'        # If items are wrappers, we might need to keep refs, but List usually copies.')
+        lines.append(f'        return obj')
+        lines.append('')
+
+    if has_to_json:
+        lines.append(f'    def __repr__(self):')
+        lines.append(f'        return f"{cls.name}({{self.to_json()}})"')
+        lines.append('')
+        lines.append(f'    def __str__(self):')
+        lines.append(f'        return self.to_json()')
         lines.append('')
     
     # After all methods, generate operator overloads
@@ -1478,7 +1552,7 @@ def main():
     # Output pyx
     for cls in all_classes:
         print(f"### Generated PYX for {cls.name} ###")
-        print(generate_pyx(cls))
+        print(generate_pyx(cls, all_classes))
         print()
 
     # Output Registry Entries
@@ -1501,15 +1575,15 @@ def main():
     
     if list_entries:
         print("\n# _C_LIST_REGISTRY")
-        print("\n".join(list_entries))
+        print("\n".join(str(e) for e in list_entries))
         
     if map_entries:
         print("\n# _C_MAP_REGISTRY")
-        print("\n".join(map_entries))
+        print("\n".join(str(e) for e in map_entries))
         
     if pair_entries:
         print("\n# _C_PAIR_REGISTRY")
-        print("\n".join(pair_entries))
+        print("\n".join(str(e) for e in pair_entries))
 
 if __name__ == "__main__":
     main()

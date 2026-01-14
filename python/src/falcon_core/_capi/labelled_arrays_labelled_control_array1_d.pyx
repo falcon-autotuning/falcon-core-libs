@@ -45,49 +45,45 @@ cdef class LabelledArraysLabelledControlArray1D:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.LabelledArraysLabelledControlArray1DHandle h_ret = _c_api.LabelledArraysLabelledControlArray1D_copy(self.handle)
-        if h_ret == <_c_api.LabelledArraysLabelledControlArray1DHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledArraysLabelledControlArray1DHandle>0: return None
         return _labelled_arrays_labelled_control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledArraysLabelledControlArray1DHandle>self.handle))
 
-    def arrays(self, ):
+    def arrays(self):
         cdef _c_api.ListLabelledControlArray1DHandle h_ret = _c_api.LabelledArraysLabelledControlArray1D_arrays(self.handle)
-        if h_ret == <_c_api.ListLabelledControlArray1DHandle>0:
-            return None
+        if h_ret == <_c_api.ListLabelledControlArray1DHandle>0: return None
         return _list_labelled_control_array1_d_from_capi(h_ret, owned=True)
 
-    def labels(self, ):
+    def labels(self):
         cdef _c_api.ListAcquisitionContextHandle h_ret = _c_api.LabelledArraysLabelledControlArray1D_labels(self.handle)
-        if h_ret == <_c_api.ListAcquisitionContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListAcquisitionContextHandle>0: return None
         return _list_acquisition_context_from_capi(h_ret, owned=True)
 
-    def is_control_arrays(self, ):
+    def is_control_arrays(self):
         return _c_api.LabelledArraysLabelledControlArray1D_is_control_arrays(self.handle)
 
-    def is_measured_arrays(self, ):
+    def is_measured_arrays(self):
         return _c_api.LabelledArraysLabelledControlArray1D_is_measured_arrays(self.handle)
 
     def push_back(self, LabelledControlArray1D value):
         _c_api.LabelledArraysLabelledControlArray1D_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledControlArray1DHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.LabelledArraysLabelledControlArray1D_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.LabelledArraysLabelledControlArray1D_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.LabelledArraysLabelledControlArray1D_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.LabelledArraysLabelledControlArray1D_clear(self.handle)
 
     def at(self, size_t idx):
         cdef _c_api.LabelledControlArray1DHandle h_ret = _c_api.LabelledArraysLabelledControlArray1D_at(self.handle, idx)
-        if h_ret == <_c_api.LabelledControlArray1DHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledControlArray1DHandle>0: return None
         return _labelled_control_array1_d_from_capi(h_ret, owned=False)
 
     def contains(self, LabelledControlArray1D value):
@@ -98,47 +94,51 @@ cdef class LabelledArraysLabelledControlArray1D:
 
     def intersection(self, LabelledArraysLabelledControlArray1D other):
         cdef _c_api.LabelledArraysLabelledControlArray1DHandle h_ret = _c_api.LabelledArraysLabelledControlArray1D_intersection(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArray1DHandle>0)
-        if h_ret == <_c_api.LabelledArraysLabelledControlArray1DHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledArraysLabelledControlArray1DHandle>0: return None
         return _labelled_arrays_labelled_control_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.LabelledArraysLabelledControlArray1DHandle>self.handle))
 
     def equal(self, LabelledArraysLabelledControlArray1D other):
         return _c_api.LabelledArraysLabelledControlArray1D_equal(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArray1DHandle>0)
 
     def __eq__(self, LabelledArraysLabelledControlArray1D other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, LabelledArraysLabelledControlArray1D other):
         return _c_api.LabelledArraysLabelledControlArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.LabelledArraysLabelledControlArray1DHandle>0)
 
     def __ne__(self, LabelledArraysLabelledControlArray1D other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.LabelledArraysLabelledControlArray1D_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef LabelledArraysLabelledControlArray1D _labelled_arrays_labelled_control_array1_d_from_capi(_c_api.LabelledArraysLabelledControlArray1DHandle h, bint owned=True):
     if h == <_c_api.LabelledArraysLabelledControlArray1DHandle>0:

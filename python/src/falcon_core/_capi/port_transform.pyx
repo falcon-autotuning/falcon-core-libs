@@ -69,48 +69,40 @@ cdef class PortTransform:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.PortTransformHandle h_ret = _c_api.PortTransform_copy(self.handle)
-        if h_ret == <_c_api.PortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.PortTransformHandle>0: return None
         return _port_transform_from_capi(h_ret, owned=(h_ret != <_c_api.PortTransformHandle>self.handle))
 
     def equal(self, PortTransform other):
         return _c_api.PortTransform_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformHandle>0)
 
     def __eq__(self, PortTransform other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, PortTransform other):
         return _c_api.PortTransform_not_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformHandle>0)
 
     def __ne__(self, PortTransform other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PortTransform_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def port(self, ):
+    def port(self):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.PortTransform_port(self.handle)
-        if h_ret == <_c_api.InstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.InstrumentPortHandle>0: return None
         return _instrument_port_from_capi(h_ret, owned=True)
 
-    def labels(self, ):
+    def labels(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.PortTransform_labels(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=True)
 
     def evaluate(self, MapStringDouble args, double time):
@@ -118,9 +110,14 @@ cdef class PortTransform:
 
     def evaluate_arraywise(self, MapStringDouble args, double deltaT, double maxTime):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.PortTransform_evaluate_arraywise(self.handle, args.handle if args is not None else <_c_api.MapStringDoubleHandle>0, deltaT, maxTime)
-        if h_ret == <_c_api.FArrayDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.FArrayDoubleHandle>0: return None
         return _f_array_double_from_capi(h_ret, owned=True)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef PortTransform _port_transform_from_capi(_c_api.PortTransformHandle h, bint owned=True):
     if h == <_c_api.PortTransformHandle>0:

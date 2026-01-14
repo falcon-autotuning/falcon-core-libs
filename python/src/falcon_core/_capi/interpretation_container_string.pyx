@@ -51,46 +51,39 @@ cdef class InterpretationContainerString:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.InterpretationContainerStringHandle h_ret = _c_api.InterpretationContainerString_copy(self.handle)
-        if h_ret == <_c_api.InterpretationContainerStringHandle>0:
-            return None
+        if h_ret == <_c_api.InterpretationContainerStringHandle>0: return None
         return _interpretation_container_string_from_capi(h_ret, owned=(h_ret != <_c_api.InterpretationContainerStringHandle>self.handle))
 
-    def unit(self, ):
+    def unit(self):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InterpretationContainerString_unit(self.handle)
-        if h_ret == <_c_api.SymbolUnitHandle>0:
-            return None
+        if h_ret == <_c_api.SymbolUnitHandle>0: return None
         return _symbol_unit_from_capi(h_ret, owned=False)
 
     def select_by_connection(self, Connection connection):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerString_select_by_connection(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_by_connections(self, Connections connections):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerString_select_by_connections(self.handle, connections.handle if connections is not None else <_c_api.ConnectionsHandle>0)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_by_independent_connection(self, Connection connection):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerString_select_by_independent_connection(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_by_dependent_connection(self, Connection connection):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerString_select_by_dependent_connection(self.handle, connection.handle if connection is not None else <_c_api.ConnectionHandle>0)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def select_contexts(self, ListConnection independent_connections, ListConnection dependent_connections):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerString_select_contexts(self.handle, independent_connections.handle if independent_connections is not None else <_c_api.ListConnectionHandle>0, dependent_connections.handle if dependent_connections is not None else <_c_api.ListConnectionHandle>0)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=True)
 
     def insert_or_assign(self, InterpretationContext key, str value):
@@ -108,80 +101,79 @@ cdef class InterpretationContainerString:
     def at(self, InterpretationContext key):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InterpretationContainerString_at(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def erase(self, InterpretationContext key):
         _c_api.InterpretationContainerString_erase(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.InterpretationContainerString_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.InterpretationContainerString_empty(self.handle)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.InterpretationContainerString_clear(self.handle)
 
     def contains(self, InterpretationContext key):
         return _c_api.InterpretationContainerString_contains(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0)
 
-    def keys(self, ):
+    def keys(self):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.InterpretationContainerString_keys(self.handle)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=False)
 
-    def values(self, ):
+    def values(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.InterpretationContainerString_values(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPairInterpretationContextStringHandle h_ret = _c_api.InterpretationContainerString_items(self.handle)
-        if h_ret == <_c_api.ListPairInterpretationContextStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairInterpretationContextStringHandle>0: return None
         return _list_pair_interpretation_context_string_from_capi(h_ret, owned=False)
 
     def equal(self, InterpretationContainerString other):
         return _c_api.InterpretationContainerString_equal(self.handle, other.handle if other is not None else <_c_api.InterpretationContainerStringHandle>0)
 
     def __eq__(self, InterpretationContainerString other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, InterpretationContainerString other):
         return _c_api.InterpretationContainerString_not_equal(self.handle, other.handle if other is not None else <_c_api.InterpretationContainerStringHandle>0)
 
     def __ne__(self, InterpretationContainerString other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InterpretationContainerString_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef InterpretationContainerString _interpretation_container_string_from_capi(_c_api.InterpretationContainerStringHandle h, bint owned=True):
     if h == <_c_api.InterpretationContainerStringHandle>0:

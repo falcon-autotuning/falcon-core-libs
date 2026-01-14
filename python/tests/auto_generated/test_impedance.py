@@ -19,7 +19,7 @@ class TestImpedance:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -27,7 +27,7 @@ class TestImpedance:
         try:
             self.obj.equal(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -42,7 +42,7 @@ class TestImpedance:
         try:
             self.obj.not_equal(Impedance.new(Connection.new_barrier('test'), 1.0, 1.0))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -57,7 +57,7 @@ class TestImpedance:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_connection(self):
         if self.obj is None:
@@ -65,7 +65,7 @@ class TestImpedance:
         try:
             self.obj.connection()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_resistance(self):
         if self.obj is None:
@@ -73,7 +73,7 @@ class TestImpedance:
         try:
             self.obj.resistance()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_capacitance(self):
         if self.obj is None:
@@ -81,7 +81,7 @@ class TestImpedance:
         try:
             self.obj.capacitance()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

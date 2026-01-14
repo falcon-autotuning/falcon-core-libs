@@ -57,93 +57,80 @@ cdef class CoupledLabelledDomain:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_copy(self.handle)
-        if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
         return _coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.CoupledLabelledDomainHandle>self.handle))
 
     def equal(self, CoupledLabelledDomain other):
         return _c_api.CoupledLabelledDomain_equal(self.handle, other.handle if other is not None else <_c_api.CoupledLabelledDomainHandle>0)
 
     def __eq__(self, CoupledLabelledDomain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, CoupledLabelledDomain other):
         return _c_api.CoupledLabelledDomain_not_equal(self.handle, other.handle if other is not None else <_c_api.CoupledLabelledDomainHandle>0)
 
     def __ne__(self, CoupledLabelledDomain other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.CoupledLabelledDomain_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def domains(self, ):
+    def domains(self):
         cdef _c_api.ListLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_domains(self.handle)
-        if h_ret == <_c_api.ListLabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.ListLabelledDomainHandle>0: return None
         return _list_labelled_domain_from_capi(h_ret, owned=True)
 
-    def labels(self, ):
+    def labels(self):
         cdef _c_api.PortsHandle h_ret = _c_api.CoupledLabelledDomain_labels(self.handle)
-        if h_ret == <_c_api.PortsHandle>0:
-            return None
+        if h_ret == <_c_api.PortsHandle>0: return None
         return _ports_from_capi(h_ret, owned=True)
 
     def get_domain(self, InstrumentPort search):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_get_domain(self.handle, search.handle if search is not None else <_c_api.InstrumentPortHandle>0)
-        if h_ret == <_c_api.LabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledDomainHandle>0: return None
         return _labelled_domain_from_capi(h_ret, owned=False)
 
     def intersection(self, CoupledLabelledDomain other):
         cdef _c_api.CoupledLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_intersection(self.handle, other.handle if other is not None else <_c_api.CoupledLabelledDomainHandle>0)
-        if h_ret == <_c_api.CoupledLabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.CoupledLabelledDomainHandle>0: return None
         return _coupled_labelled_domain_from_capi(h_ret, owned=(h_ret != <_c_api.CoupledLabelledDomainHandle>self.handle))
 
     def push_back(self, LabelledDomain value):
         _c_api.CoupledLabelledDomain_push_back(self.handle, value.handle if value is not None else <_c_api.LabelledDomainHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.CoupledLabelledDomain_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.CoupledLabelledDomain_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.CoupledLabelledDomain_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.CoupledLabelledDomain_clear(self.handle)
 
     def const_at(self, size_t idx):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_const_at(self.handle, idx)
-        if h_ret == <_c_api.LabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledDomainHandle>0: return None
         return _labelled_domain_from_capi(h_ret, owned=True)
 
     def at(self, size_t idx):
         cdef _c_api.LabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_at(self.handle, idx)
-        if h_ret == <_c_api.LabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.LabelledDomainHandle>0: return None
         return _labelled_domain_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListLabelledDomainHandle h_ret = _c_api.CoupledLabelledDomain_items(self.handle)
-        if h_ret == <_c_api.ListLabelledDomainHandle>0:
-            return None
+        if h_ret == <_c_api.ListLabelledDomainHandle>0: return None
         return _list_labelled_domain_from_capi(h_ret, owned=False)
 
     def contains(self, LabelledDomain value):
@@ -153,13 +140,17 @@ cdef class CoupledLabelledDomain:
         return _c_api.CoupledLabelledDomain_index(self.handle, value.handle if value is not None else <_c_api.LabelledDomainHandle>0)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
@@ -172,6 +163,12 @@ cdef class CoupledLabelledDomain:
                 item = item._c
             obj.push_back(item)
         return obj
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef CoupledLabelledDomain _coupled_labelled_domain_from_capi(_c_api.CoupledLabelledDomainHandle h, bint owned=True):
     if h == <_c_api.CoupledLabelledDomainHandle>0:

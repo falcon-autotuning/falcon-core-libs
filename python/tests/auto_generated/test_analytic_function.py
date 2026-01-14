@@ -18,7 +18,7 @@ class TestAnalyticFunction:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -26,7 +26,7 @@ class TestAnalyticFunction:
         try:
             self.obj.equal(AnalyticFunction.new_identity())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -41,7 +41,7 @@ class TestAnalyticFunction:
         try:
             self.obj.not_equal(AnalyticFunction.new_identity())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -56,7 +56,7 @@ class TestAnalyticFunction:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_labels(self):
         if self.obj is None:
@@ -64,7 +64,7 @@ class TestAnalyticFunction:
         try:
             self.obj.labels()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_evaluate(self):
         if self.obj is None:
@@ -72,7 +72,7 @@ class TestAnalyticFunction:
         try:
             self.obj.evaluate(None, 1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_evaluate_arraywise(self):
         if self.obj is None:
@@ -80,7 +80,7 @@ class TestAnalyticFunction:
         try:
             self.obj.evaluate_arraywise(None, 1.0, 1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

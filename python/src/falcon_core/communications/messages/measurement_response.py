@@ -29,11 +29,11 @@ class MeasurementResponse:
         ret = self._c.copy()
         return MeasurementResponse._from_capi(ret)
 
-    def equal(self, other: MeasurementResponse) -> None:
+    def equal(self, other: MeasurementResponse) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: MeasurementResponse) -> None:
+    def not_equal(self, other: MeasurementResponse) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -49,6 +49,12 @@ class MeasurementResponse:
     def message(self, ) -> str:
         ret = self._c.message()
         return ret
+
+    def __repr__(self):
+        return f"MeasurementResponse({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

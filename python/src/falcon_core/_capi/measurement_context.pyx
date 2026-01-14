@@ -60,53 +60,49 @@ cdef class MeasurementContext:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.MeasurementContextHandle h_ret = _c_api.MeasurementContext_copy(self.handle)
-        if h_ret == <_c_api.MeasurementContextHandle>0:
-            return None
+        if h_ret == <_c_api.MeasurementContextHandle>0: return None
         return _measurement_context_from_capi(h_ret, owned=(h_ret != <_c_api.MeasurementContextHandle>self.handle))
 
     def equal(self, MeasurementContext other):
         return _c_api.MeasurementContext_equal(self.handle, other.handle if other is not None else <_c_api.MeasurementContextHandle>0)
 
     def __eq__(self, MeasurementContext other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, MeasurementContext other):
         return _c_api.MeasurementContext_not_equal(self.handle, other.handle if other is not None else <_c_api.MeasurementContextHandle>0)
 
     def __ne__(self, MeasurementContext other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MeasurementContext_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def connection(self, ):
+    def connection(self):
         cdef _c_api.ConnectionHandle h_ret = _c_api.MeasurementContext_connection(self.handle)
-        if h_ret == <_c_api.ConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ConnectionHandle>0: return None
         return _connection_from_capi(h_ret, owned=False)
 
-    def instrument_type(self, ):
+    def instrument_type(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MeasurementContext_instrument_type(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef MeasurementContext _measurement_context_from_capi(_c_api.MeasurementContextHandle h, bint owned=True):
     if h == <_c_api.MeasurementContextHandle>0:

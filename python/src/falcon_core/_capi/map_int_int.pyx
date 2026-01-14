@@ -56,10 +56,9 @@ cdef class MapIntInt:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.MapIntIntHandle h_ret = _c_api.MapIntInt_copy(self.handle)
-        if h_ret == <_c_api.MapIntIntHandle>0:
-            return None
+        if h_ret == <_c_api.MapIntIntHandle>0: return None
         return _map_int_int_from_capi(h_ret, owned=(h_ret != <_c_api.MapIntIntHandle>self.handle))
 
     def insert_or_assign(self, int key, int value):
@@ -74,70 +73,68 @@ cdef class MapIntInt:
     def erase(self, int key):
         _c_api.MapIntInt_erase(self.handle, key)
 
-    def size(self, ):
+    def size(self):
         return _c_api.MapIntInt_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.MapIntInt_empty(self.handle)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.MapIntInt_clear(self.handle)
 
     def contains(self, int key):
         return _c_api.MapIntInt_contains(self.handle, key)
 
-    def keys(self, ):
+    def keys(self):
         cdef _c_api.ListIntHandle h_ret = _c_api.MapIntInt_keys(self.handle)
-        if h_ret == <_c_api.ListIntHandle>0:
-            return None
+        if h_ret == <_c_api.ListIntHandle>0: return None
         return _list_int_from_capi(h_ret, owned=False)
 
-    def values(self, ):
+    def values(self):
         cdef _c_api.ListIntHandle h_ret = _c_api.MapIntInt_values(self.handle)
-        if h_ret == <_c_api.ListIntHandle>0:
-            return None
+        if h_ret == <_c_api.ListIntHandle>0: return None
         return _list_int_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPairIntIntHandle h_ret = _c_api.MapIntInt_items(self.handle)
-        if h_ret == <_c_api.ListPairIntIntHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairIntIntHandle>0: return None
         return _list_pair_int_int_from_capi(h_ret, owned=False)
 
     def equal(self, MapIntInt other):
         return _c_api.MapIntInt_equal(self.handle, other.handle if other is not None else <_c_api.MapIntIntHandle>0)
 
     def __eq__(self, MapIntInt other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, MapIntInt other):
         return _c_api.MapIntInt_not_equal(self.handle, other.handle if other is not None else <_c_api.MapIntIntHandle>0)
 
     def __ne__(self, MapIntInt other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MapIntInt_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise KeyError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef MapIntInt _map_int_int_from_capi(_c_api.MapIntIntHandle h, bint owned=True):
     if h == <_c_api.MapIntIntHandle>0:

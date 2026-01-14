@@ -19,7 +19,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -27,7 +27,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.equal(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -42,7 +42,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.not_equal(DotGateWithNeighbors.new_plunger_gate_with_neighbors('test', Connection.new_barrier('left'), Connection.new_barrier('right')))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -57,15 +57,15 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_name(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.name()
+            self.obj.name
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_type(self):
         if self.obj is None:
@@ -73,7 +73,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.type()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_left_neighbor(self):
         if self.obj is None:
@@ -81,7 +81,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.left_neighbor()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_right_neighbor(self):
         if self.obj is None:
@@ -89,7 +89,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.right_neighbor()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_is_barrier_gate(self):
         if self.obj is None:
@@ -97,7 +97,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.is_barrier_gate()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_is_plunger_gate(self):
         if self.obj is None:
@@ -105,7 +105,7 @@ class TestDotGateWithNeighbors:
         try:
             self.obj.is_plunger_gate()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

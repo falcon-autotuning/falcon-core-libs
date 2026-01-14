@@ -24,7 +24,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_arrays(self):
         if self.obj is None:
@@ -32,7 +32,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.arrays()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_labels(self):
         if self.obj is None:
@@ -40,7 +40,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.labels()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_is_control_arrays(self):
         if self.obj is None:
@@ -48,7 +48,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.is_control_arrays()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_is_measured_arrays(self):
         if self.obj is None:
@@ -56,7 +56,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.is_measured_arrays()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_push_back(self):
         if self.obj is None:
@@ -64,15 +64,15 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.push_back(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_size(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.size()
+            self.obj.size
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_empty(self):
         if self.obj is None:
@@ -80,7 +80,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_erase_at(self):
         if self.obj is None:
@@ -88,7 +88,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.erase_at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_clear(self):
         if self.obj is None:
@@ -96,7 +96,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.clear()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_at(self):
         if self.obj is None:
@@ -104,7 +104,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.at(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -112,7 +112,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.contains(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_index(self):
         if self.obj is None:
@@ -120,7 +120,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.index(LabelledControlArray.from_farray(FArray[float].from_list([1.0, 2.0, 3.0]), AcquisitionContext.new(Connection.new_barrier('test'), 'test', SymbolUnit.new_meter())))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_intersection(self):
         if self.obj is None:
@@ -128,7 +128,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.intersection(LabelledArrays[LabelledControlArray](List[LabelledControlArray]()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -136,7 +136,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.equal(LabelledArrays[LabelledControlArray](List[LabelledControlArray]()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -151,7 +151,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.not_equal(LabelledArrays[LabelledControlArray](List[LabelledControlArray]()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -166,7 +166,7 @@ class TestLabelledArraysLabelledControlArray:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new(self):
         try:

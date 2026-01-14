@@ -58,11 +58,7 @@ class DeviceVoltageStates:
         ret = self._c.push_back(value._c if value is not None else None)
         return ret
 
-    def size(self, ) -> None:
-        ret = self._c.size()
-        return ret
-
-    def empty(self, ) -> None:
+    def empty(self, ) -> bool:
         ret = self._c.empty()
         return ret
 
@@ -84,19 +80,19 @@ class DeviceVoltageStates:
         if ret is None: return None
         return List(ret)
 
-    def contains(self, value: DeviceVoltageState) -> None:
+    def contains(self, value: DeviceVoltageState) -> bool:
         ret = self._c.contains(value._c if value is not None else None)
         return ret
 
-    def index(self, value: DeviceVoltageState) -> None:
+    def index(self, value: DeviceVoltageState) -> int:
         ret = self._c.index(value._c if value is not None else None)
         return ret
 
-    def equal(self, b: DeviceVoltageStates) -> None:
+    def equal(self, b: DeviceVoltageStates) -> bool:
         ret = self._c.equal(b._c if b is not None else None)
         return ret
 
-    def not_equal(self, b: DeviceVoltageStates) -> None:
+    def not_equal(self, b: DeviceVoltageStates) -> bool:
         ret = self._c.not_equal(b._c if b is not None else None)
         return ret
 
@@ -104,21 +100,41 @@ class DeviceVoltageStates:
         ret = self._c.to_json()
         return ret
 
-    def __len__(self):
-        return self.size()
-
-    def __getitem__(self, idx):
-        ret = self.at(idx)
-        if ret is None:
-            raise IndexError("Index out of bounds")
+    @property
+    def size(self) -> int:
+        ret = self._c.size()
         return ret
+
+    def __len__(self):
+        return self.size
+
+    def __getitem__(self, key):
+        ret = self.at(key)
+        if ret is None:
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
+        return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
+
+    def __contains__(self, key):
+        return self.contains(key)
 
     def append(self, value):
         return self.push_back(value)
 
     @classmethod
     def from_list(cls, items):
-        return cls(_CDeviceVoltageStates.from_list(items))
+        obj = cls(_CDeviceVoltageStates.from_list(items))
+        # If items are wrappers, we might need to keep refs, but List usually copies.
+        return obj
+
+    def __repr__(self):
+        return f"DeviceVoltageStates({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""

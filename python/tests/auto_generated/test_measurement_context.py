@@ -20,7 +20,7 @@ class TestMeasurementContext:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -28,7 +28,7 @@ class TestMeasurementContext:
         try:
             self.obj.equal(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -43,7 +43,7 @@ class TestMeasurementContext:
         try:
             self.obj.not_equal(MeasurementContext.new(Connection.new_barrier('test'), 'test_instr'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -58,7 +58,7 @@ class TestMeasurementContext:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_connection(self):
         if self.obj is None:
@@ -66,7 +66,7 @@ class TestMeasurementContext:
         try:
             self.obj.connection()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_instrument_type(self):
         if self.obj is None:
@@ -74,7 +74,7 @@ class TestMeasurementContext:
         try:
             self.obj.instrument_type()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

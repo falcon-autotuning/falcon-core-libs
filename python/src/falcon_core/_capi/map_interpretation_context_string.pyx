@@ -58,10 +58,9 @@ cdef class MapInterpretationContextString:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.MapInterpretationContextStringHandle h_ret = _c_api.MapInterpretationContextString_copy(self.handle)
-        if h_ret == <_c_api.MapInterpretationContextStringHandle>0:
-            return None
+        if h_ret == <_c_api.MapInterpretationContextStringHandle>0: return None
         return _map_interpretation_context_string_from_capi(h_ret, owned=(h_ret != <_c_api.MapInterpretationContextStringHandle>self.handle))
 
     def insert_or_assign(self, InterpretationContext key, str value):
@@ -79,80 +78,75 @@ cdef class MapInterpretationContextString:
     def at(self, InterpretationContext key):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MapInterpretationContextString_at(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def erase(self, InterpretationContext key):
         _c_api.MapInterpretationContextString_erase(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.MapInterpretationContextString_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.MapInterpretationContextString_empty(self.handle)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.MapInterpretationContextString_clear(self.handle)
 
     def contains(self, InterpretationContext key):
         return _c_api.MapInterpretationContextString_contains(self.handle, key.handle if key is not None else <_c_api.InterpretationContextHandle>0)
 
-    def keys(self, ):
+    def keys(self):
         cdef _c_api.ListInterpretationContextHandle h_ret = _c_api.MapInterpretationContextString_keys(self.handle)
-        if h_ret == <_c_api.ListInterpretationContextHandle>0:
-            return None
+        if h_ret == <_c_api.ListInterpretationContextHandle>0: return None
         return _list_interpretation_context_from_capi(h_ret, owned=False)
 
-    def values(self, ):
+    def values(self):
         cdef _c_api.ListStringHandle h_ret = _c_api.MapInterpretationContextString_values(self.handle)
-        if h_ret == <_c_api.ListStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListStringHandle>0: return None
         return _list_string_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPairInterpretationContextStringHandle h_ret = _c_api.MapInterpretationContextString_items(self.handle)
-        if h_ret == <_c_api.ListPairInterpretationContextStringHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairInterpretationContextStringHandle>0: return None
         return _list_pair_interpretation_context_string_from_capi(h_ret, owned=False)
 
     def equal(self, MapInterpretationContextString other):
         return _c_api.MapInterpretationContextString_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextStringHandle>0)
 
     def __eq__(self, MapInterpretationContextString other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, MapInterpretationContextString other):
         return _c_api.MapInterpretationContextString_not_equal(self.handle, other.handle if other is not None else <_c_api.MapInterpretationContextStringHandle>0)
 
     def __ne__(self, MapInterpretationContextString other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.MapInterpretationContextString_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise KeyError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef MapInterpretationContextString _map_interpretation_context_string_from_capi(_c_api.MapInterpretationContextStringHandle h, bint owned=True):
     if h == <_c_api.MapInterpretationContextStringHandle>0:

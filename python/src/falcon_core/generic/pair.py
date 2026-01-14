@@ -249,7 +249,20 @@ class Pair:
         return NotImplemented
 
     def __repr__(self):
-        return f"Pair[{self._element_type}]({self._c})"
+        if hasattr(self._c, 'to_json'):
+            try:
+                return f'{self.__class__.__name__}[{self._element_type}]( {self._c.to_json()} )'
+            except Exception:
+                pass
+        return f"{self.__class__.__name__}[{self._element_type}]({self._c})"
+
+    def __str__(self):
+        if hasattr(self._c, 'to_json'):
+            try:
+                return self._c.to_json()
+            except Exception:
+                pass
+        return str(self._c)
 
     def __len__(self):
         if hasattr(self._c, '__len__'):
@@ -262,7 +275,11 @@ class Pair:
         if hasattr(self._c, '__getitem__'):
             return self._c[key]
         if hasattr(self._c, 'at'):
-            return self._c.at(key)
+            ret = self._c.at(key)
+            if ret is None:
+                exc = KeyError if "Pair" == "Map" else IndexError
+                raise exc(f'{key!r} not found in {self.__class__.__name__}')
+            return ret
         raise TypeError(f'Underlying object {type(self._c)} does not support indexing')
 
     def __setitem__(self, key, value):
@@ -275,6 +292,17 @@ class Pair:
         else:
             raise TypeError(f'Underlying object {type(self._c)} does not support item assignment')
 
+    def __contains__(self, key):
+        if hasattr(self._c, '__contains__'):
+            return key in self._c
+        if hasattr(self._c, 'contains'):
+            return self._c.contains(key)
+        if hasattr(self._c, 'has'):
+            return self._c.has(key)
+        return False
+
     def __iter__(self):
+        if hasattr(self._c, 'keys'):
+            return iter(self._c.keys())
         for i in range(len(self)):
             yield self[i]

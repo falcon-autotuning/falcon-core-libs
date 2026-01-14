@@ -173,8 +173,8 @@
         ],
         "include_dirs": [
             "/usr/local/include/falcon-core-c-api",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi",
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src"
         ],
         "language": "c++",
         "libraries": [
@@ -188,7 +188,7 @@
             "/usr/local/lib"
         ],
         "sources": [
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi/loader.pyx"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi/loader.pyx"
         ]
     },
     "module_name": "falcon_core._capi.loader"
@@ -1327,51 +1327,56 @@ static int __Pyx_init_co_variables(void) {
 #include <stddef.h>
 #include <stdint.h>
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
-#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
-#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include "falcon_core/generic/MapConnectionDouble_c_api.h"
@@ -1379,51 +1384,46 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
-#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/communications/messages/StandardRequest_c_api.h"
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
@@ -1486,10 +1486,10 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
-#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
+#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
 #include <string.h>
@@ -1961,7 +1961,7 @@ typedef void *__pyx_t_6_c_api_ChannelHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle             # <<<<<<<<<<<<<<
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
+ * ctypedef void* HDF5DataHandle
 */
 typedef void *__pyx_t_6_c_api_ChannelsHandle;
 
@@ -1969,32 +1969,32 @@ typedef void *__pyx_t_6_c_api_ChannelsHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle             # <<<<<<<<<<<<<<
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
 */
 typedef void *__pyx_t_6_c_api_GnameHandle;
 
 /* "_c_api.pxd":19
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
- * ctypedef void* HDF5DataHandle
- * ctypedef void* MeasurementRequestHandle
-*/
-typedef void *__pyx_t_6_c_api_TimeHandle;
-
-/* "_c_api.pxd":20
- * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
- * ctypedef void* MeasurementResponseHandle
 */
 typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 
-/* "_c_api.pxd":21
- * ctypedef void* TimeHandle
+/* "_c_api.pxd":20
+ * ctypedef void* GnameHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* MeasurementRequestHandle
+ * ctypedef void* MeasurementResponseHandle
+*/
+typedef void *__pyx_t_6_c_api_TimeHandle;
+
+/* "_c_api.pxd":21
+ * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle             # <<<<<<<<<<<<<<
  * ctypedef void* MeasurementResponseHandle
  * ctypedef void* StandardRequestHandle
@@ -2002,7 +2002,7 @@ typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 typedef void *__pyx_t_6_c_api_MeasurementRequestHandle;
 
 /* "_c_api.pxd":22
- * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
  * ctypedef void* MeasurementResponseHandle             # <<<<<<<<<<<<<<
  * ctypedef void* StandardRequestHandle
@@ -2915,7 +2915,7 @@ typedef void *__pyx_t_6_c_api_PortTransformsHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle             # <<<<<<<<<<<<<<
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
 */
 typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
 
@@ -2923,7 +2923,7 @@ typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
 */
 typedef void *__pyx_t_6_c_api_PointHandle;
@@ -2931,32 +2931,41 @@ typedef void *__pyx_t_6_c_api_PointHandle;
 /* "_c_api.pxd":125
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
  * ctypedef void* UnitSpaceHandle
- * ctypedef void* AxesDoubleHandle
+ * ctypedef void* VectorHandle
 */
-typedef void *__pyx_t_6_c_api_VectorHandle;
+typedef void *__pyx_t_6_c_api_QuantityHandle;
 
 /* "_c_api.pxd":126
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
- * ctypedef void* AxesIntHandle
 */
 typedef void *__pyx_t_6_c_api_UnitSpaceHandle;
 
 /* "_c_api.pxd":127
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AxesDoubleHandle
+ * ctypedef void* AxesIntHandle
+*/
+typedef void *__pyx_t_6_c_api_VectorHandle;
+
+/* "_c_api.pxd":128
+ * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
 */
 typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 
-/* "_c_api.pxd":128
- * ctypedef void* UnitSpaceHandle
+/* "_c_api.pxd":129
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesDiscretizerHandle
@@ -2964,7 +2973,7 @@ typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesIntHandle;
 
-/* "_c_api.pxd":129
+/* "_c_api.pxd":130
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle             # <<<<<<<<<<<<<<
@@ -2973,7 +2982,7 @@ typedef void *__pyx_t_6_c_api_AxesIntHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 
-/* "_c_api.pxd":130
+/* "_c_api.pxd":131
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle             # <<<<<<<<<<<<<<
@@ -2982,7 +2991,7 @@ typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 
-/* "_c_api.pxd":131
+/* "_c_api.pxd":132
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -2991,7 +3000,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 
-/* "_c_api.pxd":132
+/* "_c_api.pxd":133
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle             # <<<<<<<<<<<<<<
@@ -3000,7 +3009,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 
-/* "_c_api.pxd":133
+/* "_c_api.pxd":134
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle             # <<<<<<<<<<<<<<
@@ -3009,7 +3018,7 @@ typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 
-/* "_c_api.pxd":134
+/* "_c_api.pxd":135
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle             # <<<<<<<<<<<<<<
@@ -3018,7 +3027,7 @@ typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 
-/* "_c_api.pxd":135
+/* "_c_api.pxd":136
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle             # <<<<<<<<<<<<<<
@@ -3027,7 +3036,7 @@ typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 
-/* "_c_api.pxd":136
+/* "_c_api.pxd":137
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3036,7 +3045,7 @@ typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 
-/* "_c_api.pxd":137
+/* "_c_api.pxd":138
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3045,63 +3054,54 @@ typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArray1DHandle;
 
-/* "_c_api.pxd":138
+/* "_c_api.pxd":139
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
+ * ctypedef void* ControlArray1DHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArrayHandle;
 
-/* "_c_api.pxd":139
+/* "_c_api.pxd":140
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle             # <<<<<<<<<<<<<<
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
+ * ctypedef void* ControlArray1DHandle
+ * ctypedef void* ControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArray1DHandle;
 
-/* "_c_api.pxd":140
+/* "_c_api.pxd":141
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
- * ctypedef void* IncreasingAlignmentHandle
- * ctypedef void* ControlArray1DHandle
-*/
-typedef void *__pyx_t_6_c_api_QuantityHandle;
-
-/* "_c_api.pxd":141
- * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ControlArray1DHandle
- * ctypedef void* ControlArrayHandle
-*/
-typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
-
-/* "_c_api.pxd":142
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* ControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* ControlArrayHandle
- * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* IncreasingAlignmentHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArray1DHandle;
 
-/* "_c_api.pxd":143
- * ctypedef void* IncreasingAlignmentHandle
+/* "_c_api.pxd":142
+ * ctypedef void* AxesLabelledMeasuredArray1DHandle
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
- * ctypedef void* LabelledControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 
-/* "_c_api.pxd":144
+/* "_c_api.pxd":143
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* LabelledControlArrayHandle
+*/
+typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
+
+/* "_c_api.pxd":144
+ * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledControlArrayHandle
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3109,7 +3109,7 @@ typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 typedef void *__pyx_t_6_c_api_LabelledControlArray1DHandle;
 
 /* "_c_api.pxd":145
- * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
  * ctypedef void* LabelledControlArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3230,7 +3230,7 @@ typedef void *__pyx_t_6_c_api_DomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
+ * ctypedef void* AdjacencyHandle
 */
 typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
 
@@ -3238,131 +3238,131 @@ typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AdjacencyHandle
  * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
 */
 typedef void *__pyx_t_6_c_api_LoaderHandle;
 
 /* "_c_api.pxd":160
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
 */
-typedef void *__pyx_t_6_c_api_ConfigHandle;
+typedef void *__pyx_t_6_c_api_AdjacencyHandle;
 
 /* "_c_api.pxd":161
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GroupHandle
  * ctypedef void* AdjacencyHandle
+ * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GroupHandle
+ * ctypedef void* VoltageConstraintsHandle
 */
-typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
+typedef void *__pyx_t_6_c_api_ConfigHandle;
 
 /* "_c_api.pxd":162
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
- * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AdjacencyHandle
- * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* ConfigHandle
+ * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
 */
 typedef void *__pyx_t_6_c_api_GroupHandle;
 
 /* "_c_api.pxd":163
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GateGeometryArray1DHandle
- * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+ * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
 */
-typedef void *__pyx_t_6_c_api_AdjacencyHandle;
+typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
 
 /* "_c_api.pxd":164
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* GateGeometryArray1DHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
+
+/* "_c_api.pxd":165
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
+
+/* "_c_api.pxd":166
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
 */
 typedef void *__pyx_t_6_c_api_GateGeometryArray1DHandle;
 
-/* "_c_api.pxd":165
- * ctypedef void* AdjacencyHandle
+/* "_c_api.pxd":167
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
 */
 typedef void *__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":166
+/* "_c_api.pxd":168
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
+ * ctypedef void* ConnectionsHandle
 */
 typedef void *__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":167
+/* "_c_api.pxd":169
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGateWithNeighborsHandle
- * ctypedef void* ConnectionHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
-
-/* "_c_api.pxd":168
- * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
-
-/* "_c_api.pxd":169
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
  * ctypedef void* ConnectionHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConnectionsHandle
  * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionHandle;
 
 /* "_c_api.pxd":170
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* RightReservoirWithImplantedOhmicHandle
  * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedanceHandle
- * ctypedef void* ConnectionsHandle
-*/
-typedef void *__pyx_t_6_c_api_GateRelationsHandle;
-
-/* "_c_api.pxd":171
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionsHandle
- * ctypedef void* ImpedancesHandle
-*/
-typedef void *__pyx_t_6_c_api_ImpedanceHandle;
-
-/* "_c_api.pxd":172
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
  * ctypedef void* ConnectionsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedancesHandle
- * ctypedef void* SymbolUnitHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 
-/* "_c_api.pxd":173
- * ctypedef void* ImpedanceHandle
+/* "_c_api.pxd":171
+ * ctypedef void* ConnectionHandle
  * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedanceHandle
+ * ctypedef void* ImpedancesHandle
+*/
+typedef void *__pyx_t_6_c_api_GateRelationsHandle;
+
+/* "_c_api.pxd":172
+ * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedancesHandle
+ * ctypedef void* SymbolUnitHandle
+*/
+typedef void *__pyx_t_6_c_api_ImpedanceHandle;
+
+/* "_c_api.pxd":173
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle             # <<<<<<<<<<<<<<
  * ctypedef void* SymbolUnitHandle
  * 
@@ -3370,7 +3370,7 @@ typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 typedef void *__pyx_t_6_c_api_ImpedancesHandle;
 
 /* "_c_api.pxd":174
- * ctypedef void* ConnectionsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle
  * ctypedef void* SymbolUnitHandle             # <<<<<<<<<<<<<<
  * 
@@ -4375,7 +4375,7 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_setstate_cython __pyx_string_tab[48]
 #define __pyx_n_u_test __pyx_string_tab[49]
 #define __pyx_n_u_values __pyx_string_tab[50]
-#define __pyx_kp_b_iso88591_A_Qd_6_1_a __pyx_string_tab[51]
+#define __pyx_kp_b_iso88591_A_Qd_6_G1_a __pyx_string_tab[51]
 #define __pyx_kp_b_iso88591_A_gQa_7_QoUXXYYZ_nAQ_2S_Q_Qa_XQa __pyx_string_tab[52]
 #define __pyx_kp_b_iso88591_Q __pyx_string_tab[53]
 #define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[54]
@@ -4851,7 +4851,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_6loader_6Loader_4new(PyTypeObject
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def config(self, ):
+ *     def config(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -4883,9 +4883,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_6loader_6Loader_4new(PyTypeObject
 /* "falcon_core/_capi/loader.pyx":35
  *         return obj
  * 
- *     def config(self, ):             # <<<<<<<<<<<<<<
+ *     def config(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
- *         if h_ret == <_c_api.ConfigHandle>0:
+ *         if h_ret == <_c_api.ConfigHandle>0: return None
 */
 
 /* Python wrapper */
@@ -4944,46 +4944,30 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_6loader_6Loader_6config(struct __
 
   /* "falcon_core/_capi/loader.pyx":36
  * 
- *     def config(self, ):
+ *     def config(self):
  *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConfigHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ConfigHandle>0: return None
+ *         return _config_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = Loader_config(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/loader.pyx":37
- *     def config(self, ):
+ *     def config(self):
  *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
- *         if h_ret == <_c_api.ConfigHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _config_from_capi(h_ret, owned=True)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConfigHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/loader.pyx":38
- *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
- *         if h_ret == <_c_api.ConfigHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.ConfigHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _config_from_capi(h_ret, owned=True)
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConfigHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/loader.pyx":37
- *     def config(self, ):
- *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
- *         if h_ret == <_c_api.ConfigHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _config_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/loader.pyx":39
- *         if h_ret == <_c_api.ConfigHandle>0:
- *             return None
+  /* "falcon_core/_capi/loader.pyx":38
+ *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
+ *         if h_ret == <_c_api.ConfigHandle>0: return None
  *         return _config_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
  * cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):
@@ -4991,7 +4975,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_6loader_6Loader_6config(struct __
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_6config__config_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_6config__config_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5000,9 +4984,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_6loader_6Loader_6config(struct __
   /* "falcon_core/_capi/loader.pyx":35
  *         return obj
  * 
- *     def config(self, ):             # <<<<<<<<<<<<<<
+ *     def config(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
- *         if h_ret == <_c_api.ConfigHandle>0:
+ *         if h_ret == <_c_api.ConfigHandle>0: return None
 */
 
   /* function exit code */
@@ -5220,7 +5204,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_6loader_6Loader_10__setstate_cyth
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/loader.pyx":41
+/* "falcon_core/_capi/loader.pyx":40
  *         return _config_from_capi(h_ret, owned=True)
  * 
  * cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):             # <<<<<<<<<<<<<<
@@ -5245,7 +5229,7 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
     }
   }
 
-  /* "falcon_core/_capi/loader.pyx":42
+  /* "falcon_core/_capi/loader.pyx":41
  * 
  * cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):
  *     if h == <_c_api.LoaderHandle>0:             # <<<<<<<<<<<<<<
@@ -5255,7 +5239,7 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_LoaderHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/loader.pyx":43
+    /* "falcon_core/_capi/loader.pyx":42
  * cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):
  *     if h == <_c_api.LoaderHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -5266,7 +5250,7 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/loader.pyx":42
+    /* "falcon_core/_capi/loader.pyx":41
  * 
  * cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):
  *     if h == <_c_api.LoaderHandle>0:             # <<<<<<<<<<<<<<
@@ -5275,19 +5259,19 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
 */
   }
 
-  /* "falcon_core/_capi/loader.pyx":44
+  /* "falcon_core/_capi/loader.pyx":43
  *     if h == <_c_api.LoaderHandle>0:
  *         return None
  *     cdef Loader obj = Loader.__new__(Loader)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_6loader_Loader(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6loader_Loader), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 44, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_6loader_Loader(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_6loader_Loader), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/loader.pyx":45
+  /* "falcon_core/_capi/loader.pyx":44
  *         return None
  *     cdef Loader obj = Loader.__new__(Loader)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -5296,7 +5280,7 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/loader.pyx":46
+  /* "falcon_core/_capi/loader.pyx":45
  *     cdef Loader obj = Loader.__new__(Loader)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -5304,7 +5288,7 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/loader.pyx":47
+  /* "falcon_core/_capi/loader.pyx":46
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -5314,7 +5298,7 @@ static struct __pyx_obj_11falcon_core_5_capi_6loader_Loader *__pyx_f_11falcon_co
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/loader.pyx":41
+  /* "falcon_core/_capi/loader.pyx":40
  *         return _config_from_capi(h_ret, owned=True)
  * 
  * cdef Loader _loader_from_capi(_c_api.LoaderHandle h, bint owned=True):             # <<<<<<<<<<<<<<
@@ -5960,9 +5944,9 @@ __Pyx_RefNannySetupContext("PyInit_loader", 0);
   /* "falcon_core/_capi/loader.pyx":35
  *         return obj
  * 
- *     def config(self, ):             # <<<<<<<<<<<<<<
+ *     def config(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConfigHandle h_ret = _c_api.Loader_config(self.handle)
- *         if h_ret == <_c_api.ConfigHandle>0:
+ *         if h_ret == <_c_api.ConfigHandle>0: return None
 */
   __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_6loader_6Loader_7config, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_Loader_config, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_loader, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
@@ -6070,33 +6054,33 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 8; } index[] = {{1},{23},{179},{8},{7},{6},{2},{9},{50},{32},{14},{6},{24},{26},{13},{10},{20},{18},{13},{18},{3},{6},{11},{8},{24},{8},{12},{1},{5},{13},{5},{8},{10},{8},{3},{3},{3},{12},{11},{12},{10},{17},{13},{13},{4},{12},{10},{12},{19},{8},{6},{42},{103},{9},{193},{193}};
+    const struct { const unsigned int length: 8; } index[] = {{1},{23},{179},{8},{7},{6},{2},{9},{50},{32},{14},{6},{24},{26},{13},{10},{20},{18},{13},{18},{3},{6},{11},{8},{24},{8},{12},{1},{5},{13},{5},{8},{10},{8},{3},{3},{3},{12},{11},{12},{10},{17},{13},{13},{4},{12},{10},{12},{19},{8},{6},{41},{103},{9},{193},{193}};
     #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (702 bytes) */
-const char* const cstring = "(\265/\375`\035\004\245\025\000\026\247|40u:\200^!(\324j\343\010\252\023\036\300D\203\2031vR\306-2YHk;I9=\372\216$\345\226mHF0\026\370\345V\262T\254V`\300\265\006g\000f\000k\000\017\335\312\370&JT2\255\362\373+\245=\361\336\357\243n\372\333\232\323\267\325\324\313X\236\350\272\226\372G\345O\271a/\253\357\372\275=!\266\335w\037\272\215\333\027i?\016\020\216\214\227\224\227G\255?\224\366\357KM\377\266\216\311\351\361]\371h5}\352\344}\233\276\272X\217][\236\177\273\205\257\376\213>e\253\230\004[\265UB\232\272\2359\314\243\334\205\037J\024T\352\205Y\307iIf\337\177\337/3\024\2258\264[\275%J\202Ji\2429\222ZC\036\271\255\220i\205\263\263\021\264\227\371%\225\220\371\315\2269\322~\006\255t\213\217\331\341\026\3352\277\237[g\036_\245\361JX\242\356\023\353+\243\177\245\034c\213\374\316V\361\034\031\334;h\035\204:\215\325\202A\227\300\252`h-\254<T\005\241\016\002(\376\\?;\254Q\250#\361\\\337f\3470\377\365g\346l\372\275\314(\237\275\34103kU\263\301*\263\237\232\372\334be\246\262O\314\367\344/\371J~\267l2q\211\231\031\322M$\342\310|'\274\201\2159l\373L%;\225\023\232\2765f\354:\225\037|\002P1\233Vi\361N\325f|K\266\371\265\207\3413\322^a\310\036\374\024\026\317\243\20354\330\006\253\357\341f\377^\253\013\025\201@\027\300\203\243\"\255B\256\225H\263.\326\014\027\301Q\3648\364\\=\027+\005\203\356\342$\020Z1\252\r.\201\203P\010\2728\022GW\r\006\335@(\250\206\246E3\323\232\221iU\240\013h\307\347#\324\265\317\345Sb\215p\021\241 \022O\263\036\270\200P( \2040d\270\033\"\221D\235\032i\234\231\211,P\336\261\226\003K\214\340\303\322\327\261=\020\360[\340\007\025wmb F\203u\360\201hA\211\333\244q\270\335\216\301.\363\021\210\226\231k\2224\340\216{\225\307\266\257\270\351!\356\235\242+\355\324\001H%\233\230K\360\331\305\304\373h\003\375@\224]\004\036\253d\204\216m\220d\3405t\r\360\203\243\020ZZ\274\010J\253\266\351\373\272yW\224\333\030 \007\204u\221\260\320\223\006p\330\330y\377(\303\236\010\230\247\273\266?fq\024\252X\331%\005x\334\203\0004IT\311p\270Z\236\334\004C\021\270\317\020N\323\340""\177C\242\344\351\233\032\003";
+const char* const cstring = "(\265/\375`\034\004\245\025\000\006\247|40u:\000\2232\030\365p\0022\253\023\036\300D\203\2031vR\306-2YHk;I9=\372\216$\345/\333\220\214`,\360\313\255d\251X\255\300\200k\rf\000e\000k\000\320\255\214o\242D%\323*\277\277R\332\023\357\375>\352\246\277\2759}\\M=\255\345\211\256o\251\177T\376\224\\\366\264\372\256\337\333\023f\334}\367\241\337\270}\221\366\343\000\341\310\200I\201y\324\372Ci\377\276\324\364o\353\231\234\036\337\225\217V\323\247N\336\267\351\353\213\365\330\325\345\371\267[\370\352\277\350S\266\212I\266JHS\2675\217y\224\277\360C\211\202J\3010\3578-I\355\373\357\373e\206\242\022\207\226\253\267DIP\251M4Grk\310#\267\0252\255p\2666\202\3662\277\244\0222\277\331RG\332\317\240\225r\3611;\344\242[\346\367\223k\315\343\2534^\tK\324}f}e\364\257\224cl\221\337\331*\256#?\007\256\203\320K\243\265\302Z`U0\270\026V\036\252\202\320\013\002(\376`?<\254Q\350E\352\271\316\315\326a\376\353\317\314\332\364{\231Q>\233\313af\336\352v\223Uf?5\365\311\305\312Le\237\230\357\311_\362\225\374n\331d\342\02233\244\234H\304\221\371N\210\003;s\330\366\231Jv*'4}o\314\331u*\237\253\001|\002P1\233Vi\361N\325j|K\266\371\267\207\3413\322fa\310\036\374\024\026\317\243\20354\370&\253\357!g\377b\253\013\025\201\300+\240'GEZ\205`+\221fa,\232.\242\243\360q\360\301|.V\n\006/\254\223@p\311\2506\272\204\016B!\010\353H\035]5\030\274\006BA65\256\032\032\027\315\214\253\002a@<\255\217\320\253[X\253\304\032\351\"BA\244\236f=t\001\335\013P( \2040d\270\033\"\221D\235\032i\234\231\211,P\336\261\226\003K\214\340\303\322\327\261=\020\360[\340\007\025gmb F\203u\360\201hA\211\333\244q\270\335\216\301.\363\021\210\226\231k\2204\334\216k\225\307\265\257\260\351!\356\235\242+\355\324\001@#\233\230K\360\331\305\304\373h\003\375@\224]\004\036\253d\204\216m\220d\3405t\r\360\203\243\020ZZ\274\010J\253\266\351\373\272yW\224\333\030 \007\204u\221\260\320\223\006p\330\330y\377(\303\236\010\230\247\273\266?fq\024\252X\331%\005x\334\203\0004IT\311p\270Z\236\334\004C\021\270\317\020N\323\340\177C\242\344\351\233\032\003";
     PyObject *data = __Pyx_DecompressString(cstring, 702, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (813 bytes) */
-const char* const cstring = "BZh91AY&SY\205VK\t\000\000Q\177\377d|\375\022j\377\267\375\257ezp\277\377\377\341@@@@@@@@@\000@@@\000@\002\241\335\022\344\034\032\232&I\243Dz\236F\243 \323G\2501\032h\006\203@hd\031\030i6\211\351\224\032\"m\n\231\036\246\312\000h\320\014\214@\006\230\232\001\240\r4\006#L\230jzM\025=OQ\264\323S\3214\014\200\320h\320\310\000\000\000\000\3201\000I\"\0324j\010\364\032jM\036\247\251\2404\000\320\032\000\000\000\003&\232\035\035\206\002\014qFF1\020a\202\000\346\214\340\225\n\264\007\362N\245{\\\303\362\037\301MX/\244\303\212\362\341\372n\310\306\224\227\342\331k\204\215\031\222\320u\310\227f\223\316G8\357;V\270\3170TX\014\373\r\017\206\227p,\t\335s\204bCT\000\260\004\246l\330H0B\250\234N\205\231H\223L0\033\242\345\244j6u\034\202\n\322\307Z\332\020$\317\251\024tS\242\036\233T#\001\360\342\226\014 \244E<\t#@el\220\0355\357\021F\243\205\3505>h0\346l\361\336\215t5\216\340\200r\317)3lGYaR&\213\001\007P\373\016\351N\260!I\343v\344\224\003\014@8\232\023\311@\330\235K9\267+\024\023\301fa=DsE\243^\036\240\227\327\016\210\031E\332\237\206e\202\357\271\335\275\0061\206\r\235\202\312n\316\213hN\234\347\033{y\351\327-\312\270\026\274\255\306\204\350\"w\315{\364\032\337\333E~\222\242\22612SJ\300\302\261\023\206\007\0338a\225\234$\364s\301\014I+N\200a\336\316\022\306pH\005\264\222\350!(\204\231\216CQ\361=\025\201\351r@\215XU\342c`U,\014\242\243\022\007D\267e\227\3448Kn[SV\246\340\021\262\224\211\221\241\314\201\355\311\220M\247\025\254\212XZ\300\256\226\366X\352H\331\315S\243K\306\023sB\311\371\355T\t\014Mv`Y\244\2020`\234$\306\302@\211\2172a\342\0061\341\352vX\010\262\311\201P)\212#0\001\232\201\210\230\215\343q:3\022Q\344Ad\310R*:\272\343\330\206\37202dPt5U\224/\213\005\242\212\337\034\202\350\203\200\243\214\326\351\211\271\222U*2\002f\332\2343N\225\314\267/Igi_H\261\333ML\306\007H\"\270\241H\340\205n\255\333C1\236\252\t\264\027>\005\224\004\252t\225U\217b\215\352\277\217\010A\261\004\237\322\211152\274\200\344cuNd3O\014/\254f3!\321\264ud(\013,<\014\023H'\236\\4\034tl\003Ki\322.""\245U\254Xc\010\201\2011e\231\216\215\226\200mD\0147\3538\303Wo\001\222\335Kw\362\301\231\374hy\334\217\376\371A\311\226\024As30\331\345D1\236\261\317B)\365\231\2736p\221I\273G9#N(\322\267\370\273\222)\302\204\204*\262XH";
-    PyObject *data = __Pyx_DecompressString(cstring, 813, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (805 bytes) */
+const char* const cstring = "BZh91AY&SY\364\253\313\024\000\000P\177\377d|\375\022j\377\267\375\257\345zp\277\377\377\341@@@@@@@@@\000@@@\000@\002\241\332% \301\251\246\246\211\251\261G\250\364\312\031\006F\206\020\310\0004\003F@\320cCI\206\240\320\206\246\212fF\201\032\032h\032\001\240\320\003@\000\000\000\r\000\340i\246\232\r\r\r\014\215\000\310\003C@i\243 \000\006\023\020\032\t$CF\215A\036\203MI\243OS\324\006\200\032\000\000\000\000\006F\232 \035h\002+\331c$ \2102\311\000\221\032A.\2471\342Q\256\275\217[\237\002\033tW\267\372\244\n\237L\010h\301\"\362\224_\213a\252\0243\234l\322\301\023\rN\236\364o\246|\024\352\214\216\nK\001\223Y\321\356\353\017\005\201A\252\220wM\331`s\201\225\276\316\205\004\003^jD\031\032\222y\364\203!\351\262\253\235\tr\215\204\2202\256\262V\262f$\314\220\374z\352\316\023\345S\007m7.\266\020\"\234E\246\006`\320\031[$\007M{\304Q\244\340z\r/\232\0149\233<w\243]\rc\267\340\034\223\310L\313S\254\266&\230\220Z\0109\207\330w*s\201\022R\026\356KL\021\306\003\214\351\3223@\310\335K9\267+\024\023\301fa=DsE\243^\036\220\227\323\016\210\031E\330\237\202e\202\357\271\333\275\0061\206\r\235\202\312n\316\213hN\234\346\033{y\351\327-\312\267\326\274\255\306\204\350\"w\315{\364\032\337\333E~\321QK\030\231)\245`aX\211\303\003\215\2340\312\316\022Tr\203\004\222\331\236\361}2x\2438\352\230\006\312\311\000C4C3\232\344;\013\032\243H*\\\224#\033\023TMc\332\323 Wm\027\357tm\204\312\241\207\n?T~dm\215\220'\025)\023#C\231\003\333\217 \233k\025\254\212XZ\300\256\226\356X\351H\331\315S\243K\304P^\206\0245\240F\254\222\300\372\241\206\267D`\301<L\240\342P\253J\275s\2149\320\210Q\367\200+\n\243Q\250\344#0\001\232\003\022\271`\325y>\201\211\213\t\020a:E\226\216\236\270\366!\373F\006L\212\016v\232\262\205\361`\264Q[\303\220]\020p\024q\032\335\250\233\231%R\243 &mS\206i\322\271\226\345\351,\355+\351\026;i\251\230\300\351\004W\014)\034\020\255\325\273P\314g\252\202m\005\317\201e\001*\235%Uc\330\243v\257\343\302\020lA'\364\"LML\257 9\030\335S\231\014\323\303\013\353\031\214\310tm\035Y\n\002\313\016\373""\004\322\t\347\227\005\007\025\033\000\322\324\351\027R\252\326,1\204A\000\231\254\323\220\t\256\201\240\271\004\n\033\3572\357\315\240/\330\245b,\030n\302{/\337\271\017~\016\010\261\035\370\254\341o\025l|kc\2155\022\231\231Z\250\335\247\340\0226\036\256\224\221\345\215c\377\027rE8P\220\364\253\313\024";
+    PyObject *data = __Pyx_DecompressString(cstring, 805, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
     #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (692 bytes) */
-const char* const cstring = "x\332\235SMO\024A\020\225\304\303\252$\010\030\017&&M\210\341K\226`\020?\243!(\321\304\020Fc\202^*\275=\265\273\215\275\335Cw\017\356^\010\307=\356\221\343\034\367\310\221#?a\217s\344\247X\363\301\272\nQ\343$;]\333\365\352U\277W=\257\267\270T\0302o\230\260\310=\262\017\206\207h\267\r\205\276\311=\333\354\370\246\321L:\026\242\2225\264\004R\035\346\274\225\302\243\315@\232\355\274\335Y^{\272\306\270\016\231\305=\024\3361\027\327\204\342\316\241c\246\316j\261T^j\346;\021\272*{_g\035\0233\215E\357\210p\243\005\276\211\2329\364Y\300\346\270\326\306s/\215\006*\227\2721\307Bi\251\211<\300\254z\213+\207U\036\206@8\014\245\3435\205\250\263wCHWD\2416\244\240\316c\345\031\200\3050\026\010\300\3028\247\320F/\223\242\003\311\025e\205\324\322\0038+V\352\\\t\352+\214\305\025\020<\222+*7\250\032u\332/3\023t\303\231\330\n|U\030W\274\253\303\016\"\267\017`\270O\252\034\211\271\224\241.u\331(\377h\374\016\260\323i\323\357\r\331\014\333\330\366\037\351\360\256\243\2054\204\265&&7\321\325\240\250\203\210\373\246P\264\005\222\\\262\\`\215\213oB\271\"?\202\002\0103J\030QV\315\225U\013e\224\211\265\000z\032\027G\205f\223\364x\220\016\206\255\245\307\226\003hq\352GO\313\204\261\302,\322\274E+)0\265\275\310D\000\344T\316\237%\263\270\344\334\217\271*\260?\307q\311\266\341\006\266\311\272Q\261\016U=w\263lHQ9\336\021\217\341\n\277\001<:\002\035p\025\243;\332H++\375\303\323\3404<\233I+\267\272\353\275\351\301\235\205\376d:>\335[M+\023\203\t\226\214%\367\373\374h\343\2742\233\274\3507N\202\023\236V\236\234\034\236\005gf\360yw\260\373e\360\345\353y\345F:~\267\247\223\215$8\237\232I&\223\234\356Q\367\323\340\366\203$H\307\247zK\307\3011U\336;\236Of\223\335~\320\347\031\342y/\310\226g=:\311Dw\377h,\275~\263\273\324\013\350r\305\"\273\253\231g\344%\254\256\216\214\014\036\027\236\256\227C+.\016[\234/\360\036\326A@\006(\022\357\350\313T\370\220\375J\032y\340\266\341\376\314\014\345Z\267\246\225g\330\342\260\234>I\256r\216\205k\227p\377(\240\234\351f\276\\!\240H\374\217\200\222\371\342\326\374U\300""\357\270\037$\373\374\177";
+const char* const cstring = "x\332\235SMo\0231\020\245\022\207\000\225\n-\342\200\204\344\252B\375\242\211\212J\371\024\250*\024\220P\325\005!\025.#\307;I\\\034{k{Kr\251z\3141\307\036\367\230c\216=\366'\344\230c\177\n\263\037\r\201V\200X)\353\211\347\315\033\2777\336W[\\*\014\2317LX\344\036\331\007\303C\264\333\206B\337\340\236m\266}\303h&\035\013Q\311*Z\002\2516s\336J\341\321\246 \315v\336\354\254\254=Yc\\\207\314\342\036\n\357\230\213\253Bq\347\3201Sc\325X*/5\363\355\010]\231\275\257\261\266\211\231\306\274wD\270\361\002\337@\315\034\3724`\363\\k\343\271\227F\003\225K]\237g\241\264\324D\036`Z\275\305\225\3032\017C \034\206\322\361\252B\324\351\273.\244\313\243P\033RP\343\261\362\014\300b\030\013\004`a\234Qh\243WH\321\201\344\212\262Bj\351\001\234\025\225\032W\202\372\nc\261\002\202G\262\2422\203\312Q\273\365\"5A\327\235\211\255\300\227\271q\371\273<\352 2\373\000F\373\244\312\221\230\013\031\352R\223\365\342\217\306\357\000;\355\026\375^\223\315\260\215-\377\221\016\357\332ZHCXkbr\023]\025\362:\210\270o\010E[ \311%\313\005V\271\370&\224\313\363c(\2000\245\2041e\345LY9WF\231X\013\240\247~~Th4H\217\007\351`\324Zzl:\200&\247~\3644M\030+L#\315\233\264\222\002S\335\213L\004@Ne\374i2\215\013\316\375\230\253\034\373s\034\027l\033m`\213\254\033\027\353P\32527\213\206\024\025\343\035\363\030.\361\033\300\243#\320\001W1\272\243\215a\251\322;<\tN\302\323\331a\351Fg\275;3\270\275\330\233\351\275\355\257\016KS\203)\226L$\367z\374h\343\2544\227<\357\325\373A\237\017K\217\373\207\247\301\251\031|\336\035\354~\031|\371zV\2726\234\274\323\325\311F\022\234M\317&\267\222\214\355a\347\323\340\346\375$\030NNw\227\217\203c\252\274{\274\220\314%\273\275\240\307S\304\263n\220.O\273t\220\251\316\376\321\304\360\352\365\316r7\240\273\025\213\364\252\246\226\221\225\260\272:61x\224[\272^\314,\2777li!\307{X\007\001) O\274\243\017S\341\003\366+i\344\201\333\272\37333\024k\315\232f\226aK\243r\372\"\271\3128\026\257\\\300\375\243\200b\244\233\331r\211\200<\361?\002\n\346\363K\363W\001\277\343~\000\"Q\374\231";
     PyObject *data = __Pyx_DecompressString(cstring, 692, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (1309 bytes) */
-const char* const bytes = "?Failed to create LoaderNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/loader.pyx<stringsource>LoaderLoader.__reduce_cython__Loader.__setstate_cython__Loader.configLoader.new__Pyx_PyDict_NextRefasyncio.coroutinesb_config_pathcline_in_tracebackclsconfigconfig_path__dict__falcon_core._capi.loader__func____getstate__hh_ret_is_coroutineitems__main____module____name__newobjpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_config_pathself__set_name__setdefault__setstate____setstate_cython____test__values\200A\330\010/\250~\270Q\270d\300!\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\017\320\017 \240\001\240\035\250a\200A\340\010#\240;\250g\260Q\260a\330\0107\260~\300Q\300o\320UX\320XY\320YZ\340\010\t\330\014\026\220n\240A\240Q\340\022!\240\021\240!\330\010\013\2102\210S\320\020%\240Q\330\014\022\220+\230Q\230a\330\010\032\230(\240#\240X\250Q\250a\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_6loader_Loader *(__pyx_t_6_c_api_LoaderHandle, struct __pyx_opt_args_11falcon_core_5_capi_6loader__loader_from_capi *__pyx_optional_args)\000_loader_from_capistruct __pyx_obj_11falcon_core_5_capi_6config_Config *(__pyx_t_6_c_api_ConfigHandle, struct __pyx_opt_args_11falcon_core_5_capi_6config__config_from_capi *__pyx_optional_args)\000_config_from_capi";
+    #else /* compression: none (1308 bytes) */
+const char* const bytes = "?Failed to create LoaderNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/loader.pyx<stringsource>LoaderLoader.__reduce_cython__Loader.__setstate_cython__Loader.configLoader.new__Pyx_PyDict_NextRefasyncio.coroutinesb_config_pathcline_in_tracebackclsconfigconfig_path__dict__falcon_core._capi.loader__func____getstate__hh_ret_is_coroutineitems__main____module____name__newobjpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_config_pathself__set_name__setdefault__setstate____setstate_cython____test__values\200A\330\010/\250~\270Q\270d\300!\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\017\320\017 \240\001\240\035\250a\200A\340\010#\240;\250g\260Q\260a\330\0107\260~\300Q\300o\320UX\320XY\320YZ\340\010\t\330\014\026\220n\240A\240Q\340\022!\240\021\240!\330\010\013\2102\210S\320\020%\240Q\330\014\022\220+\230Q\230a\330\010\032\230(\240#\240X\250Q\250a\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_6loader_Loader *(__pyx_t_6_c_api_LoaderHandle, struct __pyx_opt_args_11falcon_core_5_capi_6loader__loader_from_capi *__pyx_optional_args)\000_loader_from_capistruct __pyx_obj_11falcon_core_5_capi_6config_Config *(__pyx_t_6_c_api_ConfigHandle, struct __pyx_opt_args_11falcon_core_5_capi_6config__config_from_capi *__pyx_optional_args)\000_config_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -6184,7 +6168,7 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 35};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_loader_pyx, __pyx_mstate->__pyx_n_u_config, __pyx_mstate->__pyx_kp_b_iso88591_A_Qd_6_1_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_loader_pyx, __pyx_mstate->__pyx_n_u_config, __pyx_mstate->__pyx_kp_b_iso88591_A_Qd_6_G1_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};

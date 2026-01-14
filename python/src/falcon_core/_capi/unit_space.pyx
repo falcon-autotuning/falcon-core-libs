@@ -104,87 +104,76 @@ cdef class UnitSpace:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.UnitSpace_copy(self.handle)
-        if h_ret == <_c_api.UnitSpaceHandle>0:
-            return None
+        if h_ret == <_c_api.UnitSpaceHandle>0: return None
         return _unit_space_from_capi(h_ret, owned=(h_ret != <_c_api.UnitSpaceHandle>self.handle))
 
     def equal(self, UnitSpace other):
         return _c_api.UnitSpace_equal(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
 
     def __eq__(self, UnitSpace other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, UnitSpace other):
         return _c_api.UnitSpace_not_equal(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
 
     def __ne__(self, UnitSpace other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.UnitSpace_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def axes(self, ):
+    def axes(self):
         cdef _c_api.AxesDiscretizerHandle h_ret = _c_api.UnitSpace_axes(self.handle)
-        if h_ret == <_c_api.AxesDiscretizerHandle>0:
-            return None
+        if h_ret == <_c_api.AxesDiscretizerHandle>0: return None
         return _axes_discretizer_from_capi(h_ret, owned=True)
 
-    def domain(self, ):
+    def domain(self):
         cdef _c_api.DomainHandle h_ret = _c_api.UnitSpace_domain(self.handle)
-        if h_ret == <_c_api.DomainHandle>0:
-            return None
+        if h_ret == <_c_api.DomainHandle>0: return None
         return _domain_from_capi(h_ret, owned=False)
 
-    def space(self, ):
+    def space(self):
         cdef _c_api.FArrayDoubleHandle h_ret = _c_api.UnitSpace_space(self.handle)
-        if h_ret == <_c_api.FArrayDoubleHandle>0:
-            return None
+        if h_ret == <_c_api.FArrayDoubleHandle>0: return None
         return _f_array_double_from_capi(h_ret, owned=True)
 
-    def shape(self, ):
+    def shape(self):
         cdef _c_api.ListIntHandle h_ret = _c_api.UnitSpace_shape(self.handle)
-        if h_ret == <_c_api.ListIntHandle>0:
-            return None
+        if h_ret == <_c_api.ListIntHandle>0: return None
         return _list_int_from_capi(h_ret, owned=True)
 
-    def dimension(self, ):
+    def dimension(self):
         return _c_api.UnitSpace_dimension(self.handle)
 
-    def compile(self, ):
+    def compile(self):
         _c_api.UnitSpace_compile(self.handle)
 
     def push_back(self, Discretizer value):
         _c_api.UnitSpace_push_back(self.handle, value.handle if value is not None else <_c_api.DiscretizerHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.UnitSpace_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.UnitSpace_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.UnitSpace_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.UnitSpace_clear(self.handle)
 
     def at(self, size_t idx):
         cdef _c_api.DiscretizerHandle h_ret = _c_api.UnitSpace_at(self.handle, idx)
-        if h_ret == <_c_api.DiscretizerHandle>0:
-            return None
+        if h_ret == <_c_api.DiscretizerHandle>0: return None
         return _discretizer_from_capi(h_ret, owned=False)
 
     def items(self, size_t[:] out_buffer, size_t buffer_size):
@@ -198,21 +187,30 @@ cdef class UnitSpace:
 
     def intersection(self, UnitSpace other):
         cdef _c_api.UnitSpaceHandle h_ret = _c_api.UnitSpace_intersection(self.handle, other.handle if other is not None else <_c_api.UnitSpaceHandle>0)
-        if h_ret == <_c_api.UnitSpaceHandle>0:
-            return None
+        if h_ret == <_c_api.UnitSpaceHandle>0: return None
         return _unit_space_from_capi(h_ret, owned=(h_ret != <_c_api.UnitSpaceHandle>self.handle))
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef UnitSpace _unit_space_from_capi(_c_api.UnitSpaceHandle h, bint owned=True):
     if h == <_c_api.UnitSpaceHandle>0:

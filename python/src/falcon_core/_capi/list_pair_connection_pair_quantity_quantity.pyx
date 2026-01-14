@@ -54,38 +54,35 @@ cdef class ListPairConnectionPairQuantityQuantity:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.ListPairConnectionPairQuantityQuantityHandle h_ret = _c_api.ListPairConnectionPairQuantityQuantity_copy(self.handle)
-        if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0: return None
         return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairConnectionPairQuantityQuantityHandle>self.handle))
 
     @staticmethod
     def fill_value(size_t count, PairConnectionPairQuantityQuantity value):
         cdef _c_api.ListPairConnectionPairQuantityQuantityHandle h_ret = _c_api.ListPairConnectionPairQuantityQuantity_fill_value(count, value.handle if value is not None else <_c_api.PairConnectionPairQuantityQuantityHandle>0)
-        if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0: return None
         return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret)
 
     def push_back(self, PairConnectionPairQuantityQuantity value):
         _c_api.ListPairConnectionPairQuantityQuantity_push_back(self.handle, value.handle if value is not None else <_c_api.PairConnectionPairQuantityQuantityHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.ListPairConnectionPairQuantityQuantity_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.ListPairConnectionPairQuantityQuantity_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.ListPairConnectionPairQuantityQuantity_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.ListPairConnectionPairQuantityQuantity_clear(self.handle)
 
     def at(self, size_t idx):
         cdef _c_api.PairConnectionPairQuantityQuantityHandle h_ret = _c_api.ListPairConnectionPairQuantityQuantity_at(self.handle, idx)
-        if h_ret == <_c_api.PairConnectionPairQuantityQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.PairConnectionPairQuantityQuantityHandle>0: return None
         return _pair_connection_pair_quantity_quantity_from_capi(h_ret, owned=False)
 
     def items(self, size_t[:] out_buffer, size_t buffer_size):
@@ -99,44 +96,42 @@ cdef class ListPairConnectionPairQuantityQuantity:
 
     def intersection(self, ListPairConnectionPairQuantityQuantity other):
         cdef _c_api.ListPairConnectionPairQuantityQuantityHandle h_ret = _c_api.ListPairConnectionPairQuantityQuantity_intersection(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionPairQuantityQuantityHandle>0)
-        if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:
-            return None
+        if h_ret == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0: return None
         return _list_pair_connection_pair_quantity_quantity_from_capi(h_ret, owned=(h_ret != <_c_api.ListPairConnectionPairQuantityQuantityHandle>self.handle))
 
     def equal(self, ListPairConnectionPairQuantityQuantity other):
         return _c_api.ListPairConnectionPairQuantityQuantity_equal(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionPairQuantityQuantityHandle>0)
 
     def __eq__(self, ListPairConnectionPairQuantityQuantity other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, ListPairConnectionPairQuantityQuantity other):
         return _c_api.ListPairConnectionPairQuantityQuantity_not_equal(self.handle, other.handle if other is not None else <_c_api.ListPairConnectionPairQuantityQuantityHandle>0)
 
     def __ne__(self, ListPairConnectionPairQuantityQuantity other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.ListPairConnectionPairQuantityQuantity_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
@@ -149,6 +144,12 @@ cdef class ListPairConnectionPairQuantityQuantity:
                 item = item._c
             obj.push_back(item)
         return obj
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef ListPairConnectionPairQuantityQuantity _list_pair_connection_pair_quantity_quantity_from_capi(_c_api.ListPairConnectionPairQuantityQuantityHandle h, bint owned=True):
     if h == <_c_api.ListPairConnectionPairQuantityQuantityHandle>0:

@@ -22,7 +22,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_insert_or_assign(self):
         if self.obj is None:
@@ -30,7 +30,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.insert_or_assign(Connection.new_barrier('test_conn'), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_insert(self):
         if self.obj is None:
@@ -38,7 +38,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.insert(Connection.new_barrier('test_conn'), Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_at(self):
         if self.obj is None:
@@ -46,7 +46,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.at(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_erase(self):
         if self.obj is None:
@@ -54,15 +54,15 @@ class TestMapConnectionQuantity:
         try:
             self.obj.erase(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_size(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.size()
+            self.obj.size
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_empty(self):
         if self.obj is None:
@@ -70,7 +70,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.empty()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_clear(self):
         if self.obj is None:
@@ -78,7 +78,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.clear()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_contains(self):
         if self.obj is None:
@@ -86,7 +86,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.contains(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_keys(self):
         if self.obj is None:
@@ -94,7 +94,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.keys()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_values(self):
         if self.obj is None:
@@ -102,7 +102,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.values()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_items(self):
         if self.obj is None:
@@ -110,7 +110,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.items()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -118,7 +118,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -133,7 +133,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.not_equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -148,7 +148,7 @@ class TestMapConnectionQuantity:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_new_empty(self):
         try:

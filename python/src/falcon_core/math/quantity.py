@@ -29,11 +29,11 @@ class Quantity:
         ret = self._c.copy()
         return Quantity._from_capi(ret)
 
-    def equal(self, other: Quantity) -> None:
+    def equal(self, other: Quantity) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: Quantity) -> None:
+    def not_equal(self, other: Quantity) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -41,7 +41,7 @@ class Quantity:
         ret = self._c.to_json()
         return ret
 
-    def value(self, ) -> None:
+    def value(self, ) -> float:
         ret = self._c.value()
         return ret
 
@@ -129,6 +129,12 @@ class Quantity:
     def abs(self, ) -> Quantity:
         ret = self._c.abs()
         return Quantity._from_capi(ret)
+
+    def __repr__(self):
+        return f"Quantity({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""

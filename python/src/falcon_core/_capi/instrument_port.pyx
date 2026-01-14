@@ -121,98 +121,84 @@ cdef class InstrumentPort:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.InstrumentPortHandle h_ret = _c_api.InstrumentPort_copy(self.handle)
-        if h_ret == <_c_api.InstrumentPortHandle>0:
-            return None
+        if h_ret == <_c_api.InstrumentPortHandle>0: return None
         return _instrument_port_from_capi(h_ret, owned=(h_ret != <_c_api.InstrumentPortHandle>self.handle))
 
     def equal(self, InstrumentPort other):
         return _c_api.InstrumentPort_equal(self.handle, other.handle if other is not None else <_c_api.InstrumentPortHandle>0)
 
     def __eq__(self, InstrumentPort other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, InstrumentPort other):
         return _c_api.InstrumentPort_not_equal(self.handle, other.handle if other is not None else <_c_api.InstrumentPortHandle>0)
 
     def __ne__(self, InstrumentPort other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InstrumentPort_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def default_name(self, ):
+    def default_name(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InstrumentPort_default_name(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def psuedo_name(self, ):
+    def psuedo_name(self):
         cdef _c_api.ConnectionHandle h_ret = _c_api.InstrumentPort_psuedo_name(self.handle)
-        if h_ret == <_c_api.ConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ConnectionHandle>0: return None
         return _connection_from_capi(h_ret, owned=True)
 
-    def instrument_type(self, ):
+    def instrument_type(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InstrumentPort_instrument_type(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def units(self, ):
+    def units(self):
         cdef _c_api.SymbolUnitHandle h_ret = _c_api.InstrumentPort_units(self.handle)
-        if h_ret == <_c_api.SymbolUnitHandle>0:
-            return None
+        if h_ret == <_c_api.SymbolUnitHandle>0: return None
         return _symbol_unit_from_capi(h_ret, owned=True)
 
-    def description(self, ):
+    def description(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InstrumentPort_description(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def instrument_facing_name(self, ):
+    def instrument_facing_name(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.InstrumentPort_instrument_facing_name(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def is_knob(self, ):
+    def is_knob(self):
         return _c_api.InstrumentPort_is_knob(self.handle)
 
-    def is_meter(self, ):
+    def is_meter(self):
         return _c_api.InstrumentPort_is_meter(self.handle)
 
-    def is_port(self, ):
+    def is_port(self):
         return _c_api.InstrumentPort_is_port(self.handle)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef InstrumentPort _instrument_port_from_capi(_c_api.InstrumentPortHandle h, bint owned=True):
     if h == <_c_api.InstrumentPortHandle>0:

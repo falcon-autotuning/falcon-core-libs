@@ -21,7 +21,7 @@ class TestAcquisitionContext:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -29,7 +29,7 @@ class TestAcquisitionContext:
         try:
             self.obj.equal(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -44,7 +44,7 @@ class TestAcquisitionContext:
         try:
             self.obj.not_equal(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -59,7 +59,7 @@ class TestAcquisitionContext:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_connection(self):
         if self.obj is None:
@@ -67,7 +67,7 @@ class TestAcquisitionContext:
         try:
             self.obj.connection()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_instrument_type(self):
         if self.obj is None:
@@ -75,7 +75,7 @@ class TestAcquisitionContext:
         try:
             self.obj.instrument_type()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_units(self):
         if self.obj is None:
@@ -83,7 +83,7 @@ class TestAcquisitionContext:
         try:
             self.obj.units()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_division_unit(self):
         if self.obj is None:
@@ -91,7 +91,7 @@ class TestAcquisitionContext:
         try:
             self.obj.division_unit(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_division(self):
         if self.obj is None:
@@ -99,7 +99,7 @@ class TestAcquisitionContext:
         try:
             self.obj.division(AcquisitionContext.new(Connection.new_barrier('test'), 'oscilloscope', SymbolUnit.new_volt()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_division(self):
         if self.obj is None: pytest.skip()
@@ -114,7 +114,7 @@ class TestAcquisitionContext:
         try:
             self.obj.match_connection(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_match_instrument_type(self):
         if self.obj is None:
@@ -122,7 +122,7 @@ class TestAcquisitionContext:
         try:
             self.obj.match_instrument_type("test_string")
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

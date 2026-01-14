@@ -17,7 +17,7 @@ class TestIncreasingAlignment:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -25,7 +25,7 @@ class TestIncreasingAlignment:
         try:
             self.obj.equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -40,7 +40,7 @@ class TestIncreasingAlignment:
         try:
             self.obj.not_equal(None)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -55,7 +55,7 @@ class TestIncreasingAlignment:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_alignment(self):
         if self.obj is None:
@@ -63,7 +63,7 @@ class TestIncreasingAlignment:
         try:
             self.obj.alignment()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

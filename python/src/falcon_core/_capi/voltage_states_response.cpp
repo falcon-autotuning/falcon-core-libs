@@ -173,8 +173,8 @@
         ],
         "include_dirs": [
             "/usr/local/include/falcon-core-c-api",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi",
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src"
         ],
         "language": "c++",
         "libraries": [
@@ -188,7 +188,7 @@
             "/usr/local/lib"
         ],
         "sources": [
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi/voltage_states_response.pyx"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi/voltage_states_response.pyx"
         ]
     },
     "module_name": "falcon_core._capi.voltage_states_response"
@@ -1327,51 +1327,56 @@ static int __Pyx_init_co_variables(void) {
 #include <stddef.h>
 #include <stdint.h>
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
-#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
-#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include "falcon_core/generic/MapConnectionDouble_c_api.h"
@@ -1379,51 +1384,46 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
-#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/communications/messages/StandardRequest_c_api.h"
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
@@ -1486,10 +1486,10 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
-#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
+#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
 #include <string.h>
@@ -1961,7 +1961,7 @@ typedef void *__pyx_t_6_c_api_ChannelHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle             # <<<<<<<<<<<<<<
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
+ * ctypedef void* HDF5DataHandle
 */
 typedef void *__pyx_t_6_c_api_ChannelsHandle;
 
@@ -1969,32 +1969,32 @@ typedef void *__pyx_t_6_c_api_ChannelsHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle             # <<<<<<<<<<<<<<
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
 */
 typedef void *__pyx_t_6_c_api_GnameHandle;
 
 /* "_c_api.pxd":19
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
- * ctypedef void* HDF5DataHandle
- * ctypedef void* MeasurementRequestHandle
-*/
-typedef void *__pyx_t_6_c_api_TimeHandle;
-
-/* "_c_api.pxd":20
- * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
- * ctypedef void* MeasurementResponseHandle
 */
 typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 
-/* "_c_api.pxd":21
- * ctypedef void* TimeHandle
+/* "_c_api.pxd":20
+ * ctypedef void* GnameHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* MeasurementRequestHandle
+ * ctypedef void* MeasurementResponseHandle
+*/
+typedef void *__pyx_t_6_c_api_TimeHandle;
+
+/* "_c_api.pxd":21
+ * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle             # <<<<<<<<<<<<<<
  * ctypedef void* MeasurementResponseHandle
  * ctypedef void* StandardRequestHandle
@@ -2002,7 +2002,7 @@ typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 typedef void *__pyx_t_6_c_api_MeasurementRequestHandle;
 
 /* "_c_api.pxd":22
- * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
  * ctypedef void* MeasurementResponseHandle             # <<<<<<<<<<<<<<
  * ctypedef void* StandardRequestHandle
@@ -2915,7 +2915,7 @@ typedef void *__pyx_t_6_c_api_PortTransformsHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle             # <<<<<<<<<<<<<<
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
 */
 typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
 
@@ -2923,7 +2923,7 @@ typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
 */
 typedef void *__pyx_t_6_c_api_PointHandle;
@@ -2931,32 +2931,41 @@ typedef void *__pyx_t_6_c_api_PointHandle;
 /* "_c_api.pxd":125
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
  * ctypedef void* UnitSpaceHandle
- * ctypedef void* AxesDoubleHandle
+ * ctypedef void* VectorHandle
 */
-typedef void *__pyx_t_6_c_api_VectorHandle;
+typedef void *__pyx_t_6_c_api_QuantityHandle;
 
 /* "_c_api.pxd":126
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
- * ctypedef void* AxesIntHandle
 */
 typedef void *__pyx_t_6_c_api_UnitSpaceHandle;
 
 /* "_c_api.pxd":127
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AxesDoubleHandle
+ * ctypedef void* AxesIntHandle
+*/
+typedef void *__pyx_t_6_c_api_VectorHandle;
+
+/* "_c_api.pxd":128
+ * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
 */
 typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 
-/* "_c_api.pxd":128
- * ctypedef void* UnitSpaceHandle
+/* "_c_api.pxd":129
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesDiscretizerHandle
@@ -2964,7 +2973,7 @@ typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesIntHandle;
 
-/* "_c_api.pxd":129
+/* "_c_api.pxd":130
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle             # <<<<<<<<<<<<<<
@@ -2973,7 +2982,7 @@ typedef void *__pyx_t_6_c_api_AxesIntHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 
-/* "_c_api.pxd":130
+/* "_c_api.pxd":131
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle             # <<<<<<<<<<<<<<
@@ -2982,7 +2991,7 @@ typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 
-/* "_c_api.pxd":131
+/* "_c_api.pxd":132
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -2991,7 +3000,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 
-/* "_c_api.pxd":132
+/* "_c_api.pxd":133
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle             # <<<<<<<<<<<<<<
@@ -3000,7 +3009,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 
-/* "_c_api.pxd":133
+/* "_c_api.pxd":134
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle             # <<<<<<<<<<<<<<
@@ -3009,7 +3018,7 @@ typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 
-/* "_c_api.pxd":134
+/* "_c_api.pxd":135
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle             # <<<<<<<<<<<<<<
@@ -3018,7 +3027,7 @@ typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 
-/* "_c_api.pxd":135
+/* "_c_api.pxd":136
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle             # <<<<<<<<<<<<<<
@@ -3027,7 +3036,7 @@ typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 
-/* "_c_api.pxd":136
+/* "_c_api.pxd":137
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3036,7 +3045,7 @@ typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 
-/* "_c_api.pxd":137
+/* "_c_api.pxd":138
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3045,63 +3054,54 @@ typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArray1DHandle;
 
-/* "_c_api.pxd":138
+/* "_c_api.pxd":139
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
+ * ctypedef void* ControlArray1DHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArrayHandle;
 
-/* "_c_api.pxd":139
+/* "_c_api.pxd":140
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle             # <<<<<<<<<<<<<<
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
+ * ctypedef void* ControlArray1DHandle
+ * ctypedef void* ControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArray1DHandle;
 
-/* "_c_api.pxd":140
+/* "_c_api.pxd":141
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
- * ctypedef void* IncreasingAlignmentHandle
- * ctypedef void* ControlArray1DHandle
-*/
-typedef void *__pyx_t_6_c_api_QuantityHandle;
-
-/* "_c_api.pxd":141
- * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ControlArray1DHandle
- * ctypedef void* ControlArrayHandle
-*/
-typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
-
-/* "_c_api.pxd":142
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* ControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* ControlArrayHandle
- * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* IncreasingAlignmentHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArray1DHandle;
 
-/* "_c_api.pxd":143
- * ctypedef void* IncreasingAlignmentHandle
+/* "_c_api.pxd":142
+ * ctypedef void* AxesLabelledMeasuredArray1DHandle
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
- * ctypedef void* LabelledControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 
-/* "_c_api.pxd":144
+/* "_c_api.pxd":143
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* LabelledControlArrayHandle
+*/
+typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
+
+/* "_c_api.pxd":144
+ * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledControlArrayHandle
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3109,7 +3109,7 @@ typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 typedef void *__pyx_t_6_c_api_LabelledControlArray1DHandle;
 
 /* "_c_api.pxd":145
- * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
  * ctypedef void* LabelledControlArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3230,7 +3230,7 @@ typedef void *__pyx_t_6_c_api_DomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
+ * ctypedef void* AdjacencyHandle
 */
 typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
 
@@ -3238,131 +3238,131 @@ typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AdjacencyHandle
  * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
 */
 typedef void *__pyx_t_6_c_api_LoaderHandle;
 
 /* "_c_api.pxd":160
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
 */
-typedef void *__pyx_t_6_c_api_ConfigHandle;
+typedef void *__pyx_t_6_c_api_AdjacencyHandle;
 
 /* "_c_api.pxd":161
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GroupHandle
  * ctypedef void* AdjacencyHandle
+ * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GroupHandle
+ * ctypedef void* VoltageConstraintsHandle
 */
-typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
+typedef void *__pyx_t_6_c_api_ConfigHandle;
 
 /* "_c_api.pxd":162
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
- * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AdjacencyHandle
- * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* ConfigHandle
+ * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
 */
 typedef void *__pyx_t_6_c_api_GroupHandle;
 
 /* "_c_api.pxd":163
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GateGeometryArray1DHandle
- * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+ * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
 */
-typedef void *__pyx_t_6_c_api_AdjacencyHandle;
+typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
 
 /* "_c_api.pxd":164
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* GateGeometryArray1DHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
+
+/* "_c_api.pxd":165
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
+
+/* "_c_api.pxd":166
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
 */
 typedef void *__pyx_t_6_c_api_GateGeometryArray1DHandle;
 
-/* "_c_api.pxd":165
- * ctypedef void* AdjacencyHandle
+/* "_c_api.pxd":167
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
 */
 typedef void *__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":166
+/* "_c_api.pxd":168
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
+ * ctypedef void* ConnectionsHandle
 */
 typedef void *__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":167
+/* "_c_api.pxd":169
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGateWithNeighborsHandle
- * ctypedef void* ConnectionHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
-
-/* "_c_api.pxd":168
- * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
-
-/* "_c_api.pxd":169
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
  * ctypedef void* ConnectionHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConnectionsHandle
  * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionHandle;
 
 /* "_c_api.pxd":170
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* RightReservoirWithImplantedOhmicHandle
  * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedanceHandle
- * ctypedef void* ConnectionsHandle
-*/
-typedef void *__pyx_t_6_c_api_GateRelationsHandle;
-
-/* "_c_api.pxd":171
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionsHandle
- * ctypedef void* ImpedancesHandle
-*/
-typedef void *__pyx_t_6_c_api_ImpedanceHandle;
-
-/* "_c_api.pxd":172
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
  * ctypedef void* ConnectionsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedancesHandle
- * ctypedef void* SymbolUnitHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 
-/* "_c_api.pxd":173
- * ctypedef void* ImpedanceHandle
+/* "_c_api.pxd":171
+ * ctypedef void* ConnectionHandle
  * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedanceHandle
+ * ctypedef void* ImpedancesHandle
+*/
+typedef void *__pyx_t_6_c_api_GateRelationsHandle;
+
+/* "_c_api.pxd":172
+ * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedancesHandle
+ * ctypedef void* SymbolUnitHandle
+*/
+typedef void *__pyx_t_6_c_api_ImpedanceHandle;
+
+/* "_c_api.pxd":173
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle             # <<<<<<<<<<<<<<
  * ctypedef void* SymbolUnitHandle
  * 
@@ -3370,7 +3370,7 @@ typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 typedef void *__pyx_t_6_c_api_ImpedancesHandle;
 
 /* "_c_api.pxd":174
- * ctypedef void* ConnectionsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle
  * ctypedef void* SymbolUnitHandle             # <<<<<<<<<<<<<<
  * 
@@ -3867,6 +3867,30 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
 #endif
 
+/* PyObjectFormatSimple.proto */
+#if CYTHON_COMPILING_IN_PYPY
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#elif CYTHON_USE_TYPE_SLOTS
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        likely(PyLong_CheckExact(s)) ? PyLong_Type.tp_repr(s) :\
+        likely(PyFloat_CheckExact(s)) ? PyFloat_Type.tp_repr(s) :\
+        PyObject_Format(s, f))
+#else
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#endif
+
+/* PyObjectCallNoArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+
+/* JoinPyUnicode.export */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char);
+
 /* PyTypeError_Check.proto */
 #define __Pyx_PyExc_TypeError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_TypeError)
 
@@ -3890,9 +3914,6 @@ static int __Pyx__SetItemOnTypeDict(PyTypeObject *tp, PyObject *k, PyObject *v);
 
 /* FixUpExtensionType.proto */
 static CYTHON_INLINE int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type);
-
-/* PyObjectCallNoArg.proto (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 
 /* PyObjectGetMethod.proto (used by PyObjectCallMethod0) */
 #if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
@@ -4348,8 +4369,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
 static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_18to_json(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_20message(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_22states(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_24__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_26__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_24__repr__(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_26__str__(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -4379,7 +4402,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[10];
-  PyObject *__pyx_string_tab[81];
+  PyObject *__pyx_string_tab[84];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -4424,83 +4447,86 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Failed_to_create_VoltageStatesRe __pyx_string_tab[1]
 #define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[2]
 #define __pyx_kp_u__2 __pyx_string_tab[3]
-#define __pyx_kp_u_add_note __pyx_string_tab[4]
-#define __pyx_kp_u_disable __pyx_string_tab[5]
-#define __pyx_kp_u_enable __pyx_string_tab[6]
-#define __pyx_kp_u_gc __pyx_string_tab[7]
-#define __pyx_kp_u_isenabled __pyx_string_tab[8]
-#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[9]
-#define __pyx_kp_u_src_falcon_core__capi_voltage_st __pyx_string_tab[10]
-#define __pyx_kp_u_stringsource __pyx_string_tab[11]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[12]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[13]
-#define __pyx_n_u_VoltageStatesResponse __pyx_string_tab[14]
-#define __pyx_n_u_VoltageStatesResponse___reduce_c __pyx_string_tab[15]
-#define __pyx_n_u_VoltageStatesResponse___setstate __pyx_string_tab[16]
-#define __pyx_n_u_VoltageStatesResponse_copy __pyx_string_tab[17]
-#define __pyx_n_u_VoltageStatesResponse_equal __pyx_string_tab[18]
-#define __pyx_n_u_VoltageStatesResponse_from_json __pyx_string_tab[19]
-#define __pyx_n_u_VoltageStatesResponse_message __pyx_string_tab[20]
-#define __pyx_n_u_VoltageStatesResponse_new __pyx_string_tab[21]
-#define __pyx_n_u_VoltageStatesResponse_not_equal __pyx_string_tab[22]
-#define __pyx_n_u_VoltageStatesResponse_states __pyx_string_tab[23]
-#define __pyx_n_u_VoltageStatesResponse_to_json __pyx_string_tab[24]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[25]
-#define __pyx_n_u_b_json __pyx_string_tab[26]
-#define __pyx_n_u_b_message __pyx_string_tab[27]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[28]
-#define __pyx_n_u_cls __pyx_string_tab[29]
-#define __pyx_n_u_copy __pyx_string_tab[30]
-#define __pyx_n_u_dict __pyx_string_tab[31]
-#define __pyx_n_u_equal __pyx_string_tab[32]
-#define __pyx_n_u_falcon_core__capi_voltage_states __pyx_string_tab[33]
-#define __pyx_n_u_from_json __pyx_string_tab[34]
-#define __pyx_n_u_func __pyx_string_tab[35]
-#define __pyx_n_u_getstate __pyx_string_tab[36]
-#define __pyx_n_u_h __pyx_string_tab[37]
-#define __pyx_n_u_h_ret __pyx_string_tab[38]
-#define __pyx_n_u_handle __pyx_string_tab[39]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[40]
-#define __pyx_n_u_items __pyx_string_tab[41]
-#define __pyx_n_u_json __pyx_string_tab[42]
-#define __pyx_n_u_main __pyx_string_tab[43]
-#define __pyx_n_u_message __pyx_string_tab[44]
-#define __pyx_n_u_module __pyx_string_tab[45]
-#define __pyx_n_u_name __pyx_string_tab[46]
-#define __pyx_n_u_new __pyx_string_tab[47]
-#define __pyx_n_u_not_equal __pyx_string_tab[48]
-#define __pyx_n_u_obj __pyx_string_tab[49]
-#define __pyx_n_u_other __pyx_string_tab[50]
-#define __pyx_n_u_pop __pyx_string_tab[51]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[52]
-#define __pyx_n_u_pyx_state __pyx_string_tab[53]
-#define __pyx_n_u_qualname __pyx_string_tab[54]
-#define __pyx_n_u_reduce __pyx_string_tab[55]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[56]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[57]
-#define __pyx_n_u_s_json __pyx_string_tab[58]
-#define __pyx_n_u_s_message __pyx_string_tab[59]
-#define __pyx_n_u_s_ret __pyx_string_tab[60]
-#define __pyx_n_u_self __pyx_string_tab[61]
-#define __pyx_n_u_set_name __pyx_string_tab[62]
-#define __pyx_n_u_setdefault __pyx_string_tab[63]
-#define __pyx_n_u_setstate __pyx_string_tab[64]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[65]
-#define __pyx_n_u_states __pyx_string_tab[66]
-#define __pyx_n_u_test __pyx_string_tab[67]
-#define __pyx_n_u_to_json __pyx_string_tab[68]
-#define __pyx_n_u_values __pyx_string_tab[69]
-#define __pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ __pyx_string_tab[70]
-#define __pyx_kp_b_iso88591_A_1_iuKvU_f_g_K_K_L __pyx_string_tab[71]
-#define __pyx_kp_b_iso88591_A_4AT_6_1_AU_XWAQ __pyx_string_tab[72]
-#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P __pyx_string_tab[73]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_Qa_2S_4A_Qa_81A_Q __pyx_string_tab[74]
-#define __pyx_kp_b_iso88591_A_YYZZ___6_6a_1_q_Q __pyx_string_tab[75]
-#define __pyx_kp_b_iso88591_A_YYZZ___6_8_1_1_cImmqqr __pyx_string_tab[76]
-#define __pyx_kp_b_iso88591_A_wgQa_3_SPQQR_31Kv_PWW_h_i_K_K __pyx_string_tab[77]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[78]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[79]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[80]
+#define __pyx_kp_u__3 __pyx_string_tab[4]
+#define __pyx_kp_u__4 __pyx_string_tab[5]
+#define __pyx_kp_u_add_note __pyx_string_tab[6]
+#define __pyx_kp_u_disable __pyx_string_tab[7]
+#define __pyx_kp_u_enable __pyx_string_tab[8]
+#define __pyx_kp_u_gc __pyx_string_tab[9]
+#define __pyx_kp_u_isenabled __pyx_string_tab[10]
+#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[11]
+#define __pyx_kp_u_src_falcon_core__capi_voltage_st __pyx_string_tab[12]
+#define __pyx_kp_u_stringsource __pyx_string_tab[13]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[14]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[15]
+#define __pyx_n_u_VoltageStatesResponse __pyx_string_tab[16]
+#define __pyx_n_u_VoltageStatesResponse___reduce_c __pyx_string_tab[17]
+#define __pyx_n_u_VoltageStatesResponse___setstate __pyx_string_tab[18]
+#define __pyx_n_u_VoltageStatesResponse_copy __pyx_string_tab[19]
+#define __pyx_n_u_VoltageStatesResponse_equal __pyx_string_tab[20]
+#define __pyx_n_u_VoltageStatesResponse_from_json __pyx_string_tab[21]
+#define __pyx_n_u_VoltageStatesResponse_message __pyx_string_tab[22]
+#define __pyx_n_u_VoltageStatesResponse_new __pyx_string_tab[23]
+#define __pyx_n_u_VoltageStatesResponse_not_equal __pyx_string_tab[24]
+#define __pyx_n_u_VoltageStatesResponse_states __pyx_string_tab[25]
+#define __pyx_n_u_VoltageStatesResponse_to_json __pyx_string_tab[26]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[27]
+#define __pyx_n_u_b_json __pyx_string_tab[28]
+#define __pyx_n_u_b_message __pyx_string_tab[29]
+#define __pyx_n_u_class __pyx_string_tab[30]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[31]
+#define __pyx_n_u_cls __pyx_string_tab[32]
+#define __pyx_n_u_copy __pyx_string_tab[33]
+#define __pyx_n_u_dict __pyx_string_tab[34]
+#define __pyx_n_u_equal __pyx_string_tab[35]
+#define __pyx_n_u_falcon_core__capi_voltage_states __pyx_string_tab[36]
+#define __pyx_n_u_from_json __pyx_string_tab[37]
+#define __pyx_n_u_func __pyx_string_tab[38]
+#define __pyx_n_u_getstate __pyx_string_tab[39]
+#define __pyx_n_u_h __pyx_string_tab[40]
+#define __pyx_n_u_h_ret __pyx_string_tab[41]
+#define __pyx_n_u_handle __pyx_string_tab[42]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[43]
+#define __pyx_n_u_items __pyx_string_tab[44]
+#define __pyx_n_u_json __pyx_string_tab[45]
+#define __pyx_n_u_main __pyx_string_tab[46]
+#define __pyx_n_u_message __pyx_string_tab[47]
+#define __pyx_n_u_module __pyx_string_tab[48]
+#define __pyx_n_u_name __pyx_string_tab[49]
+#define __pyx_n_u_new __pyx_string_tab[50]
+#define __pyx_n_u_not_equal __pyx_string_tab[51]
+#define __pyx_n_u_obj __pyx_string_tab[52]
+#define __pyx_n_u_other __pyx_string_tab[53]
+#define __pyx_n_u_pop __pyx_string_tab[54]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[55]
+#define __pyx_n_u_pyx_state __pyx_string_tab[56]
+#define __pyx_n_u_qualname __pyx_string_tab[57]
+#define __pyx_n_u_reduce __pyx_string_tab[58]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[59]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[60]
+#define __pyx_n_u_s_json __pyx_string_tab[61]
+#define __pyx_n_u_s_message __pyx_string_tab[62]
+#define __pyx_n_u_s_ret __pyx_string_tab[63]
+#define __pyx_n_u_self __pyx_string_tab[64]
+#define __pyx_n_u_set_name __pyx_string_tab[65]
+#define __pyx_n_u_setdefault __pyx_string_tab[66]
+#define __pyx_n_u_setstate __pyx_string_tab[67]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[68]
+#define __pyx_n_u_states __pyx_string_tab[69]
+#define __pyx_n_u_test __pyx_string_tab[70]
+#define __pyx_n_u_to_json __pyx_string_tab[71]
+#define __pyx_n_u_values __pyx_string_tab[72]
+#define __pyx_kp_b_iso88591_A_1D_6_G1_W_Qe6_hgQa_aq __pyx_string_tab[73]
+#define __pyx_kp_b_iso88591_A_1_iuKvU_f_g_K_K_L __pyx_string_tab[74]
+#define __pyx_kp_b_iso88591_A_4AT_6_G1_W_Qe6_hgQa_aq __pyx_string_tab[75]
+#define __pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P __pyx_string_tab[76]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_Qa_2S_4A_Qa_81A_Q __pyx_string_tab[77]
+#define __pyx_kp_b_iso88591_A_YYZZ___6_6c_q_Q __pyx_string_tab[78]
+#define __pyx_kp_b_iso88591_A_YYZZ___6_8_7_1_cImmqqr __pyx_string_tab[79]
+#define __pyx_kp_b_iso88591_A_wgQa_3_SPQQR_31Kv_PWW_h_i_K_K __pyx_string_tab[80]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[81]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[82]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[83]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -4520,7 +4546,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse);
   Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse);
   for (int i=0; i<10; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<81; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<84; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -4548,7 +4574,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse);
   Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse);
   for (int i=0; i<10; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<81; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<84; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -5280,7 +5306,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def copy(self, ):
+ *     def copy(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -5312,9 +5338,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
 /* "falcon_core/_capi/voltage_states_response.pyx":51
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:
+ *         if h_ret == <_c_api.VoltageStatesResponseHandle>0: return None
 */
 
 /* Python wrapper */
@@ -5373,46 +5399,30 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
 
   /* "falcon_core/_capi/voltage_states_response.pyx":52
  * 
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:
- *             return None
+ *         if h_ret == <_c_api.VoltageStatesResponseHandle>0: return None
+ *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
 */
   __pyx_v_h_ret = VoltageStatesResponse_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/voltage_states_response.pyx":53
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_VoltageStatesResponseHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":54
- *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.VoltageStatesResponseHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_VoltageStatesResponseHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":53
- *     def copy(self, ):
- *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":55
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:
- *             return None
+  /* "falcon_core/_capi/voltage_states_response.pyx":54
+ *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
+ *         if h_ret == <_c_api.VoltageStatesResponseHandle>0: return None
  *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def equal(self, VoltageStatesResponse other):
@@ -5420,7 +5430,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_VoltageStatesResponseHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23voltage_states_response__voltage_states_response_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23voltage_states_response__voltage_states_response_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5429,9 +5439,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   /* "falcon_core/_capi/voltage_states_response.pyx":51
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:
+ *         if h_ret == <_c_api.VoltageStatesResponseHandle>0: return None
 */
 
   /* function exit code */
@@ -5445,7 +5455,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":57
+/* "falcon_core/_capi/voltage_states_response.pyx":56
  *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
  * 
  *     def equal(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
@@ -5492,32 +5502,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 57, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 56, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 56, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 56, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 57, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 56, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 56, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 56, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5528,7 +5538,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 56, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_10equal(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -5559,7 +5569,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":58
+  /* "falcon_core/_capi/voltage_states_response.pyx":57
  * 
  *     def equal(self, VoltageStatesResponse other):
  *         return _c_api.VoltageStatesResponse_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)             # <<<<<<<<<<<<<<
@@ -5573,13 +5583,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_VoltageStatesResponseHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(VoltageStatesResponse_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(VoltageStatesResponse_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":57
+  /* "falcon_core/_capi/voltage_states_response.pyx":56
  *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
  * 
  *     def equal(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
@@ -5598,12 +5608,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":60
+/* "falcon_core/_capi/voltage_states_response.pyx":59
  *         return _c_api.VoltageStatesResponse_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
  * 
  *     def __eq__(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
 /* Python wrapper */
@@ -5617,7 +5627,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21Volta
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 59, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_12__eq__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_other));
 
   /* function exit code */
@@ -5644,41 +5654,25 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":61
+  /* "falcon_core/_capi/voltage_states_response.pyx":60
  * 
  *     def __eq__(self, VoltageStatesResponse other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":62
- *     def __eq__(self, VoltageStatesResponse other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":61
- * 
- *     def __eq__(self, VoltageStatesResponse other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":63
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/voltage_states_response.pyx":61
+ *     def __eq__(self, VoltageStatesResponse other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def not_equal(self, VoltageStatesResponse other):
@@ -5691,19 +5685,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":60
+  /* "falcon_core/_capi/voltage_states_response.pyx":59
  *         return _c_api.VoltageStatesResponse_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
  * 
  *     def __eq__(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
   /* function exit code */
@@ -5718,7 +5712,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":65
+/* "falcon_core/_capi/voltage_states_response.pyx":63
  *         return self.equal(other)
  * 
  *     def not_equal(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
@@ -5765,32 +5759,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 65, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 65, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 65, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 63, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 65, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5801,7 +5795,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 65, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 63, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_14not_equal(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -5832,7 +5826,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":66
+  /* "falcon_core/_capi/voltage_states_response.pyx":64
  * 
  *     def not_equal(self, VoltageStatesResponse other):
  *         return _c_api.VoltageStatesResponse_not_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)             # <<<<<<<<<<<<<<
@@ -5846,13 +5840,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_VoltageStatesResponseHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(VoltageStatesResponse_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(VoltageStatesResponse_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":65
+  /* "falcon_core/_capi/voltage_states_response.pyx":63
  *         return self.equal(other)
  * 
  *     def not_equal(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
@@ -5871,12 +5865,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":68
+/* "falcon_core/_capi/voltage_states_response.pyx":66
  *         return _c_api.VoltageStatesResponse_not_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
  * 
  *     def __ne__(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
 /* Python wrapper */
@@ -5890,7 +5884,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21Volta
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, 1, "other", 0))) __PYX_ERR(0, 66, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_16__ne__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_other));
 
   /* function exit code */
@@ -5917,44 +5911,28 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":69
+  /* "falcon_core/_capi/voltage_states_response.pyx":67
  * 
  *     def __ne__(self, VoltageStatesResponse other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.not_equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":70
- *     def __ne__(self, VoltageStatesResponse other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":69
- * 
- *     def __ne__(self, VoltageStatesResponse other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.not_equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":71
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/voltage_states_response.pyx":68
+ *     def __ne__(self, VoltageStatesResponse other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
- *     def to_json(self, ):
+ *     def to_json(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = ((PyObject *)__pyx_v_self);
@@ -5964,19 +5942,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":68
+  /* "falcon_core/_capi/voltage_states_response.pyx":66
  *         return _c_api.VoltageStatesResponse_not_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
  * 
  *     def __ne__(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
   /* function exit code */
@@ -5991,10 +5969,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":73
+/* "falcon_core/_capi/voltage_states_response.pyx":70
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
 */
@@ -6062,70 +6040,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":75
- *     def to_json(self, ):
+  /* "falcon_core/_capi/voltage_states_response.pyx":72
+ *     def to_json(self):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
 */
   __pyx_v_s_ret = VoltageStatesResponse_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":76
+  /* "falcon_core/_capi/voltage_states_response.pyx":73
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
+ *         if s_ret == <_c_api.StringHandle>0: return ""             # <<<<<<<<<<<<<<
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)
 */
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":77
- *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
     __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":76
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":78
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
+  /* "falcon_core/_capi/voltage_states_response.pyx":74
+ *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally: _c_api.String_destroy(s_ret)
+ * 
 */
   /*try:*/ {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":79
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 79, __pyx_L5_error)
+      __PYX_ERR(0, 74, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -6133,12 +6087,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":81
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+  /* "falcon_core/_capi/voltage_states_response.pyx":75
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
- *     def message(self, ):
+ *     def message(self):
 */
   /*finally:*/ {
     __pyx_L5_error:;
@@ -6182,10 +6136,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
     }
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":73
+  /* "falcon_core/_capi/voltage_states_response.pyx":70
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
 */
@@ -6202,10 +6156,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":83
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/voltage_states_response.pyx":77
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def message(self, ):             # <<<<<<<<<<<<<<
+ *     def message(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
 */
@@ -6273,70 +6227,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("message", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":85
- *     def message(self, ):
+  /* "falcon_core/_capi/voltage_states_response.pyx":79
+ *     def message(self):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
 */
   __pyx_v_s_ret = VoltageStatesResponse_message(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":86
+  /* "falcon_core/_capi/voltage_states_response.pyx":80
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
+ *         if s_ret == <_c_api.StringHandle>0: return ""             # <<<<<<<<<<<<<<
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)
 */
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":87
- *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
     __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":86
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":88
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
+  /* "falcon_core/_capi/voltage_states_response.pyx":81
+ *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally: _c_api.String_destroy(s_ret)
+ * 
 */
   /*try:*/ {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":89
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 81, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 89, __pyx_L5_error)
+      __PYX_ERR(0, 81, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 89, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 81, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -6344,12 +6274,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":91
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+  /* "falcon_core/_capi/voltage_states_response.pyx":82
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
- *     def states(self, ):
+ *     def states(self):
 */
   /*finally:*/ {
     __pyx_L5_error:;
@@ -6393,10 +6323,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
     }
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":83
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/voltage_states_response.pyx":77
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def message(self, ):             # <<<<<<<<<<<<<<
+ *     def message(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
 */
@@ -6413,12 +6343,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":93
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/voltage_states_response.pyx":84
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def states(self, ):             # <<<<<<<<<<<<<<
+ *     def states(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
+ *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6475,73 +6405,226 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("states", 0);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":94
+  /* "falcon_core/_capi/voltage_states_response.pyx":85
  * 
- *     def states(self, ):
+ *     def states(self):
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
- *             return None
+ *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = VoltageStatesResponse_states(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":95
- *     def states(self, ):
+  /* "falcon_core/_capi/voltage_states_response.pyx":86
+ *     def states(self):
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _device_voltage_states_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DeviceVoltageStatesHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":96
- *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _device_voltage_states_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/voltage_states_response.pyx":95
- *     def states(self, ):
- *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _device_voltage_states_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":97
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
- *             return None
+  /* "falcon_core/_capi/voltage_states_response.pyx":87
+ *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
+ *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
  *         return _device_voltage_states_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
+ *     def __repr__(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":93
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/voltage_states_response.pyx":84
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def states(self, ):             # <<<<<<<<<<<<<<
+ *     def states(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
+ *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("falcon_core._capi.voltage_states_response.VoltageStatesResponse.states", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/voltage_states_response.pyx":89
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__repr__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_24__repr__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_24__repr__(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4[4];
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__repr__", 0);
+
+  /* "falcon_core/_capi/voltage_states_response.pyx":90
+ * 
+ *     def __repr__(self):
+ *         return f"{self.__class__.__name__}({self.to_json()})"             # <<<<<<<<<<<<<<
+ * 
+ *     def __str__(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_to_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_4[0] = __pyx_t_1;
+  __pyx_t_4[1] = __pyx_mstate_global->__pyx_kp_u__2;
+  __pyx_t_4[2] = __pyx_t_2;
+  __pyx_t_4[3] = __pyx_mstate_global->__pyx_kp_u__3;
+  __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/voltage_states_response.pyx":89
+ *         return _device_voltage_states_from_capi(h_ret, owned=True)
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.voltage_states_response.VoltageStatesResponse.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/voltage_states_response.pyx":92
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__str__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__str__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__str__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_26__str__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_26__str__(struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__str__", 0);
+
+  /* "falcon_core/_capi/voltage_states_response.pyx":93
+ * 
+ *     def __str__(self):
+ *         return self.to_json()             # <<<<<<<<<<<<<<
+ * 
+ * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_v_self);
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_to_json, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 93, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/voltage_states_response.pyx":92
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.voltage_states_response.VoltageStatesResponse.__str__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -6556,15 +6639,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_29__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_29__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_29__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_29__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6590,14 +6673,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_24__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_28__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_24__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_28__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -6637,15 +6720,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_31__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_31__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_31__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_31__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6711,7 +6794,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_26__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_30__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -6721,7 +6804,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_26__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_30__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -6753,8 +6836,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_23voltage_states_response_21Volta
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/voltage_states_response.pyx":99
- *         return _device_voltage_states_from_capi(h_ret, owned=True)
+/* "falcon_core/_capi/voltage_states_response.pyx":95
+ *         return self.to_json()
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.VoltageStatesResponseHandle>0:
@@ -6778,7 +6861,7 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
     }
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":100
+  /* "falcon_core/_capi/voltage_states_response.pyx":96
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
  *     if h == <_c_api.VoltageStatesResponseHandle>0:             # <<<<<<<<<<<<<<
@@ -6788,7 +6871,7 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_VoltageStatesResponseHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/voltage_states_response.pyx":101
+    /* "falcon_core/_capi/voltage_states_response.pyx":97
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
  *     if h == <_c_api.VoltageStatesResponseHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -6799,7 +6882,7 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/voltage_states_response.pyx":100
+    /* "falcon_core/_capi/voltage_states_response.pyx":96
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):
  *     if h == <_c_api.VoltageStatesResponseHandle>0:             # <<<<<<<<<<<<<<
@@ -6808,19 +6891,19 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
 */
   }
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":102
+  /* "falcon_core/_capi/voltage_states_response.pyx":98
  *     if h == <_c_api.VoltageStatesResponseHandle>0:
  *         return None
  *     cdef VoltageStatesResponse obj = VoltageStatesResponse.__new__(VoltageStatesResponse)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":103
+  /* "falcon_core/_capi/voltage_states_response.pyx":99
  *         return None
  *     cdef VoltageStatesResponse obj = VoltageStatesResponse.__new__(VoltageStatesResponse)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -6829,7 +6912,7 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":104
+  /* "falcon_core/_capi/voltage_states_response.pyx":100
  *     cdef VoltageStatesResponse obj = VoltageStatesResponse.__new__(VoltageStatesResponse)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -6837,7 +6920,7 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":105
+  /* "falcon_core/_capi/voltage_states_response.pyx":101
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -6847,8 +6930,8 @@ static struct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageSt
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":99
- *         return _device_voltage_states_from_capi(h_ret, owned=True)
+  /* "falcon_core/_capi/voltage_states_response.pyx":95
+ *         return self.to_json()
  * 
  * cdef VoltageStatesResponse _voltage_states_response_from_capi(_c_api.VoltageStatesResponseHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.VoltageStatesResponseHandle>0:
@@ -6932,13 +7015,15 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_23voltage_states_response_
   {"to_json", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_19to_json, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"message", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_21message, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"states", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_23states, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_29__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_31__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse},
+  {Py_tp_repr, (void *)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__repr__},
+  {Py_tp_str, (void *)__pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__str__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse},
@@ -6963,13 +7048,13 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_23voltage_states_response_Vo
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   0, /*tp_as_async*/
-  0, /*tp_repr*/
+  __pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
-  0, /*tp_str*/
+  __pyx_pw_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__str__, /*tp_str*/
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
@@ -7536,9 +7621,9 @@ __Pyx_RefNannySetupContext("PyInit_voltage_states_response", 0);
   /* "falcon_core/_capi/voltage_states_response.pyx":51
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.VoltageStatesResponseHandle h_ret = _c_api.VoltageStatesResponse_copy(self.handle)
- *         if h_ret == <_c_api.VoltageStatesResponseHandle>0:
+ *         if h_ret == <_c_api.VoltageStatesResponseHandle>0: return None
 */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_9copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -7548,79 +7633,79 @@ __Pyx_RefNannySetupContext("PyInit_voltage_states_response", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_2) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":57
+  /* "falcon_core/_capi/voltage_states_response.pyx":56
  *         return _voltage_states_response_from_capi(h_ret, owned=(h_ret != <_c_api.VoltageStatesResponseHandle>self.handle))
  * 
  *     def equal(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
  *         return _c_api.VoltageStatesResponse_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":65
+  /* "falcon_core/_capi/voltage_states_response.pyx":63
  *         return self.equal(other)
  * 
  *     def not_equal(self, VoltageStatesResponse other):             # <<<<<<<<<<<<<<
  *         return _c_api.VoltageStatesResponse_not_equal(self.handle, other.handle if other is not None else <_c_api.VoltageStatesResponseHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":73
+  /* "falcon_core/_capi/voltage_states_response.pyx":70
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_to_json_string(self.handle)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":83
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/voltage_states_response.pyx":77
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def message(self, ):             # <<<<<<<<<<<<<<
+ *     def message(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.VoltageStatesResponse_message(self.handle)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_21message, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_message, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_21message, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_message, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_message, __pyx_t_2) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_message, __pyx_t_2) < (0)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/voltage_states_response.pyx":93
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/voltage_states_response.pyx":84
+ *         finally: _c_api.String_destroy(s_ret)
  * 
- *     def states(self, ):             # <<<<<<<<<<<<<<
+ *     def states(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DeviceVoltageStatesHandle h_ret = _c_api.VoltageStatesResponse_states(self.handle)
- *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0:
+ *         if h_ret == <_c_api.DeviceVoltageStatesHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_23states, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_states, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_23states, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse_states, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_states, __pyx_t_2) < (0)) __PYX_ERR(0, 93, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse, __pyx_mstate_global->__pyx_n_u_states, __pyx_t_2) < (0)) __PYX_ERR(0, 84, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
@@ -7628,7 +7713,7 @@ __Pyx_RefNannySetupContext("PyInit_voltage_states_response", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_25__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse___reduce_c, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_29__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse___reduce_c, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -7642,7 +7727,7 @@ __Pyx_RefNannySetupContext("PyInit_voltage_states_response", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_27__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse___setstate, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_23voltage_states_response_21VoltageStatesResponse_31__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_VoltageStatesResponse___setstate, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_voltage_states, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -7697,7 +7782,7 @@ __Pyx_RefNannySetupContext("PyInit_voltage_states_response", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 60, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
@@ -7724,42 +7809,42 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{38},{179},{1},{8},{7},{6},{2},{9},{50},{49},{14},{14},{20},{21},{39},{41},{26},{27},{31},{29},{25},{31},{28},{29},{18},{6},{9},{18},{3},{4},{8},{5},{41},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{7},{10},{8},{3},{9},{3},{5},{3},{12},{11},{12},{10},{17},{13},{6},{9},{5},{4},{12},{10},{12},{19},{6},{8},{7},{6},{63},{40},{63},{41},{102},{46},{57},{131},{9},{293},{281}};
-    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1017 bytes) */
-const char* const cstring = "(\265/\375`\324\007}\037\00062\2509\020\227:\000\200\200@\0005 \240\300\n\254@\020\001\010\241F\250@u\310\226\262\311\026i\017B\322\322J\322\341\t\321\311\226\360()/\245\002z!\263\036\352\246\030\201\260Nb\212\000\212\000\246\000\266\312\356\377\007\243\331z\257\361u\317\243/\253\317\037\245y\233\325\365C\353M\r\331\265~\261\325T\343{\251\306\324\237\347\375\231\316\024\374;E|\2331\233\271\312\017\336\364\274V\177V\204\315\030\236\371s\246_\205\211yf]\037\351\303\351]:KPJ@\\3\256y\303\327\325\206:\317\333\367\232\206\017\263\337{3\333y\361L\337b\246\2463=_\343\234\317\027\203\371w\262\346y\031\325\037\376\231\257\351\207ub=\275\377,\245\t3\227y\275b\314}\265\362\334\363W\223*\205}\245\241\366k\375\253\016\203\345\277V\2138\304\266\336[\246X\273\306J\177s~\332\305\031\311i8\214}T\254\375\r\304U\177v\257\253\330\357\350\245\317q]\255\314\322\315\345\356\275\276O\373\017\244\331\270|\rE\234e\227e\351\006\256B\317n\013\261 \255\036\362!\256~q\375h,\244\206\331]\333k\253\373\374\250\265\331P\203\\|Eo\272\177\025\275\017\335\247\376D\032\303\327\313\001\271\332\223\301\223\214S\205+@G'\225\204t\264\217\204\266\020\317N\320\231\224\034\2447\276F\223\007\262gl\215%\0018\0017\0017)\031\000@T\254h\027\371l\233\356\246\024I;b\214\017#kbO\250v-\246\213\247\207\247\013\010\250\227\256\245\003*\203H\0022c\364\311\265r\037\021\373@\265c\341\"\024v\0179\016\211\035\201;iJP\355R\245\014\311\"W(6\205\n\252\305\224_\374\250\315]\273\307\276\317:g\367\245ww\0071\030\376Lc$\030\246\321\373\237\350a\277\226\3222\355\265\365l\375?o\026.\363\325\332\336c\001p|\364b\3331=\313B\352\032\234\0375\026\244^\375\304\365F\307$\0311q\026\313\247\256b\250\363\013\347\321\2040\260K\331\031\320\006rm\242\322F\336\214\254\221d\347\265_\256\315\243\363(\037J\227\221$\367\312\311\236\224\234,\302\332\256\3216\315f\327\262\240\\\245H\024\227\355\362\"\027\306Z.\244a7\320\361\304\215\266\321\320\036b\331,\265\246\006\\\312\013\247\322\322\261t(\245@\t\303\2619T;\352\364r\362\300A(\354\0346O\323\010%_d\013""\024Kw\241\313\345\022II\206Q$\200\211\2401\235\223\306\004$#A4I\222\3450\002\202\220*;\017Z\234\207\341\255)\034\n!\002\307t\202\344\311\004\275$.9\005\031J\313\360\273\253\273.W\003\353\342\020\353\031\240\325`T\210I\274\226\320\027\225)8tN\024S\336:\371\210\023Y\214\355\021\000\3314\260\366\022~\336\344\001\300\031\007$\351\004\212)@\350\341\221\005\335\246\347\022)\344\231\251\027-\030\"a\020\201\0005\226\306\200:\006\033\014\341\226\201\030,\324\240\217\026\340\307\025\326\202\004 \365\347\251\3406\253\002\0256\240Kd\005\202!\315\200\314\246Xh\230)ik\022./\204\333\353f\003]\010' \025\317\330\231\033\241\335\330\262e+\3777p~\001f\004\306\240\330E\201\255 EA\034X\320\311d\307\300x\235\221A\226@y\226h\004*|\261W}\201;\314\301s\311D\255\000\301\020`*\314\264h\315\225\360\310\256_UM\303\357\014\313\251\005Vv\nh\342\2129*\243\243\310Dw\314R\025\234\262Bl+\242\037\374\247?\336\002\023\351`\032\205\261y\242\246\366\221\346\250>\322\332Hp\313#\222\306\017\024\364\202\340\344\002P\036\206\035\237J\220\203J\000\324\037";
-    PyObject *data = __Pyx_DecompressString(cstring, 1017, 3);
+    const struct { const unsigned int length: 9; } index[] = {{0},{38},{179},{1},{1},{1},{8},{7},{6},{2},{9},{50},{49},{14},{14},{20},{21},{39},{41},{26},{27},{31},{29},{25},{31},{28},{29},{18},{6},{9},{9},{18},{3},{4},{8},{5},{41},{9},{8},{12},{1},{5},{6},{13},{5},{4},{8},{7},{10},{8},{3},{9},{3},{5},{3},{12},{11},{12},{10},{17},{13},{6},{9},{5},{4},{12},{10},{12},{19},{6},{8},{7},{6},{61},{40},{61},{41},{102},{45},{56},{131},{9},{293},{281}};
+    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1033 bytes) */
+const char* const cstring = "(\265/\375`\331\007\375\037\000V\363\2539\020y:\000\200\302A\0005\n\245\300\n\254@\205\202(TP\250\000a\333\226\262\333\026\331\203\205\032I+\223\207(E\225\2070\347Ba\225\246D\304\027\274\240\024N,\256\025\006\216\000\214\000\252\0004\206\257\227m\225\335\377\017F\263\365\336=\217\302\2548X\237?j\3636\253\353\207\326\233\033\262k\375b\253\251\306\367\322\215\251?\317\3733\235)\370w\212\3706c9\223\225\037\274\351y\255\376\254\010\2331<\363\347L\277\n\023\363\314\272\276\322\207\323\273t\226\244\224\200\270j\\\363\206\257\253\ru\236\267\3575\r\037f\277\367f\266\363\342\231\276\315LMgz\276\306<\237/\006\363\373d\375\3632\252?,4_\323\017\353\304zz\377Yj\023\236\255\377\347\315f.sw\257W\214\271\263X\236{\376\352R\245\260\2574\324~\255\273;\014\226\377Z-\342\020\333zo\231b\355\0323\375\315\371i\027g%\247\3410\366Q\261\3667\020W\375\331\275\262b\357\243\233\236\307u\2654M7\227\273\367\372>\355?\220\226\363\3625\024q\226\335\226\246\033\310\n=\273-\304\202\264z\310\207\270\372\305\365\243\261\220\032fwm\257\255\356\363\243\326fC\rr\361\025\275\351\376U\364>t\237\372\023\003\272\\6\221\224d\030Er5\234\001\216&\312\302%\320\323\023\260\244\224\264\223\2106\321\317N\320\231\224+\322\033_\243\311\003\t4\312\214%\002;\002:\002:\0012\000\200\251\330\321>\n\3326\235N)\222v\314\030\037\306\326\304\236P\355d\234j8\212\323\250\330Q\335K'+g\344\004y2~\356\225\003\221\330CO\013\252]k\274\311E\344V\022;\002\352\344)A\265\013(i\310\026\311B\261)TR2N\371\305\217\332\334\265{\354\373\254svozww\020\203\341\3174V\202a\032\275\376\237\350a\232_Ki\231\366\332\006N\363\325\332\336k\001\254>z\261\355\230\236e!u\r\316\017\034\013R\257~\342\232\243c\222\214\230x\253\345SW1\324\371\005\345\361\204@\260\013\260\263\241=\344\332F\245\215\324\031[#\211\317k\277\\\373G\347Q>\224/#\211\014\307\024u\021\326v\215\266i9\273\226\005%\013\243D!\007\310\224\227\375\362\"\027\306Z.\244a7T\220u<q\244\215T\264\213Zv\313S\003\224\312\013jEF\327\322\245\224\003e\314j\257T;\032\365\212\362\200\202P\3309\354\237\247""\021\014\334\003\016\003B\212\222/\322Eaw\240\222j\3510\002\200\210\240!\235\203\206\tJFD$I\222J\007 \002b\220Bx\036:\234G\340\257*:\000\"2\347T\"I\222\010v\310\271v\032\001\212JptRw\245\354\002XW\206X\317\004\255\206\321\021\227NMA\256\250\245\350\240:Q\342\270\265\363\212iq\r\341\025\004\323\032\332\272\322\365\336\334\020\300&\016$(D\226\000~\0018N\204C#\006\\G~\260\260\243\202KS\274 \\\362\213b r|\215An\000gQ\3003\030\230\232\002\212\253\224,\205\270\000\037\216F\311\275I\t\n\372\031@`\3103\264Y:\314L<7\325v\242\242K\274\274i2\350Vx\021\255\300C\223r\202\367c\3136\2332\356\304\351e\275\0218\344\202\233\000:\007,\203\247\2741cHH\025I\006]\001[0\244\211Q\014\324!\274\317\314\310d\223\0109(  $G\277t[\251\244k\273W@#y\365\252j:\374^h\314Z\200JH\001LX\001\037\245\265\024\230\250\016\331)\201-\025b\363b\364\003\002\365\307\373\000R\032\226#ApN\334\244y\264\031\376\023\332!\035\200\372\334i`\272\300\031P \t\013'\033\224vjv|TA\tT\001\230T";
+    PyObject *data = __Pyx_DecompressString(cstring, 1033, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1176 bytes) */
-const char* const cstring = "BZh91AY&SYa\020\013]\000\000\262\377\377\377\377\377\004\345\377\377\177\357m\377\375\377\377\377\340@@@@@@@@@@@@@\000@\000P\004/R\327\035\330\265\255j\263\200\22554iSd\324\323\332M\017Q=O!1=&\002b1\030\000&\004\304i\220\332\231\244\306OT\317S\320\324\022\211\030\215\000T\366S\322\214\312h\000\000\006F\200\000\000\000\000\000\r\003@\224\010\200\2053)\3454\362\200\000z\200\0004\000\320\000\000\000\000\0004\016\000\000\000\001\240\000\000\000\r\006\200\000\000\001\220\006\200\000\222H\217SA\252m=4\233)\264\236\250=M\006\200\006\2324\036\2402\032\000\320\0004\032i\241\246\236\2221H\252\002p \202\271y\277Ub\206-skgm\026-\205\206\rD\2621\000\020\020S\005\326\021\216\001\030\315\302\020a\341\001Z(\312\341H\361\205\214\034(\204\005\264\"\024\374\022i\343\007\316\007;\334Q\253Q\322\313:}\224.8\225[\257\2468yze-\247Q\237fs\232\0248\276\260\350\342,\023\232\006fYT1\3407y'@\340If\024L\300Sm\3330hG\2004\3150\351\324\212I\214\220j\301!\021\324\261\251\245\007TxZ\312q\020M\232\315\213\007n\254Y\256\331\267\233\301\3131\006\346\005\251\222\013\020(K0c~\356s(Kj\213\337\0230\247\r\022\256\374\036\366\371f\201 \272\252\354.\246+Z\\Yh\211\352\205\200\031\243\241\034\303IH\205\266M\026\343]\233\036\306\220\370\364\301j\345\271\246\262\240\353]\210\252\245I@Eh\211v\023\003\030\356\333)\311HTF\341b\035\023y\022R\027\rY\325\312J)\2430\340\035\342\037kw\034U\013U\215\027\014\203\236CD\247\304\336P\265\257\332%\266\203\345[\025^\025U\305&q?\222i\016\3555\305X\214\t\002h\253\010\365\014\2400\305\203\203Y\375(\246\255f\305kZ0\n\203\010c^\336\016\311\0218\234\252nB\244\277\260;K\002\tE\0243\362\222;\013\020\304\250\"Tm\370\006\357y\025\360\227\021vT\324K\251}\250#\034=\005\t\304\264\037\031_k\000\233\013\265\"5\313B\324\244\220n.:k\356S\205t\nQ\247B(\215\233\203Mz\243Q{0\204\322\252\002\343c\010\003\014\316\014\361\252jI\273,\241\325U\213\263\230\204\005\n\315\226/R4!C~0\025\274I\342r[\261M\270\257\243\261\275\21721\020J\250\245\002\225AP\230\033d\211\030\257S\356V\022\224i\337\247l\206t\341""\000\360\225\316\377p\354C@\222\202\330C\251zQD\310\316|\300\250\310aK,\364a\006M$D\256\316\"I2\275\221\272\273\037&\\\204k)\254P\324\266j\220QD\240\255u\265%\353&\2640\253A\220A(y8\226:>s\206M\2744\246\3642\"\252\"\253\005.\246H\210o\344\t/Rw\261#\255\255\342\346>\010!B\346\021\251\005\032S\256\206\330\006X\211\305Ey\334\230l\241YP+\300\206k!\010\215\343\3236\033\257\256YLw\202*\326\340A\316\022\351\3210SWz1x\346~\332h\361\254\371\263\211\212\371\250U3X\014\300\2552\211Ic\207\371\252W\265\266b\240\n*B\225bdG\2203:5T@{ZN\360\242\274\021&\230\020mL\005\026\004J^\304B])\371.\024\323\225\260\006d_\337\330H\225y\272\222\202\231\010$!\236\000\240\221\025\262\241s\031$\254\004HP\365GdBlc\350%x[\002\203\254\240\331\320sg\306\203\214(\244\032<\327FQYr.\\#\025\240\343~G\022?\025S\227xs\010hr1^.]\3146\346\n\225XD\332\343S\332\256\327\376z\302<\207\224\353\006\251\252\037\243g\366l8\214\203A\340\200>\225&\376\016\203*\261&\213!\331$\362\t\204\177\024\337\332C\362|za+\374\242\221\345Z\022\264\234\317\014\371\365\314\356\233\211\361\032\266\016*\373S\262\356\2124\307\312\006\024\334\203l\310\025\001\336\026\246\365\276{\261\317\315\267\227\326\256\322\225%t}\362\252\276\\\215^\360\026\207\254\030!\356\030\215\003\006\227\030u1\200\351\260\352+\222\2277\230\273\222)\302\204\203\010\200Z\350";
-    PyObject *data = __Pyx_DecompressString(cstring, 1176, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1192 bytes) */
+const char* const cstring = "BZh91AY&SY\373V\310\245\000\000\252\377\377\375\377\377\204\345\377\377\377\357\355\377\275\377\377\377\340@@@@@@@@@@@@@\000@\000P\004/KZ\032\n\000b\022\246\246\210\232=5&\231\251\341Oh\246\010mM4\301\250l\204m\000\320\206\206\207\250f\210\364\t\371M1OO$\032I\245?Bj7\250\365&5\036\241\344@4\006'\250\000\000\000\000\00044\000\001\352\016\000\000\000h\000\000\001\240\006\200\000h\000\001\240\000\000\000\340\000\000\006\200\000\000\032\000h\000\006\200\000\032\000\000\000\004\221\002\001L\230&\2324Q\247\242h\304\014CFLCG\244\000\032\006\203 \000=F\323R\360\244W\220N\024\020Uo\327\033\367K\233e]\335\344X\273\261\010R\355\341b\201\001\005J3\260\217\014\001\317\t\31081B\005U\326o\033\007\204*\002Ec\204\234K\361\225\234\366\222An\316\235\226\273\032Q\260\364R59\361\2564\322>\314\025\006\217\373\221\326\304TH\255\321\035t\232\355#\313\251&\240\341RyL\2358\276\010q\207$\031R#\r\262\243\306\200b\341\261\332\276\246\033\341\333;a\327\225y5\0165\003!Q\330\263\336\341\207`\240]\235\312\303-\305\374\330LT\000\325l1O%x\213\340\022\312\016\210\00080\025\361\204\357\345<\352'\207\243\036t|\021\206\023/\3221w,\245%\335\266\302\241\262\343\3311,!\230\3113\036\310\227~\314`\032\212\254\214K\331\217\025\037;7\227\201\023\303\235\031\263\300\302\253K\350X\3615\216\264S\343\361\300\273\202\211\212\030a,Z\337\22791\026I\375\035\004\022\363#&\"\331\332\263M\222\213\014q\314:GH\214:xj\215qj\355x\336n\020>\243\214\253\350~\350\\\371\025\302\272\340\2079\255f\204Y\232\003\023:\236\t<\240\320i\266\213\004\340\242.6qB\261\330\007\034\264\200=\277\361\273\277:\233\263\177\343\200\004\223\010o\333\036\276\321Y\266'R\344\212\311\271\374\217\303\255\006a\206\002c\304\312\034\216B\254\304\010\2224\005\030\004\024A\345\267\022H\224\371BR\222\304\202\004\262\003\0040N2\366!\r\301\276\034\302\345\341\024\236\353B\325\201 \351\371xEr\360\257i\275\222\264\363\242a>K6\366+7\2661\221Y\231\003n\271\234\001\307x\003\302>#\3256h;J0fg0\234\304D(\315\320\216\305C\305\024~,\245\220\214\241\031\311\260\215Wh\310""\247\246\217C}\322\026+\360A\203!\221hK\035J#Q\217\350\304\025\227\361o\0328\262e:\032\202\005A\235\337\217\237tu\211(l\204x7\315\275\002\261\221\3129\365\356\002}F\004\343\221R\353kT\262p\322\037\007&f\260\262\350T\206\031\2330.f\205\201\200\205M\244\201\223\n\363\023x\325\255\213f\324q\232\206\261\n\220\224\005l\0245@5\364\"\362\234(\3513$\314\343\031\260\252\005\235\032\202\254\354]GQ\305)utR\304\"\366\320E\213\030\221\207\005\234`\032\204m\213]\233n\230m\002\271Am\002\031\256\010\210\340\242f\361\363\322\303\036\021\316\t\233\024\301\023\230\263\\\226\323\033y\323\267[\2243s-\216\226\273r\341e\317m\354\306\313\201\214,\\\361T[\000\344z\332\027?\2202\001\206v\"\305z\035(D\037v,\311\005%\"\352\005\370\266\222\266\320D\266\007\006\032\302\014gt\212\372\327u\340\025U\315|\241\2169:v\222%f\316\262\205R\020\242\216\260\003\002\214lvFgz\253pJ\313\350\312z\321n\222\227\225\3206l/=\306\t\\\211\312\355(\231\300\215\360l9\217\201\273R\347e\312`+\303\312\376\0072S\316\231\321\332\035\2044qvv\214\271\367\217\006\220\224\330F\220\336\355V\332\273\335\361\037\021\367\237!\352\207p\264Y\266<\300\340\376\257`\371\332j\320\036\223\370,\236\274\342:\275\021-n\021\317L\006P\305u5\363\202kw,B\311CK\272\336\006L\035\315\365\024\355\317\307z\023R\304.\344a\033?H>\245Y\364\247\031\223\n\006l\262M\022\251\230X\020t|$\037\ty7\327\233\323\224\335\205t\225\353\253\223\355\354z`\230\374#\206\210\350\304\246\347\222A\2349\007;\323\210p\305\227\313\314\371\377\361w$S\205\t\017\265l\212P";
+    PyObject *data = __Pyx_DecompressString(cstring, 1192, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (996 bytes) */
-const char* const cstring = "x\332\245U\317s\0335\024\216\303/C\013\301\r\355\211\031\224\031\206\342\246up\363c\002\204\200\207\320!\023\246\265\023Jh\351T\225\265\262\255t-\331+\255k\337z\314\321\307\034}\364q\217{\334\243\217:\372\230?\201?\201\247]\307I\313\232@\331\031\257\264z\337\323\373\336\247\367\344{\204\273\314AZ\"\3521\242\031\372M\272\232\324\331\201\206\017\265\317TK\n\305\356K\260\350\006\321\350\307\236nH\201\270B\016sy\225y\000s{Hi\217S\315<\013\022\250\374S\371\316\332\346\032\"\302A\036;bT+\244\374*u\211RL!YCU\237\273\232\013\244{-\246\nh\267\206z\322G\202%TZ\200\273\350\240\033L \305\264\235\240\233D\010\t\354\270\024\030\334\271\250\337D\016\367 \010\3570\353}\217\270\212\025\276'\216\203\001\310\034\256H\325eL\330w\235r\225\314\034!!\205\032\361]\2150\366\230\343S\2061r\374x\017!\305\035H\251\303\211\013V\312\005\327\030+\217\256\324\210K!0\225\036[\301\224\264\370J'\021\014\253X1\330)\221\254\320\352u\267\254,\242\256\244\357Q\266\r\"\3566[.k2\001\2540.\367\272\360\333\001\335\360}\326\325\373\254\226\252}\352baJ\231\306\007\202\361,\030\310\0263\273\004He\253\227nam\237\270\351\246\232'\233\370HI\221nn2\245`5\335(\330\213\031\006\251\361?\304LdN\267i\031\263!\252'(\227\220\223'}\2502\246\252\361z\025O\030Q\027\0261\207\372\361\010eUB\237SWY\0050v\354q$\361/\034u!>\352\302\214\243\236\312\200q\315\027\024\303S?S\0357\032\200\263]\341\270\020R\341))\256YS%^M\302\355;!\007\023\351\370\000\206G\220&\214 \325T\024Y=\222\320\005^K\2660\206\022\213\211Y\250\235OBZ\\\342y^\330\177\253\227\351\002\353B\221\304\364\325\031\005\233\232V\314\255\305\3453a\001\263I\277\\(*\234R`\023u0\274\000:9\223\016q}\246^\226N\2637\314\215o\303b\270\023e\306\331+\307\033\375E\363I~\230\033_]\354\027\307\331\367a4\213\267\207\245\341\303\340\213\360\235\360\367\350pT\032UN\257-\rr\203\245\227\245q\366\272\271^\014r\301\347\001\017\375ho\3241\017\237\230'\265?\347\346\352\231\275y\030\366\346\177\231\237\204Y\013J\301\257a\356M\303\254\007\225\300\t\363\321\372\350\2129xd\036=3\317\216 \300\363""\314\003\033\347\301|9\216\363\351\311\316\340\275A{\010\331|\025|\024\222\260\033\251\321\322\250xj\203\000\211\357\302JH&\033[&w\217\017\314\307\300l|\365Z\177\371\244rB\306\331\274\311\377\020\275\025m\216\212\243\222\205|\323\257\330\341\353>|-\034\267-\235-\263\005\014\036\233\307O\315S<Mh# \223\204\026\314\302\312\260\035|\030V,z\333l\247\2407\303\3149\332jX\210\336\215\250\331m\232f\333\264=\233\314g'/\006\365ae\010\244V\203\355(\027-\217\016L\271b*\373g\351\254\006\305`/\354D\177\230\362\2419\204\375\033\240\005?\227\376\377e\232\031\277\375\301\361r\277\002\367\246O\355\275l\253\032J\036\027\213\027\272\021\257'U\177wuFC\246\337q\350\326\227\311\206\032o`\212\355\016\251\270\237\343^\275\215^%\321\322\230xu\365_\231\340Y\206\370\322\260\316\350\3264\002\374\245\0217\016\223\237\273\334\361_\212TtX\207C\237\277\266\337N\274\372\212\000)\002\245\240\336D\236\031\034p\372\362\245\322\\\342\366\027W\337~\n";
-    PyObject *data = __Pyx_DecompressString(cstring, 996, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1011 bytes) */
+const char* const cstring = "x\332\245U\317s\0335\024NR\006\014m\ti\233\366\302\014\312\014C\353\2068\270\371A\200\020\310\020\n\231tZ;\0012-\235\252\262V\266\225\356J\353\225\326\265o=\346\350c\216>\372\270\307=\356\321G\035}\314\237\300\237\300\323\332qSX\023(;\343\225V\357{z\337\373\336\223|\237p\2279HKD\003F4C\277IW\223\032;\320\360\241\366\231\362\245P\354\241\004\213\256\023\215~h\353\272\024\210+\3440\227WX\0000\267\215\224\0168\325,\260 \201J?\226\226V7V\021\021\016\n\330\021\243Z!\025V\250K\224b\n\311*\252\204\334\325\\ \335\366\231*\240\335*j\313\020\t6\244\342\003\356\274\203\2563\201\024\323v\202n\023!$\260\343R`p\347\242v\0339<\200 \274\311\254\367}\342*V\270\223\377\2168\016\006(s\270\"\025\2271a\3375\312\325p\346\010\tITI\350j\204q\300\234\2202\214\221\023\246\273\010)\226 \251&'.X)\027\\c\254\002\272\\%.\205\320T\006l\031S\342\363\345\346P2\254R\315`\247\241h\005\277\335\332\264\302\210\232\222a@\331\026\310\270\353\371.\363\230\000V\030\227\332-\370\355\200r\370!k\351}V\315T?s\2610\246L\323\222`<\t\006\302\245\314.\000R\351\267\263-\254\021\0227\333T\r\244\207\217\224\024\331f\217)\005\253\331F\301^N0H\215\377!\346P\346l\233\226)\033\242\332\202r\t9\0052\204>c\252\222\256W\360\210\021T\324\366\226\035\300\2129\264R@(\253\020\372\202\272\312J\201\261c\3532$r\256\346\205\264\346\205\t5\037\353\201q5\024\024\303S;\223\037\327\353\200\263\007\304q!\244\302cv\\3O\r\275<\302\355\373\214\245'\235\020\300\360\010\342\301\010\232\215\325\221\225#\t\007\"\360\245\2171\364ZJ\314B\355|\024\322\342\206\236\257;\374o\2153^`-\350\226\224\276:\243`S\323\212\271\325\264\217F,`6:8\347\272\013gt\332H\035\014/\200\216\212\323$n\310\324\253\355\323\334Ms\363\233\270\030\357$\323\203\334\345\343\365\316us#\337\273\336\373)*\016rW\217\017\315\215\245^\271\307\242\365x>\256'\265~\271O\006\267>\353\222n\343\325\366 7o\346\213\321\\\364i\304\3430\331\3537\315\257O\315\323\352\037SS\265\351\275\031\030\366f\036\314\214\202\254F\333\321/\361\334\333\005Y\213\312\221\023\347\223\265\376es\360\330<~n\236""\037\301\366/\246\037\331(\217fJi\224\217Ov\272\357u\033=\310\344\213\350\303\230\304\255D\365\027\372\305\323\334\373\203+@\341\333\270\034\223\323k\013\335\271\356\202\345q\357\370\300|\004\274\006W\256u\026O\312'd\220\313\233\374\367\311\245d\243_\354o[\310\327\235\262\035\276\352\300\327\354qJg\323l\002\203'\346\3113\363\014\217\323Y\217h|\313j8kf\227{\215\350j\\\266\340-\263\225\001\336\210/\305_&\013)\330\352WH\336M\250\331\365\214\3270\215\300\246\362\311\311\313n\r4\001J+\321V2\227,\366\017L\251l\312\373g\311\254D\305h/n&\277\233\322\2419\204\355\353\240\004\177-\373\377\313sz\360\316\007\307\213\2352\\\235!\265W\263\355ghv\\,\236;\207xm\330\357\367V&\034\305\354k\016\335\2753\334P\343uL\261\335!\023\367szJ?Go\222\3605&AM\375W&x\222!\275.\2543\272;\216\000\377k\304M\303\344\247.v\374\227\"\025\035\326\344p\302\377\262\337N\272\372\206\000\031\002e\240\336F\236\t\034p\366\362\205\322\\\340\366'\305\032\2045";
+    PyObject *data = __Pyx_DecompressString(cstring, 1011, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (2260 bytes) */
-const char* const bytes = "Failed to create VoltageStatesResponseNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/voltage_states_response.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefVoltageStatesResponseVoltageStatesResponse.__reduce_cython__VoltageStatesResponse.__setstate_cython__VoltageStatesResponse.copyVoltageStatesResponse.equalVoltageStatesResponse.from_jsonVoltageStatesResponse.messageVoltageStatesResponse.newVoltageStatesResponse.not_equalVoltageStatesResponse.statesVoltageStatesResponse.to_jsonasyncio.coroutinesb_jsonb_messagecline_in_tracebackclscopy__dict__equalfalcon_core._capi.voltage_states_responsefrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main__message__module____name__newnot_equalobjotherpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_messages_retself__set_name__setdefault__setstate____setstate_cython__states__test__to_jsonvalues\200A\340\010\026\320\026;\2701\270D\300\001\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\0251\260\021\260$\260i\270u\300K\310v\320U\\\320\\f\360\000\000g\001K\002\360\000\000K\002L\002\200A\340\010\026\320\0264\260A\260T\270\021\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026=\270Q\270a\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003""\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010<\320<Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0246\260a\330\014\023\2201\330\010\017\320\017/\250q\260\r\270Q\200A\330\010>\320>Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0171\260\021\260.\300\006\300c\320Im\320mq\320qr\200A\340\010\037\230w\240g\250Q\250a\330\0103\260>\300\021\300+\310S\320PQ\320QR\340\010\t\330\014\026\320\0263\2601\260K\270v\300[\320PW\320W^\320^h\360\000\000i\001K\002\360\000\000K\002L\002\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *(__pyx_t_6_c_api_VoltageStatesResponseHandle, struct __pyx_opt_args_11falcon_core_5_capi_23voltage_states_response__voltage_states_response_from_capi *__pyx_optional_args)\000_voltage_states_response_from_capistruct __pyx_obj_11falcon_core_5_capi_21device_voltage_states_DeviceVoltageStates *(__pyx_t_6_c_api_DeviceVoltageStatesHandle, struct __pyx_opt_args_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi *__pyx_optional_args)\000_device_voltage_states_from_capi";
+    #else /* compression: none (2265 bytes) */
+const char* const bytes = "Failed to create VoltageStatesResponseNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.()?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/voltage_states_response.pyx<stringsource>NotImplemented__Pyx_PyDict_NextRefVoltageStatesResponseVoltageStatesResponse.__reduce_cython__VoltageStatesResponse.__setstate_cython__VoltageStatesResponse.copyVoltageStatesResponse.equalVoltageStatesResponse.from_jsonVoltageStatesResponse.messageVoltageStatesResponse.newVoltageStatesResponse.not_equalVoltageStatesResponse.statesVoltageStatesResponse.to_jsonasyncio.coroutinesb_jsonb_message__class__cline_in_tracebackclscopy__dict__equalfalcon_core._capi.voltage_states_responsefrom_json__func____getstate__hh_rethandle_is_coroutineitemsjson__main__message__module____name__newnot_equalobjotherpop__pyx_capi____pyx_state__qualname____reduce____reduce_cython____reduce_ex__s_jsons_messages_retself__set_name__setdefault__setstate____setstate_cython__states__test__to_jsonvalues\200A\340\010\026\320\026;\2701\270D\300\001\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\r\210W\320\024-\250Q\250e\2606\270\025\270h\300g\310Q\310a\330\027&\240a\240q\200A\330\010\025\320\0251\260\021\260$\260i\270u\300K\310v\320U\\\320\\f\360\000\000g\001K\002\360\000\000K\002L\002\200A\340\010\026\320\0264\260A\260T\270\021\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\r\210W\320\024-\250Q\250e\2606\270\025\270h\300g\310Q\310a\330\027&\240a\240q\200A\330\010\025\320\0255\260Q\260d\270)\3005\310\013\320SY\320Y`\320`j\360\000\000k\001O\002\360\000\000O\002P\002\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026=\270Q\270a\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003\3008\3101\310A\330\010""\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010<\320<Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0246\260c\270\027\300\001\330\010\017\320\017/\250q\260\r\270Q\200A\330\010>\320>Y\320YZ\320Z^\320^_\330\010\013\2106\220\023\320\0248\270\003\2707\300!\330\010\017\320\0171\260\021\260.\300\006\300c\320Im\320mq\320qr\200A\340\010\037\230w\240g\250Q\250a\330\0103\260>\300\021\300+\310S\320PQ\320QR\340\010\t\330\014\026\320\0263\2601\260K\270v\300[\320PW\320W^\320^h\360\000\000i\001K\002\360\000\000K\002L\002\340\022!\240\021\240!\330\010\013\2102\210S\320\0204\260A\330\014\022\220+\230Q\230a\330\010)\320)@\300\003\3008\3101\310A\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_23voltage_states_response_VoltageStatesResponse *(__pyx_t_6_c_api_VoltageStatesResponseHandle, struct __pyx_opt_args_11falcon_core_5_capi_23voltage_states_response__voltage_states_response_from_capi *__pyx_optional_args)\000_voltage_states_response_from_capistruct __pyx_obj_11falcon_core_5_capi_21device_voltage_states_DeviceVoltageStates *(__pyx_t_6_c_api_DeviceVoltageStatesHandle, struct __pyx_opt_args_11falcon_core_5_capi_21device_voltage_states__device_voltage_states_from_capi *__pyx_optional_args)\000_device_voltage_states_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 70; i++) {
+    for (int i = 0; i < 73; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 12) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 14) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -7767,7 +7852,7 @@ const char* const bytes = "Failed to create VoltageStatesResponseNote that Cytho
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 70; i < 81; i++) {
+    for (int i = 73; i < 84; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -7778,14 +7863,14 @@ const char* const bytes = "Failed to create VoltageStatesResponseNote that Cytho
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 81; i++) {
+    for (Py_ssize_t i = 0; i < 84; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 70;
+      PyObject **table = stringtab + 73;
       for (Py_ssize_t i=0; i<11; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -7843,32 +7928,32 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 51};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_YYZZ___6_8_1_1_cImmqqr, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_YYZZ___6_8_7_1_cImmqqr, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 56};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_1_iuKvU_f_g_K_K_L, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 65};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_5Qd_5_SYY_j_k_O_O_P, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_1D_6_G1_W_Qe6_hgQa_aq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 77};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_kp_b_iso88591_A_4AT_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_message, __pyx_mstate->__pyx_kp_b_iso88591_A_4AT_6_G1_W_Qe6_hgQa_aq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 93};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 84};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_states, __pyx_mstate->__pyx_kp_b_iso88591_A_YYZZ___6_6a_1_q_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_voltage_st, __pyx_mstate->__pyx_n_u_states, __pyx_mstate->__pyx_kp_b_iso88591_A_YYZZ___6_6c_q_Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
@@ -9652,6 +9737,90 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 }
 #endif
 
+/* PyObjectCallNoArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+    PyObject *arg[2] = {NULL, NULL};
+    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* JoinPyUnicode */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char) {
+#if CYTHON_USE_UNICODE_INTERNALS && CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    PyObject *result_uval;
+    int result_ukind, kind_shift;
+    Py_ssize_t i, char_pos;
+    void *result_udata;
+    if (max_char > 1114111) max_char = 1114111;
+    result_uval = PyUnicode_New(result_ulength, max_char);
+    if (unlikely(!result_uval)) return NULL;
+    result_ukind = (max_char <= 255) ? PyUnicode_1BYTE_KIND : (max_char <= 65535) ? PyUnicode_2BYTE_KIND : PyUnicode_4BYTE_KIND;
+    kind_shift = (result_ukind == PyUnicode_4BYTE_KIND) ? 2 : result_ukind - 1;
+    result_udata = PyUnicode_DATA(result_uval);
+    assert(kind_shift == 2 || kind_shift == 1 || kind_shift == 0);
+    if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - result_ulength < 0))
+        goto overflow;
+    char_pos = 0;
+    for (i=0; i < value_count; i++) {
+        int ukind;
+        Py_ssize_t ulength;
+        void *udata;
+        PyObject *uval = values[i];
+        #if !CYTHON_COMPILING_IN_LIMITED_API
+        if (__Pyx_PyUnicode_READY(uval) == (-1))
+            goto bad;
+        #endif
+        ulength = __Pyx_PyUnicode_GET_LENGTH(uval);
+        #if !CYTHON_ASSUME_SAFE_SIZE
+        if (unlikely(ulength < 0)) goto bad;
+        #endif
+        if (unlikely(!ulength))
+            continue;
+        if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - ulength < char_pos))
+            goto overflow;
+        ukind = __Pyx_PyUnicode_KIND(uval);
+        udata = __Pyx_PyUnicode_DATA(uval);
+        if (ukind == result_ukind) {
+            memcpy((char *)result_udata + (char_pos << kind_shift), udata, (size_t) (ulength << kind_shift));
+        } else {
+            #if PY_VERSION_HEX >= 0x030d0000
+            if (unlikely(PyUnicode_CopyCharacters(result_uval, char_pos, uval, 0, ulength) < 0)) goto bad;
+            #elif CYTHON_COMPILING_IN_CPYTHON || defined(_PyUnicode_FastCopyCharacters)
+            _PyUnicode_FastCopyCharacters(result_uval, char_pos, uval, 0, ulength);
+            #else
+            Py_ssize_t j;
+            for (j=0; j < ulength; j++) {
+                Py_UCS4 uchar = __Pyx_PyUnicode_READ(ukind, udata, j);
+                __Pyx_PyUnicode_WRITE(result_ukind, result_udata, char_pos+j, uchar);
+            }
+            #endif
+        }
+        char_pos += ulength;
+    }
+    return result_uval;
+overflow:
+    PyErr_SetString(PyExc_OverflowError, "join() result is too long for a Python string");
+bad:
+    Py_DECREF(result_uval);
+    return NULL;
+#else
+    Py_ssize_t i;
+    PyObject *result = NULL;
+    PyObject *value_tuple = PyTuple_New(value_count);
+    if (unlikely(!value_tuple)) return NULL;
+    CYTHON_UNUSED_VAR(max_char);
+    CYTHON_UNUSED_VAR(result_ulength);
+    for (i=0; i<value_count; i++) {
+        if (__Pyx_PyTuple_SET_ITEM(value_tuple, i, values[i]) != (0)) goto bad;
+        Py_INCREF(values[i]);
+    }
+    result = PyUnicode_Join(__pyx_mstate_global->__pyx_empty_unicode, value_tuple);
+bad:
+    Py_DECREF(value_tuple);
+    return result;
+#endif
+}
+
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {
     if (is_final || likely(!__Pyx_PyType_HasFeature(t, Py_TPFLAGS_IS_ABSTRACT))) {
@@ -9869,12 +10038,6 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
         PyType_Modified(type);
 #endif  // PY_VERSION_HEX > 0x030900B1
     return 0;
-}
-
-/* PyObjectCallNoArg (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-    PyObject *arg[2] = {NULL, NULL};
-    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
 
 /* PyObjectGetMethod (used by PyObjectCallMethod0) */
@@ -12284,7 +12447,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__2);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
     }
     goto done;
 }

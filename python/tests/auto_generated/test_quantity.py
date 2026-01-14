@@ -19,7 +19,7 @@ class TestQuantity:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -27,7 +27,7 @@ class TestQuantity:
         try:
             self.obj.equal(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -42,7 +42,7 @@ class TestQuantity:
         try:
             self.obj.not_equal(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -57,7 +57,7 @@ class TestQuantity:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_value(self):
         if self.obj is None:
@@ -65,7 +65,7 @@ class TestQuantity:
         try:
             self.obj.value()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_unit(self):
         if self.obj is None:
@@ -73,7 +73,7 @@ class TestQuantity:
         try:
             self.obj.unit()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_convert_to(self):
         if self.obj is None:
@@ -81,7 +81,7 @@ class TestQuantity:
         try:
             self.obj.convert_to(SymbolUnit.new_meter())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_multiply_int(self):
         if self.obj is None:
@@ -89,7 +89,7 @@ class TestQuantity:
         try:
             self.obj.multiply_int(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_multiply_int(self):
         if self.obj is None: pytest.skip()
@@ -104,7 +104,7 @@ class TestQuantity:
         try:
             self.obj.multiply_double(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_multiply_double(self):
         if self.obj is None: pytest.skip()
@@ -119,7 +119,7 @@ class TestQuantity:
         try:
             self.obj.multiply_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_multiply_quantity(self):
         if self.obj is None: pytest.skip()
@@ -134,7 +134,7 @@ class TestQuantity:
         try:
             self.obj.multiply_equals_int(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_multiply_equals_double(self):
         if self.obj is None:
@@ -142,7 +142,7 @@ class TestQuantity:
         try:
             self.obj.multiply_equals_double(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_multiply_equals_quantity(self):
         if self.obj is None:
@@ -150,7 +150,7 @@ class TestQuantity:
         try:
             self.obj.multiply_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_divide_int(self):
         if self.obj is None:
@@ -158,7 +158,7 @@ class TestQuantity:
         try:
             self.obj.divide_int(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_divide_int(self):
         if self.obj is None: pytest.skip()
@@ -173,7 +173,7 @@ class TestQuantity:
         try:
             self.obj.divide_double(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_divide_double(self):
         if self.obj is None: pytest.skip()
@@ -188,7 +188,7 @@ class TestQuantity:
         try:
             self.obj.divide_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_divide_quantity(self):
         if self.obj is None: pytest.skip()
@@ -203,7 +203,7 @@ class TestQuantity:
         try:
             self.obj.divide_equals_int(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_divide_equals_double(self):
         if self.obj is None:
@@ -211,7 +211,7 @@ class TestQuantity:
         try:
             self.obj.divide_equals_double(1.0)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_divide_equals_quantity(self):
         if self.obj is None:
@@ -219,7 +219,7 @@ class TestQuantity:
         try:
             self.obj.divide_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_power(self):
         if self.obj is None:
@@ -227,7 +227,7 @@ class TestQuantity:
         try:
             self.obj.power(1)
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_power(self):
         if self.obj is None: pytest.skip()
@@ -242,7 +242,7 @@ class TestQuantity:
         try:
             self.obj.add_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_add_quantity(self):
         if self.obj is None: pytest.skip()
@@ -257,7 +257,7 @@ class TestQuantity:
         try:
             self.obj.add_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_subtract_quantity(self):
         if self.obj is None:
@@ -265,7 +265,7 @@ class TestQuantity:
         try:
             self.obj.subtract_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_subtract_quantity(self):
         if self.obj is None: pytest.skip()
@@ -280,7 +280,7 @@ class TestQuantity:
         try:
             self.obj.subtract_equals_quantity(Quantity.new(1.0, SymbolUnit.new_meter()))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_negate(self):
         if self.obj is None:
@@ -288,7 +288,7 @@ class TestQuantity:
         try:
             self.obj.negate()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_abs(self):
         if self.obj is None:
@@ -296,7 +296,7 @@ class TestQuantity:
         try:
             self.obj.abs()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

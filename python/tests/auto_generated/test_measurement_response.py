@@ -32,7 +32,7 @@ class TestMeasurementResponse:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -40,7 +40,7 @@ class TestMeasurementResponse:
         try:
             self.obj.equal(_make_test_measurement_response())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -55,7 +55,7 @@ class TestMeasurementResponse:
         try:
             self.obj.not_equal(_make_test_measurement_response())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -70,7 +70,7 @@ class TestMeasurementResponse:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_arrays(self):
         if self.obj is None:
@@ -78,7 +78,7 @@ class TestMeasurementResponse:
         try:
             self.obj.arrays()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_message(self):
         if self.obj is None:
@@ -86,7 +86,7 @@ class TestMeasurementResponse:
         try:
             self.obj.message()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

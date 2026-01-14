@@ -42,7 +42,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -50,7 +50,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.equal(_make_test_gate_geometry_array_1d())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -65,7 +65,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.not_equal(_make_test_gate_geometry_array_1d())
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -80,7 +80,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_append_central_gate(self):
         if self.obj is None:
@@ -88,7 +88,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.append_central_gate(Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'), Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_all_dot_gates(self):
         if self.obj is None:
@@ -96,7 +96,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.all_dot_gates()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_query_neighbors(self):
         if self.obj is None:
@@ -104,7 +104,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.query_neighbors(Connection.new_barrier('test_conn'))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_left_reservoir(self):
         if self.obj is None:
@@ -112,7 +112,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.left_reservoir()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_right_reservoir(self):
         if self.obj is None:
@@ -120,7 +120,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.right_reservoir()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_left_barrier(self):
         if self.obj is None:
@@ -128,7 +128,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.left_barrier()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_right_barrier(self):
         if self.obj is None:
@@ -136,7 +136,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.right_barrier()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_linear_array(self):
         if self.obj is None:
@@ -144,15 +144,15 @@ class TestGateGeometryArray1D:
         try:
             self.obj.linear_array()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_screening_gates(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.screening_gates()
+            self.obj.screening_gates
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_raw_central_gates(self):
         if self.obj is None:
@@ -160,7 +160,7 @@ class TestGateGeometryArray1D:
         try:
             self.obj.raw_central_gates()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_central_dot_gates(self):
         if self.obj is None:
@@ -168,15 +168,15 @@ class TestGateGeometryArray1D:
         try:
             self.obj.central_dot_gates()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ohmics(self):
         if self.obj is None:
             pytest.skip('Skipping test because object could not be instantiated')
         try:
-            self.obj.ohmics()
+            self.obj.ohmics
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

@@ -173,8 +173,8 @@
         ],
         "include_dirs": [
             "/usr/local/include/falcon-core-c-api",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi",
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi",
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src"
         ],
         "language": "c++",
         "libraries": [
@@ -188,7 +188,7 @@
             "/usr/local/lib"
         ],
         "sources": [
-            "/home/daniel/work/wisc/playground/falcon-core-libs/python/src/falcon_core/_capi/gate_geometry_array1_d.pyx"
+            "/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/python/src/falcon_core/_capi/gate_geometry_array1_d.pyx"
         ]
     },
     "module_name": "falcon_core._capi.gate_geometry_array1_d"
@@ -1327,51 +1327,56 @@ static int __Pyx_init_co_variables(void) {
 #include <stddef.h>
 #include <stdint.h>
 #include "falcon_core/generic/String_c_api.h"
-#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/physics/device_structures/Connection_c_api.h"
+#include "falcon_core/physics/units/SymbolUnit_c_api.h"
 #include "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h"
 #include "falcon_core/generic/ListMeasurementContext_c_api.h"
 #include "falcon_core/math/AxesMeasurementContext_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h"
-#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/ListConnection_c_api.h"
 #include "falcon_core/generic/ListDouble_c_api.h"
+#include "falcon_core/physics/device_structures/Connections_c_api.h"
+#include "falcon_core/generic/ListInterpretationContext_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextDouble_c_api.h"
-#include "falcon_core/physics/device_structures/Connections_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h"
+#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextString_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextString_c_api.h"
-#include "falcon_core/generic/ListString_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextString_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h"
 #include "falcon_core/math/Quantity_c_api.h"
-#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
 #include "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h"
+#include "falcon_core/generic/ListQuantity_c_api.h"
 #include "falcon_core/generic/MapInterpretationContextQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channel_c_api.h"
 #include "falcon_core/generic/ListChannel_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Channels_c_api.h"
 #include "falcon_core/autotuner_interfaces/names/Gname_c_api.h"
-#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/generic/ListSizeT_c_api.h"
 #include "falcon_core/generic/ListListSizeT_c_api.h"
 #include "falcon_core/generic/FArrayDouble_c_api.h"
-#include "falcon_core/math/arrays/ControlArray_c_api.h"
-#include "falcon_core/generic/ListControlArray_c_api.h"
-#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
+#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
+#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
+#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
+#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
+#include "falcon_core/math/domains/Domain_c_api.h"
+#include "falcon_core/math/domains/LabelledDomain_c_api.h"
+#include "falcon_core/generic/ListLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListInstrumentPort_c_api.h"
+#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
+#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/generic/ListInt_c_api.h"
 #include "falcon_core/math/AxesInt_c_api.h"
-#include "falcon_core/generic/PairStringString_c_api.h"
-#include "falcon_core/generic/ListPairStringString_c_api.h"
-#include "falcon_core/generic/MapStringString_c_api.h"
-#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
-#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/generic/PairConnectionDouble_c_api.h"
 #include "falcon_core/generic/ListPairConnectionDouble_c_api.h"
 #include "falcon_core/generic/MapConnectionDouble_c_api.h"
@@ -1379,51 +1384,46 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/generic/ListPairConnectionQuantity_c_api.h"
 #include "falcon_core/generic/MapConnectionQuantity_c_api.h"
 #include "falcon_core/math/Point_c_api.h"
+#include "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h"
+#include "falcon_core/generic/ListDeviceVoltageState_c_api.h"
 #include "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h"
-#include "falcon_core/generic/ListAcquisitionContext_c_api.h"
-#include "falcon_core/math/arrays/MeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h"
-#include "falcon_core/generic/ListLabelledMeasuredArray_c_api.h"
-#include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h"
-#include "falcon_core/communications/messages/MeasurementResponse_c_api.h"
 #include "falcon_core/generic/PairStringDouble_c_api.h"
 #include "falcon_core/generic/ListPairStringDouble_c_api.h"
 #include "falcon_core/generic/MapStringDouble_c_api.h"
 #include "falcon_core/math/AnalyticFunction_c_api.h"
 #include "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h"
-#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListPortTransform_c_api.h"
-#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/generic/ListInstrumentPort_c_api.h"
-#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
-#include "falcon_core/instrument_interfaces/names/Ports_c_api.h"
-#include "falcon_core/math/domains/Domain_c_api.h"
-#include "falcon_core/math/domains/LabelledDomain_c_api.h"
-#include "falcon_core/generic/ListLabelledDomain_c_api.h"
-#include "falcon_core/math/domains/CoupledLabelledDomain_c_api.h"
+#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
+#include "falcon_core/generic/ListDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDiscretizer_c_api.h"
+#include "falcon_core/math/AxesDouble_c_api.h"
+#include "falcon_core/math/arrays/ControlArray_c_api.h"
+#include "falcon_core/generic/ListControlArray_c_api.h"
+#include "falcon_core/math/AxesControlArray_c_api.h"
+#include "falcon_core/math/UnitSpace_c_api.h"
 #include "falcon_core/math/AxesInstrumentPort_c_api.h"
+#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/PairStringBool_c_api.h"
 #include "falcon_core/generic/ListPairStringBool_c_api.h"
-#include "falcon_core/generic/ListBool_c_api.h"
 #include "falcon_core/generic/MapStringBool_c_api.h"
 #include "falcon_core/generic/ListMapStringBool_c_api.h"
 #include "falcon_core/math/AxesMapStringBool_c_api.h"
 #include "falcon_core/math/arrays/LabelledControlArray_c_api.h"
 #include "falcon_core/generic/ListLabelledControlArray_c_api.h"
 #include "falcon_core/math/AxesLabelledControlArray_c_api.h"
-#include "falcon_core/math/discrete_spaces/Discretizer_c_api.h"
-#include "falcon_core/math/AxesDouble_c_api.h"
-#include "falcon_core/generic/ListDiscretizer_c_api.h"
-#include "falcon_core/math/AxesDiscretizer_c_api.h"
-#include "falcon_core/math/UnitSpace_c_api.h"
-#include "falcon_core/generic/ListCoupledLabelledDomain_c_api.h"
-#include "falcon_core/math/AxesCoupledLabelledDomain_c_api.h"
 #include "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h"
+#include "falcon_core/generic/ListPortTransform_c_api.h"
 #include "falcon_core/instrument_interfaces/Waveform_c_api.h"
 #include "falcon_core/generic/ListWaveform_c_api.h"
+#include "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h"
+#include "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h"
 #include "falcon_core/communications/messages/MeasurementRequest_c_api.h"
 #include "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h"
+#include "falcon_core/generic/PairStringString_c_api.h"
+#include "falcon_core/generic/ListPairStringString_c_api.h"
+#include "falcon_core/generic/MapStringString_c_api.h"
 #include "falcon_core/communications/HDF5Data_c_api.h"
+#include "falcon_core/communications/Time_c_api.h"
 #include "falcon_core/communications/messages/StandardRequest_c_api.h"
 #include "falcon_core/communications/messages/StandardResponse_c_api.h"
 #include "falcon_core/communications/messages/VoltageStatesResponse_c_api.h"
@@ -1486,10 +1486,10 @@ static int __Pyx_init_co_variables(void) {
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h"
 #include "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h"
-#include "falcon_core/physics/config/core/Adjacency_c_api.h"
-#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/device_structures/GateRelations_c_api.h"
 #include "falcon_core/physics/device_structures/Impedances_c_api.h"
+#include "falcon_core/physics/config/core/Adjacency_c_api.h"
+#include "falcon_core/physics/config/core/VoltageConstraints_c_api.h"
 #include "falcon_core/physics/config/core/Config_c_api.h"
 #include "falcon_core/physics/config/Loader_c_api.h"
 #include <string.h>
@@ -1971,7 +1971,7 @@ typedef void *__pyx_t_6_c_api_ChannelHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle             # <<<<<<<<<<<<<<
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
+ * ctypedef void* HDF5DataHandle
 */
 typedef void *__pyx_t_6_c_api_ChannelsHandle;
 
@@ -1979,32 +1979,32 @@ typedef void *__pyx_t_6_c_api_ChannelsHandle;
  * ctypedef void* ChannelHandle
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle             # <<<<<<<<<<<<<<
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
 */
 typedef void *__pyx_t_6_c_api_GnameHandle;
 
 /* "_c_api.pxd":19
  * ctypedef void* ChannelsHandle
  * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
- * ctypedef void* HDF5DataHandle
- * ctypedef void* MeasurementRequestHandle
-*/
-typedef void *__pyx_t_6_c_api_TimeHandle;
-
-/* "_c_api.pxd":20
- * ctypedef void* GnameHandle
- * ctypedef void* TimeHandle
  * ctypedef void* HDF5DataHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
- * ctypedef void* MeasurementResponseHandle
 */
 typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 
-/* "_c_api.pxd":21
- * ctypedef void* TimeHandle
+/* "_c_api.pxd":20
+ * ctypedef void* GnameHandle
  * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* MeasurementRequestHandle
+ * ctypedef void* MeasurementResponseHandle
+*/
+typedef void *__pyx_t_6_c_api_TimeHandle;
+
+/* "_c_api.pxd":21
+ * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle             # <<<<<<<<<<<<<<
  * ctypedef void* MeasurementResponseHandle
  * ctypedef void* StandardRequestHandle
@@ -2012,7 +2012,7 @@ typedef void *__pyx_t_6_c_api_HDF5DataHandle;
 typedef void *__pyx_t_6_c_api_MeasurementRequestHandle;
 
 /* "_c_api.pxd":22
- * ctypedef void* HDF5DataHandle
+ * ctypedef void* TimeHandle
  * ctypedef void* MeasurementRequestHandle
  * ctypedef void* MeasurementResponseHandle             # <<<<<<<<<<<<<<
  * ctypedef void* StandardRequestHandle
@@ -2925,7 +2925,7 @@ typedef void *__pyx_t_6_c_api_PortTransformsHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle             # <<<<<<<<<<<<<<
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
 */
 typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
 
@@ -2933,7 +2933,7 @@ typedef void *__pyx_t_6_c_api_AnalyticFunctionHandle;
  * ctypedef void* PortTransformsHandle
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
 */
 typedef void *__pyx_t_6_c_api_PointHandle;
@@ -2941,32 +2941,41 @@ typedef void *__pyx_t_6_c_api_PointHandle;
 /* "_c_api.pxd":125
  * ctypedef void* AnalyticFunctionHandle
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
  * ctypedef void* UnitSpaceHandle
- * ctypedef void* AxesDoubleHandle
+ * ctypedef void* VectorHandle
 */
-typedef void *__pyx_t_6_c_api_VectorHandle;
+typedef void *__pyx_t_6_c_api_QuantityHandle;
 
 /* "_c_api.pxd":126
  * ctypedef void* PointHandle
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
- * ctypedef void* AxesIntHandle
 */
 typedef void *__pyx_t_6_c_api_UnitSpaceHandle;
 
 /* "_c_api.pxd":127
- * ctypedef void* VectorHandle
+ * ctypedef void* QuantityHandle
  * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AxesDoubleHandle
+ * ctypedef void* AxesIntHandle
+*/
+typedef void *__pyx_t_6_c_api_VectorHandle;
+
+/* "_c_api.pxd":128
+ * ctypedef void* UnitSpaceHandle
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
 */
 typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 
-/* "_c_api.pxd":128
- * ctypedef void* UnitSpaceHandle
+/* "_c_api.pxd":129
+ * ctypedef void* VectorHandle
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesDiscretizerHandle
@@ -2974,7 +2983,7 @@ typedef void *__pyx_t_6_c_api_AxesDoubleHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesIntHandle;
 
-/* "_c_api.pxd":129
+/* "_c_api.pxd":130
  * ctypedef void* AxesDoubleHandle
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle             # <<<<<<<<<<<<<<
@@ -2983,7 +2992,7 @@ typedef void *__pyx_t_6_c_api_AxesIntHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 
-/* "_c_api.pxd":130
+/* "_c_api.pxd":131
  * ctypedef void* AxesIntHandle
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle             # <<<<<<<<<<<<<<
@@ -2992,7 +3001,7 @@ typedef void *__pyx_t_6_c_api_AxesDiscretizerHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 
-/* "_c_api.pxd":131
+/* "_c_api.pxd":132
  * ctypedef void* AxesDiscretizerHandle
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3001,7 +3010,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 
-/* "_c_api.pxd":132
+/* "_c_api.pxd":133
  * ctypedef void* AxesControlArrayHandle
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle             # <<<<<<<<<<<<<<
@@ -3010,7 +3019,7 @@ typedef void *__pyx_t_6_c_api_AxesControlArray1DHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 
-/* "_c_api.pxd":133
+/* "_c_api.pxd":134
  * ctypedef void* AxesControlArray1DHandle
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle             # <<<<<<<<<<<<<<
@@ -3019,7 +3028,7 @@ typedef void *__pyx_t_6_c_api_AxesCoupledLabelledDomainHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 
-/* "_c_api.pxd":134
+/* "_c_api.pxd":135
  * ctypedef void* AxesCoupledLabelledDomainHandle
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle             # <<<<<<<<<<<<<<
@@ -3028,7 +3037,7 @@ typedef void *__pyx_t_6_c_api_AxesInstrumentPortHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 
-/* "_c_api.pxd":135
+/* "_c_api.pxd":136
  * ctypedef void* AxesInstrumentPortHandle
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle             # <<<<<<<<<<<<<<
@@ -3037,7 +3046,7 @@ typedef void *__pyx_t_6_c_api_AxesMapStringBoolHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 
-/* "_c_api.pxd":136
+/* "_c_api.pxd":137
  * ctypedef void* AxesMapStringBoolHandle
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle             # <<<<<<<<<<<<<<
@@ -3046,7 +3055,7 @@ typedef void *__pyx_t_6_c_api_AxesMeasurementContextHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 
-/* "_c_api.pxd":137
+/* "_c_api.pxd":138
  * ctypedef void* AxesMeasurementContextHandle
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle             # <<<<<<<<<<<<<<
@@ -3055,63 +3064,54 @@ typedef void *__pyx_t_6_c_api_AxesLabelledControlArrayHandle;
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledControlArray1DHandle;
 
-/* "_c_api.pxd":138
+/* "_c_api.pxd":139
  * ctypedef void* AxesLabelledControlArrayHandle
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
+ * ctypedef void* ControlArray1DHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArrayHandle;
 
-/* "_c_api.pxd":139
+/* "_c_api.pxd":140
  * ctypedef void* AxesLabelledControlArray1DHandle
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle             # <<<<<<<<<<<<<<
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
+ * ctypedef void* ControlArray1DHandle
+ * ctypedef void* ControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_AxesLabelledMeasuredArray1DHandle;
 
-/* "_c_api.pxd":140
+/* "_c_api.pxd":141
  * ctypedef void* AxesLabelledMeasuredArrayHandle
  * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle             # <<<<<<<<<<<<<<
- * ctypedef void* IncreasingAlignmentHandle
- * ctypedef void* ControlArray1DHandle
-*/
-typedef void *__pyx_t_6_c_api_QuantityHandle;
-
-/* "_c_api.pxd":141
- * ctypedef void* AxesLabelledMeasuredArray1DHandle
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ControlArray1DHandle
- * ctypedef void* ControlArrayHandle
-*/
-typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
-
-/* "_c_api.pxd":142
- * ctypedef void* QuantityHandle
- * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* ControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* ControlArrayHandle
- * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* IncreasingAlignmentHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArray1DHandle;
 
-/* "_c_api.pxd":143
- * ctypedef void* IncreasingAlignmentHandle
+/* "_c_api.pxd":142
+ * ctypedef void* AxesLabelledMeasuredArray1DHandle
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
- * ctypedef void* LabelledControlArrayHandle
 */
 typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 
-/* "_c_api.pxd":144
+/* "_c_api.pxd":143
  * ctypedef void* ControlArray1DHandle
  * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* LabelledControlArray1DHandle
+ * ctypedef void* LabelledControlArrayHandle
+*/
+typedef void *__pyx_t_6_c_api_IncreasingAlignmentHandle;
+
+/* "_c_api.pxd":144
+ * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledControlArrayHandle
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3119,7 +3119,7 @@ typedef void *__pyx_t_6_c_api_ControlArrayHandle;
 typedef void *__pyx_t_6_c_api_LabelledControlArray1DHandle;
 
 /* "_c_api.pxd":145
- * ctypedef void* ControlArrayHandle
+ * ctypedef void* IncreasingAlignmentHandle
  * ctypedef void* LabelledControlArray1DHandle
  * ctypedef void* LabelledControlArrayHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LabelledMeasuredArray1DHandle
@@ -3240,7 +3240,7 @@ typedef void *__pyx_t_6_c_api_DomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
+ * ctypedef void* AdjacencyHandle
 */
 typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
 
@@ -3248,131 +3248,131 @@ typedef void *__pyx_t_6_c_api_LabelledDomainHandle;
  * ctypedef void* DomainHandle
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* AdjacencyHandle
  * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
 */
 typedef void *__pyx_t_6_c_api_LoaderHandle;
 
 /* "_c_api.pxd":160
  * ctypedef void* LabelledDomainHandle
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
 */
-typedef void *__pyx_t_6_c_api_ConfigHandle;
+typedef void *__pyx_t_6_c_api_AdjacencyHandle;
 
 /* "_c_api.pxd":161
  * ctypedef void* LoaderHandle
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GroupHandle
  * ctypedef void* AdjacencyHandle
+ * ctypedef void* ConfigHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GroupHandle
+ * ctypedef void* VoltageConstraintsHandle
 */
-typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
+typedef void *__pyx_t_6_c_api_ConfigHandle;
 
 /* "_c_api.pxd":162
- * ctypedef void* ConfigHandle
- * ctypedef void* VoltageConstraintsHandle
- * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
  * ctypedef void* AdjacencyHandle
- * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* ConfigHandle
+ * ctypedef void* GroupHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
 */
 typedef void *__pyx_t_6_c_api_GroupHandle;
 
 /* "_c_api.pxd":163
- * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* ConfigHandle
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle             # <<<<<<<<<<<<<<
- * ctypedef void* GateGeometryArray1DHandle
- * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+ * ctypedef void* VoltageConstraintsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
 */
-typedef void *__pyx_t_6_c_api_AdjacencyHandle;
+typedef void *__pyx_t_6_c_api_VoltageConstraintsHandle;
 
 /* "_c_api.pxd":164
  * ctypedef void* GroupHandle
- * ctypedef void* AdjacencyHandle
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* GateGeometryArray1DHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
+
+/* "_c_api.pxd":165
+ * ctypedef void* VoltageConstraintsHandle
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* GateGeometryArray1DHandle
+ * ctypedef void* LeftReservoirWithImplantedOhmicHandle
+*/
+typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
+
+/* "_c_api.pxd":166
+ * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle             # <<<<<<<<<<<<<<
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
 */
 typedef void *__pyx_t_6_c_api_GateGeometryArray1DHandle;
 
-/* "_c_api.pxd":165
- * ctypedef void* AdjacencyHandle
+/* "_c_api.pxd":167
+ * ctypedef void* DotGatesWithNeighborsHandle
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
 */
 typedef void *__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":166
+/* "_c_api.pxd":168
  * ctypedef void* GateGeometryArray1DHandle
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* ConnectionHandle
+ * ctypedef void* ConnectionsHandle
 */
 typedef void *__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle;
 
-/* "_c_api.pxd":167
+/* "_c_api.pxd":169
  * ctypedef void* LeftReservoirWithImplantedOhmicHandle
  * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* DotGateWithNeighborsHandle
- * ctypedef void* ConnectionHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGatesWithNeighborsHandle;
-
-/* "_c_api.pxd":168
- * ctypedef void* RightReservoirWithImplantedOhmicHandle
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
-*/
-typedef void *__pyx_t_6_c_api_DotGateWithNeighborsHandle;
-
-/* "_c_api.pxd":169
- * ctypedef void* DotGatesWithNeighborsHandle
- * ctypedef void* DotGateWithNeighborsHandle
  * ctypedef void* ConnectionHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ConnectionsHandle
  * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionHandle;
 
 /* "_c_api.pxd":170
- * ctypedef void* DotGateWithNeighborsHandle
+ * ctypedef void* RightReservoirWithImplantedOhmicHandle
  * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedanceHandle
- * ctypedef void* ConnectionsHandle
-*/
-typedef void *__pyx_t_6_c_api_GateRelationsHandle;
-
-/* "_c_api.pxd":171
- * ctypedef void* ConnectionHandle
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ConnectionsHandle
- * ctypedef void* ImpedancesHandle
-*/
-typedef void *__pyx_t_6_c_api_ImpedanceHandle;
-
-/* "_c_api.pxd":172
- * ctypedef void* GateRelationsHandle
- * ctypedef void* ImpedanceHandle
  * ctypedef void* ConnectionsHandle             # <<<<<<<<<<<<<<
- * ctypedef void* ImpedancesHandle
- * ctypedef void* SymbolUnitHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
 */
 typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 
-/* "_c_api.pxd":173
- * ctypedef void* ImpedanceHandle
+/* "_c_api.pxd":171
+ * ctypedef void* ConnectionHandle
  * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedanceHandle
+ * ctypedef void* ImpedancesHandle
+*/
+typedef void *__pyx_t_6_c_api_GateRelationsHandle;
+
+/* "_c_api.pxd":172
+ * ctypedef void* ConnectionsHandle
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle             # <<<<<<<<<<<<<<
+ * ctypedef void* ImpedancesHandle
+ * ctypedef void* SymbolUnitHandle
+*/
+typedef void *__pyx_t_6_c_api_ImpedanceHandle;
+
+/* "_c_api.pxd":173
+ * ctypedef void* GateRelationsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle             # <<<<<<<<<<<<<<
  * ctypedef void* SymbolUnitHandle
  * 
@@ -3380,7 +3380,7 @@ typedef void *__pyx_t_6_c_api_ConnectionsHandle;
 typedef void *__pyx_t_6_c_api_ImpedancesHandle;
 
 /* "_c_api.pxd":174
- * ctypedef void* ConnectionsHandle
+ * ctypedef void* ImpedanceHandle
  * ctypedef void* ImpedancesHandle
  * ctypedef void* SymbolUnitHandle             # <<<<<<<<<<<<<<
  * 
@@ -4002,6 +4002,30 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 #define __Pyx_ExceptionReset(type, value, tb)  PyErr_SetExcInfo(type, value, tb)
 #endif
 
+/* PyObjectFormatSimple.proto */
+#if CYTHON_COMPILING_IN_PYPY
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#elif CYTHON_USE_TYPE_SLOTS
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        likely(PyLong_CheckExact(s)) ? PyLong_Type.tp_repr(s) :\
+        likely(PyFloat_CheckExact(s)) ? PyFloat_Type.tp_repr(s) :\
+        PyObject_Format(s, f))
+#else
+    #define __Pyx_PyObject_FormatSimple(s, f) (\
+        likely(PyUnicode_CheckExact(s)) ? (Py_INCREF(s), s) :\
+        PyObject_Format(s, f))
+#endif
+
+/* PyObjectCallNoArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
+
+/* JoinPyUnicode.export */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char);
+
 /* PyTypeError_Check.proto */
 #define __Pyx_PyExc_TypeError_Check(obj)  __Pyx_TypeCheck(obj, PyExc_TypeError)
 
@@ -4025,9 +4049,6 @@ static int __Pyx__SetItemOnTypeDict(PyTypeObject *tp, PyObject *k, PyObject *v);
 
 /* FixUpExtensionType.proto */
 static CYTHON_INLINE int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type);
-
-/* PyObjectCallNoArg.proto (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 
 /* PyObjectGetMethod.proto (used by PyObjectCallMethod0) */
 #if !(CYTHON_VECTORCALL && (__PYX_LIMITED_VERSION_HEX >= 0x030C0000 || (!CYTHON_COMPILING_IN_LIMITED_API && PY_VERSION_HEX >= 0x03090000)))
@@ -4508,8 +4529,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
 static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_38raw_central_gates(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_40central_dot_gates(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_42ohmics(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_44__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_46__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_44__repr__(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_46__str__(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_48__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_50__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
@@ -4544,7 +4567,7 @@ typedef struct {
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_pop;
   __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_values;
   PyObject *__pyx_codeobj_tab[20];
-  PyObject *__pyx_string_tab[119];
+  PyObject *__pyx_string_tab[122];
 /* #### Code section: module_state_contents ### */
 /* CommonTypesMetaclass.module_state_decls */
 PyTypeObject *__pyx_CommonTypesMetaclassType;
@@ -4589,121 +4612,124 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_kp_u_Failed_to_create_GateGeometryArr __pyx_string_tab[1]
 #define __pyx_kp_u_Note_that_Cython_is_deliberately __pyx_string_tab[2]
 #define __pyx_kp_u__2 __pyx_string_tab[3]
-#define __pyx_kp_u_add_note __pyx_string_tab[4]
-#define __pyx_kp_u_disable __pyx_string_tab[5]
-#define __pyx_kp_u_enable __pyx_string_tab[6]
-#define __pyx_kp_u_gc __pyx_string_tab[7]
-#define __pyx_kp_u_isenabled __pyx_string_tab[8]
-#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[9]
-#define __pyx_kp_u_src_falcon_core__capi_gate_geome __pyx_string_tab[10]
-#define __pyx_kp_u_stringsource __pyx_string_tab[11]
-#define __pyx_n_u_GateGeometryArray1D __pyx_string_tab[12]
-#define __pyx_n_u_GateGeometryArray1D___reduce_cyt __pyx_string_tab[13]
-#define __pyx_n_u_GateGeometryArray1D___setstate_c __pyx_string_tab[14]
-#define __pyx_n_u_GateGeometryArray1D_all_dot_gate __pyx_string_tab[15]
-#define __pyx_n_u_GateGeometryArray1D_append_centr __pyx_string_tab[16]
-#define __pyx_n_u_GateGeometryArray1D_central_dot __pyx_string_tab[17]
-#define __pyx_n_u_GateGeometryArray1D_copy __pyx_string_tab[18]
-#define __pyx_n_u_GateGeometryArray1D_equal __pyx_string_tab[19]
-#define __pyx_n_u_GateGeometryArray1D_from_json __pyx_string_tab[20]
-#define __pyx_n_u_GateGeometryArray1D_left_barrier __pyx_string_tab[21]
-#define __pyx_n_u_GateGeometryArray1D_left_reservo __pyx_string_tab[22]
-#define __pyx_n_u_GateGeometryArray1D_linear_array __pyx_string_tab[23]
-#define __pyx_n_u_GateGeometryArray1D_new __pyx_string_tab[24]
-#define __pyx_n_u_GateGeometryArray1D_not_equal __pyx_string_tab[25]
-#define __pyx_n_u_GateGeometryArray1D_ohmics __pyx_string_tab[26]
-#define __pyx_n_u_GateGeometryArray1D_query_neighb __pyx_string_tab[27]
-#define __pyx_n_u_GateGeometryArray1D_raw_central __pyx_string_tab[28]
-#define __pyx_n_u_GateGeometryArray1D_right_barrie __pyx_string_tab[29]
-#define __pyx_n_u_GateGeometryArray1D_right_reserv __pyx_string_tab[30]
-#define __pyx_n_u_GateGeometryArray1D_screening_ga __pyx_string_tab[31]
-#define __pyx_n_u_GateGeometryArray1D_to_json __pyx_string_tab[32]
-#define __pyx_n_u_NotImplemented __pyx_string_tab[33]
-#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[34]
-#define __pyx_n_u_all_dot_gates __pyx_string_tab[35]
-#define __pyx_n_u_append_central_gate __pyx_string_tab[36]
-#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[37]
-#define __pyx_n_u_b_json __pyx_string_tab[38]
-#define __pyx_n_u_central_dot_gates __pyx_string_tab[39]
-#define __pyx_n_u_cline_in_traceback __pyx_string_tab[40]
-#define __pyx_n_u_cls __pyx_string_tab[41]
-#define __pyx_n_u_copy __pyx_string_tab[42]
-#define __pyx_n_u_dict __pyx_string_tab[43]
-#define __pyx_n_u_equal __pyx_string_tab[44]
-#define __pyx_n_u_falcon_core__capi_gate_geometry __pyx_string_tab[45]
-#define __pyx_n_u_from_json __pyx_string_tab[46]
-#define __pyx_n_u_func __pyx_string_tab[47]
-#define __pyx_n_u_gate __pyx_string_tab[48]
-#define __pyx_n_u_getstate __pyx_string_tab[49]
-#define __pyx_n_u_h __pyx_string_tab[50]
-#define __pyx_n_u_h_ret __pyx_string_tab[51]
-#define __pyx_n_u_handle __pyx_string_tab[52]
-#define __pyx_n_u_is_coroutine __pyx_string_tab[53]
-#define __pyx_n_u_items __pyx_string_tab[54]
-#define __pyx_n_u_json __pyx_string_tab[55]
-#define __pyx_n_u_left_barrier __pyx_string_tab[56]
-#define __pyx_n_u_left_neighbor __pyx_string_tab[57]
-#define __pyx_n_u_left_reservoir __pyx_string_tab[58]
-#define __pyx_n_u_linear_array __pyx_string_tab[59]
-#define __pyx_n_u_lineararray __pyx_string_tab[60]
-#define __pyx_n_u_main __pyx_string_tab[61]
-#define __pyx_n_u_module __pyx_string_tab[62]
-#define __pyx_n_u_name __pyx_string_tab[63]
-#define __pyx_n_u_new __pyx_string_tab[64]
-#define __pyx_n_u_not_equal __pyx_string_tab[65]
-#define __pyx_n_u_obj __pyx_string_tab[66]
-#define __pyx_n_u_ohmics __pyx_string_tab[67]
-#define __pyx_n_u_other __pyx_string_tab[68]
-#define __pyx_n_u_pop __pyx_string_tab[69]
-#define __pyx_n_u_pyx_capi __pyx_string_tab[70]
-#define __pyx_n_u_pyx_state __pyx_string_tab[71]
-#define __pyx_n_u_qualname __pyx_string_tab[72]
-#define __pyx_n_u_query_neighbors __pyx_string_tab[73]
-#define __pyx_n_u_raw_central_gates __pyx_string_tab[74]
-#define __pyx_n_u_reduce __pyx_string_tab[75]
-#define __pyx_n_u_reduce_cython __pyx_string_tab[76]
-#define __pyx_n_u_reduce_ex __pyx_string_tab[77]
-#define __pyx_n_u_right_barrier __pyx_string_tab[78]
-#define __pyx_n_u_right_neighbor __pyx_string_tab[79]
-#define __pyx_n_u_right_reservoir __pyx_string_tab[80]
-#define __pyx_n_u_s_json __pyx_string_tab[81]
-#define __pyx_n_u_s_ret __pyx_string_tab[82]
-#define __pyx_n_u_screening_gates __pyx_string_tab[83]
-#define __pyx_n_u_selected_gate __pyx_string_tab[84]
-#define __pyx_n_u_self __pyx_string_tab[85]
-#define __pyx_n_u_set_name __pyx_string_tab[86]
-#define __pyx_n_u_setdefault __pyx_string_tab[87]
-#define __pyx_n_u_setstate __pyx_string_tab[88]
-#define __pyx_n_u_setstate_cython __pyx_string_tab[89]
-#define __pyx_n_u_test __pyx_string_tab[90]
-#define __pyx_n_u_to_json __pyx_string_tab[91]
-#define __pyx_n_u_values __pyx_string_tab[92]
-#define __pyx_kp_b_iso88591_A_31D_kQWW_h_i_K_K_L __pyx_string_tab[93]
-#define __pyx_kp_b_iso88591_A_44OqPTTU_6_a_1_Qm1 __pyx_string_tab[94]
-#define __pyx_kp_b_iso88591_A_44UUVVZZ_6_a_1_Qm1 __pyx_string_tab[95]
-#define __pyx_kp_b_iso88591_A_44XXYY_6_a_1_Qm1 __pyx_string_tab[96]
-#define __pyx_kp_b_iso88591_A_44XXYY_ffjjuuz_B_B_L_L_e_e_f_6 __pyx_string_tab[97]
-#define __pyx_kp_b_iso88591_A_44ZZ____6_a_1_Qm1 __pyx_string_tab[98]
-#define __pyx_kp_b_iso88591_A_6at9MQ_jjqq_U_U_X_X_e_e_p_p_E __pyx_string_tab[99]
-#define __pyx_kp_b_iso88591_A_9_a_6_1_AU_XWAQ __pyx_string_tab[100]
-#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_1A_2S_2_Qa_Cxq_Q_9 __pyx_string_tab[101]
-#define __pyx_kp_b_iso88591_A_HHkkllppq_6_B_1_Qm1 __pyx_string_tab[102]
-#define __pyx_kp_b_iso88591_A_IImmnnrrs_6_C1_1_a_A __pyx_string_tab[103]
-#define __pyx_kp_b_iso88591_A_Qk_LPWWaa_N_N_Y_Y_i_i_p_p_z_z __pyx_string_tab[104]
-#define __pyx_kp_b_iso88591_A_UUVVZZ_6_6a_1_0_vSHjjnno __pyx_string_tab[105]
-#define __pyx_kp_b_iso88591_A____dde_6_7q_1_1_q __pyx_string_tab[106]
-#define __pyx_kp_b_iso88591_A___ccd_6_7q_1_1_q __pyx_string_tab[107]
-#define __pyx_kp_b_iso88591_A_aaeef_6_8_1_2 __pyx_string_tab[108]
-#define __pyx_kp_b_iso88591_A_ddeeiij_6_8_1_2 __pyx_string_tab[109]
-#define __pyx_kp_b_iso88591_A_q_IU_VSZZd_e_G_G_H __pyx_string_tab[110]
-#define __pyx_kp_b_iso88591_Q __pyx_string_tab[111]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[112]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[113]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_3 __pyx_string_tab[114]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_4 __pyx_string_tab[115]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_5 __pyx_string_tab[116]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_6 __pyx_string_tab[117]
-#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_7 __pyx_string_tab[118]
+#define __pyx_kp_u__3 __pyx_string_tab[4]
+#define __pyx_kp_u__4 __pyx_string_tab[5]
+#define __pyx_kp_u_add_note __pyx_string_tab[6]
+#define __pyx_kp_u_disable __pyx_string_tab[7]
+#define __pyx_kp_u_enable __pyx_string_tab[8]
+#define __pyx_kp_u_gc __pyx_string_tab[9]
+#define __pyx_kp_u_isenabled __pyx_string_tab[10]
+#define __pyx_kp_u_no_default___reduce___due_to_non __pyx_string_tab[11]
+#define __pyx_kp_u_src_falcon_core__capi_gate_geome __pyx_string_tab[12]
+#define __pyx_kp_u_stringsource __pyx_string_tab[13]
+#define __pyx_n_u_GateGeometryArray1D __pyx_string_tab[14]
+#define __pyx_n_u_GateGeometryArray1D___reduce_cyt __pyx_string_tab[15]
+#define __pyx_n_u_GateGeometryArray1D___setstate_c __pyx_string_tab[16]
+#define __pyx_n_u_GateGeometryArray1D_all_dot_gate __pyx_string_tab[17]
+#define __pyx_n_u_GateGeometryArray1D_append_centr __pyx_string_tab[18]
+#define __pyx_n_u_GateGeometryArray1D_central_dot __pyx_string_tab[19]
+#define __pyx_n_u_GateGeometryArray1D_copy __pyx_string_tab[20]
+#define __pyx_n_u_GateGeometryArray1D_equal __pyx_string_tab[21]
+#define __pyx_n_u_GateGeometryArray1D_from_json __pyx_string_tab[22]
+#define __pyx_n_u_GateGeometryArray1D_left_barrier __pyx_string_tab[23]
+#define __pyx_n_u_GateGeometryArray1D_left_reservo __pyx_string_tab[24]
+#define __pyx_n_u_GateGeometryArray1D_linear_array __pyx_string_tab[25]
+#define __pyx_n_u_GateGeometryArray1D_new __pyx_string_tab[26]
+#define __pyx_n_u_GateGeometryArray1D_not_equal __pyx_string_tab[27]
+#define __pyx_n_u_GateGeometryArray1D_ohmics __pyx_string_tab[28]
+#define __pyx_n_u_GateGeometryArray1D_query_neighb __pyx_string_tab[29]
+#define __pyx_n_u_GateGeometryArray1D_raw_central __pyx_string_tab[30]
+#define __pyx_n_u_GateGeometryArray1D_right_barrie __pyx_string_tab[31]
+#define __pyx_n_u_GateGeometryArray1D_right_reserv __pyx_string_tab[32]
+#define __pyx_n_u_GateGeometryArray1D_screening_ga __pyx_string_tab[33]
+#define __pyx_n_u_GateGeometryArray1D_to_json __pyx_string_tab[34]
+#define __pyx_n_u_NotImplemented __pyx_string_tab[35]
+#define __pyx_n_u_Pyx_PyDict_NextRef __pyx_string_tab[36]
+#define __pyx_n_u_all_dot_gates __pyx_string_tab[37]
+#define __pyx_n_u_append_central_gate __pyx_string_tab[38]
+#define __pyx_n_u_asyncio_coroutines __pyx_string_tab[39]
+#define __pyx_n_u_b_json __pyx_string_tab[40]
+#define __pyx_n_u_central_dot_gates __pyx_string_tab[41]
+#define __pyx_n_u_class __pyx_string_tab[42]
+#define __pyx_n_u_cline_in_traceback __pyx_string_tab[43]
+#define __pyx_n_u_cls __pyx_string_tab[44]
+#define __pyx_n_u_copy __pyx_string_tab[45]
+#define __pyx_n_u_dict __pyx_string_tab[46]
+#define __pyx_n_u_equal __pyx_string_tab[47]
+#define __pyx_n_u_falcon_core__capi_gate_geometry __pyx_string_tab[48]
+#define __pyx_n_u_from_json __pyx_string_tab[49]
+#define __pyx_n_u_func __pyx_string_tab[50]
+#define __pyx_n_u_gate __pyx_string_tab[51]
+#define __pyx_n_u_getstate __pyx_string_tab[52]
+#define __pyx_n_u_h __pyx_string_tab[53]
+#define __pyx_n_u_h_ret __pyx_string_tab[54]
+#define __pyx_n_u_handle __pyx_string_tab[55]
+#define __pyx_n_u_is_coroutine __pyx_string_tab[56]
+#define __pyx_n_u_items __pyx_string_tab[57]
+#define __pyx_n_u_json __pyx_string_tab[58]
+#define __pyx_n_u_left_barrier __pyx_string_tab[59]
+#define __pyx_n_u_left_neighbor __pyx_string_tab[60]
+#define __pyx_n_u_left_reservoir __pyx_string_tab[61]
+#define __pyx_n_u_linear_array __pyx_string_tab[62]
+#define __pyx_n_u_lineararray __pyx_string_tab[63]
+#define __pyx_n_u_main __pyx_string_tab[64]
+#define __pyx_n_u_module __pyx_string_tab[65]
+#define __pyx_n_u_name __pyx_string_tab[66]
+#define __pyx_n_u_new __pyx_string_tab[67]
+#define __pyx_n_u_not_equal __pyx_string_tab[68]
+#define __pyx_n_u_obj __pyx_string_tab[69]
+#define __pyx_n_u_ohmics __pyx_string_tab[70]
+#define __pyx_n_u_other __pyx_string_tab[71]
+#define __pyx_n_u_pop __pyx_string_tab[72]
+#define __pyx_n_u_pyx_capi __pyx_string_tab[73]
+#define __pyx_n_u_pyx_state __pyx_string_tab[74]
+#define __pyx_n_u_qualname __pyx_string_tab[75]
+#define __pyx_n_u_query_neighbors __pyx_string_tab[76]
+#define __pyx_n_u_raw_central_gates __pyx_string_tab[77]
+#define __pyx_n_u_reduce __pyx_string_tab[78]
+#define __pyx_n_u_reduce_cython __pyx_string_tab[79]
+#define __pyx_n_u_reduce_ex __pyx_string_tab[80]
+#define __pyx_n_u_right_barrier __pyx_string_tab[81]
+#define __pyx_n_u_right_neighbor __pyx_string_tab[82]
+#define __pyx_n_u_right_reservoir __pyx_string_tab[83]
+#define __pyx_n_u_s_json __pyx_string_tab[84]
+#define __pyx_n_u_s_ret __pyx_string_tab[85]
+#define __pyx_n_u_screening_gates __pyx_string_tab[86]
+#define __pyx_n_u_selected_gate __pyx_string_tab[87]
+#define __pyx_n_u_self __pyx_string_tab[88]
+#define __pyx_n_u_set_name __pyx_string_tab[89]
+#define __pyx_n_u_setdefault __pyx_string_tab[90]
+#define __pyx_n_u_setstate __pyx_string_tab[91]
+#define __pyx_n_u_setstate_cython __pyx_string_tab[92]
+#define __pyx_n_u_test __pyx_string_tab[93]
+#define __pyx_n_u_to_json __pyx_string_tab[94]
+#define __pyx_n_u_values __pyx_string_tab[95]
+#define __pyx_kp_b_iso88591_A_31D_kQWW_h_i_K_K_L __pyx_string_tab[96]
+#define __pyx_kp_b_iso88591_A_44OqPTTU_6_c_Qm1 __pyx_string_tab[97]
+#define __pyx_kp_b_iso88591_A_44UUVVZZ_6_c_Qm1 __pyx_string_tab[98]
+#define __pyx_kp_b_iso88591_A_44XXYY_6_c_Qm1 __pyx_string_tab[99]
+#define __pyx_kp_b_iso88591_A_44XXYY_ffjjuuz_B_B_L_L_e_e_f_6 __pyx_string_tab[100]
+#define __pyx_kp_b_iso88591_A_44ZZ____6_c_Qm1 __pyx_string_tab[101]
+#define __pyx_kp_b_iso88591_A_6at9MQ_jjqq_U_U_X_X_e_e_p_p_E __pyx_string_tab[102]
+#define __pyx_kp_b_iso88591_A_9_a_6_G1_W_Qe6_hgQa_aq __pyx_string_tab[103]
+#define __pyx_kp_b_iso88591_A_D_q_0_axs_1_1A_2S_2_Qa_Cxq_Q_9 __pyx_string_tab[104]
+#define __pyx_kp_b_iso88591_A_HHkkllppq_6_B_WA_Qm1 __pyx_string_tab[105]
+#define __pyx_kp_b_iso88591_A_IImmnnrrs_6_C3gQ_a_A __pyx_string_tab[106]
+#define __pyx_kp_b_iso88591_A_Qk_LPWWaa_N_N_Y_Y_i_i_p_p_z_z __pyx_string_tab[107]
+#define __pyx_kp_b_iso88591_A_UUVVZZ_6_6c_0_vSHjjnno __pyx_string_tab[108]
+#define __pyx_kp_b_iso88591_A____dde_6_7s_1_q __pyx_string_tab[109]
+#define __pyx_kp_b_iso88591_A___ccd_6_7s_1_q __pyx_string_tab[110]
+#define __pyx_kp_b_iso88591_A_aaeef_6_8_7_2 __pyx_string_tab[111]
+#define __pyx_kp_b_iso88591_A_ddeeiij_6_8_7_2 __pyx_string_tab[112]
+#define __pyx_kp_b_iso88591_A_q_IU_VSZZd_e_G_G_H __pyx_string_tab[113]
+#define __pyx_kp_b_iso88591_Q __pyx_string_tab[114]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5 __pyx_string_tab[115]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_2 __pyx_string_tab[116]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_3 __pyx_string_tab[117]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_4 __pyx_string_tab[118]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_5 __pyx_string_tab[119]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_6 __pyx_string_tab[120]
+#define __pyx_kp_b_struct___pyx_obj_11falcon_core_5_7 __pyx_string_tab[121]
 /* #### Code section: module_state_clear ### */
 #if CYTHON_USE_MODULE_STATE
 static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
@@ -4728,7 +4754,7 @@ static CYTHON_SMALL_CODE int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D);
   Py_CLEAR(clear_module_state->__pyx_type_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D);
   for (int i=0; i<20; ++i) { Py_CLEAR(clear_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<119; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<122; ++i) { Py_CLEAR(clear_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_clear_contents ### */
 /* CommonTypesMetaclass.module_state_clear */
 Py_CLEAR(clear_module_state->__pyx_CommonTypesMetaclassType);
@@ -4761,7 +4787,7 @@ static CYTHON_SMALL_CODE int __pyx_m_traverse(PyObject *m, visitproc visit, void
   Py_VISIT(traverse_module_state->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D);
   Py_VISIT(traverse_module_state->__pyx_type_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D);
   for (int i=0; i<20; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_codeobj_tab[i]); }
-  for (int i=0; i<119; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
+  for (int i=0; i<122; ++i) { __Pyx_VISIT_CONST(traverse_module_state->__pyx_string_tab[i]); }
 /* #### Code section: module_state_traverse_contents ### */
 /* CommonTypesMetaclass.module_state_traverse */
 Py_VISIT(traverse_module_state->__pyx_CommonTypesMetaclassType);
@@ -5444,7 +5470,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
  *         obj.owned = True
  *         return obj             # <<<<<<<<<<<<<<
  * 
- *     def copy(self, ):
+ *     def copy(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_obj);
@@ -5475,9 +5501,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
 /* "falcon_core/_capi/gate_geometry_array1_d.pyx":51
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
+ *         if h_ret == <_c_api.GateGeometryArray1DHandle>0: return None
 */
 
 /* Python wrapper */
@@ -5536,46 +5562,30 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
 
   /* "falcon_core/_capi/gate_geometry_array1_d.pyx":52
  * 
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
- *             return None
+ *         if h_ret == <_c_api.GateGeometryArray1DHandle>0: return None
+ *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
 */
   __pyx_v_h_ret = GateGeometryArray1D_copy(__pyx_v_self->handle);
 
   /* "falcon_core/_capi/gate_geometry_array1_d.pyx":53
- *     def copy(self, ):
+ *     def copy(self):
  *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_GateGeometryArray1DHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":54
- *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.GateGeometryArray1DHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_GateGeometryArray1DHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":53
- *     def copy(self, ):
- *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":55
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":54
+ *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
+ *         if h_ret == <_c_api.GateGeometryArray1DHandle>0: return None
  *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))             # <<<<<<<<<<<<<<
  * 
  *     def equal(self, GateGeometryArray1D other):
@@ -5583,7 +5593,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = (__pyx_v_h_ret != ((__pyx_t_6_c_api_GateGeometryArray1DHandle)__pyx_v_self->handle));
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_22gate_geometry_array1_d__gate_geometry_array1_d_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_22gate_geometry_array1_d__gate_geometry_array1_d_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
@@ -5592,9 +5602,9 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   /* "falcon_core/_capi/gate_geometry_array1_d.pyx":51
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
+ *         if h_ret == <_c_api.GateGeometryArray1DHandle>0: return None
 */
 
   /* function exit code */
@@ -5608,7 +5618,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":57
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":56
  *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
  * 
  *     def equal(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
@@ -5655,32 +5665,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 57, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 56, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 56, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "equal", 0) < (0)) __PYX_ERR(0, 56, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 57, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, i); __PYX_ERR(0, 56, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 57, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 56, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 57, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 56, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5691,7 +5701,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 56, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_10equal(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -5722,7 +5732,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("equal", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":58
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":57
  * 
  *     def equal(self, GateGeometryArray1D other):
  *         return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)             # <<<<<<<<<<<<<<
@@ -5736,13 +5746,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_GateGeometryArray1DHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(GateGeometryArray1D_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 58, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(GateGeometryArray1D_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":57
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":56
  *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
  * 
  *     def equal(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
@@ -5761,12 +5771,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":60
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":59
  *         return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
  * 
  *     def __eq__(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
 /* Python wrapper */
@@ -5780,7 +5790,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 60, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 59, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_12__eq__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_other));
 
   /* function exit code */
@@ -5807,41 +5817,25 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":61
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":60
  * 
  *     def __eq__(self, GateGeometryArray1D other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 61, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 60, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":62
- *     def __eq__(self, GateGeometryArray1D other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":61
- * 
- *     def __eq__(self, GateGeometryArray1D other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":63
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":61
+ *     def __eq__(self, GateGeometryArray1D other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.equal(other)             # <<<<<<<<<<<<<<
  * 
  *     def not_equal(self, GateGeometryArray1D other):
@@ -5854,19 +5848,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 63, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":60
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":59
  *         return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
  * 
  *     def __eq__(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.equal(other)
 */
 
   /* function exit code */
@@ -5881,7 +5875,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":65
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":63
  *         return self.equal(other)
  * 
  *     def not_equal(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
@@ -5928,32 +5922,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_other,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 65, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 63, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 65, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "not_equal", 0) < (0)) __PYX_ERR(0, 63, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 65, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, i); __PYX_ERR(0, 63, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 65, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 63, __pyx_L3_error)
     }
     __pyx_v_other = ((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 65, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("not_equal", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 63, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5964,7 +5958,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 65, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 63, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_14not_equal(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), __pyx_v_other);
 
   /* function exit code */
@@ -5995,7 +5989,7 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("not_equal", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":66
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":64
  * 
  *     def not_equal(self, GateGeometryArray1D other):
  *         return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)             # <<<<<<<<<<<<<<
@@ -6009,13 +6003,13 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   } else {
     __pyx_t_1 = ((__pyx_t_6_c_api_GateGeometryArray1DHandle)0);
   }
-  __pyx_t_3 = __Pyx_PyBool_FromLong(GateGeometryArray1D_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyBool_FromLong(GateGeometryArray1D_not_equal(__pyx_v_self->handle, __pyx_t_1)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":65
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":63
  *         return self.equal(other)
  * 
  *     def not_equal(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
@@ -6034,12 +6028,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":68
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":66
  *         return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
  * 
  *     def __ne__(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
 /* Python wrapper */
@@ -6053,7 +6047,7 @@ static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__ne__ (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, 1, "other", 0))) __PYX_ERR(0, 66, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_16__ne__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), ((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_other));
 
   /* function exit code */
@@ -6080,44 +6074,28 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__ne__", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":69
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":67
  * 
  *     def __ne__(self, GateGeometryArray1D other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented             # <<<<<<<<<<<<<<
  *         return self.not_equal(other)
+ * 
 */
-  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_HasAttr(((PyObject *)__pyx_v_other), __pyx_mstate_global->__pyx_n_u_handle); if (unlikely(__pyx_t_1 == ((int)-1))) __PYX_ERR(0, 67, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":70
- *     def __ne__(self, GateGeometryArray1D other):
- *         if not hasattr(other, "handle"):
- *             return NotImplemented             # <<<<<<<<<<<<<<
- *         return self.not_equal(other)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_builtin_NotImplemented);
     __pyx_r = __pyx_builtin_NotImplemented;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":69
- * 
- *     def __ne__(self, GateGeometryArray1D other):
- *         if not hasattr(other, "handle"):             # <<<<<<<<<<<<<<
- *             return NotImplemented
- *         return self.not_equal(other)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":71
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":68
+ *     def __ne__(self, GateGeometryArray1D other):
+ *         if not hasattr(other, "handle"): return NotImplemented
  *         return self.not_equal(other)             # <<<<<<<<<<<<<<
  * 
- *     def to_json(self, ):
+ *     def to_json(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4 = ((PyObject *)__pyx_v_self);
@@ -6127,19 +6105,19 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
     PyObject *__pyx_callargs[2] = {__pyx_t_4, ((PyObject *)__pyx_v_other)};
     __pyx_t_3 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_not_equal, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 71, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 68, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
   }
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":68
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":66
  *         return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
  * 
  *     def __ne__(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
- *         if not hasattr(other, "handle"):
- *             return NotImplemented
+ *         if not hasattr(other, "handle"): return NotImplemented
+ *         return self.not_equal(other)
 */
 
   /* function exit code */
@@ -6154,10 +6132,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":73
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":70
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
 */
@@ -6225,70 +6203,46 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("to_json", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":75
- *     def to_json(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":72
+ *     def to_json(self):
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)             # <<<<<<<<<<<<<<
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
 */
   __pyx_v_s_ret = GateGeometryArray1D_to_json_string(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":76
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":73
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
+ *         if s_ret == <_c_api.StringHandle>0: return ""             # <<<<<<<<<<<<<<
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)
 */
   __pyx_t_1 = (__pyx_v_s_ret == ((StringHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":77
- *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""             # <<<<<<<<<<<<<<
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-*/
     __Pyx_XDECREF(__pyx_r);
     __Pyx_INCREF(__pyx_mstate_global->__pyx_kp_u_);
     __pyx_r = __pyx_mstate_global->__pyx_kp_u_;
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":76
- *         cdef _c_api.StringHandle s_ret
- *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
- *         if s_ret == <_c_api.StringHandle>0:             # <<<<<<<<<<<<<<
- *             return ""
- *         try:
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":78
- *         if s_ret == <_c_api.StringHandle>0:
- *             return ""
- *         try:             # <<<<<<<<<<<<<<
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":74
+ *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
+ *         finally: _c_api.String_destroy(s_ret)
+ * 
 */
   /*try:*/ {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":79
- *             return ""
- *         try:
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")             # <<<<<<<<<<<<<<
- *         finally:
- *             _c_api.String_destroy(s_ret)
-*/
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L5_error)
+    __pyx_t_2 = PyBytes_FromStringAndSize(__pyx_v_s_ret->raw, __pyx_v_s_ret->length); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 74, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_2);
     if (unlikely(__pyx_t_2 == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-      __PYX_ERR(0, 79, __pyx_L5_error)
+      __PYX_ERR(0, 74, __pyx_L5_error)
     }
-    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 79, __pyx_L5_error)
+    __pyx_t_3 = __Pyx_decode_bytes(__pyx_t_2, 0, PY_SSIZE_T_MAX, NULL, NULL, PyUnicode_DecodeUTF8); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 74, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_r = __pyx_t_3;
@@ -6296,10 +6250,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
     goto __pyx_L4_return;
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":81
- *             return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
- *         finally:
- *             _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":75
+ *         if s_ret == <_c_api.StringHandle>0: return ""
+ *         try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+ *         finally: _c_api.String_destroy(s_ret)             # <<<<<<<<<<<<<<
  * 
  *     def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):
 */
@@ -6345,10 +6299,10 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
     }
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":73
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":70
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
 */
@@ -6365,8 +6319,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":83
- *             _c_api.String_destroy(s_ret)
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":77
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):             # <<<<<<<<<<<<<<
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
@@ -6414,38 +6368,38 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_left_neighbor,&__pyx_mstate_global->__pyx_n_u_selected_gate,&__pyx_mstate_global->__pyx_n_u_right_neighbor,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 83, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 77, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 77, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 77, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 77, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append_central_gate", 0) < (0)) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "append_central_gate", 0) < (0)) __PYX_ERR(0, 77, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 3; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append_central_gate", 1, 3, 3, i); __PYX_ERR(0, 83, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("append_central_gate", 1, 3, 3, i); __PYX_ERR(0, 77, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 77, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 77, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 83, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 77, __pyx_L3_error)
     }
     __pyx_v_left_neighbor = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[0]);
     __pyx_v_selected_gate = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[1]);
@@ -6453,7 +6407,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("append_central_gate", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 83, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("append_central_gate", 1, 3, 3, __pyx_nargs); __PYX_ERR(0, 77, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6464,9 +6418,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_left_neighbor), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "left_neighbor", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_selected_gate), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "selected_gate", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_right_neighbor), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "right_neighbor", 0))) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_left_neighbor), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "left_neighbor", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_selected_gate), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "selected_gate", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_right_neighbor), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "right_neighbor", 0))) __PYX_ERR(0, 77, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_20append_central_gate(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), __pyx_v_left_neighbor, __pyx_v_selected_gate, __pyx_v_right_neighbor);
 
   /* function exit code */
@@ -6495,12 +6449,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   __pyx_t_6_c_api_ConnectionHandle __pyx_t_4;
   __Pyx_RefNannySetupContext("append_central_gate", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":84
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":78
  * 
  *     def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)             # <<<<<<<<<<<<<<
  * 
- *     def all_dot_gates(self, ):
+ *     def all_dot_gates(self):
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_left_neighbor) != Py_None);
   if (__pyx_t_2) {
@@ -6522,8 +6476,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   }
   GateGeometryArray1D_append_central_gate(__pyx_v_self->handle, __pyx_t_1, __pyx_t_3, __pyx_t_4);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":83
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":77
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):             # <<<<<<<<<<<<<<
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
@@ -6537,12 +6491,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":86
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":80
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
  * 
- *     def all_dot_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def all_dot_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6599,48 +6553,32 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("all_dot_gates", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":87
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":81
  * 
- *     def all_dot_gates(self, ):
+ *     def all_dot_gates(self):
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
+ *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_all_dot_gates(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":88
- *     def all_dot_gates(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":82
+ *     def all_dot_gates(self):
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
-*/
-  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DotGatesWithNeighborsHandle)0));
-  if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":89
- *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
 */
+  __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DotGatesWithNeighborsHandle)0));
+  if (__pyx_t_1) {
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":88
- *     def all_dot_gates(self, ):
- *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":90
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":83
+ *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
  *     def query_neighbors(self, Connection gate):
@@ -6648,18 +6586,18 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_24dot_gates_with_neighbors__dot_gates_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_24dot_gates_with_neighbors__dot_gates_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":86
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":80
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
  * 
- *     def all_dot_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def all_dot_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
 */
 
   /* function exit code */
@@ -6673,12 +6611,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":92
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":85
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
  *     def query_neighbors(self, Connection gate):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6720,32 +6658,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_gate,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 92, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 85, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "query_neighbors", 0) < (0)) __PYX_ERR(0, 92, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "query_neighbors", 0) < (0)) __PYX_ERR(0, 85, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("query_neighbors", 1, 1, 1, i); __PYX_ERR(0, 92, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("query_neighbors", 1, 1, 1, i); __PYX_ERR(0, 85, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 92, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 85, __pyx_L3_error)
     }
     __pyx_v_gate = ((struct __pyx_obj_11falcon_core_5_capi_10connection_Connection *)values[0]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("query_neighbors", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 92, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("query_neighbors", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 85, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6756,7 +6694,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_gate), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "gate", 0))) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_gate), __pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_10connection_Connection, 1, "gate", 0))) __PYX_ERR(0, 85, __pyx_L1_error)
   __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_24query_neighbors(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), __pyx_v_gate);
 
   /* function exit code */
@@ -6789,12 +6727,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("query_neighbors", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":93
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":86
  * 
  *     def query_neighbors(self, Connection gate):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
+ *         return _connections_from_capi(h_ret, owned=True)
 */
   __pyx_t_2 = (((PyObject *)__pyx_v_gate) != Py_None);
   if (__pyx_t_2) {
@@ -6804,58 +6742,42 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   }
   __pyx_v_h_ret = GateGeometryArray1D_query_neighbors(__pyx_v_self->handle, __pyx_t_1);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":94
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":87
  *     def query_neighbors(self, Connection gate):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _connections_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_2 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionsHandle)0));
   if (__pyx_t_2) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":95
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _connections_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":94
- *     def query_neighbors(self, Connection gate):
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connections_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":96
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":88
+ *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
  *         return _connections_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def left_reservoir(self, ):
+ *     def left_reservoir(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_4.__pyx_n = 1;
   __pyx_t_4.owned = 1;
-  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_4)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_r = __pyx_t_3;
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":92
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":85
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
  *     def query_neighbors(self, Connection gate):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
   /* function exit code */
@@ -6869,12 +6791,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":98
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":90
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def left_reservoir(self, ):             # <<<<<<<<<<<<<<
+ *     def left_reservoir(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0: return None
 */
 
 /* Python wrapper */
@@ -6931,67 +6853,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("left_reservoir", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":99
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":91
  * 
- *     def left_reservoir(self, ):
+ *     def left_reservoir(self):
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
- *             return None
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0: return None
+ *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_left_reservoir(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":100
- *     def left_reservoir(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":92
+ *     def left_reservoir(self):
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":101
- *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":100
- *     def left_reservoir(self, ):
- *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":102
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":93
+ *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0: return None
  *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def right_reservoir(self, ):
+ *     def right_reservoir(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":98
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":90
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def left_reservoir(self, ):             # <<<<<<<<<<<<<<
+ *     def left_reservoir(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0: return None
 */
 
   /* function exit code */
@@ -7005,12 +6911,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":104
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":95
  *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
  * 
- *     def right_reservoir(self, ):             # <<<<<<<<<<<<<<
+ *     def right_reservoir(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
+ *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7067,67 +6973,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("right_reservoir", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":105
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":96
  * 
- *     def right_reservoir(self, ):
+ *     def right_reservoir(self):
  *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
- *             return None
+ *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0: return None
+ *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_right_reservoir(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":106
- *     def right_reservoir(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":97
+ *     def right_reservoir(self):
  *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":107
- *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":106
- *     def right_reservoir(self, ):
- *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":108
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":98
+ *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
+ *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0: return None
  *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def left_barrier(self, ):
+ *     def left_barrier(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_36right_reservoir_with_implanted_ohmic__right_reservoir_with_implanted_ohmic_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_36right_reservoir_with_implanted_ohmic__right_reservoir_with_implanted_ohmic_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":104
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":95
  *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
  * 
- *     def right_reservoir(self, ):             # <<<<<<<<<<<<<<
+ *     def right_reservoir(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
+ *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0: return None
 */
 
   /* function exit code */
@@ -7141,12 +7031,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":110
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":100
  *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
  * 
- *     def left_barrier(self, ):             # <<<<<<<<<<<<<<
+ *     def left_barrier(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7203,67 +7093,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("left_barrier", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":111
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":101
  * 
- *     def left_barrier(self, ):
+ *     def left_barrier(self):
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
+ *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_left_barrier(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":112
- *     def left_barrier(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":102
+ *     def left_barrier(self):
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DotGateWithNeighborsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":113
- *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":112
- *     def left_barrier(self, ):
- *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":114
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":103
+ *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def right_barrier(self, ):
+ *     def right_barrier(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23dot_gate_with_neighbors__dot_gate_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23dot_gate_with_neighbors__dot_gate_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":110
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":100
  *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
  * 
- *     def left_barrier(self, ):             # <<<<<<<<<<<<<<
+ *     def left_barrier(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
 */
 
   /* function exit code */
@@ -7277,12 +7151,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":116
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":105
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def right_barrier(self, ):             # <<<<<<<<<<<<<<
+ *     def right_barrier(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7339,67 +7213,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("right_barrier", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":117
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":106
  * 
- *     def right_barrier(self, ):
+ *     def right_barrier(self):
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
+ *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_right_barrier(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":118
- *     def right_barrier(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":107
+ *     def right_barrier(self):
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DotGateWithNeighborsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":119
- *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":118
- *     def right_barrier(self, ):
- *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":120
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":108
+ *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def linear_array(self, ):
+ *     def linear_array(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23dot_gate_with_neighbors__dot_gate_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_23dot_gate_with_neighbors__dot_gate_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":116
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":105
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def right_barrier(self, ):             # <<<<<<<<<<<<<<
+ *     def right_barrier(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
 */
 
   /* function exit code */
@@ -7413,12 +7271,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":122
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":110
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def linear_array(self, ):             # <<<<<<<<<<<<<<
+ *     def linear_array(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7475,67 +7333,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("linear_array", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":123
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":111
  * 
- *     def linear_array(self, ):
+ *     def linear_array(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
+ *         return _connections_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_linear_array(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":124
- *     def linear_array(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":112
+ *     def linear_array(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _connections_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":125
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _connections_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":124
- *     def linear_array(self, ):
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connections_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":126
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":113
+ *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
  *         return _connections_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def screening_gates(self, ):
+ *     def screening_gates(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 126, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":122
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":110
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def linear_array(self, ):             # <<<<<<<<<<<<<<
+ *     def linear_array(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
   /* function exit code */
@@ -7549,12 +7391,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":128
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":115
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def screening_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def screening_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7611,67 +7453,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("screening_gates", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":129
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":116
  * 
- *     def screening_gates(self, ):
+ *     def screening_gates(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
+ *         return _connections_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_screening_gates(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":130
- *     def screening_gates(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":117
+ *     def screening_gates(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _connections_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":131
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _connections_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":130
- *     def screening_gates(self, ):
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connections_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":132
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":118
+ *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
  *         return _connections_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def raw_central_gates(self, ):
+ *     def raw_central_gates(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":128
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":115
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def screening_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def screening_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
   /* function exit code */
@@ -7685,12 +7511,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":134
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":120
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def raw_central_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def raw_central_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7747,67 +7573,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("raw_central_gates", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":135
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":121
  * 
- *     def raw_central_gates(self, ):
+ *     def raw_central_gates(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
+ *         return _connections_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_raw_central_gates(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":136
- *     def raw_central_gates(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":122
+ *     def raw_central_gates(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _connections_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":137
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _connections_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":136
- *     def raw_central_gates(self, ):
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connections_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":138
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":123
+ *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
  *         return _connections_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def central_dot_gates(self, ):
+ *     def central_dot_gates(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":134
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":120
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def raw_central_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def raw_central_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
   /* function exit code */
@@ -7821,12 +7631,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":140
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":125
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def central_dot_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def central_dot_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -7883,67 +7693,51 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("central_dot_gates", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":141
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":126
  * 
- *     def central_dot_gates(self, ):
+ *     def central_dot_gates(self):
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
+ *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_central_dot_gates(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":142
- *     def central_dot_gates(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":127
+ *     def central_dot_gates(self):
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_DotGatesWithNeighborsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":143
- *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":142
- *     def central_dot_gates(self, ):
- *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":144
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":128
+ *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- *     def ohmics(self, ):
+ *     def ohmics(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_24dot_gates_with_neighbors__dot_gates_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_24dot_gates_with_neighbors__dot_gates_with_neighbors_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":140
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":125
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def central_dot_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def central_dot_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
 */
 
   /* function exit code */
@@ -7957,12 +7751,12 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":146
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":130
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def ohmics(self, ):             # <<<<<<<<<<<<<<
+ *     def ohmics(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
 /* Python wrapper */
@@ -8019,73 +7813,226 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ohmics", 0);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":147
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":131
  * 
- *     def ohmics(self, ):
+ *     def ohmics(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)             # <<<<<<<<<<<<<<
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
+ *         return _connections_from_capi(h_ret, owned=True)
 */
   __pyx_v_h_ret = GateGeometryArray1D_ohmics(__pyx_v_self->handle);
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":148
- *     def ohmics(self, ):
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":132
+ *     def ohmics(self):
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None             # <<<<<<<<<<<<<<
  *         return _connections_from_capi(h_ret, owned=True)
+ * 
 */
   __pyx_t_1 = (__pyx_v_h_ret == ((__pyx_t_6_c_api_ConnectionsHandle)0));
   if (__pyx_t_1) {
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":149
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None             # <<<<<<<<<<<<<<
- *         return _connections_from_capi(h_ret, owned=True)
- * 
-*/
     __Pyx_XDECREF(__pyx_r);
     __pyx_r = Py_None; __Pyx_INCREF(Py_None);
     goto __pyx_L0;
-
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":148
- *     def ohmics(self, ):
- *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:             # <<<<<<<<<<<<<<
- *             return None
- *         return _connections_from_capi(h_ret, owned=True)
-*/
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":150
- *         if h_ret == <_c_api.ConnectionsHandle>0:
- *             return None
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":133
+ *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
  *         return _connections_from_capi(h_ret, owned=True)             # <<<<<<<<<<<<<<
  * 
- * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
+ *     def __repr__(self):
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_3.__pyx_n = 1;
   __pyx_t_3.owned = 1;
-  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_11falcon_core_5_capi_11connections__connections_from_capi(__pyx_v_h_ret, &__pyx_t_3)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":146
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":130
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def ohmics(self, ):             # <<<<<<<<<<<<<<
+ *     def ohmics(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
 
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_AddTraceback("falcon_core._capi.gate_geometry_array1_d.GateGeometryArray1D.ohmics", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":135
+ *         return _connections_from_capi(h_ret, owned=True)
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__repr__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__repr__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__repr__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_44__repr__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_44__repr__(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4[4];
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__repr__", 0);
+
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":136
+ * 
+ *     def __repr__(self):
+ *         return f"{self.__class__.__name__}({self.to_json()})"             # <<<<<<<<<<<<<<
+ * 
+ *     def __str__(self):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_class); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_FormatSimple(__pyx_t_2, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_mstate_global->__pyx_n_u_to_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_CallNoArg(__pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyObject_FormatSimple(__pyx_t_3, __pyx_mstate_global->__pyx_empty_unicode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_4[0] = __pyx_t_1;
+  __pyx_t_4[1] = __pyx_mstate_global->__pyx_kp_u__2;
+  __pyx_t_4[2] = __pyx_t_2;
+  __pyx_t_4[3] = __pyx_mstate_global->__pyx_kp_u__3;
+  __pyx_t_3 = __Pyx_PyUnicode_Join(__pyx_t_4, 4, __Pyx_PyUnicode_GET_LENGTH(__pyx_t_1) + 1 * 2 + __Pyx_PyUnicode_GET_LENGTH(__pyx_t_2), 127 | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_1) | __Pyx_PyUnicode_MAX_CHAR_VALUE(__pyx_t_2));
+  if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_3;
+  __pyx_t_3 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":135
+ *         return _connections_from_capi(h_ret, owned=True)
+ * 
+ *     def __repr__(self):             # <<<<<<<<<<<<<<
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("falcon_core._capi.gate_geometry_array1_d.GateGeometryArray1D.__repr__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":138
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+/* Python wrapper */
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__str__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__str__(PyObject *__pyx_v_self) {
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__str__ (wrapper)", 0);
+  __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_46__str__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_46__str__(struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  size_t __pyx_t_3;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__str__", 0);
+
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":139
+ * 
+ *     def __str__(self):
+ *         return self.to_json()             # <<<<<<<<<<<<<<
+ * 
+ * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
+*/
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = ((PyObject *)__pyx_v_self);
+  __Pyx_INCREF(__pyx_t_2);
+  __pyx_t_3 = 0;
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+    __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_to_json, __pyx_callargs+__pyx_t_3, (1-__pyx_t_3) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+  }
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":138
+ *         return f"{self.__class__.__name__}({self.to_json()})"
+ * 
+ *     def __str__(self):             # <<<<<<<<<<<<<<
+ *         return self.to_json()
+ * 
+*/
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("falcon_core._capi.gate_geometry_array1_d.GateGeometryArray1D.__str__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -8100,15 +8047,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_49__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_49__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_49__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_49__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -8134,14 +8081,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   const Py_ssize_t __pyx_kwds_len = unlikely(__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
   if (unlikely(__pyx_kwds_len < 0)) return NULL;
   if (unlikely(__pyx_kwds_len > 0)) {__Pyx_RejectKeywords("__reduce_cython__", __pyx_kwds); return NULL;}
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_44__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self));
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_48__reduce_cython__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_44__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_48__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -8181,15 +8128,15 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_51__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_51__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_51__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_51__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -8255,7 +8202,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_46__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_50__setstate_cython__(((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -8265,7 +8212,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_46__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_50__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
@@ -8297,8 +8244,8 @@ static PyObject *__pyx_pf_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGe
   return __pyx_r;
 }
 
-/* "falcon_core/_capi/gate_geometry_array1_d.pyx":152
- *         return _connections_from_capi(h_ret, owned=True)
+/* "falcon_core/_capi/gate_geometry_array1_d.pyx":141
+ *         return self.to_json()
  * 
  * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.GateGeometryArray1DHandle>0:
@@ -8322,7 +8269,7 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
     }
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":153
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":142
  * 
  * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
  *     if h == <_c_api.GateGeometryArray1DHandle>0:             # <<<<<<<<<<<<<<
@@ -8332,7 +8279,7 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
   __pyx_t_1 = (__pyx_v_h == ((__pyx_t_6_c_api_GateGeometryArray1DHandle)0));
   if (__pyx_t_1) {
 
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":154
+    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":143
  * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
  *     if h == <_c_api.GateGeometryArray1DHandle>0:
  *         return None             # <<<<<<<<<<<<<<
@@ -8343,7 +8290,7 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
     __pyx_r = ((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)Py_None); __Pyx_INCREF(Py_None);
     goto __pyx_L0;
 
-    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":153
+    /* "falcon_core/_capi/gate_geometry_array1_d.pyx":142
  * 
  * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):
  *     if h == <_c_api.GateGeometryArray1DHandle>0:             # <<<<<<<<<<<<<<
@@ -8352,19 +8299,19 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
 */
   }
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":155
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":144
  *     if h == <_c_api.GateGeometryArray1DHandle>0:
  *         return None
  *     cdef GateGeometryArray1D obj = GateGeometryArray1D.__new__(GateGeometryArray1D)             # <<<<<<<<<<<<<<
  *     obj.handle = h
  *     obj.owned = owned
 */
-  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 155, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_tp_new_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D(((PyTypeObject *)__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D), __pyx_mstate_global->__pyx_empty_tuple, NULL)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_2);
   __pyx_v_obj = ((struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":156
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":145
  *         return None
  *     cdef GateGeometryArray1D obj = GateGeometryArray1D.__new__(GateGeometryArray1D)
  *     obj.handle = h             # <<<<<<<<<<<<<<
@@ -8373,7 +8320,7 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
 */
   __pyx_v_obj->handle = __pyx_v_h;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":157
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":146
  *     cdef GateGeometryArray1D obj = GateGeometryArray1D.__new__(GateGeometryArray1D)
  *     obj.handle = h
  *     obj.owned = owned             # <<<<<<<<<<<<<<
@@ -8381,7 +8328,7 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
 */
   __pyx_v_obj->owned = __pyx_v_owned;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":158
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":147
  *     obj.handle = h
  *     obj.owned = owned
  *     return obj             # <<<<<<<<<<<<<<
@@ -8391,8 +8338,8 @@ static struct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeomet
   __pyx_r = __pyx_v_obj;
   goto __pyx_L0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":152
- *         return _connections_from_capi(h_ret, owned=True)
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":141
+ *         return self.to_json()
  * 
  * cdef GateGeometryArray1D _gate_geometry_array1_d_from_capi(_c_api.GateGeometryArray1DHandle h, bint owned=True):             # <<<<<<<<<<<<<<
  *     if h == <_c_api.GateGeometryArray1DHandle>0:
@@ -8486,13 +8433,15 @@ static PyMethodDef __pyx_methods_11falcon_core_5_capi_22gate_geometry_array1_d_G
   {"raw_central_gates", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_39raw_central_gates, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"central_dot_gates", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_41central_dot_gates, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {"ohmics", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_43ohmics, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_49__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_51__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 #if CYTHON_USE_TYPE_SPECS
 static PyType_Slot __pyx_type_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D_slots[] = {
   {Py_tp_dealloc, (void *)__pyx_tp_dealloc_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D},
+  {Py_tp_repr, (void *)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__repr__},
+  {Py_tp_str, (void *)__pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__str__},
   {Py_tp_richcompare, (void *)__pyx_tp_richcompare_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D},
   {Py_tp_methods, (void *)__pyx_methods_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D},
   {Py_tp_new, (void *)__pyx_tp_new_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D},
@@ -8517,13 +8466,13 @@ static PyTypeObject __pyx_type_11falcon_core_5_capi_22gate_geometry_array1_d_Gat
   0, /*tp_getattr*/
   0, /*tp_setattr*/
   0, /*tp_as_async*/
-  0, /*tp_repr*/
+  __pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__repr__, /*tp_repr*/
   0, /*tp_as_number*/
   0, /*tp_as_sequence*/
   0, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
-  0, /*tp_str*/
+  __pyx_pw_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__str__, /*tp_str*/
   0, /*tp_getattro*/
   0, /*tp_setattro*/
   0, /*tp_as_buffer*/
@@ -9250,9 +9199,9 @@ __Pyx_RefNannySetupContext("PyInit_gate_geometry_array1_d", 0);
   /* "falcon_core/_capi/gate_geometry_array1_d.pyx":51
  *         return obj
  * 
- *     def copy(self, ):             # <<<<<<<<<<<<<<
+ *     def copy(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.GateGeometryArray1DHandle h_ret = _c_api.GateGeometryArray1D_copy(self.handle)
- *         if h_ret == <_c_api.GateGeometryArray1DHandle>0:
+ *         if h_ret == <_c_api.GateGeometryArray1DHandle>0: return None
 */
   __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_9copy, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_copy, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -9262,229 +9211,229 @@ __Pyx_RefNannySetupContext("PyInit_gate_geometry_array1_d", 0);
   if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_copy, __pyx_t_2) < (0)) __PYX_ERR(0, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":57
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":56
  *         return _gate_geometry_array1_d_from_capi(h_ret, owned=(h_ret != <_c_api.GateGeometryArray1DHandle>self.handle))
  * 
  *     def equal(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
  *         return _c_api.GateGeometryArray1D_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_11equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 57, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 56, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":65
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":63
  *         return self.equal(other)
  * 
  *     def not_equal(self, GateGeometryArray1D other):             # <<<<<<<<<<<<<<
  *         return _c_api.GateGeometryArray1D_not_equal(self.handle, other.handle if other is not None else <_c_api.GateGeometryArray1DHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_15not_equal, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_not_equal, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 65, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_not_equal, __pyx_t_2) < (0)) __PYX_ERR(0, 63, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":73
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":70
  *         return self.not_equal(other)
  * 
- *     def to_json(self, ):             # <<<<<<<<<<<<<<
+ *     def to_json(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.StringHandle s_ret
  *         s_ret = _c_api.GateGeometryArray1D_to_json_string(self.handle)
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_19to_json, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_to_json, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_to_json, __pyx_t_2) < (0)) __PYX_ERR(0, 70, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":83
- *             _c_api.String_destroy(s_ret)
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":77
+ *         finally: _c_api.String_destroy(s_ret)
  * 
  *     def append_central_gate(self, Connection left_neighbor, Connection selected_gate, Connection right_neighbor):             # <<<<<<<<<<<<<<
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
  * 
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_21append_central_gate, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_append_centr, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_21append_central_gate, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_append_centr, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_append_central_gate, __pyx_t_2) < (0)) __PYX_ERR(0, 83, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_append_central_gate, __pyx_t_2) < (0)) __PYX_ERR(0, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":86
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":80
  *         _c_api.GateGeometryArray1D_append_central_gate(self.handle, left_neighbor.handle if left_neighbor is not None else <_c_api.ConnectionHandle>0, selected_gate.handle if selected_gate is not None else <_c_api.ConnectionHandle>0, right_neighbor.handle if right_neighbor is not None else <_c_api.ConnectionHandle>0)
  * 
- *     def all_dot_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def all_dot_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_all_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_23all_dot_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_all_dot_gate, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_23all_dot_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_all_dot_gate, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[7])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_all_dot_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 86, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_all_dot_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":92
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":85
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
  *     def query_neighbors(self, Connection gate):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_query_neighbors(self.handle, gate.handle if gate is not None else <_c_api.ConnectionHandle>0)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_25query_neighbors, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_query_neighb, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 92, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_25query_neighbors, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_query_neighb, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[8])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_query_neighbors, __pyx_t_2) < (0)) __PYX_ERR(0, 92, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_query_neighbors, __pyx_t_2) < (0)) __PYX_ERR(0, 85, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":98
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":90
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def left_reservoir(self, ):             # <<<<<<<<<<<<<<
+ *     def left_reservoir(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.LeftReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_left_reservoir(self.handle)
- *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0:
+ *         if h_ret == <_c_api.LeftReservoirWithImplantedOhmicHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_27left_reservoir, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_left_reservo, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_27left_reservoir, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_left_reservo, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[9])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_left_reservoir, __pyx_t_2) < (0)) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_left_reservoir, __pyx_t_2) < (0)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":104
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":95
  *         return _left_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
  * 
- *     def right_reservoir(self, ):             # <<<<<<<<<<<<<<
+ *     def right_reservoir(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.RightReservoirWithImplantedOhmicHandle h_ret = _c_api.GateGeometryArray1D_right_reservoir(self.handle)
- *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0:
+ *         if h_ret == <_c_api.RightReservoirWithImplantedOhmicHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_29right_reservoir, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_right_reserv, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_29right_reservoir, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_right_reserv, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[10])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_right_reservoir, __pyx_t_2) < (0)) __PYX_ERR(0, 104, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_right_reservoir, __pyx_t_2) < (0)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":100
+ *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
+ * 
+ *     def left_barrier(self):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_31left_barrier, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_left_barrier, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_left_barrier, __pyx_t_2) < (0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":105
+ *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
+ * 
+ *     def right_barrier(self):             # <<<<<<<<<<<<<<
+ *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
+ *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
+*/
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_33right_barrier, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_right_barrie, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
+  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
+  #endif
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_right_barrier, __pyx_t_2) < (0)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "falcon_core/_capi/gate_geometry_array1_d.pyx":110
- *         return _right_reservoir_with_implanted_ohmic_from_capi(h_ret, owned=True)
- * 
- *     def left_barrier(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_left_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_31left_barrier, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_left_barrier, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[11])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_left_barrier, __pyx_t_2) < (0)) __PYX_ERR(0, 110, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":116
  *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def right_barrier(self, ):             # <<<<<<<<<<<<<<
- *         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_right_barrier(self.handle)
- *         if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
-*/
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_33right_barrier, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_right_barrie, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[12])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
-  PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
-  #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_right_barrier, __pyx_t_2) < (0)) __PYX_ERR(0, 116, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":122
- *         return _dot_gate_with_neighbors_from_capi(h_ret, owned=True)
- * 
- *     def linear_array(self, ):             # <<<<<<<<<<<<<<
+ *     def linear_array(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_linear_array(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_35linear_array, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_linear_array, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_35linear_array, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_linear_array, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[13])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_linear_array, __pyx_t_2) < (0)) __PYX_ERR(0, 122, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_linear_array, __pyx_t_2) < (0)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":128
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":115
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def screening_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def screening_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_screening_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_37screening_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_screening_ga, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_37screening_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_screening_ga, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[14])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_screening_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 128, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_screening_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":134
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":120
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def raw_central_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def raw_central_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_raw_central_gates(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_39raw_central_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_raw_central, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_39raw_central_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_raw_central, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[15])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_raw_central_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 134, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_raw_central_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 120, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":140
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":125
  *         return _connections_from_capi(h_ret, owned=True)
  * 
- *     def central_dot_gates(self, ):             # <<<<<<<<<<<<<<
+ *     def central_dot_gates(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.DotGatesWithNeighborsHandle h_ret = _c_api.GateGeometryArray1D_central_dot_gates(self.handle)
- *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0:
+ *         if h_ret == <_c_api.DotGatesWithNeighborsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_41central_dot_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_central_dot, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 140, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_41central_dot_gates, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_central_dot, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[16])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_central_dot_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 140, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_central_dot_gates, __pyx_t_2) < (0)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":146
+  /* "falcon_core/_capi/gate_geometry_array1_d.pyx":130
  *         return _dot_gates_with_neighbors_from_capi(h_ret, owned=True)
  * 
- *     def ohmics(self, ):             # <<<<<<<<<<<<<<
+ *     def ohmics(self):             # <<<<<<<<<<<<<<
  *         cdef _c_api.ConnectionsHandle h_ret = _c_api.GateGeometryArray1D_ohmics(self.handle)
- *         if h_ret == <_c_api.ConnectionsHandle>0:
+ *         if h_ret == <_c_api.ConnectionsHandle>0: return None
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_43ohmics, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_ohmics, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_43ohmics, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D_ohmics, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[17])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
   #endif
-  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_ohmics, __pyx_t_2) < (0)) __PYX_ERR(0, 146, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict(__pyx_mstate_global->__pyx_ptype_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D, __pyx_mstate_global->__pyx_n_u_ohmics, __pyx_t_2) < (0)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
@@ -9492,7 +9441,7 @@ __Pyx_RefNannySetupContext("PyInit_gate_geometry_array1_d", 0);
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
  * def __setstate_cython__(self, __pyx_state):
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_45__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D___reduce_cyt, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_49__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D___reduce_cyt, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[18])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -9506,7 +9455,7 @@ __Pyx_RefNannySetupContext("PyInit_gate_geometry_array1_d", 0);
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     raise TypeError, "no default __reduce__ due to non-trivial __cinit__"
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_47__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D___setstate_c, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_11falcon_core_5_capi_22gate_geometry_array1_d_19GateGeometryArray1D_51__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_mstate_global->__pyx_n_u_GateGeometryArray1D___setstate_c, NULL, __pyx_mstate_global->__pyx_n_u_falcon_core__capi_gate_geometry, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[19])); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -9561,7 +9510,7 @@ __Pyx_RefNannySetupContext("PyInit_gate_geometry_array1_d", 0);
 
 static int __Pyx_InitCachedBuiltins(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
-  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 62, __pyx_L1_error)
+  __pyx_builtin_NotImplemented = __Pyx_GetBuiltinName(__pyx_mstate->__pyx_n_u_NotImplemented); if (!__pyx_builtin_NotImplemented) __PYX_ERR(0, 60, __pyx_L1_error)
 
   /* Cached unbound methods */
   __pyx_mstate->__pyx_umethod_PyDict_Type_items.type = (PyObject*)&PyDict_Type;
@@ -9588,42 +9537,42 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 9; } index[] = {{0},{36},{179},{1},{8},{7},{6},{2},{9},{50},{48},{14},{19},{37},{39},{33},{39},{37},{24},{25},{29},{32},{34},{32},{23},{29},{26},{35},{37},{33},{35},{35},{27},{14},{20},{13},{19},{18},{6},{17},{18},{3},{4},{8},{5},{40},{9},{8},{4},{12},{1},{5},{6},{13},{5},{4},{12},{13},{14},{12},{11},{8},{10},{8},{3},{9},{3},{6},{5},{3},{12},{11},{12},{15},{17},{10},{17},{13},{13},{14},{15},{6},{5},{15},{13},{4},{12},{10},{12},{19},{8},{7},{6},{41},{45},{46},{46},{83},{46},{137},{63},{102},{46},{46},{133},{57},{46},{46},{46},{46},{40},{9},{285},{219},{225},{291},{297},{361},{367}};
-    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1579 bytes) */
-const char* const cstring = "(\265/\375`\330\021\r1\000\272Dp\016:\000\231:\374\377\367\372\245\216\375\336\337kx\315\375\253/\335\353\037\253\310cK\221d\213\3446J\211\225\273\311bJEf\260\002\0054\2340\004\211\206\322\037\302\2061a\213\264\310\010\305\000\301\000\365\000?\306\\\354\250\317\2745\337,L?3F~\375\334[^s \327\254\343\203X\235\307\307y,+\016d\324\373\237_|\307\262^\245\017\234\361I\212\377v<I\253\377E^\236\025\2271\271\357\230\303\326\226\267\272/i\237$\353K\314\356\262\316X\245\253/)f\344\360}\234/\257<c\\3Dn\267\210\255\216\357jZ,\236\371'\342l\304\330\266\346\217\213\370\362\362\2367\021\227\305m\367\256\345x;\267\270\371hwV\213$\256\"\t\n\311\007\217\014\217\210\265\345\343\325|\213\277R\333\333--)\356+\342\254\343\277\030\221W\035\317:4\331\257j=\373in{\331\322\320\210\226W\253G1s\221\264\345\2553\001A\265\316\013B\004\013R\032*CG :\004\301p6\265\355YV\245\307\221\226\217\266\264{\357\177&\373ofS[\035\317\273[\356Ul\313\223\314\377\370\326\336\377\356Y~\177\337\267%i\365\353t\377#>q\377\261\030\371\277\313\2217\326\233\035\037\337\037o\333\342\313\317\254\363\030\313w\304\277]q\266\2073Y\235\347\343\2451\375x\376I\313\261\355\331\322\354\331d\236\303\027[\253\307\275T\265\3167]\356Z\374?mO\337x{\272\374</Y\254\253\305\367f%m\267\325\332^\255\353\3559\316\2268\357\335\367\262\306\225\365\364\331\237\231\307\262j\216\355\370$\266\246\271\237g\362\313\262\362\3127\267\373\003U)\265*\225\226\320\027\223\262d\364\014\253\232UGU\003\302\260\002\025Y\350>T\"\263T\226\256`\311\204\025\302\035dJk\232\200\206\020\014[@\337\325\300\025\315j\242\342\212\341\252\242\001\253&\234\t\203\202Bi@\212\201\332\2003\240\207C/`\000n\324\324\"eHS\"z\004\001\326l\n\026\005\203\202\202\221$\214\210\010\346\343\003\243\301h\257\337\357\305\343\275t\272\327\316\316K\346%\343\212\212r\231\246\220\220\313fk=9\371\272\317\250\033\325zN0%\345hEM\022\222\276\177Qw\341\\\326\272p``ZNMg?w}\207\3538\244\243~4\324\207\204\272P\021Q'\002\352@\266n\223\241\275\253\332\325\205BW \030\312\252\034\020\206\025\030{\350""\016U&T\007\004C\333O\377\341\351>\341\016I'q\341\270n\\7\255\013\000\220\245C\352HA=\337c\362;6=8_K\263wKF\366\357\275I^'\210g\332\353\370]\372\221\337{\313>\346G\213Cd\000\033e\305\371r\210\277s\334\024=j~|\223\347\032\034\242\210H\311\313d/\362\361\324|\327\252:\250\014`\303\326\224\253\306EC\323\"}:\220\260#hKmP\030\352\003\202\354n\277\266\267\202-h+E\301\331nk\257.\335\205\034\373\350K?P\006T\346CO,\331\311\244\336\322[\362\256\357j\272OP)\245@[h\010Kgy\331^\077\077\256\246\246{]CC.\035\235\226T\224Sw\252\275\362t\234\240D\312\003\326\200\037\r\335\241\000@ k65\023B\271\310\2021[w\215;\356\365\236M\267!\020\366\322Z\332R\021\204\361\231\335,{\311\353\274\232^\343\243\232\005\201\036\2501\251\222hfDDD\222$)t\201\014QJC)\257\003\202\331$GA e\210!D@\004\210\031D\002\221Hd\004\303ha\332$\242\215C\232bg\030\364\033\3736\\\272!(\346LA\241\253\301lq@\260\205\031\n\344\227\266\252\226\350\253\211\005m\214\332\210\223\242jF\346\364B]\325\266\017\373J\200\036\032\2238dQ\353\025v4H\007\372\236BmP\210\366\tK \327\344\205\037\324\250><\351\026s\005<(\203\363\r\202\005d7]\307\217+\250\236\300h\036nna\2301r\007\260Z\251\n\373:\260\027\013m\241No\233wP=\211\033\256\232S`\004H\177\001<\035\365\005\270\366)H\013\2665\241C\037\221\374\257\340\317v!i\020\210z\342\347\300%z\206K\037\n#\214X\320*\005\354\314\317\2241\nC\346\227\307\350\005\330z\035\361\335\343\365\211\331@\t\0038\014rj\330\367\007\272\302\342\302\272K\364\316\371\261EO\205\2760\347X\342\221\013\373*Aq\312\357\344\326\223u\027\271(\251\014\266\010\333\035\233\002\352\201\325\264\322\027\r#!\337\356f\374}E\307\211\242\224\231\004\207\244\234\205\244\341\371\375B\320\367)\205\235\343|\314\342\326\246\220\025(\213\254\221\211\231\001\247\205$\032&D\014\234\217\203\024=\376\260f\\\253\004d\321\205\240\025\246e\306\324\320\034yf \253\030\322@|\342\271A\0360\353\032O9\025H\222,\242\350\032\215=\026>\350\216\257\205\022\370p\322\360\324\304\\\217\254b\020\303\252l\342\014\301\350.\020\002\226\357\3101\304M\272\032\234\350""\375l\356\026\275\316mf\033$\332\206\334#\r\267L\006\267\232:\313G|\017]%\236\316\313\004\340\350\247T\031\207\364\220\033\371\005\222\224\310(\234\3248\303\372\241\350\316\235,\266&\036\313Y_n\340[\267N\226\201\r!\274\003\261\014\271\202\221~\336+\333?\330g\201\242\026\277\017\232\204\202o\"\000\243\377i\353\023\032\0332\340s\333\274\244\226\t\264@Y\355\024\177\320\250\360\200\332f8y\001\354\221\016\177\312ek\350\t\344L\326\241\332+\304|\333\022\217$\014\033\324Z\272(`4|\337f\210\037r[\r\343\203\317\350\022\224j\002LV\023\004\020-A\202z\222\005\264\0142c\253\220G`/\275\032\n\314l\n";
-    PyObject *data = __Pyx_DecompressString(cstring, 1579, 3);
+    const struct { const unsigned int length: 9; } index[] = {{0},{36},{179},{1},{1},{1},{8},{7},{6},{2},{9},{50},{48},{14},{19},{37},{39},{33},{39},{37},{24},{25},{29},{32},{34},{32},{23},{29},{26},{35},{37},{33},{35},{35},{27},{14},{20},{13},{19},{18},{6},{17},{9},{18},{3},{4},{8},{5},{40},{9},{8},{4},{12},{1},{5},{6},{13},{5},{4},{12},{13},{14},{12},{11},{8},{10},{8},{3},{9},{3},{6},{5},{3},{12},{11},{12},{15},{17},{10},{17},{13},{13},{14},{15},{6},{5},{15},{13},{4},{12},{10},{12},{19},{8},{7},{6},{41},{44},{45},{45},{82},{45},{137},{61},{102},{45},{45},{133},{56},{45},{45},{45},{45},{40},{9},{285},{219},{225},{291},{297},{361},{367}};
+    #if (CYTHON_COMPRESS_STRINGS) == 3 && __PYX_LIMITED_VERSION_HEX >= 0x030e0000 /* compression: zstd (1610 bytes) */
+const char* const cstring = "(\265/\375`\325\021\0052\000\372F\350\0169\360\032u\314\300\031\340\001\002v\003<\300au\006\233\022\337\211CB%\220Q\211\024I\366J\033)%6\355&+\212@\"\372\010\270\000\000\200\000\000\\\273\210R\327@n\265#\313\000\311\000\376\000Y\177v\037Eb~\304>3\347\356\213\324\357\024!\275z\316_\327\334\210=\353\350#\217\315q,+nd\304\331]\333kGw\261\254\026\312b\035r\315\353#E\367\037}\344cwQ\227\276\2123/\231\355\230\273\377\345\255fK\276\223d\225\351\340\020\371\\\326\233\207\262\330\222\342F\356Z\277\246\325U\233\367\326\rQ\177\026\357\353t\256\347_\321g\376D\234\216(\222\377\374i\361Z]Z\337M\304\231b\376\234k9\336|Y\314z\374\335c\221\274U<Y9\t\001\262\001\022/~=Z\254\263\370+\361\337l\371\244\230\255xM\235\376\321\210\272\352\264\351SC\373U\214k?\254\237g>\016\216\370\272>\036ES\213\344\227\266\336\0040\013\000\360\245k\332MF\333\310\266\237\202\020A\202\264\006\245\241&\020\033b`X\313\312\357++\224\343\310\327\343\227\237sv\227zw\251\337\351~\232'~\2356w7\223W\357\227>\322t\277\266\362\3343\357\265\365l\375K\362\261\353t\356\343\365\341\334EDH\367\\\216Oc\275\375\350\327\272\373-\377\265\332gb\323\216\367\227+\356\203\264\324\373\270\036m\215\324\017\310\235|}\237\367\345\311\3231u\356\332\373\217\307\034U16o\272\234\375\353?\374\276\336hy:\323\265\031\365\027\327\277\326\232P\370\363c\374\026\343zs\215\373\362\232y\347<\023\343\312\352\353\375\3574\307\262b}\177t\362\376yf\327&\351eYu\325\001;\247\247U\333b\261m\265\300\204=\232\364ecop\331\270>\266\032\016\206\026h\311\302\026\322*\261\0002\000-\032\274j)-u9\030\022\014x\321\204\026\302\034\224Jk\232\200\222t\365\200\002\300\032.\212\036\260\0025$\206Uh\023\346\202\272\024\"MA\277\313\326\025\362\260\215\264\020\006\2064\024\247\313\241\253\243\246\030)C\312\022\261#\006\274jY\263\253\231\225\325\214$gII3!\241Y\315\254F\366\373\311\236\236d:\235\354\347Gf#\263\211]]\305\316\363\350(FD\004\253\242\352\355\336\322^\262\355\236 K\252\321\212\246$8\371v\245\035\303\305\376c<330\252)\337\366\355\366\016\267qML\233\ti#\035\355#""\245\244\235T\264\213\2106\021\r\345\001m\300\014\205\25500\204\245\022\350\330%\362\260\035\266R\264\014\006\206DC{\010h\367\204?'\373$\306\023\333\211\355\004\036\224\342?:A<^\313\223gQL\262\347\234O\334\307H\2335\256\3236\312M<\347Ls\032\037\377\222\320\000:\312zM\353!z\316\351S\004\311\361\321S\\sx\210%%(N\243\271\250G\037\326\331\266\365\241U0\033\302\262b91\034\034\030)\264\213\204\037A\242T\007\235\241\275\256\221\235\335\3667,\010\203Z\004URY\272\202\373\375u\327\230\035C\216{\354\245!(\003Jc\010n\244\031Uyr\223N\033f\303\230\273\275\313\331BA\250\264\002\205\241$A\211tDS^\366\213\214H64\024\233\232\2626\206\204\024\363\361\201a]Qm\252\272+\320\346\tN\244O\r\333\201\000 \340\253\226U\023Z\305\230\004i2\336\370\356\313\333<\235\2553 \344\245\266\024\246&4\n^\004gz\347>\313]>\355\247\234\201\034\250\021\251\222\310\014\215\210\210$I\n\351\201\014Q\210C)\257\003r\311,HA \203\210!D@\004\210\031D\002\221H\204\004\303ha\332$\242\031\207\220lg\330\2247\373\226\234\272M#\304\031s\223\253\330lq\200`\017\023\022\304\227\266\240.\261\247\202\020\204\014\335\020\021\305\202\033\270\303?nU\210\034v,\001\r2L\017\223E-\257p\267K9\332\363)\320\010%h\234\344\353\317&!\270y\215\242\022\367\247E]\001\006\312A~P\260\234\224\255\313\2037\t\352\006_\224\00177\320\354\361\340\202\016\355\354\206}\r\330\270B\303\320-o\250\327F=6w\247Z!0o\200\333\005@s\360\027\360U\223A\256\333U\217Ff,\355O\356M\254m\177\014\242t\217\000\037\370\315f8\311\013a\322\021\323\243R\272d\3713\375\"\024+?\016\214@\340\325\333\021\315=\035\236\030\nT?p\204q\235\036\372f\300\023\320\265\000\330\275\323\020\371n\220L\003{\020\2671\333\200\361uH!\237\373\266\027S\332 2G\005\220\211N\356\333\022@n\325\207\234s\225\007\"0\ra#O\367 \335qe\263\t\252\250\211+\177\271{AE\306\353\250)6\220\001\306\237\315M3Y\\\262Y\021\002\002$\2207\232\030\030\2244\326\264\t\244:l\245\026;U\275\340\"\215\211\025\265\312\246\231\216\t&L<\254\230\334@\337\r\244EV \3624d\335\2556!HS\337{\227}\321\205P\217\036\002\022\034\231\240\311""\324\024uPZ\214i\003Ua\305'\251\n\334\220js\2412!]\313\312\004\003\022\267\230\241\201_\t\367\324\177L\201\322Cf\306p\326\354X\206b\366\204\234\342\226\316\354K\016x\300\270\261\240\003\007\313\3616\311\253H\311\311\000\216\002\211\3748\260\352\332v\201\014x]\001\202\367\260\245\375\212`\272{\262\261\022:h\007\020\263\214F\006#\023yo\272\337\265\317\tOmy\037H0\233oH0D5\332V\252\030\3162`\363\331\262\004-\000\010LY\030\205\354r,<X\275\0316\274==\373\203o\322\300\ntr\266\251,\250\226\"\031\337\006}\344\205u\023\270\316\336\200\276MR\262&\243\371\030j\322\207D\316}\305x\246s\017F\200\322R`\036\322\224\216Af\354\n\255\010\274\247WCa\232M\001";
+    PyObject *data = __Pyx_DecompressString(cstring, 1610, 3);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1804 bytes) */
-const char* const cstring = "BZh91AY&SY\240\"MB\000\001\225\377\377\377\375\377\rg\377\377\377\277\357\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000`\006\315\367\220\022P\000\000\000.\033\tJH4\000\031\006M\0322hh\r\003@4\0004\000\014\236\223\322\001\243M\014\215\006M\240\2100\002`\000\000\023\000\t\200\000\000L\000\232\030\000\000\000\000\000e\014\332\204\366P\004\300L\230\023\004d\300&M\0310\000L& \321\220\301\030\004\304d`1\0242\204\214G\220M=5\000\321\352ha\031\032\000\014\232\014F\2000\0024\304\006\2316\243\004\3100\002`\000\000\023\000\t\200\000\000L\000\232\030\000\000\000\000\000$P\200\214\232\003Dh\310\324\323\023T\311\262\237\251\352M\251\345=A\350&\215\037\245\000\007\250\321\352\000\320\003A\241\372j\224\021\021\030\260\021.Q\024\003\224PQ\005\021#\253\016O\302\344\317\311\242\363Io\367\266e@\343\342T\337\221\316\014#P\005\262\004\"d\004! `\204a\027\374\243\347W\346\360\207&8\343\203e__o\255\"L\000\000\000\327\315\331_kH\0064\227,\335\363\344\264\202B\013;ADI\224\221'\356T%\276\t\020zkx\202\344\232\263\303\005$ZuM\217\351\262\326\034\202\177\325\241\217\035\231I?\016\224\005\014k\370\355K*\251''\326L\243j\277\200\355\004\241]O\010R\027\356\302\332\327\304C\326\2461\251\217\270\225\311{\362\022\364\361\230r\245\365\177\216l\270\214\023\356\033\r\366q\261ib\304\211\267M\327\347/\317\304 \332$\244\001hks\217\177B\026\211\251\027\3434\224\236bA\"\317G\237\205\022.D\342_\000\322eh_gB\347dO\267\222\004+\364\364\030\"c\316D\336\221(\236\246\240\026\216\373\324{\310\014O\327\353\311\2409\247#7\327\330\002\303@v\345\237\354w\267a\225\224\3623\233K\303\323\321\340#\333)\224\207\360\323\207\244+\001]\202\214,\371\006\303\206\257\240\025\313<\331r\274%\247\250FU\004\255\266m^\250r\373Wb*\031\267Y\353\243w\024\215\332\021Io\216\276\361\236Z%\307\033\363H\266\334\277\273\332\230\273\334 q\006\335\255\335\375n\273\035%\266\222\224\217(z.\004\272\343\005\360J\240\207\230!\366\330\255\305\000t@\334\242\222I$\222L\010\244\t\250M\303\310\222K\231\000\334\3655\364\222H\304\306\"\016K<\211\222\270S""\256\220\237\032\252\240\204\360\363R%\364R\375iH\215~\305\265{s\33133\023%\322\224R\260[\210\007\357K\261*~\030\177\001+ ,\247\262^nn\360\014\271\003'\204S\223\344!\010\027:\23213\370e;\227\232\010F :\013\r01y\300\314:\240\006\034\034%\273\\\363\340u\253\352\001\307\006D\230\014J\002\002`SS\022\206\211\200x\213\300\262v\333o\213\343\377\271\317%ET:\261\374T\177\254\333\274\305)R-\240\021\331\010\024v\316\263\361\376T\241\356\360\202\330\002\312\223K\016]*HF'\2309i&\255\355\370\004.\0300i\0250\210\320G1$\200\277\333\352;=XyO\"&\311f@\3375\362\201\351Y@7\344\\\303[)I\203I,r\251\024\352\242t<\362\324[\347\324\001\361\024\235\003+\236\010\010b\211\210\260I\231\033\022\235\034\376\033\244I\203n\003!\320\300\272\276\007\230\234\204\324\000\372\311\007\314\030E\023i\347\331\273\331\271x\316\014G6}\344\257\341+\235!@J\022q]\346\310A\266\305\232P\010'4\245 Q\366#\222t\224$\211\241\003\263Q\350$\203S\234\364\r\214Dh\260\242\252\035\322\301\3203\026!t\000\271\005\305\255W\304r</\010\006\201\226N\013#1\231\301\210\201<\3528\204\223\205\214\240\303\233\2131\253\207\377^|\276A-K{\000\226\232\344\221\037\024-Q)\373D\n\030\202f\226\224\205\224J\215\277KH\013}\253\300\032\247\320\031\204E\022H\352\244\321\300\000n\277X\227]\370\321\224\003a\004\032\265\354\312\0068\303\000D\263AO\031 Fa+\031\315Tf\244T\333\340\003\304\001^\tw\022wA\340\016\343!\325\351\352\333\277\267\035\035>\355ZDim\2438*\010\000hKS\311fCv\234\360\362\031\310\315\206\234\017\r3\371&\014\223B\322\310S\325\300\001d\224\242$\273\242U_\320\025\000\347\353G\2064\324\346\236\t6$7\001\245F\214\026K\0254\014\nC8.*AD\313\010\004\343\245\n\213\350\243mUc)J\220\255\200\305\016\377'\031K,eI]5\221\002\312{\240\032\2000\211*\357\303\272-\304\0347\200 \"\007a\020c\010\212&\274\"R\020p1\244\271C\326\254\322\t\301\323\251\332G|\3474\347\264\247P\000\330\257B\252\006\365\000\032r\t\030\032Z\257Pr\204\375{\007\267\223\220\367\366d\361\030N\006\321\214`q%\010\342\325\231\000=\331\3006U\231h\"j\210\226\001,5\206\tB\036R$dY\203\007x""\002\004{\000U\241B\"S=T\tH\001\211&p\225\023\306X\341\353$\325\323\300\242\004\t%\030\215\221\2421\033N!\026\265\335T*\224\314\002\006;\203'\005\351[m\263\343\255\216\302,\257\256\303\336a\024\024Q\277Tp\t]6d{\227\3637\211*\n0\346\326\225\0247P\225q\213m\266\330\3072%,\020`\221z+`F5J\t-\021\001]CS\361\242\315eB\252\324\240\225\001\252\342\301Z}\366%`\222\241\242\211\370m\355E\007*4\t8\227s\306\343E+g\016=\006\000\016\356:\213\200!x\330\222rZ{\367P$\251\001u\352\213q\001\346\321\264\271\265\002\021@\223B\2556\245C\210\343\277b\320\177\253\276=\203v\200\210\266R\247\021\331\253\255\373$\017\210F\032\t\332w \223E\347\022\330\030\246ma(]\n4%\262\375\215\216\317!\006;\234\264\3124\032\332\007ei\240\2075\200\306\335\2518u\350N\265l\376\256{\312\255B\036\352\376\312\317l\334\237\2262*\t3\033ROg\311\032N\372:2\234\270\226\256\003\305\236\202z\217Q\022\254\372<\210\2108h7)\241\271e\340\356\204y\r\306\005\221lH\"\207\274H\244R\002F/\316E\210\"\320\226Fj\273X\202\326\027L\r\267\336\177\006]\233\332~\366\230\350\277=\370\372~iq\322c\004\314D`\n\343\313!RLJ\177\031D\020\212\260\303\242\300&LXW\260|\326d\022\333\263\231\366\343\276.\344\212p\241!@D\232\204";
-    PyObject *data = __Pyx_DecompressString(cstring, 1804, 2);
+    #elif (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (1851 bytes) */
+const char* const cstring = "BZh91AY&SY\000\226\226\t\000\001\213\177\377\375\377\377\215o\377\377\377\277\357\377\377\377\377\377\377\300@@@@@@@@@@@@\000@\000`\006\347\322\024\362P\000\000\n\013\006\302RI\202\231\242\032\233M\023\312y'\222mOQ\243LOMC\032\200\000\365\031\031\2243&MF\232\017\023S\3244f&\n \323\023\023\023\0010\023\000\000\000\000\230\000\002`\000\023\000\000\000\0014 \323\023\023\023\0010\023\000\000\000\000\230\000\002`\000\023\000\000\000\0014\r4\325'\246\244\324\321\214CQ\265\003!\241\200\002d\320\006\215\000\014\002bd`\001\006@\032\002\r1110\023\0010\000\000\000\t\200\000&\000\0010\000\000\000\023@\221B\0012\003@\203&\223OQ=\024\331G\250\323\365\006\325=M\250\375S\324h\306\2204\006\215=@\000h4\001\372)\205\021\021\225\204H\350\212\002x\241H)\022\315\035\376?\335\323\233\222\361y\005\357[\233\261\350\265\271\267\265E\376\3679k$\346~\357\036\275]\343\2168\360q\301\353\353S\351n\326\342\202>e\206Ye\254\033\2658+\334}\230\314\363\317?k\257\321X cIo\313\336\364\332A$\335\276\200Q\022e1'\346*bQ\235\247\201\004\\\001\246\235\216\2054\361\332\014\213\255\027\375m2\177\204dK\226\232\234\337+\010\211CA\241\347\272[|\3140\250\253\307\367\2420sb\275t\263JSNy\262\ty\220\307B\262\374\210M\265\024\366\260q\234\036\372Y\022\367\375\272\004\274\374\305\331\322\3769\350\277)d\375\201\260\342g+\026\266*Q7bo/\300k\317\312 \334$\244\001pq\271\307\255\306q~#A9\345$\022,\321\371~\r\210\230\302\212\004\276\021\244\313\020\276\305\370Y\210\347\2011\366\345\002\026y\373\246\010\231k\"j\221(\236\336\220\026\215\303\366\220\027?S\335\307xvg#7\275\306\002\262\200\302\375\235\2511\234]\353y\252$AS\222\272\232c\254+\260\213\212\256\333\222\201\330\t\253\216\343oTg\233\016:\374ad\263\315\2333\300a9\310\312\240\225\327M\257\344\006\376\254XJ\206n\342=Dg99f\036tR]\323_\244_,\362\335\035\031\244[\227\366\365H\303\344 r\006\335\255\341\305\3751b\307P\342\204\220\362\005=\0013\3461V+\032\202<\240\215\357\247\337\220\000\266\003\367@\222I$\222\\0\242\031\271,\335\005!$\236|\241\372f\027\322I#\263F\"T\314\352B""\344\357\250\203\3572\270\325U\004'\207\275H\227\262\227\262\224\210\327\343\272\256\251\355\231\231\211\222\360%\024\255\027)\000\375\351u\245O\356\207\360\022\266\002\312t\032\003\225\275\000\031r\006OTP\020\254gw\252F\021\213TOb\223(JDb\002 \370\035\313\010\251\241\2400\000@\273\310\372\360F{\035kE@8\331\221&\003\022\200\200\230\024\324\304\241\242`\036\023@\026\316\333m\362\177\277\373y\323QU\016\254\177\035\037\3477/\224\245*E\264\002;!\002\217D\352\375\337\nP\362q\202\330\002\312\223K\006]*HF\027\2307\322\246\255\355\374b\027\034\0304\212\230Dh#\230\222@h\361}\037\t\327\351\303\306xr\335\2248N.\320\036u\230\003\206F6\034L\245&\r$\262J\244S\256\211\320\363\312:\307\370u\200|dN\340\312\262A\001\01410\226\2113#bS\207R5C\237\327\3119&\r\270\014\207u\201\223\006\307\234\234\204\324\000\375\322H\366\006\242\211\265\363\355\346\365\261.\223f\023\322\321\302\226\255\245s\244(\tBN+\270\331\0106\330\263J\001\004\346\224\244\n=\021\311:J\022D\320\201\327\250\363\022A\251\316y\206\306\"4ZQU\017\024\254\356\214\303\204]\320\026\361r\360\252\371M\357\003\300\001\234e\263\241dx\313\301\210\201<\3528D\223\205\254\240\301\233\261\272\363^\317\375\244\365w\211k\\\030\004\265W$\210\370a\205D\247\354\220(b\t\232Z\222\026a*:\215\337SX\013\211\255@\rU\346\013\304E\022H\357\364Ti\332\000vul\022\3675eE\340\033\210 \340\343\335\230\014\221\205\201\022\335%<\304\201\027\211Z\316z\2435\"\246\357\000\035 \025\331-\351<Pv\006\366C\243\317\321\273\203\223\035\035\276Z\264\210\322\306\302\360T(\000gKS\311nC\261\246\370x\213\310\315\202\233\036\ng\361L\031&\205\305\260\247\346\361\000[%(\211-\342Uh\356\005@9\375do\21559\247\202M\211\r\300iQ\236\313e\206\232\006\005!x.JAD\313\010\004\343\245\n\215\024Q\266\252\261\224\245HV\300b\207\177\233qK-eIb\232\330\201m=\220\r@\030\004\225z0r\305\270\203\206\260\010\010\201\326D\030\302\"\211\303\200JB\016&4\226\360\357Vi\004\340\351\324\356#\300v\3157\334S\250\000lZ\020\252\201\256\200\r9\004\213\032Z\264(9B\177k`\366\234\334\307\257\263%\207\013h\3040""6\245\010\335\247*\000{\263\000q\325\225^D\323\021+\004\260V\026J\020\361\221#\"\333,\355\200@\217X\n\264(DJg\246\201)\0001$\30514AIV\366\354\305\252\240\342W\016$fH)\211\005*@\226(\004G\006*\241D\246`\0201\342\014\2349\322\272\353\247\306V\307i\026W\356Z}6\021AE\035'\005r\300%\216{\321\325\247\264\336$\250(\266\376\024\250\241\272\204\253\214[m\266\3069\221)Y\006\t\032Q[\0021\252PIh\210\013\035\rO\271\026\361\025\n\253\222\202T\006\274E\242\270\373\254J\321%CE\023\337w\241\024\033\321\234I\304\305\333\216#=+g\036<\345\200\035\234u\030\200!\240lI9-=\374T\t\232 \006\363RD\240\001\241[\313\026\224\200\226$34\356\2257\243;\216\207n\255\345[\211z\261\226\230\r\220\224\302\235\r\255'\363e\020&\037\252&\202\t\362/\027o\234\253\032'r\337%\324/0\204;Y\0346\345\032\2104M\234\322\241\2354\"s\303\030\230\204\355\235(\006$n\201|\311\342B\261\n+8\376\254i&\tgg\027\304R\365\327\334\301c\243\034\277\254e\016\314\252g\034\"\345V\357\303\237\203c9\376\312g\221$\310\267Gl\227\n\236\260%cPi@\217\2162\021\302\206tS4\304\247\"\007\007_\r\2131\305\207\345\222\311\370\013\037j\245R\202V4MZ\207|\251N\242@\247\325\250oB\337\245Fo\217I\374L\2704 \306\374\371\263\342\360w\314'\320\373\304\005\3441\221\231\230\311\240\nG\317\204\250\202\305\365s@\034\034\031\307\031\302\352\273\220O\rt\027\014\177\342\356H\247\n\022\000\022\322\301 ";
+    PyObject *data = __Pyx_DecompressString(cstring, 1851, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1564 bytes) */
-const char* const cstring = "x\332\245WIS\033G\024FK\022\234\270\354`b_\222J\rUI\210\027\300\302\230\330\t\220\222\221\r\224\t \203\314\342\245\335\232iI\r\243\231\321t\017F&&\0349r\364\221\243\216s\234\243\216:\366\221\243\177\202\177B^\217V\360\010\t\254*\351\365t\177o\373\372\365\233\326\023Lu\242)\334TT\233`N\224\031\370\231!f\236p\273\030\267m\\\214%\026L\230\3479\314\225\351\"\317\231\206B\231\242\021\235\246\211\r`\275\2500nS\225\023[\202\014e\351\361\322\320\330\2031\005\033\232b\223M\242r\2460'\255\352\2301\302\0243\243\244\035\252sj(\274h\0216\254\314e\224\242\351(\006\251\006b\001\256U\201\347\210\2410\302\345@\031\304\206ar\314\251i P\247FvP\321\250\rN\3506\221\332O\260\316\310\360\337X\323\020\000\211F\031N\353\204\030\3627\253RV\035i\206\t)d\260\243s\005!\233h\216J\020R4\307\267a\230\306\020\244\264M\261\016\253*5(G\210\331\352H\006\353*8VM\233\214 \025[t$\013\014\240l\215/\204}\302\2206l\025w&$+F\226\231\216\255\222\251\000Z\003\246\206\033\261\250>\323\010\005\203\200\r\306\245\347\263`X\327\221fr$Cd\201\000\313\"\206\206Tbp\033\353>.\010V_?\323\226jZ\305\240yRp\260\036\264\220\261\315<\332d\246\021\264\250\223\014Gi`\223\022\273\355\272M\030\261\267M\032\214\240\006\301vuC\202\326\r\3626p\032rl\033\262\231\313S50\373\202C`\367\rB\263\271\264i\007Bl\374\366\004\323\301 0pf\342U\300\231\23138\310\304\200\312k\357\206\233>\363p\256\347\362\226N\362\020\026\321\020Z*\356\3007\001G\031-\220\035\376\014\316Gk\t\005\224\013fEC\245&\354\276m:p\242\tK\373\226?+\031U\356\007\242pfm\254\2224V\267T\235\311\232AH\223\376\252\244\267\034\257a\377x\r\007\037\257F\355 \224q\014\025\371>\340\267~*P.\007\034\311f\244\351\340\225\241F|\224\223<\223\232\255\025\346\217\353\233w\262\264Z\313\250:\366\207\010\3451$\003\237\274\2519\340\003>\006\316\203\204\272j\324\220\231\336\254\226\214\t\235\313\266L\013!\350\013~bRA\216k\361JtU\377T%}V5\315f\365Y\253hL\220\035\030\266VR\365\241n\364T\r1\237I&\t;U:\214\350\320W\2412\374'\242g\374\306SK\024F\265\006\332\322\216P@kB\010\224\001T+\272m\254;\204\355""\307\217{\257\213\353\367\334\230\233\360.\225\257\227\267DrU\254\276\026\257s\237zzh\350i\030\304\323\360|X\002\307\304\330b\245 \226V\304J\352\270\367\273\203\361\303~\361\303p\t\037_\356?\214\035\367^\025W\177=J\036\345\335X\r\234\022\251\347\342\371\206\330x\321\rzM\254\255\213\365W\342\325\353s\2413\"\263)6\035\341\274\203HwC\217d\300\217 `\020\363a\"\005\tg\302\335\230\224\201\212\027H\2407\235\320W\306]\354r\357a\371\037\221|)^\202\377\202(\354\202\253\177C)\3511\025^\223b\255\356\337\222\302\n\357I\261\027~\034\001\3618\262(\305b$'E.\262%\305V\244(E1\222\210\202HD\227\245X\216nH\261\021\325\244\320\242\357\245x\037\335\213\356\307?\366\336\0207\036z}\336/\036n\304|\263\324W\213\371\022H\321\177\247\024/\245\334\337\274\257\274\265\362j%^I~\2746p\324w4 \325\177\372\2208\372\346\250P\n\035\367\336u\257x\330\333)\263\312@%\366Q\352\202\355\277\274\230\027\257\341\245\203\321\203e\361\375\250;p|\371\332\341\355\017\311\017\340uP\014Nx\323\240X\250\204$\344\317\303\244\024\017\017\201\324\253\007\005\311\355\254\230\335\022[\272\320-a\025\032q>*\0174\271\235\364\222^\276\342\357\304\234\230\313\213\274!\014[\330\254\201\236.\307\232\350)\210\364}%\276\037\377\364u\317\245~qm\250\224,my?\226\347\305\022\024/\026xW\354\356\001K\377\205\026$\345\013\341u)\326\303T\nZ\337\216wR\274\013\257H\312W\"\251\310\305\023\234\020\023\001\265\016E\322\014\371\256\033r\177\366\266\313\313b\026\312\005\2623\245\342\244\230\224\365&\336hB#\r\305?\334BS1\346\366\271C^\241\206\206\203\t\n\252P\265\216\350)1\005\206\201\014\"H\246\201~\340\205\232hH\324\235,\207jh\031\203 T\320\315\216hh\031#\245\202\033u\347\274T\371v\345\271X\206\3145Y\353\241\031\311\352Lx6\274\037:\216~{p\3730\t\367/G\225\327;\331h\241\027\243X\254\345\005\203\356W\033\361\350h\360;&\350J\245\334\372\275j\215\243q\244\"\251\036\200\232\365_;w\224\223\376-\016\246\263\354\234A\2406\363\376\033P\252*\267\032\366\341J\014o\t\351\344fOG\275\356\310\211\335\205\031C^\256aa\2721\014\340\241\271x\201\364O\270A-\343""\216i\006a\273L-\326\324e-\341\2633\223c\027\311\356\204'\324\372p\216\374\330y\023\034\275W\277}\241\267\224\347\232w\n\2240\271,\333U\230]\250O\006d\035\004\273Hm\267\215\003\265[\350HKG\305.)\032k\\P\333p\304\272$\211}1K\355CAmW\272\346\211}!Q\367\356\237\274\026W\315Q\370\363\200\375\277\016\3765\027\315\003\346Y\035\"\t\231\253\003\026\345z\000{\0354.\300cw\221\242n@\035\331=\227\221.\211\036?u;\017\266\372L\202\316Gu'\225\213p\335]\260\250+TG\266\317g\345\177\341\373V\344";
-    PyObject *data = __Pyx_DecompressString(cstring, 1564, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (1593 bytes) */
+const char* const cstring = "x\332\245WIS\033G\024\266\226Jp\342\330\3016\366!\251\324PY\360\022\300\002\214\355\004Hap\2002\001d\300,^\332\255\231\226\3240\232\221\246g021\341\310\221\243\217:r\234\343\034u\324\261\217:\372'\370'\344\275\321\202\300#$0U\350\265\272\277\267}\363\336\233\326\337\224\353LSlSQ-Fm\246L\301\307\02433\314\266\362\343\226E\363\261\3119\023\366\3554\265\225\211\274\2356\r\205\013Ec:O0\013\300z^\021\266\305U\233Y\0102\224\205'\013\275C\017\207\024jh\212\3056\230j\013E8\tU\247B0\241\230I%\341p\335\346\206b\347\263L\364)3I%o:\212\301*\201d\001\327\250`\247\231\241\010f\343B\351\241\206a\332\324\346\246A@\235\033\251\036E\343\0268\341[\014\265\377\246\272`}\267n\377E5\215\000\224i\\\320\204\316\230\201\237)\225\213\312J3LH\"I\035\335V\010\261\230\346\250\214\020Es|+\206i\364BR[\234\352p\252r\203\333\204\010K\355OR]\005\327\252i\261~\242\322,\357O\001\007$Ue\214P\2372\242\365e\363\333#\310\213\221\022\246c\251l,\200\330\200\255\276z,\252\3175!\301 \340C\330\350\3714\030\325u\242\2316\301\020E  \233e\206FTf\330\026\325}\\\020\254v~\252-\325\314\346\203\366Y\316\241z\320A\32223dC\230F\320\241\316\2226I\000\233\234YM\317-&\230\265e\362`\0047\030\265*\017$\350\334`o\003\267!\307\246!\233\351\014W\003\263\3179\014\236\276\301x*\2350\255@\210E\337\036c:\030\004\006NM\274\00285s\001\255\314\014\250\274\346nl\323g\036:{&\223\325Y\006\302b\032!\013\371m\370\237\204f&sl\333~\006\375\321XB\001\345BE\336P\271\tO\3372\035\350i&\022\276\345\317J\006\272\010\373\031\005\240\010\207\366\265\250\312\022T\335Tu\201\305C\210\206\216+\3547\364Y\237\337g}\301}V/\"B\222\216\241\022\337\031|\326\332\203\244\323@\026\316%M\007\257\202\324\003\3456\313\010\324l,5\177]{\212\307k\254\261\236*k\177IH\206B2\360\22715\007|\300\237A3 \241\300\352\305d&6*\265c\302\020\263\262f\226\020\030\020~b\250\200\353j\274\210\256\350\237(\251\317\312\347hj}63\352\033l\033\226\215%U\371R3z\242\230\204\317\244@\302N\324\220`:\214X(\021\377\033\323\223\376\004\252&\n\253\352$m\230K$`F\021\002\312\000\252V\337\026\325""\035&\366\306\313\035]\262k\320\215\271\223\336\305bWqS\306W\344\312k\371:\375\351\302\005\036z\032\006\3614<\033F\340\220\034\232/\345\344\302\222\\Z.w|\273?|pM^\357;T\335\233^\250\334qE^\371\265\020/d\334X\025\273,\227\237\313\347\353r\375E\033\340U\271\272&\327^\311W\257\317\002N\312\344\206\334p\244\363\016\302\334\t=\306h\037C\264 f\303\014\005\013'\303mX\304(\345\013\"\311\233\026\340\313\303.um\357Q\361\037\031\177)_\202\367\234\314\355\200\243\177C\313\350o9\274\212b\265\346=\213\"\033\336E\261\033~\022\001\361$2\217b>\222F\221\216l\242\330\214\344Q\344#\223Q\020\223\321E\024\213\321u\024\353Q\r\205\026}\217\342}t7\2727\376\261\343\206\274\361\310\353\364~\361h=\344\333\207\327\016\247\334X\271\343\273\375\025y\275\3670~\310\334a\257\313K\027S\245x\211\226o\376V\240\205\034*\377\370a\262\360u!w\010\351\335s/{\324\333.\212Rw)\366\261\343b\371\022X\376\323\213y\343\037\257v\027:\013\335h~`\177Q~?\340v\227/]=\270\373!\376\001|\366\310\236\021o\002\024s\245\020B\3768\210\243xt\000\214^\331\317!\261\323rzSn\352R\317\312l\256\036\345\343\342\317\305\225\322\270O\354\250\027\3672%\377)\314\310\231\214\314\030\322\260\244%\352\340\211\342 \006\357\203\307 \316\367\245\361\275\361O_]\270xM^\305\0047\275\037\212\263r\001j\226J\272#wv\201\241\377BsH\367\\x\r\305Z\230\243\340\265G\361\016\305\273\360\022\322\275\024Y\216\234?\275\0219\022P\343\303\256\352\335,V\352\346\236\033r\177\362\266\212\213r\032*\005r3QoT\216b\245\3117\232\324X]\357\201+\274\236b\247\257\027s;\335^/W\005C7\002^\225\252\326\n<&\307\300,0\301$K\326\301\017\275\210\367\240\330\355\203!Iw\264\030\252\2021\000\311\270\344\033\255\3000$\372\017sn\324\235\361\226\213wK\317\345\"$\255a\211\207\246\220\320\251\360tx/T\216~\263\177\367 \016W/G\305\233\035\216V\230\276$\026kx\245\220\373\225\321;0\020\374V\t\272M)wnU\254\331d\230\250\004\325\003P\323\376\213\346w\345\270\377\254\r\246S\342\214A\220&\373\376;\017U\225;u\373p\037\206\367\002:\271}\241\245^{\344\304\356\301\216\2017k8\230\250/\003x8:<G\372""\307\334\220\206u\3134\203\260m\246\026;\322\025\r\341\213S\223\023\347\311\356\230'\322\370\345\014\371\211\263&80X\273x\221\267\334N\037\335\"\310\244ic\331\256\300\356\\m3 \353 \330yj\273i\034\244\331AKZZ*\266I\321\320\321\3354\230#\321&I\342\213Yj\036\niz\3226O\342\013\211\032\274\177\374\"\\1\307\341w\003\365\1775\370\027[2\013\230g5\010\0222S\003\314\343y\000{-4\316\301c{\221\222v@-\331=\223\2216\211\036>q\037\017\266\372\014Ag\243\272\225\312y\270n/X\322\026\252%\333g\263\362?\215\027[\331";
+    PyObject *data = __Pyx_DecompressString(cstring, 1593, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (4824 bytes) */
-const char* const bytes = "Failed to create GateGeometryArray1DNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/gate_geometry_array1_d.pyx<stringsource>GateGeometryArray1DGateGeometryArray1D.__reduce_cython__GateGeometryArray1D.__setstate_cython__GateGeometryArray1D.all_dot_gatesGateGeometryArray1D.append_central_gateGateGeometryArray1D.central_dot_gatesGateGeometryArray1D.copyGateGeometryArray1D.equalGateGeometryArray1D.from_jsonGateGeometryArray1D.left_barrierGateGeometryArray1D.left_reservoirGateGeometryArray1D.linear_arrayGateGeometryArray1D.newGateGeometryArray1D.not_equalGateGeometryArray1D.ohmicsGateGeometryArray1D.query_neighborsGateGeometryArray1D.raw_central_gatesGateGeometryArray1D.right_barrierGateGeometryArray1D.right_reservoirGateGeometryArray1D.screening_gatesGateGeometryArray1D.to_jsonNotImplemented__Pyx_PyDict_NextRefall_dot_gatesappend_central_gateasyncio.coroutinesb_jsoncentral_dot_gatescline_in_tracebackclscopy__dict__equalfalcon_core._capi.gate_geometry_array1_dfrom_json__func__gate__getstate__hh_rethandle_is_coroutineitemsjsonleft_barrierleft_neighborleft_reservoirlinear_arraylineararray__main____module____name__newnot_equalobjohmicsotherpop__pyx_capi____pyx_state__qualname__query_neighborsraw_central_gates__reduce____reduce_cython____reduce_ex__right_barrierright_neighborright_reservoirs_jsons_retscreening_gatesselected_gateself__set_name__setdefault__setstate____setstate_cython____test__to_jsonvalues\200A\330\010\025\320\0253\2601\260D\270\t\300\025\300k\320QW\320W^\320^h\360\000\000i\001K\002\360\000\000K\002L\002\200A\330\0104\3204O\310q\320PT\320TU\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204U\320UV\320VZ\320Z[\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330""\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204X\320XY\320Y]\320]^\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204X\320XY\320Y]\320]f\320fj\320ju\320uz\360\000\000{\001B\002\360\000\000B\002L\002\360\000\000L\002e\002\360\000\000e\002f\002\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204Z\320Z[\320[_\320_`\330\010\013\2106\220\023\320\024.\250a\330\014\023\2201\330\010\017\320\017%\240Q\240m\2601\200A\330\0166\260a\260t\2709\300M\320Q\\\320\\j\320jq\320q{\360\000\000|\001U\002\360\000\000U\002X\002\360\000\000X\002e\002\360\000\000e\002p\002\360\000\000p\002~\002\360\000\000~\002E\003\360\000\000E\003O\003\360\000\000O\003h\003\360\000\000h\003k\003\360\000\000k\003y\003\360\000\000y\003D\004\360\000\000D\004S\004\360\000\000S\004Z\004\360\000\000Z\004d\004\360\000\000d\004}\004\360\000\000}\004~\004\200A\340\010\026\320\0269\270\021\270$\270a\330\010\013\2106\220\023\320\024)\250\021\330\014\023\2201\330\010\t\330\014\023\320\023,\250A\250U\260&\270\005\270X\300W\310A\310Q\340\022!\240\021\240!\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026;\2701\270A\340\022!\240\021\240!\330\010\013\2102\210S\320\0202\260!\330\014\022\220+\230Q\230a\330\010'\320'<\270C\270x\300q\310\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010H\320Hk\320kl\320lp\320pq\330\010\013\2106\220\023\320\024B\300!\330\014\023\2201\330\010\017\320\017=\270Q\270m\3101\200A\330\010I\320Im\320mn\320nr\320rs\330\010\013\2106\220\023\320\024C\3001\330\014\023\2201\330\010\017\320\017>\270a\270}\310A\200A\360\006\000\t\023\320\022-\250Q\250k\270\033\300L\320PW\320Wa\320a{\320{~\360\000\000\177\001N\002\360\000\000N\002Y\002\360\000\000Y\002i\002\360\000\000i\002p\002\360\000\000p\002z\002\360\000\000z\002T\003\360\000\000T\003U\003\330\010\013\2102\210S\320\0202\260!\330\014\022\220+""\230Q\230a\330\010'\320'<\270C\270x\300q\310\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010<\320<U\320UV\320VZ\320Z[\330\010\013\2106\220\023\320\0246\260a\330\014\023\2201\330\010\017\320\0170\260\001\260\036\270v\300S\320Hj\320jn\320no\200A\330\010=\320=_\320_`\320`d\320de\330\010\013\2106\220\023\320\0247\260q\330\014\023\2201\330\010\017\320\0171\260\021\260-\270q\200A\330\010=\320=^\320^_\320_c\320cd\330\010\013\2106\220\023\320\0247\260q\330\014\023\2201\330\010\017\320\0171\260\021\260-\270q\200A\330\010>\320>`\320`a\320ae\320ef\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0172\260!\260=\300\001\200A\330\010>\320>d\320de\320ei\320ij\330\010\013\2106\220\023\320\0248\270\001\330\014\023\2201\330\010\017\320\0172\260!\260=\300\001\200A\330\010\025\320\025/\250q\260\004\260I\270U\300+\310V\320SZ\320Zd\360\000\000e\001G\002\360\000\000G\002H\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *(__pyx_t_6_c_api_GateGeometryArray1DHandle, struct __pyx_opt_args_11falcon_core_5_capi_22gate_geometry_array1_d__gate_geometry_array1_d_from_capi *__pyx_optional_args)\000_gate_geometry_array1_d_from_capistruct __pyx_obj_11falcon_core_5_capi_10connection_Connection *(__pyx_t_6_c_api_ConnectionHandle, struct __pyx_opt_args_11falcon_core_5_capi_10connection__connection_from_capi *__pyx_optional_args)\000_connection_from_capistruct __pyx_obj_11falcon_core_5_capi_11connections_Connections *(__pyx_t_6_c_api_ConnectionsHandle, struct __pyx_opt_args_11falcon_core_5_capi_11connections__connections_from_capi *__pyx_optional_args)\000_connections_from_capistruct __pyx_obj_11falcon_core_5_capi_23dot_gate_with_neighbors_DotGateWithNeighbors *(__pyx_t_6_c_api_DotGateWithNeighborsHandle, struct __pyx_opt_args_11falcon_core_5_capi_23dot_gate_with_neighbors__dot_gate_with_neighbors_from_capi *__pyx_optional_args)\000_dot_gate_with_neighbors_from_capistruct __pyx_obj_11""falcon_core_5_capi_24dot_gates_with_neighbors_DotGatesWithNeighbors *(__pyx_t_6_c_api_DotGatesWithNeighborsHandle, struct __pyx_opt_args_11falcon_core_5_capi_24dot_gates_with_neighbors__dot_gates_with_neighbors_from_capi *__pyx_optional_args)\000_dot_gates_with_neighbors_from_capistruct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *(__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args)\000_left_reservoir_with_implanted_ohmic_from_capistruct __pyx_obj_11falcon_core_5_capi_36right_reservoir_with_implanted_ohmic_RightReservoirWithImplantedOhmic *(__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_36right_reservoir_with_implanted_ohmic__right_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args)\000_right_reservoir_with_implanted_ohmic_from_capi";
+    #else /* compression: none (4821 bytes) */
+const char* const bytes = "Failed to create GateGeometryArray1DNote that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.()?add_notedisableenablegcisenabledno default __reduce__ due to non-trivial __cinit__src/falcon_core/_capi/gate_geometry_array1_d.pyx<stringsource>GateGeometryArray1DGateGeometryArray1D.__reduce_cython__GateGeometryArray1D.__setstate_cython__GateGeometryArray1D.all_dot_gatesGateGeometryArray1D.append_central_gateGateGeometryArray1D.central_dot_gatesGateGeometryArray1D.copyGateGeometryArray1D.equalGateGeometryArray1D.from_jsonGateGeometryArray1D.left_barrierGateGeometryArray1D.left_reservoirGateGeometryArray1D.linear_arrayGateGeometryArray1D.newGateGeometryArray1D.not_equalGateGeometryArray1D.ohmicsGateGeometryArray1D.query_neighborsGateGeometryArray1D.raw_central_gatesGateGeometryArray1D.right_barrierGateGeometryArray1D.right_reservoirGateGeometryArray1D.screening_gatesGateGeometryArray1D.to_jsonNotImplemented__Pyx_PyDict_NextRefall_dot_gatesappend_central_gateasyncio.coroutinesb_jsoncentral_dot_gates__class__cline_in_tracebackclscopy__dict__equalfalcon_core._capi.gate_geometry_array1_dfrom_json__func__gate__getstate__hh_rethandle_is_coroutineitemsjsonleft_barrierleft_neighborleft_reservoirlinear_arraylineararray__main____module____name__newnot_equalobjohmicsotherpop__pyx_capi____pyx_state__qualname__query_neighborsraw_central_gates__reduce____reduce_cython____reduce_ex__right_barrierright_neighborright_reservoirs_jsons_retscreening_gatesselected_gateself__set_name__setdefault__setstate____setstate_cython____test__to_jsonvalues\200A\330\010\025\320\0253\2601\260D\270\t\300\025\300k\320QW\320W^\320^h\360\000\000i\001K\002\360\000\000K\002L\002\200A\330\0104\3204O\310q\320PT\320TU\330\010\013\2106\220\023\320\024.\250c\260\027\270\001\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204U\320UV\320VZ\320Z[\330\010\013\2106\220\023\320\024.\250c\260\027""\270\001\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204X\320XY\320Y]\320]^\330\010\013\2106\220\023\320\024.\250c\260\027\270\001\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204X\320XY\320Y]\320]f\320fj\320ju\320uz\360\000\000{\001B\002\360\000\000B\002L\002\360\000\000L\002e\002\360\000\000e\002f\002\330\010\013\2106\220\023\320\024.\250c\260\027\270\001\330\010\017\320\017%\240Q\240m\2601\200A\330\0104\3204Z\320Z[\320[_\320_`\330\010\013\2106\220\023\320\024.\250c\260\027\270\001\330\010\017\320\017%\240Q\240m\2601\200A\330\0166\260a\260t\2709\300M\320Q\\\320\\j\320jq\320q{\360\000\000|\001U\002\360\000\000U\002X\002\360\000\000X\002e\002\360\000\000e\002p\002\360\000\000p\002~\002\360\000\000~\002E\003\360\000\000E\003O\003\360\000\000O\003h\003\360\000\000h\003k\003\360\000\000k\003y\003\360\000\000y\003D\004\360\000\000D\004S\004\360\000\000S\004Z\004\360\000\000Z\004d\004\360\000\000d\004}\004\360\000\000}\004~\004\200A\340\010\026\320\0269\270\021\270$\270a\330\010\013\2106\220\023\320\024)\250\023\250G\2601\330\010\r\210W\320\024-\250Q\250e\2606\270\025\270h\300g\310Q\310a\330\027&\240a\240q\200A\340\010\034\230D\240\007\240q\250\001\330\0100\260\016\270a\270x\300s\310!\3101\340\010\t\330\014\026\320\026;\2701\270A\340\022!\240\021\240!\330\010\013\2102\210S\320\0202\260!\330\014\022\220+\230Q\230a\330\010'\320'<\270C\270x\300q\310\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010H\320Hk\320kl\320lp\320pq\330\010\013\2106\220\023\320\024B\300#\300W\310A\330\010\017\320\017=\270Q\270m\3101\200A\330\010I\320Im\320mn\320nr\320rs\330\010\013\2106\220\023\320\024C\3003\300g\310Q\330\010\017\320\017>\270a\270}\310A\200A\360\006\000\t\023\320\022-\250Q\250k\270\033\300L\320PW\320Wa\320a{\320{~\360\000\000\177\001N\002\360\000\000N\002Y\002\360\000\000Y\002i\002\360\000\000i\002p\002\360\000\000p\002z\002\360\000\000z\002T\003\360\000\000T\003U\003\330\010\013\2102\210S\320\0202\260!\330\014\022\220+\230Q\230a\330\010'\320'""<\270C\270x\300q\310\001\330\010\013\210:\220Q\330\010\013\2109\220A\330\010\017\210q\200A\330\010<\320<U\320UV\320VZ\320Z[\330\010\013\2106\220\023\320\0246\260c\270\027\300\001\330\010\017\320\0170\260\001\260\036\270v\300S\320Hj\320jn\320no\200A\330\010=\320=_\320_`\320`d\320de\330\010\013\2106\220\023\320\0247\260s\270'\300\021\330\010\017\320\0171\260\021\260-\270q\200A\330\010=\320=^\320^_\320_c\320cd\330\010\013\2106\220\023\320\0247\260s\270'\300\021\330\010\017\320\0171\260\021\260-\270q\200A\330\010>\320>`\320`a\320ae\320ef\330\010\013\2106\220\023\320\0248\270\003\2707\300!\330\010\017\320\0172\260!\260=\300\001\200A\330\010>\320>d\320de\320ei\320ij\330\010\013\2106\220\023\320\0248\270\003\2707\300!\330\010\017\320\0172\260!\260=\300\001\200A\330\010\025\320\025/\250q\260\004\260I\270U\300+\310V\320SZ\320Zd\360\000\000e\001G\002\360\000\000G\002H\002\200\001\330\004\n\210+\220Qstruct __pyx_obj_11falcon_core_5_capi_22gate_geometry_array1_d_GateGeometryArray1D *(__pyx_t_6_c_api_GateGeometryArray1DHandle, struct __pyx_opt_args_11falcon_core_5_capi_22gate_geometry_array1_d__gate_geometry_array1_d_from_capi *__pyx_optional_args)\000_gate_geometry_array1_d_from_capistruct __pyx_obj_11falcon_core_5_capi_10connection_Connection *(__pyx_t_6_c_api_ConnectionHandle, struct __pyx_opt_args_11falcon_core_5_capi_10connection__connection_from_capi *__pyx_optional_args)\000_connection_from_capistruct __pyx_obj_11falcon_core_5_capi_11connections_Connections *(__pyx_t_6_c_api_ConnectionsHandle, struct __pyx_opt_args_11falcon_core_5_capi_11connections__connections_from_capi *__pyx_optional_args)\000_connections_from_capistruct __pyx_obj_11falcon_core_5_capi_23dot_gate_with_neighbors_DotGateWithNeighbors *(__pyx_t_6_c_api_DotGateWithNeighborsHandle, struct __pyx_opt_args_11falcon_core_5_capi_23dot_gate_with_neighbors__dot_gate_with_neighbors_from_capi *__pyx_optional_args)\000_dot_gate_with_neighbors_from_capistruct __pyx_obj_11falcon_core_5_capi_24dot_gates_with_neighbors_D""otGatesWithNeighbors *(__pyx_t_6_c_api_DotGatesWithNeighborsHandle, struct __pyx_opt_args_11falcon_core_5_capi_24dot_gates_with_neighbors__dot_gates_with_neighbors_from_capi *__pyx_optional_args)\000_dot_gates_with_neighbors_from_capistruct __pyx_obj_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic_LeftReservoirWithImplantedOhmic *(__pyx_t_6_c_api_LeftReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_35left_reservoir_with_implanted_ohmic__left_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args)\000_left_reservoir_with_implanted_ohmic_from_capistruct __pyx_obj_11falcon_core_5_capi_36right_reservoir_with_implanted_ohmic_RightReservoirWithImplantedOhmic *(__pyx_t_6_c_api_RightReservoirWithImplantedOhmicHandle, struct __pyx_opt_args_11falcon_core_5_capi_36right_reservoir_with_implanted_ohmic__right_reservoir_with_implanted_ohmic_from_capi *__pyx_optional_args)\000_right_reservoir_with_implanted_ohmic_from_capi";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
     PyObject **stringtab = __pyx_mstate->__pyx_string_tab;
     Py_ssize_t pos = 0;
-    for (int i = 0; i < 93; i++) {
+    for (int i = 0; i < 96; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyUnicode_DecodeUTF8(bytes + pos, bytes_length, NULL);
-      if (likely(string) && i >= 12) PyUnicode_InternInPlace(&string);
+      if (likely(string) && i >= 14) PyUnicode_InternInPlace(&string);
       if (unlikely(!string)) {
         Py_XDECREF(data);
         __PYX_ERR(0, 1, __pyx_L1_error)
@@ -9631,7 +9580,7 @@ const char* const bytes = "Failed to create GateGeometryArray1DNote that Cython 
       stringtab[i] = string;
       pos += bytes_length;
     }
-    for (int i = 93; i < 119; i++) {
+    for (int i = 96; i < 122; i++) {
       Py_ssize_t bytes_length = index[i].length;
       PyObject *string = PyBytes_FromStringAndSize(bytes + pos, bytes_length);
       stringtab[i] = string;
@@ -9642,14 +9591,14 @@ const char* const bytes = "Failed to create GateGeometryArray1DNote that Cython 
       }
     }
     Py_XDECREF(data);
-    for (Py_ssize_t i = 0; i < 119; i++) {
+    for (Py_ssize_t i = 0; i < 122; i++) {
       if (unlikely(PyObject_Hash(stringtab[i]) == -1)) {
         __PYX_ERR(0, 1, __pyx_L1_error)
       }
     }
     #if CYTHON_IMMORTAL_CONSTANTS
     {
-      PyObject **table = stringtab + 93;
+      PyObject **table = stringtab + 96;
       for (Py_ssize_t i=0; i<26; ++i) {
         #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
         #if PY_VERSION_HEX < 0x030E0000
@@ -9707,82 +9656,82 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 51};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_UUVVZZ_6_6a_1_0_vSHjjnno, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_copy, __pyx_mstate->__pyx_kp_b_iso88591_A_UUVVZZ_6_6c_0_vSHjjnno, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 57};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 56};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_q_IU_VSZZd_e_G_G_H, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 65};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 63};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_other};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_not_equal, __pyx_mstate->__pyx_kp_b_iso88591_A_31D_kQWW_h_i_K_K_L, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 73};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 70};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_s_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_9_a_6_1_AU_XWAQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_to_json, __pyx_mstate->__pyx_kp_b_iso88591_A_9_a_6_G1_W_Qe6_hgQa_aq, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 83};
+    const __Pyx_PyCode_New_function_description descr = {4, 0, 0, 4, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 77};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_left_neighbor, __pyx_mstate->__pyx_n_u_selected_gate, __pyx_mstate->__pyx_n_u_right_neighbor};
     __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_append_central_gate, __pyx_mstate->__pyx_kp_b_iso88591_A_6at9MQ_jjqq_U_U_X_X_e_e_p_p_E, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 86};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 80};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_all_dot_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_aaeef_6_8_1_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[7] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_all_dot_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_aaeef_6_8_7_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[7])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 92};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 85};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_gate, __pyx_mstate->__pyx_n_u_h_ret};
     __pyx_mstate_global->__pyx_codeobj_tab[8] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_query_neighbors, __pyx_mstate->__pyx_kp_b_iso88591_A_44XXYY_ffjjuuz_B_B_L_L_e_e_f_6, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[8])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 98};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 90};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_left_reservoir, __pyx_mstate->__pyx_kp_b_iso88591_A_HHkkllppq_6_B_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[9] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_left_reservoir, __pyx_mstate->__pyx_kp_b_iso88591_A_HHkkllppq_6_B_WA_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[9])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 104};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 95};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_right_reservoir, __pyx_mstate->__pyx_kp_b_iso88591_A_IImmnnrrs_6_C1_1_a_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[10] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_right_reservoir, __pyx_mstate->__pyx_kp_b_iso88591_A_IImmnnrrs_6_C3gQ_a_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[10])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 100};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_left_barrier, __pyx_mstate->__pyx_kp_b_iso88591_A___ccd_6_7s_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+  }
+  {
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 105};
+    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
+    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_right_barrier, __pyx_mstate->__pyx_kp_b_iso88591_A____dde_6_7s_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 110};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[11] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_left_barrier, __pyx_mstate->__pyx_kp_b_iso88591_A___ccd_6_7q_1_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[11])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_linear_array, __pyx_mstate->__pyx_kp_b_iso88591_A_44UUVVZZ_6_c_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 116};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 115};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[12] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_right_barrier, __pyx_mstate->__pyx_kp_b_iso88591_A____dde_6_7q_1_1_q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[12])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_screening_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_44XXYY_6_c_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 122};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 120};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[13] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_linear_array, __pyx_mstate->__pyx_kp_b_iso88591_A_44UUVVZZ_6_a_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[13])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_raw_central_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_44ZZ____6_c_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 128};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 125};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[14] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_screening_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_44XXYY_6_a_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[14])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_central_dot_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_ddeeiij_6_8_7_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 134};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 130};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[15] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_raw_central_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_44ZZ____6_a_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[15])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 140};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[16] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_central_dot_gates, __pyx_mstate->__pyx_kp_b_iso88591_A_ddeeiij_6_8_1_2, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[16])) goto bad;
-  }
-  {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 146};
-    PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_h_ret};
-    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_ohmics, __pyx_mstate->__pyx_kp_b_iso88591_A_44OqPTTU_6_a_1_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[17] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_falcon_core__capi_gate_geome, __pyx_mstate->__pyx_n_u_ohmics, __pyx_mstate->__pyx_kp_b_iso88591_A_44OqPTTU_6_c_Qm1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[17])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 1, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 1};
@@ -11566,6 +11515,90 @@ static CYTHON_INLINE void __Pyx__ExceptionReset(PyThreadState *tstate, PyObject 
 }
 #endif
 
+/* PyObjectCallNoArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+    PyObject *arg[2] = {NULL, NULL};
+    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* JoinPyUnicode */
+static PyObject* __Pyx_PyUnicode_Join(PyObject** values, Py_ssize_t value_count, Py_ssize_t result_ulength,
+                                      Py_UCS4 max_char) {
+#if CYTHON_USE_UNICODE_INTERNALS && CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+    PyObject *result_uval;
+    int result_ukind, kind_shift;
+    Py_ssize_t i, char_pos;
+    void *result_udata;
+    if (max_char > 1114111) max_char = 1114111;
+    result_uval = PyUnicode_New(result_ulength, max_char);
+    if (unlikely(!result_uval)) return NULL;
+    result_ukind = (max_char <= 255) ? PyUnicode_1BYTE_KIND : (max_char <= 65535) ? PyUnicode_2BYTE_KIND : PyUnicode_4BYTE_KIND;
+    kind_shift = (result_ukind == PyUnicode_4BYTE_KIND) ? 2 : result_ukind - 1;
+    result_udata = PyUnicode_DATA(result_uval);
+    assert(kind_shift == 2 || kind_shift == 1 || kind_shift == 0);
+    if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - result_ulength < 0))
+        goto overflow;
+    char_pos = 0;
+    for (i=0; i < value_count; i++) {
+        int ukind;
+        Py_ssize_t ulength;
+        void *udata;
+        PyObject *uval = values[i];
+        #if !CYTHON_COMPILING_IN_LIMITED_API
+        if (__Pyx_PyUnicode_READY(uval) == (-1))
+            goto bad;
+        #endif
+        ulength = __Pyx_PyUnicode_GET_LENGTH(uval);
+        #if !CYTHON_ASSUME_SAFE_SIZE
+        if (unlikely(ulength < 0)) goto bad;
+        #endif
+        if (unlikely(!ulength))
+            continue;
+        if (unlikely((PY_SSIZE_T_MAX >> kind_shift) - ulength < char_pos))
+            goto overflow;
+        ukind = __Pyx_PyUnicode_KIND(uval);
+        udata = __Pyx_PyUnicode_DATA(uval);
+        if (ukind == result_ukind) {
+            memcpy((char *)result_udata + (char_pos << kind_shift), udata, (size_t) (ulength << kind_shift));
+        } else {
+            #if PY_VERSION_HEX >= 0x030d0000
+            if (unlikely(PyUnicode_CopyCharacters(result_uval, char_pos, uval, 0, ulength) < 0)) goto bad;
+            #elif CYTHON_COMPILING_IN_CPYTHON || defined(_PyUnicode_FastCopyCharacters)
+            _PyUnicode_FastCopyCharacters(result_uval, char_pos, uval, 0, ulength);
+            #else
+            Py_ssize_t j;
+            for (j=0; j < ulength; j++) {
+                Py_UCS4 uchar = __Pyx_PyUnicode_READ(ukind, udata, j);
+                __Pyx_PyUnicode_WRITE(result_ukind, result_udata, char_pos+j, uchar);
+            }
+            #endif
+        }
+        char_pos += ulength;
+    }
+    return result_uval;
+overflow:
+    PyErr_SetString(PyExc_OverflowError, "join() result is too long for a Python string");
+bad:
+    Py_DECREF(result_uval);
+    return NULL;
+#else
+    Py_ssize_t i;
+    PyObject *result = NULL;
+    PyObject *value_tuple = PyTuple_New(value_count);
+    if (unlikely(!value_tuple)) return NULL;
+    CYTHON_UNUSED_VAR(max_char);
+    CYTHON_UNUSED_VAR(result_ulength);
+    for (i=0; i<value_count; i++) {
+        if (__Pyx_PyTuple_SET_ITEM(value_tuple, i, values[i]) != (0)) goto bad;
+        Py_INCREF(values[i]);
+    }
+    result = PyUnicode_Join(__pyx_mstate_global->__pyx_empty_unicode, value_tuple);
+bad:
+    Py_DECREF(value_tuple);
+    return result;
+#endif
+}
+
 /* AllocateExtensionType */
 static PyObject *__Pyx_AllocateExtensionType(PyTypeObject *t, int is_final) {
     if (is_final || likely(!__Pyx_PyType_HasFeature(t, Py_TPFLAGS_IS_ABSTRACT))) {
@@ -11783,12 +11816,6 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
         PyType_Modified(type);
 #endif  // PY_VERSION_HEX > 0x030900B1
     return 0;
-}
-
-/* PyObjectCallNoArg (used by PyObjectCallMethod0) */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-    PyObject *arg[2] = {NULL, NULL};
-    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
 }
 
 /* PyObjectGetMethod (used by PyObjectCallMethod0) */
@@ -14198,7 +14225,7 @@ __Pyx_PyType_GetFullyQualifiedName(PyTypeObject* tp)
         result = name;
         name = NULL;
     } else {
-        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__2);
+        result = __Pyx_NewRef(__pyx_mstate_global->__pyx_kp_u__4);
     }
     goto done;
 }

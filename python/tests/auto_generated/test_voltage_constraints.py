@@ -22,7 +22,7 @@ class TestVoltageConstraints:
         try:
             self.obj.copy()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_equal(self):
         if self.obj is None:
@@ -30,7 +30,7 @@ class TestVoltageConstraints:
         try:
             self.obj.equal(VoltageConstraints.new(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])), 0.0, Pair[float, float](0.0, 0.0)))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_equal(self):
         if self.obj is None: pytest.skip()
@@ -45,7 +45,7 @@ class TestVoltageConstraints:
         try:
             self.obj.not_equal(VoltageConstraints.new(Adjacency.new(array.array('i', [1]), array.array('L', [1, 1]), 2, Connections.from_list([Connection.new_plunger('P1')])), 0.0, Pair[float, float](0.0, 0.0)))
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_op_not_equal(self):
         if self.obj is None: pytest.skip()
@@ -60,7 +60,7 @@ class TestVoltageConstraints:
         try:
             self.obj.to_json()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_matrix(self):
         if self.obj is None:
@@ -68,7 +68,7 @@ class TestVoltageConstraints:
         try:
             self.obj.matrix()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_adjacency(self):
         if self.obj is None:
@@ -76,7 +76,7 @@ class TestVoltageConstraints:
         try:
             self.obj.adjacency()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_limits(self):
         if self.obj is None:
@@ -84,7 +84,7 @@ class TestVoltageConstraints:
         try:
             self.obj.limits()
         except Exception as e:
-            print(f'Method call failed as expected: {e}')
+            print(f'Method call failed: {e}')
 
     def test_ctor_from_json(self):
         try:

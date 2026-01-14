@@ -53,11 +53,11 @@ class HDF5Data:
         ret = self._c.copy()
         return HDF5Data._from_capi(ret)
 
-    def equal(self, other: HDF5Data) -> None:
+    def equal(self, other: HDF5Data) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: HDF5Data) -> None:
+    def not_equal(self, other: HDF5Data) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -103,13 +103,19 @@ class HDF5Data:
         ret = self._c.measurement_title()
         return ret
 
-    def unique_id(self, ) -> None:
+    def unique_id(self, ) -> int:
         ret = self._c.unique_id()
         return ret
 
-    def timestamp(self, ) -> None:
+    def timestamp(self, ) -> int:
         ret = self._c.timestamp()
         return ret
+
+    def __repr__(self):
+        return f"HDF5Data({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __hash__(self):
         """Hash based on JSON representation"""

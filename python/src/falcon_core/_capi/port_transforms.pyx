@@ -55,69 +55,60 @@ cdef class PortTransforms:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.PortTransformsHandle h_ret = _c_api.PortTransforms_copy(self.handle)
-        if h_ret == <_c_api.PortTransformsHandle>0:
-            return None
+        if h_ret == <_c_api.PortTransformsHandle>0: return None
         return _port_transforms_from_capi(h_ret, owned=(h_ret != <_c_api.PortTransformsHandle>self.handle))
 
     def equal(self, PortTransforms other):
         return _c_api.PortTransforms_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
 
     def __eq__(self, PortTransforms other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, PortTransforms other):
         return _c_api.PortTransforms_not_equal(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
 
     def __ne__(self, PortTransforms other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PortTransforms_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def transforms(self, ):
+    def transforms(self):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.PortTransforms_transforms(self.handle)
-        if h_ret == <_c_api.ListPortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.ListPortTransformHandle>0: return None
         return _list_port_transform_from_capi(h_ret, owned=True)
 
     def push_back(self, PortTransform value):
         _c_api.PortTransforms_push_back(self.handle, value.handle if value is not None else <_c_api.PortTransformHandle>0)
 
-    def size(self, ):
+    def size(self):
         return _c_api.PortTransforms_size(self.handle)
 
-    def empty(self, ):
+    def empty(self):
         return _c_api.PortTransforms_empty(self.handle)
 
     def erase_at(self, size_t idx):
         _c_api.PortTransforms_erase_at(self.handle, idx)
 
-    def clear(self, ):
+    def clear(self):
         _c_api.PortTransforms_clear(self.handle)
 
     def at(self, size_t idx):
         cdef _c_api.PortTransformHandle h_ret = _c_api.PortTransforms_at(self.handle, idx)
-        if h_ret == <_c_api.PortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.PortTransformHandle>0: return None
         return _port_transform_from_capi(h_ret, owned=False)
 
-    def items(self, ):
+    def items(self):
         cdef _c_api.ListPortTransformHandle h_ret = _c_api.PortTransforms_items(self.handle)
-        if h_ret == <_c_api.ListPortTransformHandle>0:
-            return None
+        if h_ret == <_c_api.ListPortTransformHandle>0: return None
         return _list_port_transform_from_capi(h_ret, owned=False)
 
     def contains(self, PortTransform value):
@@ -128,18 +119,21 @@ cdef class PortTransforms:
 
     def intersection(self, PortTransforms other):
         cdef _c_api.PortTransformsHandle h_ret = _c_api.PortTransforms_intersection(self.handle, other.handle if other is not None else <_c_api.PortTransformsHandle>0)
-        if h_ret == <_c_api.PortTransformsHandle>0:
-            return None
+        if h_ret == <_c_api.PortTransformsHandle>0: return None
         return _port_transforms_from_capi(h_ret, owned=(h_ret != <_c_api.PortTransformsHandle>self.handle))
 
     def __len__(self):
-        return self.size()
+        return self.size
 
-    def __getitem__(self, idx):
-        ret = self.at(idx)
+    def __getitem__(self, key):
+        ret = self.at(key)
         if ret is None:
-            raise IndexError("Index out of bounds")
+            raise IndexError(f"{key} not found in {self.__class__.__name__}")
         return ret
+
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
     def append(self, value):
         self.push_back(value)
@@ -152,6 +146,12 @@ cdef class PortTransforms:
                 item = item._c
             obj.push_back(item)
         return obj
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef PortTransforms _port_transforms_from_capi(_c_api.PortTransformsHandle h, bint owned=True):
     if h == <_c_api.PortTransformsHandle>0:

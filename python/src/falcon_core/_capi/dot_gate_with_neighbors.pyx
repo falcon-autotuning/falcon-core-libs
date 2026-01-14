@@ -64,75 +64,67 @@ cdef class DotGateWithNeighbors:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.DotGateWithNeighborsHandle h_ret = _c_api.DotGateWithNeighbors_copy(self.handle)
-        if h_ret == <_c_api.DotGateWithNeighborsHandle>0:
-            return None
+        if h_ret == <_c_api.DotGateWithNeighborsHandle>0: return None
         return _dot_gate_with_neighbors_from_capi(h_ret, owned=(h_ret != <_c_api.DotGateWithNeighborsHandle>self.handle))
 
     def equal(self, DotGateWithNeighbors other):
         return _c_api.DotGateWithNeighbors_equal(self.handle, other.handle if other is not None else <_c_api.DotGateWithNeighborsHandle>0)
 
     def __eq__(self, DotGateWithNeighbors other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, DotGateWithNeighbors other):
         return _c_api.DotGateWithNeighbors_not_equal(self.handle, other.handle if other is not None else <_c_api.DotGateWithNeighborsHandle>0)
 
     def __ne__(self, DotGateWithNeighbors other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.DotGateWithNeighbors_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def name(self, ):
+    def name(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.DotGateWithNeighbors_name(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def type(self, ):
+    def type(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.DotGateWithNeighbors_type(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def left_neighbor(self, ):
+    def left_neighbor(self):
         cdef _c_api.ConnectionHandle h_ret = _c_api.DotGateWithNeighbors_left_neighbor(self.handle)
-        if h_ret == <_c_api.ConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ConnectionHandle>0: return None
         return _connection_from_capi(h_ret, owned=True)
 
-    def right_neighbor(self, ):
+    def right_neighbor(self):
         cdef _c_api.ConnectionHandle h_ret = _c_api.DotGateWithNeighbors_right_neighbor(self.handle)
-        if h_ret == <_c_api.ConnectionHandle>0:
-            return None
+        if h_ret == <_c_api.ConnectionHandle>0: return None
         return _connection_from_capi(h_ret, owned=True)
 
-    def is_barrier_gate(self, ):
+    def is_barrier_gate(self):
         return _c_api.DotGateWithNeighbors_is_barrier_gate(self.handle)
 
-    def is_plunger_gate(self, ):
+    def is_plunger_gate(self):
         return _c_api.DotGateWithNeighbors_is_plunger_gate(self.handle)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef DotGateWithNeighbors _dot_gate_with_neighbors_from_capi(_c_api.DotGateWithNeighborsHandle h, bint owned=True):
     if h == <_c_api.DotGateWithNeighborsHandle>0:

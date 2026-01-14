@@ -47,50 +47,47 @@ cdef class PairStringBool:
         obj.owned = True
         return obj
 
-    def copy(self, ):
+    def copy(self):
         cdef _c_api.PairStringBoolHandle h_ret = _c_api.PairStringBool_copy(self.handle)
-        if h_ret == <_c_api.PairStringBoolHandle>0:
-            return None
+        if h_ret == <_c_api.PairStringBoolHandle>0: return None
         return _pair_string_bool_from_capi(h_ret, owned=(h_ret != <_c_api.PairStringBoolHandle>self.handle))
 
-    def first(self, ):
+    def first(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PairStringBool_first(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
 
-    def second(self, ):
+    def second(self):
         return _c_api.PairStringBool_second(self.handle)
 
     def equal(self, PairStringBool other):
         return _c_api.PairStringBool_equal(self.handle, other.handle if other is not None else <_c_api.PairStringBoolHandle>0)
 
     def __eq__(self, PairStringBool other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.equal(other)
 
     def not_equal(self, PairStringBool other):
         return _c_api.PairStringBool_not_equal(self.handle, other.handle if other is not None else <_c_api.PairStringBoolHandle>0)
 
     def __ne__(self, PairStringBool other):
-        if not hasattr(other, "handle"):
-            return NotImplemented
+        if not hasattr(other, "handle"): return NotImplemented
         return self.not_equal(other)
 
-    def to_json(self, ):
+    def to_json(self):
         cdef _c_api.StringHandle s_ret
         s_ret = _c_api.PairStringBool_to_json_string(self.handle)
-        if s_ret == <_c_api.StringHandle>0:
-            return ""
-        try:
-            return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
-        finally:
-            _c_api.String_destroy(s_ret)
+        if s_ret == <_c_api.StringHandle>0: return ""
+        try: return PyBytes_FromStringAndSize(s_ret.raw, s_ret.length).decode("utf-8")
+        finally: _c_api.String_destroy(s_ret)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
 cdef PairStringBool _pair_string_bool_from_capi(_c_api.PairStringBoolHandle h, bint owned=True):
     if h == <_c_api.PairStringBoolHandle>0:

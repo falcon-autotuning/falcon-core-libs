@@ -24,11 +24,11 @@ class ControlArray:
         ret = self._c.copy()
         return ControlArray._from_capi(ret)
 
-    def equal(self, other: ControlArray) -> None:
+    def equal(self, other: ControlArray) -> bool:
         ret = self._c.equal(other._c if other is not None else None)
         return ret
 
-    def not_equal(self, other: ControlArray) -> None:
+    def not_equal(self, other: ControlArray) -> bool:
         ret = self._c.not_equal(other._c if other is not None else None)
         return ret
 
@@ -46,19 +46,15 @@ class ControlArray:
         ret = _CControlArray.from_farray(farray._c if farray is not None else None)
         return ControlArray._from_capi(ret)
 
-    def size(self, ) -> None:
-        ret = self._c.size()
-        return ret
-
-    def dimension(self, ) -> None:
+    def dimension(self, ) -> int:
         ret = self._c.dimension()
         return ret
 
-    def shape(self, out_buffer: Any, ndim: Any) -> None:
+    def shape(self, out_buffer: Any, ndim: Any) -> int:
         ret = self._c.shape(out_buffer, ndim)
         return ret
 
-    def data(self, out_buffer: Any, numdata: Any) -> None:
+    def data(self, out_buffer: Any, numdata: Any) -> int:
         ret = self._c.data(out_buffer, numdata)
         return ret
 
@@ -162,7 +158,7 @@ class ControlArray:
         ret = self._c.abs()
         return ControlArray._from_capi(ret)
 
-    def min(self, ) -> None:
+    def min(self, ) -> float:
         ret = self._c.min()
         return ret
 
@@ -174,7 +170,7 @@ class ControlArray:
         ret = self._c.min_control_array(other._c if other is not None else None)
         return ControlArray._from_capi(ret)
 
-    def max(self, ) -> None:
+    def max(self, ) -> float:
         ret = self._c.max()
         return ret
 
@@ -186,11 +182,11 @@ class ControlArray:
         ret = self._c.max_control_array(other._c if other is not None else None)
         return ControlArray._from_capi(ret)
 
-    def greater_than(self, value: Any) -> None:
+    def greater_than(self, value: Any) -> bool:
         ret = self._c.greater_than(value)
         return ret
 
-    def less_than(self, value: Any) -> None:
+    def less_than(self, value: Any) -> bool:
         ret = self._c.less_than(value)
         return ret
 
@@ -198,7 +194,7 @@ class ControlArray:
         ret = self._c.remove_offset(offset)
         return ret
 
-    def sum(self, ) -> None:
+    def sum(self, ) -> float:
         ret = self._c.sum()
         return ret
 
@@ -211,7 +207,7 @@ class ControlArray:
         ret = self._c.flip(axis)
         return ControlArray._from_capi(ret)
 
-    def full_gradient(self, out_buffer: FArray, buffer_size: Any) -> None:
+    def full_gradient(self, out_buffer: FArray, buffer_size: Any) -> int:
         ret = self._c.full_gradient(out_buffer._c if out_buffer is not None else None, buffer_size)
         return ret
 
@@ -220,24 +216,36 @@ class ControlArray:
         if ret is None: return None
         return FArray(ret)
 
-    def get_sum_of_squares(self, ) -> None:
-        ret = self._c.get_sum_of_squares()
-        return ret
-
-    def get_summed_diff_int_of_squares(self, other: Any) -> None:
+    def get_summed_diff_int_of_squares(self, other: Any) -> float:
         ret = self._c.get_summed_diff_int_of_squares(other)
         return ret
 
-    def get_summed_diff_double_of_squares(self, other: Any) -> None:
+    def get_summed_diff_double_of_squares(self, other: Any) -> float:
         ret = self._c.get_summed_diff_double_of_squares(other)
         return ret
 
-    def get_summed_diff_array_of_squares(self, other: ControlArray) -> None:
+    def get_summed_diff_array_of_squares(self, other: ControlArray) -> float:
         ret = self._c.get_summed_diff_array_of_squares(other._c if other is not None else None)
         return ret
 
+    @property
+    def size(self) -> int:
+        ret = self._c.size()
+        return ret
+
+    @property
+    def sum_of_squares(self) -> float:
+        ret = self._c.get_sum_of_squares()
+        return ret
+
     def __len__(self):
-        return self.size()
+        return self.size
+
+    def __repr__(self):
+        return f"ControlArray({self.to_json()})"
+
+    def __str__(self):
+        return self.to_json()
 
     def __add__(self, other):
         """Operator overload for +"""
