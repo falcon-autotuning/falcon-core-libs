@@ -1,0 +1,31 @@
+-- test_interpretationcontainerdouble.lua
+-- Auto-generated tests for InterpretationContainerDouble
+
+local InterpretationContainerDouble = require("falcon_core.TODO.interpretationcontainerdouble")
+
+local function describe(name, fn) print("\n" .. name); fn() end
+local function it(name, fn) 
+    local ok, err = pcall(fn)
+    if ok then
+        print("  ✓ " .. name)
+    else
+        print("  ✗ " .. name)
+        print("    " .. tostring(err))
+    end
+end
+local function assert(cond, msg)
+    if not cond then error(msg or "Assertion failed") end
+end
+
+describe("InterpretationContainerDouble", function()
+    it("module loads successfully", function()
+        assert(InterpretationContainerDouble ~= nil, "InterpretationContainerDouble should load")
+    end)
+
+    it("can create instance", function()
+        local obj = InterpretationContainerDouble.new()
+        assert(obj ~= nil, "InterpretationContainerDouble should be created")
+    end)
+end)
+
+print("\n✓ " .. "InterpretationContainerDouble tests complete")

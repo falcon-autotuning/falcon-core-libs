@@ -1,0 +1,31 @@
+-- .luacov configuration
+-- Coverage reporting config for falcon_core
+
+return {
+    -- Where to store coverage stats
+    statsfile = "tests/coverage/luacov.stats.out",
+    
+    -- Where to write the report
+    reportfile = "tests/coverage/luacov.report.out",
+    
+    -- Include patterns
+    include = {
+        "falcon_core",
+    },
+    
+    -- Exclude patterns
+    exclude = {
+        "tests/",
+        "falcon_core/ffi/cdef",  -- Generated file, no need to cover
+    },
+    
+    -- Coverage target thresholds
+    -- (We'll track these manually for now)
+    tick = true,
+    
+    -- Reporter configuration
+    reporter = "default",
+    
+    -- Run as daemon (collect coverage in background)
+    runreport = false,
+}

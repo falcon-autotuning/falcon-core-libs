@@ -1,0 +1,7 @@
+⚠ luacov not installed, running without coverage
+  Install with: luarocks install luacov
+ls: cannot access 'tests/unit/test_*.lua': No such file or directory
+
+============================================================
+Results: 0 passed, 0 failed
+============================================================
