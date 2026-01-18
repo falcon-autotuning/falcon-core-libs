@@ -1,39 +1,21 @@
 -- impedance.lua
--- Auto-generated wrapper for Impedance
--- Generated from Impedance_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Impedance = {}
 
--- Constructors
-
-function Impedance.from_json_string(json)
-    return cdef.lib.Impedance_from_json_string(json)
+function Impedance.new(connection, resistance, capacitance)
+    local s_conn = (type(connection) == "string") and require("falcon_core.instrument_interfaces.connection").new(connection) or connection
+    return lib.Impedance_create(s_conn, resistance or 0, capacitance or 0)
 end
 
-
--- Methods
-
-function Impedance.copy(handle)
-    return cdef.lib.Impedance_copy(handle)
-end
-
-function Impedance.equal(handle, other)
-    return cdef.lib.Impedance_equal(handle, other)
-end
-
-function Impedance.not_equal(handle, other)
-    return cdef.lib.Impedance_not_equal(handle, other)
-end
-
-function Impedance.to_json_string(handle)
-    return cdef.lib.Impedance_to_json_string(handle)
-end
-
-function Impedance.from_json_string(handle)
-    return cdef.lib.Impedance_from_json_string(handle)
-end
-
+song.register("Impedance", {
+    methods = {
+        connection = lib.Impedance_connection,
+        resistance = lib.Impedance_resistance,
+        capacitance = lib.Impedance_capacitance,
+        equal = lib.Impedance_equal,
+    }
+}, Impedance)
 
 return Impedance

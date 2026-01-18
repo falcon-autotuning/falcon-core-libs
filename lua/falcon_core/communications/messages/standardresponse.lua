@@ -1,43 +1,24 @@
 -- standardresponse.lua
--- Auto-generated wrapper for StandardResponse
--- Generated from StandardResponse_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local StandardResponse = {}
-
--- Constructors
-
-function StandardResponse.from_json_string(json)
-    return cdef.lib.StandardResponse_from_json_string(json)
-end
-
 function StandardResponse.new(message)
-    return cdef.lib.StandardResponse_create(message)
+    local s = lib.String_wrap(message or "")
+    local handle = lib.StandardResponse_create(s)
+    lib.String_destroy(s)
+    return handle
 end
-
-
--- Methods
-
-function StandardResponse.copy(handle)
-    return cdef.lib.StandardResponse_copy(handle)
-end
-
-function StandardResponse.to_json_string(handle)
-    return cdef.lib.StandardResponse_to_json_string(handle)
-end
-
-function StandardResponse.from_json_string(handle)
-    return cdef.lib.StandardResponse_from_json_string(handle)
-end
-
-function StandardResponse.create(handle)
-    return cdef.lib.StandardResponse_create(handle)
-end
-
-function StandardResponse.message(handle)
-    return cdef.lib.StandardResponse_message(handle)
-end
-
-
+song.register("StandardResponse", {
+    methods = {
+        message = function(self)
+            local h = lib.StandardResponse_message(self)
+            if h == nil then return "" end
+            local ffi = require("ffi")
+            local str = ffi.string(h.raw, h.length)
+            lib.String_destroy(h)
+            return str
+        end,
+    }
+}, StandardResponse)
 return StandardResponse

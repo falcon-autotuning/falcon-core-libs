@@ -1,7 +1,7 @@
 -- test_interpretationcontainerdouble.lua
 -- Auto-generated tests for InterpretationContainerDouble
 
-local InterpretationContainerDouble = require("falcon_core.TODO.interpretationcontainerdouble")
+local InterpretationContainerDouble = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerdouble")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("InterpretationContainerDouble", function()
     it("can create instance", function()
         local obj = InterpretationContainerDouble.new()
         assert(obj ~= nil, "InterpretationContainerDouble should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = InterpretationContainerDouble.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

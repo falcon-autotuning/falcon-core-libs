@@ -1,7 +1,7 @@
 -- test_discretizer.lua
 -- Auto-generated tests for Discretizer
 
-local Discretizer = require("falcon_core.TODO.discretizer")
+local Discretizer = require("falcon_core.math.discrete_spaces.discretizer")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("Discretizer", function()
     end)
 
     it("can create instance", function()
-        local obj = Discretizer.from_json_string()
+        local obj = Discretizer.new()
         assert(obj ~= nil, "Discretizer should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Discretizer.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

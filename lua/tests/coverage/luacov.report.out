@@ -1,0 +1,2934 @@
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/acquisitioncontext.lua
+==============================================================================
+     -- acquisitioncontext.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local AcquisitionContext = {}
+
+   4 song.register("AcquisitionContext", {
+   2     methods = {
+   2         connection = lib.AcquisitionContext_connection,
+   2         instrument_type = lib.AcquisitionContext_instrument_type,
+   2         units = lib.AcquisitionContext_units,
+   2         match_connection = lib.AcquisitionContext_match_connection,
+   2         match_instrument_type = lib.AcquisitionContext_match_instrument_type,
+   2     }
+   2 }, AcquisitionContext)
+
+   2 return AcquisitionContext
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/init.lua
+==============================================================================
+     -- autotuner_interfaces/contexts/init.lua
+
+   2 return {
+   2     AcquisitionContext = require("falcon_core.autotuner_interfaces.contexts.acquisitioncontext"),
+   2     MeasurementContext = require("falcon_core.autotuner_interfaces.contexts.measurementcontext"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/measurementcontext.lua
+==============================================================================
+     -- measurementcontext.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local MeasurementContext = {}
+
+   4 song.register("MeasurementContext", {
+   2     methods = {
+   2         connection = lib.MeasurementContext_connection,
+   2         instrument_type = lib.MeasurementContext_instrument_type,
+   2     }
+   2 }, MeasurementContext)
+
+   2 return MeasurementContext
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/init.lua
+==============================================================================
+     -- autotuner_interfaces/init.lua
+
+   2 return {
+   2     contexts = require("falcon_core.autotuner_interfaces.contexts"),
+   2     interpretations = require("falcon_core.autotuner_interfaces.interpretations"),
+   2     names = require("falcon_core.autotuner_interfaces.names"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/init.lua
+==============================================================================
+     -- autotuner_interfaces/interpretations/init.lua
+
+   2 return {
+   2     InterpretationContext = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontext"),
+   2     InterpretationContainerDouble = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerdouble"),
+   2     InterpretationContainerQuantity = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerquantity"),
+   2     InterpretationContainerString = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerstring"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerdouble.lua
+==============================================================================
+     -- interpretationcontainerdouble.lua
+     -- Auto-generated wrapper for InterpretationContainerDouble
+     -- Generated from InterpretationContainerDouble_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local InterpretationContainerDouble = {}
+
+     -- Constructors
+
+   2 function InterpretationContainerDouble.new(contextDoubleMap)
+***0     return cdef.lib.InterpretationContainerDouble_create(contextDoubleMap)
+     end
+
+   2 function InterpretationContainerDouble.from_json_string(json)
+***0     return cdef.lib.InterpretationContainerDouble_from_json_string(json)
+     end
+
+
+     -- Methods
+
+   2 function InterpretationContainerDouble.create(handle)
+***0     return cdef.lib.InterpretationContainerDouble_create(handle)
+     end
+
+   2 function InterpretationContainerDouble.copy(handle)
+***0     return cdef.lib.InterpretationContainerDouble_copy(handle)
+     end
+
+   2 function InterpretationContainerDouble.size(handle)
+***0     return cdef.lib.InterpretationContainerDouble_size(handle)
+     end
+
+   2 function InterpretationContainerDouble.empty(handle)
+***0     return cdef.lib.InterpretationContainerDouble_empty(handle)
+     end
+
+   2 function InterpretationContainerDouble.values(handle)
+***0     return cdef.lib.InterpretationContainerDouble_values(handle)
+     end
+
+
+   2 return InterpretationContainerDouble
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerquantity.lua
+==============================================================================
+     -- interpretationcontainerquantity.lua
+     -- Auto-generated wrapper for InterpretationContainerQuantity
+     -- Generated from InterpretationContainerQuantity_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local InterpretationContainerQuantity = {}
+
+     -- Constructors
+
+   2 function InterpretationContainerQuantity.new(contextDoubleMap)
+***0     return cdef.lib.InterpretationContainerQuantity_create(contextDoubleMap)
+     end
+
+   2 function InterpretationContainerQuantity.from_json_string(json)
+***0     return cdef.lib.InterpretationContainerQuantity_from_json_string(json)
+     end
+
+
+     -- Methods
+
+   2 function InterpretationContainerQuantity.create(handle)
+***0     return cdef.lib.InterpretationContainerQuantity_create(handle)
+     end
+
+   2 function InterpretationContainerQuantity.copy(handle)
+***0     return cdef.lib.InterpretationContainerQuantity_copy(handle)
+     end
+
+   2 function InterpretationContainerQuantity.size(handle)
+***0     return cdef.lib.InterpretationContainerQuantity_size(handle)
+     end
+
+   2 function InterpretationContainerQuantity.empty(handle)
+***0     return cdef.lib.InterpretationContainerQuantity_empty(handle)
+     end
+
+   2 function InterpretationContainerQuantity.values(handle)
+***0     return cdef.lib.InterpretationContainerQuantity_values(handle)
+     end
+
+
+   2 return InterpretationContainerQuantity
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerstring.lua
+==============================================================================
+     -- interpretationcontainerstring.lua
+     -- Auto-generated wrapper for InterpretationContainerString
+     -- Generated from InterpretationContainerString_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local InterpretationContainerString = {}
+
+     -- Constructors
+
+   2 function InterpretationContainerString.new(contextDoubleMap)
+***0     return cdef.lib.InterpretationContainerString_create(contextDoubleMap)
+     end
+
+   2 function InterpretationContainerString.from_json_string(json)
+***0     return cdef.lib.InterpretationContainerString_from_json_string(json)
+     end
+
+
+     -- Methods
+
+   2 function InterpretationContainerString.create(handle)
+***0     return cdef.lib.InterpretationContainerString_create(handle)
+     end
+
+   2 function InterpretationContainerString.copy(handle)
+***0     return cdef.lib.InterpretationContainerString_copy(handle)
+     end
+
+   2 function InterpretationContainerString.size(handle)
+***0     return cdef.lib.InterpretationContainerString_size(handle)
+     end
+
+   2 function InterpretationContainerString.empty(handle)
+***0     return cdef.lib.InterpretationContainerString_empty(handle)
+     end
+
+   2 function InterpretationContainerString.values(handle)
+***0     return cdef.lib.InterpretationContainerString_values(handle)
+     end
+
+
+   2 return InterpretationContainerString
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontext.lua
+==============================================================================
+     -- interpretationcontext.lua
+     -- Auto-generated wrapper for InterpretationContext
+     -- Generated from InterpretationContext_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local InterpretationContext = {}
+
+     -- Constructors
+
+
+     -- Methods
+
+   2 function InterpretationContext.unit(handle)
+***0     return cdef.lib.InterpretationContext_unit(handle)
+     end
+
+   2 function InterpretationContext.dimension(handle)
+***0     return cdef.lib.InterpretationContext_dimension(handle)
+     end
+
+
+   2 return InterpretationContext
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/names/gname.lua
+==============================================================================
+     -- gname.lua
+     -- Auto-generated wrapper for Gname
+     -- Generated from Gname_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local Gname = {}
+
+     -- Constructors
+
+   2 function Gname.from_json_string(json)
+***0     return cdef.lib.Gname_from_json_string(json)
+     end
+
+   2 function Gname.from_num(num)
+***0     return cdef.lib.Gname_create_from_num(num)
+     end
+
+   2 function Gname.new(name)
+***0     return cdef.lib.Gname_create(name)
+     end
+
+
+     -- Methods
+
+   2 function Gname.copy(handle)
+***0     return cdef.lib.Gname_copy(handle)
+     end
+
+   2 function Gname.equal(handle, other)
+***0     return cdef.lib.Gname_equal(handle, other)
+     end
+
+   2 function Gname.not_equal(handle, other)
+***0     return cdef.lib.Gname_not_equal(handle, other)
+     end
+
+   2 function Gname.to_json_string(handle)
+***0     return cdef.lib.Gname_to_json_string(handle)
+     end
+
+   2 function Gname.from_json_string(handle)
+***0     return cdef.lib.Gname_from_json_string(handle)
+     end
+
+
+   2 return Gname
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/names/init.lua
+==============================================================================
+     -- autotuner_interfaces/names/init.lua
+
+   2 return {
+   2     Gname = require("falcon_core.autotuner_interfaces.names.gname"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/init.lua
+==============================================================================
+     -- communications/init.lua
+
+   2 return {
+   2     messages = require("falcon_core.communications.messages"),
+   2     voltage_states = require("falcon_core.communications.voltage_states"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/init.lua
+==============================================================================
+     -- communications/messages/init.lua
+
+   2 return {
+   2     MeasurementRequest = require("falcon_core.communications.messages.measurementrequest"),
+   2     MeasurementResponse = require("falcon_core.communications.messages.measurementresponse"),
+   2     StandardRequest = require("falcon_core.communications.messages.standardrequest"),
+   2     StandardResponse = require("falcon_core.communications.messages.standardresponse"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/measurementrequest.lua
+==============================================================================
+     -- measurementrequest.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local MeasurementRequest = {}
+
+   4 song.register("MeasurementRequest", {
+   2     methods = {
+   2         measurement_name = lib.MeasurementRequest_measurement_name,
+   2         getters = lib.MeasurementRequest_getters,
+   2         waveforms = lib.MeasurementRequest_waveforms,
+   2         meter_transforms = lib.MeasurementRequest_meter_transforms,
+   2         time_domain = lib.MeasurementRequest_time_domain,
+   2         message = lib.MeasurementRequest_message,
+   2     }
+   2 }, MeasurementRequest)
+
+   2 return MeasurementRequest
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/measurementresponse.lua
+==============================================================================
+     -- measurementresponse.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local MeasurementResponse = {}
+
+   4 song.register("MeasurementResponse", {
+   2     methods = {
+   2         arrays = lib.MeasurementResponse_arrays,
+   2         message = lib.MeasurementResponse_message,
+   2     }
+   2 }, MeasurementResponse)
+
+   2 return MeasurementResponse
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/standardrequest.lua
+==============================================================================
+     -- standardrequest.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local StandardRequest = {}
+   2 function StandardRequest.new(message)
+***0     local s = lib.String_wrap(message or "")
+***0     local handle = lib.StandardRequest_create(s)
+***0     lib.String_destroy(s)
+***0     return handle
+     end
+   4 song.register("StandardRequest", {
+   2     methods = {
+             message = function(self)
+***0             local h = lib.StandardRequest_message(self)
+***0             if h == nil then return "" end
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+   2     }
+   2 }, StandardRequest)
+   2 return StandardRequest
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/standardresponse.lua
+==============================================================================
+     -- standardresponse.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local StandardResponse = {}
+   2 function StandardResponse.new(message)
+***0     local s = lib.String_wrap(message or "")
+***0     local handle = lib.StandardResponse_create(s)
+***0     lib.String_destroy(s)
+***0     return handle
+     end
+   4 song.register("StandardResponse", {
+   2     methods = {
+             message = function(self)
+***0             local h = lib.StandardResponse_message(self)
+***0             if h == nil then return "" end
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+   2     }
+   2 }, StandardResponse)
+   2 return StandardResponse
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/devicevoltagestate.lua
+==============================================================================
+     -- devicevoltagestate.lua
+     -- Auto-generated wrapper for DeviceVoltageState
+     -- Generated from DeviceVoltageState_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local DeviceVoltageState = {}
+
+     -- Constructors
+
+   2 function DeviceVoltageState.from_json_string(json)
+***0     return cdef.lib.DeviceVoltageState_from_json_string(json)
+     end
+
+
+     -- Methods
+
+   2 function DeviceVoltageState.connection(handle)
+***0     return cdef.lib.DeviceVoltageState_connection(handle)
+     end
+
+   2 function DeviceVoltageState.voltage(handle)
+***0     return cdef.lib.DeviceVoltageState_voltage(handle)
+     end
+
+   2 function DeviceVoltageState.value(handle)
+***0     return cdef.lib.DeviceVoltageState_value(handle)
+     end
+
+   2 function DeviceVoltageState.unit(handle)
+***0     return cdef.lib.DeviceVoltageState_unit(handle)
+     end
+
+   2 function DeviceVoltageState.to_json_string(handle)
+***0     return cdef.lib.DeviceVoltageState_to_json_string(handle)
+     end
+
+
+   2 return DeviceVoltageState
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/devicevoltagestates.lua
+==============================================================================
+     -- devicevoltagestates.lua
+     -- Auto-generated wrapper for DeviceVoltageStates
+     -- Generated from DeviceVoltageStates_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local DeviceVoltageStates = {}
+
+     -- Constructors
+
+   2 function DeviceVoltageStates.empty()
+***0     return cdef.lib.DeviceVoltageStates_create_empty()
+     end
+
+
+     -- Methods
+
+   2 function DeviceVoltageStates.create_empty(handle)
+***0     return cdef.lib.DeviceVoltageStates_create_empty(handle)
+     end
+
+   2 function DeviceVoltageStates.to_point(handle)
+***0     return cdef.lib.DeviceVoltageStates_to_point(handle)
+     end
+
+   2 function DeviceVoltageStates.size(handle)
+***0     return cdef.lib.DeviceVoltageStates_size(handle)
+     end
+
+   2 function DeviceVoltageStates.empty(handle)
+***0     return cdef.lib.DeviceVoltageStates_empty(handle)
+     end
+
+
+   2 return DeviceVoltageStates
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/init.lua
+==============================================================================
+     -- communications/voltage_states/init.lua
+
+   2 return {
+   2     DeviceVoltageState = require("falcon_core.communications.voltage_states.devicevoltagestate"),
+   2     DeviceVoltageStates = require("falcon_core.communications.voltage_states.devicevoltagestates"),
+   2     VoltageStatesResponse = require("falcon_core.communications.voltage_states.voltagestatesresponse"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/voltagestatesresponse.lua
+==============================================================================
+     -- voltagestatesresponse.lua
+     -- Auto-generated wrapper for VoltageStatesResponse
+     -- Generated from VoltageStatesResponse_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local VoltageStatesResponse = {}
+
+     -- Constructors
+
+
+     -- Methods
+
+   2 function VoltageStatesResponse.message(handle)
+***0     return cdef.lib.VoltageStatesResponse_message(handle)
+     end
+
+
+   2 return VoltageStatesResponse
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/axes.lua
+==============================================================================
+     -- generic/axes.lua
+     -- Generic Axes<T> dispatcher - COMPLETE coverage
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local Axes = {}
+
+     -- Complete type dispatch table (all 13 C-API Axes variants)
+   2 Axes._types = {
+         control_array = "AxesControlArray",
+         control_array_1d = "AxesControlArray1D",
+         coupled_labelled_domain = "AxesCoupledLabelledDomain",
+         discretizer = "AxesDiscretizer",
+         double = "AxesDouble",
+         instrument_port = "AxesInstrumentPort",
+         int = "AxesInt",
+         labelled_control_array = "AxesLabelledControlArray",
+         labelled_control_array_1d = "AxesLabelledControlArray1D",
+         labelled_measured_array = "AxesLabelledMeasuredArray",
+         labelled_measured_array_1d = "AxesLabelledMeasuredArray1D",
+         map_string_bool = "AxesMapStringBool",
+         measurement_context = "AxesMeasurementContext",
+   2 }
+
+   2 function Axes.new(dtype)
+***0     local ctype = Axes._types[dtype]
+***0     if not ctype then
+***0         error("Unsupported Axes type: " .. tostring(dtype))
+         end
+         
+***0     local lib = cdef.lib
+***0     return lib[ctype .. "_create_empty"]()
+     end
+
+   2 function Axes.supported_types()
+***0     local types = {}
+***0     for k in pairs(Axes._types) do
+***0         table.insert(types, k)
+         end
+***0     table.sort(types)
+***0     return types
+     end
+
+   2 return Axes
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/farray.lua
+==============================================================================
+     -- generic/farray.lua
+     -- Generic FArray<T> dispatcher - COMPLETE coverage
+
+   2 local ffi = require("ffi")
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local FArray = {}
+
+     -- Complete type dispatch table (all C-API variants)
+   2 FArray._types = {
+         double = "FArrayDouble",
+         int = "FArrayInt",
+   2 }
+
+     -- Create new FArray of specified type
+   2 function FArray.new(dtype, data)
+   1     local ctype = FArray._types[dtype]
+   1     if not ctype then
+***0         error("Unsupported FArray type: " ..  tostring(dtype) .. ". Supported: " .. table.concat(vim.tbl_keys(FArray._types), ", "))
+         end
+         
+   1     local lib = cdef.lib
+         
+         -- Create array based on input
+   1     if type(data) == "table" then
+             -- From Lua table
+***0         local len = #data
+***0         local shape = ffi.new("size_t[1]", len)
+             
+             -- Convert table to C array
+             local c_data
+***0         if dtype == "double" then
+***0             c_data = ffi.new("double[?]", len, data)
+***0         elseif dtype == "int" then
+***0             c_data = ffi.new("int[?]", len, data)
+             else
+***0             error("Unsupported FArray type for table construction: " .. dtype)
+             end
+             
+***0         return lib[ctype .. "_from_data"](c_data, shape, 1)
+   1     elseif type(data) == "number" then
+             -- Create zeros
+   1         local shape = ffi.new("size_t[1]", data)
+   1         return lib[ctype .. "_create_zeros"](shape, 1)
+         else
+***0         error("Invalid data type for FArray.new: expected table or number")
+         end
+     end
+
+     -- Get type name from handle (for debugging)
+   2 function FArray.typeof(handle)
+***0     for lua_type, c_type in pairs(FArray._types) do
+***0         if ffi.istype(c_type .. "Handle", handle) then
+***0             return lua_type
+             end
+         end
+***0     return "unknown"
+     end
+
+     -- Statistics
+   2 function FArray.supported_types()
+***0     local types = {}
+***0     for k in pairs(FArray._types) do
+***0         table.insert(types, k)
+         end
+***0     table.sort(types)
+***0     return types
+     end
+
+   2 return FArray
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/list.lua
+==============================================================================
+     -- generic/list.lua
+     -- Generic List<T> dispatcher - COMPLETE coverage
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+
+   3 local List = {}
+
+     -- Complete type dispatch table (all 50+ C-API List variants)
+   3 List._types = {
+         -- Primitives
+         bool = "ListBool",
+         double = "ListDouble",
+         float = "ListFloat",
+         int = "ListInt",
+         size_t = "ListSizeT",
+         string = "ListString",
+         
+         -- Domain types
+         acquisition_context = "ListAcquisitionContext",
+         channel = "ListChannel",
+         connection = "ListConnection",
+         connections = "ListConnections",
+         control_array = "ListControlArray",
+         control_array_1d = "ListControlArray1D",
+         coupled_labelled_domain = "ListCoupledLabelledDomain",
+         device_voltage_state = "ListDeviceVoltageState",
+         discretizer = "ListDiscretizer",
+         dot_gate = "ListDotGateWithNeighbors",
+         farray_double = "ListFArrayDouble",
+         gname = "ListGname",
+         group = "ListGroup",
+         impedance = "ListImpedance",
+         instrument_port = "ListInstrumentPort",
+         interpretation_context = "ListInterpretationContext",
+         labelled_control_array = "ListLabelledControlArray",
+         labelled_control_array_1d = "ListLabelledControlArray1D",
+         labelled_domain = "ListLabelledDomain",
+         labelled_measured_array = "ListLabelledMeasuredArray",
+         labelled_measured_array_1d = "ListLabelledMeasuredArray1D",
+         list_size_t = "ListListSizeT",
+         map_string_bool = "ListMapStringBool",
+         measurement_context = "ListMeasurementContext",
+         port_transform = "ListPortTransform",
+         quantity = "ListQuantity",
+         waveform = "ListWaveform",
+         
+         -- Pair types (nested)
+         pair_channel_connections = "ListPairChannelConnections",
+         pair_connection_connections = "ListPairConnectionConnections",
+         pair_connection_double = "ListPairConnectionDouble",
+         pair_connection_float = "ListPairConnectionFloat",
+         pair_connection_pair_qty_qty = "ListPairConnectionPairQuantityQuantity",
+         pair_connection_quantity = "ListPairConnectionQuantity",
+         pair_float_float = "ListPairFloatFloat",
+         pair_gname_group = "ListPairGnameGroup",
+         pair_instr_port_transform = "ListPairInstrumentPortPortTransform",
+         pair_int_float = "ListPairIntFloat",
+         pair_int_int = "ListPairIntInt",
+         pair_ctx_double = "ListPairInterpretationContextDouble",
+         pair_ctx_quantity = "ListPairInterpretationContextQuantity",
+         pair_ctx_string = "ListPairInterpretationContextString",
+         pair_quantity_quantity = "ListPairQuantityQuantity",
+         pair_size_t_size_t = "ListPairSizeTSizeT",
+         pair_string_bool = "ListPairStringBool",
+         pair_string_double = "ListPairStringDouble",
+         pair_string_string = "ListPairStringString",
+   3 }
+
+   3 function List.new(dtype)
+   2     local ctype = List._types[dtype]
+   2     if not ctype then
+***0         error("Unsupported List type: " .. tostring(dtype))
+         end
+         
+   2     local lib = cdef.lib
+   2     return lib[ctype .. "_create_empty"]()
+     end
+
+   3 function List.supported_types()
+   1     local types = {}
+  45     for k in pairs(List._types) do
+  45         table.insert(types, k)
+         end
+***0     table.sort(types)
+***0     return types
+     end
+
+   3 return List
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/map.lua
+==============================================================================
+     -- generic/map.lua
+     -- Generic Map<K,V> dispatcher - COMPLETE coverage
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local Map = {}
+
+     -- Complete type dispatch table (all 14 C-API Map variants)
+   2 Map._types = {
+         channel_connections = "MapChannelConnections",
+         connection_double = "MapConnectionDouble",
+         connection_float = "MapConnectionFloat",
+         connection_quantity = "MapConnectionQuantity",
+         float_float = "MapFloatFloat",
+         gname_group = "MapGnameGroup",
+         instrument_port_transform = "MapInstrumentPortPortTransform",
+         int_int = "MapIntInt",
+         interpretation_context_double = "MapInterpretationContextDouble",
+         interpretation_context_quantity = "MapInterpretationContextQuantity",
+         interpretation_context_string = "MapInterpretationContextString",
+         string_bool = "MapStringBool",
+         string_double = "MapStringDouble",
+         string_string = "MapStringString",
+   2 }
+
+   2 function Map.new(key_value_type)
+***0     local ctype = Map._types[key_value_type]
+***0     if not ctype then
+***0         error("Unsupported Map type: " .. tostring(key_value_type))
+         end
+         
+***0     local lib = cdef.lib
+***0     return lib[ctype .. "_create_empty"]()
+     end
+
+   2 function Map.supported_types()
+***0     local types = {}
+***0     for k in pairs(Map._types) do
+***0         table.insert(types, k)
+         end
+***0     table.sort(types)
+***0     return types
+     end
+
+   2 return Map
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/pair.lua
+==============================================================================
+     -- generic/pair.lua
+     -- Generic Pair<T,U> dispatcher - COMPLETE coverage
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local Pair = {}
+
+     -- Complete type dispatch table (all 21 C-API Pair variants)
+   2 Pair._types = {
+         channel_connections = "PairChannelConnections",
+         connection_connection = "PairConnectionConnection",
+         connection_connections = "PairConnectionConnections",
+         connection_double = "PairConnectionDouble",
+         connection_float = "PairConnectionFloat",
+         connection_pair_qty_qty = "PairConnectionPairQuantityQuantity",
+         connection_quantity = "PairConnectionQuantity",
+         double_double = "PairDoubleDouble",
+         float_float = "PairFloatFloat",
+         gname_group = "PairGnameGroup",
+         instrument_port_transform = "PairInstrumentPortPortTransform",
+         int_float = "PairIntFloat",
+         int_int = "PairIntInt",
+         interpretation_context_double = "PairInterpretationContextDouble",
+         interpretation_context_quantity = "PairInterpretationContextQuantity",
+         interpretation_context_string = "PairInterpretationContextString",
+         measurement_response_request = "PairMeasurementResponseMeasurementRequest",
+         quantity_quantity = "PairQuantityQuantity",
+         size_t_size_t = "PairSizeTSizeT",
+         string_bool = "PairStringBool",
+         string_double = "PairStringDouble",
+         string_string = "PairStringString",
+   2 }
+
+   2 function Pair.new(pair_type, first_val, second_val)
+***0     local ctype = Pair._types[pair_type]
+***0     if not ctype then
+***0         error("Unsupported Pair type: " .. tostring(pair_type))
+         end
+         
+***0     local lib = cdef.lib
+***0     return lib[ctype .. "_create"](first_val, second_val)
+     end
+
+   2 function Pair.supported_types()
+***0     local types = {}
+***0     for k in pairs(Pair._types) do
+***0         table.insert(types, k)
+         end
+***0     table.sort(types)
+***0     return types
+     end
+
+   2 return Pair
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/init.lua
+==============================================================================
+     -- falcon_core/init.lua
+     -- Main entry point for falcon-core Lua library
+
+   2 local M = {}
+
+     -- Load FFI bindings first
+   2 M.ffi = require("falcon_core.ffi.cdef").ffi
+   2 M.lib = require("falcon_core.ffi.cdef").lib
+
+     -- Load generic type dispatchers
+   2 M.generic = {
+   2     FArray = require("falcon_core.generic.farray"),
+   2     List = require("falcon_core.generic.list"),
+   2     Map = require("falcon_core.generic.map"),
+   2     Pair = require("falcon_core.generic.pair"),
+   2     Axes = require("falcon_core.generic.axes"),
+   2 }
+
+     -- Load domain modules (reorganized to match C-API structure)
+   2 M.math = require("falcon_core.math")
+   2 M.autotuner_interfaces = require("falcon_core.autotuner_interfaces")
+   2 M.instrument_interfaces = require("falcon_core.instrument_interfaces")
+   2 M.communications = require("falcon_core.communications")
+   2 M.physics = require("falcon_core.physics")
+   2 M.io = require("falcon_core.io")
+
+     -- Utilities
+   2 M.utils = {
+   2     song = require("falcon_core.utils.song"),
+   2     memory = require("falcon_core.utils.memory"),
+   2 }
+
+     -- Initialize all metatypes (merges registered methods/operators)
+   2 M.utils.song.init(M.lib)
+
+   2 return M
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/channel.lua
+==============================================================================
+     -- channel.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Channel = {}
+
+   3 function Channel.new(name)
+***0     local s = lib.String_wrap(name)
+***0     local handle = lib.Channel_create(s)
+***0     lib.String_destroy(s)
+***0     return handle
+     end
+
+   6 song.register("Channel", {
+   3     methods = {
+             name = function(self)
+***0             local h = lib.Channel_name(self)
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+   3         equal = lib.Channel_equal,
+   3     }
+   3 }, Channel)
+
+   3 return Channel
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/channels.lua
+==============================================================================
+     -- channels.lua
+     -- Wrapper for Channels (collection of signal paths)
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+
+   3 local Channels = {}
+
+     -- Create from list of names
+   3 function Channels.new(list)
+***0     if not list then return lib.Channels_create_empty() end
+         
+***0     local ListChannel = require("falcon_core.generic.list").new("channel")
+***0     local Channel = require("falcon_core.instrument_interfaces.channel")
+         
+***0     for _, name in ipairs(list) do
+***0         local chan = (type(name) == "string") and Channel.new(name) or name
+***0         lib.ListChannel_push_back(ListChannel, chan)
+         end
+         
+***0     local handle = lib.Channels_create(ListChannel)
+***0     lib.ListChannel_destroy(ListChannel)
+***0     return handle
+     end
+
+     -- Register extensions for Song
+   6 song.register("Channels", {
+   3     __len = function(t) return tonumber(lib.Channels_size(t)) end,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.Channels_size(t)) end,
+   3         at = lib.Channels_at,
+   3         copy = lib.Channels_copy,
+   3     }
+     })
+
+   3 return Channels
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/connection.lua
+==============================================================================
+     -- instrument/connection.lua
+     -- Wrapper for Connection type
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local ffi = require("ffi")
+   3 local lib = cdef.lib
+
+   3 local Connection = {}
+
+     -- Create a new Connection from name
+   3 function Connection.new(name, ctype)
+         -- Using the most flexible way: screening gate (often used as generic)
+         -- or Connection_from_json_string if we had the full format.
+   3     local s = lib.String_wrap(name)
+         local conn
+   3     if ctype == "BARRIER" then conn = lib.Connection_create_barrier_gate(s)
+   3     elseif ctype == "PLUNGER" then conn = lib.Connection_create_plunger_gate(s)
+   3     elseif ctype == "RESERVOIR" then conn = lib.Connection_create_reservoir_gate(s)
+   3     elseif ctype == "OHMIC" then conn = lib.Connection_create_ohmic(s)
+   3     else conn = lib.Connection_create_screening_gate(s) end
+         
+   3     lib.String_destroy(s)
+   3     return conn
+     end
+
+     -- Get connection name
+   3 function Connection.name(conn)
+***0     local str_handle = lib.Connection_name(conn)
+***0     if str_handle == nil then return "Connection{?}" end
+***0     local name = ffi.string(str_handle.raw, str_handle.length)
+***0     lib.String_destroy(str_handle)
+***0     return name
+     end
+
+     -- Bind metatype
+   6 ffi.metatype("Connection_s", {
+   3     __index = Connection,
+   3     __tostring = Connection.name,
+   3     __gc = lib.Connection_destroy
+     })
+
+   3 return Connection
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/connections.lua
+==============================================================================
+     -- connections.lua
+   4 local cdef = require("falcon_core.ffi.cdef")
+   4 local lib = cdef.lib
+   4 local song = require("falcon_core.utils.song")
+   4 local Connections = {}
+
+   4 function Connections.new(list)
+   1     local ListConnection = require("falcon_core.generic.list").new("connection")
+   1     local Connection = require("falcon_core.instrument_interfaces.connection")
+   1     for _, name in ipairs(list or {}) do
+***0         local c = (type(name) == "string") and Connection.new(name) or name
+***0         lib.ListConnection_push_back(ListConnection, c)
+         end
+   1     local handle = lib.Connections_create(ListConnection)
+   1     lib.ListConnection_destroy(ListConnection)
+   1     return handle
+     end
+
+   8 song.register("Connections", {
+         __len = function(t) 
+***0         local list = lib.Connections_items(t)
+***0         local n = tonumber(lib.ListConnection_size(list))
+***0         lib.ListConnection_destroy(list)
+***0         return n
+         end,
+   4     methods = {
+             size = function(t) 
+***0             local list = lib.Connections_items(t)
+***0             local n = tonumber(lib.ListConnection_size(list))
+***0             lib.ListConnection_destroy(list)
+***0             return n
+             end,
+   4         at = lib.Connections_at,
+   4         copy = lib.Connections_copy,
+   4         equal = lib.Connections_equal,
+   4     }
+   4 }, Connections)
+
+   4 return Connections
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/impedance.lua
+==============================================================================
+     -- impedance.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Impedance = {}
+
+   3 function Impedance.new(connection, resistance, capacitance)
+***0     local s_conn = (type(connection) == "string") and require("falcon_core.instrument_interfaces.connection").new(connection) or connection
+***0     return lib.Impedance_create(s_conn, resistance or 0, capacitance or 0)
+     end
+
+   6 song.register("Impedance", {
+   3     methods = {
+   3         connection = lib.Impedance_connection,
+   3         resistance = lib.Impedance_resistance,
+   3         capacitance = lib.Impedance_capacitance,
+   3         equal = lib.Impedance_equal,
+   3     }
+   3 }, Impedance)
+
+   3 return Impedance
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/impedances.lua
+==============================================================================
+     -- impedances.lua
+     -- Wrapper for Impedances (collection of impedances)
+
+   4 local cdef = require("falcon_core.ffi.cdef")
+   4 local lib = cdef.lib
+   4 local song = require("falcon_core.utils.song")
+
+   4 local Impedances = {}
+
+     -- Register extensions for Song
+   7 song.register("Impedances", {
+   4     __len = function(t) return tonumber(lib.Impedances_size(t)) end,
+   4     methods = {
+   4         size = function(t) return tonumber(lib.Impedances_size(t)) end,
+   4         at = lib.Impedances_at,
+   3     }
+     })
+
+   3 return Impedances
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/init.lua
+==============================================================================
+     -- instrument_interfaces/init.lua
+
+   3 return {
+   3     Port = require("falcon_core.instrument_interfaces.port"),
+   3     Connection = require("falcon_core.instrument_interfaces.connection"),
+   3     Connections = require("falcon_core.instrument_interfaces.connections"),
+   3     Waveform = require("falcon_core.instrument_interfaces.waveform"),
+   3     Channel = require("falcon_core.instrument_interfaces.channel"),
+   3     Channels = require("falcon_core.instrument_interfaces.channels"),
+   3     Ports = require("falcon_core.instrument_interfaces.ports"),
+   3     Impedance = require("falcon_core.instrument_interfaces.impedance"),
+   3     Impedances = require("falcon_core.instrument_interfaces.impedances"),
+         
+         -- Submodules
+   3     port_transforms = require("falcon_core.instrument_interfaces.port_transforms"),
+   2     names = require("falcon_core.instrument_interfaces.names"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/names/init.lua
+==============================================================================
+     -- instrument_interfaces/names/init.lua
+
+   2 return {
+   2     InstrumentTypes = require("falcon_core.instrument_interfaces.names.instrumenttypes"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/names/instrumenttypes.lua
+==============================================================================
+     -- instrumenttypes.lua
+     -- Auto-generated wrapper for InstrumentTypes
+     -- Generated from InstrumentTypes_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local InstrumentTypes = {}
+
+     -- Constructors
+
+
+     -- Methods
+
+   2 function InstrumentTypes.dc_voltage_source(handle)
+***0     return cdef.lib.InstrumentTypes_dc_voltage_source(handle)
+     end
+
+   2 function InstrumentTypes.amnmeter(handle)
+***0     return cdef.lib.InstrumentTypes_amnmeter(handle)
+     end
+
+   2 function InstrumentTypes.magnet(handle)
+***0     return cdef.lib.InstrumentTypes_magnet(handle)
+     end
+
+   2 function InstrumentTypes.lockin(handle)
+***0     return cdef.lib.InstrumentTypes_lockin(handle)
+     end
+
+   2 function InstrumentTypes.voltage_source(handle)
+***0     return cdef.lib.InstrumentTypes_voltage_source(handle)
+     end
+
+
+   2 return InstrumentTypes
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port.lua
+==============================================================================
+     -- port.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Port = {}
+
+   3 function Port.new(name)
+***0     local s = lib.String_wrap(name)
+***0     local handle = lib.InstrumentPort_create_port(s, nil, nil, nil, nil)
+***0     lib.String_destroy(s)
+***0     return handle
+     end
+
+   6 song.register("InstrumentPort", {
+   3     methods = {
+             name = function(self)
+***0             local h = lib.InstrumentPort_default_name(self)
+***0             if h == nil then return nil end
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+   3         equal = lib.InstrumentPort_equal,
+   3         is_knob = lib.InstrumentPort_is_knob,
+   3         is_meter = lib.InstrumentPort_is_meter,
+   3         is_port = lib.InstrumentPort_is_port,
+   3     }
+   3 }, Port)
+
+   3 return Port
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/init.lua
+==============================================================================
+     -- instrument_interfaces/port_transforms/init.lua
+
+   3 return {
+   3     PortTransform = require("falcon_core.instrument_interfaces.port_transforms.porttransform"),
+   2     PortTransforms = require("falcon_core.instrument_interfaces.port_transforms.porttransforms"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/porttransform.lua
+==============================================================================
+     -- port_transforms/porttransform.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local PortTransform = {}
+
+   3 function PortTransform.identity(port)
+***0     local Port = require("falcon_core.instrument_interfaces.port")
+***0     local s_port = (type(port) == "string") and Port.new(port) or port
+***0     return lib.PortTransform_create_identity_transform(s_port)
+     end
+
+   2 function PortTransform.constant(port, value)
+***0     local Port = require("falcon_core.instrument_interfaces.port")
+***0     local s_port = (type(port) == "string") and Port.new(port) or port
+***0     return lib.PortTransform_create_constant_transform(s_port, value)
+     end
+
+   4 song.register("PortTransform", {
+   2     methods = {
+   2         port = lib.PortTransform_port,
+   2         evaluate = lib.PortTransform_evaluate,
+   2         copy = lib.PortTransform_copy,
+   2     }
+   2 }, PortTransform)
+
+   2 return PortTransform
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/porttransforms.lua
+==============================================================================
+     -- porttransforms.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local PortTransforms = {}
+
+   2 function PortTransforms.new(list)
+***0     local ListTransform = require("falcon_core.generic.list").new("port_transform")
+***0     for _, t in ipairs(list or {}) do
+***0         lib.ListPortTransform_push_back(ListTransform, t)
+         end
+***0     local handle = lib.PortTransforms_create(ListTransform)
+***0     lib.ListPortTransform_destroy(ListTransform)
+***0     return handle
+     end
+
+   4 song.register("PortTransforms", {
+   2     methods = {
+   2         size = function(t) return tonumber(lib.PortTransforms_size(t)) end,
+   2         at = lib.PortTransforms_at,
+   2         equal = lib.PortTransforms_equal,
+   2     }
+   2 }, PortTransforms)
+
+   2 return PortTransforms
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/ports.lua
+==============================================================================
+     -- ports.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Ports = {}
+
+   3 function Ports.new(list)
+***0     if not list then return lib.Ports_create(lib.ListInstrumentPort_create_empty()) end
+***0     local ListPort = require("falcon_core.generic.list").new("instrument_port")
+***0     local Port = require("falcon_core.instrument_interfaces.port")
+***0     for _, name in ipairs(list) do
+***0         local p = (type(name) == "string") and Port.new(name) or name
+***0         lib.ListInstrumentPort_push_back(ListPort, p)
+         end
+***0     local handle = lib.Ports_create(ListPort)
+***0     lib.ListInstrumentPort_destroy(ListPort)
+***0     return handle
+     end
+
+   6 song.register("Ports", {
+         __len = function(t) 
+***0         local list = lib.Ports_ports(t)
+***0         local n = tonumber(lib.ListInstrumentPort_size(list))
+***0         lib.ListInstrumentPort_destroy(list)
+***0         return n
+         end,
+   3     methods = {
+             size = function(t) 
+***0             local list = lib.Ports_ports(t)
+***0             local n = tonumber(lib.ListInstrumentPort_size(list))
+***0             lib.ListInstrumentPort_destroy(list)
+***0             return n
+             end,
+   3         at = lib.Ports_at,
+   3         contains = lib.Ports_contains,
+   3     }
+   3 }, Ports)
+
+   3 return Ports
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/waveform.lua
+==============================================================================
+     -- waveform.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Waveform = {}
+
+   3 function Waveform.new(space, transforms)
+***0     return lib.Waveform_create(space, transforms)
+     end
+
+   6 song.register("Waveform", {
+   3     methods = {
+   3         space = lib.Waveform_space,
+   3         transforms = lib.Waveform_transforms,
+   3         size = function(t) return tonumber(lib.Waveform_size(t)) end,
+   3         at = lib.Waveform_at,
+   3         push_back = lib.Waveform_push_back,
+   3     }
+   3 }, Waveform)
+
+   3 return Waveform
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/hdf5data.lua
+==============================================================================
+     -- hdf5data.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local HDF5Data = {}
+
+   4 song.register("HDF5Data", {
+   2     methods = {
+   2         save = lib.HDF5Data_to_file,
+   2         to_file = lib.HDF5Data_to_file,
+   2         to_communications = lib.HDF5Data_to_communications,
+   2         shape = lib.HDF5Data_shape,
+   2         metadata = lib.HDF5Data_metadata,
+   2         measurement_title = lib.HDF5Data_measurement_title,
+   2     }
+   2 }, HDF5Data)
+
+   2 return HDF5Data
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/init.lua
+==============================================================================
+     -- io/init.lua
+     -- I/O module aggregator
+
+   2 return {
+   2     HDF5Data = require("falcon_core.io.hdf5data"),
+   2     Time = require("falcon_core.io.time"),
+   2     Loader = require("falcon_core.io.loader"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/loader.lua
+==============================================================================
+     -- loader.lua
+     -- Auto-generated wrapper for Loader
+     -- Generated from Loader_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local Loader = {}
+
+     -- Constructors
+
+   2 function Loader.new(config_path)
+***0     local path_handle = cdef.lib.String_wrap(config_path)
+***0     return cdef.lib.Loader_create(path_handle)
+     end
+
+
+     -- Methods
+
+   2 function Loader.create(handle)
+***0     return cdef.lib.Loader_create(handle)
+     end
+
+   2 function Loader.config(handle)
+***0     return cdef.lib.Loader_config(handle)
+     end
+
+
+   2 return Loader
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/time.lua
+==============================================================================
+     -- time.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local Time = {}
+
+   4 song.register("Time", {
+   2     static_methods = {
+   2         now = lib.Time_create_now,
+   2         at = lib.Time_create_at,
+   2     },
+   2     methods = {
+   2         micro_seconds_since_epoch = lib.Time_micro_seconds_since_epoch,
+   2         time = lib.Time_time,
+   2         to_seconds = lib.Time_time, -- Alias for time which returns seconds
+   2         to_string = lib.Time_to_string,
+   2     }
+   2 }, Time)
+
+   2 return Time
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/analyticfunction.lua
+==============================================================================
+     -- analyticfunction.lua
+     -- Wrapper for AnalyticFunction (mathematical function for signal generation)
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+
+   3 local AnalyticFunction = {}
+
+     -- Create from expression and labels
+   3 function AnalyticFunction.new(expression, labels)
+   1     local ListString = require("falcon_core.generic.list").new("string")
+   4     for _, l in ipairs(labels or {}) do
+   3         lib.ListString_push_back(ListString, lib.String_wrap(l))
+         end
+         
+   1     local s_expr = lib.String_wrap(expression)
+   1     local handle = lib.AnalyticFunction_create(ListString, s_expr)
+         
+   1     lib.ListString_destroy(ListString)
+   1     lib.String_destroy(s_expr)
+   1     return handle
+     end
+
+     -- Create identity or constant
+   4 function AnalyticFunction.identity() return lib.AnalyticFunction_create_identity() end
+   4 function AnalyticFunction.constant(v) return lib.AnalyticFunction_create_constant(v) end
+
+     -- Register extensions for Song
+   6 song.register("AnalyticFunction", {
+   3     methods = {
+             formula = function(self)
+***0             local h = lib.AnalyticFunction_to_json_string(self)
+***0             if h == nil then return "" end
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+   3         labels = lib.AnalyticFunction_labels,
+   3         evaluate = lib.AnalyticFunction_evaluate,
+   3     }
+     })
+
+   3 return AnalyticFunction
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/control_array.lua
+==============================================================================
+     -- control_array.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local ControlArray = {}
+
+   6 song.register("ControlArray", {
+   3     __add = lib.ControlArray_plus_control_array,
+   3     __sub = lib.ControlArray_minus_control_array,
+   3     __mul = lib.ControlArray_times_double, -- Usually multiplied by scalar
+   3     __div = lib.ControlArray_divides_double,
+   3     __unm = lib.ControlArray_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.ControlArray_size(t)) end,
+   3         dimension = lib.ControlArray_dimension,
+   3         add = lib.ControlArray_plus_control_array,
+   3         subtract = lib.ControlArray_minus_control_array,
+   3         multiply = lib.ControlArray_times_double,
+   3         divide = lib.ControlArray_divides_double,
+   3         min = lib.ControlArray_min,
+   3         max = lib.ControlArray_max,
+   3         abs = lib.ControlArray_abs,
+   3         sum = lib.ControlArray_sum,
+   3     }
+   3 }, ControlArray)
+
+   3 return ControlArray
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/controlarray1d.lua
+==============================================================================
+     -- controlarray1d.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local ControlArray1D = {}
+
+   6 song.register("ControlArray1D", {
+   3     __add = lib.ControlArray1D_plus_control_array,
+   3     __sub = lib.ControlArray1D_minus_control_array,
+   3     __mul = lib.ControlArray1D_times_double,
+   3     __div = lib.ControlArray1D_divides_double,
+   3     __unm = lib.ControlArray1D_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.ControlArray1D_size(t)) end,
+   3         dimension = lib.ControlArray1D_dimension,
+   3         add = lib.ControlArray1D_plus_control_array,
+   3         subtract = lib.ControlArray1D_minus_control_array,
+   3         multiply = lib.ControlArray1D_times_double,
+   3         divide = lib.ControlArray1D_divides_double,
+   3         min = lib.ControlArray1D_min,
+   3         max = lib.ControlArray1D_max,
+   3         abs = lib.ControlArray1D_abs,
+   3         sum = lib.ControlArray1D_sum,
+   3         as_1D = lib.ControlArray1D_as_1D,
+   3     }
+   3 }, ControlArray1D)
+
+   3 return ControlArray1D
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/init.lua
+==============================================================================
+     -- math/arrays/init.lua
+     -- Math arrays module
+
+   3 return {
+   3     MeasuredArray = require("falcon_core.math.arrays.measured_array"),
+   3     MeasuredArray1D = require("falcon_core.math.arrays.measuredarray1d"),
+   3     ControlArray = require("falcon_core.math.arrays.control_array"),
+   3     ControlArray1D = require("falcon_core.math.arrays.controlarray1d"),
+   3     LabelledMeasuredArray = require("falcon_core.math.arrays.labelled_measured_array"),
+   3     LabelledMeasuredArray1D = require("falcon_core.math.arrays.labelledmeasuredarray1d"),
+   3     LabelledControlArray = require("falcon_core.math.arrays.labelled_control_array"),
+   3     LabelledControlArray1D = require("falcon_core.math.arrays.labelledcontrolarray1d"),
+   3 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelled_control_array.lua
+==============================================================================
+     -- labelled_control_array.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local LabelledControlArray = {}
+
+   6 song.register("LabelledControlArray", {
+   3     __add = lib.LabelledControlArray_plus_control_array,
+   3     __sub = lib.LabelledControlArray_minus_control_array,
+   3     __mul = lib.LabelledControlArray_times_double,
+   3     __div = lib.LabelledControlArray_divides_double,
+   3     __unm = lib.LabelledControlArray_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.LabelledControlArray_size(t)) end,
+   3         dimension = lib.LabelledControlArray_dimension,
+   3         label = lib.LabelledControlArray_label,
+   3         connection = lib.LabelledControlArray_connection,
+   3         units = lib.LabelledControlArray_units,
+   3         instrument_type = lib.LabelledControlArray_instrument_type,
+   3         add = lib.LabelledControlArray_plus_control_array,
+   3         subtract = lib.LabelledControlArray_minus_control_array,
+   3         multiply = lib.LabelledControlArray_times_double,
+   3         divide = lib.LabelledControlArray_divides_double,
+   3     }
+   3 }, LabelledControlArray)
+
+   3 return LabelledControlArray
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelled_measured_array.lua
+==============================================================================
+     -- labelled_measured_array.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local LabelledMeasuredArray = {}
+
+   6 song.register("LabelledMeasuredArray", {
+   3     __add = lib.LabelledMeasuredArray_plus_measured_array,
+   3     __sub = lib.LabelledMeasuredArray_minus_measured_array,
+   3     __mul = lib.LabelledMeasuredArray_times_measured_array,
+   3     __div = lib.LabelledMeasuredArray_divides_measured_array,
+   3     __unm = lib.LabelledMeasuredArray_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.LabelledMeasuredArray_size(t)) end,
+   3         dimension = lib.LabelledMeasuredArray_dimension,
+   3         label = lib.LabelledMeasuredArray_label,
+   3         connection = lib.LabelledMeasuredArray_connection,
+   3         units = lib.LabelledMeasuredArray_units,
+   3         instrument_type = lib.LabelledMeasuredArray_instrument_type,
+   3         add = lib.LabelledMeasuredArray_plus_measured_array,
+   3         subtract = lib.LabelledMeasuredArray_minus_measured_array,
+   3         multiply = lib.LabelledMeasuredArray_times_measured_array,
+   3         divide = lib.LabelledMeasuredArray_divides_measured_array,
+   3     }
+   3 }, LabelledMeasuredArray)
+
+   3 return LabelledMeasuredArray
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelledcontrolarray1d.lua
+==============================================================================
+     -- labelledcontrolarray1d.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local LabelledControlArray1D = {}
+
+   6 song.register("LabelledControlArray1D", {
+   3     __add = lib.LabelledControlArray1D_plus_control_array,
+   3     __sub = lib.LabelledControlArray1D_minus_control_array,
+   3     __mul = lib.LabelledControlArray1D_times_double,
+   3     __div = lib.LabelledControlArray1D_divides_double,
+   3     __unm = lib.LabelledControlArray1D_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.LabelledControlArray1D_size(t)) end,
+   3         label = lib.LabelledControlArray1D_label,
+   3         connection = lib.LabelledControlArray1D_connection,
+   3         units = lib.LabelledControlArray1D_units,
+   3         instrument_type = lib.LabelledControlArray1D_instrument_type,
+   3         add = lib.LabelledControlArray1D_plus_control_array,
+   3         subtract = lib.LabelledControlArray1D_minus_control_array,
+   3         multiply = lib.LabelledControlArray1D_times_double,
+   3         divide = lib.LabelledControlArray1D_divides_double,
+   3         as_1D = lib.LabelledControlArray1D_as_1D,
+   3     }
+   3 }, LabelledControlArray1D)
+
+   3 return LabelledControlArray1D
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelledmeasuredarray1d.lua
+==============================================================================
+     -- labelledmeasuredarray1d.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local LabelledMeasuredArray1D = {}
+
+   6 song.register("LabelledMeasuredArray1D", {
+   3     __add = lib.LabelledMeasuredArray1D_plus_measured_array,
+   3     __sub = lib.LabelledMeasuredArray1D_minus_measured_array,
+   3     __mul = lib.LabelledMeasuredArray1D_times_measured_array,
+   3     __div = lib.LabelledMeasuredArray1D_divides_measured_array,
+   3     __unm = lib.LabelledMeasuredArray1D_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.LabelledMeasuredArray1D_size(t)) end,
+   3         label = lib.LabelledMeasuredArray1D_label,
+   3         connection = lib.LabelledMeasuredArray1D_connection,
+   3         units = lib.LabelledMeasuredArray1D_units,
+   3         instrument_type = lib.LabelledMeasuredArray1D_instrument_type,
+   3         add = lib.LabelledMeasuredArray1D_plus_measured_array,
+   3         subtract = lib.LabelledMeasuredArray1D_minus_measured_array,
+   3         multiply = lib.LabelledMeasuredArray1D_times_measured_array,
+   3         divide = lib.LabelledMeasuredArray1D_divides_measured_array,
+   3         as_1D = lib.LabelledMeasuredArray1D_as_1D,
+   3     }
+   3 }, LabelledMeasuredArray1D)
+
+   3 return LabelledMeasuredArray1D
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/measured_array.lua
+==============================================================================
+     -- measured_array.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local MeasuredArray = {}
+
+   6 song.register("MeasuredArray", {
+   3     __add = lib.MeasuredArray_plus_measured_array,
+   3     __sub = lib.MeasuredArray_minus_measured_array,
+   3     __mul = lib.MeasuredArray_times_measured_array,
+   3     __div = lib.MeasuredArray_divides_measured_array,
+   3     __unm = lib.MeasuredArray_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.MeasuredArray_size(t)) end,
+   3         dimension = lib.MeasuredArray_dimension,
+   3         add = lib.MeasuredArray_plus_measured_array,
+   3         subtract = lib.MeasuredArray_minus_measured_array,
+   3         multiply = lib.MeasuredArray_times_measured_array,
+   3         divide = lib.MeasuredArray_divides_measured_array,
+   3         min = lib.MeasuredArray_min,
+   3         max = lib.MeasuredArray_max,
+   3         abs = lib.MeasuredArray_abs,
+   3         sum = lib.MeasuredArray_sum,
+   3     }
+   3 }, MeasuredArray)
+
+   3 return MeasuredArray
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/measuredarray1d.lua
+==============================================================================
+     -- measuredarray1d.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local MeasuredArray1D = {}
+
+   6 song.register("MeasuredArray1D", {
+   3     __add = lib.MeasuredArray1D_plus_measured_array,
+   3     __sub = lib.MeasuredArray1D_minus_measured_array,
+   3     __mul = lib.MeasuredArray1D_times_measured_array,
+   3     __div = lib.MeasuredArray1D_divides_measured_array,
+   3     __unm = lib.MeasuredArray1D_negation,
+   3     methods = {
+   3         size = function(t) return tonumber(lib.MeasuredArray1D_size(t)) end,
+   3         dimension = lib.MeasuredArray1D_dimension,
+   3         add = lib.MeasuredArray1D_plus_measured_array,
+   3         subtract = lib.MeasuredArray1D_minus_measured_array,
+   3         multiply = lib.MeasuredArray1D_times_measured_array,
+   3         divide = lib.MeasuredArray1D_divides_measured_array,
+   3         min = lib.MeasuredArray1D_min,
+   3         max = lib.MeasuredArray1D_max,
+   3         abs = lib.MeasuredArray1D_abs,
+   3         sum = lib.MeasuredArray1D_sum,
+   3         as_1D = lib.MeasuredArray1D_as_1D,
+   3     }
+   3 }, MeasuredArray1D)
+
+   3 return MeasuredArray1D
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/discretespace.lua
+==============================================================================
+     -- discretespace.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local DiscreteSpace = {}
+
+   6 song.register("DiscreteSpace", {
+   3     methods = {
+   3         space = lib.DiscreteSpace_space,
+   3         axes = lib.DiscreteSpace_axes,
+   3         increasing = lib.DiscreteSpace_increasing,
+   3         knobs = lib.DiscreteSpace_knobs,
+   3         get_axis = lib.DiscreteSpace_get_axis,
+   3         get_domain = lib.DiscreteSpace_get_domain,
+   3     }
+   3 }, DiscreteSpace)
+
+   3 return DiscreteSpace
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/discretizer.lua
+==============================================================================
+     -- discretizer.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Discretizer = {}
+
+   6 song.register("Discretizer", {
+   3     methods = {
+   3         domain = lib.Discretizer_domain,
+   3         delta = lib.Discretizer_delta,
+   3         is_cartesian = lib.Discretizer_is_cartesian,
+   3         is_polar = lib.Discretizer_is_polar,
+   3     }
+   3 }, Discretizer)
+
+   3 return Discretizer
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/init.lua
+==============================================================================
+     -- math/discrete_spaces/init.lua
+
+   3 return {
+   3     DiscreteSpace = require("falcon_core.math.discrete_spaces.discretespace"),
+   3     Discretizer = require("falcon_core.math.discrete_spaces.discretizer"),
+   3 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/coupledlabelleddomain.lua
+==============================================================================
+     -- coupledlabelleddomain.lua
+     -- Auto-generated wrapper for CoupledLabelledDomain
+     -- Generated from CoupledLabelledDomain_c_api.h
+
+   2 local cdef = require("falcon_core.ffi.cdef")
+
+   2 local CoupledLabelledDomain = {}
+
+     -- Constructors
+
+   2 function CoupledLabelledDomain.empty()
+***0     return cdef.lib.CoupledLabelledDomain_create_empty()
+     end
+
+
+     -- Methods
+
+   2 function CoupledLabelledDomain.create_empty(handle)
+***0     return cdef.lib.CoupledLabelledDomain_create_empty(handle)
+     end
+
+   2 function CoupledLabelledDomain.labels(handle)
+***0     return cdef.lib.CoupledLabelledDomain_labels(handle)
+     end
+
+   2 function CoupledLabelledDomain.size(handle)
+***0     return cdef.lib.CoupledLabelledDomain_size(handle)
+     end
+
+   2 function CoupledLabelledDomain.empty(handle)
+***0     return cdef.lib.CoupledLabelledDomain_empty(handle)
+     end
+
+
+   2 return CoupledLabelledDomain
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/domain.lua
+==============================================================================
+     -- domain.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local Domain = {}
+   2 function Domain.new(min_val, max_val, min_incl, max_incl)
+   1     return lib.Domain_create(min_val, max_val, min_incl or false, max_incl or false)
+     end
+   4 song.register("Domain", {
+   2     methods = {
+   2         lesser_bound = lib.Domain_lesser_bound,
+   2         greater_bound = lib.Domain_greater_bound,
+   2         lesser_bound_contained = lib.Domain_lesser_bound_contained,
+   2         greater_bound_contained = lib.Domain_greater_bound_contained,
+   2         range = lib.Domain_range,
+   2         center = lib.Domain_center,
+   2         contains = lib.Domain_in,
+   2     }
+   2 }, Domain)
+   2 return Domain
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/init.lua
+==============================================================================
+     -- math/domains/init.lua
+
+   3 return {
+   3     Domain = require("falcon_core.math.domains.domain"),
+   2     LabelledDomain = require("falcon_core.math.domains.labelleddomain"),
+   2     CoupledLabelledDomain = require("falcon_core.math.domains.coupledlabelleddomain"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/labelleddomain.lua
+==============================================================================
+     -- labelleddomain.lua
+   2 local cdef = require("falcon_core.ffi.cdef")
+   2 local lib = cdef.lib
+   2 local song = require("falcon_core.utils.song")
+   2 local LabelledDomain = {}
+   2 function LabelledDomain.new(domain, name, pseudo_name, itype, units, desc)
+   1     local s_name = lib.String_wrap(name or "")
+   2     local s_pseudo = (type(pseudo_name) == "string") and require("falcon_core.instrument_interfaces.connection").new(pseudo_name) or pseudo_name
+   1     local s_itype = lib.String_wrap(itype or "")
+   1     local s_units = (type(units) == "string") and require("falcon_core.math.symbolunit").from_string(units) or units
+***0     local s_desc = lib.String_wrap(desc or "")
+***0     local handle = lib.LabelledDomain_create_from_domain(domain, s_name, s_pseudo, s_itype, s_units, s_desc)
+***0     lib.String_destroy(s_name); lib.String_destroy(s_itype); lib.String_destroy(s_desc)
+***0     return handle
+     end
+   4 song.register("LabelledDomain", {
+   2     methods = {
+   2         domain = lib.LabelledDomain_domain,
+   2         port = lib.LabelledDomain_port,
+             name = function(self)
+***0             local p = lib.LabelledDomain_port(self)
+***0             return p and p:name() or nil
+             end,
+   2         lesser_bound = lib.LabelledDomain_lesser_bound,
+   2         greater_bound = lib.LabelledDomain_greater_bound,
+   2         contains = lib.LabelledDomain_in,
+   2         range = lib.LabelledDomain_range,
+   2     }
+   2 }, LabelledDomain)
+   2 return LabelledDomain
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/increasingalignment.lua
+==============================================================================
+     -- increasingalignment.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local IncreasingAlignment = {}
+
+   3 function IncreasingAlignment.new(alignment)
+***0     return lib.IncreasingAlignment_create(alignment or 0)
+     end
+
+   6 song.register("IncreasingAlignment", {
+   3     methods = {
+   3         alignment = lib.IncreasingAlignment_alignment,
+   3     }
+   3 }, IncreasingAlignment)
+
+   3 return IncreasingAlignment
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/init.lua
+==============================================================================
+     -- math/init.lua
+     -- Math module with submodules
+
+   3 return {
+         -- Root level math types
+   3     Quantity = require("falcon_core.math.quantity"),
+   3     Vector = require("falcon_core.math.vector"),
+   3     Point = require("falcon_core.math.point"),
+   3     SymbolUnit = require("falcon_core.math.symbolunit"),
+   3     UnitSpace = require("falcon_core.math.unitspace"),
+   3     AnalyticFunction = require("falcon_core.math.analyticfunction"),
+   3     IncreasingAlignment = require("falcon_core.math.increasingalignment"),
+   3     Sign = require("falcon_core.math.sign"),
+         
+         -- Submodules
+   3     arrays = require("falcon_core.math.arrays"),
+   3     discrete_spaces = require("falcon_core.math.discrete_spaces"),
+   3     domains = require("falcon_core.math.domains"),
+   2 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/point.lua
+==============================================================================
+     -- point.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Point = {}
+   3 function Point.new(values)
+   2     local Mapping = require("falcon_core.utils.mapping")
+   2     local map = Mapping.to_map_connection_quantity(values)
+   2     local handle = lib.Point_create_from_parent(map)
+   2     lib.MapConnectionQuantity_destroy(map)
+   2     return handle
+     end
+   6 song.register("Point", {
+   3     methods = {
+   3         at = lib.Point_at,
+   3         contains = lib.Point_contains,
+   3         size = function(t) return tonumber(lib.Point_size(t)) end,
+   3     }
+   3 }, Point)
+   3 return Point
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/quantity.lua
+==============================================================================
+     -- math/quantity.lua
+     -- Wrapper for Quantity type (value + unit)
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local ffi = require("ffi")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+
+   3 local Quantity = {}
+
+     -- Create a new Quantity from value and unit
+     -- @param value number: Value
+     -- @param unit SymbolUnitHandle or string: Unit
+   3 function Quantity.new(value, unit)
+         -- Handle unit as either SymbolUnitHandle or string
+         local unit_handle
+   4     if type(unit) == "string" then
+   4         local SymbolUnit = require("falcon_core.math.symbolunit")
+   8         unit_handle = SymbolUnit.from_string(unit)
+         else
+***0         unit_handle = unit
+         end
+         
+   4     if unit_handle == nil then return nil end
+   4     return lib.Quantity_create(value, unit_handle)
+     end
+
+     -- Arithmetic methods
+   3 function Quantity.add(a, b) 
+   1     return lib.Quantity_add_quantity(a, b) 
+     end
+
+   3 function Quantity.subtract(a, b) 
+***0     return lib.Quantity_subtract_quantity(a, b) 
+     end
+
+   3 function Quantity.multiply(a, b) 
+***0     if type(b) == "number" then 
+***0         return lib.Quantity_multiply_double(a, b)
+         else 
+***0         return lib.Quantity_multiply_quantity(a, b) 
+         end
+     end
+
+   3 function Quantity.divide(a, b)
+***0     if type(b) == "number" then 
+***0         return lib.Quantity_divide_double(a, b)
+         else 
+***0         return lib.Quantity_divide_quantity(a, b) 
+         end
+     end
+
+     -- Register extensions for Song
+   6 song.register("Quantity", {
+   3     __add = Quantity.add,
+   3     __sub = Quantity.subtract,
+   3     __mul = Quantity.multiply,
+   3     __div = Quantity.divide,
+   3     __unm = lib.Quantity_negate,
+   3     methods = {
+   3         add = Quantity.add,
+   3         subtract = Quantity.subtract,
+   3         multiply = Quantity.multiply,
+   3         divide = Quantity.divide,
+   3         value = lib.Quantity_value,
+   3         unit = lib.Quantity_unit,
+   3         convert_to = lib.Quantity_convert_to,
+   3     }
+   3 }, Quantity)
+
+   3 return Quantity
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/sign.lua
+==============================================================================
+     -- sign.lua
+     -- Auto-generated wrapper for Sign
+     -- Generated from Sign_c_api.h
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+
+   3 local Sign = {}
+
+     -- Constructors
+
+
+     -- Methods
+
+   3 function Sign.positive(handle)
+***0     return cdef.lib.Sign_positive(handle)
+     end
+
+   3 function Sign.negative(handle)
+***0     return cdef.lib.Sign_negative(handle)
+     end
+
+
+   3 return Sign
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/symbolunit.lua
+==============================================================================
+     -- symbolunit.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local SymbolUnit = {}
+
+   3 function SymbolUnit.from_string(unit_str)
+   5     local creators = {
+   5         ["V"] = lib.SymbolUnit_create_volt,
+   5         ["mV"] = lib.SymbolUnit_create_millivolt,
+   5         ["kV"] = lib.SymbolUnit_create_kilovolt,
+   5         ["A"] = lib.SymbolUnit_create_ampere,
+   5         ["mA"] = lib.SymbolUnit_create_milliampere,
+   5         ["uA"] = lib.SymbolUnit_create_microampere,
+   4         ["nA"] = lib.SymbolUnit_create_nanoampere,
+   4         ["pA"] = lib.SymbolUnit_create_picoampere,
+   4         ["Hz"] = lib.SymbolUnit_create_hertz,
+   4         ["kHz"] = lib.SymbolUnit_create_kilohertz,
+   4         ["MHz"] = lib.SymbolUnit_create_megahertz,
+   4         ["GHz"] = lib.SymbolUnit_create_gigahertz,
+   4         ["s"] = lib.SymbolUnit_create_second,
+   4         ["ms"] = lib.SymbolUnit_create_millisecond,
+   4         ["us"] = lib.SymbolUnit_create_microsecond,
+   4         ["ns"] = lib.SymbolUnit_create_nanosecond,
+   4         ["ps"] = lib.SymbolUnit_create_picosecond,
+   4         ["m"] = lib.SymbolUnit_create_meter,
+   4         ["mm"] = lib.SymbolUnit_create_millimeter,
+   4         ["km"] = lib.SymbolUnit_create_kilometer,
+   4         ["K"] = lib.SymbolUnit_create_kelvin,
+   4         ["Ohm"] = lib.SymbolUnit_create_ohm,
+   4         ["mOhm"] = lib.SymbolUnit_create_milliohm,
+   4         ["kOhm"] = lib.SymbolUnit_create_kiloohm,
+   4         ["MOhm"] = lib.SymbolUnit_create_megaohm,
+   4         ["dimensionless"] = lib.SymbolUnit_create_dimensionless,
+   4         ["%"] = lib.SymbolUnit_create_percent,
+   4         ["rad"] = lib.SymbolUnit_create_radian,
+         }
+         -- Check for exact match
+   4     if creators[unit_str] then return creators[unit_str]() end
+         
+         -- Fallback to JSON for complex units
+***0     local s = lib.String_wrap(unit_str)
+***0     local handle = lib.SymbolUnit_from_json_string(s)
+***0     lib.String_destroy(s)
+***0     return handle
+     end
+
+   6 song.register("SymbolUnit", {
+   3     __mul = lib.SymbolUnit_multiplication,
+   3     __div = lib.SymbolUnit_division,
+   3     static_methods = {
+   3         from_string = SymbolUnit.from_string,
+   3         from_volt = lib.SymbolUnit_create_volt,
+   3         from_millivolt = lib.SymbolUnit_create_millivolt,
+   3         from_kilovolt = lib.SymbolUnit_create_kilovolt,
+   3         from_ampere = lib.SymbolUnit_create_ampere,
+   3         from_milliampere = lib.SymbolUnit_create_milliampere,
+   3         from_microampere = lib.SymbolUnit_create_microampere,
+   3         from_nanoampere = lib.SymbolUnit_create_nanoampere,
+   3         from_picoampere = lib.SymbolUnit_create_picoampere,
+   3         from_hertz = lib.SymbolUnit_create_hertz,
+   3         from_kilohertz = lib.SymbolUnit_create_kilohertz,
+   3         from_megahertz = lib.SymbolUnit_create_megahertz,
+   3         from_gigahertz = lib.SymbolUnit_create_gigahertz,
+   3         from_second = lib.SymbolUnit_create_second,
+   3         from_millisecond = lib.SymbolUnit_create_millisecond,
+   3         from_microsecond = lib.SymbolUnit_create_microsecond,
+   3         from_nanosecond = lib.SymbolUnit_create_nanosecond,
+   3         from_picosecond = lib.SymbolUnit_create_picosecond,
+   3         from_meter = lib.SymbolUnit_create_meter,
+   3         from_millimeter = lib.SymbolUnit_create_millimeter,
+   3         from_kilometer = lib.SymbolUnit_create_kilometer,
+   3         from_kelvin = lib.SymbolUnit_create_kelvin,
+   3         from_ohm = lib.SymbolUnit_create_ohm,
+   3         from_milliohm = lib.SymbolUnit_create_milliohm,
+   3     },
+   3     methods = {
+             symbol = function(self)
+***0             local h = lib.SymbolUnit_symbol(self)
+***0             if h == nil then return "" end
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+             name = function(self)
+***0             local h = lib.SymbolUnit_name(self)
+***0             if h == nil then return "" end
+***0             local ffi = require("ffi")
+***0             local str = ffi.string(h.raw, h.length)
+***0             lib.String_destroy(h)
+***0             return str
+             end,
+   3         is_compatible_with = lib.SymbolUnit_is_compatible_with,
+   3         convert_to = lib.SymbolUnit_convert_value_to,
+   3     }
+   3 }, SymbolUnit)
+
+   3 return SymbolUnit
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/unitspace.lua
+==============================================================================
+     -- unitspace.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local UnitSpace = {}
+
+   6 song.register("UnitSpace", {
+   3     methods = {
+   3         dimension = lib.UnitSpace_dimension,
+   3         axes = lib.UnitSpace_axes,
+   3         domain = lib.UnitSpace_domain,
+   3         space = lib.UnitSpace_space,
+   3         shape = lib.UnitSpace_shape,
+   3         size = function(t) return tonumber(lib.UnitSpace_size(t)) end,
+   3         at = lib.UnitSpace_at,
+   3     }
+   3 }, UnitSpace)
+
+   3 return UnitSpace
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/vector.lua
+==============================================================================
+     -- vector.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Vector = {}
+
+   3 function Vector.new(start_point, end_point)
+   1     local Point = require("falcon_core.math.point")
+   2     local s_pt = type(start_point) == "table" and Point.new(start_point) or start_point
+   2     local e_pt = type(end_point) == "table" and Point.new(end_point) or end_point
+         
+   1     local handle = lib.Vector_create(s_pt, e_pt)
+   1     return handle
+     end
+
+   6 song.register("Vector", {
+   3     methods = {
+   3         start_point = lib.Vector_start_point,
+   3         end_point = lib.Vector_end_point,
+   3     }
+   3 }, Vector)
+
+   3 return Vector
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/adjacency.lua
+==============================================================================
+     -- adjacency.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local Adjacency = {}
+
+   6 song.register("Adjacency", {
+   3     methods = {
+   3         indexes = lib.Adjacency_indexes,
+   3         get_true_pairs = lib.Adjacency_get_true_pairs,
+   3         size = function(t) return tonumber(lib.Adjacency_size(t)) end,
+   3         dimension = lib.Adjacency_dimension,
+   3         sum = lib.Adjacency_sum,
+   3         where = lib.Adjacency_where,
+   3     }
+   3 }, Adjacency)
+
+   3 return Adjacency
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/config.lua
+==============================================================================
+     -- physics/config.lua
+     -- Wrapper for Config type (quantum device configuration)
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local ffi = cdef.ffi
+   3 local lib = cdef.lib
+
+   3 local Config = {}
+
+     -- Internal helper: convert C StringHandle to Lua string and cleanup
+     local function to_lua_string(handle)
+***0     if handle == nil then return nil end
+***0     local lua_str = ffi.string(handle.raw, handle.length)
+***0     lib.String_destroy(handle)
+***0     return lua_str
+     end
+
+     -- Constructors
+
+     -- Create new config with optional components
+     -- @param opts table: Optional components { screening_gates, plunger_gates, ohmics, barrier_gates, reservoir_gates, groups, wiring_dc, constraints }
+   3 function Config.new(opts)
+***0     opts = opts or {}
+         
+***0     local screening_gates = opts.screening_gates or lib.Connections_create_empty()
+***0     local plunger_gates = opts.plunger_gates or lib.Connections_create_empty()
+***0     local ohmics = opts.ohmics or lib.Connections_create_empty()
+***0     local barrier_gates = opts.barrier_gates or lib.Connections_create_empty()
+***0     local reservoir_gates = opts.reservoir_gates or lib.Connections_create_empty()
+***0     local groups = opts.groups or lib.MapGnameGroup_create_empty()
+***0     local wiring_dc = opts.wiring_dc or lib.Impedances_create_empty()
+***0     local constraints = opts.constraints or ffi.cast("VoltageConstraintsHandle", nil)
+         
+***0     return lib.Config_create(
+             screening_gates,
+             plunger_gates,
+             ohmics,
+             barrier_gates,
+             reservoir_gates,
+             groups,
+             wiring_dc,
+             constraints
+         )
+     end
+
+     -- Load config from JSON string
+   3 function Config.from_json_string(json_str)
+***0     local path_handle = lib.String_wrap(json_str)
+***0     local handle = lib.Config_from_json_string(path_handle)
+***0     lib.String_destroy(path_handle) -- Cleanup wrap
+***0     return handle
+     end
+
+     -- Load config from file
+     -- @param config_path string: Path to config file (YAML/JSON)
+   3 function Config.load(config_path)
+***0     local Loader = require("falcon_core.io.loader")
+***0     local loader = Loader.new(config_path)
+***0     return Loader.config(loader)
+     end
+
+     -- Instance Methods (attached via metatype)
+
+   3 function Config.groups(cfg)
+***0     return lib.Config_groups(cfg)
+     end
+
+   3 function Config.adjacency(cfg)
+***0     return lib.Config_adjacency(cfg)
+     end
+
+   3 function Config.to_json_string(cfg)
+***0     return to_lua_string(lib.Config_to_json_string(cfg))
+     end
+
+     -- Add more getters for a "nicer" interface
+   3 function Config.screening_gates(cfg) return lib.Config_screening_gates(cfg) end
+   3 function Config.plunger_gates(cfg) return lib.Config_plunger_gates(cfg) end
+   3 function Config.ohmics(cfg) return lib.Config_ohmics(cfg) end
+   3 function Config.barrier_gates(cfg) return lib.Config_barrier_gates(cfg) end
+   3 function Config.reservoir_gates(cfg) return lib.Config_reservoir_gates(cfg) end
+
+     -- Bind metatype so handle:method() works
+   6 ffi.metatype("Config_s", {
+         __index = function(t, k)
+             -- Support both handle:method() and handle.method
+***0         return Config[k]
+         end,
+   3     __tostring = Config.to_json_string,
+   3     __gc = lib.Config_destroy
+     })
+
+   3 return Config
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/gaterelations.lua
+==============================================================================
+     -- gaterelations.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local GateRelations = {}
+   3 function GateRelations.new() return lib.GateRelations_create_empty() end
+   6 song.register("GateRelations", {
+   3     methods = {
+   3         size = function(t) return tonumber(lib.GateRelations_size(t)) end,
+   3         depends_on = lib.GateRelations_contains,
+   3         get_dependencies = lib.GateRelations_at,
+   3     }
+   3 }, GateRelations)
+   3 return GateRelations
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/group.lua
+==============================================================================
+     -- group.lua
+     -- Wrapper for Group type (logical grouping of channels/gates)
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+
+   3 local Group = {}
+
+     -- Create a new Group
+     -- @param args table: {name, num_dots, screening_gates, reservoir_gates, plunger_gates, barrier_gates, order}
+   3 function Group.new(args)
+***0     local Connections = require("falcon_core.instrument_interfaces.connections")
+***0     local Channel = require("falcon_core.instrument_interfaces.channel")
+         
+***0     local name = (type(args.name) == "string") and Channel.new(args.name) or args.name
+***0     local screening = (type(args.screening_gates) == "table") and Connections.new(args.screening_gates) or (args.screening_gates or Connections.new())
+***0     local reservoir = (type(args.reservoir_gates) == "table") and Connections.new(args.reservoir_gates) or (args.reservoir_gates or Connections.new())
+***0     local plunger = (type(args.plunger_gates) == "table") and Connections.new(args.plunger_gates) or (args.plunger_gates or Connections.new())
+***0     local barrier = (type(args.barrier_gates) == "table") and Connections.new(args.barrier_gates) or (args.barrier_gates or Connections.new())
+***0     local order = (type(args.order) == "table") and Connections.new(args.order) or (args.order or Connections.new())
+         
+***0     print("DEBUG: Group.new args:", name, args.num_dots, screening, reservoir, plunger, barrier, order)
+         
+***0     local handle = lib.Group_create(name, args.num_dots or 1, screening, reservoir, plunger, barrier, order)
+***0     print("DEBUG: Group_create handle:", handle)
+***0     return handle
+     end
+
+     -- Register extensions for Song
+   6 song.register("Group", {
+   3     methods = {
+             name = function(self)
+***0             local c = lib.Group_name(self)
+***0             if c == nil then 
+***0                 return nil 
+                 end
+***0             return c:name()
+             end,
+   3         num_dots = lib.Group_num_dots,
+   3         screening_gates = lib.Group_screening_gates,
+   3         reservoir_gates = lib.Group_reservoir_gates,
+   3         plunger_gates = lib.Group_plunger_gates,
+   3         barrier_gates = lib.Group_barrier_gates,
+   3         dot_gates = lib.Group_dot_gates,
+   3         all_gates = lib.Group_get_all_gates,
+   3     }
+   3 }, Group)
+
+   3 return Group
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/init.lua
+==============================================================================
+     -- physics/config/core/init.lua
+
+   3 return {
+   3     Config = require("falcon_core.physics.config.core.config"),
+   3     Group = require("falcon_core.physics.config.core.group"),
+   3     Adjacency = require("falcon_core.physics.config.core.adjacency"),
+   3     VoltageConstraints = require("falcon_core.physics.config.core.voltageconstraints"),
+   3     GateRelations = require("falcon_core.physics.config.core.gaterelations"),
+   3 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/voltageconstraints.lua
+==============================================================================
+     -- voltageconstraints.lua
+   3 local cdef = require("falcon_core.ffi.cdef")
+   3 local lib = cdef.lib
+   3 local song = require("falcon_core.utils.song")
+   3 local VoltageConstraints = {}
+
+   6 song.register("VoltageConstraints", {
+   3     methods = {
+   3         matrix = lib.VoltageConstraints_matrix,
+   3         adjacency = lib.VoltageConstraints_adjacency,
+   3         limits = lib.VoltageConstraints_limits,
+   3     }
+   3 }, VoltageConstraints)
+
+   3 return VoltageConstraints
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/dotgateswithneighbors.lua
+==============================================================================
+     -- dotgateswithneighbors.lua
+     -- Auto-generated wrapper for DotGatesWithNeighbors
+     -- Generated from DotGatesWithNeighbors_c_api.h
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+
+   3 local DotGatesWithNeighbors = {}
+
+     -- Constructors
+
+   3 function DotGatesWithNeighbors.empty()
+***0     return cdef.lib.DotGatesWithNeighbors_create_empty()
+     end
+
+
+     -- Methods
+
+   3 function DotGatesWithNeighbors.create_empty(handle)
+***0     return cdef.lib.DotGatesWithNeighbors_create_empty(handle)
+     end
+
+   3 function DotGatesWithNeighbors.is_plunger_gates(handle)
+***0     return cdef.lib.DotGatesWithNeighbors_is_plunger_gates(handle)
+     end
+
+   3 function DotGatesWithNeighbors.is_barrier_gates(handle)
+***0     return cdef.lib.DotGatesWithNeighbors_is_barrier_gates(handle)
+     end
+
+   3 function DotGatesWithNeighbors.size(handle)
+***0     return cdef.lib.DotGatesWithNeighbors_size(handle)
+     end
+
+   3 function DotGatesWithNeighbors.empty(handle)
+***0     return cdef.lib.DotGatesWithNeighbors_empty(handle)
+     end
+
+
+   3 return DotGatesWithNeighbors
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/dotgatewithneighbors.lua
+==============================================================================
+     -- dotgatewithneighbors.lua
+     -- Auto-generated wrapper for DotGateWithNeighbors
+     -- Generated from DotGateWithNeighbors_c_api.h
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+
+   3 local DotGateWithNeighbors = {}
+
+     -- Constructors
+
+
+     -- Methods
+
+   3 function DotGateWithNeighbors.name(handle)
+***0     return cdef.lib.DotGateWithNeighbors_name(handle)
+     end
+
+   3 function DotGateWithNeighbors.type(handle)
+***0     return cdef.lib.DotGateWithNeighbors_type(handle)
+     end
+
+   3 function DotGateWithNeighbors.is_barrier_gate(handle)
+***0     return cdef.lib.DotGateWithNeighbors_is_barrier_gate(handle)
+     end
+
+   3 function DotGateWithNeighbors.is_plunger_gate(handle)
+***0     return cdef.lib.DotGateWithNeighbors_is_plunger_gate(handle)
+     end
+
+
+   3 return DotGateWithNeighbors
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/gategeometryarray1d.lua
+==============================================================================
+     -- gategeometryarray1d.lua
+     -- Auto-generated wrapper for GateGeometryArray1D
+     -- Generated from GateGeometryArray1D_c_api.h
+
+   3 local cdef = require("falcon_core.ffi.cdef")
+
+   3 local GateGeometryArray1D = {}
+
+     -- Constructors
+
+
+     -- Methods
+
+   3 function GateGeometryArray1D.ohmics(handle)
+***0     return cdef.lib.GateGeometryArray1D_ohmics(handle)
+     end
+
+
+   3 return GateGeometryArray1D
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/init.lua
+==============================================================================
+     -- physics/config/geometries/init.lua
+
+   3 return {
+   3     GateGeometryArray1D = require("falcon_core.physics.config.geometries.gategeometryarray1d"),
+   3     DotGateWithNeighbors = require("falcon_core.physics.config.geometries.dotgatewithneighbors"),
+   3     DotGatesWithNeighbors = require("falcon_core.physics.config.geometries.dotgateswithneighbors"),
+   3 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/init.lua
+==============================================================================
+     -- physics/config/init.lua
+
+   3 return {
+   3     core = require("falcon_core.physics.config.core"),
+   3     geometries = require("falcon_core.physics.config.geometries"),
+   3 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/init.lua
+==============================================================================
+     -- physics/init.lua
+
+   3 return {
+   3     config = require("falcon_core.physics.config"),
+   3 }
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/mapping.lua
+==============================================================================
+     -- utils/mapping.lua
+     -- Helper for creating C-API maps from Lua tables
+
+   1 local cdef = require("falcon_core.ffi.cdef")
+   1 local lib = cdef.lib
+
+   1 local Mapping = {}
+
+     -- Create a MapConnectionQuantity from a Lua table {["G1"] = quantity_handle, ...}
+   1 function Mapping.to_map_connection_quantity(t)
+   2     local map = lib.MapConnectionQuantity_create_empty()
+   2     local Connection = require("falcon_core.instrument_interfaces.connection")
+   2     local Quantity = require("falcon_core.math.quantity")
+         
+   4     for k, v in pairs(t or {}) do
+             local conn_handle
+   2         if type(k) == "string" then
+   4             conn_handle = Connection.new(k)
+             else
+***0             conn_handle = k
+             end
+             
+             local quant_handle
+   2         if type(v) == "number" then
+                 -- Default to dimensionless or something? 
+                 -- Better to assume the user provides a Quantity or we use a default unit if we knew it.
+                 -- For now, let's assume they provide a Quantity or we throw an error for ambiguity
+                 -- unless we have a 'default' unit.
+***0             error("Ambiguous mapping: please provide a Quantity object for value '" .. tostring(v) .. "'")
+             else
+   2             quant_handle = v
+             end
+             
+   2         lib.MapConnectionQuantity_insert_or_assign(map, conn_handle, quant_handle)
+         end
+         
+   2     return map
+     end
+
+   1 return Mapping
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/memory.lua
+==============================================================================
+     -- memory.lua
+     -- Memory management utilities for falcon-core handles
+
+   2 local M = {}
+
+     -- Track all created handles for debugging
+   2 if os.getenv("FALCON_DEBUG_MEMORY") then
+   2     M._active_handles = setmetatable({}, {__mode = "k"})
+         
+   2     function M.track(handle, type_name)
+   1         M._active_handles[handle] = {
+   1             type = type_name,
+   1             created_at = os.time()
+   1         }
+   1         return handle
+         end
+         
+   2     function M.report()
+   1         local count = 0
+   2         for handle, info in pairs(M._active_handles) do
+   1             count = count + 1
+   1             print(string.format("Leaked: %s (age: %ds)", info.type, os.time() - info.created_at))
+             end
+   1         return count
+         end
+     else
+         -- No-op in production
+***0     function M.track(handle) return handle end
+***0     function M.report() return 0 end
+     end
+
+   2 return M
+
+==============================================================================
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/song.lua
+==============================================================================
+     -- song.lua
+     -- Centralized FFI metatype management to avoid "protected metatable" collisions
+   5 local ffi = require("ffi")
+
+   5 local Song = {
+   5     _extensions = {},
+   5     _finalized = {}
+     }
+
+     -- Utility to convert C StringHandle to Lua string and cleanup
+     local function to_lua_string(lib, handle)
+   1     if handle == nil then return nil end
+   1     local lua_str = ffi.string(handle.raw, handle.length)
+   1     lib.String_destroy(handle)
+   1     return lua_str
+     end
+
+     -- Utility to convert Lua string to C StringHandle
+     local function to_c_string(lib, str)
+***0     if str == nil then return nil end
+***0     return lib.String_wrap(str)
+     end
+
+     -- Register extensions for a type (methods, operators, etc.)
+     -- This must be called BEFORE Song.init()
+   5 function Song.register(type_name, extension, module_table)
+ 112     Song._extensions[type_name] = extension
+ 112     if module_table then
+ 103         Song._extensions[type_name].module_table = module_table
+         end
+     end
+
+   5 function Song.wrap_type(lib, type_name)
+  98     local struct_name = type_name .. "_s"
+         
+         -- Check if the struct type exists in FFI
+ 196     local ok, _ = pcall(function() return ffi.typeof(struct_name) end)
+  98     if not ok then return nil end
+
+  98     local methods = {}
+  98     local mt = { __index = methods }
+         
+         -- 1. Add automatic Song methods
+  98     local to_json_name = type_name .. "_to_json_string"
+  98     if lib[to_json_name] then
+             methods.to_json = function(self)
+   1             local handle = lib[to_json_name](self)
+   1             local str = to_lua_string(lib, handle)
+   1             return str or tostring(ffi.cast("void*", self))
+             end
+  98         mt.__tostring = methods.to_json
+         end
+
+  98     local destroy_name = type_name .. "_destroy"
+  98     if lib[destroy_name] then
+             mt.__gc = function(self)
+***0             lib[destroy_name](self)
+             end
+         end
+
+         -- 2. Merge user-registered extensions
+  98     local ext = Song._extensions[type_name]
+  98     if ext then
+             -- Merge methods
+  78         if ext.methods then
+ 486             for k, v in pairs(ext.methods) do
+ 408                 methods[k] = v
+                 end
+             end
+             -- Merge metamethods (operators, etc.)
+ 334         for k, v in pairs(ext) do
+ 256             if k:match("^__") and k ~= "__index" then
+ 102                 mt[k] = v
+                 end
+             end
+             -- Handle custom __index if it's a function
+  78         if type(ext.__index) == "function" then
+***0             local old_index = mt.__index
+                 mt.__index = function(t, k)
+***0                 local res = ext.__index(t, k)
+***0                 if res ~= nil then return res end
+***0                 return old_index[k]
+                 end
+             end
+         end
+
+         -- 3. Apply metatype
+ 196     local mt_ok, mt_err = pcall(function() ffi.metatype(struct_name, mt) end)
+  98     if not mt_ok then
+             -- If it failed, log it unless it's just already bound
+   4         if not mt_err:find("protected metatable") then
+                 -- Optional: print("Warning: ffi.metatype failed for " .. struct_name .. ": " .. mt_err)
+             end
+         end
+
+         -- 4. Static methods (return as a table for the module to use)
+  98     local static = {}
+  98     local from_json_name = type_name .. "_from_json_string"
+  98     if lib[from_json_name] then
+             static.from_json = function(json_str)
+***0             local c_str = to_c_string(lib, json_str)
+***0             local handle = lib[from_json_name](c_str)
+***0             return handle
+             end
+         end
+
+         -- Merge user-provided static methods
+  98     if ext and ext.static_methods then
+  56         for k, v in pairs(ext.static_methods) do
+  52             static[k] = v
+             end
+         end
+         
+  98     return static
+     end
+
+   5 function Song.init(lib)
+         -- Comprehensive list of types to wrap
+   2     local types = {
+             -- Math
+             "FArrayDouble", "FArrayInt", "Waveform", "Quantity", "Vector", "Point",
+             "SymbolUnit", "UnitSpace", "AnalyticFunction", "IncreasingAlignment",
+             "Domain", "LabelledDomain", "CoupledLabelledDomain",
+             
+             -- Arrays
+             "MeasuredArray", "MeasuredArray1D", "ControlArray", "ControlArray1D",
+             "LabelledMeasuredArray", "LabelledMeasuredArray1D",
+             "LabelledControlArray", "LabelledControlArray1D",
+             
+             -- Instrument Interfaces
+             "Channel", "Channels", "Connection", "Connections", "Impedance", "Impedances",
+             "InstrumentPort", "Ports", "PortTransform", "PortTransforms",
+             
+             -- Physics/Config
+             "Config", "Adjacency", "Group", "GateRelations", "VoltageConstraints",
+             
+             -- Communications
+             "MeasurementRequest", "MeasurementResponse", "StandardRequest", "StandardResponse",
+             "VoltageStatesResponse", "DeviceVoltageState", "DeviceVoltageStates",
+             
+             -- Autotuner Interfaces
+             "AcquisitionContext", "MeasurementContext", "InterpretationContext",
+             "Gname",
+             
+             -- IO
+***0         "HDF5Data", "Time"
+         }
+         
+   2     local registry = {}
+ 100     for _, t in ipairs(types) do
+  98         local static = Song.wrap_type(lib, t)
+  98         if static then
+  98             registry[t] = static
+  98             Song._finalized[t] = true
+                 
+                 -- Populate module table if it was registered
+  98             local ext = Song._extensions[t]
+  98             if ext and ext.module_table then
+ 196                 for k, v in pairs(static) do
+ 124                     ext.module_table[k] = v
+                     end
+                 end
+             end
+         end
+   2     return registry
+     end
+
+   5 return Song
+
+==============================================================================
+Summary
+==============================================================================
+
+File                                                                                                                                                               Hits Missed Coverage
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/acquisitioncontext.lua                     14   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/init.lua                                   4    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/measurementcontext.lua                     11   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/init.lua                                            5    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/init.lua                            6    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerdouble.lua   10   7      58.82%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerquantity.lua 10   7      58.82%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerstring.lua   10   7      58.82%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontext.lua           5    2      71.43%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/names/gname.lua                                     11   8      57.89%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/names/init.lua                                      3    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/init.lua                                                  4    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/init.lua                                         6    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/measurementrequest.lua                           15   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/measurementresponse.lua                          11   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/standardrequest.lua                              10   10     50.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/standardresponse.lua                             10   10     50.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/devicevoltagestate.lua                     9    6      60.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/devicevoltagestates.lua                    8    5      61.54%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/init.lua                                   5    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/voltagestatesresponse.lua                  4    1      80.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/axes.lua                                                         7    10     41.18%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/farray.lua                                                       16   19     45.71%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/list.lua                                                         14   3      82.35%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/map.lua                                                          7    10     41.18%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/pair.lua                                                         7    10     41.18%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/init.lua                                                                 22   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/channel.lua                                        11   9      55.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/channels.lua                                       13   9      59.09%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/connection.lua                                     19   5      79.17%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/connections.lua                                    19   10     65.52%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/impedance.lua                                      14   2      87.50%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/impedances.lua                                     11   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/init.lua                                           13   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/names/init.lua                                     3    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/names/instrumenttypes.lua                          8    5      61.54%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port.lua                                           14   10     58.33%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/init.lua                           4    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/porttransform.lua                  14   6      70.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/porttransforms.lua                 13   6      68.42%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/ports.lua                                          12   17     41.38%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/waveform.lua                                       15   1      93.75%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/hdf5data.lua                                                          15   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/init.lua                                                              5    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/loader.lua                                                            6    4      60.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/time.lua                                                              17   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/analyticfunction.lua                                                21   6      77.78%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/control_array.lua                                            24   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/controlarray1d.lua                                           25   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/init.lua                                                     10   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelled_control_array.lua                                   24   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelled_measured_array.lua                                  24   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelledcontrolarray1d.lua                                   24   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelledmeasuredarray1d.lua                                  24   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/measured_array.lua                                           24   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/measuredarray1d.lua                                          25   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/discretespace.lua                                   15   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/discretizer.lua                                     13   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/init.lua                                            4    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/coupledlabelleddomain.lua                                   8    5      61.54%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/domain.lua                                                  18   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/init.lua                                                    5    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/labelleddomain.lua                                          20   6      76.92%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/increasingalignment.lua                                             11   1      91.67%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/init.lua                                                            13   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/point.lua                                                           18   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/quantity.lua                                                        33   8      80.49%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/sign.lua                                                            5    2      71.43%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/symbolunit.lua                                                      70   16     81.40%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/unitspace.lua                                                       16   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/vector.lua                                                          17   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/adjacency.lua                                        15   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/config.lua                                           19   25     43.18%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/gaterelations.lua                                    13   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/group.lua                                            17   16     51.52%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/init.lua                                             7    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/voltageconstraints.lua                               12   0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/dotgateswithneighbors.lua                      9    6      60.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/dotgatewithneighbors.lua                       7    4      63.64%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/gategeometryarray1d.lua                        4    1      80.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/init.lua                                       5    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/init.lua                                                  4    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/init.lua                                                         3    0      100.00%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/mapping.lua                                                        15   2      88.24%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/memory.lua                                                         16   2      88.89%
+/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/song.lua                                                           59   11     84.29%
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                              1166 310    79.00%

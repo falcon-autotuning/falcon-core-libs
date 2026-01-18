@@ -1,47 +1,25 @@
 -- porttransforms.lua
--- Auto-generated wrapper for PortTransforms
--- Generated from PortTransforms_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local PortTransforms = {}
 
--- Constructors
-
-function PortTransforms.from_json_string(json)
-    return cdef.lib.PortTransforms_from_json_string(json)
+function PortTransforms.new(list)
+    local ListTransform = require("falcon_core.generic.list").new("port_transform")
+    for _, t in ipairs(list or {}) do
+        lib.ListPortTransform_push_back(ListTransform, t)
+    end
+    local handle = lib.PortTransforms_create(ListTransform)
+    lib.ListPortTransform_destroy(ListTransform)
+    return handle
 end
 
-function PortTransforms.empty()
-    return cdef.lib.PortTransforms_create_empty()
-end
-
-function PortTransforms.new(handle)
-    return cdef.lib.PortTransforms_create(handle)
-end
-
-
--- Methods
-
-function PortTransforms.copy(handle)
-    return cdef.lib.PortTransforms_copy(handle)
-end
-
-function PortTransforms.to_json_string(handle)
-    return cdef.lib.PortTransforms_to_json_string(handle)
-end
-
-function PortTransforms.from_json_string(handle)
-    return cdef.lib.PortTransforms_from_json_string(handle)
-end
-
-function PortTransforms.create_empty(handle)
-    return cdef.lib.PortTransforms_create_empty(handle)
-end
-
-function PortTransforms.create(handle)
-    return cdef.lib.PortTransforms_create(handle)
-end
-
+song.register("PortTransforms", {
+    methods = {
+        size = function(t) return tonumber(lib.PortTransforms_size(t)) end,
+        at = lib.PortTransforms_at,
+        equal = lib.PortTransforms_equal,
+    }
+}, PortTransforms)
 
 return PortTransforms

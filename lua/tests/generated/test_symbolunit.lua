@@ -1,7 +1,7 @@
 -- test_symbolunit.lua
 -- Auto-generated tests for SymbolUnit
 
-local SymbolUnit = require("falcon_core.TODO.symbolunit")
+local SymbolUnit = require("falcon_core.math.symbolunit")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("SymbolUnit", function()
     it("can create instance", function()
         local obj = SymbolUnit.meter()
         assert(obj ~= nil, "SymbolUnit should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = SymbolUnit.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

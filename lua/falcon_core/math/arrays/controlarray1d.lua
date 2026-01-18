@@ -1,43 +1,28 @@
 -- controlarray1d.lua
--- Auto-generated wrapper for ControlArray1D
--- Generated from ControlArray1D_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local ControlArray1D = {}
 
--- Constructors
-
-function ControlArray1D.from_json_string(json)
-    return cdef.lib.ControlArray1D_from_json_string(json)
-end
-
-function ControlArray1D.from_farray(farray)
-    return cdef.lib.ControlArray1D_from_farray(farray)
-end
-
-
--- Methods
-
-function ControlArray1D.copy(handle)
-    return cdef.lib.ControlArray1D_copy(handle)
-end
-
-function ControlArray1D.to_json_string(handle)
-    return cdef.lib.ControlArray1D_to_json_string(handle)
-end
-
-function ControlArray1D.from_json_string(handle)
-    return cdef.lib.ControlArray1D_from_json_string(handle)
-end
-
-function ControlArray1D.from_farray(handle)
-    return cdef.lib.ControlArray1D_from_farray(handle)
-end
-
-function ControlArray1D.is_1D(handle)
-    return cdef.lib.ControlArray1D_is_1D(handle)
-end
-
+song.register("ControlArray1D", {
+    __add = lib.ControlArray1D_plus_control_array,
+    __sub = lib.ControlArray1D_minus_control_array,
+    __mul = lib.ControlArray1D_times_double,
+    __div = lib.ControlArray1D_divides_double,
+    __unm = lib.ControlArray1D_negation,
+    methods = {
+        size = function(t) return tonumber(lib.ControlArray1D_size(t)) end,
+        dimension = lib.ControlArray1D_dimension,
+        add = lib.ControlArray1D_plus_control_array,
+        subtract = lib.ControlArray1D_minus_control_array,
+        multiply = lib.ControlArray1D_times_double,
+        divide = lib.ControlArray1D_divides_double,
+        min = lib.ControlArray1D_min,
+        max = lib.ControlArray1D_max,
+        abs = lib.ControlArray1D_abs,
+        sum = lib.ControlArray1D_sum,
+        as_1D = lib.ControlArray1D_as_1D,
+    }
+}, ControlArray1D)
 
 return ControlArray1D

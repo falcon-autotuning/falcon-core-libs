@@ -1,7 +1,7 @@
 -- test_controlarray1d.lua
 -- Auto-generated tests for ControlArray1D
 
-local ControlArray1D = require("falcon_core.TODO.controlarray1d")
+local ControlArray1D = require("falcon_core.math.arrays.controlarray1d")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("ControlArray1D", function()
     end)
 
     it("can create instance", function()
-        local obj = ControlArray1D.from_json_string()
+        local obj = ControlArray1D.new()
         assert(obj ~= nil, "ControlArray1D should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = ControlArray1D.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

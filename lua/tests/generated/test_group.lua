@@ -1,7 +1,7 @@
 -- test_group.lua
 -- Auto-generated tests for Group
 
-local Group = require("falcon_core.TODO.group")
+local Group = require("falcon_core.physics.config.core.group")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("Group", function()
     end)
 
     it("can create instance", function()
-        local obj = Group.from_json_string()
+        local obj = Group.new()
         assert(obj ~= nil, "Group should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Group.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

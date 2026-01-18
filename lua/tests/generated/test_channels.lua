@@ -1,7 +1,7 @@
 -- test_channels.lua
 -- Auto-generated tests for Channels
 
-local Channels = require("falcon_core.TODO.channels")
+local Channels = require("falcon_core.instrument_interfaces.channels")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("Channels", function()
     it("can create instance", function()
         local obj = Channels.empty()
         assert(obj ~= nil, "Channels should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Channels.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

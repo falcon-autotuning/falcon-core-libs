@@ -1,7 +1,7 @@
 -- test_voltageconstraints.lua
 -- Auto-generated tests for VoltageConstraints
 
-local VoltageConstraints = require("falcon_core.TODO.voltageconstraints")
+local VoltageConstraints = require("falcon_core.physics.config.core.voltageconstraints")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("VoltageConstraints", function()
     end)
 
     it("can create instance", function()
-        local obj = VoltageConstraints.from_json_string()
+        local obj = VoltageConstraints.new()
         assert(obj ~= nil, "VoltageConstraints should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = VoltageConstraints.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

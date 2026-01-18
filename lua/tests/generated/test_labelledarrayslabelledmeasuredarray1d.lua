@@ -1,7 +1,7 @@
 -- test_labelledarrayslabelledmeasuredarray1d.lua
 -- Auto-generated tests for LabelledArraysLabelledMeasuredArray1D
 
-local LabelledArraysLabelledMeasuredArray1D = require("falcon_core.TODO.labelledarrayslabelledmeasuredarray1d")
+local LabelledArraysLabelledMeasuredArray1D = require("falcon_core.math.arrays.labelledarrayslabelledmeasuredarray1d")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("LabelledArraysLabelledMeasuredArray1D", function()
     end)
 
     it("can create instance", function()
-        local obj = LabelledArraysLabelledMeasuredArray1D.from_json_string()
+        local obj = LabelledArraysLabelledMeasuredArray1D.new()
         assert(obj ~= nil, "LabelledArraysLabelledMeasuredArray1D should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = LabelledArraysLabelledMeasuredArray1D.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

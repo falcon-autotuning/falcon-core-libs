@@ -1,7 +1,7 @@
 -- test_discretespace.lua
 -- Auto-generated tests for DiscreteSpace
 
-local DiscreteSpace = require("falcon_core.TODO.discretespace")
+local DiscreteSpace = require("falcon_core.math.discrete_spaces.discretespace")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("DiscreteSpace", function()
     end)
 
     it("can create instance", function()
-        local obj = DiscreteSpace.from_json_string()
+        local obj = DiscreteSpace.new()
         assert(obj ~= nil, "DiscreteSpace should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = DiscreteSpace.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

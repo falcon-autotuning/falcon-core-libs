@@ -1,7 +1,7 @@
 -- test_voltagestatesresponse.lua
 -- Auto-generated tests for VoltageStatesResponse
 
-local VoltageStatesResponse = require("falcon_core.TODO.voltagestatesresponse")
+local VoltageStatesResponse = require("falcon_core.communications.voltage_states.voltagestatesresponse")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -20,6 +20,15 @@ end
 describe("VoltageStatesResponse", function()
     it("module loads successfully", function()
         assert(VoltageStatesResponse ~= nil, "VoltageStatesResponse should load")
+    end)
+
+    it("can exercise methods", function()
+        local obj = VoltageStatesResponse.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

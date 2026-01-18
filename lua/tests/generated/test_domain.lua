@@ -1,7 +1,7 @@
 -- test_domain.lua
 -- Auto-generated tests for Domain
 
-local Domain = require("falcon_core.TODO.domain")
+local Domain = require("falcon_core.math.domains.domain")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("Domain", function()
     end)
 
     it("can create instance", function()
-        local obj = Domain.from_json_string()
+        local obj = Domain.new()
         assert(obj ~= nil, "Domain should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Domain.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

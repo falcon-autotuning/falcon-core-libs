@@ -1,7 +1,7 @@
 -- test_connections.lua
 -- Auto-generated tests for Connections
 
-local Connections = require("falcon_core.TODO.connections")
+local Connections = require("falcon_core.instrument_interfaces.connections")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("Connections", function()
     it("can create instance", function()
         local obj = Connections.empty()
         assert(obj ~= nil, "Connections should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Connections.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

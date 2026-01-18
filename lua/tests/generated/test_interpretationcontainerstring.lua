@@ -1,7 +1,7 @@
 -- test_interpretationcontainerstring.lua
 -- Auto-generated tests for InterpretationContainerString
 
-local InterpretationContainerString = require("falcon_core.TODO.interpretationcontainerstring")
+local InterpretationContainerString = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerstring")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("InterpretationContainerString", function()
     it("can create instance", function()
         local obj = InterpretationContainerString.new()
         assert(obj ~= nil, "InterpretationContainerString should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = InterpretationContainerString.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

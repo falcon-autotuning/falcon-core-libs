@@ -1,47 +1,16 @@
 -- discretizer.lua
--- Auto-generated wrapper for Discretizer
--- Generated from Discretizer_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Discretizer = {}
 
--- Constructors
-
-function Discretizer.from_json_string(json)
-    return cdef.lib.Discretizer_from_json_string(json)
-end
-
-function Discretizer.cartesian_discretizer(delta)
-    return cdef.lib.Discretizer_create_cartesian_discretizer(delta)
-end
-
-function Discretizer.polar_discretizer(delta)
-    return cdef.lib.Discretizer_create_polar_discretizer(delta)
-end
-
-
--- Methods
-
-function Discretizer.copy(handle)
-    return cdef.lib.Discretizer_copy(handle)
-end
-
-function Discretizer.equal(handle, other)
-    return cdef.lib.Discretizer_equal(handle, other)
-end
-
-function Discretizer.not_equal(handle, other)
-    return cdef.lib.Discretizer_not_equal(handle, other)
-end
-
-function Discretizer.to_json_string(handle)
-    return cdef.lib.Discretizer_to_json_string(handle)
-end
-
-function Discretizer.from_json_string(handle)
-    return cdef.lib.Discretizer_from_json_string(handle)
-end
-
+song.register("Discretizer", {
+    methods = {
+        domain = lib.Discretizer_domain,
+        delta = lib.Discretizer_delta,
+        is_cartesian = lib.Discretizer_is_cartesian,
+        is_polar = lib.Discretizer_is_polar,
+    }
+}, Discretizer)
 
 return Discretizer

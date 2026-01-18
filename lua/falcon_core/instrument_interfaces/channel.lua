@@ -1,43 +1,27 @@
 -- channel.lua
--- Auto-generated wrapper for Channel
--- Generated from Channel_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Channel = {}
 
--- Constructors
-
-function Channel.from_json_string(json)
-    return cdef.lib.Channel_from_json_string(json)
-end
-
 function Channel.new(name)
-    return cdef.lib.Channel_create(name)
+    local s = lib.String_wrap(name)
+    local handle = lib.Channel_create(s)
+    lib.String_destroy(s)
+    return handle
 end
 
-
--- Methods
-
-function Channel.copy(handle)
-    return cdef.lib.Channel_copy(handle)
-end
-
-function Channel.equal(handle, other)
-    return cdef.lib.Channel_equal(handle, other)
-end
-
-function Channel.not_equal(handle, other)
-    return cdef.lib.Channel_not_equal(handle, other)
-end
-
-function Channel.to_json_string(handle)
-    return cdef.lib.Channel_to_json_string(handle)
-end
-
-function Channel.from_json_string(handle)
-    return cdef.lib.Channel_from_json_string(handle)
-end
-
+song.register("Channel", {
+    methods = {
+        name = function(self)
+            local h = lib.Channel_name(self)
+            local ffi = require("ffi")
+            local str = ffi.string(h.raw, h.length)
+            lib.String_destroy(h)
+            return str
+        end,
+        equal = lib.Channel_equal,
+    }
+}, Channel)
 
 return Channel

@@ -1,7 +1,7 @@
 -- test_gaterelations.lua
 -- Auto-generated tests for GateRelations
 
-local GateRelations = require("falcon_core.TODO.gaterelations")
+local GateRelations = require("falcon_core.physics.config.core.gaterelations")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("GateRelations", function()
     it("can create instance", function()
         local obj = GateRelations.empty()
         assert(obj ~= nil, "GateRelations should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = GateRelations.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

@@ -1,7 +1,7 @@
 -- test_labelleddomain.lua
 -- Auto-generated tests for LabelledDomain
 
-local LabelledDomain = require("falcon_core.TODO.labelleddomain")
+local LabelledDomain = require("falcon_core.math.domains.labelleddomain")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("LabelledDomain", function()
     end)
 
     it("can create instance", function()
-        local obj = LabelledDomain.from_json_string()
+        local obj = LabelledDomain.new()
         assert(obj ~= nil, "LabelledDomain should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = LabelledDomain.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

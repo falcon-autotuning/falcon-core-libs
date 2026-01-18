@@ -1,7 +1,7 @@
 -- tests/unit/test_instrument.lua
 -- Tests for instrument module
 
-local instrument = require("falcon_core.instrument")
+local instrument = require("falcon_core.instrument_interfaces")
 local Port = instrument.Port
 local Connection = instrument.Connection
 

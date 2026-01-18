@@ -1,34 +1,20 @@
--- math/point.lua
--- Wrapper for Point type (geometric point with units)
-
+-- point.lua
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Point = {}
-
--- Create from map of connection -> quantity
-function Point.new(coordinates_map)
-    local lib = cdef.lib
-    return lib.Point_create_from_parent(coordinates_map)
+function Point.new(values)
+    local Mapping = require("falcon_core.utils.mapping")
+    local map = Mapping.to_map_connection_quantity(values)
+    local handle = lib.Point_create_from_parent(map)
+    lib.MapConnectionQuantity_destroy(map)
+    return handle
 end
-
--- Insert or assign coordinate
-function Point.set(p, connection, quantity)
-    cdef.lib.Point_insert_or_assign(p, connection, quantity)
-end
-
--- Get coordinate
-function Point.get(p, connection)
-    return cdef.lib.Point_at(p, connection)
-end
-
--- Get all coordinates as map
-function Point.coordinates(p)
-    return cdef.lib.Point_coordinates(p)
-end
-
--- Get list of all values
-function Point.values(p)
-    return cdef.lib.Point_values(p)
-end
-
+song.register("Point", {
+    methods = {
+        at = lib.Point_at,
+        contains = lib.Point_contains,
+        size = function(t) return tonumber(lib.Point_size(t)) end,
+    }
+}, Point)
 return Point

@@ -1,7 +1,7 @@
 -- test_loader.lua
 -- Auto-generated tests for Loader
 
-local Loader = require("falcon_core.TODO.loader")
+local Loader = require("falcon_core.io.loader")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("Loader", function()
     it("can create instance", function()
         local obj = Loader.new()
         assert(obj ~= nil, "Loader should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Loader.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

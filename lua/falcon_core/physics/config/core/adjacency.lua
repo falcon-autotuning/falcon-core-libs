@@ -1,39 +1,18 @@
 -- adjacency.lua
--- Auto-generated wrapper for Adjacency
--- Generated from Adjacency_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Adjacency = {}
 
--- Constructors
-
-function Adjacency.from_json_string(json)
-    return cdef.lib.Adjacency_from_json_string(json)
-end
-
-
--- Methods
-
-function Adjacency.copy(handle)
-    return cdef.lib.Adjacency_copy(handle)
-end
-
-function Adjacency.equal(handle, other)
-    return cdef.lib.Adjacency_equal(handle, other)
-end
-
-function Adjacency.not_equal(handle, other)
-    return cdef.lib.Adjacency_not_equal(handle, other)
-end
-
-function Adjacency.to_json_string(handle)
-    return cdef.lib.Adjacency_to_json_string(handle)
-end
-
-function Adjacency.from_json_string(handle)
-    return cdef.lib.Adjacency_from_json_string(handle)
-end
-
+song.register("Adjacency", {
+    methods = {
+        indexes = lib.Adjacency_indexes,
+        get_true_pairs = lib.Adjacency_get_true_pairs,
+        size = function(t) return tonumber(lib.Adjacency_size(t)) end,
+        dimension = lib.Adjacency_dimension,
+        sum = lib.Adjacency_sum,
+        where = lib.Adjacency_where,
+    }
+}, Adjacency)
 
 return Adjacency

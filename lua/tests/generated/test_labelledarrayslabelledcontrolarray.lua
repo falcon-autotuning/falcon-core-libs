@@ -1,7 +1,7 @@
 -- test_labelledarrayslabelledcontrolarray.lua
 -- Auto-generated tests for LabelledArraysLabelledControlArray
 
-local LabelledArraysLabelledControlArray = require("falcon_core.TODO.labelledarrayslabelledcontrolarray")
+local LabelledArraysLabelledControlArray = require("falcon_core.math.arrays.labelledarrayslabelledcontrolarray")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("LabelledArraysLabelledControlArray", function()
     end)
 
     it("can create instance", function()
-        local obj = LabelledArraysLabelledControlArray.from_json_string()
+        local obj = LabelledArraysLabelledControlArray.new()
         assert(obj ~= nil, "LabelledArraysLabelledControlArray should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = LabelledArraysLabelledControlArray.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

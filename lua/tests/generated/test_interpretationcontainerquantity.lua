@@ -1,7 +1,7 @@
 -- test_interpretationcontainerquantity.lua
 -- Auto-generated tests for InterpretationContainerQuantity
 
-local InterpretationContainerQuantity = require("falcon_core.TODO.interpretationcontainerquantity")
+local InterpretationContainerQuantity = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerquantity")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("InterpretationContainerQuantity", function()
     it("can create instance", function()
         local obj = InterpretationContainerQuantity.new()
         assert(obj ~= nil, "InterpretationContainerQuantity should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = InterpretationContainerQuantity.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

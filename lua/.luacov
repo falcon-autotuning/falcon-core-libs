@@ -26,6 +26,9 @@ return {
     -- Reporter configuration
     reporter = "default",
     
+    -- Accumulate stats across runs
+    savestats = true,
+    
     -- Run as daemon (collect coverage in background)
     runreport = false,
 }

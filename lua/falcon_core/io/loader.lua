@@ -9,7 +9,8 @@ local Loader = {}
 -- Constructors
 
 function Loader.new(config_path)
-    return cdef.lib.Loader_create(config_path)
+    local path_handle = cdef.lib.String_wrap(config_path)
+    return cdef.lib.Loader_create(path_handle)
 end
 
 

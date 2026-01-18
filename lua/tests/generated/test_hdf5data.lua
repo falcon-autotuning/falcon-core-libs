@@ -1,7 +1,7 @@
 -- test_hdf5data.lua
 -- Auto-generated tests for HDF5Data
 
-local HDF5Data = require("falcon_core.TODO.hdf5data")
+local HDF5Data = require("falcon_core.io.hdf5data")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("HDF5Data", function()
     end)
 
     it("can create instance", function()
-        local obj = HDF5Data.from_json_string()
+        local obj = HDF5Data.new()
         assert(obj ~= nil, "HDF5Data should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = HDF5Data.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

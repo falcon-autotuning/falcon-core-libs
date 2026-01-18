@@ -1,0 +1,172 @@
+17:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/acquisitioncontext.lua
+0 2 2 2 2 0 4 2 2 2 2 2 2 2 2 0 2 
+6:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/init.lua
+0 0 2 2 2 2 
+14:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/contexts/measurementcontext.lua
+0 2 2 2 2 0 4 2 2 2 2 2 0 2 
+7:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/init.lua
+0 0 2 2 2 2 2 
+8:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/init.lua
+0 0 2 2 2 2 2 2 
+43:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerdouble.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+43:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerquantity.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+43:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontainerstring.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+23:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/interpretations/interpretationcontext.lua
+0 0 0 0 2 0 2 0 0 0 0 0 0 2 0 2 0 2 0 2 0 0 2 
+47:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/names/gname.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+5:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/autotuner_interfaces/names/init.lua
+0 0 2 2 2 
+6:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/init.lua
+0 0 2 2 2 2 
+8:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/init.lua
+0 0 2 2 2 2 2 2 
+18:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/measurementrequest.lua
+0 2 2 2 2 0 4 2 2 2 2 2 2 2 2 2 0 2 
+14:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/measurementresponse.lua
+0 2 2 2 2 0 4 2 2 2 2 2 0 2 
+24:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/standardrequest.lua
+0 2 2 2 2 2 0 0 0 0 2 4 2 0 0 0 0 0 0 0 2 2 2 2 
+24:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/messages/standardresponse.lua
+0 2 2 2 2 2 0 0 0 0 2 4 2 0 0 0 0 0 0 0 2 2 2 2 
+39:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/devicevoltagestate.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+35:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/devicevoltagestates.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+7:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/init.lua
+0 0 2 2 2 2 2 
+19:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/communications/voltage_states/voltagestatesresponse.lua
+0 0 0 0 2 0 2 0 0 0 0 0 0 2 0 2 0 0 2 
+44:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/axes.lua
+0 0 0 2 0 2 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 2 0 2 
+70:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/farray.lua
+0 0 0 2 2 0 2 0 0 2 0 0 2 0 0 2 1 1 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 1 0 0 0 2 0 0 2 0 0 0 0 0 0 2 0 0 2 0 0 0 0 0 0 2 0 2 
+88:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/list.lua
+0 0 0 3 0 3 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 3 2 2 0 0 0 2 2 3 0 3 1 45 45 0 0 0 3 0 3 
+45:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/map.lua
+0 0 0 2 0 2 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 2 0 2 
+53:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/generic/pair.lua
+0 0 0 2 0 2 0 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 0 2 0 2 0 0 0 0 0 0 2 0 2 
+36:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/init.lua
+0 0 0 2 0 0 2 2 0 0 2 2 2 2 2 2 2 0 0 2 2 2 2 2 2 0 0 2 2 2 2 0 0 2 0 2 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/channel.lua
+0 3 3 3 3 0 3 0 0 0 0 3 0 6 3 0 0 0 0 0 0 3 3 3 3 0 3 
+37:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/channels.lua
+0 0 0 3 3 3 0 3 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 6 3 3 3 3 3 3 0 0 3 
+42:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/connection.lua
+0 0 0 3 3 3 0 3 0 0 3 0 0 3 3 3 3 3 3 3 0 3 3 3 0 0 3 0 0 0 0 0 3 0 0 6 3 3 3 0 0 3 
+39:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/connections.lua
+0 4 4 4 4 0 4 1 1 1 0 0 0 1 1 1 4 0 8 0 0 0 0 0 4 4 0 0 0 0 0 4 4 4 4 4 4 0 4 
+21:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/impedance.lua
+0 3 3 3 3 0 3 0 0 3 0 6 3 3 3 3 3 3 3 0 3 
+19:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/impedances.lua
+0 0 0 4 4 4 0 4 0 0 7 4 4 4 4 3 0 0 3 
+17:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/init.lua
+0 0 3 3 3 3 3 3 3 3 3 3 0 0 3 2 2 
+5:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/names/init.lua
+0 0 2 2 2 
+35:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/names/instrumenttypes.lua
+0 0 0 0 2 0 2 0 0 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+31:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port.lua
+0 3 3 3 3 0 3 0 0 0 0 3 0 6 3 0 0 0 0 0 0 0 3 3 3 3 3 3 3 0 3 
+6:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/init.lua
+0 0 3 3 2 2 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/porttransform.lua
+0 3 3 3 3 0 3 0 0 0 3 0 2 0 0 0 2 0 4 2 2 2 2 2 2 0 2 
+25:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/port_transforms/porttransforms.lua
+0 2 2 2 2 0 2 0 0 0 0 0 0 0 2 0 4 2 2 2 2 2 2 0 2 
+39:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/ports.lua
+0 3 3 3 3 0 3 0 0 0 0 0 0 0 0 0 0 3 0 6 0 0 0 0 0 3 3 0 0 0 0 0 3 3 3 3 3 0 3 
+21:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/instrument_interfaces/waveform.lua
+0 3 3 3 3 0 3 0 3 0 6 3 3 3 3 3 3 3 3 0 3 
+18:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/hdf5data.lua
+0 2 2 2 2 0 4 2 2 2 2 2 2 2 2 2 0 2 
+8:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/init.lua
+0 0 0 2 2 2 2 2 
+28:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/loader.lua
+0 0 0 0 2 0 2 0 0 0 2 0 0 2 0 0 0 0 2 0 2 0 2 0 2 0 0 2 
+20:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/io/time.lua
+0 2 2 2 2 0 4 2 2 2 2 2 2 2 2 2 2 2 0 2 
+45:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/analyticfunction.lua
+0 0 0 3 3 3 0 3 0 0 3 1 4 3 0 0 1 1 0 1 1 1 3 0 0 4 4 0 0 6 3 0 0 0 0 0 0 0 3 3 3 3 0 0 3 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/control_array.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+28:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/controlarray1d.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+13:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/init.lua
+0 0 0 3 3 3 3 3 3 3 3 3 3 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelled_control_array.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelled_measured_array.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelledcontrolarray1d.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/labelledmeasuredarray1d.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+27:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/measured_array.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+28:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/arrays/measuredarray1d.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+18:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/discretespace.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 0 3 
+16:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/discretizer.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 0 3 
+6:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/discrete_spaces/init.lua
+0 0 3 3 3 3 
+35:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/coupledlabelleddomain.lua
+0 0 0 0 2 0 2 0 0 0 2 0 2 0 0 0 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 2 0 0 2 
+20:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/domain.lua
+0 3 2 2 2 2 1 2 4 2 2 2 2 2 2 2 2 2 2 2 
+7:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/init.lua
+0 0 3 3 2 2 2 
+30:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/domains/labelleddomain.lua
+0 2 2 2 2 2 1 2 1 1 0 0 0 0 2 4 2 2 2 0 0 0 2 2 2 2 2 2 2 2 
+17:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/increasingalignment.lua
+0 3 3 3 3 0 3 0 3 0 6 3 3 3 3 0 3 
+19:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/init.lua
+0 0 0 3 0 3 3 3 3 3 3 3 3 0 0 3 3 3 2 
+20:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/point.lua
+0 3 3 3 3 3 2 2 2 2 2 3 6 3 3 3 3 3 3 3 
+71:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/quantity.lua
+0 0 0 3 3 3 3 0 3 0 0 0 0 3 0 4 4 4 8 0 0 0 0 4 4 3 0 0 3 1 3 0 3 0 3 0 3 0 0 0 0 0 3 0 3 0 0 0 0 0 3 0 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 3 
+23:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/sign.lua
+0 0 0 0 3 0 3 0 0 0 0 0 0 3 0 3 0 3 0 3 0 0 3 
+99:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/symbolunit.lua
+0 3 3 3 3 0 3 5 5 5 5 5 5 5 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 0 0 4 0 0 0 0 0 0 3 0 6 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 0 0 0 0 0 0 0 3 0 0 0 0 0 0 0 3 3 3 3 3 0 3 
+19:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/unitspace.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 3 0 3 
+23:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/math/vector.lua
+0 3 3 3 3 0 3 1 2 2 0 1 1 3 0 6 3 3 3 3 3 0 3 
+18:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/adjacency.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 3 3 3 0 3 
+93:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/config.lua
+0 0 0 3 3 3 0 3 0 0 0 0 0 0 0 3 0 0 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 3 0 0 0 0 3 0 0 0 3 0 0 0 3 0 0 0 3 0 3 0 3 0 3 0 3 0 3 0 0 3 3 3 3 3 0 0 6 0 0 0 3 3 3 0 0 3 
+14:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/gaterelations.lua
+0 3 3 3 3 3 6 3 3 3 3 3 3 3 
+50:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/group.lua
+0 0 0 3 3 3 0 3 0 0 0 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 6 3 0 0 0 0 0 0 3 3 3 3 3 3 3 3 3 3 0 3 
+9:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/init.lua
+0 0 3 3 3 3 3 3 3 
+15:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/core/voltageconstraints.lua
+0 3 3 3 3 0 6 3 3 3 3 3 3 0 3 
+39:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/dotgateswithneighbors.lua
+0 0 0 0 3 0 3 0 0 0 3 0 3 0 0 0 0 3 0 3 0 3 0 3 0 3 0 3 0 3 0 3 0 3 0 3 0 0 3 
+31:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/dotgatewithneighbors.lua
+0 0 0 0 3 0 3 0 0 0 0 0 0 3 0 3 0 3 0 3 0 3 0 3 0 3 0 3 0 0 3 
+19:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/gategeometryarray1d.lua
+0 0 0 0 3 0 3 0 0 0 0 0 0 3 0 3 0 0 3 
+7:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/geometries/init.lua
+0 0 3 3 3 3 3 
+6:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/config/init.lua
+0 0 3 3 3 3 
+5:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/physics/init.lua
+0 0 3 3 3 
+40:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/mapping.lua
+0 0 0 1 1 0 1 0 0 1 2 2 2 0 4 2 2 4 0 0 0 0 2 2 0 0 0 0 0 0 2 0 0 2 0 0 2 1 0 1 
+32:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/memory.lua
+0 0 0 2 0 0 2 2 0 2 1 1 1 1 1 2 0 2 1 2 1 1 0 1 4 0 0 0 0 0 0 2 
+168:/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core/utils/song.lua
+0 0 5 0 5 5 5 0 0 0 0 1 1 1 1 5 0 0 0 0 0 5 0 0 0 5 112 112 103 0 117 0 5 98 0 0 196 98 0 98 98 0 0 98 98 0 1 1 1 98 98 0 0 98 98 0 0 98 0 0 0 98 98 0 78 486 408 0 0 0 334 256 102 0 0 0 78 0 0 0 0 0 0 0 0 0 0 196 98 0 4 0 0 0 0 0 98 98 98 0 0 0 0 98 0 0 0 98 56 52 0 0 0 98 5 0 5 0 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 100 98 98 98 98 0 0 98 98 196 124 0 0 0 0 2 5 0 5 

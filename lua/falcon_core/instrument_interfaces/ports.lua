@@ -1,47 +1,39 @@
 -- ports.lua
--- Auto-generated wrapper for Ports
--- Generated from Ports_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Ports = {}
 
--- Constructors
-
-function Ports.from_json_string(json)
-    return cdef.lib.Ports_from_json_string(json)
+function Ports.new(list)
+    if not list then return lib.Ports_create(lib.ListInstrumentPort_create_empty()) end
+    local ListPort = require("falcon_core.generic.list").new("instrument_port")
+    local Port = require("falcon_core.instrument_interfaces.port")
+    for _, name in ipairs(list) do
+        local p = (type(name) == "string") and Port.new(name) or name
+        lib.ListInstrumentPort_push_back(ListPort, p)
+    end
+    local handle = lib.Ports_create(ListPort)
+    lib.ListInstrumentPort_destroy(ListPort)
+    return handle
 end
 
-function Ports.empty()
-    return cdef.lib.Ports_create_empty()
-end
-
-function Ports.new(items)
-    return cdef.lib.Ports_create(items)
-end
-
-
--- Methods
-
-function Ports.copy(handle)
-    return cdef.lib.Ports_copy(handle)
-end
-
-function Ports.equal(handle, other)
-    return cdef.lib.Ports_equal(handle, other)
-end
-
-function Ports.not_equal(handle, other)
-    return cdef.lib.Ports_not_equal(handle, other)
-end
-
-function Ports.to_json_string(handle)
-    return cdef.lib.Ports_to_json_string(handle)
-end
-
-function Ports.from_json_string(handle)
-    return cdef.lib.Ports_from_json_string(handle)
-end
-
+song.register("Ports", {
+    __len = function(t) 
+        local list = lib.Ports_ports(t)
+        local n = tonumber(lib.ListInstrumentPort_size(list))
+        lib.ListInstrumentPort_destroy(list)
+        return n
+    end,
+    methods = {
+        size = function(t) 
+            local list = lib.Ports_ports(t)
+            local n = tonumber(lib.ListInstrumentPort_size(list))
+            lib.ListInstrumentPort_destroy(list)
+            return n
+        end,
+        at = lib.Ports_at,
+        contains = lib.Ports_contains,
+    }
+}, Ports)
 
 return Ports

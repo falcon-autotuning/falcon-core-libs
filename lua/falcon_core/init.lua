@@ -30,4 +30,7 @@ M.utils = {
     memory = require("falcon_core.utils.memory"),
 }
 
+-- Initialize all metatypes (merges registered methods/operators)
+M.utils.song.init(M.lib)
+
 return M

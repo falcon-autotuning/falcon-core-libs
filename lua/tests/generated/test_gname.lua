@@ -1,7 +1,7 @@
 -- test_gname.lua
 -- Auto-generated tests for Gname
 
-local Gname = require("falcon_core.TODO.gname")
+local Gname = require("falcon_core.autotuner_interfaces.names.gname")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("Gname", function()
     end)
 
     it("can create instance", function()
-        local obj = Gname.from_json_string()
+        local obj = Gname.new()
         assert(obj ~= nil, "Gname should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = Gname.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

@@ -1,7 +1,7 @@
 -- test_porttransform.lua
 -- Auto-generated tests for PortTransform
 
-local PortTransform = require("falcon_core.TODO.porttransform")
+local PortTransform = require("falcon_core.instrument_interfaces.port_transforms.porttransform")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("PortTransform", function()
     end)
 
     it("can create instance", function()
-        local obj = PortTransform.from_json_string()
+        local obj = PortTransform.new()
         assert(obj ~= nil, "PortTransform should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = PortTransform.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

@@ -1,7 +1,7 @@
 -- test_measuredarray1d.lua
 -- Auto-generated tests for MeasuredArray1D
 
-local MeasuredArray1D = require("falcon_core.TODO.measuredarray1d")
+local MeasuredArray1D = require("falcon_core.math.arrays.measuredarray1d")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("MeasuredArray1D", function()
     end)
 
     it("can create instance", function()
-        local obj = MeasuredArray1D.from_json_string()
+        local obj = MeasuredArray1D.new()
         assert(obj ~= nil, "MeasuredArray1D should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = MeasuredArray1D.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

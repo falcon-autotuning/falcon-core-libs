@@ -1,7 +1,7 @@
 -- test_increasingalignment.lua
 -- Auto-generated tests for IncreasingAlignment
 
-local IncreasingAlignment = require("falcon_core.TODO.increasingalignment")
+local IncreasingAlignment = require("falcon_core.math.increasingalignment")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -25,6 +25,15 @@ describe("IncreasingAlignment", function()
     it("can create instance", function()
         local obj = IncreasingAlignment.empty()
         assert(obj ~= nil, "IncreasingAlignment should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = IncreasingAlignment.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

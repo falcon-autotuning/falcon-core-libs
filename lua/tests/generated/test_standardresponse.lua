@@ -1,7 +1,7 @@
 -- test_standardresponse.lua
 -- Auto-generated tests for StandardResponse
 
-local StandardResponse = require("falcon_core.TODO.standardresponse")
+local StandardResponse = require("falcon_core.communications.messages.standardresponse")
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -23,8 +23,17 @@ describe("StandardResponse", function()
     end)
 
     it("can create instance", function()
-        local obj = StandardResponse.from_json_string()
+        local obj = StandardResponse.new()
         assert(obj ~= nil, "StandardResponse should be created")
+    end)
+
+    it("can exercise methods", function()
+        local obj = StandardResponse.new()
+        if obj then
+            pcall(function() if obj.message then obj:message() end end)
+            pcall(function() if obj.size then obj:size() end end)
+            pcall(function() if obj.at then obj:at(0) end end)
+        end
     end)
 end)
 

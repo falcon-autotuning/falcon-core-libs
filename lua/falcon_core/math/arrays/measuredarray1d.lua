@@ -1,43 +1,28 @@
 -- measuredarray1d.lua
--- Auto-generated wrapper for MeasuredArray1D
--- Generated from MeasuredArray1D_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local MeasuredArray1D = {}
 
--- Constructors
-
-function MeasuredArray1D.from_json_string(json)
-    return cdef.lib.MeasuredArray1D_from_json_string(json)
-end
-
-function MeasuredArray1D.from_farray(farray)
-    return cdef.lib.MeasuredArray1D_from_farray(farray)
-end
-
-
--- Methods
-
-function MeasuredArray1D.copy(handle)
-    return cdef.lib.MeasuredArray1D_copy(handle)
-end
-
-function MeasuredArray1D.to_json_string(handle)
-    return cdef.lib.MeasuredArray1D_to_json_string(handle)
-end
-
-function MeasuredArray1D.from_json_string(handle)
-    return cdef.lib.MeasuredArray1D_from_json_string(handle)
-end
-
-function MeasuredArray1D.from_farray(handle)
-    return cdef.lib.MeasuredArray1D_from_farray(handle)
-end
-
-function MeasuredArray1D.is_1D(handle)
-    return cdef.lib.MeasuredArray1D_is_1D(handle)
-end
-
+song.register("MeasuredArray1D", {
+    __add = lib.MeasuredArray1D_plus_measured_array,
+    __sub = lib.MeasuredArray1D_minus_measured_array,
+    __mul = lib.MeasuredArray1D_times_measured_array,
+    __div = lib.MeasuredArray1D_divides_measured_array,
+    __unm = lib.MeasuredArray1D_negation,
+    methods = {
+        size = function(t) return tonumber(lib.MeasuredArray1D_size(t)) end,
+        dimension = lib.MeasuredArray1D_dimension,
+        add = lib.MeasuredArray1D_plus_measured_array,
+        subtract = lib.MeasuredArray1D_minus_measured_array,
+        multiply = lib.MeasuredArray1D_times_measured_array,
+        divide = lib.MeasuredArray1D_divides_measured_array,
+        min = lib.MeasuredArray1D_min,
+        max = lib.MeasuredArray1D_max,
+        abs = lib.MeasuredArray1D_abs,
+        sum = lib.MeasuredArray1D_sum,
+        as_1D = lib.MeasuredArray1D_as_1D,
+    }
+}, MeasuredArray1D)
 
 return MeasuredArray1D

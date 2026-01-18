@@ -1,47 +1,39 @@
 -- connections.lua
--- Auto-generated wrapper for Connections
--- Generated from Connections_c_api.h
-
 local cdef = require("falcon_core.ffi.cdef")
-
+local lib = cdef.lib
+local song = require("falcon_core.utils.song")
 local Connections = {}
 
--- Constructors
-
-function Connections.from_json_string(json)
-    return cdef.lib.Connections_from_json_string(json)
+function Connections.new(list)
+    local ListConnection = require("falcon_core.generic.list").new("connection")
+    local Connection = require("falcon_core.instrument_interfaces.connection")
+    for _, name in ipairs(list or {}) do
+        local c = (type(name) == "string") and Connection.new(name) or name
+        lib.ListConnection_push_back(ListConnection, c)
+    end
+    local handle = lib.Connections_create(ListConnection)
+    lib.ListConnection_destroy(ListConnection)
+    return handle
 end
 
-function Connections.empty()
-    return cdef.lib.Connections_create_empty()
-end
-
-function Connections.new(items)
-    return cdef.lib.Connections_create(items)
-end
-
-
--- Methods
-
-function Connections.copy(handle)
-    return cdef.lib.Connections_copy(handle)
-end
-
-function Connections.equal(handle, other)
-    return cdef.lib.Connections_equal(handle, other)
-end
-
-function Connections.not_equal(handle, other)
-    return cdef.lib.Connections_not_equal(handle, other)
-end
-
-function Connections.to_json_string(handle)
-    return cdef.lib.Connections_to_json_string(handle)
-end
-
-function Connections.from_json_string(handle)
-    return cdef.lib.Connections_from_json_string(handle)
-end
-
+song.register("Connections", {
+    __len = function(t) 
+        local list = lib.Connections_items(t)
+        local n = tonumber(lib.ListConnection_size(list))
+        lib.ListConnection_destroy(list)
+        return n
+    end,
+    methods = {
+        size = function(t) 
+            local list = lib.Connections_items(t)
+            local n = tonumber(lib.ListConnection_size(list))
+            lib.ListConnection_destroy(list)
+            return n
+        end,
+        at = lib.Connections_at,
+        copy = lib.Connections_copy,
+        equal = lib.Connections_equal,
+    }
+}, Connections)
 
 return Connections
