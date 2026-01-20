@@ -1,0 +1,6 @@
+description = ""
+requires = "ctypes ctypes-foreign"
+archive(byte) = "falcon_core.cma"
+archive(native) = "falcon_core.cmxa"
+plugin(byte) = "falcon_core.cma"
+plugin(native) = "falcon_core.cmxs"

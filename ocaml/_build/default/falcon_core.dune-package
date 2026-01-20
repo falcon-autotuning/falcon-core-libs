@@ -1,0 +1,52 @@
+(lang dune 3.21)
+(name falcon_core)
+(sections (lib .) (libexec .))
+(files
+ (lib
+  (META
+   capi_bindings.ml
+   dune-package
+   falcon_core.a
+   falcon_core.cma
+   falcon_core.cmi
+   falcon_core.cmt
+   falcon_core.cmx
+   falcon_core.cmxa
+   falcon_core.ml
+   falcon_core__.cmi
+   falcon_core__.cmt
+   falcon_core__.cmx
+   falcon_core__.ml
+   falcon_core__Capi_bindings.cmi
+   falcon_core__Capi_bindings.cmt
+   falcon_core__Capi_bindings.cmx
+   opam))
+ (libexec (falcon_core.cmxs)))
+(library
+ (name falcon_core)
+ (kind normal)
+ (archives (byte falcon_core.cma) (native falcon_core.cmxa))
+ (plugins (byte falcon_core.cma) (native falcon_core.cmxs))
+ (native_archives falcon_core.a)
+ (requires ctypes ctypes-foreign)
+ (main_module_name Falcon_core)
+ (modes byte native)
+ (modules
+  (wrapped
+   (group
+    (alias
+     (obj_name falcon_core__)
+     (visibility public)
+     (kind alias)
+     (source (path Falcon_core__) (impl (path falcon_core__.ml-gen))))
+    (name Falcon_core)
+    (modules
+     (module
+      (obj_name falcon_core__Capi_bindings)
+      (visibility public)
+      (source (path Capi_bindings) (impl (path capi_bindings.ml))))
+     (module
+      (obj_name falcon_core)
+      (visibility public)
+      (source (path Falcon_core) (impl (path falcon_core.ml))))))
+   (wrapped true))))

@@ -1,0 +1,23 @@
+lib: [
+  "_build/install/default/lib/falcon_core/META"
+  "_build/install/default/lib/falcon_core/capi_bindings.ml"
+  "_build/install/default/lib/falcon_core/dune-package"
+  "_build/install/default/lib/falcon_core/falcon_core.a"
+  "_build/install/default/lib/falcon_core/falcon_core.cma"
+  "_build/install/default/lib/falcon_core/falcon_core.cmi"
+  "_build/install/default/lib/falcon_core/falcon_core.cmt"
+  "_build/install/default/lib/falcon_core/falcon_core.cmx"
+  "_build/install/default/lib/falcon_core/falcon_core.cmxa"
+  "_build/install/default/lib/falcon_core/falcon_core.ml"
+  "_build/install/default/lib/falcon_core/falcon_core__.cmi"
+  "_build/install/default/lib/falcon_core/falcon_core__.cmt"
+  "_build/install/default/lib/falcon_core/falcon_core__.cmx"
+  "_build/install/default/lib/falcon_core/falcon_core__.ml"
+  "_build/install/default/lib/falcon_core/falcon_core__Capi_bindings.cmi"
+  "_build/install/default/lib/falcon_core/falcon_core__Capi_bindings.cmt"
+  "_build/install/default/lib/falcon_core/falcon_core__Capi_bindings.cmx"
+  "_build/install/default/lib/falcon_core/opam"
+]
+libexec: [
+  "_build/install/default/lib/falcon_core/falcon_core.cmxs"
+]
