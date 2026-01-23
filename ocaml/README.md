@@ -39,6 +39,16 @@ make test
 make clean
 ```
 
+## Release
+
+To create a source distribution tarball for release:
+
+```bash
+make dist
+```
+
+This creates `falcon_core-ocaml.tar.gz` which can be uploaded as a release asset.
+
 ## Usage
 
 In your project's `dune` file:

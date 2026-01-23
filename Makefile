@@ -93,6 +93,12 @@ python-release-upload: wheel
 	gh release upload $(LIBS_RELEASE_TAG) --repo $(LIBS_REPO) --clobber \
 		python/dist/falcon_core-0.0.0-cp314-cp314-linux_x86_64.whl
 
+ocaml-release-upload:
+	$(MAKE) -C ocaml release
+	@echo "Uploading OCaml source distribution to GitHub release $(LIBS_RELEASE_TAG)..."
+	gh release upload $(LIBS_RELEASE_TAG) --repo $(LIBS_REPO) --clobber \
+		ocaml/falcon_core-ocaml.tar.gz
+
 prepare-go-release:
 	rm -rf out && mkdir -p out
 	cd go && zip -r ../out/falcon-core-go.zip falcon-core -x "falcon-core/.git/*" "falcon-core/.cache/*" "falcon-core/vendor/*" "falcon-core/testdata/*"
