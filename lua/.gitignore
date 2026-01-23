@@ -1,0 +1,3 @@
+luacov.*
+.luacov
+*.report.out

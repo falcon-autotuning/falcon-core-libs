@@ -1,0 +1,19 @@
+# Auto-generated template registry
+# Do not edit manually
+
+from falcon_core.math.arrays.labelled_control_array import LabelledControlArray
+from falcon_core.math.arrays.labelled_control_array1_d import LabelledControlArray1D
+from falcon_core.math.arrays.labelled_measured_array import LabelledMeasuredArray
+from falcon_core.math.arrays.labelled_measured_array1_d import LabelledMeasuredArray1D
+
+from falcon_core._capi.labelled_arrays_labelled_control_array import LabelledArraysLabelledControlArray as _CLabelledArraysLabelledControlArray
+from falcon_core._capi.labelled_arrays_labelled_control_array1_d import LabelledArraysLabelledControlArray1D as _CLabelledArraysLabelledControlArray1D
+from falcon_core._capi.labelled_arrays_labelled_measured_array import LabelledArraysLabelledMeasuredArray as _CLabelledArraysLabelledMeasuredArray
+from falcon_core._capi.labelled_arrays_labelled_measured_array1_d import LabelledArraysLabelledMeasuredArray1D as _CLabelledArraysLabelledMeasuredArray1D
+
+LABELLEDARRAYS_REGISTRY = {
+    LabelledControlArray: _CLabelledArraysLabelledControlArray,
+    LabelledControlArray1D: _CLabelledArraysLabelledControlArray1D,
+    LabelledMeasuredArray: _CLabelledArraysLabelledMeasuredArray,
+    LabelledMeasuredArray1D: _CLabelledArraysLabelledMeasuredArray1D,
+}
