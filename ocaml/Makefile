@@ -19,11 +19,12 @@ uninstall:
 
 dist:
 	rm -rf falcon_core-ocaml.tar.gz
-	tar -czf falcon_core-ocaml.tar.gz \
+	tar -czf /tmp/falcon_core-ocaml.tar.gz \
 		--exclude='_build' \
 		--exclude='.git' \
 		--exclude='*.tar.gz' \
 		.
+	mv /tmp/falcon_core-ocaml.tar.gz .
 
 release: dist
 
