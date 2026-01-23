@@ -18,14 +18,22 @@ This is a comprehensive Lua port of the `falcon-core` C++ library, built using L
 - falcon-core C-API library (`libfalcon_core_c_api.so`)
 
 ### Via LuaRocks
+
 ```bash
 luarocks install falcon-core
 ```
 
 ### From Source
+
 ```bash
 cd lua/
-luarocks make rockspec/falcon-core-scm-1.rockspec
+luarocks make falcon-core-0.1-1.rockspec
+```
+
+### Using Makefile (Optional)
+
+```bash
+make install
 ```
 
 ## Quick Start
@@ -63,15 +71,17 @@ lua/
 ## Development
 
 ### Running Tests
+
 ```bash
 cd lua/
-busted tests/
+luajit run_tests.lua
 ```
 
 ### Coverage
+
 ```bash
-luacov-console -s
-luacov-console tests/
+cd lua/
+luajit run_lua_coverage.lua
 ```
 
 ### Regenerating Bindings

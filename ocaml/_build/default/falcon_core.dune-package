@@ -1,6 +1,6 @@
 (lang dune 3.21)
 (name falcon_core)
-(sections (lib .) (libexec .))
+(sections (lib .) (libexec .) (doc ../../doc/falcon_core))
 (files
  (lib
   (META
@@ -21,7 +21,8 @@
    falcon_core__Capi_bindings.cmt
    falcon_core__Capi_bindings.cmx
    opam))
- (libexec (falcon_core.cmxs)))
+ (libexec (falcon_core.cmxs))
+ (doc (README.md)))
 (library
  (name falcon_core)
  (kind normal)

@@ -21,3 +21,6 @@ lib: [
 libexec: [
   "_build/install/default/lib/falcon_core/falcon_core.cmxs"
 ]
+doc: [
+  "_build/install/default/doc/falcon_core/README.md"
+]

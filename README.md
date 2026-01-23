@@ -38,3 +38,21 @@ To generate a new binary wheel:
 make wheel
 ```
 This will use all available CPU cores for parallel Cythonization to speed up the process.
+
+# OCaml bindings
+The falcon-core language bindings for OCaml are located in the `ocaml/` directory.
+
+### Installation via opam
+```bash
+cd ocaml/
+opam install .
+```
+
+# Lua bindings
+The falcon-core language bindings for Lua are located in the `lua/` directory.
+
+### Installation via LuaRocks
+```bash
+cd lua/
+luarocks make falcon-core-0.1-1.rockspec
+```
