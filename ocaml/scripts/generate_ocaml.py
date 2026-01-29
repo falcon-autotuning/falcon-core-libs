@@ -60,6 +60,37 @@ class OCamlGenerator:
             "lazy", "assert", "asr", "land", "lor", "lsl", "lsr", "lxor", "mod", "or", "sig", "struct"
         }
 
+        self.custom_helpers = {
+            "String": [
+                "  let of_string s = wrap s"
+            ],
+            "Connections": [
+                "  let from_list l =",
+                "    let c = new_empty () in",
+                "    List.iter (fun v -> ignore (push_back c#raw v#raw)) l;",
+                "    c"
+            ],
+            "Adjacency": [
+                "  let of_arrays ~data ~shape indexes =",
+                "    let ndim = Array.length shape in",
+                "    let data_ptr = Ctypes.allocate_n Ctypes.int ~count:(Array.length data) in",
+                "    Array.iteri (fun i v -> Ctypes.((data_ptr +@ i) <-@ v)) data;",
+                "    let shape_ptr = Ctypes.allocate_n Ctypes.size_t ~count:ndim in",
+                "    Array.iteri (fun i v -> Ctypes.((shape_ptr +@ i) <-@ Unsigned.Size_t.of_int v)) shape;",
+                "    make data_ptr shape_ptr (Unsigned.Size_t.of_int ndim) indexes#raw"
+            ],
+            "Channel": [
+                "  let of_string s = make (String.wrap s)"
+            ],
+            "Gname": [
+                "  let of_string s = make (String.wrap s)"
+            ],
+            "Config": [
+                "  let create ~screening_gates ~plunger_gates ~ohmics ~barrier_gates ~reservoir_gates ~groups ~wiring_dc ~constraints =",
+                "    make screening_gates#raw plunger_gates#raw ohmics#raw barrier_gates#raw reservoir_gates#raw groups#raw wiring_dc#raw constraints#raw"
+            ]
+        }
+
     def safe_name(self, name: str) -> str:
         if name in self.ocaml_keywords:
             return name + "_"
@@ -312,6 +343,9 @@ class OCamlGenerator:
                     args_params = " ".join([self.clean_arg_name(arg.name) for arg in method.args])
                     call_args = " ".join([self.clean_arg_name(arg.name) for arg in method.args])
                     lines.append(f"  let {name} {args_params} = {self.safe_name(method.name.lower())} {call_args}")
+
+            if cls.name in self.custom_helpers:
+                lines.extend(self.custom_helpers[cls.name])
 
             lines.append("end")
             lines.append("")

@@ -70,6 +70,7 @@ module String = struct
   type t = c_string
   let make raw length = new c_string (string_create raw length)
   let wrap raw = string_wrap raw
+  let of_string s = wrap s
 end
 
 class c_listsizet (h : unit ptr) = object(self)
@@ -3115,6 +3116,10 @@ module Connections = struct
   let items handle = connections_items handle
   let contains handle value = connections_contains handle value
   let index handle value = connections_index handle value
+  let from_list l =
+    let c = new_empty () in
+    List.iter (fun v -> ignore (push_back c#raw v#raw)) l;
+    c
 end
 
 class c_gaterelations (h : unit ptr) = object(self)
@@ -3296,6 +3301,13 @@ module Adjacency = struct
   let sum handle = adjacency_sum handle
   let where handle value = adjacency_where handle value
   let flip handle axis = adjacency_flip handle axis
+  let of_arrays ~data ~shape indexes =
+    let ndim = Array.length shape in
+    let data_ptr = Ctypes.allocate_n Ctypes.int ~count:(Array.length data) in
+    Array.iteri (fun i v -> Ctypes.((data_ptr +@ i) <-@ v)) data;
+    let shape_ptr = Ctypes.allocate_n Ctypes.size_t ~count:ndim in
+    Array.iteri (fun i v -> Ctypes.((shape_ptr +@ i) <-@ Unsigned.Size_t.of_int v)) shape;
+    make data_ptr shape_ptr (Unsigned.Size_t.of_int ndim) indexes#raw
 end
 
 class c_config (h : unit ptr) = object(self)
@@ -3406,6 +3418,8 @@ module Config = struct
   let has_plunger_gate handle plunger_gate = config_has_plunger_gate handle plunger_gate
   let has_reservoir_gate handle reservoir_gate = config_has_reservoir_gate handle reservoir_gate
   let has_screening_gate handle screening_gate = config_has_screening_gate handle screening_gate
+  let create ~screening_gates ~plunger_gates ~ohmics ~barrier_gates ~reservoir_gates ~groups ~wiring_dc ~constraints =
+    make screening_gates#raw plunger_gates#raw ohmics#raw barrier_gates#raw reservoir_gates#raw groups#raw wiring_dc#raw constraints#raw
 end
 
 class c_group (h : unit ptr) = object(self)
@@ -4943,6 +4957,7 @@ module Channel = struct
   let not_equal handle other = channel_not_equal handle other
   let to_json_string handle = channel_to_json_string handle
   let name handle = channel_name handle
+  let of_string s = make (String.wrap s)
 end
 
 class c_channels (h : unit ptr) = object(self)
@@ -4988,6 +5003,7 @@ module Gname = struct
   let not_equal handle other = gname_not_equal handle other
   let to_json_string handle = gname_to_json_string handle
   let gname handle = gname_gname handle
+  let of_string s = make (String.wrap s)
 end
 
 module List = struct
