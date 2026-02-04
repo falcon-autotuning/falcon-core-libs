@@ -1,6 +1,5 @@
-REPO = falcon-autotuning/falcon-core
-RELEASE_TAG = v0.0.2
-LIBS_RELEASE_TAG = v0.0.1
+RELEASE_TAG =v2026.02.04-de896c5c 
+LIBS_RELEASE_TAG = v0.0.2
 LIBS_REPO = falcon-autotuning/falcon-core-libs
 TMPDIR = /tmp/falcon-core-install
 LIBDIR = /usr/local/lib
@@ -28,24 +27,28 @@ install_libs:
 	@echo "Fetching latest release assets with gh..."
 	mkdir -p $(TMPDIR)
 	cd $(TMPDIR) && \
-	  gh release download $(RELEASE_TAG) --repo $(REPO) \
-	    -p "libfalcon_core_cpp.so" \
-	    -p "libfalcon_core_c_api.so" \
-	    -p "falcon-core-cpp-headers.zip" \
-	    -p "falcon-core-c-api-headers.zip"
-	@echo "Installing shared libraries..."
-	$(SUDO) install -Dm755 $(TMPDIR)/libfalcon_core_cpp.so $(LIBDIR)/libfalcon_core_cpp.so
-	$(SUDO) install -Dm755 $(TMPDIR)/libfalcon_core_c_api.so $(LIBDIR)/libfalcon_core_c_api.so
-	@echo "Extracting and installing C++ headers..."
-	mkdir -p $(TMPDIR)/cpp_headers
-	unzip -q -o $(TMPDIR)/falcon-core-cpp-headers.zip -d $(TMPDIR)/cpp_headers
+	  gh release download $(RELEASE_TAG) --repo falcon-autotuning/falcon-core --skip-existing \
+	    -p "falcon-core-cpp-linux-x64.tar.gz" \
+	    -p "falcon-core-cpp-linux-x64.tar.gz.sha256" \
+	    -p "falcon-core-c-api-linux-x64.tar.gz" \
+	    -p "falcon-core-c-api-linux-x64.tar.gz.sha256"
+	@echo "Verifying checksums..."
+	cd $(TMPDIR) && sha256sum -c falcon-core-cpp-linux-x64.tar.gz.sha256
+	cd $(TMPDIR) && sha256sum -c falcon-core-c-api-linux-x64.tar.gz.sha256
+	@echo "Extracting Tarballs..."
+	mkdir -p $(TMPDIR)/cpp
+	mkdir -p $(TMPDIR)/c_api
+	tar -xzf $(TMPDIR)/falcon-core-cpp-linux-x64.tar.gz -C $(TMPDIR)/cpp
+	tar -xzf $(TMPDIR)/falcon-core-c-api-linux-x64.tar.gz -C $(TMPDIR)/c_api
+	@echo "Installing Shared Libraries..."
+	$(SUDO) install -Dm755 $(TMPDIR)/cpp/lib/libfalcon_core_cpp.so $(LIBDIR)/libfalcon_core_cpp.so
+	$(SUDO) install -Dm755 $(TMPDIR)/c_api/lib/libfalcon_core_c_api.so $(LIBDIR)/libfalcon_core_c_api.so
+	@echo "Extracting and Installing C++ Headers..."
 	$(SUDO) mkdir -p $(INCLUDEDIR)/falcon-core-cpp
-	$(SUDO) cp -r $(TMPDIR)/cpp_headers/include/* $(INCLUDEDIR)/falcon-core-cpp/
-	@echo "Extracting and installing C API headers..."
-	mkdir -p $(TMPDIR)/c_api_headers
-	unzip -q -o $(TMPDIR)/falcon-core-c-api-headers.zip -d $(TMPDIR)/c_api_headers
+	$(SUDO) cp -r $(TMPDIR)/cpp/include/* $(INCLUDEDIR)/falcon-core-cpp/
+	@echo "Extracting and Installing C API Headers..."
 	$(SUDO) mkdir -p $(INCLUDEDIR)/falcon-core-c-api
-	$(SUDO) cp -r $(TMPDIR)/c_api_headers/include/* $(INCLUDEDIR)/falcon-core-c-api/
+	$(SUDO) cp -r $(TMPDIR)/c_api/include/* $(INCLUDEDIR)/falcon-core-c-api/
 	@echo "Updating linker cache..."
 	$(SUDO) ldconfig
 	@echo "falcon-core libraries and headers installed successfully."
