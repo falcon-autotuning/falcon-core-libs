@@ -292,6 +292,7 @@ func extractResultType(funcLine string) string {
 		return ""
 	}
 	beforeParen := strings.TrimSpace(funcLine[:parenIdx])
+	beforeParen = strings.TrimPrefix(beforeParen, "FALCON_CORE_C_API ")
 	parts := strings.Fields(beforeParen)
 	if len(parts) < 2 {
 		return ""
