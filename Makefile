@@ -1,4 +1,4 @@
-RELEASE_TAG =f2b287f9
+RELEASE_TAG =v1.0.0
 LIBS_RELEASE_TAG = v0.0.2
 LIBS_REPO = falcon-autotuning/falcon-core-libs
 TMPDIR = /tmp/falcon-core-install

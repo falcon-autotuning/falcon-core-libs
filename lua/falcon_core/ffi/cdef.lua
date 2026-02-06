@@ -1,7 +1,7 @@
 -- Auto-generated FFI definitions for falcon-core
-local ffi = require('ffi')
+local ffi = require("ffi")
 
-ffi.cdef[[
+ffi.cdef([[
 // --- Typedefs ---
 typedef int int32_t;
 typedef long int64_t;
@@ -3827,10 +3827,10 @@ SymbolUnitHandle SymbolUnit_power(SymbolUnitHandle handle, int power);
 SymbolUnitHandle SymbolUnit_with_prefix(SymbolUnitHandle handle, StringHandle prefix);
 double SymbolUnit_convert_value_to(SymbolUnitHandle handle, double value, SymbolUnitHandle target);
 bool SymbolUnit_is_compatible_with(SymbolUnitHandle handle, SymbolUnitHandle other);
-]]
+]])
 
 -- Export library and utilities
 return {
-    lib = ffi.load('/usr/local/lib/libfalcon_core_c_api.so'),
-    ffi = ffi
+	lib = ffi.load("/usr/local/.falcon/lib/libfalcon_core_c_api.so"),
+	ffi = ffi,
 }

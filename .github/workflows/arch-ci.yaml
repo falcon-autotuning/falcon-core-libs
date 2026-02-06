@@ -38,10 +38,34 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-aur-
 
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
           pacman -Syu --noconfirm
-          pacman -S --noconfirm base-devel git openssh cereal hdf5 boost bzip2 expat nlohmann-json openssl python sqlite yaml-cpp zlib ninja llvm ccache clang gtest glibc cmake lld github-cli unzip openmpi
+          pacman -S --noconfirm \
+            base-devel \
+            git \
+            wget \
+            curl \
+            pkg-config \
+            openssh \
+            cereal \
+            hdf5 \
+            boost \
+            bzip2 \
+            expat \
+            nlohmann-json \
+            openssl \
+            python \
+            sqlite \
+            yaml-cpp \
+            zlib \
+            ninja \
+            llvm \
+            ccache \
+            clang \
+            glibc \
+            cmake \
+            lld
 
       - name: Install falcon-core-cpp and falcon-core-cpp
         run: make install SUDO=
@@ -81,12 +105,19 @@ jobs:
           mkdir -p packaging
           chown builduser:builduser packaging
           runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+              if [ ! -d packaging/highfive ]; then git clone https://aur.archlinux.org/highfive.git packaging/highfive; fi
               if [ ! -d packaging/exprtk ]; then git clone https://aur.archlinux.org/exprtk.git packaging/exprtk; fi
-              cd packaging/exprtk
+              cd packaging/highfive
               if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
                 sudo pacman -U --noconfirm ./*.pkg.tar.zst
               else
-                PKGDEST="$(pwd)" makepkg -si --noconfirm --needed
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
+              fi
+              cd ../exprtk
+              if ls *.pkg.tar.zst 1> /dev/null 2>&1; then
+                sudo pacman -U --noconfirm ./*.pkg.tar.zst
+              else
+                PKGDEST=\"\$(pwd)\" makepkg -si --noconfirm --needed
               fi
             "
       - name: Checkout falcon-core-c-api
@@ -99,17 +130,11 @@ jobs:
           cd falcon-core
           mkdir -p /tmp/build /tmp/pkgdest /tmp/srcdest
           chown -R builduser:builduser /tmp/build /tmp/pkgdest /tmp/srcdest
-          runuser -u builduser -- env PATH=/usr/bin:$PATH BUILDDIR=/tmp/build PKGDEST=/tmp/pkgdest SRCDEST=/tmp/srcdest bash -c "
-            cd packaging/xtl
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xsimd
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../xtensor-io
-            makepkg -si --noconfirm --syncdeps --cleanbuild
-            cd ../highfive
-            makepkg -si --noconfirm --syncdeps --cleanbuild
+          runuser -u builduser -- env PATH=/usr/bin:$PATH bash -c "
+            cd packaging/xtl && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xsimd && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor && makepkg -si --noconfirm --syncdeps --cleanbuild
+            cd ../xtensor-io && makepkg -si --noconfirm --syncdeps --cleanbuild
           "
       - name: Build falcon-core-cpp
         run: |
