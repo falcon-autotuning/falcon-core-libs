@@ -60,6 +60,10 @@ install_libs:
 	    -p "$(ARCHIVE_CPP_SHA)" \
 	    -p "$(ARCHIVE_CAPI)" \
 	    -p "$(ARCHIVE_CAPI_SHA)"
+ifeq ($(findstring MINGW,$(UNAME_S)),MINGW)
+	dos2unix "$(TMPDIR)/falcon-core-cpp-windows-x64.zip.sha256"
+	dos2unix "$(TMPDIR)/falcon-core-c-api-windows-x64.zip.sha256"
+endif
 	@echo "Verifying checksums..."
 	cd "$(TMPDIR)" && sha256sum -c "$(shell echo $(ARCHIVE_CPP_SHA) | tr -d '\r')"
 	cd "$(TMPDIR)" && sha256sum -c "$(shell echo $(ARCHIVE_CAPI_SHA) | tr -d '\r')"
