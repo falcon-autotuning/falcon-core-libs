@@ -84,8 +84,8 @@ endif
 	$(SUDO) mkdir -p $(INCLUDEDIR)/falcon-core-c-api/falcon_core/
 	$(SUDO) cp -r $(TMPDIR)/c_api/include/falcon_core/* $(INCLUDEDIR)/falcon-core-c-api/falcon_core/
 	@echo "Installing other Headers..."
-	$(SUDO) rsync -a --exclude='falcon_core' $(TMPDIR)/cpp/include/ $(INCLUDEDIR)/
-	$(SUDO) rsync -a --exclude='falcon_core' $(TMPDIR)/c_api/include/ $(INCLUDEDIR)/
+	find $(TMPDIR)/cpp/include -mindepth 1 -maxdepth 1 ! -name 'falcon_core' -exec cp -r {} $(INCLUDEDIR)/ \;
+	find $(TMPDIR)/c_api/include -mindepth 1 -maxdepth 1 ! -name 'falcon_core' -exec cp -r {} $(INCLUDEDIR)/ \;
 ifeq ($(UNAME_S),Linux)
 	@echo "Updating linker cache..."
 	$(SUDO) ldconfig
