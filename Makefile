@@ -15,8 +15,8 @@ ifeq ($(UNAME_S),Linux)
   EXTRACT_CAPI = tar -xzf $(TMPDIR)/$(ARCHIVE_CAPI) -C $(TMPDIR)/c_api
 else
   # Assume Windows (Git Bash)
-  USERPROFILE := $(shell echo $$USERPROFILE | tr -d '\r')
-  TMPDIR = $(USERPROFILE)/AppData/Local/falcon/tmp/falcon-core-install
+  USERPROFILE := $(shell echo $$USERPROFILE | tr '\\' '/')
+  TMPDIR = $(USERPROFILE)/AppData/Local/Temp/falcon-core-install
   LIBDIR = $(USERPROFILE)/AppData/Local/falcon/lib
   INCLUDEDIR = $(USERPROFILE)/AppData/Local/falcon/include
   PCDIR = $(USERPROFILE)/AppData/Local/falcon/lib/pkgconfig
