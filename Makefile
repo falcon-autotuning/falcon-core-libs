@@ -13,6 +13,7 @@ ifeq ($(UNAME_S),Linux)
   ARCHIVE_CAPI_SHA = falcon-core-c-api-linux-x64.tar.gz.sha256
   EXTRACT_CPP = tar -xzf $(TMPDIR)/$(ARCHIVE_CPP) -C $(TMPDIR)/cpp
   EXTRACT_CAPI = tar -xzf $(TMPDIR)/$(ARCHIVE_CAPI) -C $(TMPDIR)/c_api
+	LIBSUBDIR =lib
 else
   # Assume Windows (Git Bash)
   USERPROFILE := $(shell echo $$USERPROFILE | tr '\\' '/')
@@ -27,6 +28,7 @@ else
   ARCHIVE_CAPI_SHA := $(shell echo falcon-core-c-api-windows-x64.zip.sha256 | tr -d '\r')
   EXTRACT_CPP = unzip -o $(TMPDIR)/$(ARCHIVE_CPP) -d $(TMPDIR)/cpp
   EXTRACT_CAPI = unzip -o $(TMPDIR)/$(ARCHIVE_CAPI) -d $(TMPDIR)/c_api
+	LIBSUBDIR =bin
 endif
 
 RELEASE_TAG =v1.1.0
@@ -73,11 +75,6 @@ endif
 	$(EXTRACT_CPP)
 	$(EXTRACT_CAPI)
 	@echo "Installing Shared Libraries..."
-ifeq ($(findstring MINGW,$(UNAME_S)),MINGW)
-  LIBSUBDIR = bin
-else
-  LIBSUBDIR = lib
-endif
 	$(SUDO) install -Dm755 $(TMPDIR)/cpp/$(LIBSUBDIR)/* $(LIBDIR)/
 	$(SUDO) install -Dm755 $(TMPDIR)/c_api/$(LIBSUBDIR)/* $(LIBDIR)/
 	@echo "Extracting and Installing C++ Headers..."
