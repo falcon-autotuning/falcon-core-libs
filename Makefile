@@ -61,8 +61,8 @@ install_libs:
 	    -p "$(ARCHIVE_CAPI)" \
 	    -p "$(ARCHIVE_CAPI_SHA)"
 	@echo "Verifying checksums..."
-	cd $(TMPDIR) && sha256sum -c $(ARCHIVE_CPP_SHA)
-	cd $(TMPDIR) && sha256sum -c $(ARCHIVE_CAPI_SHA)
+	cd "$(TMPDIR)" && sha256sum -c $(ARCHIVE_CPP_SHA)
+	cd "$(TMPDIR)" && sha256sum -c $(ARCHIVE_CAPI_SHA)
 	@echo "Extracting Archives..."
 	mkdir -p $(TMPDIR)/cpp
 	mkdir -p $(TMPDIR)/c_api
