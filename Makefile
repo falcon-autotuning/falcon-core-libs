@@ -22,9 +22,9 @@ else
   PCDIR = $(USERPROFILE)/AppData/Local/falcon/lib/pkgconfig
   SUDO =
   ARCHIVE_CPP = falcon-core-cpp-windows-x64.zip
-  ARCHIVE_CPP_SHA = falcon-core-cpp-windows-x64.zip.sha256
+  ARCHIVE_CPP_SHA := $(shell echo falcon-core-cpp-windows-x64.zip.sha256 | tr -d '\r')
   ARCHIVE_CAPI = falcon-core-c-api-windows-x64.zip
-  ARCHIVE_CAPI_SHA = falcon-core-c-api-windows-x64.zip.sha256
+  ARCHIVE_CAPI_SHA := $(shell echo falcon-core-c-api-windows-x64.zip.sha256 | tr -d '\r')
   EXTRACT_CPP = unzip -o $(TMPDIR)/$(ARCHIVE_CPP) -d $(TMPDIR)/cpp
   EXTRACT_CAPI = unzip -o $(TMPDIR)/$(ARCHIVE_CAPI) -d $(TMPDIR)/c_api
 endif
