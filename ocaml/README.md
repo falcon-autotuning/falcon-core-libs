@@ -7,35 +7,40 @@ OCaml bindings for `falcon-core` generated using `ctypes`.
 - OCaml (>= 4.14.0)
 - Dune (>= 3.0)
 - `ctypes` and `ctypes-foreign`
-- `libfalcon_core_c_api.so` installed in your library path (e.g., `/usr/local/lib`).
+- **falcon-core C library**:  
+  You must have `libfalcon_core_c_api.so` installed and available in your library path (e.g., `/usr/local/lib`).  
+  _Install this via your system package manager or from source. Example for Ubuntu:_  
 
-## Installation
+  ```sh
+  sudo cp path/to/libfalcon_core_c_api.so /usr/local/lib/
+  sudo ldconfig
+  ```
 
-### From Source
+## Installation using opam pin
 
-```bash
-make install
+You can install directly from the GitHub repository:
+
+```sh
+opam pin add falcon_core https://github.com/falcon-autotuning/falcon-core-libs.git
 ```
-
-This will build the library and install it into your current opam switch.
 
 ## Development
 
 ### Building
 
-```bash
+```sh
 make build
 ```
 
 ### Running Tests
 
-```bash
+```sh
 make test
 ```
 
 ### Cleaning
 
-```bash
+```sh
 make clean
 ```
 
@@ -43,7 +48,7 @@ make clean
 
 To create a source distribution tarball for release:
 
-```bash
+```sh
 make dist
 ```
 
@@ -58,3 +63,8 @@ In your project's `dune` file:
  (name my_prog)
  (libraries falcon_core))
 ```
+
+## Notes
+
+- Ensure `libfalcon_core_c_api.so` is installed and discoverable by your system linker before using this package.
+- If you encounter linking errors, check your `LD_LIBRARY_PATH` or install the C library to a standard location.

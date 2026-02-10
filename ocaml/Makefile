@@ -10,13 +10,6 @@ build:
 test:
 	dune runtest
 
-install:
-	dune build @install
-	opam install .
-
-uninstall:
-	opam uninstall falcon_core
-
 dist:
 	rm -rf falcon_core-ocaml.tar.gz
 	tar -czf /tmp/falcon_core-ocaml.tar.gz \
