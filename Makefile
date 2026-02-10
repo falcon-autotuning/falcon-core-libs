@@ -73,8 +73,13 @@ endif
 	$(EXTRACT_CPP)
 	$(EXTRACT_CAPI)
 	@echo "Installing Shared Libraries..."
-	$(SUDO) install -Dm755 $(TMPDIR)/cpp/lib/* $(LIBDIR)/
-	$(SUDO) install -Dm755 $(TMPDIR)/c_api/lib/* $(LIBDIR)/
+ifeq ($(findstring MINGW,$(UNAME_S)),MINGW)
+  LIBSUBDIR = bin
+else
+  LIBSUBDIR = lib
+endif
+	$(SUDO) install -Dm755 $(TMPDIR)/cpp/$(LIBSUBDIR)/* $(LIBDIR)/
+	$(SUDO) install -Dm755 $(TMPDIR)/c_api/$(LIBSUBDIR)/* $(LIBDIR)/
 	@echo "Extracting and Installing C++ Headers..."
 	$(SUDO) mkdir -p $(INCLUDEDIR)/falcon-core-cpp/falcon_core/
 	$(SUDO) cp -r $(TMPDIR)/cpp/include/falcon_core/* $(INCLUDEDIR)/falcon-core-cpp/falcon_core/
