@@ -1,3 +1,12 @@
+# Repo and release configuration
+REPO = falcon-autotuning/falcon-core
+RELEASE_TAG = v1.1.0
+LIBS_RELEASE_TAG = v0.0.2
+LIBS_REPO = falcon-autotuning/falcon-core-libs
+
+# GitHub release download base URL
+GITHUB_RELEASE_URL = https://github.com/$(REPO)/releases/download/$(RELEASE_TAG)
+
 # OS detection
 UNAME_S := $(shell uname -s)
 
@@ -13,7 +22,7 @@ ifeq ($(UNAME_S),Linux)
   ARCHIVE_CAPI_SHA = falcon-core-c-api-linux-x64.tar.gz.sha256
   EXTRACT_CPP = tar -xzf $(TMPDIR)/$(ARCHIVE_CPP) -C $(TMPDIR)/cpp
   EXTRACT_CAPI = tar -xzf $(TMPDIR)/$(ARCHIVE_CAPI) -C $(TMPDIR)/c_api
-	LIBSUBDIR =lib
+  LIBSUBDIR = lib
 else
   # Assume Windows (Git Bash)
   USERPROFILE := $(shell echo $$USERPROFILE | tr '\\' '/')
@@ -28,12 +37,8 @@ else
   ARCHIVE_CAPI_SHA := $(shell echo falcon-core-c-api-windows-x64.zip.sha256 | tr -d '\r')
   EXTRACT_CPP = unzip -o $(TMPDIR)/$(ARCHIVE_CPP) -d $(TMPDIR)/cpp
   EXTRACT_CAPI = unzip -o $(TMPDIR)/$(ARCHIVE_CAPI) -d $(TMPDIR)/c_api
-	LIBSUBDIR =bin
+  LIBSUBDIR = bin
 endif
-
-RELEASE_TAG =v1.1.0
-LIBS_RELEASE_TAG = v0.0.2
-LIBS_REPO = falcon-autotuning/falcon-core-libs
 
 prefix ?= $(LIBDIR)
 exec_prefix ?= $(prefix)
@@ -51,17 +56,23 @@ all: install
 install: install_libs pkgconfig
 
 install_libs:
-	@echo "Fetching latest release assets with gh..."
+	@echo "Fetching latest release assets from GitHub..."
 	mkdir -p $(TMPDIR)
 	$(SUDO) mkdir -p $(prefix)
 	$(SUDO) mkdir -p $(LIBDIR)
 	$(SUDO) mkdir -p $(INCLUDEDIR)
-	cd $(TMPDIR) && \
-	  gh release download $(RELEASE_TAG) --repo falcon-autotuning/falcon-core --skip-existing \
-	    -p "$(ARCHIVE_CPP)" \
-	    -p "$(ARCHIVE_CPP_SHA)" \
-	    -p "$(ARCHIVE_CAPI)" \
-	    -p "$(ARCHIVE_CAPI_SHA)"
+	@echo "Downloading $(ARCHIVE_CPP)..."
+	curl -L -f -o $(TMPDIR)/$(ARCHIVE_CPP) \
+		$(GITHUB_RELEASE_URL)/$(ARCHIVE_CPP)
+	@echo "Downloading $(ARCHIVE_CPP_SHA)..."
+	curl -L -f -o $(TMPDIR)/$(ARCHIVE_CPP_SHA) \
+		$(GITHUB_RELEASE_URL)/$(ARCHIVE_CPP_SHA)
+	@echo "Downloading $(ARCHIVE_CAPI)..."
+	curl -L -f -o $(TMPDIR)/$(ARCHIVE_CAPI) \
+		$(GITHUB_RELEASE_URL)/$(ARCHIVE_CAPI)
+	@echo "Downloading $(ARCHIVE_CAPI_SHA)..."
+	curl -L -f -o $(TMPDIR)/$(ARCHIVE_CAPI_SHA) \
+		$(GITHUB_RELEASE_URL)/$(ARCHIVE_CAPI_SHA)
 ifeq ($(findstring MINGW,$(UNAME_S)),MINGW)
 	dos2unix "$(TMPDIR)/falcon-core-cpp-windows-x64.zip.sha256"
 	dos2unix "$(TMPDIR)/falcon-core-c-api-windows-x64.zip.sha256"
