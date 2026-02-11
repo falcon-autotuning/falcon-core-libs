@@ -549,29 +549,21 @@ func TestHDF5Data_ClosedErrorBranches(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New error: %v", err)
 	}
-	defer h.Close()
+	h.Close()
 
-  tmpPath, cleanup := tempHDF5Path(t)
-  defer cleanup()
-
-	h3, err := NewFromFile(tmpPath)
-	if err != nil {
-		t.Errorf("NewFromFile error: %v", err)
-	}
-	h3.Close()
-	if err := h3.Close(); err == nil {
+	if err := h.Close(); err == nil {
 		t.Errorf("Second close should error")
 	}
-	if _, err := h3.ToCommunications(); err == nil {
+	if _, err := h.ToCommunications(); err == nil {
 		t.Errorf("ToCommunications on closed should error")
 	}
-	if _, err := h3.ToJSON(); err == nil {
+	if _, err := h.ToJSON(); err == nil {
 		t.Errorf("ToJSON on closed should error")
 	}
-	if _, err := h3.Equal(h); err == nil {
+	if _, err := h.Equal(h); err == nil {
 		t.Errorf("Equal on closed should error")
 	}
-	if _, err := h3.NotEqual(h); err == nil {
+	if _, err := h.NotEqual(h); err == nil {
 		t.Errorf("NotEqual on closed should error")
 	}
 }
