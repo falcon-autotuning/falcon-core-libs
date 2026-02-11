@@ -48,11 +48,21 @@ import (
 // Add a helper function to create OS-compatible temp file paths
 func tempHDF5Path(t *testing.T) (string, func()) {
     t.Helper()
+    
     tmpDir := os.TempDir()
-    tmpFile := filepath.Join(tmpDir, "testfile.h5")
+    
+    // Ensure temp directory exists (it should, but let's be sure)
+    if _, err := os.Stat(tmpDir); os.IsNotExist(err) {
+        t.Fatalf("Temp directory does not exist: %s", tmpDir)
+    }
+    
+    // Generate unique filename
+    tmpFile := filepath.Join(tmpDir, fmt.Sprintf("hdf5test-%d.h5", time.Now().UnixNano()))
     
     cleanup := func() {
-        os.Remove(tmpFile)
+        if _, err := os.Stat(tmpFile); err == nil {
+            os.Remove(tmpFile)
+        }
     }
     
     return tmpFile, cleanup
