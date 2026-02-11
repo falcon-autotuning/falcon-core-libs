@@ -2,7 +2,9 @@ package hdf5data
 
 import (
 	"fmt"
-	"testing"
+	"testing"    
+	"os"
+  "path/filepath"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/acquisitioncontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/communications/messages/measurementrequest"
@@ -342,7 +344,7 @@ func TestHDF5Data_NewAndToFile(t *testing.T) {
 
 	h, err := New(shape, unitDomain, domainLabels, ranges, metadata, "title", 42, 123456)
 	if err != nil {
-			t.Fatalf("New error: %v", err)
+	a		t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
 	
