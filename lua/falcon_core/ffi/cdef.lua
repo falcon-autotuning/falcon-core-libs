@@ -3831,6 +3831,6 @@ bool SymbolUnit_is_compatible_with(SymbolUnitHandle handle, SymbolUnitHandle oth
 
 -- Export library and utilities
 return {
-	lib = ffi.load("/usr/local/.falcon/lib/libfalcon_core_c_api.so"),
+	lib = ffi.load("/usr/local/falcon/lib/libfalcon_core_c_api.so"),
 	ffi = ffi,
 }

@@ -9,7 +9,9 @@ all:
 	@echo "Lua port is pure Lua (LuaJIT FFI), no build step required."
 
 test:
-	lua run_tests.lua
+	LUA_PATH="$$HOME/.luarocks/share/lua/5.4/?.lua;$$HOME/.luarocks/share/lua/5.4/?/init.lua;$$LUA_PATH" \
+	LUA_CPATH="$$HOME/.luarocks/lib/lua/5.4/?.so;$$LUA_CPATH" \
+	luajit run_tests.lua
 
 install:
 	mkdir -p $(DESTDIR)$(LUA_DIR)/falcon_core
