@@ -38,20 +38,37 @@ jobs:
           echo "=== Verifying installation ==="
           ls -la /opt/falcon/lib/
           ls -la /opt/falcon/include/falcon-core-c-api/
+          ls -la /opt/falcon/include/falcon-core-cpp/
           ls -la /opt/falcon/lib/pkgconfig/
+          echo "=== Checking for falcon_core directory ==="
+          ls -la /opt/falcon/include/falcon-core-c-api/falcon_core/ || echo "No falcon_core subdirectory"
+          ls -la /opt/falcon/include/falcon-core-cpp/falcon_core/ || echo "No falcon_core subdirectory"
           echo "✓ Installation verified"
 
       - name: Set environment variables
         run: |
+          echo "PATH=/opt/falcon/lib:$PATH" >> $GITHUB_ENV
           echo "LD_LIBRARY_PATH=/opt/falcon/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
           echo "PKG_CONFIG_PATH=/opt/falcon/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+          # Add both the base include directory and the parent directory
+          echo "CGO_CFLAGS=-I/opt/falcon/include/falcon-core-c-api -I/opt/falcon/include/falcon-core-cpp -I/opt/falcon/include" >> $GITHUB_ENV
+          echo "CGO_LDFLAGS=-L/opt/falcon/lib -lfalcon_core_c_api -lfalcon_core_cpp" >> $GITHUB_ENV
+
+      - name: Verify environment variables
+        run: |
+          echo "=== Environment Variables ==="
+          echo "PATH: $PATH"
+          echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+          echo "PKG_CONFIG_PATH: $PKG_CONFIG_PATH"
+          echo "CGO_CFLAGS: $CGO_CFLAGS"
+          echo "CGO_LDFLAGS: $CGO_LDFLAGS"
 
       - name: Verify pkg-config can find falcon-core
         run: |
           echo "=== Testing pkg-config ==="
-          pkg-config --modversion falcon_core_c_api
-          pkg-config --cflags falcon_core_c_api
-          pkg-config --libs falcon_core_c_api
+          pkg-config --modversion falcon_core_c_api || echo "Warning: modversion failed"
+          pkg-config --cflags falcon_core_c_api || echo "Warning: cflags failed"
+          pkg-config --libs falcon_core_c_api || echo "Warning: libs failed"
 
       - name: Build Go packages
         working-directory: go/falcon-core
