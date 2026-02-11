@@ -43,6 +43,19 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
+// Add a helper function to create OS-compatible temp file paths
+func tempHDF5Path(t *testing.T) (string, func()) {
+    t.Helper()
+    tmpDir := os.TempDir()
+    tmpFile := filepath.Join(tmpDir, "testfile.h5")
+    
+    cleanup := func() {
+        os.Remove(tmpFile)
+    }
+    
+    return tmpFile, cleanup
+}
+
 func mustLabelledMeasuredArray(name string) *labelledmeasuredarray.Handle {
 	// Create a simple farraydouble
 	fa, err := farraydouble.FromData([]float64{1.0, 2.0, 3.0}, []uint64{3})
@@ -323,12 +336,20 @@ func TestHDF5Data_NewAndToFile(t *testing.T) {
 	defer ranges.Close()
 	metadata := mustMapStringString(name)
 	defer metadata.Close()
+
+  tmpPath, cleanup := tempHDF5Path(t)
+  defer cleanup()
+
 	h, err := New(shape, unitDomain, domainLabels, ranges, metadata, "title", 42, 123456)
 	if err != nil {
-		t.Fatalf("New error: %v", err)
+			t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
-	_ = h.ToFile("/tmp/testfile.h5")
+	
+	err = h.ToFile(tmpPath)  // Now using OS-compatible path
+	if err != nil {
+			t.Fatalf("ToFile error: %v", err)
+	}
 }
 
 func TestHDF5Data_ToCommunications(t *testing.T) {
@@ -466,8 +487,12 @@ func TestHDF5Data_NewFromFile(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
-	_ = h.ToFile("/tmp/testfile.h5")
-	h3, err := NewFromFile("/tmp/testfile.h5")
+
+  tmpPath, cleanup := tempHDF5Path(t)
+  defer cleanup()
+
+	_ = h.ToFile(tmpPath)
+	h3, err := NewFromFile(tmpPath)
 	if err != nil {
 		t.Errorf("NewFromFile error: %v", err)
 	}
@@ -512,8 +537,11 @@ func TestHDF5Data_ClosedErrorBranches(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
-	_ = h.ToFile("/tmp/testfile.h5")
-	h3, err := NewFromFile("/tmp/testfile.h5")
+
+  tmpPath, cleanup := tempHDF5Path(t)
+  defer cleanup()
+
+	h3, err := NewFromFile(tmpPath)
 	if err != nil {
 		t.Errorf("NewFromFile error: %v", err)
 	}
