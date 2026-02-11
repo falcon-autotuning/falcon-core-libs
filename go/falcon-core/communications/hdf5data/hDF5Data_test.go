@@ -2,7 +2,10 @@ package hdf5data
 
 import (
 	"fmt"
-	"testing"
+	"testing"    
+	"os"
+  "path/filepath"
+	"time"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/acquisitioncontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/communications/messages/measurementrequest"
@@ -42,6 +45,29 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
+
+// Add a helper function to create OS-compatible temp file paths
+func tempHDF5Path(t *testing.T) (string, func()) {
+    t.Helper()
+    
+    tmpDir := os.TempDir()
+    
+    // Ensure temp directory exists (it should, but let's be sure)
+    if _, err := os.Stat(tmpDir); os.IsNotExist(err) {
+        t.Fatalf("Temp directory does not exist: %s", tmpDir)
+    }
+    
+    // Generate unique filename
+    tmpFile := filepath.Join(tmpDir, fmt.Sprintf("hdf5test-%d.h5", time.Now().UnixNano()))
+    
+    cleanup := func() {
+        if _, err := os.Stat(tmpFile); err == nil {
+            os.Remove(tmpFile)
+        }
+    }
+    
+    return tmpFile, cleanup
+}
 
 func mustLabelledMeasuredArray(name string) *labelledmeasuredarray.Handle {
 	// Create a simple farraydouble
@@ -323,12 +349,20 @@ func TestHDF5Data_NewAndToFile(t *testing.T) {
 	defer ranges.Close()
 	metadata := mustMapStringString(name)
 	defer metadata.Close()
+
+  tmpPath, cleanup := tempHDF5Path(t)
+  defer cleanup()
+
 	h, err := New(shape, unitDomain, domainLabels, ranges, metadata, "title", 42, 123456)
 	if err != nil {
-		t.Fatalf("New error: %v", err)
+			t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
-	_ = h.ToFile("/tmp/testfile.h5")
+	
+	err = h.ToFile(tmpPath)  // Now using OS-compatible path
+	if err != nil {
+			t.Fatalf("ToFile error: %v", err)
+	}
 }
 
 func TestHDF5Data_ToCommunications(t *testing.T) {
@@ -466,8 +500,12 @@ func TestHDF5Data_NewFromFile(t *testing.T) {
 		t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
-	_ = h.ToFile("/tmp/testfile.h5")
-	h3, err := NewFromFile("/tmp/testfile.h5")
+
+  tmpPath, cleanup := tempHDF5Path(t)
+  defer cleanup()
+
+	_ = h.ToFile(tmpPath)
+	h3, err := NewFromFile(tmpPath)
 	if err != nil {
 		t.Errorf("NewFromFile error: %v", err)
 	}
@@ -511,26 +549,21 @@ func TestHDF5Data_ClosedErrorBranches(t *testing.T) {
 	if err != nil {
 		t.Fatalf("New error: %v", err)
 	}
-	defer h.Close()
-	_ = h.ToFile("/tmp/testfile.h5")
-	h3, err := NewFromFile("/tmp/testfile.h5")
-	if err != nil {
-		t.Errorf("NewFromFile error: %v", err)
-	}
-	h3.Close()
-	if err := h3.Close(); err == nil {
+	h.Close()
+
+	if err := h.Close(); err == nil {
 		t.Errorf("Second close should error")
 	}
-	if _, err := h3.ToCommunications(); err == nil {
+	if _, err := h.ToCommunications(); err == nil {
 		t.Errorf("ToCommunications on closed should error")
 	}
-	if _, err := h3.ToJSON(); err == nil {
+	if _, err := h.ToJSON(); err == nil {
 		t.Errorf("ToJSON on closed should error")
 	}
-	if _, err := h3.Equal(h); err == nil {
+	if _, err := h.Equal(h); err == nil {
 		t.Errorf("Equal on closed should error")
 	}
-	if _, err := h3.NotEqual(h); err == nil {
+	if _, err := h.NotEqual(h); err == nil {
 		t.Errorf("NotEqual on closed should error")
 	}
 }
