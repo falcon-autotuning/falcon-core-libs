@@ -344,7 +344,7 @@ func TestHDF5Data_NewAndToFile(t *testing.T) {
 
 	h, err := New(shape, unitDomain, domainLabels, ranges, metadata, "title", 42, 123456)
 	if err != nil {
-	a		t.Fatalf("New error: %v", err)
+			t.Fatalf("New error: %v", err)
 	}
 	defer h.Close()
 	
