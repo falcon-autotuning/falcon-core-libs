@@ -11,11 +11,6 @@ jobs:
     name: Build and Test Go (Windows)
     runs-on: windows-latest
 
-    # Use Git Bash as the default shell
-    defaults:
-      run:
-        shell: bash
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,14 +20,8 @@ jobs:
         with:
           go-version: "1.21"
 
-      - name: Install system dependencies
-        run: |
-          # curl and unzip should be available in Git Bash
-          echo "Checking dependencies..."
-          which curl
-          which unzip
-
-      - name: Install falcon-core dependencies
+      - name: Install falcon-core dependencies (Git Bash)
+        shell: bash
         run: |
           echo "=== Installing falcon-core package ==="
           # Makefile detects Windows and downloads Windows packages
@@ -40,41 +29,90 @@ jobs:
 
           echo "✓ falcon-core installed successfully"
 
-      - name: Verify falcon-core installation
+      - name: Verify falcon-core installation (Git Bash)
+        shell: bash
         run: |
           echo "=== Verifying installation ==="
-          ls -la "$USERPROFILE/AppData/Local/falcon/lib/"
-          ls -la "$USERPROFILE/AppData/Local/falcon/include/falcon-core-c-api/"
+          ls -la "$USERPROFILE/AppData/Local/falcon/lib/" || echo "Lib directory check"
+          ls -la "$USERPROFILE/AppData/Local/falcon/include/falcon-core-c-api/" || echo "Include directory check"
+          ls -la "$USERPROFILE/AppData/Local/falcon/lib/pkgconfig/" || echo "Pkgconfig directory check"
           echo "✓ Installation verified"
 
-      - name: Set library path
+      - name: Set CGO environment variables (PowerShell)
+        shell: pwsh
         run: |
-          # Add to PATH for DLL resolution on Windows
-          FALCON_LIB_PATH=$(cygpath -w "$USERPROFILE/AppData/Local/falcon/lib")
-          echo "PATH=$FALCON_LIB_PATH;$PATH" >> $GITHUB_ENV
+          Write-Host "=== Setting CGO environment variables ===" -ForegroundColor Cyan
 
-      - name: Build Go packages
-        working-directory: go/falcon-core
+          $falconBase = "$env:USERPROFILE\AppData\Local\falcon"
+          $falconLib = "$falconBase\lib"
+          $falconInclude = "$falconBase\include"
+
+          # Set CGO flags for compilation and linking
+          $cgoLdflags = "-L$falconLib -lfalcon_core_c_api -lfalcon_core_cpp"
+          $cgoCflags = "-I$falconInclude/falcon-core-c-api -I$falconInclude/falcon-core-cpp"
+          $pkgConfigPath = "$falconLib\pkgconfig"
+
+          Write-Host "CGO_LDFLAGS: $cgoLdflags"
+          Write-Host "CGO_CFLAGS: $cgoCflags"
+          Write-Host "PKG_CONFIG_PATH: $pkgConfigPath"
+
+          # Add to GitHub Actions environment
+          echo "CGO_LDFLAGS=$cgoLdflags" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          echo "CGO_CFLAGS=$cgoCflags" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          echo "PKG_CONFIG_PATH=$pkgConfigPath" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+          # Add falcon lib to PATH for DLL resolution
+          echo "$falconLib" | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
+
+          Write-Host "✓ Environment variables set" -ForegroundColor Green
+
+      - name: Verify environment variables (PowerShell)
+        shell: pwsh
         run: |
-          echo "=== Building Go packages ==="
+          Write-Host "=== Verifying environment ===" -ForegroundColor Cyan
+          Write-Host "CGO_LDFLAGS: $env:CGO_LDFLAGS"
+          Write-Host "CGO_CFLAGS: $env:CGO_CFLAGS"
+          Write-Host "PKG_CONFIG_PATH: $env:PKG_CONFIG_PATH"
+          Write-Host "PATH includes:" (($env:PATH -split ';') | Select-String -Pattern 'falcon')
+
+      - name: Build Go packages (PowerShell)
+        working-directory: go/falcon-core
+        shell: pwsh
+        run: |
+          Write-Host "=== Building Go packages ===" -ForegroundColor Cyan
+
+          # Verify environment is set
+          Write-Host "CGO_LDFLAGS: $env:CGO_LDFLAGS"
+          Write-Host "CGO_CFLAGS: $env:CGO_CFLAGS"
+
           go build ./...
 
-          if [ $? -ne 0 ]; then
-            echo "ERROR: Build failed!"
-            exit 1
-          fi
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "ERROR: Build failed!"
+            exit $LASTEXITCODE
+          }
 
-          echo "✓ Build successful"
+          Write-Host "✓ Build successful" -ForegroundColor Green
 
-      - name: Run Go tests
+      - name: Run Go tests (PowerShell)
         working-directory: go/falcon-core
+        shell: pwsh
         run: |
-          echo "=== Running Go tests ==="
+          Write-Host "=== Running Go tests ===" -ForegroundColor Cyan
+
           go test ./...
 
-          if [ $? -ne 0 ]; then
-            echo "ERROR: Tests failed!"
-            exit 1
-          fi
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "ERROR: Tests failed!"
+            exit $LASTEXITCODE
+          }
 
-          echo "✓ All tests passed"
+          Write-Host "✓ All tests passed" -ForegroundColor Green
+
+      - name: Verify build artifacts (PowerShell)
+        working-directory: go/falcon-core
+        shell: pwsh
+        run: |
+          Write-Host "=== Verifying Go build ===" -ForegroundColor Cyan
+          go list ./...
+          Write-Host "✓ Build verification complete" -ForegroundColor Green

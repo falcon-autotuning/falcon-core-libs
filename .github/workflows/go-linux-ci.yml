@@ -38,11 +38,20 @@ jobs:
           echo "=== Verifying installation ==="
           ls -la /opt/falcon/lib/
           ls -la /opt/falcon/include/falcon-core-c-api/
+          ls -la /opt/falcon/lib/pkgconfig/
           echo "✓ Installation verified"
 
-      - name: Set library path
+      - name: Set environment variables
         run: |
           echo "LD_LIBRARY_PATH=/opt/falcon/lib:$LD_LIBRARY_PATH" >> $GITHUB_ENV
+          echo "PKG_CONFIG_PATH=/opt/falcon/lib/pkgconfig:$PKG_CONFIG_PATH" >> $GITHUB_ENV
+
+      - name: Verify pkg-config can find falcon-core
+        run: |
+          echo "=== Testing pkg-config ==="
+          pkg-config --modversion falcon_core_c_api
+          pkg-config --cflags falcon_core_c_api
+          pkg-config --libs falcon_core_c_api
 
       - name: Build Go packages
         working-directory: go/falcon-core
