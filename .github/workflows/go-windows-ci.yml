@@ -1,0 +1,80 @@
+name: Go Windows CI
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches: [dev]
+
+jobs:
+  build-and-test:
+    name: Build and Test Go (Windows)
+    runs-on: windows-latest
+
+    # Use Git Bash as the default shell
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.21"
+
+      - name: Install system dependencies
+        run: |
+          # curl and unzip should be available in Git Bash
+          echo "Checking dependencies..."
+          which curl
+          which unzip
+
+      - name: Install falcon-core dependencies
+        run: |
+          echo "=== Installing falcon-core package ==="
+          # Makefile detects Windows and downloads Windows packages
+          make install
+
+          echo "✓ falcon-core installed successfully"
+
+      - name: Verify falcon-core installation
+        run: |
+          echo "=== Verifying installation ==="
+          ls -la "$USERPROFILE/AppData/Local/falcon/lib/"
+          ls -la "$USERPROFILE/AppData/Local/falcon/include/falcon-core-c-api/"
+          echo "✓ Installation verified"
+
+      - name: Set library path
+        run: |
+          # Add to PATH for DLL resolution on Windows
+          FALCON_LIB_PATH=$(cygpath -w "$USERPROFILE/AppData/Local/falcon/lib")
+          echo "PATH=$FALCON_LIB_PATH;$PATH" >> $GITHUB_ENV
+
+      - name: Build Go packages
+        working-directory: go/falcon-core
+        run: |
+          echo "=== Building Go packages ==="
+          go build ./...
+
+          if [ $? -ne 0 ]; then
+            echo "ERROR: Build failed!"
+            exit 1
+          fi
+
+          echo "✓ Build successful"
+
+      - name: Run Go tests
+        working-directory: go/falcon-core
+        run: |
+          echo "=== Running Go tests ==="
+          go test ./...
+
+          if [ $? -ne 0 ]; then
+            echo "ERROR: Tests failed!"
+            exit 1
+          fi
+
+          echo "✓ All tests passed"

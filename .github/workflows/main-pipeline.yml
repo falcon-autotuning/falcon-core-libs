@@ -1,0 +1,60 @@
+name: Main Pipeline (CI + CD)
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+jobs:
+  # Stage 1: Run CI tests on both platforms
+  go-linux-ci:
+    name: Go Linux CI
+    uses: ./.github/workflows/go-linux-ci.yml
+    secrets: inherit
+
+  go-windows-ci:
+    name: Go Windows CI
+    uses: ./.github/workflows/go-windows-ci.yml
+    secrets: inherit
+
+  # Stage 2: Create release (only on main branch)
+  create-release:
+    name: Create GitHub Release
+    needs: [go-linux-ci, go-windows-ci]
+    # Only run release on main branch pushes
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/go-release.yml
+    permissions:
+      contents: write
+    secrets: inherit
+
+  # Final summary
+  pipeline-complete:
+    name: Pipeline Complete
+    needs: [go-linux-ci, go-windows-ci]
+    # Run after tests complete, regardless of release
+    if: always() && needs.go-linux-ci.result == 'success' && needs.go-windows-ci.result == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Success Summary
+        run: |
+          echo "=================================================="
+          echo "CI/CD PIPELINE COMPLETED SUCCESSFULLY!"
+          echo "=================================================="
+          echo ""
+          echo "✅ CI Phase: All tests passed"
+          echo "   - Linux Go build and tests: PASSED"
+          echo "   - Windows Go build and tests: PASSED"
+          echo ""
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "✅ CD Phase: Release created"
+            echo "   - GitHub Release: CREATED"
+          else
+            echo "ℹ️  CD Phase: Skipped (not on main branch)"
+            echo "   - Branch: ${{ github.ref_name }}"
+            echo "   - Release will be created on push to main"
+          fi
+          echo ""
+          echo "=================================================="

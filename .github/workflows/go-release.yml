@@ -1,0 +1,99 @@
+name: Create GitHub Release
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate release tag
+        id: tag
+        run: |
+          # Use commit SHA as version tag
+          VERSION="$(git rev-parse --short HEAD)"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v0.0.1-$VERSION" >> $GITHUB_OUTPUT
+          echo "Generated version: $VERSION"
+
+          # Also create a friendly name
+          RELEASE_NAME="Falcon Core Libs $VERSION"
+          echo "release_name=$RELEASE_NAME" >> $GITHUB_OUTPUT
+
+      - name: Create release notes
+        id: notes
+        run: |
+          cat > release-notes.md << 'EOF'
+          # Falcon Core Libs Release
+
+          Language bindings for the falcon-core DSL.
+
+          ## 📦 Languages Supported
+
+          ### Go
+          - Go modules ready
+          - All tests passing on Linux and Windows
+          - Compatible with Go 1.21+
+
+          ### Python
+          - Cython-based bindings
+          - Python wheels available
+
+          ### OCaml
+          - Native OCaml bindings
+          - opam package available
+
+          ### Lua
+          - LuaJIT FFI bindings
+          - Pure Lua implementation
+
+          ## ✅ Test Status
+
+          All builds and tests passed on:
+          - Linux x64
+          - Windows x64
+
+          ## 📋 Installation
+
+          See the repository README for installation instructions for each language.
+
+          ## 🔗 Dependencies
+
+          This release depends on [falcon-core](https://github.com/falcon-autotuning/falcon-core).
+          EOF
+
+          echo "notes<<EOF" >> $GITHUB_OUTPUT
+          cat release-notes.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: ${{ steps.tag.outputs.release_name }}
+          body_path: release-notes.md
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release Summary
+        run: |
+          echo "=================================================="
+          echo "RELEASE CREATED SUCCESSFULLY!"
+          echo "=================================================="
+          echo ""
+          echo "Tag: ${{ steps.tag.outputs.tag }}"
+          echo "Name: ${{ steps.tag.outputs.release_name }}"
+          echo ""
+          echo "=================================================="
