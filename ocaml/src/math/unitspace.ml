@@ -119,7 +119,7 @@ module UnitSpace = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.unitspace_dimension handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let compile (handle : t) : unit =
@@ -147,7 +147,7 @@ module UnitSpace = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.unitspace_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =
@@ -182,7 +182,7 @@ module UnitSpace = struct
     Error_handling.multi_read [handle; out_buffer] (fun () ->
       let result = Capi_bindings.unitspace_items handle#raw out_buffer#raw (Unsigned.Size_t.of_int buffer_size) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let contains (handle : t) (value : Discretizer.Discretizer.t) : bool =
@@ -196,7 +196,7 @@ module UnitSpace = struct
     Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.unitspace_index handle#raw value#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let intersection (handle : t) (other : t) : t =

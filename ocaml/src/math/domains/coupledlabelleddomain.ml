@@ -103,7 +103,7 @@ module CoupledLabelledDomain = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.coupledlabelleddomain_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =
@@ -159,7 +159,7 @@ module CoupledLabelledDomain = struct
     Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.coupledlabelleddomain_index handle#raw value#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
 end

@@ -75,7 +75,7 @@ module MapConnectionFloat = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionfloat_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =

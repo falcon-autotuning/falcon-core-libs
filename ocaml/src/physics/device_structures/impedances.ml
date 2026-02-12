@@ -75,7 +75,7 @@ module Impedances = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.impedances_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =
@@ -131,7 +131,7 @@ module Impedances = struct
     Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.impedances_index handle#raw value#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
 end

@@ -62,7 +62,7 @@ module ListDouble = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listdouble_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =
@@ -97,7 +97,7 @@ module ListDouble = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listdouble_items handle#raw out_buffer (Unsigned.Size_t.of_int buffer_size) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let contains (handle : t) (value : float) : bool =
@@ -111,7 +111,7 @@ module ListDouble = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listdouble_index handle#raw value in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let intersection (handle : t) (other : t) : t =

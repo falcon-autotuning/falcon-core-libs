@@ -77,28 +77,28 @@ module Adjacency = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.adjacency_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let dimension (handle : t) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.adjacency_dimension handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let shape (handle : t) (out_buffer : int) (ndim : int) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.adjacency_shape handle#raw (Unsigned.Size_t.of_int out_buffer) (Unsigned.Size_t.of_int ndim) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let data (handle : t) (out_buffer : int) (numdata : int) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.adjacency_data handle#raw out_buffer (Unsigned.Size_t.of_int numdata) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let timesEqualsFarray (handle : t) (other : Farrayint.FArrayInt.t) : unit =

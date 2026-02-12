@@ -61,7 +61,7 @@ module ListQuantity = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listquantity_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =
@@ -96,7 +96,7 @@ module ListQuantity = struct
     Error_handling.multi_read [handle; out_buffer] (fun () ->
       let result = Capi_bindings.listquantity_items handle#raw out_buffer#raw (Unsigned.Size_t.of_int buffer_size) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let contains (handle : t) (value : Quantity.Quantity.t) : bool =
@@ -110,7 +110,7 @@ module ListQuantity = struct
     Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.listquantity_index handle#raw value#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let intersection (handle : t) (other : t) : t =

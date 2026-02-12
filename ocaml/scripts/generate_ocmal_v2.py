@@ -155,6 +155,10 @@ class OCamlGenerator:
         """Check if type is string"""
         return "StringHandle" in c_type or (c_type.endswith("*") and "char" in c_type)
 
+    def is_sizet(self, c_type: str) -> bool:
+        """Check if type is size_t"""
+        return "size_t" in c_type
+
     def is_handle(self, c_type: str) -> bool:
         """Check if type is a handle (non-primitive)"""
         return "Handle" in c_type and "StringHandle" not in c_type
@@ -1260,6 +1264,8 @@ class OCamlGenerator:
             lines.append(f"{spaces}new {constructor} {var_name}")
         elif self.is_string(c_return_type):
             lines.append(f"{spaces}Capi_bindings.string_to_ocaml {var_name}")
+        elif self.is_sizet(c_return_type):
+            lines.append(f"{spaces}Unsigned.Size_t.to_int {var_name}")
         else:
             lines.append(f"{spaces}{var_name}")
 

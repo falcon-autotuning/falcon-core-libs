@@ -40,14 +40,14 @@ module PairSizeTSizeT = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairsizetsizet_first handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let second (handle : t) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairsizetsizet_second handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let equal (handle : t) (other : t) : bool =

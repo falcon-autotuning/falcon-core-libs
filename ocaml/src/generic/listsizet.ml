@@ -62,7 +62,7 @@ module ListSizeT = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listsizet_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let empty (handle : t) : bool =
@@ -90,14 +90,14 @@ module ListSizeT = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listsizet_at handle#raw (Unsigned.Size_t.of_int idx) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let items (handle : t) (out_buffer : int) (buffer_size : int) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listsizet_items handle#raw (Unsigned.Size_t.of_int out_buffer) (Unsigned.Size_t.of_int buffer_size) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let contains (handle : t) (value : int) : bool =
@@ -111,7 +111,7 @@ module ListSizeT = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.listsizet_index handle#raw (Unsigned.Size_t.of_int value) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let intersection (handle : t) (other : t) : t =

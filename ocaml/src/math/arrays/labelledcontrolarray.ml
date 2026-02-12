@@ -98,28 +98,28 @@ module LabelledControlArray = struct
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.labelledcontrolarray_size handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let dimension (handle : t) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.labelledcontrolarray_dimension handle#raw in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let shape (handle : t) (out_buffer : int) (ndim : int) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.labelledcontrolarray_shape handle#raw (Unsigned.Size_t.of_int out_buffer) (Unsigned.Size_t.of_int ndim) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let data (handle : t) (out_buffer : float) (numdata : int) : int =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.labelledcontrolarray_data handle#raw out_buffer (Unsigned.Size_t.of_int numdata) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let plusEqualsFarray (handle : t) (other : Farraydouble.FArrayDouble.t) : unit =
@@ -392,7 +392,7 @@ module LabelledControlArray = struct
     Error_handling.multi_read [handle; out_buffer] (fun () ->
       let result = Capi_bindings.labelledcontrolarray_full_gradient handle#raw out_buffer#raw (Unsigned.Size_t.of_int buffer_size) in
       Error_handling.raise_if_error ();
-      result
+      Unsigned.Size_t.to_int result
     )
 
   let gradient (handle : t) (axis : int) : Farraydouble.FArrayDouble.t =

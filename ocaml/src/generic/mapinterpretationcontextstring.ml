@@ -70,7 +70,7 @@ module MapInterpretationContextString = struct
   let size (handle : string) : int =
     let result = Capi_bindings.mapinterpretationcontextstring_size (Falcon_string.of_string handle) in
     Error_handling.raise_if_error ();
-    result
+    Unsigned.Size_t.to_int result
 
   let empty (handle : string) : bool =
     let result = Capi_bindings.mapinterpretationcontextstring_empty (Falcon_string.of_string handle) in

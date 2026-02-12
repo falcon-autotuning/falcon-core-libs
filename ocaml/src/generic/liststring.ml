@@ -57,7 +57,7 @@ module ListString = struct
   let size (handle : string) : int =
     let result = Capi_bindings.liststring_size (Falcon_string.of_string handle) in
     Error_handling.raise_if_error ();
-    result
+    Unsigned.Size_t.to_int result
 
   let empty (handle : string) : bool =
     let result = Capi_bindings.liststring_empty (Falcon_string.of_string handle) in
@@ -82,7 +82,7 @@ module ListString = struct
   let items (handle : string) (out_buffer : string) (buffer_size : int) : int =
     let result = Capi_bindings.liststring_items (Falcon_string.of_string handle) (Falcon_string.of_string out_buffer) (Unsigned.Size_t.of_int buffer_size) in
     Error_handling.raise_if_error ();
-    result
+    Unsigned.Size_t.to_int result
 
   let contains (handle : string) (value : string) : bool =
     let result = Capi_bindings.liststring_contains (Falcon_string.of_string handle) (Falcon_string.of_string value) in
@@ -92,7 +92,7 @@ module ListString = struct
   let index (handle : string) (value : string) : int =
     let result = Capi_bindings.liststring_index (Falcon_string.of_string handle) (Falcon_string.of_string value) in
     Error_handling.raise_if_error ();
-    result
+    Unsigned.Size_t.to_int result
 
   let intersection (handle : string) (other : string) : string =
     let result = Capi_bindings.liststring_intersection (Falcon_string.of_string handle) (Falcon_string.of_string other) in
