@@ -557,7 +557,7 @@ class OCamlGenerator:
 
         # String conversion (like Go's str.New)
         if self.is_string(arg.type_name):
-            return f"(Capi_bindings.string_wrap {arg_name})"
+            return f"(Falcon_string.of_string {arg_name})"
 
         # Handle types need raw extraction (like Go's .CAPIHandle())
         elif self.is_handle(arg.type_name):
@@ -652,7 +652,7 @@ class OCamlGenerator:
             param_strs = [f"({name} : {typ})" for name, typ in param_list]
             param_str = " ".join(param_strs)
         else:
-            param_str = "()"
+            param_str = ""
 
         lines.append(f"  let {ocaml_name} {param_str} : t =")
 
@@ -1054,7 +1054,12 @@ class OCamlGenerator:
 
         # Class definition - ONLY instance methods
         class_name_ml = f"c_{cls.name.lower()}"
-        lines.append(f"class {class_name_ml} (h : unit ptr) = object(self)")
+        lines.append(f"class type {class_name_ml}_t = object")
+        lines.append("  method raw : unit ptr")
+        lines.append("end")
+        lines.append(
+            f"class {class_name_ml} (h : unit ptr) : {class_name_ml}_t = object(self)"
+        )
         lines.append("  val raw_val = h")
         lines.append("  method raw = raw_val")
 

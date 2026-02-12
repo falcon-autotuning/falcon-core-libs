@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_instrumentport (h : unit ptr) = object(self)
+class type c_instrumentport_t = object
+  method raw : unit ptr
+end
+class c_instrumentport (h : unit ptr) : c_instrumentport_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,37 +27,37 @@ module InstrumentPort = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.instrumentport_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.instrumentport_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_instrumentport ptr
 
   let port (default_name : string) (psuedo_name : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.instrumentport_create_port (Capi_bindings.string_wrap default_name) psuedo_name#raw (Capi_bindings.string_wrap instrument_type) units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.instrumentport_create_port (Falcon_string.of_string default_name) psuedo_name#raw (Falcon_string.of_string instrument_type) units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_instrumentport ptr
     )
 
   let knob (default_name : string) (psuedo_name : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.instrumentport_create_knob (Capi_bindings.string_wrap default_name) psuedo_name#raw (Capi_bindings.string_wrap instrument_type) units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.instrumentport_create_knob (Falcon_string.of_string default_name) psuedo_name#raw (Falcon_string.of_string instrument_type) units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_instrumentport ptr
     )
 
   let meter (default_name : string) (psuedo_name : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.instrumentport_create_meter (Capi_bindings.string_wrap default_name) psuedo_name#raw (Capi_bindings.string_wrap instrument_type) units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.instrumentport_create_meter (Falcon_string.of_string default_name) psuedo_name#raw (Falcon_string.of_string instrument_type) units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_instrumentport ptr
     )
 
-  let timer () : t =
+  let timer  : t =
     let ptr = Capi_bindings.instrumentport_create_timer () in
     Error_handling.raise_if_error ();
     new c_instrumentport ptr
 
-  let executionClock () : t =
+  let executionClock  : t =
     let ptr = Capi_bindings.instrumentport_create_execution_clock () in
     Error_handling.raise_if_error ();
     new c_instrumentport ptr

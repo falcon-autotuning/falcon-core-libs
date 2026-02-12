@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_pairstringdouble (h : unit ptr) = object(self)
+class type c_pairstringdouble_t = object
+  method raw : unit ptr
+end
+class c_pairstringdouble (h : unit ptr) : c_pairstringdouble_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -17,7 +20,7 @@ module PairStringDouble = struct
   type t = c_pairstringdouble
 
   let make (first : string) (second : float) : t =
-    let ptr = Capi_bindings.pairstringdouble_create (Capi_bindings.string_wrap first) second in
+    let ptr = Capi_bindings.pairstringdouble_create (Falcon_string.of_string first) second in
     Error_handling.raise_if_error ();
     new c_pairstringdouble ptr
 
@@ -29,7 +32,7 @@ module PairStringDouble = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.pairstringdouble_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.pairstringdouble_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_pairstringdouble ptr
 

@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_loader (h : unit ptr) = object(self)
+class type c_loader_t = object
+  method raw : unit ptr
+end
+class c_loader (h : unit ptr) : c_loader_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -17,7 +20,7 @@ module Loader = struct
   type t = c_loader
 
   let make (config_path : string) : t =
-    let ptr = Capi_bindings.loader_create (Capi_bindings.string_wrap config_path) in
+    let ptr = Capi_bindings.loader_create (Falcon_string.of_string config_path) in
     Error_handling.raise_if_error ();
     new c_loader ptr
 

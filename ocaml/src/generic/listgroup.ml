@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_listgroup (h : unit ptr) = object(self)
+class type c_listgroup_t = object
+  method raw : unit ptr
+end
+class c_listgroup (h : unit ptr) : c_listgroup_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -16,7 +19,7 @@ end
 module ListGroup = struct
   type t = c_listgroup
 
-  let empty () : t =
+  let empty  : t =
     let ptr = Capi_bindings.listgroup_create_empty () in
     Error_handling.raise_if_error ();
     new c_listgroup ptr
@@ -43,7 +46,7 @@ module ListGroup = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.listgroup_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.listgroup_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_listgroup ptr
 

@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_symbolunit (h : unit ptr) = object(self)
+class type c_symbolunit_t = object
+  method raw : unit ptr
+end
+class c_symbolunit (h : unit ptr) : c_symbolunit_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,286 +27,286 @@ module SymbolUnit = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.symbolunit_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.symbolunit_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let meter () : t =
+  let meter  : t =
     let ptr = Capi_bindings.symbolunit_create_meter () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let kilogram () : t =
+  let kilogram  : t =
     let ptr = Capi_bindings.symbolunit_create_kilogram () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let second () : t =
+  let second  : t =
     let ptr = Capi_bindings.symbolunit_create_second () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let ampere () : t =
+  let ampere  : t =
     let ptr = Capi_bindings.symbolunit_create_ampere () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let kelvin () : t =
+  let kelvin  : t =
     let ptr = Capi_bindings.symbolunit_create_kelvin () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let mole () : t =
+  let mole  : t =
     let ptr = Capi_bindings.symbolunit_create_mole () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let candela () : t =
+  let candela  : t =
     let ptr = Capi_bindings.symbolunit_create_candela () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let hertz () : t =
+  let hertz  : t =
     let ptr = Capi_bindings.symbolunit_create_hertz () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let newton () : t =
+  let newton  : t =
     let ptr = Capi_bindings.symbolunit_create_newton () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let pascal () : t =
+  let pascal  : t =
     let ptr = Capi_bindings.symbolunit_create_pascal () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let joule () : t =
+  let joule  : t =
     let ptr = Capi_bindings.symbolunit_create_joule () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let watt () : t =
+  let watt  : t =
     let ptr = Capi_bindings.symbolunit_create_watt () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let coulomb () : t =
+  let coulomb  : t =
     let ptr = Capi_bindings.symbolunit_create_coulomb () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let volt () : t =
+  let volt  : t =
     let ptr = Capi_bindings.symbolunit_create_volt () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let farad () : t =
+  let farad  : t =
     let ptr = Capi_bindings.symbolunit_create_farad () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let ohm () : t =
+  let ohm  : t =
     let ptr = Capi_bindings.symbolunit_create_ohm () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let siemens () : t =
+  let siemens  : t =
     let ptr = Capi_bindings.symbolunit_create_siemens () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let weber () : t =
+  let weber  : t =
     let ptr = Capi_bindings.symbolunit_create_weber () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let tesla () : t =
+  let tesla  : t =
     let ptr = Capi_bindings.symbolunit_create_tesla () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let henry () : t =
+  let henry  : t =
     let ptr = Capi_bindings.symbolunit_create_henry () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let minute () : t =
+  let minute  : t =
     let ptr = Capi_bindings.symbolunit_create_minute () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let hour () : t =
+  let hour  : t =
     let ptr = Capi_bindings.symbolunit_create_hour () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let electronvolt () : t =
+  let electronvolt  : t =
     let ptr = Capi_bindings.symbolunit_create_electronvolt () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let celsius () : t =
+  let celsius  : t =
     let ptr = Capi_bindings.symbolunit_create_celsius () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let fahrenheit () : t =
+  let fahrenheit  : t =
     let ptr = Capi_bindings.symbolunit_create_fahrenheit () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let dimensionless () : t =
+  let dimensionless  : t =
     let ptr = Capi_bindings.symbolunit_create_dimensionless () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let percent () : t =
+  let percent  : t =
     let ptr = Capi_bindings.symbolunit_create_percent () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let radian () : t =
+  let radian  : t =
     let ptr = Capi_bindings.symbolunit_create_radian () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let kilometer () : t =
+  let kilometer  : t =
     let ptr = Capi_bindings.symbolunit_create_kilometer () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let millimeter () : t =
+  let millimeter  : t =
     let ptr = Capi_bindings.symbolunit_create_millimeter () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let millivolt () : t =
+  let millivolt  : t =
     let ptr = Capi_bindings.symbolunit_create_millivolt () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let kilovolt () : t =
+  let kilovolt  : t =
     let ptr = Capi_bindings.symbolunit_create_kilovolt () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let milliampere () : t =
+  let milliampere  : t =
     let ptr = Capi_bindings.symbolunit_create_milliampere () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let microampere () : t =
+  let microampere  : t =
     let ptr = Capi_bindings.symbolunit_create_microampere () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let nanoampere () : t =
+  let nanoampere  : t =
     let ptr = Capi_bindings.symbolunit_create_nanoampere () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let picoampere () : t =
+  let picoampere  : t =
     let ptr = Capi_bindings.symbolunit_create_picoampere () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let millisecond () : t =
+  let millisecond  : t =
     let ptr = Capi_bindings.symbolunit_create_millisecond () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let microsecond () : t =
+  let microsecond  : t =
     let ptr = Capi_bindings.symbolunit_create_microsecond () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let nanosecond () : t =
+  let nanosecond  : t =
     let ptr = Capi_bindings.symbolunit_create_nanosecond () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let picosecond () : t =
+  let picosecond  : t =
     let ptr = Capi_bindings.symbolunit_create_picosecond () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let milliohm () : t =
+  let milliohm  : t =
     let ptr = Capi_bindings.symbolunit_create_milliohm () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let kiloohm () : t =
+  let kiloohm  : t =
     let ptr = Capi_bindings.symbolunit_create_kiloohm () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let megaohm () : t =
+  let megaohm  : t =
     let ptr = Capi_bindings.symbolunit_create_megaohm () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let millihertz () : t =
+  let millihertz  : t =
     let ptr = Capi_bindings.symbolunit_create_millihertz () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let kilohertz () : t =
+  let kilohertz  : t =
     let ptr = Capi_bindings.symbolunit_create_kilohertz () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let megahertz () : t =
+  let megahertz  : t =
     let ptr = Capi_bindings.symbolunit_create_megahertz () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let gigahertz () : t =
+  let gigahertz  : t =
     let ptr = Capi_bindings.symbolunit_create_gigahertz () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let metersPerSecond () : t =
+  let metersPerSecond  : t =
     let ptr = Capi_bindings.symbolunit_create_meters_per_second () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let metersPerSecondSquared () : t =
+  let metersPerSecondSquared  : t =
     let ptr = Capi_bindings.symbolunit_create_meters_per_second_squared () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let newtonMeter () : t =
+  let newtonMeter  : t =
     let ptr = Capi_bindings.symbolunit_create_newton_meter () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let newtonsPerMeter () : t =
+  let newtonsPerMeter  : t =
     let ptr = Capi_bindings.symbolunit_create_newtons_per_meter () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let voltsPerMeter () : t =
+  let voltsPerMeter  : t =
     let ptr = Capi_bindings.symbolunit_create_volts_per_meter () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let voltsPerSecond () : t =
+  let voltsPerSecond  : t =
     let ptr = Capi_bindings.symbolunit_create_volts_per_second () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let amperesPerMeter () : t =
+  let amperesPerMeter  : t =
     let ptr = Capi_bindings.symbolunit_create_amperes_per_meter () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let voltsPerAmpere () : t =
+  let voltsPerAmpere  : t =
     let ptr = Capi_bindings.symbolunit_create_volts_per_ampere () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
 
-  let wattsPerMeterKelvin () : t =
+  let wattsPerMeterKelvin  : t =
     let ptr = Capi_bindings.symbolunit_create_watts_per_meter_kelvin () in
     Error_handling.raise_if_error ();
     new c_symbolunit ptr
@@ -366,7 +369,7 @@ module SymbolUnit = struct
 
   let withPrefix (handle : t) (prefix : string) : t =
     Error_handling.read handle (fun () ->
-      let result = Capi_bindings.symbolunit_with_prefix handle#raw (Capi_bindings.string_wrap prefix) in
+      let result = Capi_bindings.symbolunit_with_prefix handle#raw (Falcon_string.of_string prefix) in
       Error_handling.raise_if_error ();
       new c_symbolunit result
     )

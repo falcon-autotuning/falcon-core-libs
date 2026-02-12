@@ -3,10 +3,10 @@ open Capi_bindings
 open Error_handling
 
 (* No opens needed - using qualified names *)
+
 class type c_acquisitioncontext_t = object
   method raw : unit ptr
 end
-
 class c_acquisitioncontext (h : unit ptr) : c_acquisitioncontext_t = object(self)
   val raw_val = h
   method raw = raw_val

@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_hdf5data (h : unit ptr) = object(self)
+class type c_hdf5data_t = object
+  method raw : unit ptr
+end
+class c_hdf5data (h : unit ptr) : c_hdf5data_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,25 +27,25 @@ module HDF5Data = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.hdf5data_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.hdf5data_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_hdf5data ptr
 
   let make (shape : Axesint.AxesInt.t) (unit_domain : Axescontrolarray.AxesControlArray.t) (domain_labels : Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t) (ranges : Labelledarrayslabelledmeasuredarray.LabelledArraysLabelledMeasuredArray.t) (metadata : string) (measurement_title : string) (unique_id : int) (timestamp : int) : t =
     Error_handling.multi_read [shape; unit_domain; domain_labels; ranges] (fun () ->
-      let ptr = Capi_bindings.hdf5data_create shape#raw unit_domain#raw domain_labels#raw ranges#raw (Capi_bindings.string_wrap metadata) (Capi_bindings.string_wrap measurement_title) unique_id timestamp in
+      let ptr = Capi_bindings.hdf5data_create shape#raw unit_domain#raw domain_labels#raw ranges#raw (Falcon_string.of_string metadata) (Falcon_string.of_string measurement_title) unique_id timestamp in
       Error_handling.raise_if_error ();
       new c_hdf5data ptr
     )
 
   let fromFile (path : string) : t =
-    let ptr = Capi_bindings.hdf5data_create_from_file (Capi_bindings.string_wrap path) in
+    let ptr = Capi_bindings.hdf5data_create_from_file (Falcon_string.of_string path) in
     Error_handling.raise_if_error ();
     new c_hdf5data ptr
 
   let fromCommunications (request : Measurementrequest.MeasurementRequest.t) (response : Measurementresponse.MeasurementResponse.t) (device_voltage_states : Devicevoltagestates.DeviceVoltageStates.t) (session_id16 : int) (measurement_title : string) (unique_id : int) (timestamp : int) : t =
     Error_handling.multi_read [request; response; device_voltage_states] (fun () ->
-      let ptr = Capi_bindings.hdf5data_create_from_communications request#raw response#raw device_voltage_states#raw session_id16 (Capi_bindings.string_wrap measurement_title) unique_id timestamp in
+      let ptr = Capi_bindings.hdf5data_create_from_communications request#raw response#raw device_voltage_states#raw session_id16 (Falcon_string.of_string measurement_title) unique_id timestamp in
       Error_handling.raise_if_error ();
       new c_hdf5data ptr
     )
@@ -70,7 +73,7 @@ module HDF5Data = struct
 
   let toFile (handle : t) (path : string) : unit =
     Error_handling.read handle (fun () ->
-      let result = Capi_bindings.hdf5data_to_file handle#raw (Capi_bindings.string_wrap path) in
+      let result = Capi_bindings.hdf5data_to_file handle#raw (Falcon_string.of_string path) in
       Error_handling.raise_if_error ();
       result
     )

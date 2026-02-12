@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_pairconnectionconnection (h : unit ptr) = object(self)
+class type c_pairconnectionconnection_t = object
+  method raw : unit ptr
+end
+class c_pairconnectionconnection (h : unit ptr) : c_pairconnectionconnection_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -31,7 +34,7 @@ module PairConnectionConnection = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.pairconnectionconnection_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.pairconnectionconnection_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_pairconnectionconnection ptr
 

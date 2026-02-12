@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_measurementrequest (h : unit ptr) = object(self)
+class type c_measurementrequest_t = object
+  method raw : unit ptr
+end
+class c_measurementrequest (h : unit ptr) : c_measurementrequest_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,13 +27,13 @@ module MeasurementRequest = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.measurementrequest_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.measurementrequest_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_measurementrequest ptr
 
   let make (message : string) (measurement_name : string) (waveforms : Listwaveform.ListWaveform.t) (getters : Ports.Ports.t) (meter_transforms : Mapinstrumentportporttransform.MapInstrumentPortPortTransform.t) (time_domain : Labelleddomain.LabelledDomain.t) : t =
     Error_handling.multi_read [waveforms; getters; meter_transforms; time_domain] (fun () ->
-      let ptr = Capi_bindings.measurementrequest_create (Capi_bindings.string_wrap message) (Capi_bindings.string_wrap measurement_name) waveforms#raw getters#raw meter_transforms#raw time_domain#raw in
+      let ptr = Capi_bindings.measurementrequest_create (Falcon_string.of_string message) (Falcon_string.of_string measurement_name) waveforms#raw getters#raw meter_transforms#raw time_domain#raw in
       Error_handling.raise_if_error ();
       new c_measurementrequest ptr
     )

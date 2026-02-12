@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_point (h : unit ptr) = object(self)
+class type c_point_t = object
+  method raw : unit ptr
+end
+class c_point (h : unit ptr) : c_point_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,11 +27,11 @@ module Point = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.point_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.point_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_point ptr
 
-  let empty () : t =
+  let empty  : t =
     let ptr = Capi_bindings.point_create_empty () in
     Error_handling.raise_if_error ();
     new c_point ptr

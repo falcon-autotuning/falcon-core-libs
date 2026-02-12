@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_listporttransform (h : unit ptr) = object(self)
+class type c_listporttransform_t = object
+  method raw : unit ptr
+end
+class c_listporttransform (h : unit ptr) : c_listporttransform_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -16,7 +19,7 @@ end
 module ListPortTransform = struct
   type t = c_listporttransform
 
-  let empty () : t =
+  let empty  : t =
     let ptr = Capi_bindings.listporttransform_create_empty () in
     Error_handling.raise_if_error ();
     new c_listporttransform ptr
@@ -43,7 +46,7 @@ module ListPortTransform = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.listporttransform_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.listporttransform_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_listporttransform ptr
 

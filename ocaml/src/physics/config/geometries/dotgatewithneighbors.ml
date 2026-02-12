@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_dotgatewithneighbors (h : unit ptr) = object(self)
+class type c_dotgatewithneighbors_t = object
+  method raw : unit ptr
+end
+class c_dotgatewithneighbors (h : unit ptr) : c_dotgatewithneighbors_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,20 +27,20 @@ module DotGateWithNeighbors = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.dotgatewithneighbors_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.dotgatewithneighbors_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_dotgatewithneighbors ptr
 
   let plungerGateWithNeighbors (name : string) (left_neighbor : Connection.Connection.t) (right_neighbor : Connection.Connection.t) : t =
     Error_handling.multi_read [left_neighbor; right_neighbor] (fun () ->
-      let ptr = Capi_bindings.dotgatewithneighbors_create_plunger_gate_with_neighbors (Capi_bindings.string_wrap name) left_neighbor#raw right_neighbor#raw in
+      let ptr = Capi_bindings.dotgatewithneighbors_create_plunger_gate_with_neighbors (Falcon_string.of_string name) left_neighbor#raw right_neighbor#raw in
       Error_handling.raise_if_error ();
       new c_dotgatewithneighbors ptr
     )
 
   let barrierGateWithNeighbors (name : string) (left_neighbor : Connection.Connection.t) (right_neighbor : Connection.Connection.t) : t =
     Error_handling.multi_read [left_neighbor; right_neighbor] (fun () ->
-      let ptr = Capi_bindings.dotgatewithneighbors_create_barrier_gate_with_neighbors (Capi_bindings.string_wrap name) left_neighbor#raw right_neighbor#raw in
+      let ptr = Capi_bindings.dotgatewithneighbors_create_barrier_gate_with_neighbors (Falcon_string.of_string name) left_neighbor#raw right_neighbor#raw in
       Error_handling.raise_if_error ();
       new c_dotgatewithneighbors ptr
     )

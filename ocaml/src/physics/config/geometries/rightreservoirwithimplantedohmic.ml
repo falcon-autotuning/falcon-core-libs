@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_rightreservoirwithimplantedohmic (h : unit ptr) = object(self)
+class type c_rightreservoirwithimplantedohmic_t = object
+  method raw : unit ptr
+end
+class c_rightreservoirwithimplantedohmic (h : unit ptr) : c_rightreservoirwithimplantedohmic_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,13 +27,13 @@ module RightReservoirWithImplantedOhmic = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.rightreservoirwithimplantedohmic_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.rightreservoirwithimplantedohmic_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_rightreservoirwithimplantedohmic ptr
 
   let make (name : string) (left_neighbor : Connection.Connection.t) (ohmic : Connection.Connection.t) : t =
     Error_handling.multi_read [left_neighbor; ohmic] (fun () ->
-      let ptr = Capi_bindings.rightreservoirwithimplantedohmic_create (Capi_bindings.string_wrap name) left_neighbor#raw ohmic#raw in
+      let ptr = Capi_bindings.rightreservoirwithimplantedohmic_create (Falcon_string.of_string name) left_neighbor#raw ohmic#raw in
       Error_handling.raise_if_error ();
       new c_rightreservoirwithimplantedohmic ptr
     )

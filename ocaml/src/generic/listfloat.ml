@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_listfloat (h : unit ptr) = object(self)
+class type c_listfloat_t = object
+  method raw : unit ptr
+end
+class c_listfloat (h : unit ptr) : c_listfloat_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -16,7 +19,7 @@ end
 module ListFloat = struct
   type t = c_listfloat
 
-  let empty () : t =
+  let empty  : t =
     let ptr = Capi_bindings.listfloat_create_empty () in
     Error_handling.raise_if_error ();
     new c_listfloat ptr
@@ -44,7 +47,7 @@ module ListFloat = struct
     new c_listfloat ptr
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.listfloat_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.listfloat_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_listfloat ptr
 

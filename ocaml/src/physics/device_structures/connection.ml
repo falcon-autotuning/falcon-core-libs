@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_connection (h : unit ptr) = object(self)
+class type c_connection_t = object
+  method raw : unit ptr
+end
+class c_connection (h : unit ptr) : c_connection_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,32 +27,32 @@ module Connection = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.connection_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.connection_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_connection ptr
 
   let barrierGate (name : string) : t =
-    let ptr = Capi_bindings.connection_create_barrier_gate (Capi_bindings.string_wrap name) in
+    let ptr = Capi_bindings.connection_create_barrier_gate (Falcon_string.of_string name) in
     Error_handling.raise_if_error ();
     new c_connection ptr
 
   let plungerGate (name : string) : t =
-    let ptr = Capi_bindings.connection_create_plunger_gate (Capi_bindings.string_wrap name) in
+    let ptr = Capi_bindings.connection_create_plunger_gate (Falcon_string.of_string name) in
     Error_handling.raise_if_error ();
     new c_connection ptr
 
   let reservoirGate (name : string) : t =
-    let ptr = Capi_bindings.connection_create_reservoir_gate (Capi_bindings.string_wrap name) in
+    let ptr = Capi_bindings.connection_create_reservoir_gate (Falcon_string.of_string name) in
     Error_handling.raise_if_error ();
     new c_connection ptr
 
   let screeningGate (name : string) : t =
-    let ptr = Capi_bindings.connection_create_screening_gate (Capi_bindings.string_wrap name) in
+    let ptr = Capi_bindings.connection_create_screening_gate (Falcon_string.of_string name) in
     Error_handling.raise_if_error ();
     new c_connection ptr
 
   let ohmic (name : string) : t =
-    let ptr = Capi_bindings.connection_create_ohmic (Capi_bindings.string_wrap name) in
+    let ptr = Capi_bindings.connection_create_ohmic (Falcon_string.of_string name) in
     Error_handling.raise_if_error ();
     new c_connection ptr
 

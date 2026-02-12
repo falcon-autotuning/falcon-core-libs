@@ -4,7 +4,10 @@ open Error_handling
 
 (* No opens needed - using qualified names *)
 
-class c_labelleddomain (h : unit ptr) = object(self)
+class type c_labelleddomain_t = object
+  method raw : unit ptr
+end
+class c_labelleddomain (h : unit ptr) : c_labelleddomain_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -24,27 +27,27 @@ module LabelledDomain = struct
     )
 
   let fromjson (json : string) : t =
-    let ptr = Capi_bindings.labelleddomain_from_json_string (Capi_bindings.string_wrap json) in
+    let ptr = Capi_bindings.labelleddomain_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_labelleddomain ptr
 
   let primitiveKnob (default_name : string) (min_val : float) (max_val : float) (psuedo_name : Connection.Connection.t) (instrument_type : string) (lesser_bound_contained : bool) (greater_bound_contained : bool) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.labelleddomain_create_primitive_knob (Capi_bindings.string_wrap default_name) min_val max_val psuedo_name#raw (Capi_bindings.string_wrap instrument_type) lesser_bound_contained greater_bound_contained units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.labelleddomain_create_primitive_knob (Falcon_string.of_string default_name) min_val max_val psuedo_name#raw (Falcon_string.of_string instrument_type) lesser_bound_contained greater_bound_contained units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_labelleddomain ptr
     )
 
   let primitiveMeter (default_name : string) (min_val : float) (max_val : float) (psuedo_name : Connection.Connection.t) (instrument_type : string) (lesser_bound_contained : bool) (greater_bound_contained : bool) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.labelleddomain_create_primitive_meter (Capi_bindings.string_wrap default_name) min_val max_val psuedo_name#raw (Capi_bindings.string_wrap instrument_type) lesser_bound_contained greater_bound_contained units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.labelleddomain_create_primitive_meter (Falcon_string.of_string default_name) min_val max_val psuedo_name#raw (Falcon_string.of_string instrument_type) lesser_bound_contained greater_bound_contained units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_labelleddomain ptr
     )
 
   let primitivePort (default_name : string) (min_val : float) (max_val : float) (psuedo_name : Connection.Connection.t) (instrument_type : string) (lesser_bound_contained : bool) (greater_bound_contained : bool) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.labelleddomain_create_primitive_port (Capi_bindings.string_wrap default_name) min_val max_val psuedo_name#raw (Capi_bindings.string_wrap instrument_type) lesser_bound_contained greater_bound_contained units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.labelleddomain_create_primitive_port (Falcon_string.of_string default_name) min_val max_val psuedo_name#raw (Falcon_string.of_string instrument_type) lesser_bound_contained greater_bound_contained units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_labelleddomain ptr
     )
@@ -65,7 +68,7 @@ module LabelledDomain = struct
 
   let fromDomain (domain : Domain.Domain.t) (default_name : string) (psuedo_name : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) (description : string) : t =
     Error_handling.multi_read [domain; psuedo_name; units] (fun () ->
-      let ptr = Capi_bindings.labelleddomain_create_from_domain domain#raw (Capi_bindings.string_wrap default_name) psuedo_name#raw (Capi_bindings.string_wrap instrument_type) units#raw (Capi_bindings.string_wrap description) in
+      let ptr = Capi_bindings.labelleddomain_create_from_domain domain#raw (Falcon_string.of_string default_name) psuedo_name#raw (Falcon_string.of_string instrument_type) units#raw (Falcon_string.of_string description) in
       Error_handling.raise_if_error ();
       new c_labelleddomain ptr
     )
