@@ -1277,6 +1277,7 @@ class OCamlGenerator:
         self.generate_error_handling_file()
         self.generate_bindings()
         self.generate_wrappers()
+        self.generate_falcon_core_ml()
 
     def generate_wrappers(self):
         """Generate high-level wrappers - ONE FILE PER MODULE"""
@@ -1434,6 +1435,44 @@ class OCamlGenerator:
                 out.append(line)
 
         file_path.write_text("\n".join(out))
+
+    def camel_case_folder(self, name: str) -> str:
+        return "".join(part.capitalize() for part in name.split("_"))
+
+    def extract_defined_module_name(self, ml_path: Path) -> str | None:
+        """Extracts the first defined module name from a .ml file."""
+        content = ml_path.read_text(encoding="utf-8")
+        match = re.search(
+            r"^\s*module\s+([A-Za-z0-9_]+)\s*=\s*struct", content, re.MULTILINE
+        )
+        if match:
+            return match.group(1)
+        return None
+
+    def build_module_tree(self, root: Path, is_top_level: bool = True) -> str:
+        modules = []
+        for entry in sorted(root.iterdir()):
+            if entry.is_dir():
+                modname = self.camel_case_folder(entry.name)
+                inner = self.build_module_tree(entry, is_top_level=False)
+                if inner:
+                    modules.append(f"module {modname} = struct\n{inner}\nend")
+            elif (
+                entry.suffix == ".ml"
+                and not entry.name.startswith(".")
+                and not is_top_level
+            ):
+                defined_mod = self.extract_defined_module_name(entry)
+                if defined_mod:
+                    file_mod = entry.stem
+                    file_mod = file_mod[0].upper() + file_mod[1:]
+                    modules.append(f"module {defined_mod} = {file_mod}.{defined_mod}")
+        return "\n".join(modules)
+
+    def generate_falcon_core_ml(self):
+        output_file = self.output_dir / "src" / "falcon_core.ml"
+        tree = self.build_module_tree(self.output_dir / "src")
+        output_file.write_text(tree + "\n")
 
 
 if __name__ == "__main__":

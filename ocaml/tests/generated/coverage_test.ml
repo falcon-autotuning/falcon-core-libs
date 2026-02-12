@@ -8,7 +8,7 @@ open Falcon_core.Generic
    (* Testing String *) 
    (* TODO: call String.make with dummy args *) 
    (* Testing ListSizeT *) 
-   ignore (ListSizeT.new_empty ()); 
+   ignore (ListSizeT.copy()); 
    (* Testing ListString *) 
    ignore (ListString.new_empty ()); 
    (* Testing ListBool *) 
