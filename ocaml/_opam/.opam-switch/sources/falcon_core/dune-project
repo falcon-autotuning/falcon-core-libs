@@ -1,0 +1,16 @@
+(lang dune 3.0)
+(name falcon_core)
+(authors "FAlCon development team")
+(maintainers "Daniel Schug")
+(license BSD-3-Clause)
+(homepage "https://github.com/falcon-autotuning/falcon-core-libs")
+(bug_reports "https://github.com/falcon-autotuning/falcon-core-libs/issues")
+(generate_opam_files true)
+(package
+ (name falcon_core)
+ (synopsis "OCaml bindings for falcon-core")
+ (depends
+  (ocaml (>= 4.14.0))
+  (dune (>= 3.0))
+  ctypes
+  ctypes-foreign))

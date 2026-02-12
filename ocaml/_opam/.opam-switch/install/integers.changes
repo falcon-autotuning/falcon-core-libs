@@ -1,0 +1,42 @@
+opam-version: "2.0"
+added: [
+  "doc/integers" {"D"}
+  "doc/integers/CHANGES.md" {"F:S1259T1770880998.94"}
+  "doc/integers/LICENSE.md" {"F:S1061T1770880998.94"}
+  "doc/integers/README.md" {"F:S2179T1770880998.94"}
+  "lib/integers" {"D"}
+  "lib/integers/META" {"F:S452T1770880998.94"}
+  "lib/integers/dune-package" {"F:S2303T1770880998.94"}
+  "lib/integers/integers.a" {"F:S198320T1770880998.94"}
+  "lib/integers/integers.cma" {"F:S70670T1770880998.94"}
+  "lib/integers/integers.cmxa" {"F:S1231T1770880998.94"}
+  "lib/integers/integers.cmxs" {"F:S207256T1770880998.94"}
+  "lib/integers/libintegers_stubs.a" {"F:S45708T1770880998.94"}
+  "lib/integers/ocaml_integers.h" {"F:S837T1770880998.94"}
+  "lib/integers/opam" {"F:S629T1770880998.94"}
+  "lib/integers/signed.cmi" {"F:S4778T1770880998.94"}
+  "lib/integers/signed.cmt" {"F:S46514T1770880998.94"}
+  "lib/integers/signed.cmti" {"F:S17906T1770880998.94"}
+  "lib/integers/signed.cmx" {"F:S15129T1770880998.94"}
+  "lib/integers/signed.ml" {"F:S4395T1770880998.94"}
+  "lib/integers/signed.mli" {"F:S2214T1770880998.94"}
+  "lib/integers/top" {"D"}
+  "lib/integers/top/install_integer_printers.cmi" {"F:S220T1770880998.94"}
+  "lib/integers/top/install_integer_printers.cmt" {"F:S7970T1770880998.94"}
+  "lib/integers/top/install_integer_printers.cmti" {"F:S1575T1770880998.94"}
+  "lib/integers/top/install_integer_printers.ml" {"F:S1258T1770880998.94"}
+  "lib/integers/top/install_integer_printers.mli" {"F:S52T1770880998.94"}
+  "lib/integers/top/integer_printers.cmi" {"F:S1048T1770880998.94"}
+  "lib/integers/top/integer_printers.cmt" {"F:S13426T1770880998.94"}
+  "lib/integers/top/integer_printers.cmti" {"F:S5453T1770880998.94"}
+  "lib/integers/top/integer_printers.ml" {"F:S1205T1770880998.94"}
+  "lib/integers/top/integer_printers.mli" {"F:S844T1770880998.94"}
+  "lib/integers/top/integers_top.cma" {"F:S10471T1770880998.94"}
+  "lib/integers/unsigned.cmi" {"F:S6225T1770880998.94"}
+  "lib/integers/unsigned.cmt" {"F:S68250T1770880998.94"}
+  "lib/integers/unsigned.cmti" {"F:S28520T1770880998.94"}
+  "lib/integers/unsigned.cmx" {"F:S11618T1770880998.94"}
+  "lib/integers/unsigned.ml" {"F:S9809T1770880998.94"}
+  "lib/integers/unsigned.mli" {"F:S7870T1770880998.94"}
+  "lib/stublibs/dllintegers_stubs.so" {"F:S47520T1770880998.94"}
+]

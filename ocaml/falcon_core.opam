@@ -8,7 +8,7 @@ homepage: "https://github.com/falcon-autotuning/falcon-core-libs"
 bug-reports: "https://github.com/falcon-autotuning/falcon-core-libs/issues"
 depends: [
   "ocaml" {>= "4.14.0"}
-  "dune" {>= "3.0" & >= "3.0"}
+  "dune" {>= "3.21" & >= "3.0"}
   "ctypes"
   "ctypes-foreign"
   "odoc" {with-doc}
@@ -27,3 +27,4 @@ build: [
     "@doc" {with-doc}
   ]
 ]
+x-maintenance-intent: ["(latest)"]
