@@ -3,8 +3,11 @@ open Capi_bindings
 open Error_handling
 
 (* No opens needed - using qualified names *)
+class type c_acquisitioncontext_t = object
+  method raw : unit ptr
+end
 
-class c_acquisitioncontext (h : unit ptr) = object(self)
+class c_acquisitioncontext (h : unit ptr) : c_acquisitioncontext_t = object(self)
   val raw_val = h
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
@@ -23,14 +26,14 @@ module AcquisitionContext = struct
       new c_acquisitioncontext ptr
     )
 
-  let fromjson (json : char) : t =
-    let ptr = Capi_bindings.acquisitioncontext_from_json_string (Capi_bindings.string_wrap json) in
+  let fromjson (json : string) : t =
+    let ptr = Capi_bindings.acquisitioncontext_from_json_string (Falcon_string.of_string json) in
     Error_handling.raise_if_error ();
     new c_acquisitioncontext ptr
 
-  let make (connection : Connection.Connection.t) (instrument_type : char) (units : Symbolunit.SymbolUnit.t) : t =
+  let make (connection : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) : t =
     Error_handling.multi_read [connection; units] (fun () ->
-      let ptr = Capi_bindings.acquisitioncontext_create connection#raw (Capi_bindings.string_wrap instrument_type) units#raw in
+      let ptr = Capi_bindings.acquisitioncontext_create connection#raw (Falcon_string.of_string instrument_type) units#raw in
       Error_handling.raise_if_error ();
       new c_acquisitioncontext ptr
     )
@@ -105,9 +108,9 @@ module AcquisitionContext = struct
       result
     )
 
-  let matchInstrumentType (handle : t) (other : char) : bool =
+  let matchInstrumentType (handle : t) (other : string) : bool =
     Error_handling.read handle (fun () ->
-      let result = Capi_bindings.acquisitioncontext_match_instrument_type handle#raw (Capi_bindings.string_wrap other) in
+      let result = Capi_bindings.acquisitioncontext_match_instrument_type handle#raw (Falcon_string.of_string other) in
       Error_handling.raise_if_error ();
       result
     )

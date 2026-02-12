@@ -1,6 +1,5 @@
 open Ctypes
 open Foreign
-open Falcon_string
 
 let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]
 

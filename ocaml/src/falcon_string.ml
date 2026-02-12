@@ -14,21 +14,16 @@ let c_string_raw = field c_string "raw" (ptr char)
 let c_string_length = field c_string "length" size_t
 let () = seal c_string
 
-(* C-API functions *)
-let string_create = foreign ~from:lib "String_create" (ptr char @-> size_t @-> returning (ptr void))
-let string_wrap_c = foreign ~from:lib "String_wrap" (ptr char @-> returning (ptr void))
+(* C-API functions - use Ctypes 'string' type which auto-converts OCaml string <-> const char* *)
+let string_create_raw = foreign ~from:lib "String_create" (ptr char @-> size_t @-> returning (ptr void))
 let string_destroy = foreign ~from:lib "String_destroy" (ptr void @-> returning void)
 
 (** Convert an OCaml string to a StringHandle (unit ptr).
     Equivalent to Go's str.New(raw). *)
-let of_string (s : string) : unit ptr =
-  let len = Stdlib.String.length s in
-  let buf = CArray.make char (len + 1) in
-  for i = 0 to len - 1 do
-    CArray.set buf i s.[i]
-  done;
-  CArray.set buf len '\000';
-  string_create (CArray.start buf) (Unsigned.Size_t.of_int len)
+let of_string (s : string) : unit ptr =  
+  let c_array = CArray.of_string s in
+  let c_ptr = CArray.start c_array in
+  string_create_raw c_ptr (Unsigned.Size_t.of_int (Stdlib.String.length s))
 
 (** Convert a StringHandle (unit ptr) back to an OCaml string, then destroy the handle.
     Equivalent to Go's handle.ToGoString() followed by handle.Close(). *)
