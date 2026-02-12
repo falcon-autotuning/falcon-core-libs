@@ -23,12 +23,12 @@ module AcquisitionContext = struct
       new c_acquisitioncontext ptr
     )
 
-  let fromjson (json : string) : t =
+  let fromjson (json : char) : t =
     let ptr = Capi_bindings.acquisitioncontext_from_json_string (Capi_bindings.string_wrap json) in
     Error_handling.raise_if_error ();
     new c_acquisitioncontext ptr
 
-  let make (connection : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) : t =
+  let make (connection : Connection.Connection.t) (instrument_type : char) (units : Symbolunit.SymbolUnit.t) : t =
     Error_handling.multi_read [connection; units] (fun () ->
       let ptr = Capi_bindings.acquisitioncontext_create connection#raw (Capi_bindings.string_wrap instrument_type) units#raw in
       Error_handling.raise_if_error ();
@@ -105,7 +105,7 @@ module AcquisitionContext = struct
       result
     )
 
-  let matchInstrumentType (handle : t) (other : string) : bool =
+  let matchInstrumentType (handle : t) (other : char) : bool =
     Error_handling.read handle (fun () ->
       let result = Capi_bindings.acquisitioncontext_match_instrument_type handle#raw (Capi_bindings.string_wrap other) in
       Error_handling.raise_if_error ();

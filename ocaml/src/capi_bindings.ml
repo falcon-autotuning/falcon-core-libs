@@ -1,20 +1,12 @@
 open Ctypes
 open Foreign
+open Falcon_string
 
 let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]
 
-(* String helpers *)
-let string_create = foreign ~from:lib "String_create" (string @-> size_t @-> returning (ptr void))
-let string_destroy = foreign ~from:lib "String_destroy" (ptr void @-> returning void)
-let string_data = foreign ~from:lib "String_data" (ptr void @-> returning string)
-
-let string_wrap (s : string) : unit ptr =
-  string_create s (Unsigned.Size_t.of_int (Stdlib.String.length s))
-
-let string_to_ocaml (handle : unit ptr) : string =
-  let s = string_data handle in
-  string_destroy handle;
-  s
+(* String conversion helpers - delegate to Falcon_string module *)
+let string_wrap = Falcon_string.of_string
+let string_to_ocaml = Falcon_string.to_string
 
 (* Raw C bindings *)
 (* === AcquisitionContext === *)
