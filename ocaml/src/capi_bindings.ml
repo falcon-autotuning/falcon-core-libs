@@ -16,6 +16,7 @@ let string_to_ocaml (handle : unit ptr) : string =
   string_destroy handle;
   s
 
+(* Raw C bindings *)
 (* === AcquisitionContext === *)
 let acquisitioncontext_destroy = foreign ~from:lib "AcquisitionContext_destroy" (ptr void @-> returning (void))
 let acquisitioncontext_copy = foreign ~from:lib "AcquisitionContext_copy" (ptr void @-> returning (ptr void))

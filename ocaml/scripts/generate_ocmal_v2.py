@@ -913,37 +913,27 @@ class OCamlGenerator:
 
     def generate_bindings(self):
         """Generate Ctypes FFI bindings"""
-        lines = []
-        lines.append("open Ctypes")
-        lines.append("open Foreign")
-        lines.append("")
-        lines.append(
-            'let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]'
-        )
-        lines.append("")
-
-        # String helpers
-        lines.append("(* String helpers *)")
-        lines.append(
-            'let string_create = foreign ~from:lib "String_create" (string @-> size_t @-> returning (ptr void))'
-        )
-        lines.append(
-            'let string_destroy = foreign ~from:lib "String_destroy" (ptr void @-> returning void)'
-        )
-        lines.append(
-            'let string_data = foreign ~from:lib "String_data" (ptr void @-> returning string)'
-        )
-        lines.append("")
-        lines.append("let string_wrap (s : string) : unit ptr =")
-        lines.append(
-            "  string_create s (Unsigned.Size_t.of_int (Stdlib.String.length s))"
-        )
-        lines.append("")
-        lines.append("let string_to_ocaml (handle : unit ptr) : string =")
-        lines.append("  let s = string_data handle in")
-        lines.append("  string_destroy handle;")
-        lines.append("  s")
-        lines.append("")
+        lines = [
+            "open Ctypes",
+            "open Foreign",
+            "",
+            'let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]',
+            "",
+            "(* String helpers *)",
+            'let string_create = foreign ~from:lib "String_create" (string @-> size_t @-> returning (ptr void))',
+            'let string_destroy = foreign ~from:lib "String_destroy" (ptr void @-> returning void)',
+            'let string_data = foreign ~from:lib "String_data" (ptr void @-> returning string)',
+            "",
+            "let string_wrap (s : string) : unit ptr =",
+            "  string_create s (Unsigned.Size_t.of_int (Stdlib.String.length s))",
+            "",
+            "let string_to_ocaml (handle : unit ptr) : string =",
+            "  let s = string_data handle in",
+            "  string_destroy handle;",
+            "  s",
+            "",
+            "(* Raw C bindings *)",
+        ]
 
         # Generate bindings for each class
         for cls in self.classes:
