@@ -37,7 +37,7 @@ module Time = struct
     new c_time ptr
 
   let at (micro_seconds_since_epoch : int64) : t =
-    let ptr = Capi_bindings.time_create_at (Int64.of_int micro_seconds_since_epoch) in
+    let ptr = Capi_bindings.time_create_at micro_seconds_since_epoch in
     Error_handling.raise_if_error ();
     new c_time ptr
 

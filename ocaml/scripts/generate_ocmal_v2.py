@@ -571,8 +571,6 @@ class OCamlGenerator:
         elif self.is_primitive(ocaml_type):
             if arg.type_name == "size_t":
                 return f"(Unsigned.Size_t.of_int {arg_name})"
-            elif arg.type_name == "long long":
-                return f"(Int64.of_int {arg_name})"
             else:
                 return arg_name
 
