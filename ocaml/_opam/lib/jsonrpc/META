@@ -1,7 +1,0 @@
-version = "1.25.0"
-description = ""
-requires = "yojson"
-archive(byte) = "jsonrpc.cma"
-archive(native) = "jsonrpc.cmxa"
-plugin(byte) = "jsonrpc.cma"
-plugin(native) = "jsonrpc.cmxs"

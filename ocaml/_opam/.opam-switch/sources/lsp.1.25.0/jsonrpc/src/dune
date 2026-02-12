@@ -1,5 +1,0 @@
-(library
- (public_name jsonrpc)
- (libraries yojson)
- (instrumentation
-  (backend bisect_ppx)))

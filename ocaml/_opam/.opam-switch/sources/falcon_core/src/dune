@@ -1,5 +1,0 @@
-(library
- (name falcon_core)
- (public_name falcon_core)
- (libraries ctypes ctypes.foreign)
- (flags :standard -w -32))
