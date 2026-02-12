@@ -14,19 +14,19 @@ module MapConnectionDouble : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairconnectiondouble.t -> int -> t
+  val make : Pairconnectiondouble.PairConnectionDouble.t -> int -> t
   val fromjson : string -> t
-  val insertOrAssign : t -> Connection.t -> float -> unit
-  val insert : t -> Connection.t -> float -> unit
-  val at : t -> Connection.t -> float
-  val erase : t -> Connection.t -> unit
+  val insertOrAssign : t -> Connection.Connection.t -> float -> unit
+  val insert : t -> Connection.Connection.t -> float -> unit
+  val at : t -> Connection.Connection.t -> float
+  val erase : t -> Connection.Connection.t -> unit
   val size : t -> int
   val empty : t -> bool
   val clear : t -> unit
-  val contains : t -> Connection.t -> bool
-  val keys : t -> Listconnection.t
-  val values : t -> Listdouble.t
-  val items : t -> Listpairconnectiondouble.t
+  val contains : t -> Connection.Connection.t -> bool
+  val keys : t -> Listconnection.ListConnection.t
+  val values : t -> Listdouble.ListDouble.t
+  val items : t -> Listpairconnectiondouble.ListPairConnectionDouble.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

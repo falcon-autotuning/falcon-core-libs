@@ -14,11 +14,11 @@ module VoltageConstraints : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Adjacency.t -> float -> Pairdoubledouble.t -> t
+  val make : Adjacency.Adjacency.t -> float -> Pairdoubledouble.PairDoubleDouble.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val matrix : t -> Farraydouble.t
-  val adjacency : t -> Adjacency.t
-  val limits : t -> Farraydouble.t
+  val matrix : t -> Farraydouble.FArrayDouble.t
+  val adjacency : t -> Adjacency.Adjacency.t
+  val limits : t -> Farraydouble.FArrayDouble.t
 end

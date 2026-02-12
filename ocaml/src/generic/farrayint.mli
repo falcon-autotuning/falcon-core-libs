@@ -48,7 +48,7 @@ module FArrayInt : sig
   val dividesDouble : t -> float -> t
   val dividesInt : t -> int -> t
   val pow : t -> int -> t
-  val doublePow : t -> float -> Farraydouble.t
+  val doublePow : t -> float -> Farraydouble.FArrayDouble.t
   val powInplace : t -> int -> unit
   val abs : t -> t
   val min : t -> int
@@ -62,7 +62,7 @@ module FArrayInt : sig
   val removeOffset : t -> int -> unit
   val sum : t -> int
   val reshape : t -> int -> int -> t
-  val where : t -> int -> Listlistsizet.t
+  val where : t -> int -> Listlistsizet.ListListSizeT.t
   val flip : t -> int -> t
   val fullGradient : t -> t -> int -> int
   val gradient : t -> int -> t

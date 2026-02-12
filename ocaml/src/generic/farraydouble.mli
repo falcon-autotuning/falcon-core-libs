@@ -62,7 +62,7 @@ module FArrayDouble : sig
   val removeOffset : t -> float -> unit
   val sum : t -> float
   val reshape : t -> int -> int -> t
-  val where : t -> float -> Listlistsizet.t
+  val where : t -> float -> Listlistsizet.ListListSizeT.t
   val flip : t -> int -> t
   val fullGradient : t -> t -> int -> int
   val gradient : t -> int -> t

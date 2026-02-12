@@ -9,7 +9,7 @@ class c_pairsizetsizet (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.pairsizetsizet_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
@@ -18,53 +18,53 @@ module PairSizeTSizeT = struct
 
   let make (first : int) (second : int) : t =
     let ptr = Capi_bindings.pairsizetsizet_create (Unsigned.Size_t.of_int first) (Unsigned.Size_t.of_int second) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_pairsizetsizet ptr
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.pairsizetsizet_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_pairsizetsizet ptr
     )
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.pairsizetsizet_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_pairsizetsizet ptr
 
   let first (handle : t) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairsizetsizet_first handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let second (handle : t) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairsizetsizet_second handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.pairsizetsizet_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.pairsizetsizet_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairsizetsizet_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 

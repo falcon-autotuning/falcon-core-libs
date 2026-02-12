@@ -9,7 +9,7 @@ class c_pairstringstring (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.pairstringstring_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
@@ -18,42 +18,42 @@ module PairStringString = struct
 
   let make (first : string) (second : string) : t =
     let ptr = Capi_bindings.pairstringstring_create (Capi_bindings.string_wrap first) (Capi_bindings.string_wrap second) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_pairstringstring ptr
 
   let copy (handle : string) : t =
     let ptr = Capi_bindings.pairstringstring_copy (Capi_bindings.string_wrap handle) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_pairstringstring ptr
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.pairstringstring_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_pairstringstring ptr
 
   let first (handle : string) : string =
     let result = Capi_bindings.pairstringstring_first (Capi_bindings.string_wrap handle) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     Capi_bindings.string_to_ocaml result
 
   let second (handle : string) : string =
     let result = Capi_bindings.pairstringstring_second (Capi_bindings.string_wrap handle) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     Capi_bindings.string_to_ocaml result
 
   let equal (handle : string) (other : string) : bool =
     let result = Capi_bindings.pairstringstring_equal (Capi_bindings.string_wrap handle) (Capi_bindings.string_wrap other) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     result
 
   let notEqual (handle : string) (other : string) : bool =
     let result = Capi_bindings.pairstringstring_not_equal (Capi_bindings.string_wrap handle) (Capi_bindings.string_wrap other) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     result
 
   let toJsonString (handle : string) : string =
     let result = Capi_bindings.pairstringstring_to_json_string (Capi_bindings.string_wrap handle) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     Capi_bindings.string_to_ocaml result
 
 end

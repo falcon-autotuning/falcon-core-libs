@@ -14,18 +14,18 @@ module ListAcquisitionContext : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Acquisitioncontext.t -> t
-  val make : Acquisitioncontext.t -> int -> t
+  val fillValue : int -> Acquisitioncontext.AcquisitionContext.t -> t
+  val make : Acquisitioncontext.AcquisitionContext.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Acquisitioncontext.t -> unit
+  val pushBack : t -> Acquisitioncontext.AcquisitionContext.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Acquisitioncontext.t
-  val items : t -> Acquisitioncontext.t -> int -> int
-  val contains : t -> Acquisitioncontext.t -> bool
-  val index : t -> Acquisitioncontext.t -> int
+  val at : t -> int -> Acquisitioncontext.AcquisitionContext.t
+  val items : t -> Acquisitioncontext.AcquisitionContext.t -> int -> int
+  val contains : t -> Acquisitioncontext.AcquisitionContext.t -> bool
+  val index : t -> Acquisitioncontext.AcquisitionContext.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

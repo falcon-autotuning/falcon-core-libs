@@ -15,20 +15,20 @@ module DotGatesWithNeighbors : sig
   val copy : t -> t
   val fromjson : string -> t
   val empty : t
-  val make : Listdotgatewithneighbors.t -> t
+  val make : Listdotgatewithneighbors.ListDotGateWithNeighbors.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val isPlungerGates : t -> bool
   val isBarrierGates : t -> bool
   val intersection : t -> t -> t
-  val pushBack : t -> Dotgatewithneighbors.t -> unit
+  val pushBack : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Dotgatewithneighbors.t
-  val items : t -> Listdotgatewithneighbors.t
-  val contains : t -> Dotgatewithneighbors.t -> bool
-  val index : t -> Dotgatewithneighbors.t -> int
+  val at : t -> int -> Dotgatewithneighbors.DotGateWithNeighbors.t
+  val items : t -> Listdotgatewithneighbors.ListDotGateWithNeighbors.t
+  val contains : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> bool
+  val index : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> int
 end

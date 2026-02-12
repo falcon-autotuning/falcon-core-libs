@@ -12,26 +12,26 @@ class c_interpretationcontainerdouble : unit ptr -> c_interpretationcontainerdou
 module InterpretationContainerDouble : sig
   type t = c_interpretationcontainerdouble
 
-  val make : Mapinterpretationcontextdouble.t -> t
+  val make : Mapinterpretationcontextdouble.MapInterpretationContextDouble.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val unit : t -> Symbolunit.t
-  val selectByConnection : t -> Connection.t -> Listinterpretationcontext.t
-  val selectByConnections : t -> Connections.t -> Listinterpretationcontext.t
-  val selectByIndependentConnection : t -> Connection.t -> Listinterpretationcontext.t
-  val selectByDependentConnection : t -> Connection.t -> Listinterpretationcontext.t
-  val selectContexts : t -> Listconnection.t -> Listconnection.t -> Listinterpretationcontext.t
-  val insertOrAssign : t -> Interpretationcontext.t -> float -> unit
-  val insert : t -> Interpretationcontext.t -> float -> unit
-  val at : t -> Interpretationcontext.t -> float
-  val erase : t -> Interpretationcontext.t -> unit
+  val unit : t -> Symbolunit.SymbolUnit.t
+  val selectByConnection : t -> Connection.Connection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectByConnections : t -> Connections.Connections.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectByIndependentConnection : t -> Connection.Connection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectByDependentConnection : t -> Connection.Connection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectContexts : t -> Listconnection.ListConnection.t -> Listconnection.ListConnection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val insertOrAssign : t -> Interpretationcontext.InterpretationContext.t -> float -> unit
+  val insert : t -> Interpretationcontext.InterpretationContext.t -> float -> unit
+  val at : t -> Interpretationcontext.InterpretationContext.t -> float
+  val erase : t -> Interpretationcontext.InterpretationContext.t -> unit
   val size : t -> int
   val empty : t -> bool
   val clear : t -> unit
-  val contains : t -> Interpretationcontext.t -> bool
-  val keys : t -> Listinterpretationcontext.t
-  val values : t -> Listdouble.t
-  val items : t -> Listpairinterpretationcontextdouble.t
+  val contains : t -> Interpretationcontext.InterpretationContext.t -> bool
+  val keys : t -> Listinterpretationcontext.ListInterpretationContext.t
+  val values : t -> Listdouble.ListDouble.t
+  val items : t -> Listpairinterpretationcontextdouble.ListPairInterpretationContextDouble.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

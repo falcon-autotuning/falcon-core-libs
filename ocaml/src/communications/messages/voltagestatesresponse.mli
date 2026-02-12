@@ -14,10 +14,10 @@ module VoltageStatesResponse : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : string -> Devicevoltagestates.t -> t
+  val make : string -> Devicevoltagestates.DeviceVoltageStates.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val message : t -> string
-  val states : t -> Devicevoltagestates.t
+  val states : t -> Devicevoltagestates.DeviceVoltageStates.t
 end

@@ -14,18 +14,18 @@ module ListQuantity : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Quantity.t -> t
-  val make : Quantity.t -> int -> t
+  val fillValue : int -> Quantity.Quantity.t -> t
+  val make : Quantity.Quantity.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Quantity.t -> unit
+  val pushBack : t -> Quantity.Quantity.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Quantity.t
-  val items : t -> Quantity.t -> int -> int
-  val contains : t -> Quantity.t -> bool
-  val index : t -> Quantity.t -> int
+  val at : t -> int -> Quantity.Quantity.t
+  val items : t -> Quantity.Quantity.t -> int -> int
+  val contains : t -> Quantity.Quantity.t -> bool
+  val index : t -> Quantity.Quantity.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

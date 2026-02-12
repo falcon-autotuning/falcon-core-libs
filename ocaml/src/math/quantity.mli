@@ -14,13 +14,13 @@ module Quantity : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : float -> Symbolunit.t -> t
+  val make : float -> Symbolunit.SymbolUnit.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val value : t -> float
-  val unit : t -> Symbolunit.t
-  val convertTo : t -> Symbolunit.t -> unit
+  val unit : t -> Symbolunit.SymbolUnit.t
+  val convertTo : t -> Symbolunit.SymbolUnit.t -> unit
   val multiplyInt : t -> int -> t
   val multiplyDouble : t -> float -> t
   val multiplyQuantity : t -> t -> t

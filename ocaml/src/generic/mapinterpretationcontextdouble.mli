@@ -14,19 +14,19 @@ module MapInterpretationContextDouble : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairinterpretationcontextdouble.t -> int -> t
+  val make : Pairinterpretationcontextdouble.PairInterpretationContextDouble.t -> int -> t
   val fromjson : string -> t
-  val insertOrAssign : t -> Interpretationcontext.t -> float -> unit
-  val insert : t -> Interpretationcontext.t -> float -> unit
-  val at : t -> Interpretationcontext.t -> float
-  val erase : t -> Interpretationcontext.t -> unit
+  val insertOrAssign : t -> Interpretationcontext.InterpretationContext.t -> float -> unit
+  val insert : t -> Interpretationcontext.InterpretationContext.t -> float -> unit
+  val at : t -> Interpretationcontext.InterpretationContext.t -> float
+  val erase : t -> Interpretationcontext.InterpretationContext.t -> unit
   val size : t -> int
   val empty : t -> bool
   val clear : t -> unit
-  val contains : t -> Interpretationcontext.t -> bool
-  val keys : t -> Listinterpretationcontext.t
-  val values : t -> Listdouble.t
-  val items : t -> Listpairinterpretationcontextdouble.t
+  val contains : t -> Interpretationcontext.InterpretationContext.t -> bool
+  val keys : t -> Listinterpretationcontext.ListInterpretationContext.t
+  val values : t -> Listdouble.ListDouble.t
+  val items : t -> Listpairinterpretationcontextdouble.ListPairInterpretationContextDouble.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

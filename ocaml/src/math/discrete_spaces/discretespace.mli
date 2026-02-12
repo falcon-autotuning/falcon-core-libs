@@ -14,19 +14,19 @@ module DiscreteSpace : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Unitspace.t -> Axescoupledlabelleddomain.t -> Axesmapstringbool.t -> t
-  val cartesianDiscreteSpace : Axesint.t -> Axescoupledlabelleddomain.t -> Axesmapstringbool.t -> Domain.t -> t
-  val cartesianDiscreteSpace1d : int -> Coupledlabelleddomain.t -> Mapstringbool.t -> Domain.t -> t
+  val make : Unitspace.UnitSpace.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Axesmapstringbool.AxesMapStringBool.t -> t
+  val cartesianDiscreteSpace : Axesint.AxesInt.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Axesmapstringbool.AxesMapStringBool.t -> Domain.Domain.t -> t
+  val cartesianDiscreteSpace1d : int -> Coupledlabelleddomain.CoupledLabelledDomain.t -> Mapstringbool.MapStringBool.t -> Domain.Domain.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val space : t -> Unitspace.t
-  val axes : t -> Axescoupledlabelleddomain.t
-  val increasing : t -> Axesmapstringbool.t
-  val knobs : t -> Ports.t
+  val space : t -> Unitspace.UnitSpace.t
+  val axes : t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t
+  val increasing : t -> Axesmapstringbool.AxesMapStringBool.t
+  val knobs : t -> Ports.Ports.t
   val validateUnitSpaceDimensionalityMatchesKnobs : t -> unit
   val validateKnobUniqueness : t -> unit
-  val getAxis : t -> Instrumentport.t -> int
-  val getDomain : t -> Instrumentport.t -> Domain.t
-  val getProjection : t -> Axesinstrumentport.t -> Axeslabelledcontrolarray.t
+  val getAxis : t -> Instrumentport.InstrumentPort.t -> int
+  val getDomain : t -> Instrumentport.InstrumentPort.t -> Domain.Domain.t
+  val getProjection : t -> Axesinstrumentport.AxesInstrumentPort.t -> Axeslabelledcontrolarray.AxesLabelledControlArray.t
 end

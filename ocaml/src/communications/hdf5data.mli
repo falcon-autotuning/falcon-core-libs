@@ -14,18 +14,18 @@ module HDF5Data : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Axesint.t -> Axescontrolarray.t -> Axescoupledlabelleddomain.t -> Labelledarrayslabelledmeasuredarray.t -> string -> string -> int -> int -> t
+  val make : Axesint.AxesInt.t -> Axescontrolarray.AxesControlArray.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Labelledarrayslabelledmeasuredarray.LabelledArraysLabelledMeasuredArray.t -> string -> string -> int -> int -> t
   val fromFile : string -> t
-  val fromCommunications : Measurementrequest.t -> Measurementresponse.t -> Devicevoltagestates.t -> int -> string -> int -> int -> t
+  val fromCommunications : Measurementrequest.MeasurementRequest.t -> Measurementresponse.MeasurementResponse.t -> Devicevoltagestates.DeviceVoltageStates.t -> int -> string -> int -> int -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val toFile : t -> string -> unit
-  val toCommunications : t -> Pairmeasurementresponsemeasurementrequest.t
-  val shape : t -> Axesint.t
-  val unitDomain : t -> Axescontrolarray.t
-  val domainLabels : t -> Axescoupledlabelleddomain.t
-  val ranges : t -> Labelledarrayslabelledmeasuredarray.t
+  val toCommunications : t -> Pairmeasurementresponsemeasurementrequest.PairMeasurementResponseMeasurementRequest.t
+  val shape : t -> Axesint.AxesInt.t
+  val unitDomain : t -> Axescontrolarray.AxesControlArray.t
+  val domainLabels : t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t
+  val ranges : t -> Labelledarrayslabelledmeasuredarray.LabelledArraysLabelledMeasuredArray.t
   val metadata : t -> string
   val measurementTitle : t -> string
   val uniqueId : t -> int

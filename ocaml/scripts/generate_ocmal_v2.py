@@ -2,6 +2,7 @@
 """
 Complete OCaml wrapper generator for falcon-core C-API.
 Mirrors Go's genFile/main.go with all special cases and proper implementations.
+
 """
 
 import re
@@ -39,6 +40,10 @@ class ClassDef:
     constructors: list[Function] = field(default_factory=list)
     destructor: Optional[Function] = None
 
+    # Add this as a class attribute in OCamlGenerator.__init__
+    # These C-API types should NOT generate wrapper files because they
+    # conflict with OCaml stdlib or are handled specially by capi_bindings
+
 
 class OCamlGenerator:
     def __init__(self, include_dir: Path, output_dir: Path):
@@ -46,10 +51,25 @@ class OCamlGenerator:
         self.output_dir = output_dir
         self.classes: list[ClassDef] = []
 
+        # Types to skip generating wrappers for - these shadow stdlib modules
+        # or are handled specially (like String being handled by capi_bindings)
+        self.SKIP_TYPES = {
+            "String",
+            "ErrorHandling",
+            "InstrumentTypes",
+            "Sign",
+            "Precompiled",
+        }
+
+        # ... rest of __init__ unchanged ...
+
         # Track type dependencies for proper imports
         self.type_dependencies: dict[str, set[str]] = {}
         # Current class being generated (for tracking)
         self.current_class_dependencies: set[str] = set()
+        # Cache: type_name -> (qualified_module_path, module_name)
+        # e.g. "Connection" -> ("Physics.Device_structures.Connection", "Connection")
+        self._module_path_cache: dict[str, Optional[str]] = {}
         # C to OCaml type mapping
         self.primitive_map = {
             "void": "unit",
@@ -142,7 +162,7 @@ class OCamlGenerator:
     def find_module_path(self, header_path: Path, type_name: str) -> Optional[str]:
         """
         Find the OCaml module path for a given type by scanning header includes.
-        Similar to Go's findGoImport (lines 17-70).
+        Similar to Go's findGoImport.
 
         Returns: "Physics.Device_structures.Connection" or None
         """
@@ -159,7 +179,6 @@ class OCamlGenerator:
 
         # Find #include statements
         include_re = re.compile(r'#include\s+"([^"]+)"')
-        includes = []
 
         for match in include_re.finditer(content):
             include_path = match.group(1)
@@ -169,54 +188,93 @@ class OCamlGenerator:
                 print(f"    FOUND: {include_path}")
                 # Extract path: "falcon_core/physics/device_structures/Connection_c_api.h"
                 if "falcon_core/" in include_path:
-                    parts = include_path.split("falcon_core/")[1]
-                    parts = parts.replace("_c_api.h", "")
-                    segments = parts.split("/")
+                    # Remove "falcon_core/" prefix and "_c_api.h" suffix
+                    rel = include_path.split("falcon_core/", 1)[1]
+                    rel = rel.rsplit("/", 1)[0]  # Remove filename
+                    # Convert "physics/device_structures" -> ["Physics", "Device_structures"]
+                    parts = [p.capitalize() for p in rel.split("/")]
+                    # Add the type name module
+                    parts.append(type_name)
+                    return ".".join(parts)
+                return type_name
 
-                    # Convert to OCaml module path
-                    module_parts = []
-                    for i, seg in enumerate(segments):
-                        if i < len(segments) - 1:
-                            # Namespace parts: physics -> Physics
-                            module_parts.append(seg.capitalize())
-                        else:
-                            # Type name: Connection (capitalize first letter)
-                            module_parts.append(seg[0].upper() + seg[1:])
-
-                    result = ".".join(module_parts)
-                    print(f"    Module path: {result}")
+        # Recurse into included headers
+        for match in include_re.finditer(content):
+            include_path = match.group(1)
+            full_path = self.include_dir / include_path
+            if full_path.exists():
+                result = self.find_module_path(full_path, type_name)
+                if result:
                     return result
-
-            # Collect for recursive search
-            if "falcon_core/" in include_path:
-                includes.append(include_path)
-
-        # Recursive search in included headers
-        for inc in includes:
-            try:
-                # FIXED: Build path correctly
-                # If inc is "falcon_core/physics/Connection_c_api.h"
-                # and header_path is "/path/to/falcon-core/c-api/include/falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h"
-                # We want to get: "/path/to/falcon-core/c-api/include/falcon_core/physics/Connection_c_api.h"
-
-                # Get base directory (everything before "falcon_core/")
-                header_str = str(header_path)
-                if "falcon_core/" in header_str:
-                    base_dir = header_str.split("falcon_core/")[0]
-                    inc_path = Path(base_dir + inc)
-
-                    if inc_path.exists():
-                        result = self.find_module_path(inc_path, type_name)
-                        if result:
-                            return result
-            except Exception as e:
-                print(f"    Error in recursive search: {e}")
-                continue
 
         return None
 
+    def _get_qualified_module_path(
+        self, c_type: str, current_class: ClassDef
+    ) -> Optional[str]:
+        """
+        Get the fully qualified dune module path for a handle type.
+        Returns e.g. "Physics.Device_structures.Connection" or None for self-references.
+        Caches results.
+        """
+        if not c_type.endswith("Handle") or "StringHandle" in c_type:
+            return None
+
+        type_name = c_type.replace("Handle", "").strip()
+
+        # Self-reference
+        if type_name.lower() == current_class.name.lower():
+            return None
+
+        # Check cache
+        cache_key = f"{type_name}:{current_class.include_path}"
+        if cache_key in self._module_path_cache:
+            return self._module_path_cache[cache_key]
+
+        header_path = Path(current_class.include_path)
+        module_path = self.find_module_path(header_path, type_name)
+        self._module_path_cache[cache_key] = module_path
+        return module_path
+
     def resolve_type_path(self, c_type: str, current_class: ClassDef) -> str:
-        """Resolve full module path for a type and track dependencies"""
+        """Resolve module path for a type.
+
+        With (include_subdirs unqualified), all modules are in a flat namespace.
+        The file 'connection.ml' defines file-module 'Connection', which contains
+        'module Connection = struct type t = ... end'.
+
+        From outside, the type is accessed as: Connection.Connection.t
+        (file_module.inner_module.t)
+
+        BUT: since the file module name (Connection) equals the inner module name
+        (Connection), and we can just reference the inner module directly as
+        {InnerModule}.t — OCaml will find it through the file module automatically
+        because the file module IS the namespace.
+
+        Actually with unqualified, the file connection.ml is module Connection.
+        Inside it, 'module Connection = struct ... end' creates Connection.Connection.
+        To reference the type from outside: Connection.Connection.t
+
+        But we need to be careful: the file module name is capitalize(filename),
+        and the inner module name is cls.name. These may differ in casing.
+        File: connection.ml -> file module: Connection
+        Inner: module Connection = struct ... -> inner: Connection
+        So type = Connection.Connection.t? No, that's redundant.
+
+        The simpler approach: since we open nothing and the file module is Connection,
+        and inside it is module Connection, from OUTSIDE we write Connection.Connection.t.
+        But from the SAME file, it's just 't' (self-reference).
+
+        Actually, the simplest correct approach: just use {cls.name}.t for cross-module
+        references. Because the file IS the module — when you write Connection.t in
+        another file, OCaml finds file module Connection, then looks for type t,
+        but t doesn't exist at the file-module level. It exists inside the INNER
+        module Connection.Connection.
+
+        So the correct path is: {FileName_Module}.{InnerModule}.t
+        With our naming: Capitalize(lowercase(type_name)).{type_name}.t
+        e.g. Connection.Connection.t, Symbolunit.SymbolUnit.t
+        """
         if c_type in self.primitive_map:
             return self.primitive_map[c_type]
 
@@ -226,43 +284,52 @@ class OCamlGenerator:
         if c_type.endswith("Handle"):
             type_name = c_type.replace("Handle", "").strip()
 
+            # Self-reference: just use "t"
             if type_name.lower() == current_class.name.lower():
                 return "t"
 
-            header_path = Path(current_class.include_path)
-            module_path = self.find_module_path(header_path, type_name)
+            # File module name: capitalize(lowercase(type_name))
+            # e.g. SymbolUnit -> symbolunit -> Symbolunit
 
-            if module_path:
-                parts = module_path.split(".")
-                dep_namespace = [p.lower() for p in parts[:-1]]
-                current_namespace = current_class.namespace_path
+        if c_type.endswith("Handle"):
+            type_name = c_type.replace("Handle", "").strip()
 
-                same_namespace = (
-                    (dep_namespace == current_namespace)
-                    if dep_namespace and current_namespace
-                    else False
-                )
+            # Self-reference: just use "t"
+            if type_name.lower() == current_class.name.lower():
+                return "t"
 
-                if not same_namespace and len(parts) > 1:
-                    if current_class.name not in self.type_dependencies:
-                        self.type_dependencies[current_class.name] = set()
-                    self.type_dependencies[current_class.name].add(module_path)
+            # File module name: capitalize(lowercase(type_name))
+            # e.g. SymbolUnit -> symbolunit -> Symbolunit
+            lowercase_name = type_name.lower()
+            file_module = lowercase_name[0].upper() + lowercase_name[1:]
 
-                # FIXED: Convert CamelCase type_name to match lowercase filename
-                # FArrayDouble → farraydouble.ml → module Farraydouble
-                # So we need: capitalize(lower(type_name))
-                lowercase_name = type_name.lower()
-                module_name = (
-                    lowercase_name[0].upper() + lowercase_name[1:]
-                )  # "Farraydouble"
+            # Inner module name: the original class name as written
+            inner_module = type_name
 
-                return f"{module_name}.t"
-            else:
-                lowercase_name = type_name.lower()
-                module_name = lowercase_name[0].upper() + lowercase_name[1:]
-                return f"{module_name}.t"
+            return f"{file_module}.{inner_module}.t"
 
         return c_type
+
+    def resolve_class_constructor(self, c_type: str, current_class: ClassDef) -> str:
+        """Resolve the class constructor name for 'new c_<type>'.
+
+        With unqualified subdirs, just use FileModule.c_typename.
+        """
+        if not c_type.endswith("Handle") or "StringHandle" in c_type:
+            return ""
+
+        type_name = c_type.replace("Handle", "").strip()
+        class_name = f"c_{type_name.lower()}"
+
+        # Self-reference
+        if type_name.lower() == current_class.name.lower():
+            return class_name
+
+        # File module name
+        lowercase_name = type_name.lower()
+        file_module = lowercase_name[0].upper() + lowercase_name[1:]
+
+        return f"{file_module}.{class_name}"
 
     def c_to_ocaml_type(self, c_type: str, class_def: ClassDef) -> str:
         """Convert C types to OCaml types with proper module paths"""
@@ -300,9 +367,8 @@ class OCamlGenerator:
         if c_type == "size_t":
             return "size_t"
 
-        # FIXED: Map void to Ctypes' void, not OCaml's unit
         if c_type == "void":
-            return "void"  # ✓ Ctypes value, not "unit"
+            return "void"
 
         # Map other primitives
         primitive_ctypes = {
@@ -328,7 +394,7 @@ class OCamlGenerator:
             rel_path = header_path.relative_to(self.include_dir)
             parts = list(rel_path.parts[:-1])  # Exclude filename
 
-            # FIXED: Skip 'falcon_core' directory if it's the first part
+            # Skip 'falcon_core' directory if it's the first part
             if parts and parts[0] == "falcon_core":
                 parts = parts[1:]
 
@@ -354,8 +420,7 @@ class OCamlGenerator:
                     name=class_name,
                     handle_type=handle_type,
                     namespace_path=namespace_path,
-                    # FIXED: Store the actual header path, not a string
-                    include_path=str(header_path),  # Full absolute path
+                    include_path=str(header_path),
                 )
                 current_classes[class_name] = cls
 
@@ -480,18 +545,14 @@ class OCamlGenerator:
 
     def snake_to_camel_lower(self, name: str) -> str:
         """Convert snake_case to camelCase, handling special cases"""
-        # Handle double underscore (private methods in C++)
-        # Convert __foo to _foo (single underscore prefix in OCaml)
         if name.startswith("__"):
-            name = "_" + name[2:]  # Remove one underscore
+            name = "_" + name[2:]
 
         parts = name.split("_")
         if not parts:
             return name
 
-        # If starts with underscore, preserve it
         if parts[0] == "":
-            # Leading underscore case: _get_foo -> _getFoo
             return "_" + parts[1].lower() + "".join(p.capitalize() for p in parts[2:])
 
         return parts[0].lower() + "".join(p.capitalize() for p in parts[1:])
@@ -510,12 +571,10 @@ class OCamlGenerator:
 
         # Handle types need raw extraction (like Go's .CAPIHandle())
         elif self.is_handle(arg.type_name):
-            # Access the raw pointer from the object
             return f"{arg_name}#raw"
 
-        # Primitives passed directly (like Go's direct pass)
+        # Primitives passed directly
         elif self.is_primitive(ocaml_type):
-            # May need Ctypes conversion for certain types
             if arg.type_name == "size_t":
                 return f"(Unsigned.Size_t.of_int {arg_name})"
             elif arg.type_name == "long long":
@@ -551,7 +610,7 @@ class OCamlGenerator:
             param_type = self.c_to_ocaml_type(arg.type_name, class_def)
             params.append((self.safe_name(arg.name), param_type))
 
-        # Check for special case: out_buffer pattern (like Go's genFile line 808)
+        # Check for special case: out_buffer pattern
         has_out_buffer = any(arg.name == "out_buffer" for arg in func.args)
 
         # Count handles for error wrapper selection
@@ -580,7 +639,7 @@ class OCamlGenerator:
     def generate_constructor(
         self, func: Function, class_def: ClassDef, params: list[tuple[str, str]]
     ) -> list[str]:
-        """Generate constructor method - FIXED to include all parameters"""
+        """Generate constructor method"""
         lines = []
 
         method_name = func.name.replace(f"{class_def.name}_", "")
@@ -591,7 +650,7 @@ class OCamlGenerator:
 
         ocaml_name = self.safe_name(self.snake_to_camel_lower(method_name))
 
-        # BUILD PARAMETERS FROM FUNCTION ARGUMENTS (NOT FROM params LIST)
+        # BUILD PARAMETERS FROM FUNCTION ARGUMENTS
         param_list = []
         for arg in func.args:
             param_type = self.c_to_ocaml_type(arg.type_name, class_def)
@@ -622,26 +681,23 @@ class OCamlGenerator:
         handle_params = [arg for arg in func.args if self.is_handle(arg.type_name)]
 
         if len(handle_params) == 0:
-            # No handles - direct call
             lines.append(f"    let ptr = {c_call} in")
-            lines.append("    ErrorHandling.raise_if_error ();")
+            lines.append("    Error_handling.raise_if_error ();")
             lines.append(f"    new c_{class_def.name.lower()} ptr")
         elif len(handle_params) == 1:
-            # Single handle - use read
             handle_name = self.safe_name(handle_params[0].name)
-            lines.append(f"    ErrorHandling.read {handle_name} (fun () ->")
+            lines.append(f"    Error_handling.read {handle_name} (fun () ->")
             lines.append(f"      let ptr = {c_call} in")
-            lines.append("      ErrorHandling.raise_if_error ();")
+            lines.append("      Error_handling.raise_if_error ();")
             lines.append(f"      new c_{class_def.name.lower()} ptr")
             lines.append("    )")
         else:
-            # Multiple handles - use multi_read
             handle_names = [self.safe_name(arg.name) for arg in handle_params]
             lines.append(
-                f"    ErrorHandling.multi_read [{'; '.join(handle_names)}] (fun () ->"
+                f"    Error_handling.multi_read [{'; '.join(handle_names)}] (fun () ->"
             )
             lines.append(f"      let ptr = {c_call} in")
-            lines.append("      ErrorHandling.raise_if_error ();")
+            lines.append("      Error_handling.raise_if_error ();")
             lines.append(f"      new c_{class_def.name.lower()} ptr")
             lines.append("    )")
 
@@ -688,44 +744,35 @@ class OCamlGenerator:
         total_handles = len(handle_args) + (1 if is_instance else 0)
 
         if total_handles == 0:
-            # No handles, direct call
             lines.append(f"    let result = {c_call} in")
-            lines.append("    ErrorHandling.raise_if_error ();")
-            if self.is_handle(func.return_type):
-                lines.append(f"    new c_{ret_type_ocaml} result")
-            elif self.is_string(func.return_type):
-                lines.append("    Capi_bindings.string_to_ocaml result")
-            else:
-                lines.append("    result")
+            lines.append("    Error_handling.raise_if_error ();")
+            self._add_return_conversion(
+                lines, func.return_type, ret_type_ocaml, "result", 4, class_def
+            )
         elif total_handles == 1:
-            # Single handle read
             handle_ref = "self" if is_instance else self.safe_name(handle_args[0].name)
-            lines.append(f"    ErrorHandling.read {handle_ref} (fun () ->")
+            lines.append(f"    Error_handling.read {handle_ref} (fun () ->")
             lines.append(f"      let result = {c_call} in")
-            lines.append("      ErrorHandling.raise_if_error ();")
-            if self.is_handle(func.return_type):
-                lines.append(f"      new c_{ret_type_ocaml} result")
-            elif self.is_string(func.return_type):
-                lines.append("      Capi_bindings.string_to_ocaml result")
-            else:
-                lines.append("      result")
+            lines.append("      Error_handling.raise_if_error ();")
+            self._add_return_conversion(
+                lines, func.return_type, ret_type_ocaml, "result", 6, class_def
+            )
             lines.append("    )")
         else:
-            # Multi-read
-            handle_names = [self.safe_name(arg.name) for arg in handle_args]
             if is_instance:
-                handle_names = ["self"] + handle_names
+                handle_names = ["self"] + [
+                    self.safe_name(arg.name) for arg in handle_args
+                ]
+            else:
+                handle_names = [self.safe_name(arg.name) for arg in handle_args]
             lines.append(
-                f"    ErrorHandling.multi_read [{'; '.join(handle_names)}] (fun () ->"
+                f"    Error_handling.multi_read [{'; '.join(handle_names)}] (fun () ->"
             )
             lines.append(f"      let result = {c_call} in")
-            lines.append("      ErrorHandling.raise_if_error ();")
-            if self.is_handle(func.return_type):
-                lines.append(f"      new c_{ret_type_ocaml} result")
-            elif self.is_string(func.return_type):
-                lines.append("      Capi_bindings.string_to_ocaml result")
-            else:
-                lines.append("      result")
+            lines.append("      Error_handling.raise_if_error ();")
+            self._add_return_conversion(
+                lines, func.return_type, ret_type_ocaml, "result", 6, class_def
+            )
             lines.append("    )")
 
         return lines
@@ -762,35 +809,34 @@ class OCamlGenerator:
         c_call = f"Capi_bindings.{func.name.lower()}"
         if c_args:
             c_call += " " + " ".join(c_args)
-        else:
-            c_call += " ()"
 
+        # Determine wrapper based on handle count
         total_handles = len(handle_args) + (1 if is_instance else 0)
 
-        if total_handles <= 1:
-            # Write operation
-            handle_ref = (
-                "self"
-                if is_instance
-                else (self.safe_name(handle_args[0].name) if handle_args else "")
-            )
-            if handle_ref:
-                lines.append(f"    ErrorHandling.write {handle_ref} (fun () ->")
-                lines.append(f"      {c_call}")
-                lines.append("    )")
-            else:
-                lines.append(f"    {c_call};")
-                lines.append("    ErrorHandling.raise_if_error ()")
+        if total_handles == 0:
+            lines.append(f"    let result = {c_call} in")
+            lines.append("    Error_handling.raise_if_error ();")
+            lines.append("    result")
+        elif total_handles == 1:
+            handle_ref = "self" if is_instance else self.safe_name(handle_args[0].name)
+            lines.append(f"    Error_handling.write {handle_ref} (fun () ->")
+            lines.append(f"      let result = {c_call} in")
+            lines.append("      Error_handling.raise_if_error ();")
+            lines.append("      result")
+            lines.append("    )")
         else:
-            # ReadWrite operation
-            handle_names = [self.safe_name(arg.name) for arg in handle_args]
-            write_handle = "self" if is_instance else handle_names[0]
-            read_handles = handle_names if not is_instance else handle_names
-
+            if is_instance:
+                handle_names = ["self"] + [
+                    self.safe_name(arg.name) for arg in handle_args
+                ]
+            else:
+                handle_names = [self.safe_name(arg.name) for arg in handle_args]
             lines.append(
-                f"    ErrorHandling.read_write {write_handle} [{'; '.join(read_handles)}] (fun () ->"
+                f"    Error_handling.read_write (List.hd [{'; '.join(handle_names)}]) (List.tl [{'; '.join(handle_names)}]) (fun () ->"
             )
-            lines.append(f"      {c_call}")
+            lines.append(f"      let result = {c_call} in")
+            lines.append("      Error_handling.raise_if_error ();")
+            lines.append("      result")
             lines.append("    )")
 
         return lines
@@ -798,447 +844,151 @@ class OCamlGenerator:
     def generate_out_buffer_method(
         self, func: Function, class_def: ClassDef, is_instance: bool
     ) -> list[str]:
-        """
-        Generate method for out_buffer pattern (like Go's genFile line 808-872).
-        This abstracts away the C pattern of requiring a buffer.
-        """
-        lines = []
-
-        method_name = func.name.replace(f"{class_def.name}_", "")
-        ocaml_name = self.safe_name(self.snake_to_camel_lower(method_name))
-
-        # Find buffer parameter
-        buffer_param = None
-        for arg in func.args:
-            if arg.name == "out_buffer":
-                buffer_param = arg
-                break
-
-        if not buffer_param:
-            return lines
-
-        # Determine buffer element type
-        buffer_c_type = buffer_param.type_name.rstrip("*").strip()
-        buffer_ocaml_type = self.c_to_ocaml_type(buffer_c_type, class_def)
-
-        # Determine size function name (like Go line 846-849)
-        size_func = f"{class_def.name}_size"
-        if "gradient" in method_name.lower() or "shape" in method_name.lower():
-            size_func = f"{class_def.name}_dimension"
-
-        if is_instance:
-            lines.append(f"  method {ocaml_name} () : {buffer_ocaml_type} list =")
-        else:
-            lines.append(f"  let {ocaml_name} () : {buffer_ocaml_type} list =")
-
-        lines.append("    ErrorHandling.read self (fun () ->")
-        lines.append("      (* Get size first *)")
-        lines.append(f"      let size = Capi_bindings.{size_func.lower()} raw_val in")
-        lines.append("      ErrorHandling.raise_if_error ();")
-        lines.append("      (* Allocate buffer *)")
-        lines.append(
-            "      let buffer = Ctypes.allocate_n Ctypes.(ptr void) ~count:(Int32.to_int size) in"
-        )
-        lines.append("      (* Call function to fill buffer *)")
-        lines.append(
-            f"      Capi_bindings.{func.name.lower()} raw_val buffer (Unsigned.Size_t.of_int (Int32.to_int size));"
-        )
-        lines.append("      ErrorHandling.raise_if_error ();")
-        lines.append("      (* Convert buffer to OCaml list *)")
-
-        if self.is_handle(buffer_c_type):
-            lines.append("      let result = ref [] in")
-            lines.append("      for i = 0 to Int32.to_int size - 1 do")
-            lines.append("        let elem = Ctypes.(!@(buffer +@ i)) in")
-            lines.append(
-                f"        result := (new c_{buffer_ocaml_type} elem) :: !result"
-            )
-            lines.append("      done;")
-            lines.append("      List.rev !result")
-        elif self.is_string(buffer_c_type):
-            lines.append("      let result = ref [] in")
-            lines.append("      for i = 0 to Int32.to_int size - 1 do")
-            lines.append("        let elem = Ctypes.(!@(buffer +@ i)) in")
-            lines.append(
-                "        result := (Capi_bindings.string_to_ocaml elem) :: !result"
-            )
-            lines.append("      done;")
-            lines.append("      List.rev !result")
-        else:
-            lines.append("      let result = ref [] in")
-            lines.append("      for i = 0 to Int32.to_int size - 1 do")
-            lines.append("        result := Ctypes.(!@(buffer +@ i)) :: !result")
-            lines.append("      done;")
-            lines.append("      List.rev !result")
-
-        lines.append("    )")
-
-        return lines
-
-    def generate_bindings(self):
-        """Generate Ctypes FFI bindings"""
-        lines = [
-            "open Ctypes",
-            "open Foreign",
-            "",
-            'let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]',
-            "",
-            "(* String type definition matching C struct *)",
-            "type c_string",
-            'let c_string : c_string structure typ = structure "string"',
-            'let c_string_raw = field c_string "raw" (ptr char)',
-            'let c_string_length = field c_string "length" size_t',
-            "let () = seal c_string",
-            "",
-            "(* Helper for string conversion *)",
-            "let string_wrap s =",
-            "  let len = String.length s in",
-            '  foreign ~from:lib "String_create" ',
-            "    (string @-> size_t @-> returning (ptr void))",
-            "    s (Unsigned.Size_t.of_int len)",
-            "",
-            "let string_to_ocaml (ptr : unit ptr) : string =",
-            "  if ptr = null then",
-            '    ""',
-            "  else",
-            "    (* Cast void* to c_string* *)",
-            "    let str_ptr = from_voidp c_string ptr in",
-            "    let raw_ptr = getf (!@ str_ptr) c_string_raw in",
-            "    let length = getf (!@ str_ptr) c_string_length in",
-            "    let len = Unsigned.Size_t.to_int length in",
-            "    (* Convert C string to OCaml string *)",
-            "    string_from_ptr raw_ptr ~length:len",
-            "",
-            "(* Raw C bindings *)",
-        ]
-
-        for cls in self.classes:
-            lines.append(f"(* {cls.name} *)")
-
-            all_funcs = (
-                cls.constructors
-                + ([cls.destructor] if cls.destructor else [])
-                + cls.methods
-            )
-
-            for func in all_funcs:
-                # Build Ctypes function signature
-                ret_ctype = self.c_to_ctypes(func.return_type)
-
-                arg_ctypes = []
-                for arg in func.args:
-                    arg_ctypes.append(self.c_to_ctypes(arg.type_name))
-
-                if not arg_ctypes:
-                    arg_ctypes = ["void"]
-
-                # FIXED: Build the chain correctly without extra parentheses
-                # Example: ptr void @-> ptr void @-> returning (ptr void)
-                args_chain = " @-> ".join(arg_ctypes)
-                args_chain += f" @-> returning ({ret_ctype})"
-
-                ml_name = func.name.lower()
-
-                # Format nicely
-                lines.append(f"let {ml_name} =")
-                lines.append(f'  foreign ~from:lib "{func.name}"')
-                lines.append(f"    ({args_chain})")
-
-            lines.append("")
-
-        output_path = self.output_dir / "src" / "capi_bindings.ml"
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-        output_path.write_text("\n".join(lines))
-        print(f"Generated {output_path}")
-
-    def generate_error_handling_module(self) -> str:
-        """Generate error handling module with actual C-API error checking"""
-        return """(* Error handling module - similar to Go's cmemoryallocation/errorhandling *)
-open Ctypes
-open Foreign
-
-module ErrorHandling = struct
-exception CApiError of string
-
-(* C-API error handling functions *)
-let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]
-
-(* External C functions for error handling *)
-let c_get_last_error_code = 
-    foreign ~from:lib "get_last_error_code" (void @-> returning int)
-
-let c_get_last_error_msg = 
-    foreign ~from:lib "get_last_error_msg" (void @-> returning string)
-
-let c_set_last_error = 
-    foreign ~from:lib "set_last_error" (int @-> string @-> returning void)
-
-(* Check for C-API errors after a call *)
-let check_error () : string option =
-    let code = c_get_last_error_code () in
-    if code = 0 then
-    None
-    else
-    let msg = c_get_last_error_msg () in
-    Some msg
-
-let raise_if_error () =
-    match check_error () with
-    | Some err -> 
-        (* Reset error before raising *)
-        c_set_last_error 0 "";
-        raise (CApiError err)
-    | None -> ()
-
-(* Reset error state *)
-let reset_error () =
-    c_set_last_error 0 ""
-
-(* Read wrapper - validates handle and checks errors *)
-let read (handle : 'a) (f : unit -> 'b) : 'b =
-    (* In OCaml, we can't easily check if object is null without reflection *)
-    (* The C-API will return errors if handle is invalid *)
-    let result = f () in
-    raise_if_error ();
-    result
-
-(* Write wrapper - checks errors after write operation *)
-let write (handle : 'a) (f : unit -> unit) : unit =
-    f ();
-    raise_if_error ()
-
-(* MultiRead - validates multiple handles *)
-let multi_read (handles : 'a list) (f : unit -> 'b) : 'b =
-    let result = f () in
-    raise_if_error ();
-    result
-
-(* ReadWrite - combination of read and write *)
-let read_write (write_handle : 'a) (read_handles : 'b list) (f : unit -> unit) : unit =
-    f ();
-    raise_if_error ()
-    
-(* Helper to wrap C calls that might fail *)
-let with_error_check (f : unit -> 'a) : 'a =
-    let result = f () in
-    raise_if_error ();
-    result
-end
-"""
-
-    def generate_class_wrapper(self, cls: ClassDef) -> list[str]:
-        """Generate complete wrapper for a class"""
-        lines = []
-
-        # Separate instance methods from static methods
-        instance_methods = []
-        static_methods = []
-
-        for method in cls.methods:
-            is_instance = (
-                len(method.args) > 0
-                and method.args[0].type_name + "Handle" == cls.handle_type
-            )
-            if is_instance:
-                instance_methods.append(method)
-            else:
-                static_methods.append(method)
-
-        # Class definition - ONLY instance methods
-        class_name_ml = f"c_{cls.name.lower()}"
-        lines.append(f"class {class_name_ml} (h : unit ptr) = object(self)")
-        lines.append("  val raw_val = h")
-        lines.append("  method raw = raw_val")
-
-        # Generate ONLY instance methods (those that use self)
-        for method in instance_methods:
-            method_lines = self.generate_instance_method(method, cls)
-            lines.extend(method_lines)
-
-        # Finalizer
-        if cls.destructor:
-            lines.append("  initializer Gc.finalise (fun _ ->")
-            lines.append(f"    Capi_bindings.{cls.destructor.name.lower()} raw_val;")
-            lines.append("    ErrorHandling.raise_if_error ()")
-            lines.append("  ) self")
-
-        lines.append("end")
-        lines.append("")
-
-        # Module with constructors AND static methods
-        lines.append(f"module {cls.name} = struct")
-        lines.append(f"  type t = {class_name_ml}")
-        lines.append("")
-
-        # Constructors
-        for ctor in cls.constructors:
-            ctor_lines = self.generate_constructor(ctor, cls, [])
-            lines.extend(ctor_lines)
-            lines.append("")
-
-        # Static methods (functions that take handle as parameter)
-        for method in static_methods:
-            static_lines = self.generate_static_method(method, cls)
-            lines.extend(static_lines)
-            lines.append("")
-
-        lines.append("end")
-
-        return lines
-
-    def generate_instance_method(
-        self, func: Function, class_def: ClassDef
-    ) -> list[str]:
-        """Generate instance method (uses self, no handle parameter)"""
+        """Generate method with out_buffer pattern"""
         lines = []
 
         method_name = func.name.replace(f"{class_def.name}_", "")
         ocaml_name = self.safe_name(self.snake_to_camel_lower(method_name))
         ret_type_ocaml = self.c_to_ocaml_type(func.return_type, class_def)
 
-        # Build parameter list (skip first parameter which is self)
+        # Build parameter list
         params = []
-        for arg in func.args[1:]:  # Skip first arg (handle)
+        args_start = 1 if is_instance else 0
+        for arg in func.args[args_start:]:
             param_type = self.c_to_ocaml_type(arg.type_name, class_def)
             params.append((self.safe_name(arg.name), param_type))
 
         param_strs = [f"({name} : {typ})" for name, typ in params]
         param_str = " ".join(param_strs) if param_strs else ""
 
-        lines.append(f"  method {ocaml_name} {param_str} : {ret_type_ocaml} =")
-
-        # Build C call using self#raw
-        c_args = ["self#raw"]
-        for arg in func.args[1:]:
-            c_args.append(self.generate_c_arg_call(arg, class_def))
-
-        c_call = f"Capi_bindings.{func.name.lower()}"
-        if c_args:
-            c_call += " " + " ".join(c_args)
-
-        # Determine error wrapper
-        handle_args = [arg for arg in func.args[1:] if self.is_handle(arg.type_name)]
-
-        if func.category == "read":
-            if len(handle_args) == 0:
-                lines.append("    ErrorHandling.read self (fun () ->")
-                lines.append(f"      let result = {c_call} in")
-                lines.append("      ErrorHandling.raise_if_error ();")
-                self._add_return_conversion(
-                    lines, func.return_type, ret_type_ocaml, "result", 6
-                )
-                lines.append("    )")
-            else:
-                handle_names = ["self"] + [
-                    self.safe_name(arg.name) for arg in handle_args
-                ]
-                lines.append(
-                    f"    ErrorHandling.multi_read [{'; '.join(handle_names)}] (fun () ->"
-                )
-                lines.append(f"      let result = {c_call} in")
-                lines.append("      ErrorHandling.raise_if_error ();")
-                self._add_return_conversion(
-                    lines, func.return_type, ret_type_ocaml, "result", 6
-                )
-                lines.append("    )")
-
-        elif func.category == "write":
-            if len(handle_args) == 0:
-                lines.append("    ErrorHandling.write self (fun () ->")
-                lines.append(f"      {c_call}")
-                lines.append("    )")
-            else:
-                handle_names = [self.safe_name(arg.name) for arg in handle_args]
-                lines.append(
-                    f"    ErrorHandling.read_write self [{'; '.join(handle_names)}] (fun () ->"
-                )
-                lines.append(f"      {c_call}")
-                lines.append("    )")
-
-        return lines
-
-    def generate_static_method(self, func: Function, class_def: ClassDef) -> list[str]:
-        """Generate static method (takes handle as explicit parameter)"""
-        lines = []
-
-        method_name = func.name.replace(f"{class_def.name}_", "")
-        ocaml_name = self.safe_name(self.snake_to_camel_lower(method_name))
-        ret_type_ocaml = self.c_to_ocaml_type(func.return_type, class_def)
-
-        # Build parameter list including handle
-        params = []
-        for arg in func.args:
-            param_type = self.c_to_ocaml_type(arg.type_name, class_def)
-            params.append((self.safe_name(arg.name), param_type))
-
-        param_strs = [f"({name} : {typ})" for name, typ in params]
-        param_str = " ".join(param_strs)
-
-        lines.append(f"  let {ocaml_name} {param_str} : {ret_type_ocaml} =")
+        if is_instance:
+            lines.append(f"  method {ocaml_name} {param_str} : {ret_type_ocaml} =")
+        else:
+            lines.append(f"  let {ocaml_name} {param_str} : {ret_type_ocaml} =")
 
         # Build C call
         c_args = []
-        for arg in func.args:
+        if is_instance:
+            c_args.append("raw_val")
+        for arg in func.args[1 if is_instance else 0 :]:
             c_args.append(self.generate_c_arg_call(arg, class_def))
 
         c_call = f"Capi_bindings.{func.name.lower()}"
         if c_args:
             c_call += " " + " ".join(c_args)
 
-        # Determine error wrapper
-        handle_args = [arg for arg in func.args if self.is_handle(arg.type_name)]
+        # Count handles
+        handle_args = [
+            arg for arg in func.args[args_start:] if self.is_handle(arg.type_name)
+        ]
+        total_handles = len(handle_args) + (1 if is_instance else 0)
 
-        if len(handle_args) == 0:
-            lines.append(f"    let result = {c_call} in")
-            lines.append("    ErrorHandling.raise_if_error ();")
-            self._add_return_conversion(
-                lines, func.return_type, ret_type_ocaml, "result", 4
+        if total_handles <= 1:
+            handle_ref = (
+                "self"
+                if is_instance
+                else (self.safe_name(handle_args[0].name) if handle_args else "self")
             )
-        elif len(handle_args) == 1:
-            handle_name = self.safe_name(handle_args[0].name)
-            lines.append(f"    ErrorHandling.read {handle_name} (fun () ->")
+            lines.append(f"    Error_handling.read {handle_ref} (fun () ->")
             lines.append(f"      let result = {c_call} in")
-            lines.append("      ErrorHandling.raise_if_error ();")
-            self._add_return_conversion(
-                lines, func.return_type, ret_type_ocaml, "result", 6
-            )
+            lines.append("      Error_handling.raise_if_error ();")
+            lines.append("      result")
             lines.append("    )")
         else:
-            handle_names = [self.safe_name(arg.name) for arg in handle_args]
+            if is_instance:
+                handle_names = ["self"] + [
+                    self.safe_name(arg.name) for arg in handle_args
+                ]
+            else:
+                handle_names = [self.safe_name(arg.name) for arg in handle_args]
             lines.append(
-                f"    ErrorHandling.multi_read [{'; '.join(handle_names)}] (fun () ->"
+                f"    Error_handling.multi_read [{'; '.join(handle_names)}] (fun () ->"
             )
             lines.append(f"      let result = {c_call} in")
-            lines.append("      ErrorHandling.raise_if_error ();")
-            self._add_return_conversion(
-                lines, func.return_type, ret_type_ocaml, "result", 6
-            )
+            lines.append("      Error_handling.raise_if_error ();")
+            lines.append("      result")
             lines.append("    )")
 
         return lines
 
-    def _add_return_conversion(
-        self,
-        lines: list[str],
-        c_return_type: str,
-        ocaml_type: str,
-        var_name: str,
-        indent: int,
-    ) -> None:
-        """Helper to add return value conversion"""
-        spaces = " " * indent
+    def generate_bindings(self):
+        """Generate Ctypes FFI bindings"""
+        lines = []
+        lines.append("open Ctypes")
+        lines.append("open Foreign")
+        lines.append("")
+        lines.append(
+            'let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]'
+        )
+        lines.append("")
 
-        if self.is_handle(c_return_type):
-            type_name = c_return_type.replace("Handle", "").strip().lower()
-            lines.append(f"{spaces}new c_{type_name} {var_name}")
-        elif self.is_string(c_return_type):
-            lines.append(f"{spaces}Capi_bindings.string_to_ocaml {var_name}")
-        else:
-            lines.append(f"{spaces}{var_name}")
+        # String helpers
+        lines.append("(* String helpers *)")
+        lines.append(
+            'let string_create = foreign ~from:lib "String_create" (string @-> size_t @-> returning (ptr void))'
+        )
+        lines.append(
+            'let string_destroy = foreign ~from:lib "String_destroy" (ptr void @-> returning void)'
+        )
+        lines.append(
+            'let string_data = foreign ~from:lib "String_data" (ptr void @-> returning string)'
+        )
+        lines.append("")
+        lines.append("let string_wrap (s : string) : unit ptr =")
+        lines.append(
+            "  string_create s (Unsigned.Size_t.of_int (Stdlib.String.length s))"
+        )
+        lines.append("")
+        lines.append("let string_to_ocaml (handle : unit ptr) : string =")
+        lines.append("  let s = string_data handle in")
+        lines.append("  string_destroy handle;")
+        lines.append("  s")
+        lines.append("")
 
-    def generate_error_handling_file(self):
-        """Generate standalone error_handling.ml file"""
-        content = """(* Error handling module - similar to Go's cmemoryallocation/errorhandling *)
+        # Generate bindings for each class
+        for cls in self.classes:
+            lines.append(f"(* === {cls.name} === *)")
+
+            # All functions
+            all_funcs = []
+            if cls.destructor:
+                all_funcs.append(cls.destructor)
+            all_funcs.extend(cls.constructors)
+            all_funcs.extend(cls.methods)
+
+            for func in all_funcs:
+                binding_name = func.name.lower()
+
+                # Build Ctypes signature
+                param_types = []
+                for arg in func.args:
+                    param_types.append(self.c_to_ctypes(arg.type_name))
+
+                ret_ctypes = self.c_to_ctypes(func.return_type)
+                if self.is_handle(func.return_type):
+                    ret_ctypes = "ptr void"
+
+                if not param_types:
+                    sig_str = f"void @-> returning ({ret_ctypes})"
+                else:
+                    sig_parts = " @-> ".join(param_types)
+                    sig_str = f"{sig_parts} @-> returning ({ret_ctypes})"
+
+                lines.append(
+                    f'let {self.safe_name(binding_name)} = foreign ~from:lib "{func.name}" ({sig_str})'
+                )
+
+            lines.append("")
+
+        # Write file
+        bindings_path = self.output_dir / "src" / "capi_bindings.ml"
+        bindings_path.parent.mkdir(parents=True, exist_ok=True)
+        bindings_path.write_text("\n".join(lines))
+        print(f"Generated {bindings_path}")
+
+    def generate_error_handling_module(self) -> str:
+        """Generate error handling module with actual C-API error checking"""
+        return """(* Error handling module - similar to Go's cmemoryallocation/errorhandling *)
     open Ctypes
     open Foreign
 
@@ -1306,9 +1056,236 @@ end
         result
     """
 
-        output_path = self.output_dir / "src" / "error_handling.ml"
-        output_path.write_text(content)
-        print(f"Generated {output_path}")
+    def generate_error_handling_file(self):
+        """Generate standalone error_handling.ml file"""
+        eh_path = self.output_dir / "src" / "error_handling.ml"
+        eh_path.parent.mkdir(parents=True, exist_ok=True)
+        eh_path.write_text(self.generate_error_handling_module())
+        print(f"Generated {eh_path}")
+
+    def generate_class_wrapper(self, cls: ClassDef) -> list[str]:
+        """Generate complete wrapper for a class"""
+        lines = []
+
+        # Separate instance methods from static methods
+        instance_methods = []
+        static_methods = []
+
+        for method in cls.methods:
+            is_instance = (
+                len(method.args) > 0
+                and method.args[0].type_name + "Handle" == cls.handle_type
+            )
+            if is_instance:
+                instance_methods.append(method)
+            else:
+                static_methods.append(method)
+
+        # Class definition - ONLY instance methods
+        class_name_ml = f"c_{cls.name.lower()}"
+        lines.append(f"class {class_name_ml} (h : unit ptr) = object(self)")
+        lines.append("  val raw_val = h")
+        lines.append("  method raw = raw_val")
+
+        # Generate ONLY instance methods (those that use self)
+        for method in instance_methods:
+            method_lines = self.generate_instance_method(method, cls)
+            lines.extend(method_lines)
+
+        # Finalizer - FIXED: use Error_handling not ErrorHandling
+        if cls.destructor:
+            lines.append("  initializer Gc.finalise (fun _ ->")
+            lines.append(f"    Capi_bindings.{cls.destructor.name.lower()} raw_val;")
+            lines.append("    Error_handling.raise_if_error ()")
+            lines.append("  ) self")
+
+        lines.append("end")
+        lines.append("")
+
+        # Module with constructors AND static methods
+        lines.append(f"module {cls.name} = struct")
+        lines.append(f"  type t = {class_name_ml}")
+        lines.append("")
+
+        # Constructors
+        for ctor in cls.constructors:
+            ctor_lines = self.generate_constructor(ctor, cls, [])
+            lines.extend(ctor_lines)
+            lines.append("")
+
+        # Static methods (functions that take handle as parameter)
+        for method in static_methods:
+            static_lines = self.generate_static_method(method, cls)
+            lines.extend(static_lines)
+            lines.append("")
+
+        lines.append("end")
+
+        return lines
+
+    def generate_instance_method(
+        self, func: Function, class_def: ClassDef
+    ) -> list[str]:
+        """Generate instance method (uses self, no handle parameter)"""
+        lines = []
+
+        method_name = func.name.replace(f"{class_def.name}_", "")
+        ocaml_name = self.safe_name(self.snake_to_camel_lower(method_name))
+        ret_type_ocaml = self.c_to_ocaml_type(func.return_type, class_def)
+
+        # Build parameter list (skip first arg - it's self)
+        params = []
+        for arg in func.args[1:]:
+            param_type = self.c_to_ocaml_type(arg.type_name, class_def)
+            params.append((self.safe_name(arg.name), param_type))
+
+        param_strs = [f"({name} : {typ})" for name, typ in params]
+        param_str = " ".join(param_strs) if param_strs else ""
+
+        if func.return_type == "void":
+            lines.append(f"  method {ocaml_name} {param_str} : unit =")
+        else:
+            lines.append(f"  method {ocaml_name} {param_str} : {ret_type_ocaml} =")
+
+        # Build C call
+        c_args = ["raw_val"]
+        for arg in func.args[1:]:
+            c_args.append(self.generate_c_arg_call(arg, class_def))
+
+        c_call = f"Capi_bindings.{func.name.lower()}"
+        c_call += " " + " ".join(c_args)
+
+        # Count extra handle args (beyond self)
+        handle_args = [arg for arg in func.args[1:] if self.is_handle(arg.type_name)]
+
+        if func.category == "read":
+            if len(handle_args) == 0:
+                lines.append("    Error_handling.read self (fun () ->")
+                lines.append(f"      let result = {c_call} in")
+                lines.append("      Error_handling.raise_if_error ();")
+                self._add_return_conversion(
+                    lines, func.return_type, ret_type_ocaml, "result", 6, class_def
+                )
+                lines.append("    )")
+            else:
+                handle_names = ["self"] + [
+                    self.safe_name(arg.name) for arg in handle_args
+                ]
+                lines.append(
+                    f"    Error_handling.multi_read [{'; '.join(handle_names)}] (fun () ->"
+                )
+                lines.append(f"      let result = {c_call} in")
+                lines.append("      Error_handling.raise_if_error ();")
+                self._add_return_conversion(
+                    lines, func.return_type, ret_type_ocaml, "result", 6, class_def
+                )
+                lines.append("    )")
+
+        elif func.category == "write":
+            if len(handle_args) == 0:
+                lines.append("    Error_handling.write self (fun () ->")
+                lines.append(f"      let result = {c_call} in")
+                lines.append("      Error_handling.raise_if_error ();")
+                lines.append("      result")
+                lines.append("    )")
+            else:
+                handle_names = ["self"] + [
+                    self.safe_name(arg.name) for arg in handle_args
+                ]
+                lines.append(
+                    f"    Error_handling.read_write (List.hd [{'; '.join(handle_names)}]) (List.tl [{'; '.join(handle_names)}]) (fun () ->"
+                )
+                lines.append(f"      let result = {c_call} in")
+                lines.append("      Error_handling.raise_if_error ();")
+                lines.append("      result")
+                lines.append("    )")
+
+        return lines
+
+    def generate_static_method(self, func: Function, class_def: ClassDef) -> list[str]:
+        """Generate static method (takes handle as explicit parameter)"""
+        lines = []
+
+        method_name = func.name.replace(f"{class_def.name}_", "")
+        ocaml_name = self.safe_name(self.snake_to_camel_lower(method_name))
+        ret_type_ocaml = self.c_to_ocaml_type(func.return_type, class_def)
+
+        # Build parameter list including handle
+        params = []
+        for arg in func.args:
+            param_type = self.c_to_ocaml_type(arg.type_name, class_def)
+            params.append((self.safe_name(arg.name), param_type))
+
+        param_strs = [f"({name} : {typ})" for name, typ in params]
+        param_str = " ".join(param_strs)
+
+        lines.append(f"  let {ocaml_name} {param_str} : {ret_type_ocaml} =")
+
+        # Build C call
+        c_args = []
+        for arg in func.args:
+            c_args.append(self.generate_c_arg_call(arg, class_def))
+
+        c_call = f"Capi_bindings.{func.name.lower()}"
+        if c_args:
+            c_call += " " + " ".join(c_args)
+
+        # Determine error wrapper
+        handle_args = [arg for arg in func.args if self.is_handle(arg.type_name)]
+
+        if len(handle_args) == 0:
+            lines.append(f"    let result = {c_call} in")
+            lines.append("    Error_handling.raise_if_error ();")
+            self._add_return_conversion(
+                lines, func.return_type, ret_type_ocaml, "result", 4, class_def
+            )
+        elif len(handle_args) == 1:
+            handle_name = self.safe_name(handle_args[0].name)
+            lines.append(f"    Error_handling.read {handle_name} (fun () ->")
+            lines.append(f"      let result = {c_call} in")
+            lines.append("      Error_handling.raise_if_error ();")
+            self._add_return_conversion(
+                lines, func.return_type, ret_type_ocaml, "result", 6, class_def
+            )
+            lines.append("    )")
+        else:
+            handle_names = [self.safe_name(arg.name) for arg in handle_args]
+            lines.append(
+                f"    Error_handling.multi_read [{'; '.join(handle_names)}] (fun () ->"
+            )
+            lines.append(f"      let result = {c_call} in")
+            lines.append("      Error_handling.raise_if_error ();")
+            self._add_return_conversion(
+                lines, func.return_type, ret_type_ocaml, "result", 6, class_def
+            )
+            lines.append("    )")
+
+        return lines
+
+    def _add_return_conversion(
+        self,
+        lines: list[str],
+        c_return_type: str,
+        ocaml_type: str,
+        var_name: str,
+        indent: int,
+        class_def: ClassDef | None = None,
+    ) -> None:
+        """Helper to add return value conversion.
+        Uses fully qualified class constructor for cross-module handle types."""
+        spaces = " " * indent
+
+        if self.is_handle(c_return_type):
+            if class_def:
+                constructor = self.resolve_class_constructor(c_return_type, class_def)
+            else:
+                type_name = c_return_type.replace("Handle", "").strip().lower()
+                constructor = f"c_{type_name}"
+            lines.append(f"{spaces}new {constructor} {var_name}")
+        elif self.is_string(c_return_type):
+            lines.append(f"{spaces}Capi_bindings.string_to_ocaml {var_name}")
+        else:
+            lines.append(f"{spaces}{var_name}")
 
     def run(self):
         """Main generation entry point"""
@@ -1317,68 +1294,67 @@ end
 
         print(f"Parsed {len(self.classes)} classes.")
 
-        self.generate_error_handling_file()  # ← Add this
+        self.generate_error_handling_file()
         self.generate_bindings()
         self.generate_wrappers()
 
     def generate_wrappers(self):
         """Generate high-level wrappers - ONE FILE PER MODULE"""
-
-        # Group by namespace AND class
         for cls in self.classes:
+            if cls.name in self.SKIP_TYPES:
+                print(f"Skipping {cls.name} (handled specially)")
+                continue
             self.generate_single_module_file(cls)
 
     def generate_single_module_file(self, cls: ClassDef):
         """Generate a single file for one module"""
-        # Generate .ml file
         ml_lines = []
         ml_lines.append("open Ctypes")
         ml_lines.append("open Capi_bindings")
         ml_lines.append("open Error_handling")
         ml_lines.append("")
-        ml_lines.append("(* No opens needed - using qualified names *)")
+        ml_lines.append(IMPORT_WATERMARK)
         ml_lines.append("")
 
         class_lines = self.generate_class_wrapper(cls)
         ml_lines.extend(class_lines)
 
-        # Create directory structure
+        # Create directory structure (still use subdirs for file organization)
         namespace_parts = cls.namespace_path if cls.namespace_path else []
         dir_path = self.output_dir / "src"
         for part in namespace_parts:
             dir_path = dir_path / part.lower()
         dir_path.mkdir(parents=True, exist_ok=True)
 
-        # Write .ml file
         ml_path = dir_path / f"{cls.name.lower()}.ml"
         ml_path.write_text("\n".join(ml_lines))
 
-        # Generate and write .mli file
         mli_lines = self.generate_module_interface(cls)
         mli_path = dir_path / f"{cls.name.lower()}.mli"
         mli_path.write_text("\n".join(mli_lines))
+
+        # Replace watermark in BOTH files
+        self.inject_imports(ml_path, cls)
+        self.inject_imports(mli_path, cls)
 
         print(f"Generated {ml_path} and {mli_path}")
 
     def generate_module_interface(self, cls: ClassDef) -> list[str]:
         """Generate OCaml module interface (.mli file)"""
         lines = []
-
         lines.append("open Ctypes")
         lines.append("")
-
-        # FIXED: Don't add ANY opens - just like in .ml files!
-        # With (include_subdirs qualified), all modules are visible
-        lines.append("(* No opens needed - using qualified names *)")
+        lines.append(IMPORT_WATERMARK)
         lines.append("")
 
-        # Class type signature
         class_name = f"c_{cls.name.lower()}"
+
+        # Class type
         lines.append(f"(** Opaque handle for {cls.name} *)")
         lines.append(f"class type {class_name}_t = object")
         lines.append("  method raw : unit ptr")
 
-        # Add instance method signatures
+        # Instance methods in class type
         for method in cls.methods:
             is_instance = (
                 len(method.args) > 0

@@ -14,10 +14,10 @@ module MeasurementResponse : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Labelledarrayslabelledmeasuredarray.t -> t
+  val make : Labelledarrayslabelledmeasuredarray.LabelledArraysLabelledMeasuredArray.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val arrays : t -> Labelledarrayslabelledmeasuredarray.t
+  val arrays : t -> Labelledarrayslabelledmeasuredarray.LabelledArraysLabelledMeasuredArray.t
   val message : t -> string
 end

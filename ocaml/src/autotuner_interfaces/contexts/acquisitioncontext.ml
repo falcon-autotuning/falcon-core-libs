@@ -17,98 +17,98 @@ module AcquisitionContext = struct
   type t = c_acquisitioncontext
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.acquisitioncontext_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_acquisitioncontext ptr
     )
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.acquisitioncontext_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_acquisitioncontext ptr
 
-  let make (connection : Connection.t) (instrument_type : string) (units : Symbolunit.t) : t =
-    ErrorHandling.multi_read [connection; units] (fun () ->
+  let make (connection : Connection.Connection.t) (instrument_type : string) (units : Symbolunit.SymbolUnit.t) : t =
+    Error_handling.multi_read [connection; units] (fun () ->
       let ptr = Capi_bindings.acquisitioncontext_create connection#raw (Capi_bindings.string_wrap instrument_type) units#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_acquisitioncontext ptr
     )
 
-  let fromPort (port : Instrumentport.t) : t =
-    ErrorHandling.read port (fun () ->
+  let fromPort (port : Instrumentport.InstrumentPort.t) : t =
+    Error_handling.read port (fun () ->
       let ptr = Capi_bindings.acquisitioncontext_create_from_port port#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_acquisitioncontext ptr
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.acquisitioncontext_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.acquisitioncontext_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.acquisitioncontext_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 
-  let connection (handle : t) : Connection.t =
-    ErrorHandling.read handle (fun () ->
+  let connection (handle : t) : Connection.Connection.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.acquisitioncontext_connection handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_connection result
+      Error_handling.raise_if_error ();
+      new Connection.c_connection result
     )
 
   let instrumentType (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.acquisitioncontext_instrument_type handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 
-  let units (handle : t) : Symbolunit.t =
-    ErrorHandling.read handle (fun () ->
+  let units (handle : t) : Symbolunit.SymbolUnit.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.acquisitioncontext_units handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_symbolunit result
+      Error_handling.raise_if_error ();
+      new Symbolunit.c_symbolunit result
     )
 
-  let divisionUnit (handle : t) (other : Symbolunit.t) : t =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+  let divisionUnit (handle : t) (other : Symbolunit.SymbolUnit.t) : t =
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.acquisitioncontext_division_unit handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_acquisitioncontext result
     )
 
   let division (handle : t) (other : t) : t =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.acquisitioncontext_division handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_acquisitioncontext result
     )
 
-  let matchConnection (handle : t) (other : Connection.t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+  let matchConnection (handle : t) (other : Connection.Connection.t) : bool =
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.acquisitioncontext_match_connection handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let matchInstrumentType (handle : t) (other : string) : bool =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.acquisitioncontext_match_instrument_type handle#raw (Capi_bindings.string_wrap other) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 

@@ -14,18 +14,18 @@ module ListDiscretizer : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Discretizer.t -> t
-  val make : Discretizer.t -> int -> t
+  val fillValue : int -> Discretizer.Discretizer.t -> t
+  val make : Discretizer.Discretizer.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Discretizer.t -> unit
+  val pushBack : t -> Discretizer.Discretizer.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Discretizer.t
-  val items : t -> Discretizer.t -> int -> int
-  val contains : t -> Discretizer.t -> bool
-  val index : t -> Discretizer.t -> int
+  val at : t -> int -> Discretizer.Discretizer.t
+  val items : t -> Discretizer.Discretizer.t -> int -> int
+  val contains : t -> Discretizer.Discretizer.t -> bool
+  val index : t -> Discretizer.Discretizer.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

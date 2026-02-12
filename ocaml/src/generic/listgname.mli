@@ -14,18 +14,18 @@ module ListGname : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Gname.t -> t
-  val make : Gname.t -> int -> t
+  val fillValue : int -> Gname.Gname.t -> t
+  val make : Gname.Gname.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Gname.t -> unit
+  val pushBack : t -> Gname.Gname.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Gname.t
-  val items : t -> Gname.t -> int -> int
-  val contains : t -> Gname.t -> bool
-  val index : t -> Gname.t -> int
+  val at : t -> int -> Gname.Gname.t
+  val items : t -> Gname.Gname.t -> int -> int
+  val contains : t -> Gname.Gname.t -> bool
+  val index : t -> Gname.Gname.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

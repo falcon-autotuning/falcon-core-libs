@@ -14,16 +14,16 @@ module AcquisitionContext : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Connection.t -> string -> Symbolunit.t -> t
-  val fromPort : Instrumentport.t -> t
+  val make : Connection.Connection.t -> string -> Symbolunit.SymbolUnit.t -> t
+  val fromPort : Instrumentport.InstrumentPort.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val connection : t -> Connection.t
+  val connection : t -> Connection.Connection.t
   val instrumentType : t -> string
-  val units : t -> Symbolunit.t
-  val divisionUnit : t -> Symbolunit.t -> t
+  val units : t -> Symbolunit.SymbolUnit.t
+  val divisionUnit : t -> Symbolunit.SymbolUnit.t -> t
   val division : t -> t -> t
-  val matchConnection : t -> Connection.t -> bool
+  val matchConnection : t -> Connection.Connection.t -> bool
   val matchInstrumentType : t -> string -> bool
 end

@@ -15,18 +15,18 @@ module Channels : sig
   val copy : t -> t
   val fromjson : string -> t
   val empty : t
-  val make : Listchannel.t -> t
+  val make : Listchannel.ListChannel.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val intersection : t -> t -> t
-  val pushBack : t -> Channel.t -> unit
+  val pushBack : t -> Channel.Channel.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Channel.t
+  val at : t -> int -> Channel.Channel.t
   val items : t -> string
-  val contains : t -> Channel.t -> bool
-  val index : t -> Channel.t -> int
+  val contains : t -> Channel.Channel.t -> bool
+  val index : t -> Channel.Channel.t -> int
 end

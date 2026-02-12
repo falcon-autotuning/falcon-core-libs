@@ -12,21 +12,21 @@ class c_labelledarrayslabelledmeasuredarray : unit ptr -> c_labelledarrayslabell
 module LabelledArraysLabelledMeasuredArray : sig
   type t = c_labelledarrayslabelledmeasuredarray
 
-  val make : Listlabelledmeasuredarray.t -> t
+  val make : Listlabelledmeasuredarray.ListLabelledMeasuredArray.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val arrays : t -> Listlabelledmeasuredarray.t
-  val labels : t -> Listacquisitioncontext.t
+  val arrays : t -> Listlabelledmeasuredarray.ListLabelledMeasuredArray.t
+  val labels : t -> Listacquisitioncontext.ListAcquisitionContext.t
   val isControlArrays : t -> bool
   val isMeasuredArrays : t -> bool
-  val pushBack : t -> Labelledmeasuredarray.t -> unit
+  val pushBack : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Labelledmeasuredarray.t
-  val contains : t -> Labelledmeasuredarray.t -> bool
-  val index : t -> Labelledmeasuredarray.t -> int
+  val at : t -> int -> Labelledmeasuredarray.LabelledMeasuredArray.t
+  val contains : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> bool
+  val index : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

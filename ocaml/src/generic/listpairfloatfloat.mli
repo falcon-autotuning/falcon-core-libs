@@ -14,18 +14,18 @@ module ListPairFloatFloat : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairfloatfloat.t -> t
-  val make : Pairfloatfloat.t -> int -> t
+  val fillValue : int -> Pairfloatfloat.PairFloatFloat.t -> t
+  val make : Pairfloatfloat.PairFloatFloat.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairfloatfloat.t -> unit
+  val pushBack : t -> Pairfloatfloat.PairFloatFloat.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairfloatfloat.t
-  val items : t -> Pairfloatfloat.t -> int -> int
-  val contains : t -> Pairfloatfloat.t -> bool
-  val index : t -> Pairfloatfloat.t -> int
+  val at : t -> int -> Pairfloatfloat.PairFloatFloat.t
+  val items : t -> Pairfloatfloat.PairFloatFloat.t -> int -> int
+  val contains : t -> Pairfloatfloat.PairFloatFloat.t -> bool
+  val index : t -> Pairfloatfloat.PairFloatFloat.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

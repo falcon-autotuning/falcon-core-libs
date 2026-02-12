@@ -14,18 +14,18 @@ module ListLabelledMeasuredArray : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Labelledmeasuredarray.t -> t
-  val make : Labelledmeasuredarray.t -> int -> t
+  val fillValue : int -> Labelledmeasuredarray.LabelledMeasuredArray.t -> t
+  val make : Labelledmeasuredarray.LabelledMeasuredArray.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Labelledmeasuredarray.t -> unit
+  val pushBack : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Labelledmeasuredarray.t
-  val items : t -> Labelledmeasuredarray.t -> int -> int
-  val contains : t -> Labelledmeasuredarray.t -> bool
-  val index : t -> Labelledmeasuredarray.t -> int
+  val at : t -> int -> Labelledmeasuredarray.LabelledMeasuredArray.t
+  val items : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> int -> int
+  val contains : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> bool
+  val index : t -> Labelledmeasuredarray.LabelledMeasuredArray.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

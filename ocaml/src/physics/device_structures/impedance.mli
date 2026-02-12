@@ -14,11 +14,11 @@ module Impedance : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Connection.t -> float -> float -> t
+  val make : Connection.Connection.t -> float -> float -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val connection : t -> Connection.t
+  val connection : t -> Connection.Connection.t
   val resistance : t -> float
   val capacitance : t -> float
 end

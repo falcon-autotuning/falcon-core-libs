@@ -14,18 +14,18 @@ module LabelledDomain : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val primitiveKnob : string -> float -> float -> Connection.t -> string -> bool -> bool -> Symbolunit.t -> string -> t
-  val primitiveMeter : string -> float -> float -> Connection.t -> string -> bool -> bool -> Symbolunit.t -> string -> t
-  val primitivePort : string -> float -> float -> Connection.t -> string -> bool -> bool -> Symbolunit.t -> string -> t
-  val fromPort : float -> float -> Instrumentport.t -> bool -> bool -> t
-  val fromPortAndDomain : Instrumentport.t -> Domain.t -> t
-  val fromDomain : Domain.t -> string -> Connection.t -> string -> Symbolunit.t -> string -> t
+  val primitiveKnob : string -> float -> float -> Connection.Connection.t -> string -> bool -> bool -> Symbolunit.SymbolUnit.t -> string -> t
+  val primitiveMeter : string -> float -> float -> Connection.Connection.t -> string -> bool -> bool -> Symbolunit.SymbolUnit.t -> string -> t
+  val primitivePort : string -> float -> float -> Connection.Connection.t -> string -> bool -> bool -> Symbolunit.SymbolUnit.t -> string -> t
+  val fromPort : float -> float -> Instrumentport.InstrumentPort.t -> bool -> bool -> t
+  val fromPortAndDomain : Instrumentport.InstrumentPort.t -> Domain.Domain.t -> t
+  val fromDomain : Domain.Domain.t -> string -> Connection.Connection.t -> string -> Symbolunit.SymbolUnit.t -> string -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val port : t -> Instrumentport.t
-  val domain : t -> Domain.t
-  val matchingPort : t -> Instrumentport.t -> bool
+  val port : t -> Instrumentport.InstrumentPort.t
+  val domain : t -> Domain.Domain.t
+  val matchingPort : t -> Instrumentport.InstrumentPort.t -> bool
   val lesserBound : t -> float
   val greaterBound : t -> float
   val lesserBoundContained : t -> bool

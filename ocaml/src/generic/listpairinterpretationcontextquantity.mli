@@ -14,18 +14,18 @@ module ListPairInterpretationContextQuantity : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairinterpretationcontextquantity.t -> t
-  val make : Pairinterpretationcontextquantity.t -> int -> t
+  val fillValue : int -> Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> t
+  val make : Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairinterpretationcontextquantity.t -> unit
+  val pushBack : t -> Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairinterpretationcontextquantity.t
-  val items : t -> Pairinterpretationcontextquantity.t -> int -> int
-  val contains : t -> Pairinterpretationcontextquantity.t -> bool
-  val index : t -> Pairinterpretationcontextquantity.t -> int
+  val at : t -> int -> Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t
+  val items : t -> Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> int -> int
+  val contains : t -> Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> bool
+  val index : t -> Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

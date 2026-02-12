@@ -14,18 +14,18 @@ module ListGroup : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Group.t -> t
-  val make : Group.t -> int -> t
+  val fillValue : int -> Group.Group.t -> t
+  val make : Group.Group.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Group.t -> unit
+  val pushBack : t -> Group.Group.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Group.t
-  val items : t -> Group.t -> int -> int
-  val contains : t -> Group.t -> bool
-  val index : t -> Group.t -> int
+  val at : t -> int -> Group.Group.t
+  val items : t -> Group.Group.t -> int -> int
+  val contains : t -> Group.Group.t -> bool
+  val index : t -> Group.Group.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

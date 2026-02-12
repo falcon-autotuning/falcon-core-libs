@@ -14,17 +14,17 @@ module AxesInstrumentPort : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listinstrumentport.t -> t
+  val make : Listinstrumentport.ListInstrumentPort.t -> t
   val fromjson : string -> t
-  val pushBack : t -> Instrumentport.t -> unit
+  val pushBack : t -> Instrumentport.InstrumentPort.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Instrumentport.t
-  val items : t -> Instrumentport.t -> int -> int
-  val contains : t -> Instrumentport.t -> bool
-  val index : t -> Instrumentport.t -> int
+  val at : t -> int -> Instrumentport.InstrumentPort.t
+  val items : t -> Instrumentport.InstrumentPort.t -> int -> int
+  val contains : t -> Instrumentport.InstrumentPort.t -> bool
+  val index : t -> Instrumentport.InstrumentPort.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

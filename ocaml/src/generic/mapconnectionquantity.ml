@@ -9,7 +9,7 @@ class c_mapconnectionquantity (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.mapconnectionquantity_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
@@ -18,123 +18,123 @@ module MapConnectionQuantity = struct
 
   let empty () : t =
     let ptr = Capi_bindings.mapconnectionquantity_create_empty () in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_mapconnectionquantity ptr
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.mapconnectionquantity_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_mapconnectionquantity ptr
     )
 
-  let make (data : Pairconnectionquantity.t) (count : int) : t =
-    ErrorHandling.read data (fun () ->
+  let make (data : Pairconnectionquantity.PairConnectionQuantity.t) (count : int) : t =
+    Error_handling.read data (fun () ->
       let ptr = Capi_bindings.mapconnectionquantity_create data#raw (Unsigned.Size_t.of_int count) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_mapconnectionquantity ptr
     )
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.mapconnectionquantity_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_mapconnectionquantity ptr
 
-  let insertOrAssign (handle : t) (key : Connection.t) (value : Quantity.t) : unit =
-    ErrorHandling.multi_read [handle; key; value] (fun () ->
+  let insertOrAssign (handle : t) (key : Connection.Connection.t) (value : Quantity.Quantity.t) : unit =
+    Error_handling.multi_read [handle; key; value] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_insert_or_assign handle#raw key#raw value#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let insert (handle : t) (key : Connection.t) (value : Quantity.t) : unit =
-    ErrorHandling.multi_read [handle; key; value] (fun () ->
+  let insert (handle : t) (key : Connection.Connection.t) (value : Quantity.Quantity.t) : unit =
+    Error_handling.multi_read [handle; key; value] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_insert handle#raw key#raw value#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let at (handle : t) (key : Connection.t) : Quantity.t =
-    ErrorHandling.multi_read [handle; key] (fun () ->
+  let at (handle : t) (key : Connection.Connection.t) : Quantity.Quantity.t =
+    Error_handling.multi_read [handle; key] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_at handle#raw key#raw in
-      ErrorHandling.raise_if_error ();
-      new c_quantity result
+      Error_handling.raise_if_error ();
+      new Quantity.c_quantity result
     )
 
-  let erase (handle : t) (key : Connection.t) : unit =
-    ErrorHandling.multi_read [handle; key] (fun () ->
+  let erase (handle : t) (key : Connection.Connection.t) : unit =
+    Error_handling.multi_read [handle; key] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_erase handle#raw key#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let size (handle : t) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_size handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let empty (handle : t) : bool =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_empty handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let clear (handle : t) : unit =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_clear handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let contains (handle : t) (key : Connection.t) : bool =
-    ErrorHandling.multi_read [handle; key] (fun () ->
+  let contains (handle : t) (key : Connection.Connection.t) : bool =
+    Error_handling.multi_read [handle; key] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_contains handle#raw key#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let keys (handle : t) : Listconnection.t =
-    ErrorHandling.read handle (fun () ->
+  let keys (handle : t) : Listconnection.ListConnection.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_keys handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_listconnection result
+      Error_handling.raise_if_error ();
+      new Listconnection.c_listconnection result
     )
 
-  let values (handle : t) : Listquantity.t =
-    ErrorHandling.read handle (fun () ->
+  let values (handle : t) : Listquantity.ListQuantity.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_values handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_listquantity result
+      Error_handling.raise_if_error ();
+      new Listquantity.c_listquantity result
     )
 
-  let items (handle : t) : Listpairconnectionquantity.t =
-    ErrorHandling.read handle (fun () ->
+  let items (handle : t) : Listpairconnectionquantity.ListPairConnectionQuantity.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_items handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_listpairconnectionquantity result
+      Error_handling.raise_if_error ();
+      new Listpairconnectionquantity.c_listpairconnectionquantity result
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.mapconnectionquantity_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.mapconnectionquantity_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 

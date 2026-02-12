@@ -12,10 +12,10 @@ class c_pairconnectionfloat : unit ptr -> c_pairconnectionfloat_t
 module PairConnectionFloat : sig
   type t = c_pairconnectionfloat
 
-  val make : Connection.t -> float -> t
+  val make : Connection.Connection.t -> float -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Connection.t
+  val first : t -> Connection.Connection.t
   val second : t -> float
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

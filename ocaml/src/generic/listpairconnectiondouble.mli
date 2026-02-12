@@ -14,18 +14,18 @@ module ListPairConnectionDouble : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairconnectiondouble.t -> t
-  val make : Pairconnectiondouble.t -> int -> t
+  val fillValue : int -> Pairconnectiondouble.PairConnectionDouble.t -> t
+  val make : Pairconnectiondouble.PairConnectionDouble.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairconnectiondouble.t -> unit
+  val pushBack : t -> Pairconnectiondouble.PairConnectionDouble.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairconnectiondouble.t
-  val items : t -> Pairconnectiondouble.t -> int -> int
-  val contains : t -> Pairconnectiondouble.t -> bool
-  val index : t -> Pairconnectiondouble.t -> int
+  val at : t -> int -> Pairconnectiondouble.PairConnectionDouble.t
+  val items : t -> Pairconnectiondouble.PairConnectionDouble.t -> int -> int
+  val contains : t -> Pairconnectiondouble.PairConnectionDouble.t -> bool
+  val index : t -> Pairconnectiondouble.PairConnectionDouble.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

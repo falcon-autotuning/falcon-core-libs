@@ -14,20 +14,20 @@ module GateGeometryArray1D : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Connections.t -> Connections.t -> t
+  val make : Connections.Connections.t -> Connections.Connections.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val appendCentralGate : t -> Connection.t -> Connection.t -> Connection.t -> unit
-  val allDotGates : t -> Dotgateswithneighbors.t
-  val queryNeighbors : t -> Connection.t -> Connections.t
-  val leftReservoir : t -> Leftreservoirwithimplantedohmic.t
-  val rightReservoir : t -> Rightreservoirwithimplantedohmic.t
-  val leftBarrier : t -> Dotgatewithneighbors.t
-  val rightBarrier : t -> Dotgatewithneighbors.t
-  val linearArray : t -> Connections.t
-  val screeningGates : t -> Connections.t
-  val rawCentralGates : t -> Connections.t
-  val centralDotGates : t -> Dotgateswithneighbors.t
-  val ohmics : t -> Connections.t
+  val appendCentralGate : t -> Connection.Connection.t -> Connection.Connection.t -> Connection.Connection.t -> unit
+  val allDotGates : t -> Dotgateswithneighbors.DotGatesWithNeighbors.t
+  val queryNeighbors : t -> Connection.Connection.t -> Connections.Connections.t
+  val leftReservoir : t -> Leftreservoirwithimplantedohmic.LeftReservoirWithImplantedOhmic.t
+  val rightReservoir : t -> Rightreservoirwithimplantedohmic.RightReservoirWithImplantedOhmic.t
+  val leftBarrier : t -> Dotgatewithneighbors.DotGateWithNeighbors.t
+  val rightBarrier : t -> Dotgatewithneighbors.DotGateWithNeighbors.t
+  val linearArray : t -> Connections.Connections.t
+  val screeningGates : t -> Connections.Connections.t
+  val rawCentralGates : t -> Connections.Connections.t
+  val centralDotGates : t -> Dotgateswithneighbors.DotGatesWithNeighbors.t
+  val ohmics : t -> Connections.Connections.t
 end

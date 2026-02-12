@@ -14,7 +14,7 @@ module MapStringBool : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairstringbool.t -> int -> t
+  val make : Pairstringbool.PairStringBool.t -> int -> t
   val fromjson : string -> t
   val insertOrAssign : t -> string -> bool -> unit
   val insert : t -> string -> bool -> unit
@@ -25,8 +25,8 @@ module MapStringBool : sig
   val clear : t -> unit
   val contains : t -> string -> bool
   val keys : t -> string
-  val values : t -> Listbool.t
-  val items : t -> Listpairstringbool.t
+  val values : t -> Listbool.ListBool.t
+  val items : t -> Listpairstringbool.ListPairStringBool.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

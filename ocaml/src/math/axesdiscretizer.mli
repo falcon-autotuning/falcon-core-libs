@@ -14,17 +14,17 @@ module AxesDiscretizer : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listdiscretizer.t -> t
+  val make : Listdiscretizer.ListDiscretizer.t -> t
   val fromjson : string -> t
-  val pushBack : t -> Discretizer.t -> unit
+  val pushBack : t -> Discretizer.Discretizer.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Discretizer.t
-  val items : t -> Discretizer.t -> int -> int
-  val contains : t -> Discretizer.t -> bool
-  val index : t -> Discretizer.t -> int
+  val at : t -> int -> Discretizer.Discretizer.t
+  val items : t -> Discretizer.Discretizer.t -> int -> int
+  val contains : t -> Discretizer.Discretizer.t -> bool
+  val index : t -> Discretizer.Discretizer.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

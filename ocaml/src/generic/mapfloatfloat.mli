@@ -14,7 +14,7 @@ module MapFloatFloat : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairfloatfloat.t -> int -> t
+  val make : Pairfloatfloat.PairFloatFloat.t -> int -> t
   val fromjson : string -> t
   val insertOrAssign : t -> float -> float -> unit
   val insert : t -> float -> float -> unit
@@ -24,9 +24,9 @@ module MapFloatFloat : sig
   val empty : t -> bool
   val clear : t -> unit
   val contains : t -> float -> bool
-  val keys : t -> Listfloat.t
-  val values : t -> Listfloat.t
-  val items : t -> Listpairfloatfloat.t
+  val keys : t -> Listfloat.ListFloat.t
+  val values : t -> Listfloat.ListFloat.t
+  val items : t -> Listpairfloatfloat.ListPairFloatFloat.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

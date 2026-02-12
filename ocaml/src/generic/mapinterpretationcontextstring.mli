@@ -16,15 +16,15 @@ module MapInterpretationContextString : sig
   val copy : string -> t
   val make : string -> int -> t
   val fromjson : string -> t
-  val insertOrAssign : string -> Interpretationcontext.t -> string -> unit
-  val insert : string -> Interpretationcontext.t -> string -> unit
-  val at : string -> Interpretationcontext.t -> string
-  val erase : string -> Interpretationcontext.t -> unit
+  val insertOrAssign : string -> Interpretationcontext.InterpretationContext.t -> string -> unit
+  val insert : string -> Interpretationcontext.InterpretationContext.t -> string -> unit
+  val at : string -> Interpretationcontext.InterpretationContext.t -> string
+  val erase : string -> Interpretationcontext.InterpretationContext.t -> unit
   val size : string -> int
   val empty : string -> bool
   val clear : string -> unit
-  val contains : string -> Interpretationcontext.t -> bool
-  val keys : string -> Listinterpretationcontext.t
+  val contains : string -> Interpretationcontext.InterpretationContext.t -> bool
+  val keys : string -> Listinterpretationcontext.ListInterpretationContext.t
   val values : string -> string
   val items : string -> string
   val equal : string -> string -> bool

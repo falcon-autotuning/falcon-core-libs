@@ -14,7 +14,7 @@ module AxesInt : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listint.t -> t
+  val make : Listint.ListInt.t -> t
   val fromjson : string -> t
   val pushBack : t -> int -> unit
   val size : t -> int

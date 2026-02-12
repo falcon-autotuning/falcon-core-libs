@@ -12,10 +12,10 @@ class c_pairinterpretationcontextdouble : unit ptr -> c_pairinterpretationcontex
 module PairInterpretationContextDouble : sig
   type t = c_pairinterpretationcontextdouble
 
-  val make : Interpretationcontext.t -> float -> t
+  val make : Interpretationcontext.InterpretationContext.t -> float -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Interpretationcontext.t
+  val first : t -> Interpretationcontext.InterpretationContext.t
   val second : t -> float
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

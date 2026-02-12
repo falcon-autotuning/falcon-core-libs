@@ -14,14 +14,14 @@ module MeasurementRequest : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : string -> string -> Listwaveform.t -> Ports.t -> Mapinstrumentportporttransform.t -> Labelleddomain.t -> t
+  val make : string -> string -> Listwaveform.ListWaveform.t -> Ports.Ports.t -> Mapinstrumentportporttransform.MapInstrumentPortPortTransform.t -> Labelleddomain.LabelledDomain.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val measurementName : t -> string
-  val getters : t -> Ports.t
-  val waveforms : t -> Listwaveform.t
-  val meterTransforms : t -> Mapinstrumentportporttransform.t
-  val timeDomain : t -> Labelleddomain.t
+  val getters : t -> Ports.Ports.t
+  val waveforms : t -> Listwaveform.ListWaveform.t
+  val meterTransforms : t -> Mapinstrumentportporttransform.MapInstrumentPortPortTransform.t
+  val timeDomain : t -> Labelleddomain.LabelledDomain.t
   val message : t -> string
 end

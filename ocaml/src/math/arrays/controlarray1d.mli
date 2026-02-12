@@ -15,12 +15,12 @@ module ControlArray1D : sig
   val copy : t -> t
   val fromjson : string -> t
   val fromData : float -> int -> int -> t
-  val fromFarray : Farraydouble.t -> t
+  val fromFarray : Farraydouble.FArrayDouble.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val is1d : t -> bool
-  val as1d : t -> Farraydouble.t
+  val as1d : t -> Farraydouble.FArrayDouble.t
   val getStart : t -> float
   val getEnd : t -> float
   val isDecreasing : t -> bool
@@ -30,23 +30,23 @@ module ControlArray1D : sig
   val getStd : t -> float
   val reverse : t -> unit
   val getClosestIndex : t -> float -> int
-  val evenDivisions : t -> int -> Listfarraydouble.t
+  val evenDivisions : t -> int -> Listfarraydouble.ListFArrayDouble.t
   val size : t -> int
   val dimension : t -> int
   val shape : t -> int -> int -> int
   val data : t -> float -> int -> int
-  val plusEqualsFarray : t -> Farraydouble.t -> unit
+  val plusEqualsFarray : t -> Farraydouble.FArrayDouble.t -> unit
   val plusEqualsDouble : t -> float -> unit
   val plusEqualsInt : t -> int -> unit
   val plusControlArray : t -> t -> t
-  val plusFarray : t -> Farraydouble.t -> t
+  val plusFarray : t -> Farraydouble.FArrayDouble.t -> t
   val plusDouble : t -> float -> t
   val plusInt : t -> int -> t
-  val minusEqualsFarray : t -> Farraydouble.t -> unit
+  val minusEqualsFarray : t -> Farraydouble.FArrayDouble.t -> unit
   val minusEqualsDouble : t -> float -> unit
   val minusEqualsInt : t -> int -> unit
   val minusControlArray : t -> t -> t
-  val minusFarray : t -> Farraydouble.t -> t
+  val minusFarray : t -> Farraydouble.FArrayDouble.t -> t
   val minusDouble : t -> float -> t
   val minusInt : t -> int -> t
   val negation : t -> t
@@ -61,19 +61,19 @@ module ControlArray1D : sig
   val pow : t -> float -> t
   val abs : t -> t
   val min : t -> float
-  val minFarray : t -> Farraydouble.t -> t
+  val minFarray : t -> Farraydouble.FArrayDouble.t -> t
   val minControlArray : t -> t -> t
   val max : t -> float
-  val maxFarray : t -> Farraydouble.t -> t
+  val maxFarray : t -> Farraydouble.FArrayDouble.t -> t
   val maxControlArray : t -> t -> t
   val greaterThan : t -> float -> bool
   val lessThan : t -> float -> bool
   val removeOffset : t -> float -> unit
   val sum : t -> float
-  val where : t -> float -> Listlistsizet.t
+  val where : t -> float -> Listlistsizet.ListListSizeT.t
   val flip : t -> int -> t
-  val fullGradient : t -> Farraydouble.t -> int -> int
-  val gradient : t -> int -> Farraydouble.t
+  val fullGradient : t -> Farraydouble.FArrayDouble.t -> int -> int
+  val gradient : t -> int -> Farraydouble.FArrayDouble.t
   val getSumOfSquares : t -> float
   val getSummedDiffIntOfSquares : t -> int -> float
   val getSummedDiffDoubleOfSquares : t -> float -> float

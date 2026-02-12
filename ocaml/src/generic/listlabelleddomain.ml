@@ -9,7 +9,7 @@ class c_listlabelleddomain (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.listlabelleddomain_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
@@ -18,123 +18,123 @@ module ListLabelledDomain = struct
 
   let empty () : t =
     let ptr = Capi_bindings.listlabelleddomain_create_empty () in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listlabelleddomain ptr
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.listlabelleddomain_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_listlabelleddomain ptr
     )
 
-  let fillValue (count : int) (value : Labelleddomain.t) : t =
-    ErrorHandling.read value (fun () ->
+  let fillValue (count : int) (value : Labelleddomain.LabelledDomain.t) : t =
+    Error_handling.read value (fun () ->
       let ptr = Capi_bindings.listlabelleddomain_fill_value (Unsigned.Size_t.of_int count) value#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_listlabelleddomain ptr
     )
 
-  let make (data : Labelleddomain.t) (count : int) : t =
-    ErrorHandling.read data (fun () ->
+  let make (data : Labelleddomain.LabelledDomain.t) (count : int) : t =
+    Error_handling.read data (fun () ->
       let ptr = Capi_bindings.listlabelleddomain_create data#raw (Unsigned.Size_t.of_int count) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_listlabelleddomain ptr
     )
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.listlabelleddomain_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listlabelleddomain ptr
 
-  let pushBack (handle : t) (value : Labelleddomain.t) : unit =
-    ErrorHandling.multi_read [handle; value] (fun () ->
+  let pushBack (handle : t) (value : Labelleddomain.LabelledDomain.t) : unit =
+    Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.listlabelleddomain_push_back handle#raw value#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let size (handle : t) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listlabelleddomain_size handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let empty (handle : t) : bool =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listlabelleddomain_empty handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let eraseAt (handle : t) (idx : int) : unit =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listlabelleddomain_erase_at handle#raw (Unsigned.Size_t.of_int idx) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let clear (handle : t) : unit =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listlabelleddomain_clear handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let at (handle : t) (idx : int) : Labelleddomain.t =
-    ErrorHandling.read handle (fun () ->
+  let at (handle : t) (idx : int) : Labelleddomain.LabelledDomain.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listlabelleddomain_at handle#raw (Unsigned.Size_t.of_int idx) in
-      ErrorHandling.raise_if_error ();
-      new c_labelleddomain result
+      Error_handling.raise_if_error ();
+      new Labelleddomain.c_labelleddomain result
     )
 
-  let items (handle : t) (out_buffer : Labelleddomain.t) (buffer_size : int) : int =
-    ErrorHandling.multi_read [handle; out_buffer] (fun () ->
+  let items (handle : t) (out_buffer : Labelleddomain.LabelledDomain.t) (buffer_size : int) : int =
+    Error_handling.multi_read [handle; out_buffer] (fun () ->
       let result = Capi_bindings.listlabelleddomain_items handle#raw out_buffer#raw (Unsigned.Size_t.of_int buffer_size) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let contains (handle : t) (value : Labelleddomain.t) : bool =
-    ErrorHandling.multi_read [handle; value] (fun () ->
+  let contains (handle : t) (value : Labelleddomain.LabelledDomain.t) : bool =
+    Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.listlabelleddomain_contains handle#raw value#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
-  let index (handle : t) (value : Labelleddomain.t) : int =
-    ErrorHandling.multi_read [handle; value] (fun () ->
+  let index (handle : t) (value : Labelleddomain.LabelledDomain.t) : int =
+    Error_handling.multi_read [handle; value] (fun () ->
       let result = Capi_bindings.listlabelleddomain_index handle#raw value#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let intersection (handle : t) (other : t) : t =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.listlabelleddomain_intersection handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_listlabelleddomain result
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.listlabelleddomain_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.listlabelleddomain_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listlabelleddomain_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 

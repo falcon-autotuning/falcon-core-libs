@@ -14,19 +14,19 @@ module MapInterpretationContextQuantity : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairinterpretationcontextquantity.t -> int -> t
+  val make : Pairinterpretationcontextquantity.PairInterpretationContextQuantity.t -> int -> t
   val fromjson : string -> t
-  val insertOrAssign : t -> Interpretationcontext.t -> Quantity.t -> unit
-  val insert : t -> Interpretationcontext.t -> Quantity.t -> unit
-  val at : t -> Interpretationcontext.t -> Quantity.t
-  val erase : t -> Interpretationcontext.t -> unit
+  val insertOrAssign : t -> Interpretationcontext.InterpretationContext.t -> Quantity.Quantity.t -> unit
+  val insert : t -> Interpretationcontext.InterpretationContext.t -> Quantity.Quantity.t -> unit
+  val at : t -> Interpretationcontext.InterpretationContext.t -> Quantity.Quantity.t
+  val erase : t -> Interpretationcontext.InterpretationContext.t -> unit
   val size : t -> int
   val empty : t -> bool
   val clear : t -> unit
-  val contains : t -> Interpretationcontext.t -> bool
-  val keys : t -> Listinterpretationcontext.t
-  val values : t -> Listquantity.t
-  val items : t -> Listpairinterpretationcontextquantity.t
+  val contains : t -> Interpretationcontext.InterpretationContext.t -> bool
+  val keys : t -> Listinterpretationcontext.ListInterpretationContext.t
+  val values : t -> Listquantity.ListQuantity.t
+  val items : t -> Listpairinterpretationcontextquantity.ListPairInterpretationContextQuantity.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

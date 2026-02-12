@@ -9,7 +9,7 @@ class c_measurementrequest (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.measurementrequest_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
@@ -17,84 +17,84 @@ module MeasurementRequest = struct
   type t = c_measurementrequest
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.measurementrequest_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_measurementrequest ptr
     )
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.measurementrequest_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_measurementrequest ptr
 
-  let make (message : string) (measurement_name : string) (waveforms : Listwaveform.t) (getters : Ports.t) (meter_transforms : Mapinstrumentportporttransform.t) (time_domain : Labelleddomain.t) : t =
-    ErrorHandling.multi_read [waveforms; getters; meter_transforms; time_domain] (fun () ->
+  let make (message : string) (measurement_name : string) (waveforms : Listwaveform.ListWaveform.t) (getters : Ports.Ports.t) (meter_transforms : Mapinstrumentportporttransform.MapInstrumentPortPortTransform.t) (time_domain : Labelleddomain.LabelledDomain.t) : t =
+    Error_handling.multi_read [waveforms; getters; meter_transforms; time_domain] (fun () ->
       let ptr = Capi_bindings.measurementrequest_create (Capi_bindings.string_wrap message) (Capi_bindings.string_wrap measurement_name) waveforms#raw getters#raw meter_transforms#raw time_domain#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_measurementrequest ptr
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.measurementrequest_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.measurementrequest_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 
   let measurementName (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_measurement_name handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 
-  let getters (handle : t) : Ports.t =
-    ErrorHandling.read handle (fun () ->
+  let getters (handle : t) : Ports.Ports.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_getters handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_ports result
+      Error_handling.raise_if_error ();
+      new Ports.c_ports result
     )
 
-  let waveforms (handle : t) : Listwaveform.t =
-    ErrorHandling.read handle (fun () ->
+  let waveforms (handle : t) : Listwaveform.ListWaveform.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_waveforms handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_listwaveform result
+      Error_handling.raise_if_error ();
+      new Listwaveform.c_listwaveform result
     )
 
-  let meterTransforms (handle : t) : Mapinstrumentportporttransform.t =
-    ErrorHandling.read handle (fun () ->
+  let meterTransforms (handle : t) : Mapinstrumentportporttransform.MapInstrumentPortPortTransform.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_meter_transforms handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_mapinstrumentportporttransform result
+      Error_handling.raise_if_error ();
+      new Mapinstrumentportporttransform.c_mapinstrumentportporttransform result
     )
 
-  let timeDomain (handle : t) : Labelleddomain.t =
-    ErrorHandling.read handle (fun () ->
+  let timeDomain (handle : t) : Labelleddomain.LabelledDomain.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_time_domain handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_labelleddomain result
+      Error_handling.raise_if_error ();
+      new Labelleddomain.c_labelleddomain result
     )
 
   let message (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.measurementrequest_message handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 

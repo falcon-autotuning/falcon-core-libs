@@ -14,18 +14,18 @@ module ListPairSizeTSizeT : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairsizetsizet.t -> t
-  val make : Pairsizetsizet.t -> int -> t
+  val fillValue : int -> Pairsizetsizet.PairSizeTSizeT.t -> t
+  val make : Pairsizetsizet.PairSizeTSizeT.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairsizetsizet.t -> unit
+  val pushBack : t -> Pairsizetsizet.PairSizeTSizeT.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairsizetsizet.t
-  val items : t -> Pairsizetsizet.t -> int -> int
-  val contains : t -> Pairsizetsizet.t -> bool
-  val index : t -> Pairsizetsizet.t -> int
+  val at : t -> int -> Pairsizetsizet.PairSizeTSizeT.t
+  val items : t -> Pairsizetsizet.PairSizeTSizeT.t -> int -> int
+  val contains : t -> Pairsizetsizet.PairSizeTSizeT.t -> bool
+  val index : t -> Pairsizetsizet.PairSizeTSizeT.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

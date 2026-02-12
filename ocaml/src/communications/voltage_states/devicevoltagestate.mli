@@ -12,13 +12,13 @@ class c_devicevoltagestate : unit ptr -> c_devicevoltagestate_t
 module DeviceVoltageState : sig
   type t = c_devicevoltagestate
 
-  val make : Connection.t -> float -> Symbolunit.t -> t
+  val make : Connection.Connection.t -> float -> Symbolunit.SymbolUnit.t -> t
   val fromjson : string -> t
-  val connection : t -> Connection.t
+  val connection : t -> Connection.Connection.t
   val voltage : t -> float
   val value : t -> float
-  val unit : t -> Symbolunit.t
-  val convertTo : t -> Symbolunit.t -> unit
+  val unit : t -> Symbolunit.SymbolUnit.t
+  val convertTo : t -> Symbolunit.SymbolUnit.t -> unit
   val multiplyInt : t -> int -> t
   val multiplyDouble : t -> float -> t
   val multiplyQuantity : t -> t -> t

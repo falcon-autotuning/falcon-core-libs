@@ -21,6 +21,6 @@ module AnalyticFunction : sig
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val labels : t -> string
-  val evaluate : t -> Mapstringdouble.t -> float -> float
-  val evaluateArraywise : t -> Mapstringdouble.t -> float -> float -> Farraydouble.t
+  val evaluate : t -> Mapstringdouble.MapStringDouble.t -> float -> float
+  val evaluateArraywise : t -> Mapstringdouble.MapStringDouble.t -> float -> float -> Farraydouble.FArrayDouble.t
 end

@@ -14,18 +14,18 @@ module ListPortTransform : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Porttransform.t -> t
-  val make : Porttransform.t -> int -> t
+  val fillValue : int -> Porttransform.PortTransform.t -> t
+  val make : Porttransform.PortTransform.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Porttransform.t -> unit
+  val pushBack : t -> Porttransform.PortTransform.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Porttransform.t
-  val items : t -> Porttransform.t -> int -> int
-  val contains : t -> Porttransform.t -> bool
-  val index : t -> Porttransform.t -> int
+  val at : t -> int -> Porttransform.PortTransform.t
+  val items : t -> Porttransform.PortTransform.t -> int -> int
+  val contains : t -> Porttransform.PortTransform.t -> bool
+  val index : t -> Porttransform.PortTransform.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

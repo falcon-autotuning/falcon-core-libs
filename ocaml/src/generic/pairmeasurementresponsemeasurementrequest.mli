@@ -12,11 +12,11 @@ class c_pairmeasurementresponsemeasurementrequest : unit ptr -> c_pairmeasuremen
 module PairMeasurementResponseMeasurementRequest : sig
   type t = c_pairmeasurementresponsemeasurementrequest
 
-  val make : Measurementresponse.t -> Measurementrequest.t -> t
+  val make : Measurementresponse.MeasurementResponse.t -> Measurementrequest.MeasurementRequest.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Measurementresponse.t
-  val second : t -> Measurementrequest.t
+  val first : t -> Measurementresponse.MeasurementResponse.t
+  val second : t -> Measurementrequest.MeasurementRequest.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

@@ -9,64 +9,64 @@ class c_pairmeasurementresponsemeasurementrequest (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.pairmeasurementresponsemeasurementrequest_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
 module PairMeasurementResponseMeasurementRequest = struct
   type t = c_pairmeasurementresponsemeasurementrequest
 
-  let make (first : Measurementresponse.t) (second : Measurementrequest.t) : t =
-    ErrorHandling.multi_read [first; second] (fun () ->
+  let make (first : Measurementresponse.MeasurementResponse.t) (second : Measurementrequest.MeasurementRequest.t) : t =
+    Error_handling.multi_read [first; second] (fun () ->
       let ptr = Capi_bindings.pairmeasurementresponsemeasurementrequest_create first#raw second#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_pairmeasurementresponsemeasurementrequest ptr
     )
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.pairmeasurementresponsemeasurementrequest_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_pairmeasurementresponsemeasurementrequest ptr
     )
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.pairmeasurementresponsemeasurementrequest_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_pairmeasurementresponsemeasurementrequest ptr
 
-  let first (handle : t) : Measurementresponse.t =
-    ErrorHandling.read handle (fun () ->
+  let first (handle : t) : Measurementresponse.MeasurementResponse.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairmeasurementresponsemeasurementrequest_first handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_measurementresponse result
+      Error_handling.raise_if_error ();
+      new Measurementresponse.c_measurementresponse result
     )
 
-  let second (handle : t) : Measurementrequest.t =
-    ErrorHandling.read handle (fun () ->
+  let second (handle : t) : Measurementrequest.MeasurementRequest.t =
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairmeasurementresponsemeasurementrequest_second handle#raw in
-      ErrorHandling.raise_if_error ();
-      new c_measurementrequest result
+      Error_handling.raise_if_error ();
+      new Measurementrequest.c_measurementrequest result
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.pairmeasurementresponsemeasurementrequest_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.pairmeasurementresponsemeasurementrequest_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.pairmeasurementresponsemeasurementrequest_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 

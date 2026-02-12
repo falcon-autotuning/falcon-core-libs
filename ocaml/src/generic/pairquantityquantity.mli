@@ -12,11 +12,11 @@ class c_pairquantityquantity : unit ptr -> c_pairquantityquantity_t
 module PairQuantityQuantity : sig
   type t = c_pairquantityquantity
 
-  val make : Quantity.t -> Quantity.t -> t
+  val make : Quantity.Quantity.t -> Quantity.Quantity.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Quantity.t
-  val second : t -> Quantity.t
+  val first : t -> Quantity.Quantity.t
+  val second : t -> Quantity.Quantity.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

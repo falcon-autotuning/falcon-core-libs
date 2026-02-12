@@ -14,18 +14,18 @@ module ListPairQuantityQuantity : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairquantityquantity.t -> t
-  val make : Pairquantityquantity.t -> int -> t
+  val fillValue : int -> Pairquantityquantity.PairQuantityQuantity.t -> t
+  val make : Pairquantityquantity.PairQuantityQuantity.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairquantityquantity.t -> unit
+  val pushBack : t -> Pairquantityquantity.PairQuantityQuantity.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairquantityquantity.t
-  val items : t -> Pairquantityquantity.t -> int -> int
-  val contains : t -> Pairquantityquantity.t -> bool
-  val index : t -> Pairquantityquantity.t -> int
+  val at : t -> int -> Pairquantityquantity.PairQuantityQuantity.t
+  val items : t -> Pairquantityquantity.PairQuantityQuantity.t -> int -> int
+  val contains : t -> Pairquantityquantity.PairQuantityQuantity.t -> bool
+  val index : t -> Pairquantityquantity.PairQuantityQuantity.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

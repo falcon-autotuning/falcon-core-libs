@@ -14,16 +14,16 @@ module InterpretationContext : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Axesmeasurementcontext.t -> Listmeasurementcontext.t -> Symbolunit.t -> t
+  val make : Axesmeasurementcontext.AxesMeasurementContext.t -> Listmeasurementcontext.ListMeasurementContext.t -> Symbolunit.SymbolUnit.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val independentVariables : t -> Axesmeasurementcontext.t
-  val dependentVariables : t -> Listmeasurementcontext.t
-  val unit : t -> Symbolunit.t
+  val independentVariables : t -> Axesmeasurementcontext.AxesMeasurementContext.t
+  val dependentVariables : t -> Listmeasurementcontext.ListMeasurementContext.t
+  val unit : t -> Symbolunit.SymbolUnit.t
   val dimension : t -> int
-  val addDependentVariable : t -> Measurementcontext.t -> unit
-  val replaceDependentVariable : t -> int -> Measurementcontext.t -> unit
-  val getIndependentVariables : t -> int -> Measurementcontext.t
-  val withUnit : t -> Symbolunit.t -> t
+  val addDependentVariable : t -> Measurementcontext.MeasurementContext.t -> unit
+  val replaceDependentVariable : t -> int -> Measurementcontext.MeasurementContext.t -> unit
+  val getIndependentVariables : t -> int -> Measurementcontext.MeasurementContext.t
+  val withUnit : t -> Symbolunit.SymbolUnit.t -> t
 end

@@ -9,7 +9,7 @@ class c_listbool (h : unit ptr) = object(self)
   method raw = raw_val
   initializer Gc.finalise (fun _ ->
     Capi_bindings.listbool_destroy raw_val;
-    ErrorHandling.raise_if_error ()
+    Error_handling.raise_if_error ()
   ) self
 end
 
@@ -18,124 +18,124 @@ module ListBool = struct
 
   let empty () : t =
     let ptr = Capi_bindings.listbool_create_empty () in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listbool ptr
 
   let copy (handle : t) : t =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let ptr = Capi_bindings.listbool_copy handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_listbool ptr
     )
 
   let allocate (count : int) : t =
     let ptr = Capi_bindings.listbool_allocate (Unsigned.Size_t.of_int count) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listbool ptr
 
   let fillValue (count : int) (value : bool) : t =
     let ptr = Capi_bindings.listbool_fill_value (Unsigned.Size_t.of_int count) value in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listbool ptr
 
   let make (data : bool) (count : int) : t =
     let ptr = Capi_bindings.listbool_create data (Unsigned.Size_t.of_int count) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listbool ptr
 
   let fromjson (json : string) : t =
     let ptr = Capi_bindings.listbool_from_json_string (Capi_bindings.string_wrap json) in
-    ErrorHandling.raise_if_error ();
+    Error_handling.raise_if_error ();
     new c_listbool ptr
 
   let pushBack (handle : t) (value : bool) : unit =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_push_back handle#raw value in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let size (handle : t) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_size handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let empty (handle : t) : bool =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_empty handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let eraseAt (handle : t) (idx : int) : unit =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_erase_at handle#raw (Unsigned.Size_t.of_int idx) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let clear (handle : t) : unit =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_clear handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let at (handle : t) (idx : int) : bool =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_at handle#raw (Unsigned.Size_t.of_int idx) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let items (handle : t) (out_buffer : bool) (buffer_size : int) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_items handle#raw out_buffer (Unsigned.Size_t.of_int buffer_size) in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let contains (handle : t) (value : bool) : bool =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_contains handle#raw value in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let index (handle : t) (value : bool) : int =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_index handle#raw value in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let intersection (handle : t) (other : t) : t =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.listbool_intersection handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       new c_listbool result
     )
 
   let equal (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.listbool_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let notEqual (handle : t) (other : t) : bool =
-    ErrorHandling.multi_read [handle; other] (fun () ->
+    Error_handling.multi_read [handle; other] (fun () ->
       let result = Capi_bindings.listbool_not_equal handle#raw other#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       result
     )
 
   let toJsonString (handle : t) : string =
-    ErrorHandling.read handle (fun () ->
+    Error_handling.read handle (fun () ->
       let result = Capi_bindings.listbool_to_json_string handle#raw in
-      ErrorHandling.raise_if_error ();
+      Error_handling.raise_if_error ();
       Capi_bindings.string_to_ocaml result
     )
 

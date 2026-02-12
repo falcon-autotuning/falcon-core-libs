@@ -14,18 +14,18 @@ module ListInterpretationContext : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Interpretationcontext.t -> t
-  val make : Interpretationcontext.t -> int -> t
+  val fillValue : int -> Interpretationcontext.InterpretationContext.t -> t
+  val make : Interpretationcontext.InterpretationContext.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Interpretationcontext.t -> unit
+  val pushBack : t -> Interpretationcontext.InterpretationContext.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Interpretationcontext.t
-  val items : t -> Interpretationcontext.t -> int -> int
-  val contains : t -> Interpretationcontext.t -> bool
-  val index : t -> Interpretationcontext.t -> int
+  val at : t -> int -> Interpretationcontext.InterpretationContext.t
+  val items : t -> Interpretationcontext.InterpretationContext.t -> int -> int
+  val contains : t -> Interpretationcontext.InterpretationContext.t -> bool
+  val index : t -> Interpretationcontext.InterpretationContext.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

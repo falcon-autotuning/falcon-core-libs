@@ -12,11 +12,11 @@ class c_pairgnamegroup : unit ptr -> c_pairgnamegroup_t
 module PairGnameGroup : sig
   type t = c_pairgnamegroup
 
-  val make : Gname.t -> Group.t -> t
+  val make : Gname.Gname.t -> Group.Group.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Gname.t
-  val second : t -> Group.t
+  val first : t -> Gname.Gname.t
+  val second : t -> Group.Group.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

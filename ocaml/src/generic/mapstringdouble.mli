@@ -14,7 +14,7 @@ module MapStringDouble : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairstringdouble.t -> int -> t
+  val make : Pairstringdouble.PairStringDouble.t -> int -> t
   val fromjson : string -> t
   val insertOrAssign : t -> string -> float -> unit
   val insert : t -> string -> float -> unit
@@ -25,8 +25,8 @@ module MapStringDouble : sig
   val clear : t -> unit
   val contains : t -> string -> bool
   val keys : t -> string
-  val values : t -> Listdouble.t
-  val items : t -> Listpairstringdouble.t
+  val values : t -> Listdouble.ListDouble.t
+  val items : t -> Listpairstringdouble.ListPairStringDouble.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

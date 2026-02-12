@@ -21,7 +21,7 @@ module Discretizer : sig
   val toJsonString : t -> string
   val delta : t -> float
   val setDelta : t -> float -> unit
-  val domain : t -> Domain.t
+  val domain : t -> Domain.Domain.t
   val isCartesian : t -> bool
   val isPolar : t -> bool
 end

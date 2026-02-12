@@ -14,18 +14,18 @@ module ListPairGnameGroup : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairgnamegroup.t -> t
-  val make : Pairgnamegroup.t -> int -> t
+  val fillValue : int -> Pairgnamegroup.PairGnameGroup.t -> t
+  val make : Pairgnamegroup.PairGnameGroup.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairgnamegroup.t -> unit
+  val pushBack : t -> Pairgnamegroup.PairGnameGroup.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairgnamegroup.t
-  val items : t -> Pairgnamegroup.t -> int -> int
-  val contains : t -> Pairgnamegroup.t -> bool
-  val index : t -> Pairgnamegroup.t -> int
+  val at : t -> int -> Pairgnamegroup.PairGnameGroup.t
+  val items : t -> Pairgnamegroup.PairGnameGroup.t -> int -> int
+  val contains : t -> Pairgnamegroup.PairGnameGroup.t -> bool
+  val index : t -> Pairgnamegroup.PairGnameGroup.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

@@ -14,26 +14,26 @@ module Waveform : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Discretespace.t -> Listporttransform.t -> t
-  val cartesianWaveform : Axesint.t -> Axescoupledlabelleddomain.t -> Axesmapstringbool.t -> Listporttransform.t -> Domain.t -> t
-  val cartesianIdentityWaveform : Axesint.t -> Axescoupledlabelleddomain.t -> Axesmapstringbool.t -> Domain.t -> t
-  val cartesianWaveform2d : Axesint.t -> Axescoupledlabelleddomain.t -> Axesmapstringbool.t -> Listporttransform.t -> Domain.t -> t
-  val cartesianIdentityWaveform2d : Axesint.t -> Axescoupledlabelleddomain.t -> Axesmapstringbool.t -> Domain.t -> t
-  val cartesianWaveform1d : int -> Coupledlabelleddomain.t -> Mapstringbool.t -> Listporttransform.t -> Domain.t -> t
-  val cartesianIdentityWaveform1d : int -> Coupledlabelleddomain.t -> Mapstringbool.t -> Domain.t -> t
+  val make : Discretespace.DiscreteSpace.t -> Listporttransform.ListPortTransform.t -> t
+  val cartesianWaveform : Axesint.AxesInt.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Axesmapstringbool.AxesMapStringBool.t -> Listporttransform.ListPortTransform.t -> Domain.Domain.t -> t
+  val cartesianIdentityWaveform : Axesint.AxesInt.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Axesmapstringbool.AxesMapStringBool.t -> Domain.Domain.t -> t
+  val cartesianWaveform2d : Axesint.AxesInt.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Axesmapstringbool.AxesMapStringBool.t -> Listporttransform.ListPortTransform.t -> Domain.Domain.t -> t
+  val cartesianIdentityWaveform2d : Axesint.AxesInt.t -> Axescoupledlabelleddomain.AxesCoupledLabelledDomain.t -> Axesmapstringbool.AxesMapStringBool.t -> Domain.Domain.t -> t
+  val cartesianWaveform1d : int -> Coupledlabelleddomain.CoupledLabelledDomain.t -> Mapstringbool.MapStringBool.t -> Listporttransform.ListPortTransform.t -> Domain.Domain.t -> t
+  val cartesianIdentityWaveform1d : int -> Coupledlabelleddomain.CoupledLabelledDomain.t -> Mapstringbool.MapStringBool.t -> Domain.Domain.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val space : t -> Discretespace.t
-  val transforms : t -> Listporttransform.t
-  val pushBack : t -> Porttransform.t -> unit
+  val space : t -> Discretespace.DiscreteSpace.t
+  val transforms : t -> Listporttransform.ListPortTransform.t
+  val pushBack : t -> Porttransform.PortTransform.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Porttransform.t
-  val items : t -> Listporttransform.t
-  val contains : t -> Porttransform.t -> bool
-  val index : t -> Porttransform.t -> int
+  val at : t -> int -> Porttransform.PortTransform.t
+  val items : t -> Listporttransform.ListPortTransform.t
+  val contains : t -> Porttransform.PortTransform.t -> bool
+  val index : t -> Porttransform.PortTransform.t -> int
   val intersection : t -> t -> t
 end

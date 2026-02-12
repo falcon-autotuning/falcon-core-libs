@@ -14,18 +14,18 @@ module ListMeasurementContext : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Measurementcontext.t -> t
-  val make : Measurementcontext.t -> int -> t
+  val fillValue : int -> Measurementcontext.MeasurementContext.t -> t
+  val make : Measurementcontext.MeasurementContext.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Measurementcontext.t -> unit
+  val pushBack : t -> Measurementcontext.MeasurementContext.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Measurementcontext.t
-  val items : t -> Measurementcontext.t -> int -> int
-  val contains : t -> Measurementcontext.t -> bool
-  val index : t -> Measurementcontext.t -> int
+  val at : t -> int -> Measurementcontext.MeasurementContext.t
+  val items : t -> Measurementcontext.MeasurementContext.t -> int -> int
+  val contains : t -> Measurementcontext.MeasurementContext.t -> bool
+  val index : t -> Measurementcontext.MeasurementContext.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

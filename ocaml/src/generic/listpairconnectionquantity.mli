@@ -14,18 +14,18 @@ module ListPairConnectionQuantity : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairconnectionquantity.t -> t
-  val make : Pairconnectionquantity.t -> int -> t
+  val fillValue : int -> Pairconnectionquantity.PairConnectionQuantity.t -> t
+  val make : Pairconnectionquantity.PairConnectionQuantity.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairconnectionquantity.t -> unit
+  val pushBack : t -> Pairconnectionquantity.PairConnectionQuantity.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairconnectionquantity.t
-  val items : t -> Pairconnectionquantity.t -> int -> int
-  val contains : t -> Pairconnectionquantity.t -> bool
-  val index : t -> Pairconnectionquantity.t -> int
+  val at : t -> int -> Pairconnectionquantity.PairConnectionQuantity.t
+  val items : t -> Pairconnectionquantity.PairConnectionQuantity.t -> int -> int
+  val contains : t -> Pairconnectionquantity.PairConnectionQuantity.t -> bool
+  val index : t -> Pairconnectionquantity.PairConnectionQuantity.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

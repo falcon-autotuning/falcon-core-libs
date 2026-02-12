@@ -14,17 +14,17 @@ module AxesCoupledLabelledDomain : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listcoupledlabelleddomain.t -> t
+  val make : Listcoupledlabelleddomain.ListCoupledLabelledDomain.t -> t
   val fromjson : string -> t
-  val pushBack : t -> Coupledlabelleddomain.t -> unit
+  val pushBack : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Coupledlabelleddomain.t
-  val items : t -> Coupledlabelleddomain.t -> int -> int
-  val contains : t -> Coupledlabelleddomain.t -> bool
-  val index : t -> Coupledlabelleddomain.t -> int
+  val at : t -> int -> Coupledlabelleddomain.CoupledLabelledDomain.t
+  val items : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> int -> int
+  val contains : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> bool
+  val index : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

@@ -14,7 +14,7 @@ module AxesDouble : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listdouble.t -> t
+  val make : Listdouble.ListDouble.t -> t
   val fromjson : string -> t
   val pushBack : t -> float -> unit
   val size : t -> int

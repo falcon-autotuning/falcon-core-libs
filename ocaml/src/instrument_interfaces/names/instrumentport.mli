@@ -14,18 +14,18 @@ module InstrumentPort : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val port : string -> Connection.t -> string -> Symbolunit.t -> string -> t
-  val knob : string -> Connection.t -> string -> Symbolunit.t -> string -> t
-  val meter : string -> Connection.t -> string -> Symbolunit.t -> string -> t
+  val port : string -> Connection.Connection.t -> string -> Symbolunit.SymbolUnit.t -> string -> t
+  val knob : string -> Connection.Connection.t -> string -> Symbolunit.SymbolUnit.t -> string -> t
+  val meter : string -> Connection.Connection.t -> string -> Symbolunit.SymbolUnit.t -> string -> t
   val timer : t
   val executionClock : t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
   val defaultName : t -> string
-  val psuedoName : t -> Connection.t
+  val psuedoName : t -> Connection.Connection.t
   val instrumentType : t -> string
-  val units : t -> Symbolunit.t
+  val units : t -> Symbolunit.SymbolUnit.t
   val description : t -> string
   val instrumentFacingName : t -> string
   val isKnob : t -> bool

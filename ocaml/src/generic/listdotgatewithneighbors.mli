@@ -14,18 +14,18 @@ module ListDotGateWithNeighbors : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Dotgatewithneighbors.t -> t
-  val make : Dotgatewithneighbors.t -> int -> t
+  val fillValue : int -> Dotgatewithneighbors.DotGateWithNeighbors.t -> t
+  val make : Dotgatewithneighbors.DotGateWithNeighbors.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Dotgatewithneighbors.t -> unit
+  val pushBack : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Dotgatewithneighbors.t
-  val items : t -> Dotgatewithneighbors.t -> int -> int
-  val contains : t -> Dotgatewithneighbors.t -> bool
-  val index : t -> Dotgatewithneighbors.t -> int
+  val at : t -> int -> Dotgatewithneighbors.DotGateWithNeighbors.t
+  val items : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> int -> int
+  val contains : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> bool
+  val index : t -> Dotgatewithneighbors.DotGateWithNeighbors.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

@@ -12,11 +12,11 @@ class c_pairconnectionpairquantityquantity : unit ptr -> c_pairconnectionpairqua
 module PairConnectionPairQuantityQuantity : sig
   type t = c_pairconnectionpairquantityquantity
 
-  val make : Connection.t -> Pairquantityquantity.t -> t
+  val make : Connection.Connection.t -> Pairquantityquantity.PairQuantityQuantity.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Connection.t
-  val second : t -> Pairquantityquantity.t
+  val first : t -> Connection.Connection.t
+  val second : t -> Pairquantityquantity.PairQuantityQuantity.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

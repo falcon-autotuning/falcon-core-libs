@@ -14,18 +14,18 @@ module ListCoupledLabelledDomain : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Coupledlabelleddomain.t -> t
-  val make : Coupledlabelleddomain.t -> int -> t
+  val fillValue : int -> Coupledlabelleddomain.CoupledLabelledDomain.t -> t
+  val make : Coupledlabelleddomain.CoupledLabelledDomain.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Coupledlabelleddomain.t -> unit
+  val pushBack : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Coupledlabelleddomain.t
-  val items : t -> Coupledlabelleddomain.t -> int -> int
-  val contains : t -> Coupledlabelleddomain.t -> bool
-  val index : t -> Coupledlabelleddomain.t -> int
+  val at : t -> int -> Coupledlabelleddomain.CoupledLabelledDomain.t
+  val items : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> int -> int
+  val contains : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> bool
+  val index : t -> Coupledlabelleddomain.CoupledLabelledDomain.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

@@ -14,18 +14,18 @@ module ListPairStringBool : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairstringbool.t -> t
-  val make : Pairstringbool.t -> int -> t
+  val fillValue : int -> Pairstringbool.PairStringBool.t -> t
+  val make : Pairstringbool.PairStringBool.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairstringbool.t -> unit
+  val pushBack : t -> Pairstringbool.PairStringBool.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairstringbool.t
-  val items : t -> Pairstringbool.t -> int -> int
-  val contains : t -> Pairstringbool.t -> bool
-  val index : t -> Pairstringbool.t -> int
+  val at : t -> int -> Pairstringbool.PairStringBool.t
+  val items : t -> Pairstringbool.PairStringBool.t -> int -> int
+  val contains : t -> Pairstringbool.PairStringBool.t -> bool
+  val index : t -> Pairstringbool.PairStringBool.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

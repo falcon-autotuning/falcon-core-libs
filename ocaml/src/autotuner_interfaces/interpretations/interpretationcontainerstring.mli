@@ -15,21 +15,21 @@ module InterpretationContainerString : sig
   val make : string -> t
   val copy : string -> t
   val fromjson : string -> t
-  val unit : string -> Symbolunit.t
-  val selectByConnection : string -> Connection.t -> Listinterpretationcontext.t
-  val selectByConnections : string -> Connections.t -> Listinterpretationcontext.t
-  val selectByIndependentConnection : string -> Connection.t -> Listinterpretationcontext.t
-  val selectByDependentConnection : string -> Connection.t -> Listinterpretationcontext.t
-  val selectContexts : string -> Listconnection.t -> Listconnection.t -> Listinterpretationcontext.t
-  val insertOrAssign : string -> Interpretationcontext.t -> string -> unit
-  val insert : string -> Interpretationcontext.t -> string -> unit
-  val at : string -> Interpretationcontext.t -> string
-  val erase : string -> Interpretationcontext.t -> unit
+  val unit : string -> Symbolunit.SymbolUnit.t
+  val selectByConnection : string -> Connection.Connection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectByConnections : string -> Connections.Connections.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectByIndependentConnection : string -> Connection.Connection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectByDependentConnection : string -> Connection.Connection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val selectContexts : string -> Listconnection.ListConnection.t -> Listconnection.ListConnection.t -> Listinterpretationcontext.ListInterpretationContext.t
+  val insertOrAssign : string -> Interpretationcontext.InterpretationContext.t -> string -> unit
+  val insert : string -> Interpretationcontext.InterpretationContext.t -> string -> unit
+  val at : string -> Interpretationcontext.InterpretationContext.t -> string
+  val erase : string -> Interpretationcontext.InterpretationContext.t -> unit
   val size : string -> int
   val empty : string -> bool
   val clear : string -> unit
-  val contains : string -> Interpretationcontext.t -> bool
-  val keys : string -> Listinterpretationcontext.t
+  val contains : string -> Interpretationcontext.InterpretationContext.t -> bool
+  val keys : string -> Listinterpretationcontext.ListInterpretationContext.t
   val values : string -> string
   val items : string -> string
   val equal : string -> string -> bool

@@ -12,11 +12,11 @@ class c_pairinterpretationcontextquantity : unit ptr -> c_pairinterpretationcont
 module PairInterpretationContextQuantity : sig
   type t = c_pairinterpretationcontextquantity
 
-  val make : Interpretationcontext.t -> Quantity.t -> t
+  val make : Interpretationcontext.InterpretationContext.t -> Quantity.Quantity.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Interpretationcontext.t
-  val second : t -> Quantity.t
+  val first : t -> Interpretationcontext.InterpretationContext.t
+  val second : t -> Quantity.Quantity.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

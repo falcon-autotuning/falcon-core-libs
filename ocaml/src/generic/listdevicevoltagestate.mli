@@ -14,18 +14,18 @@ module ListDeviceVoltageState : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Devicevoltagestate.t -> t
-  val make : Devicevoltagestate.t -> int -> t
+  val fillValue : int -> Devicevoltagestate.DeviceVoltageState.t -> t
+  val make : Devicevoltagestate.DeviceVoltageState.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Devicevoltagestate.t -> unit
+  val pushBack : t -> Devicevoltagestate.DeviceVoltageState.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Devicevoltagestate.t
-  val items : t -> Devicevoltagestate.t -> int -> int
-  val contains : t -> Devicevoltagestate.t -> bool
-  val index : t -> Devicevoltagestate.t -> int
+  val at : t -> int -> Devicevoltagestate.DeviceVoltageState.t
+  val items : t -> Devicevoltagestate.DeviceVoltageState.t -> int -> int
+  val contains : t -> Devicevoltagestate.DeviceVoltageState.t -> bool
+  val index : t -> Devicevoltagestate.DeviceVoltageState.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

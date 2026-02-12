@@ -15,22 +15,22 @@ module CoupledLabelledDomain : sig
   val copy : t -> t
   val fromjson : string -> t
   val empty : t
-  val make : Listlabelleddomain.t -> t
+  val make : Listlabelleddomain.ListLabelledDomain.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val domains : t -> Listlabelleddomain.t
-  val labels : t -> Ports.t
-  val getDomain : t -> Instrumentport.t -> Labelleddomain.t
+  val domains : t -> Listlabelleddomain.ListLabelledDomain.t
+  val labels : t -> Ports.Ports.t
+  val getDomain : t -> Instrumentport.InstrumentPort.t -> Labelleddomain.LabelledDomain.t
   val intersection : t -> t -> t
-  val pushBack : t -> Labelleddomain.t -> unit
+  val pushBack : t -> Labelleddomain.LabelledDomain.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val constAt : t -> int -> Labelleddomain.t
-  val at : t -> int -> Labelleddomain.t
-  val items : t -> Listlabelleddomain.t
-  val contains : t -> Labelleddomain.t -> bool
-  val index : t -> Labelleddomain.t -> int
+  val constAt : t -> int -> Labelleddomain.LabelledDomain.t
+  val at : t -> int -> Labelleddomain.LabelledDomain.t
+  val items : t -> Listlabelleddomain.ListLabelledDomain.t
+  val contains : t -> Labelleddomain.LabelledDomain.t -> bool
+  val index : t -> Labelleddomain.LabelledDomain.t -> int
 end

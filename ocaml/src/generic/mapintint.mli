@@ -14,7 +14,7 @@ module MapIntInt : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairintint.t -> int -> t
+  val make : Pairintint.PairIntInt.t -> int -> t
   val fromjson : string -> t
   val insertOrAssign : t -> int -> int -> unit
   val insert : t -> int -> int -> unit
@@ -24,9 +24,9 @@ module MapIntInt : sig
   val empty : t -> bool
   val clear : t -> unit
   val contains : t -> int -> bool
-  val keys : t -> Listint.t
-  val values : t -> Listint.t
-  val items : t -> Listpairintint.t
+  val keys : t -> Listint.ListInt.t
+  val values : t -> Listint.ListInt.t
+  val items : t -> Listpairintint.ListPairIntInt.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

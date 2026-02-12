@@ -14,14 +14,14 @@ module PortTransform : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Instrumentport.t -> Analyticfunction.t -> t
-  val constantTransform : Instrumentport.t -> float -> t
-  val identityTransform : Instrumentport.t -> t
+  val make : Instrumentport.InstrumentPort.t -> Analyticfunction.AnalyticFunction.t -> t
+  val constantTransform : Instrumentport.InstrumentPort.t -> float -> t
+  val identityTransform : Instrumentport.InstrumentPort.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val port : t -> Instrumentport.t
+  val port : t -> Instrumentport.InstrumentPort.t
   val labels : t -> string
-  val evaluate : t -> Mapstringdouble.t -> float -> float
-  val evaluateArraywise : t -> Mapstringdouble.t -> float -> float -> Farraydouble.t
+  val evaluate : t -> Mapstringdouble.MapStringDouble.t -> float -> float
+  val evaluateArraywise : t -> Mapstringdouble.MapStringDouble.t -> float -> float -> Farraydouble.FArrayDouble.t
 end

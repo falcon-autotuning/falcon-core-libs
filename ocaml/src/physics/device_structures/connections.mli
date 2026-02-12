@@ -15,7 +15,7 @@ module Connections : sig
   val copy : t -> t
   val fromjson : string -> t
   val empty : t
-  val make : Listconnection.t -> t
+  val make : Listconnection.ListConnection.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
@@ -27,13 +27,13 @@ module Connections : sig
   val isReservoirGates : t -> bool
   val isScreeningGates : t -> bool
   val intersection : t -> t -> t
-  val pushBack : t -> Connection.t -> unit
+  val pushBack : t -> Connection.Connection.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Connection.t
-  val items : t -> Listconnection.t
-  val contains : t -> Connection.t -> bool
-  val index : t -> Connection.t -> int
+  val at : t -> int -> Connection.Connection.t
+  val items : t -> Listconnection.ListConnection.t
+  val contains : t -> Connection.Connection.t -> bool
+  val index : t -> Connection.Connection.t -> int
 end

@@ -14,18 +14,18 @@ module ListFArrayDouble : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Farraydouble.t -> t
-  val make : Farraydouble.t -> int -> t
+  val fillValue : int -> Farraydouble.FArrayDouble.t -> t
+  val make : Farraydouble.FArrayDouble.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Farraydouble.t -> unit
+  val pushBack : t -> Farraydouble.FArrayDouble.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Farraydouble.t
-  val items : t -> Farraydouble.t -> int -> int
-  val contains : t -> Farraydouble.t -> bool
-  val index : t -> Farraydouble.t -> int
+  val at : t -> int -> Farraydouble.FArrayDouble.t
+  val items : t -> Farraydouble.FArrayDouble.t -> int -> int
+  val contains : t -> Farraydouble.FArrayDouble.t -> bool
+  val index : t -> Farraydouble.FArrayDouble.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

@@ -14,18 +14,18 @@ module ListPairIntInt : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairintint.t -> t
-  val make : Pairintint.t -> int -> t
+  val fillValue : int -> Pairintint.PairIntInt.t -> t
+  val make : Pairintint.PairIntInt.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairintint.t -> unit
+  val pushBack : t -> Pairintint.PairIntInt.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairintint.t
-  val items : t -> Pairintint.t -> int -> int
-  val contains : t -> Pairintint.t -> bool
-  val index : t -> Pairintint.t -> int
+  val at : t -> int -> Pairintint.PairIntInt.t
+  val items : t -> Pairintint.PairIntInt.t -> int -> int
+  val contains : t -> Pairintint.PairIntInt.t -> bool
+  val index : t -> Pairintint.PairIntInt.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

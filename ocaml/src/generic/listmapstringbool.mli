@@ -14,18 +14,18 @@ module ListMapStringBool : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Mapstringbool.t -> t
-  val make : Mapstringbool.t -> int -> t
+  val fillValue : int -> Mapstringbool.MapStringBool.t -> t
+  val make : Mapstringbool.MapStringBool.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Mapstringbool.t -> unit
+  val pushBack : t -> Mapstringbool.MapStringBool.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Mapstringbool.t
-  val items : t -> Mapstringbool.t -> int -> int
-  val contains : t -> Mapstringbool.t -> bool
-  val index : t -> Mapstringbool.t -> int
+  val at : t -> int -> Mapstringbool.MapStringBool.t
+  val items : t -> Mapstringbool.MapStringBool.t -> int -> int
+  val contains : t -> Mapstringbool.MapStringBool.t -> bool
+  val index : t -> Mapstringbool.MapStringBool.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

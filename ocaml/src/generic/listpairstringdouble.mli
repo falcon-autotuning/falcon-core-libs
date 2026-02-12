@@ -14,18 +14,18 @@ module ListPairStringDouble : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairstringdouble.t -> t
-  val make : Pairstringdouble.t -> int -> t
+  val fillValue : int -> Pairstringdouble.PairStringDouble.t -> t
+  val make : Pairstringdouble.PairStringDouble.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairstringdouble.t -> unit
+  val pushBack : t -> Pairstringdouble.PairStringDouble.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairstringdouble.t
-  val items : t -> Pairstringdouble.t -> int -> int
-  val contains : t -> Pairstringdouble.t -> bool
-  val index : t -> Pairstringdouble.t -> int
+  val at : t -> int -> Pairstringdouble.PairStringDouble.t
+  val items : t -> Pairstringdouble.PairStringDouble.t -> int -> int
+  val contains : t -> Pairstringdouble.PairStringDouble.t -> bool
+  val index : t -> Pairstringdouble.PairStringDouble.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

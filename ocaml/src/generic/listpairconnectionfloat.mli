@@ -14,18 +14,18 @@ module ListPairConnectionFloat : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairconnectionfloat.t -> t
-  val make : Pairconnectionfloat.t -> int -> t
+  val fillValue : int -> Pairconnectionfloat.PairConnectionFloat.t -> t
+  val make : Pairconnectionfloat.PairConnectionFloat.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairconnectionfloat.t -> unit
+  val pushBack : t -> Pairconnectionfloat.PairConnectionFloat.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairconnectionfloat.t
-  val items : t -> Pairconnectionfloat.t -> int -> int
-  val contains : t -> Pairconnectionfloat.t -> bool
-  val index : t -> Pairconnectionfloat.t -> int
+  val at : t -> int -> Pairconnectionfloat.PairConnectionFloat.t
+  val items : t -> Pairconnectionfloat.PairConnectionFloat.t -> int -> int
+  val contains : t -> Pairconnectionfloat.PairConnectionFloat.t -> bool
+  val index : t -> Pairconnectionfloat.PairConnectionFloat.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

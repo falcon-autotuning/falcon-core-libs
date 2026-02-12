@@ -14,11 +14,11 @@ module MeasurementContext : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : Connection.t -> string -> t
-  val fromPort : Instrumentport.t -> t
+  val make : Connection.Connection.t -> string -> t
+  val fromPort : Instrumentport.InstrumentPort.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val connection : t -> Connection.t
+  val connection : t -> Connection.Connection.t
   val instrumentType : t -> string
 end

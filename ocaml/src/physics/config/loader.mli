@@ -13,5 +13,5 @@ module Loader : sig
   type t = c_loader
 
   val make : string -> t
-  val config : t -> Config.t
+  val config : t -> Config.Config.t
 end

@@ -14,18 +14,18 @@ module ListWaveform : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Waveform.t -> t
-  val make : Waveform.t -> int -> t
+  val fillValue : int -> Waveform.Waveform.t -> t
+  val make : Waveform.Waveform.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Waveform.t -> unit
+  val pushBack : t -> Waveform.Waveform.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Waveform.t
-  val items : t -> Waveform.t -> int -> int
-  val contains : t -> Waveform.t -> bool
-  val index : t -> Waveform.t -> int
+  val at : t -> int -> Waveform.Waveform.t
+  val items : t -> Waveform.Waveform.t -> int -> int
+  val contains : t -> Waveform.Waveform.t -> bool
+  val index : t -> Waveform.Waveform.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

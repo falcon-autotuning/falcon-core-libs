@@ -14,18 +14,18 @@ module ListPairInstrumentPortPortTransform : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Pairinstrumentportporttransform.t -> t
-  val make : Pairinstrumentportporttransform.t -> int -> t
+  val fillValue : int -> Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t -> t
+  val make : Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Pairinstrumentportporttransform.t -> unit
+  val pushBack : t -> Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Pairinstrumentportporttransform.t
-  val items : t -> Pairinstrumentportporttransform.t -> int -> int
-  val contains : t -> Pairinstrumentportporttransform.t -> bool
-  val index : t -> Pairinstrumentportporttransform.t -> int
+  val at : t -> int -> Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t
+  val items : t -> Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t -> int -> int
+  val contains : t -> Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t -> bool
+  val index : t -> Pairinstrumentportporttransform.PairInstrumentPortPortTransform.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

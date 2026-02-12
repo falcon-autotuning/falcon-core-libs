@@ -14,19 +14,19 @@ module MapConnectionQuantity : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairconnectionquantity.t -> int -> t
+  val make : Pairconnectionquantity.PairConnectionQuantity.t -> int -> t
   val fromjson : string -> t
-  val insertOrAssign : t -> Connection.t -> Quantity.t -> unit
-  val insert : t -> Connection.t -> Quantity.t -> unit
-  val at : t -> Connection.t -> Quantity.t
-  val erase : t -> Connection.t -> unit
+  val insertOrAssign : t -> Connection.Connection.t -> Quantity.Quantity.t -> unit
+  val insert : t -> Connection.Connection.t -> Quantity.Quantity.t -> unit
+  val at : t -> Connection.Connection.t -> Quantity.Quantity.t
+  val erase : t -> Connection.Connection.t -> unit
   val size : t -> int
   val empty : t -> bool
   val clear : t -> unit
-  val contains : t -> Connection.t -> bool
-  val keys : t -> Listconnection.t
-  val values : t -> Listquantity.t
-  val items : t -> Listpairconnectionquantity.t
+  val contains : t -> Connection.Connection.t -> bool
+  val keys : t -> Listconnection.ListConnection.t
+  val values : t -> Listquantity.ListQuantity.t
+  val items : t -> Listpairconnectionquantity.ListPairConnectionQuantity.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

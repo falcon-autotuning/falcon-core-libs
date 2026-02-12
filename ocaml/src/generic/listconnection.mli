@@ -14,18 +14,18 @@ module ListConnection : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Connection.t -> t
-  val make : Connection.t -> int -> t
+  val fillValue : int -> Connection.Connection.t -> t
+  val make : Connection.Connection.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Connection.t -> unit
+  val pushBack : t -> Connection.Connection.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Connection.t
-  val items : t -> Connection.t -> int -> int
-  val contains : t -> Connection.t -> bool
-  val index : t -> Connection.t -> int
+  val at : t -> int -> Connection.Connection.t
+  val items : t -> Connection.Connection.t -> int -> int
+  val contains : t -> Connection.Connection.t -> bool
+  val index : t -> Connection.Connection.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

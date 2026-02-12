@@ -14,17 +14,17 @@ module AxesControlArray : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listcontrolarray.t -> t
+  val make : Listcontrolarray.ListControlArray.t -> t
   val fromjson : string -> t
-  val pushBack : t -> Controlarray.t -> unit
+  val pushBack : t -> Controlarray.ControlArray.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Controlarray.t
-  val items : t -> Controlarray.t -> int -> int
-  val contains : t -> Controlarray.t -> bool
-  val index : t -> Controlarray.t -> int
+  val at : t -> int -> Controlarray.ControlArray.t
+  val items : t -> Controlarray.ControlArray.t -> int -> int
+  val contains : t -> Controlarray.ControlArray.t -> bool
+  val index : t -> Controlarray.ControlArray.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

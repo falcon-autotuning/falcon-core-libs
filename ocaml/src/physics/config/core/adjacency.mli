@@ -14,19 +14,19 @@ module Adjacency : sig
 
   val copy : t -> t
   val fromjson : string -> t
-  val make : int -> int -> int -> Connections.t -> t
+  val make : int -> int -> int -> Connections.Connections.t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
-  val indexes : t -> Connections.t
-  val getTruePairs : t -> Listpairsizetsizet.t
+  val indexes : t -> Connections.Connections.t
+  val getTruePairs : t -> Listpairsizetsizet.ListPairSizeTSizeT.t
   val size : t -> int
   val dimension : t -> int
   val shape : t -> int -> int -> int
   val data : t -> int -> int -> int
-  val timesEqualsFarray : t -> Farrayint.t -> unit
-  val timesFarray : t -> Farrayint.t -> t
+  val timesEqualsFarray : t -> Farrayint.FArrayInt.t -> unit
+  val timesFarray : t -> Farrayint.FArrayInt.t -> t
   val sum : t -> int
-  val where : t -> int -> Listlistsizet.t
+  val where : t -> int -> Listlistsizet.ListListSizeT.t
   val flip : t -> int -> t
 end

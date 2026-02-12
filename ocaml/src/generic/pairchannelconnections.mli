@@ -12,11 +12,11 @@ class c_pairchannelconnections : unit ptr -> c_pairchannelconnections_t
 module PairChannelConnections : sig
   type t = c_pairchannelconnections
 
-  val make : Channel.t -> Connections.t -> t
+  val make : Channel.Channel.t -> Connections.Connections.t -> t
   val copy : t -> t
   val fromjson : string -> t
-  val first : t -> Channel.t
-  val second : t -> Connections.t
+  val first : t -> Channel.Channel.t
+  val second : t -> Connections.Connections.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string

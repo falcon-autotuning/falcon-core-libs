@@ -14,18 +14,18 @@ module ListControlArray1D : sig
 
   val empty : t
   val copy : t -> t
-  val fillValue : int -> Controlarray1d.t -> t
-  val make : Controlarray1d.t -> int -> t
+  val fillValue : int -> Controlarray1d.ControlArray1D.t -> t
+  val make : Controlarray1d.ControlArray1D.t -> int -> t
   val fromjson : string -> t
-  val pushBack : t -> Controlarray1d.t -> unit
+  val pushBack : t -> Controlarray1d.ControlArray1D.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Controlarray1d.t
-  val items : t -> Controlarray1d.t -> int -> int
-  val contains : t -> Controlarray1d.t -> bool
-  val index : t -> Controlarray1d.t -> int
+  val at : t -> int -> Controlarray1d.ControlArray1D.t
+  val items : t -> Controlarray1d.ControlArray1D.t -> int -> int
+  val contains : t -> Controlarray1d.ControlArray1D.t -> bool
+  val index : t -> Controlarray1d.ControlArray1D.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

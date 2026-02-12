@@ -14,17 +14,17 @@ module AxesLabelledControlArray : sig
 
   val empty : t
   val copy : t -> t
-  val make : Listlabelledcontrolarray.t -> t
+  val make : Listlabelledcontrolarray.ListLabelledControlArray.t -> t
   val fromjson : string -> t
-  val pushBack : t -> Labelledcontrolarray.t -> unit
+  val pushBack : t -> Labelledcontrolarray.LabelledControlArray.t -> unit
   val size : t -> int
   val empty : t -> bool
   val eraseAt : t -> int -> unit
   val clear : t -> unit
-  val at : t -> int -> Labelledcontrolarray.t
-  val items : t -> Labelledcontrolarray.t -> int -> int
-  val contains : t -> Labelledcontrolarray.t -> bool
-  val index : t -> Labelledcontrolarray.t -> int
+  val at : t -> int -> Labelledcontrolarray.LabelledControlArray.t
+  val items : t -> Labelledcontrolarray.LabelledControlArray.t -> int -> int
+  val contains : t -> Labelledcontrolarray.LabelledControlArray.t -> bool
+  val index : t -> Labelledcontrolarray.LabelledControlArray.t -> int
   val intersection : t -> t -> t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool

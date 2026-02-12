@@ -14,19 +14,19 @@ module MapChannelConnections : sig
 
   val empty : t
   val copy : t -> t
-  val make : Pairchannelconnections.t -> int -> t
+  val make : Pairchannelconnections.PairChannelConnections.t -> int -> t
   val fromjson : string -> t
-  val insertOrAssign : t -> Channel.t -> Connections.t -> unit
-  val insert : t -> Channel.t -> Connections.t -> unit
-  val at : t -> Channel.t -> Connections.t
-  val erase : t -> Channel.t -> unit
+  val insertOrAssign : t -> Channel.Channel.t -> Connections.Connections.t -> unit
+  val insert : t -> Channel.Channel.t -> Connections.Connections.t -> unit
+  val at : t -> Channel.Channel.t -> Connections.Connections.t
+  val erase : t -> Channel.Channel.t -> unit
   val size : t -> int
   val empty : t -> bool
   val clear : t -> unit
-  val contains : t -> Channel.t -> bool
-  val keys : t -> Listchannel.t
-  val values : t -> Listconnections.t
-  val items : t -> Listpairchannelconnections.t
+  val contains : t -> Channel.Channel.t -> bool
+  val keys : t -> Listchannel.ListChannel.t
+  val values : t -> Listconnections.ListConnections.t
+  val items : t -> Listpairchannelconnections.ListPairChannelConnections.t
   val equal : t -> t -> bool
   val notEqual : t -> t -> bool
   val toJsonString : t -> string
