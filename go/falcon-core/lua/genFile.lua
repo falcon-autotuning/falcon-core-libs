@@ -569,7 +569,7 @@ local function main()
 /*
 #cgo pkg-config: falcon_core_c_api
 #include <%s>
-#include <falcon_core/generic/String_c_api.h>
+#include <falcon-core/generic/String_c_api.h>
 #include <stdlib.h>
 */
 import "C"

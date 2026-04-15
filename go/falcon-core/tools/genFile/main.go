@@ -35,7 +35,7 @@ func findGoImport(headerPath string, extraImport string) (string, error) {
 		}
 		includePath := line[start+1 : end]
 		if strings.Contains(line, search) {
-			parts := strings.Split(includePath, "falcon_core/")
+			parts := strings.Split(includePath, "falcon-core/")
 			if len(parts) < 2 {
 				continue
 			}
@@ -49,14 +49,14 @@ func findGoImport(headerPath string, extraImport string) (string, error) {
 			goImport := "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/" + strings.Join(segments, "/")
 			return goImport, nil
 		}
-		// Collect all falcon_core includes for recursive search
-		if strings.Contains(includePath, "falcon_core/") {
+		// Collect all falcon-core includes for recursive search
+		if strings.Contains(includePath, "falcon-core/") {
 			includes = append(includes, includePath)
 		}
 	}
 	// Recursive search in included headers
 	for _, inc := range includes {
-		parts := strings.Split(headerPath, "falcon_core/")
+		parts := strings.Split(headerPath, "falcon-core/")
 		if len(parts) < 2 {
 			continue
 		}
@@ -486,8 +486,8 @@ func main() {
 	defer manifest.Close()
 	fmt.Fprintln(manifest, "Generating", headerPath)
 
-	parts := strings.Split(headerPath, "falcon_core/")
-	includePath := "falcon_core/" + parts[1]
+	parts := strings.Split(headerPath, "falcon-core/")
+	includePath := "falcon-core/" + parts[1]
 	base := filepath.Base(headerPath)
 	objectName := strings.Split(base, "_")[0]
 	packageName := strings.ToLower(objectName)
@@ -503,9 +503,9 @@ func main() {
 
 	fmt.Fprintf(outFile, `package %s
 /*
-#cgo pkg-config: falcon_core_c_api
+#cgo pkg-config: falcon-core-c-api
 #include <%s>
-#include <falcon_core/generic/String_c_api.h>
+#include <falcon-core/generic/String_c_api.h>
 #include <stdlib.h>
 */
 import "C"

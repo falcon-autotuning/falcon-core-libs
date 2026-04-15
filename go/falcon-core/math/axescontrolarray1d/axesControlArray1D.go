@@ -1,9 +1,9 @@
 package axescontrolarray1d
 
 /*
-#cgo pkg-config: falcon_core_c_api
-#include <falcon_core/math/AxesControlArray1D_c_api.h>
-#include <falcon_core/generic/String_c_api.h>
+#cgo pkg-config: falcon-core-c-api
+#include <falcon-core/math/AxesControlArray1D_c_api.h>
+#include <falcon-core/generic/String_c_api.h>
 #include <stdlib.h>
 */
 import "C"

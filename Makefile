@@ -137,7 +137,8 @@ install-core: setup-nuget-auth
 		--overlay-ports=ports \
 		--binarysource="$(VCPKG_BINARY_SOURCES)" \
 		--triplet="$(VCPKG_TRIPLET)"
-)
+	@echo "To use pkg-config with vcpkg-installed packages, run:"
+	@echo "  export PKG_CONFIG_PATH=$(VCPKG_INSTALLED_DIR)/$(VCPKG_TRIPLET)/lib/pkgconfig:\$$PKG_CONFIG_PATH"
 
 clean:
 	@echo "Cleaning build artifacts and test containers..."

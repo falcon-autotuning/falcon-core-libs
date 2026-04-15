@@ -1,8 +1,8 @@
 package sign
 
 /*
-#cgo pkg-config: falcon_core_c_api
-#include <falcon_core/math/Sign_c_api.h>
+#cgo pkg-config: falcon-core-c-api
+#include <falcon-core/math/Sign_c_api.h>
 */
 import "C"
 

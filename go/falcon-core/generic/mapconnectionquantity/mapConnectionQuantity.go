@@ -1,9 +1,9 @@
 package mapconnectionquantity
 
 /*
-#cgo pkg-config: falcon_core_c_api
-#include <falcon_core/generic/MapConnectionQuantity_c_api.h>
-#include <falcon_core/generic/String_c_api.h>
+#cgo pkg-config: falcon-core-c-api
+#include <falcon-core/generic/MapConnectionQuantity_c_api.h>
+#include <falcon-core/generic/String_c_api.h>
 #include <stdlib.h>
 */
 import "C"

@@ -1,8 +1,8 @@
 package errorhandling
 
 /*
-#cgo pkg-config: falcon_core_c_api
-#include <falcon_core/generic/ErrorHandling_c_api.h>
+#cgo pkg-config: falcon-core-c-api
+#include <falcon-core/generic/ErrorHandling_c_api.h>
 #include <stdlib.h>
 */
 import "C"
