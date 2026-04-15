@@ -5,7 +5,7 @@ from pathlib import Path
 
 def main():
     test_dir = Path("tests/generated")
-    lib_dir = Path("falcon_core")
+    lib_dir = Path("falcon-core")
     
     # Map of filename to full module path
     module_map = {}
@@ -13,7 +13,7 @@ def main():
         if lua_file.name == "init.lua":
             continue
         
-        # Convert path to module format: falcon_core.sub.module
+        # Convert path to module format: falcon-core.sub.module
         relative = lua_file.relative_to(lib_dir.parent)
         module_path = str(relative.with_suffix('')).replace(os.sep, '.')
         module_map[lua_file.stem.lower()] = module_path
@@ -30,10 +30,10 @@ def main():
         orig_content = content
         
         # 1. Update module path if not already fixed
-        if 'falcon_core.TODO' in content and type_name_lower in module_map:
+        if 'falcon-core.TODO' in content and type_name_lower in module_map:
             actual_module = module_map[type_name_lower]
             content = re.sub(
-                r'require\("falcon_core\.TODO\.[^"]+"\)',
+                r'require\("falcon-core\.TODO\.[^"]+"\)',
                 f'require("{actual_module}")',
                 content
             )

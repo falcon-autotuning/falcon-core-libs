@@ -1,40 +1,58 @@
 -- test_interpretationcontainerquantity.lua
 -- Auto-generated tests for InterpretationContainerQuantity
 
-local InterpretationContainerQuantity = require("falcon_core.autotuner_interfaces.interpretations.interpretationcontainerquantity")
+local InterpretationContainerQuantity =
+	require("falcon-core.autotuner_interfaces.interpretations.interpretationcontainerquantity")
 
-local function describe(name, fn) print("\n" .. name); fn() end
-local function it(name, fn) 
-    local ok, err = pcall(fn)
-    if ok then
-        print("  ✓ " .. name)
-    else
-        print("  ✗ " .. name)
-        print("    " .. tostring(err))
-    end
+local function describe(name, fn)
+	print("\n" .. name)
+	fn()
+end
+local function it(name, fn)
+	local ok, err = pcall(fn)
+	if ok then
+		print("  ✓ " .. name)
+	else
+		print("  ✗ " .. name)
+		print("    " .. tostring(err))
+	end
 end
 local function assert(cond, msg)
-    if not cond then error(msg or "Assertion failed") end
+	if not cond then
+		error(msg or "Assertion failed")
+	end
 end
 
 describe("InterpretationContainerQuantity", function()
-    it("module loads successfully", function()
-        assert(InterpretationContainerQuantity ~= nil, "InterpretationContainerQuantity should load")
-    end)
+	it("module loads successfully", function()
+		assert(InterpretationContainerQuantity ~= nil, "InterpretationContainerQuantity should load")
+	end)
 
-    it("can create instance", function()
-        local obj = InterpretationContainerQuantity.new()
-        assert(obj ~= nil, "InterpretationContainerQuantity should be created")
-    end)
+	it("can create instance", function()
+		local obj = InterpretationContainerQuantity.new()
+		assert(obj ~= nil, "InterpretationContainerQuantity should be created")
+	end)
 
-    it("can exercise methods", function()
-        local obj = InterpretationContainerQuantity.new()
-        if obj then
-            pcall(function() if obj.message then obj:message() end end)
-            pcall(function() if obj.size then obj:size() end end)
-            pcall(function() if obj.at then obj:at(0) end end)
-        end
-    end)
+	it("can exercise methods", function()
+		local obj = InterpretationContainerQuantity.new()
+		if obj then
+			pcall(function()
+				if obj.message then
+					obj:message()
+				end
+			end)
+			pcall(function()
+				if obj.size then
+					obj:size()
+				end
+			end)
+			pcall(function()
+				if obj.at then
+					obj:at(0)
+				end
+			end)
+		end
+	end)
 end)
 
 print("\n✓ " .. "InterpretationContainerQuantity tests complete")

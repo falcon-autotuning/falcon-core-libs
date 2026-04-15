@@ -1,16 +1,16 @@
 -- tests/test_full_library.lua
 -- Comprehensive verification of the entire Lua-onic interface
 
-local falcon_core = require("falcon_core")
-local Quantity = falcon_core.math.Quantity
-local Point = falcon_core.math.Point
-local Vector = falcon_core.math.Vector
-local StandardRequest = falcon_core.communications.messages.StandardRequest
-local StandardResponse = falcon_core.communications.messages.StandardResponse
-local Group = falcon_core.physics.config.core.Group
-local Domain = falcon_core.math.domains.Domain
-local LabelledDomain = falcon_core.math.domains.LabelledDomain
-local Time = falcon_core.io.Time
+local falcon-core = require("falcon-core.init")
+local Quantity = falcon-core.math.Quantity
+local Point = falcon-core.math.Point
+local Vector = falcon-core.math.Vector
+local StandardRequest = falcon-core.communications.messages.StandardRequest
+local StandardResponse = falcon-core.communications.messages.StandardResponse
+local Group = falcon-core.physics.config.core.Group
+local Domain = falcon-core.math.domains.Domain
+local LabelledDomain = falcon-core.math.domains.LabelledDomain
+local Time = falcon-core.io.Time
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -54,9 +54,9 @@ describe("Communications Module", function()
 end)
 
 describe("Physics Module", function()
-    local GateRelations = falcon_core.physics.config.core.GateRelations
-    local Connection = require("falcon_core.instrument_interfaces.connection")
-    local Connections = require("falcon_core.instrument_interfaces.connections")
+    local GateRelations = falcon-core.physics.config.core.GateRelations
+    local Connection = require("falcon-core.instrument_interfaces.connection")
+    local Connections = require("falcon-core.instrument_interfaces.connections")
 
     it("GateRelations creation and manipulation", function()
         local gr = GateRelations.new()

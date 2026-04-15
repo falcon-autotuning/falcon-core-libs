@@ -1,7 +1,4 @@
--- math/domains/init.lua
 
-return {
-    Domain = require("falcon_core.math.domains.domain"),
-    LabelledDomain = require("falcon_core.math.domains.labelleddomain"),
-    CoupledLabelledDomain = require("falcon_core.math.domains.coupledlabelleddomain"),
-}
+"falcon-core.math.domains.coupledlabelleddomain"
+"falcon-core.math.domains.labelleddomain"
+"falcon-core.math.domains.domain"

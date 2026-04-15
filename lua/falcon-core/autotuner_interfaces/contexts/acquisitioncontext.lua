@@ -1,7 +1,7 @@
 -- acquisitioncontext.lua
-local cdef = require("falcon_core.ffi.cdef")
+local cdef = require("falcon-core.ffi.cdef")
 local lib = cdef.lib
-local song = require("falcon_core.utils.song")
+local song = require("falcon-core.utils.song")
 local AcquisitionContext = {}
 
 song.register("AcquisitionContext", {

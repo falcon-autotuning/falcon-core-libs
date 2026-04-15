@@ -1,25 +1,25 @@
 -- tests/unit/test_coverage_expansion.lua
 require("luacov")
 
-local falcon_core = require("falcon_core")
-local AnalyticFunction = falcon_core.math.AnalyticFunction
-local Config = falcon_core.physics.config.core.Config
-local Group = falcon_core.physics.config.core.Group
-local Memory = require("falcon_core.utils.song")._extensions.Memory or require("falcon_core.utils.memory")
-local FArray = require("falcon_core.generic.farray")
-local IncreasingAlignment = falcon_core.math.IncreasingAlignment
-local Domain = falcon_core.math.domains.Domain
-local LabelledDomain = falcon_core.math.domains.LabelledDomain
-local Connections = require("falcon_core.instrument_interfaces.connections")
-local Impedances = require("falcon_core.instrument_interfaces.impedances")
-local Quantity = falcon_core.math.Quantity
-local MeasurementRequest = falcon_core.communications.messages.MeasurementRequest
-local MeasurementResponse = falcon_core.communications.messages.MeasurementResponse
-local AcquisitionContext = falcon_core.autotuner_interfaces.contexts.AcquisitionContext
-local Channel = falcon_core.instrument_interfaces.Channel
-local Channels = falcon_core.instrument_interfaces.Channels
-local InterpretationContainerDouble = falcon_core.autotuner_interfaces.interpretations.InterpretationContainerDouble
-local Loader = falcon_core.io.Loader
+local falcon-core = require("falcon-core.init")
+local AnalyticFunction = falcon-core.math.AnalyticFunction
+local Config = falcon-core.physics.config.core.Config
+local Group = falcon-core.physics.config.core.Group
+local Memory = require("falcon-core.utils.song")._extensions.Memory or require("falcon-core.utils.memory")
+local FArray = require("falcon-core.generic.farray")
+local IncreasingAlignment = falcon-core.math.IncreasingAlignment
+local Domain = falcon-core.math.domains.Domain
+local LabelledDomain = falcon-core.math.domains.LabelledDomain
+local Connections = require("falcon-core.instrument_interfaces.connections")
+local Impedances = require("falcon-core.instrument_interfaces.impedances")
+local Quantity = falcon-core.math.Quantity
+local MeasurementRequest = falcon-core.communications.messages.MeasurementRequest
+local MeasurementResponse = falcon-core.communications.messages.MeasurementResponse
+local AcquisitionContext = falcon-core.autotuner_interfaces.contexts.AcquisitionContext
+local Channel = falcon-core.instrument_interfaces.Channel
+local Channels = falcon-core.instrument_interfaces.Channels
+local InterpretationContainerDouble = falcon-core.autotuner_interfaces.interpretations.InterpretationContainerDouble
+local Loader = falcon-core.io.Loader
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
@@ -128,7 +128,7 @@ describe("Domains and Groups Coverage", function()
     end)
     
     it("covers Group and Gname", function()
-        local Gname = falcon_core.autotuner_interfaces.names.Gname
+        local Gname = falcon-core.autotuner_interfaces.names.Gname
         local gn = Gname.new("TestGroup")
         assert(gn ~= nil, "Gname failed")
         

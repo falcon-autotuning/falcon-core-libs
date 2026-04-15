@@ -5,7 +5,7 @@
 open Ctypes
 open Foreign
 
-let lib = Dl.dlopen ~filename:"libfalcon_core_c_api.so" ~flags:[Dl.RTLD_NOW]
+let lib = Dl.dlopen ~filename:"libfalcon-core-c-api.so" ~flags:[Dl.RTLD_NOW]
 
 (* C struct: struct string { char* raw; size_t length; } *)
 type c_string

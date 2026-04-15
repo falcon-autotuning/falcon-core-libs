@@ -1,8 +1,4 @@
--- communications/messages/init.lua
 
-return {
-    MeasurementRequest = require("falcon_core.communications.messages.measurementrequest"),
-    MeasurementResponse = require("falcon_core.communications.messages.measurementresponse"),
-    StandardRequest = require("falcon_core.communications.messages.standardrequest"),
-    StandardResponse = require("falcon_core.communications.messages.standardresponse"),
-}
+"falcon-core.communications.messages.standardresponse"
+"falcon-core.communications.messages.standardrequest"
+"falcon-core.communications.messa"falcon-core.communications.messages.measurementrequest"

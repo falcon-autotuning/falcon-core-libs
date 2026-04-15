@@ -1,7 +1,7 @@
 from libc.stddef cimport size_t
 from libc.stdint cimport int8_t, int16_t, int32_t, int64_t, uint8_t, uint16_t, uint32_t, uint64_t
 
-cdef extern from "falcon_core/generic/String_c_api.h":
+cdef extern from "falcon-core/generic/String_c_api.h":
     ctypedef struct string:
         const char* raw
         size_t length
@@ -174,13 +174,13 @@ ctypedef void* ImpedancesHandle
 ctypedef void* SymbolUnitHandle
 
 # String
-cdef extern from "falcon_core/generic/String_c_api.h":
+cdef extern from "falcon-core/generic/String_c_api.h":
     StringHandle String_create(const char* raw, size_t length)
     void String_destroy(StringHandle handle)
     StringHandle String_wrap(const char* raw)
 
 # Connection
-cdef extern from "falcon_core/physics/device_structures/Connection_c_api.h":
+cdef extern from "falcon-core/physics/device_structures/Connection_c_api.h":
     ConnectionHandle Connection_from_json_string(StringHandle json)
     ConnectionHandle Connection_create_barrier_gate(StringHandle name)
     ConnectionHandle Connection_create_plunger_gate(StringHandle name)
@@ -203,7 +203,7 @@ cdef extern from "falcon_core/physics/device_structures/Connection_c_api.h":
     bint Connection_is_gate(ConnectionHandle handle)
 
 # SymbolUnit
-cdef extern from "falcon_core/physics/units/SymbolUnit_c_api.h":
+cdef extern from "falcon-core/physics/units/SymbolUnit_c_api.h":
     SymbolUnitHandle SymbolUnit_from_json_string(StringHandle json)
     SymbolUnitHandle SymbolUnit_create_meter()
     SymbolUnitHandle SymbolUnit_create_kilogram()
@@ -276,7 +276,7 @@ cdef extern from "falcon_core/physics/units/SymbolUnit_c_api.h":
     bint SymbolUnit_is_compatible_with(SymbolUnitHandle handle, SymbolUnitHandle other)
 
 # InstrumentPort
-cdef extern from "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h":
+cdef extern from "falcon-core/instrument_interfaces/names/InstrumentPort_c_api.h":
     InstrumentPortHandle InstrumentPort_from_json_string(StringHandle json)
     InstrumentPortHandle InstrumentPort_create_port(StringHandle default_name, ConnectionHandle psuedo_name, StringHandle instrument_type, SymbolUnitHandle units, StringHandle description)
     InstrumentPortHandle InstrumentPort_create_knob(StringHandle default_name, ConnectionHandle psuedo_name, StringHandle instrument_type, SymbolUnitHandle units, StringHandle description)
@@ -299,7 +299,7 @@ cdef extern from "falcon_core/instrument_interfaces/names/InstrumentPort_c_api.h
     bint InstrumentPort_is_port(InstrumentPortHandle handle)
 
 # AcquisitionContext
-cdef extern from "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/contexts/AcquisitionContext_c_api.h":
     AcquisitionContextHandle AcquisitionContext_from_json_string(StringHandle json)
     AcquisitionContextHandle AcquisitionContext_create(ConnectionHandle connection, StringHandle instrument_type, SymbolUnitHandle units)
     AcquisitionContextHandle AcquisitionContext_create_from_port(InstrumentPortHandle port)
@@ -317,7 +317,7 @@ cdef extern from "falcon_core/autotuner_interfaces/contexts/AcquisitionContext_c
     bint AcquisitionContext_match_instrument_type(AcquisitionContextHandle handle, StringHandle other)
 
 # MeasurementContext
-cdef extern from "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/contexts/MeasurementContext_c_api.h":
     MeasurementContextHandle MeasurementContext_from_json_string(StringHandle json)
     MeasurementContextHandle MeasurementContext_create(ConnectionHandle connection, StringHandle instrument_type)
     MeasurementContextHandle MeasurementContext_create_from_port(InstrumentPortHandle port)
@@ -330,7 +330,7 @@ cdef extern from "falcon_core/autotuner_interfaces/contexts/MeasurementContext_c
     StringHandle MeasurementContext_instrument_type(MeasurementContextHandle handle)
 
 # ListMeasurementContext
-cdef extern from "falcon_core/generic/ListMeasurementContext_c_api.h":
+cdef extern from "falcon-core/generic/ListMeasurementContext_c_api.h":
     ListMeasurementContextHandle ListMeasurementContext_create_empty()
     ListMeasurementContextHandle ListMeasurementContext_create(MeasurementContextHandle* data, size_t count)
     ListMeasurementContextHandle ListMeasurementContext_from_json_string(StringHandle json)
@@ -352,7 +352,7 @@ cdef extern from "falcon_core/generic/ListMeasurementContext_c_api.h":
     StringHandle ListMeasurementContext_to_json_string(ListMeasurementContextHandle handle)
 
 # AxesMeasurementContext
-cdef extern from "falcon_core/math/AxesMeasurementContext_c_api.h":
+cdef extern from "falcon-core/math/AxesMeasurementContext_c_api.h":
     AxesMeasurementContextHandle AxesMeasurementContext_create_empty()
     AxesMeasurementContextHandle AxesMeasurementContext_create(ListMeasurementContextHandle data)
     AxesMeasurementContextHandle AxesMeasurementContext_from_json_string(StringHandle json)
@@ -373,7 +373,7 @@ cdef extern from "falcon_core/math/AxesMeasurementContext_c_api.h":
     StringHandle AxesMeasurementContext_to_json_string(AxesMeasurementContextHandle handle)
 
 # InterpretationContext
-cdef extern from "falcon_core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/interpretations/InterpretationContext_c_api.h":
     InterpretationContextHandle InterpretationContext_from_json_string(StringHandle json)
     InterpretationContextHandle InterpretationContext_create(AxesMeasurementContextHandle independant_variables, ListMeasurementContextHandle dependant_variables, SymbolUnitHandle unit)
     void InterpretationContext_destroy(InterpretationContextHandle handle)
@@ -391,7 +391,7 @@ cdef extern from "falcon_core/autotuner_interfaces/interpretations/Interpretatio
     InterpretationContextHandle InterpretationContext_with_unit(InterpretationContextHandle handle, SymbolUnitHandle unit)
 
 # ListConnection
-cdef extern from "falcon_core/generic/ListConnection_c_api.h":
+cdef extern from "falcon-core/generic/ListConnection_c_api.h":
     ListConnectionHandle ListConnection_create_empty()
     ListConnectionHandle ListConnection_create(ConnectionHandle* data, size_t count)
     ListConnectionHandle ListConnection_from_json_string(StringHandle json)
@@ -413,7 +413,7 @@ cdef extern from "falcon_core/generic/ListConnection_c_api.h":
     StringHandle ListConnection_to_json_string(ListConnectionHandle handle)
 
 # ListDouble
-cdef extern from "falcon_core/generic/ListDouble_c_api.h":
+cdef extern from "falcon-core/generic/ListDouble_c_api.h":
     ListDoubleHandle ListDouble_create_empty()
     ListDoubleHandle ListDouble_create(double* data, size_t count)
     ListDoubleHandle ListDouble_from_json_string(StringHandle json)
@@ -436,7 +436,7 @@ cdef extern from "falcon_core/generic/ListDouble_c_api.h":
     StringHandle ListDouble_to_json_string(ListDoubleHandle handle)
 
 # Connections
-cdef extern from "falcon_core/physics/device_structures/Connections_c_api.h":
+cdef extern from "falcon-core/physics/device_structures/Connections_c_api.h":
     ConnectionsHandle Connections_from_json_string(StringHandle json)
     ConnectionsHandle Connections_create_empty()
     ConnectionsHandle Connections_create(ListConnectionHandle items)
@@ -464,7 +464,7 @@ cdef extern from "falcon_core/physics/device_structures/Connections_c_api.h":
     size_t Connections_index(ConnectionsHandle handle, ConnectionHandle value)
 
 # ListInterpretationContext
-cdef extern from "falcon_core/generic/ListInterpretationContext_c_api.h":
+cdef extern from "falcon-core/generic/ListInterpretationContext_c_api.h":
     ListInterpretationContextHandle ListInterpretationContext_create_empty()
     ListInterpretationContextHandle ListInterpretationContext_create(InterpretationContextHandle* data, size_t count)
     ListInterpretationContextHandle ListInterpretationContext_from_json_string(StringHandle json)
@@ -486,7 +486,7 @@ cdef extern from "falcon_core/generic/ListInterpretationContext_c_api.h":
     StringHandle ListInterpretationContext_to_json_string(ListInterpretationContextHandle handle)
 
 # PairInterpretationContextDouble
-cdef extern from "falcon_core/generic/PairInterpretationContextDouble_c_api.h":
+cdef extern from "falcon-core/generic/PairInterpretationContextDouble_c_api.h":
     PairInterpretationContextDoubleHandle PairInterpretationContextDouble_create(InterpretationContextHandle first, double second)
     PairInterpretationContextDoubleHandle PairInterpretationContextDouble_from_json_string(StringHandle json)
     void PairInterpretationContextDouble_destroy(PairInterpretationContextDoubleHandle handle)
@@ -498,7 +498,7 @@ cdef extern from "falcon_core/generic/PairInterpretationContextDouble_c_api.h":
     StringHandle PairInterpretationContextDouble_to_json_string(PairInterpretationContextDoubleHandle handle)
 
 # ListPairInterpretationContextDouble
-cdef extern from "falcon_core/generic/ListPairInterpretationContextDouble_c_api.h":
+cdef extern from "falcon-core/generic/ListPairInterpretationContextDouble_c_api.h":
     ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create_empty()
     ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_create(PairInterpretationContextDoubleHandle* data, size_t count)
     ListPairInterpretationContextDoubleHandle ListPairInterpretationContextDouble_from_json_string(StringHandle json)
@@ -520,7 +520,7 @@ cdef extern from "falcon_core/generic/ListPairInterpretationContextDouble_c_api.
     StringHandle ListPairInterpretationContextDouble_to_json_string(ListPairInterpretationContextDoubleHandle handle)
 
 # MapInterpretationContextDouble
-cdef extern from "falcon_core/generic/MapInterpretationContextDouble_c_api.h":
+cdef extern from "falcon-core/generic/MapInterpretationContextDouble_c_api.h":
     MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create_empty()
     MapInterpretationContextDoubleHandle MapInterpretationContextDouble_create(PairInterpretationContextDoubleHandle* data, size_t count)
     MapInterpretationContextDoubleHandle MapInterpretationContextDouble_from_json_string(StringHandle json)
@@ -542,7 +542,7 @@ cdef extern from "falcon_core/generic/MapInterpretationContextDouble_c_api.h":
     StringHandle MapInterpretationContextDouble_to_json_string(MapInterpretationContextDoubleHandle handle)
 
 # InterpretationContainerDouble
-cdef extern from "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/interpretations/InterpretationContainerDouble_c_api.h":
     InterpretationContainerDoubleHandle InterpretationContainerDouble_create(MapInterpretationContextDoubleHandle contextDoubleMap)
     InterpretationContainerDoubleHandle InterpretationContainerDouble_from_json_string(StringHandle json)
     void InterpretationContainerDouble_destroy(InterpretationContainerDoubleHandle handle)
@@ -569,7 +569,7 @@ cdef extern from "falcon_core/autotuner_interfaces/interpretations/Interpretatio
     StringHandle InterpretationContainerDouble_to_json_string(InterpretationContainerDoubleHandle handle)
 
 # ListString
-cdef extern from "falcon_core/generic/ListString_c_api.h":
+cdef extern from "falcon-core/generic/ListString_c_api.h":
     ListStringHandle ListString_create_empty()
     ListStringHandle ListString_create(StringHandle* data, size_t count)
     ListStringHandle ListString_from_json_string(StringHandle json)
@@ -592,7 +592,7 @@ cdef extern from "falcon_core/generic/ListString_c_api.h":
     StringHandle ListString_to_json_string(ListStringHandle handle)
 
 # PairInterpretationContextString
-cdef extern from "falcon_core/generic/PairInterpretationContextString_c_api.h":
+cdef extern from "falcon-core/generic/PairInterpretationContextString_c_api.h":
     PairInterpretationContextStringHandle PairInterpretationContextString_create(InterpretationContextHandle first, StringHandle second)
     PairInterpretationContextStringHandle PairInterpretationContextString_from_json_string(StringHandle json)
     void PairInterpretationContextString_destroy(PairInterpretationContextStringHandle handle)
@@ -604,7 +604,7 @@ cdef extern from "falcon_core/generic/PairInterpretationContextString_c_api.h":
     StringHandle PairInterpretationContextString_to_json_string(PairInterpretationContextStringHandle handle)
 
 # ListPairInterpretationContextString
-cdef extern from "falcon_core/generic/ListPairInterpretationContextString_c_api.h":
+cdef extern from "falcon-core/generic/ListPairInterpretationContextString_c_api.h":
     ListPairInterpretationContextStringHandle ListPairInterpretationContextString_create_empty()
     ListPairInterpretationContextStringHandle ListPairInterpretationContextString_create(PairInterpretationContextStringHandle* data, size_t count)
     ListPairInterpretationContextStringHandle ListPairInterpretationContextString_from_json_string(StringHandle json)
@@ -626,7 +626,7 @@ cdef extern from "falcon_core/generic/ListPairInterpretationContextString_c_api.
     StringHandle ListPairInterpretationContextString_to_json_string(ListPairInterpretationContextStringHandle handle)
 
 # MapInterpretationContextString
-cdef extern from "falcon_core/generic/MapInterpretationContextString_c_api.h":
+cdef extern from "falcon-core/generic/MapInterpretationContextString_c_api.h":
     MapInterpretationContextStringHandle MapInterpretationContextString_create_empty()
     MapInterpretationContextStringHandle MapInterpretationContextString_create(PairInterpretationContextStringHandle* data, size_t count)
     MapInterpretationContextStringHandle MapInterpretationContextString_from_json_string(StringHandle json)
@@ -648,7 +648,7 @@ cdef extern from "falcon_core/generic/MapInterpretationContextString_c_api.h":
     StringHandle MapInterpretationContextString_to_json_string(MapInterpretationContextStringHandle handle)
 
 # InterpretationContainerString
-cdef extern from "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/interpretations/InterpretationContainerString_c_api.h":
     InterpretationContainerStringHandle InterpretationContainerString_create(MapInterpretationContextStringHandle contextDoubleMap)
     InterpretationContainerStringHandle InterpretationContainerString_from_json_string(StringHandle json)
     void InterpretationContainerString_destroy(InterpretationContainerStringHandle handle)
@@ -675,7 +675,7 @@ cdef extern from "falcon_core/autotuner_interfaces/interpretations/Interpretatio
     StringHandle InterpretationContainerString_to_json_string(InterpretationContainerStringHandle handle)
 
 # Quantity
-cdef extern from "falcon_core/math/Quantity_c_api.h":
+cdef extern from "falcon-core/math/Quantity_c_api.h":
     QuantityHandle Quantity_from_json_string(StringHandle json)
     QuantityHandle Quantity_create(double value, SymbolUnitHandle unit)
     void Quantity_destroy(QuantityHandle handle)
@@ -707,7 +707,7 @@ cdef extern from "falcon_core/math/Quantity_c_api.h":
     QuantityHandle Quantity_abs(QuantityHandle handle)
 
 # PairInterpretationContextQuantity
-cdef extern from "falcon_core/generic/PairInterpretationContextQuantity_c_api.h":
+cdef extern from "falcon-core/generic/PairInterpretationContextQuantity_c_api.h":
     PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_create(InterpretationContextHandle first, QuantityHandle second)
     PairInterpretationContextQuantityHandle PairInterpretationContextQuantity_from_json_string(StringHandle json)
     void PairInterpretationContextQuantity_destroy(PairInterpretationContextQuantityHandle handle)
@@ -719,7 +719,7 @@ cdef extern from "falcon_core/generic/PairInterpretationContextQuantity_c_api.h"
     StringHandle PairInterpretationContextQuantity_to_json_string(PairInterpretationContextQuantityHandle handle)
 
 # ListPairInterpretationContextQuantity
-cdef extern from "falcon_core/generic/ListPairInterpretationContextQuantity_c_api.h":
+cdef extern from "falcon-core/generic/ListPairInterpretationContextQuantity_c_api.h":
     ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_create_empty()
     ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_create(PairInterpretationContextQuantityHandle* data, size_t count)
     ListPairInterpretationContextQuantityHandle ListPairInterpretationContextQuantity_from_json_string(StringHandle json)
@@ -741,7 +741,7 @@ cdef extern from "falcon_core/generic/ListPairInterpretationContextQuantity_c_ap
     StringHandle ListPairInterpretationContextQuantity_to_json_string(ListPairInterpretationContextQuantityHandle handle)
 
 # ListQuantity
-cdef extern from "falcon_core/generic/ListQuantity_c_api.h":
+cdef extern from "falcon-core/generic/ListQuantity_c_api.h":
     ListQuantityHandle ListQuantity_create_empty()
     ListQuantityHandle ListQuantity_create(QuantityHandle* data, size_t count)
     ListQuantityHandle ListQuantity_from_json_string(StringHandle json)
@@ -763,7 +763,7 @@ cdef extern from "falcon_core/generic/ListQuantity_c_api.h":
     StringHandle ListQuantity_to_json_string(ListQuantityHandle handle)
 
 # MapInterpretationContextQuantity
-cdef extern from "falcon_core/generic/MapInterpretationContextQuantity_c_api.h":
+cdef extern from "falcon-core/generic/MapInterpretationContextQuantity_c_api.h":
     MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create_empty()
     MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_create(PairInterpretationContextQuantityHandle* data, size_t count)
     MapInterpretationContextQuantityHandle MapInterpretationContextQuantity_from_json_string(StringHandle json)
@@ -785,7 +785,7 @@ cdef extern from "falcon_core/generic/MapInterpretationContextQuantity_c_api.h":
     StringHandle MapInterpretationContextQuantity_to_json_string(MapInterpretationContextQuantityHandle handle)
 
 # InterpretationContainerQuantity
-cdef extern from "falcon_core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/interpretations/InterpretationContainerQuantity_c_api.h":
     InterpretationContainerQuantityHandle InterpretationContainerQuantity_create(MapInterpretationContextQuantityHandle contextDoubleMap)
     InterpretationContainerQuantityHandle InterpretationContainerQuantity_from_json_string(StringHandle json)
     void InterpretationContainerQuantity_destroy(InterpretationContainerQuantityHandle handle)
@@ -812,7 +812,7 @@ cdef extern from "falcon_core/autotuner_interfaces/interpretations/Interpretatio
     StringHandle InterpretationContainerQuantity_to_json_string(InterpretationContainerQuantityHandle handle)
 
 # Channel
-cdef extern from "falcon_core/autotuner_interfaces/names/Channel_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/names/Channel_c_api.h":
     ChannelHandle Channel_from_json_string(StringHandle json)
     ChannelHandle Channel_create(StringHandle name)
     void Channel_destroy(ChannelHandle handle)
@@ -823,7 +823,7 @@ cdef extern from "falcon_core/autotuner_interfaces/names/Channel_c_api.h":
     StringHandle Channel_name(ChannelHandle handle)
 
 # ListChannel
-cdef extern from "falcon_core/generic/ListChannel_c_api.h":
+cdef extern from "falcon-core/generic/ListChannel_c_api.h":
     ListChannelHandle ListChannel_create_empty()
     ListChannelHandle ListChannel_create(ChannelHandle* data, size_t count)
     ListChannelHandle ListChannel_from_json_string(StringHandle json)
@@ -845,7 +845,7 @@ cdef extern from "falcon_core/generic/ListChannel_c_api.h":
     StringHandle ListChannel_to_json_string(ListChannelHandle handle)
 
 # Channels
-cdef extern from "falcon_core/autotuner_interfaces/names/Channels_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/names/Channels_c_api.h":
     ChannelsHandle Channels_from_json_string(StringHandle json)
     ChannelsHandle Channels_create_empty()
     ChannelsHandle Channels_create(ListChannelHandle items)
@@ -866,7 +866,7 @@ cdef extern from "falcon_core/autotuner_interfaces/names/Channels_c_api.h":
     size_t Channels_index(ChannelsHandle handle, ChannelHandle value)
 
 # Gname
-cdef extern from "falcon_core/autotuner_interfaces/names/Gname_c_api.h":
+cdef extern from "falcon-core/autotuner_interfaces/names/Gname_c_api.h":
     GnameHandle Gname_from_json_string(StringHandle json)
     GnameHandle Gname_create_from_num(int num)
     GnameHandle Gname_create(StringHandle name)
@@ -878,7 +878,7 @@ cdef extern from "falcon_core/autotuner_interfaces/names/Gname_c_api.h":
     StringHandle Gname_gname(GnameHandle handle)
 
 # ListSizeT
-cdef extern from "falcon_core/generic/ListSizeT_c_api.h":
+cdef extern from "falcon-core/generic/ListSizeT_c_api.h":
     ListSizeTHandle ListSizeT_create_empty()
     ListSizeTHandle ListSizeT_create(size_t* data, size_t count)
     ListSizeTHandle ListSizeT_from_json_string(StringHandle json)
@@ -901,7 +901,7 @@ cdef extern from "falcon_core/generic/ListSizeT_c_api.h":
     StringHandle ListSizeT_to_json_string(ListSizeTHandle handle)
 
 # ListListSizeT
-cdef extern from "falcon_core/generic/ListListSizeT_c_api.h":
+cdef extern from "falcon-core/generic/ListListSizeT_c_api.h":
     ListListSizeTHandle ListListSizeT_create_empty()
     ListListSizeTHandle ListListSizeT_create(ListSizeTHandle* data, size_t count)
     ListListSizeTHandle ListListSizeT_from_json_string(StringHandle json)
@@ -923,7 +923,7 @@ cdef extern from "falcon_core/generic/ListListSizeT_c_api.h":
     StringHandle ListListSizeT_to_json_string(ListListSizeTHandle handle)
 
 # FArrayDouble
-cdef extern from "falcon_core/generic/FArrayDouble_c_api.h":
+cdef extern from "falcon-core/generic/FArrayDouble_c_api.h":
     FArrayDoubleHandle FArrayDouble_create_empty(size_t* shape, size_t ndim)
     FArrayDoubleHandle FArrayDouble_create_zeros(size_t* shape, size_t ndim)
     FArrayDoubleHandle FArrayDouble_from_json_string(StringHandle json)
@@ -986,7 +986,7 @@ cdef extern from "falcon_core/generic/FArrayDouble_c_api.h":
     StringHandle FArrayDouble_to_json_string(FArrayDoubleHandle handle)
 
 # MeasuredArray
-cdef extern from "falcon_core/math/arrays/MeasuredArray_c_api.h":
+cdef extern from "falcon-core/math/arrays/MeasuredArray_c_api.h":
     MeasuredArrayHandle MeasuredArray_from_json_string(StringHandle json)
     void MeasuredArray_destroy(MeasuredArrayHandle handle)
     MeasuredArrayHandle MeasuredArray_copy(MeasuredArrayHandle handle)
@@ -1053,7 +1053,7 @@ cdef extern from "falcon_core/math/arrays/MeasuredArray_c_api.h":
     double MeasuredArray_get_summed_diff_array_of_squares(MeasuredArrayHandle handle, MeasuredArrayHandle other)
 
 # LabelledMeasuredArray
-cdef extern from "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledMeasuredArray_c_api.h":
     LabelledMeasuredArrayHandle LabelledMeasuredArray_from_json_string(StringHandle json)
     void LabelledMeasuredArray_destroy(LabelledMeasuredArrayHandle handle)
     LabelledMeasuredArrayHandle LabelledMeasuredArray_copy(LabelledMeasuredArrayHandle handle)
@@ -1125,7 +1125,7 @@ cdef extern from "falcon_core/math/arrays/LabelledMeasuredArray_c_api.h":
     double LabelledMeasuredArray_get_summed_diff_array_of_squares(LabelledMeasuredArrayHandle handle, LabelledMeasuredArrayHandle other)
 
 # ListLabelledMeasuredArray
-cdef extern from "falcon_core/generic/ListLabelledMeasuredArray_c_api.h":
+cdef extern from "falcon-core/generic/ListLabelledMeasuredArray_c_api.h":
     ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create_empty()
     ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_create(LabelledMeasuredArrayHandle* data, size_t count)
     ListLabelledMeasuredArrayHandle ListLabelledMeasuredArray_from_json_string(StringHandle json)
@@ -1147,7 +1147,7 @@ cdef extern from "falcon_core/generic/ListLabelledMeasuredArray_c_api.h":
     StringHandle ListLabelledMeasuredArray_to_json_string(ListLabelledMeasuredArrayHandle handle)
 
 # ListAcquisitionContext
-cdef extern from "falcon_core/generic/ListAcquisitionContext_c_api.h":
+cdef extern from "falcon-core/generic/ListAcquisitionContext_c_api.h":
     ListAcquisitionContextHandle ListAcquisitionContext_create_empty()
     ListAcquisitionContextHandle ListAcquisitionContext_create(AcquisitionContextHandle* data, size_t count)
     ListAcquisitionContextHandle ListAcquisitionContext_from_json_string(StringHandle json)
@@ -1169,7 +1169,7 @@ cdef extern from "falcon_core/generic/ListAcquisitionContext_c_api.h":
     StringHandle ListAcquisitionContext_to_json_string(ListAcquisitionContextHandle handle)
 
 # LabelledArraysLabelledMeasuredArray
-cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledArraysLabelledMeasuredArray_c_api.h":
     LabelledArraysLabelledMeasuredArrayHandle LabelledArraysLabelledMeasuredArray_create(ListLabelledMeasuredArrayHandle arrays)
     LabelledArraysLabelledMeasuredArrayHandle LabelledArraysLabelledMeasuredArray_from_json_string(StringHandle json)
     void LabelledArraysLabelledMeasuredArray_destroy(LabelledArraysLabelledMeasuredArrayHandle handle)
@@ -1192,7 +1192,7 @@ cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray_c_
     StringHandle LabelledArraysLabelledMeasuredArray_to_json_string(LabelledArraysLabelledMeasuredArrayHandle handle)
 
 # MeasurementResponse
-cdef extern from "falcon_core/communications/messages/MeasurementResponse_c_api.h":
+cdef extern from "falcon-core/communications/messages/MeasurementResponse_c_api.h":
     MeasurementResponseHandle MeasurementResponse_from_json_string(StringHandle json)
     MeasurementResponseHandle MeasurementResponse_create(LabelledArraysLabelledMeasuredArrayHandle arrays)
     void MeasurementResponse_destroy(MeasurementResponseHandle handle)
@@ -1204,7 +1204,7 @@ cdef extern from "falcon_core/communications/messages/MeasurementResponse_c_api.
     StringHandle MeasurementResponse_message(MeasurementResponseHandle handle)
 
 # Domain
-cdef extern from "falcon_core/math/domains/Domain_c_api.h":
+cdef extern from "falcon-core/math/domains/Domain_c_api.h":
     DomainHandle Domain_from_json_string(StringHandle json)
     DomainHandle Domain_create(double min_val, double max_val, bint lesser_bound_contained, bint greater_bound_contained)
     void Domain_destroy(DomainHandle handle)
@@ -1228,7 +1228,7 @@ cdef extern from "falcon_core/math/domains/Domain_c_api.h":
     double Domain_transform(DomainHandle handle, DomainHandle other, double value)
 
 # LabelledDomain
-cdef extern from "falcon_core/math/domains/LabelledDomain_c_api.h":
+cdef extern from "falcon-core/math/domains/LabelledDomain_c_api.h":
     LabelledDomainHandle LabelledDomain_from_json_string(StringHandle json)
     LabelledDomainHandle LabelledDomain_create_primitive_knob(StringHandle default_name, double min_val, double max_val, ConnectionHandle psuedo_name, StringHandle instrument_type, bint lesser_bound_contained, bint greater_bound_contained, SymbolUnitHandle units, StringHandle description)
     LabelledDomainHandle LabelledDomain_create_primitive_meter(StringHandle default_name, double min_val, double max_val, ConnectionHandle psuedo_name, StringHandle instrument_type, bint lesser_bound_contained, bint greater_bound_contained, SymbolUnitHandle units, StringHandle description)
@@ -1260,7 +1260,7 @@ cdef extern from "falcon_core/math/domains/LabelledDomain_c_api.h":
     double LabelledDomain_transform(LabelledDomainHandle handle, LabelledDomainHandle other, double value)
 
 # ListLabelledDomain
-cdef extern from "falcon_core/generic/ListLabelledDomain_c_api.h":
+cdef extern from "falcon-core/generic/ListLabelledDomain_c_api.h":
     ListLabelledDomainHandle ListLabelledDomain_create_empty()
     ListLabelledDomainHandle ListLabelledDomain_create(LabelledDomainHandle* data, size_t count)
     ListLabelledDomainHandle ListLabelledDomain_from_json_string(StringHandle json)
@@ -1282,7 +1282,7 @@ cdef extern from "falcon_core/generic/ListLabelledDomain_c_api.h":
     StringHandle ListLabelledDomain_to_json_string(ListLabelledDomainHandle handle)
 
 # ListInstrumentPort
-cdef extern from "falcon_core/generic/ListInstrumentPort_c_api.h":
+cdef extern from "falcon-core/generic/ListInstrumentPort_c_api.h":
     ListInstrumentPortHandle ListInstrumentPort_create_empty()
     ListInstrumentPortHandle ListInstrumentPort_create(InstrumentPortHandle* data, size_t count)
     ListInstrumentPortHandle ListInstrumentPort_from_json_string(StringHandle json)
@@ -1304,7 +1304,7 @@ cdef extern from "falcon_core/generic/ListInstrumentPort_c_api.h":
     StringHandle ListInstrumentPort_to_json_string(ListInstrumentPortHandle handle)
 
 # Ports
-cdef extern from "falcon_core/instrument_interfaces/names/Ports_c_api.h":
+cdef extern from "falcon-core/instrument_interfaces/names/Ports_c_api.h":
     PortsHandle Ports_from_json_string(StringHandle json)
     PortsHandle Ports_create_empty()
     PortsHandle Ports_create(ListInstrumentPortHandle items)
@@ -1334,7 +1334,7 @@ cdef extern from "falcon_core/instrument_interfaces/names/Ports_c_api.h":
     size_t Ports_index(PortsHandle handle, InstrumentPortHandle value)
 
 # CoupledLabelledDomain
-cdef extern from "falcon_core/math/domains/CoupledLabelledDomain_c_api.h":
+cdef extern from "falcon-core/math/domains/CoupledLabelledDomain_c_api.h":
     CoupledLabelledDomainHandle CoupledLabelledDomain_from_json_string(StringHandle json)
     CoupledLabelledDomainHandle CoupledLabelledDomain_create_empty()
     CoupledLabelledDomainHandle CoupledLabelledDomain_create(ListLabelledDomainHandle items)
@@ -1359,7 +1359,7 @@ cdef extern from "falcon_core/math/domains/CoupledLabelledDomain_c_api.h":
     size_t CoupledLabelledDomain_index(CoupledLabelledDomainHandle handle, LabelledDomainHandle value)
 
 # ListCoupledLabelledDomain
-cdef extern from "falcon_core/generic/ListCoupledLabelledDomain_c_api.h":
+cdef extern from "falcon-core/generic/ListCoupledLabelledDomain_c_api.h":
     ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create_empty()
     ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_create(CoupledLabelledDomainHandle* data, size_t count)
     ListCoupledLabelledDomainHandle ListCoupledLabelledDomain_from_json_string(StringHandle json)
@@ -1381,7 +1381,7 @@ cdef extern from "falcon_core/generic/ListCoupledLabelledDomain_c_api.h":
     StringHandle ListCoupledLabelledDomain_to_json_string(ListCoupledLabelledDomainHandle handle)
 
 # AxesCoupledLabelledDomain
-cdef extern from "falcon_core/math/AxesCoupledLabelledDomain_c_api.h":
+cdef extern from "falcon-core/math/AxesCoupledLabelledDomain_c_api.h":
     AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create_empty()
     AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_create(ListCoupledLabelledDomainHandle data)
     AxesCoupledLabelledDomainHandle AxesCoupledLabelledDomain_from_json_string(StringHandle json)
@@ -1402,7 +1402,7 @@ cdef extern from "falcon_core/math/AxesCoupledLabelledDomain_c_api.h":
     StringHandle AxesCoupledLabelledDomain_to_json_string(AxesCoupledLabelledDomainHandle handle)
 
 # ListInt
-cdef extern from "falcon_core/generic/ListInt_c_api.h":
+cdef extern from "falcon-core/generic/ListInt_c_api.h":
     ListIntHandle ListInt_create_empty()
     ListIntHandle ListInt_create(int* data, size_t count)
     ListIntHandle ListInt_from_json_string(StringHandle json)
@@ -1425,7 +1425,7 @@ cdef extern from "falcon_core/generic/ListInt_c_api.h":
     StringHandle ListInt_to_json_string(ListIntHandle handle)
 
 # AxesInt
-cdef extern from "falcon_core/math/AxesInt_c_api.h":
+cdef extern from "falcon-core/math/AxesInt_c_api.h":
     AxesIntHandle AxesInt_create_empty()
     AxesIntHandle AxesInt_create(ListIntHandle data)
     AxesIntHandle AxesInt_from_json_string(StringHandle json)
@@ -1446,7 +1446,7 @@ cdef extern from "falcon_core/math/AxesInt_c_api.h":
     StringHandle AxesInt_to_json_string(AxesIntHandle handle)
 
 # PairConnectionDouble
-cdef extern from "falcon_core/generic/PairConnectionDouble_c_api.h":
+cdef extern from "falcon-core/generic/PairConnectionDouble_c_api.h":
     PairConnectionDoubleHandle PairConnectionDouble_create(ConnectionHandle first, double second)
     PairConnectionDoubleHandle PairConnectionDouble_from_json_string(StringHandle json)
     void PairConnectionDouble_destroy(PairConnectionDoubleHandle handle)
@@ -1458,7 +1458,7 @@ cdef extern from "falcon_core/generic/PairConnectionDouble_c_api.h":
     StringHandle PairConnectionDouble_to_json_string(PairConnectionDoubleHandle handle)
 
 # ListPairConnectionDouble
-cdef extern from "falcon_core/generic/ListPairConnectionDouble_c_api.h":
+cdef extern from "falcon-core/generic/ListPairConnectionDouble_c_api.h":
     ListPairConnectionDoubleHandle ListPairConnectionDouble_create_empty()
     ListPairConnectionDoubleHandle ListPairConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count)
     ListPairConnectionDoubleHandle ListPairConnectionDouble_from_json_string(StringHandle json)
@@ -1480,7 +1480,7 @@ cdef extern from "falcon_core/generic/ListPairConnectionDouble_c_api.h":
     StringHandle ListPairConnectionDouble_to_json_string(ListPairConnectionDoubleHandle handle)
 
 # MapConnectionDouble
-cdef extern from "falcon_core/generic/MapConnectionDouble_c_api.h":
+cdef extern from "falcon-core/generic/MapConnectionDouble_c_api.h":
     MapConnectionDoubleHandle MapConnectionDouble_create_empty()
     MapConnectionDoubleHandle MapConnectionDouble_create(PairConnectionDoubleHandle* data, size_t count)
     MapConnectionDoubleHandle MapConnectionDouble_from_json_string(StringHandle json)
@@ -1502,7 +1502,7 @@ cdef extern from "falcon_core/generic/MapConnectionDouble_c_api.h":
     StringHandle MapConnectionDouble_to_json_string(MapConnectionDoubleHandle handle)
 
 # PairConnectionQuantity
-cdef extern from "falcon_core/generic/PairConnectionQuantity_c_api.h":
+cdef extern from "falcon-core/generic/PairConnectionQuantity_c_api.h":
     PairConnectionQuantityHandle PairConnectionQuantity_create(ConnectionHandle first, QuantityHandle second)
     PairConnectionQuantityHandle PairConnectionQuantity_from_json_string(StringHandle json)
     void PairConnectionQuantity_destroy(PairConnectionQuantityHandle handle)
@@ -1514,7 +1514,7 @@ cdef extern from "falcon_core/generic/PairConnectionQuantity_c_api.h":
     StringHandle PairConnectionQuantity_to_json_string(PairConnectionQuantityHandle handle)
 
 # ListPairConnectionQuantity
-cdef extern from "falcon_core/generic/ListPairConnectionQuantity_c_api.h":
+cdef extern from "falcon-core/generic/ListPairConnectionQuantity_c_api.h":
     ListPairConnectionQuantityHandle ListPairConnectionQuantity_create_empty()
     ListPairConnectionQuantityHandle ListPairConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count)
     ListPairConnectionQuantityHandle ListPairConnectionQuantity_from_json_string(StringHandle json)
@@ -1536,7 +1536,7 @@ cdef extern from "falcon_core/generic/ListPairConnectionQuantity_c_api.h":
     StringHandle ListPairConnectionQuantity_to_json_string(ListPairConnectionQuantityHandle handle)
 
 # MapConnectionQuantity
-cdef extern from "falcon_core/generic/MapConnectionQuantity_c_api.h":
+cdef extern from "falcon-core/generic/MapConnectionQuantity_c_api.h":
     MapConnectionQuantityHandle MapConnectionQuantity_create_empty()
     MapConnectionQuantityHandle MapConnectionQuantity_create(PairConnectionQuantityHandle* data, size_t count)
     MapConnectionQuantityHandle MapConnectionQuantity_from_json_string(StringHandle json)
@@ -1558,7 +1558,7 @@ cdef extern from "falcon_core/generic/MapConnectionQuantity_c_api.h":
     StringHandle MapConnectionQuantity_to_json_string(MapConnectionQuantityHandle handle)
 
 # Point
-cdef extern from "falcon_core/math/Point_c_api.h":
+cdef extern from "falcon-core/math/Point_c_api.h":
     PointHandle Point_from_json_string(StringHandle json)
     PointHandle Point_create_empty()
     PointHandle Point_create(MapConnectionDoubleHandle items, SymbolUnitHandle unit)
@@ -1590,7 +1590,7 @@ cdef extern from "falcon_core/math/Point_c_api.h":
     void Point_set_unit(PointHandle handle, SymbolUnitHandle unit)
 
 # DeviceVoltageState
-cdef extern from "falcon_core/communications/voltage_states/DeviceVoltageState_c_api.h":
+cdef extern from "falcon-core/communications/voltage_states/DeviceVoltageState_c_api.h":
     DeviceVoltageStateHandle DeviceVoltageState_create(ConnectionHandle connection, double voltage, SymbolUnitHandle unit)
     DeviceVoltageStateHandle DeviceVoltageState_from_json_string(StringHandle json)
     void DeviceVoltageState_destroy(DeviceVoltageStateHandle handle)
@@ -1623,7 +1623,7 @@ cdef extern from "falcon_core/communications/voltage_states/DeviceVoltageState_c
     StringHandle DeviceVoltageState_to_json_string(DeviceVoltageStateHandle handle)
 
 # ListDeviceVoltageState
-cdef extern from "falcon_core/generic/ListDeviceVoltageState_c_api.h":
+cdef extern from "falcon-core/generic/ListDeviceVoltageState_c_api.h":
     ListDeviceVoltageStateHandle ListDeviceVoltageState_create_empty()
     ListDeviceVoltageStateHandle ListDeviceVoltageState_create(DeviceVoltageStateHandle* data, size_t count)
     ListDeviceVoltageStateHandle ListDeviceVoltageState_from_json_string(StringHandle json)
@@ -1645,7 +1645,7 @@ cdef extern from "falcon_core/generic/ListDeviceVoltageState_c_api.h":
     StringHandle ListDeviceVoltageState_to_json_string(ListDeviceVoltageStateHandle handle)
 
 # DeviceVoltageStates
-cdef extern from "falcon_core/communications/voltage_states/DeviceVoltageStates_c_api.h":
+cdef extern from "falcon-core/communications/voltage_states/DeviceVoltageStates_c_api.h":
     DeviceVoltageStatesHandle DeviceVoltageStates_create_empty()
     DeviceVoltageStatesHandle DeviceVoltageStates_create(ListDeviceVoltageStateHandle items)
     DeviceVoltageStatesHandle DeviceVoltageStates_from_json_string(StringHandle json)
@@ -1669,7 +1669,7 @@ cdef extern from "falcon_core/communications/voltage_states/DeviceVoltageStates_
     StringHandle DeviceVoltageStates_to_json_string(DeviceVoltageStatesHandle handle)
 
 # PairStringDouble
-cdef extern from "falcon_core/generic/PairStringDouble_c_api.h":
+cdef extern from "falcon-core/generic/PairStringDouble_c_api.h":
     PairStringDoubleHandle PairStringDouble_create(StringHandle first, double second)
     PairStringDoubleHandle PairStringDouble_from_json_string(StringHandle json)
     void PairStringDouble_destroy(PairStringDoubleHandle handle)
@@ -1681,7 +1681,7 @@ cdef extern from "falcon_core/generic/PairStringDouble_c_api.h":
     StringHandle PairStringDouble_to_json_string(PairStringDoubleHandle handle)
 
 # ListPairStringDouble
-cdef extern from "falcon_core/generic/ListPairStringDouble_c_api.h":
+cdef extern from "falcon-core/generic/ListPairStringDouble_c_api.h":
     ListPairStringDoubleHandle ListPairStringDouble_create_empty()
     ListPairStringDoubleHandle ListPairStringDouble_create(PairStringDoubleHandle* data, size_t count)
     ListPairStringDoubleHandle ListPairStringDouble_from_json_string(StringHandle json)
@@ -1703,7 +1703,7 @@ cdef extern from "falcon_core/generic/ListPairStringDouble_c_api.h":
     StringHandle ListPairStringDouble_to_json_string(ListPairStringDoubleHandle handle)
 
 # MapStringDouble
-cdef extern from "falcon_core/generic/MapStringDouble_c_api.h":
+cdef extern from "falcon-core/generic/MapStringDouble_c_api.h":
     MapStringDoubleHandle MapStringDouble_create_empty()
     MapStringDoubleHandle MapStringDouble_create(PairStringDoubleHandle* data, size_t count)
     MapStringDoubleHandle MapStringDouble_from_json_string(StringHandle json)
@@ -1725,7 +1725,7 @@ cdef extern from "falcon_core/generic/MapStringDouble_c_api.h":
     StringHandle MapStringDouble_to_json_string(MapStringDoubleHandle handle)
 
 # AnalyticFunction
-cdef extern from "falcon_core/math/AnalyticFunction_c_api.h":
+cdef extern from "falcon-core/math/AnalyticFunction_c_api.h":
     AnalyticFunctionHandle AnalyticFunction_from_json_string(StringHandle json)
     AnalyticFunctionHandle AnalyticFunction_create(ListStringHandle labels, StringHandle expression)
     AnalyticFunctionHandle AnalyticFunction_create_identity()
@@ -1740,7 +1740,7 @@ cdef extern from "falcon_core/math/AnalyticFunction_c_api.h":
     FArrayDoubleHandle AnalyticFunction_evaluate_arraywise(AnalyticFunctionHandle handle, MapStringDoubleHandle args, double deltaT, double maxTime)
 
 # PortTransform
-cdef extern from "falcon_core/instrument_interfaces/port_transforms/PortTransform_c_api.h":
+cdef extern from "falcon-core/instrument_interfaces/port_transforms/PortTransform_c_api.h":
     PortTransformHandle PortTransform_from_json_string(StringHandle json)
     PortTransformHandle PortTransform_create(InstrumentPortHandle port, AnalyticFunctionHandle transform)
     PortTransformHandle PortTransform_create_constant_transform(InstrumentPortHandle port, double value)
@@ -1756,7 +1756,7 @@ cdef extern from "falcon_core/instrument_interfaces/port_transforms/PortTransfor
     FArrayDoubleHandle PortTransform_evaluate_arraywise(PortTransformHandle handle, MapStringDoubleHandle args, double deltaT, double maxTime)
 
 # Discretizer
-cdef extern from "falcon_core/math/discrete_spaces/Discretizer_c_api.h":
+cdef extern from "falcon-core/math/discrete_spaces/Discretizer_c_api.h":
     DiscretizerHandle Discretizer_from_json_string(StringHandle json)
     DiscretizerHandle Discretizer_create_cartesian_discretizer(double delta)
     DiscretizerHandle Discretizer_create_polar_discretizer(double delta)
@@ -1772,7 +1772,7 @@ cdef extern from "falcon_core/math/discrete_spaces/Discretizer_c_api.h":
     bint Discretizer_is_polar(DiscretizerHandle handle)
 
 # ListDiscretizer
-cdef extern from "falcon_core/generic/ListDiscretizer_c_api.h":
+cdef extern from "falcon-core/generic/ListDiscretizer_c_api.h":
     ListDiscretizerHandle ListDiscretizer_create_empty()
     ListDiscretizerHandle ListDiscretizer_create(DiscretizerHandle* data, size_t count)
     ListDiscretizerHandle ListDiscretizer_from_json_string(StringHandle json)
@@ -1794,7 +1794,7 @@ cdef extern from "falcon_core/generic/ListDiscretizer_c_api.h":
     StringHandle ListDiscretizer_to_json_string(ListDiscretizerHandle handle)
 
 # AxesDiscretizer
-cdef extern from "falcon_core/math/AxesDiscretizer_c_api.h":
+cdef extern from "falcon-core/math/AxesDiscretizer_c_api.h":
     AxesDiscretizerHandle AxesDiscretizer_create_empty()
     AxesDiscretizerHandle AxesDiscretizer_create(ListDiscretizerHandle data)
     AxesDiscretizerHandle AxesDiscretizer_from_json_string(StringHandle json)
@@ -1815,7 +1815,7 @@ cdef extern from "falcon_core/math/AxesDiscretizer_c_api.h":
     StringHandle AxesDiscretizer_to_json_string(AxesDiscretizerHandle handle)
 
 # AxesDouble
-cdef extern from "falcon_core/math/AxesDouble_c_api.h":
+cdef extern from "falcon-core/math/AxesDouble_c_api.h":
     AxesDoubleHandle AxesDouble_create_empty()
     AxesDoubleHandle AxesDouble_create(ListDoubleHandle data)
     AxesDoubleHandle AxesDouble_from_json_string(StringHandle json)
@@ -1836,7 +1836,7 @@ cdef extern from "falcon_core/math/AxesDouble_c_api.h":
     StringHandle AxesDouble_to_json_string(AxesDoubleHandle handle)
 
 # ControlArray
-cdef extern from "falcon_core/math/arrays/ControlArray_c_api.h":
+cdef extern from "falcon-core/math/arrays/ControlArray_c_api.h":
     ControlArrayHandle ControlArray_from_json_string(StringHandle json)
     void ControlArray_destroy(ControlArrayHandle handle)
     ControlArrayHandle ControlArray_copy(ControlArrayHandle handle)
@@ -1894,7 +1894,7 @@ cdef extern from "falcon_core/math/arrays/ControlArray_c_api.h":
     double ControlArray_get_summed_diff_array_of_squares(ControlArrayHandle handle, ControlArrayHandle other)
 
 # ListControlArray
-cdef extern from "falcon_core/generic/ListControlArray_c_api.h":
+cdef extern from "falcon-core/generic/ListControlArray_c_api.h":
     ListControlArrayHandle ListControlArray_create_empty()
     ListControlArrayHandle ListControlArray_create(ControlArrayHandle* data, size_t count)
     ListControlArrayHandle ListControlArray_from_json_string(StringHandle json)
@@ -1916,7 +1916,7 @@ cdef extern from "falcon_core/generic/ListControlArray_c_api.h":
     StringHandle ListControlArray_to_json_string(ListControlArrayHandle handle)
 
 # AxesControlArray
-cdef extern from "falcon_core/math/AxesControlArray_c_api.h":
+cdef extern from "falcon-core/math/AxesControlArray_c_api.h":
     AxesControlArrayHandle AxesControlArray_create_empty()
     AxesControlArrayHandle AxesControlArray_create(ListControlArrayHandle data)
     AxesControlArrayHandle AxesControlArray_from_json_string(StringHandle json)
@@ -1937,7 +1937,7 @@ cdef extern from "falcon_core/math/AxesControlArray_c_api.h":
     StringHandle AxesControlArray_to_json_string(AxesControlArrayHandle handle)
 
 # UnitSpace
-cdef extern from "falcon_core/math/UnitSpace_c_api.h":
+cdef extern from "falcon-core/math/UnitSpace_c_api.h":
     UnitSpaceHandle UnitSpace_from_json_string(StringHandle json)
     UnitSpaceHandle UnitSpace_create(AxesDiscretizerHandle axes, DomainHandle domain)
     UnitSpaceHandle UnitSpace_create_ray_space(double dr, double dtheta, DomainHandle domain)
@@ -1968,7 +1968,7 @@ cdef extern from "falcon_core/math/UnitSpace_c_api.h":
     UnitSpaceHandle UnitSpace_intersection(UnitSpaceHandle handle, UnitSpaceHandle other)
 
 # AxesInstrumentPort
-cdef extern from "falcon_core/math/AxesInstrumentPort_c_api.h":
+cdef extern from "falcon-core/math/AxesInstrumentPort_c_api.h":
     AxesInstrumentPortHandle AxesInstrumentPort_create_empty()
     AxesInstrumentPortHandle AxesInstrumentPort_create(ListInstrumentPortHandle data)
     AxesInstrumentPortHandle AxesInstrumentPort_from_json_string(StringHandle json)
@@ -1989,7 +1989,7 @@ cdef extern from "falcon_core/math/AxesInstrumentPort_c_api.h":
     StringHandle AxesInstrumentPort_to_json_string(AxesInstrumentPortHandle handle)
 
 # ListBool
-cdef extern from "falcon_core/generic/ListBool_c_api.h":
+cdef extern from "falcon-core/generic/ListBool_c_api.h":
     ListBoolHandle ListBool_create_empty()
     ListBoolHandle ListBool_create(bint* data, size_t count)
     ListBoolHandle ListBool_from_json_string(StringHandle json)
@@ -2012,7 +2012,7 @@ cdef extern from "falcon_core/generic/ListBool_c_api.h":
     StringHandle ListBool_to_json_string(ListBoolHandle handle)
 
 # PairStringBool
-cdef extern from "falcon_core/generic/PairStringBool_c_api.h":
+cdef extern from "falcon-core/generic/PairStringBool_c_api.h":
     PairStringBoolHandle PairStringBool_create(StringHandle first, bint second)
     PairStringBoolHandle PairStringBool_from_json_string(StringHandle json)
     void PairStringBool_destroy(PairStringBoolHandle handle)
@@ -2024,7 +2024,7 @@ cdef extern from "falcon_core/generic/PairStringBool_c_api.h":
     StringHandle PairStringBool_to_json_string(PairStringBoolHandle handle)
 
 # ListPairStringBool
-cdef extern from "falcon_core/generic/ListPairStringBool_c_api.h":
+cdef extern from "falcon-core/generic/ListPairStringBool_c_api.h":
     ListPairStringBoolHandle ListPairStringBool_create_empty()
     ListPairStringBoolHandle ListPairStringBool_create(PairStringBoolHandle* data, size_t count)
     ListPairStringBoolHandle ListPairStringBool_from_json_string(StringHandle json)
@@ -2046,7 +2046,7 @@ cdef extern from "falcon_core/generic/ListPairStringBool_c_api.h":
     StringHandle ListPairStringBool_to_json_string(ListPairStringBoolHandle handle)
 
 # MapStringBool
-cdef extern from "falcon_core/generic/MapStringBool_c_api.h":
+cdef extern from "falcon-core/generic/MapStringBool_c_api.h":
     MapStringBoolHandle MapStringBool_create_empty()
     MapStringBoolHandle MapStringBool_create(PairStringBoolHandle* data, size_t count)
     MapStringBoolHandle MapStringBool_from_json_string(StringHandle json)
@@ -2068,7 +2068,7 @@ cdef extern from "falcon_core/generic/MapStringBool_c_api.h":
     StringHandle MapStringBool_to_json_string(MapStringBoolHandle handle)
 
 # ListMapStringBool
-cdef extern from "falcon_core/generic/ListMapStringBool_c_api.h":
+cdef extern from "falcon-core/generic/ListMapStringBool_c_api.h":
     ListMapStringBoolHandle ListMapStringBool_create_empty()
     ListMapStringBoolHandle ListMapStringBool_create(MapStringBoolHandle* data, size_t count)
     ListMapStringBoolHandle ListMapStringBool_from_json_string(StringHandle json)
@@ -2090,7 +2090,7 @@ cdef extern from "falcon_core/generic/ListMapStringBool_c_api.h":
     StringHandle ListMapStringBool_to_json_string(ListMapStringBoolHandle handle)
 
 # AxesMapStringBool
-cdef extern from "falcon_core/math/AxesMapStringBool_c_api.h":
+cdef extern from "falcon-core/math/AxesMapStringBool_c_api.h":
     AxesMapStringBoolHandle AxesMapStringBool_create_empty()
     AxesMapStringBoolHandle AxesMapStringBool_create(ListMapStringBoolHandle data)
     AxesMapStringBoolHandle AxesMapStringBool_from_json_string(StringHandle json)
@@ -2111,7 +2111,7 @@ cdef extern from "falcon_core/math/AxesMapStringBool_c_api.h":
     StringHandle AxesMapStringBool_to_json_string(AxesMapStringBoolHandle handle)
 
 # LabelledControlArray
-cdef extern from "falcon_core/math/arrays/LabelledControlArray_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledControlArray_c_api.h":
     LabelledControlArrayHandle LabelledControlArray_from_json_string(StringHandle json)
     void LabelledControlArray_destroy(LabelledControlArrayHandle handle)
     LabelledControlArrayHandle LabelledControlArray_copy(LabelledControlArrayHandle handle)
@@ -2174,7 +2174,7 @@ cdef extern from "falcon_core/math/arrays/LabelledControlArray_c_api.h":
     double LabelledControlArray_get_summed_diff_array_of_squares(LabelledControlArrayHandle handle, LabelledControlArrayHandle other)
 
 # ListLabelledControlArray
-cdef extern from "falcon_core/generic/ListLabelledControlArray_c_api.h":
+cdef extern from "falcon-core/generic/ListLabelledControlArray_c_api.h":
     ListLabelledControlArrayHandle ListLabelledControlArray_create_empty()
     ListLabelledControlArrayHandle ListLabelledControlArray_create(LabelledControlArrayHandle* data, size_t count)
     ListLabelledControlArrayHandle ListLabelledControlArray_from_json_string(StringHandle json)
@@ -2196,7 +2196,7 @@ cdef extern from "falcon_core/generic/ListLabelledControlArray_c_api.h":
     StringHandle ListLabelledControlArray_to_json_string(ListLabelledControlArrayHandle handle)
 
 # AxesLabelledControlArray
-cdef extern from "falcon_core/math/AxesLabelledControlArray_c_api.h":
+cdef extern from "falcon-core/math/AxesLabelledControlArray_c_api.h":
     AxesLabelledControlArrayHandle AxesLabelledControlArray_create_empty()
     AxesLabelledControlArrayHandle AxesLabelledControlArray_create(ListLabelledControlArrayHandle data)
     AxesLabelledControlArrayHandle AxesLabelledControlArray_from_json_string(StringHandle json)
@@ -2217,7 +2217,7 @@ cdef extern from "falcon_core/math/AxesLabelledControlArray_c_api.h":
     StringHandle AxesLabelledControlArray_to_json_string(AxesLabelledControlArrayHandle handle)
 
 # DiscreteSpace
-cdef extern from "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h":
+cdef extern from "falcon-core/math/discrete_spaces/DiscreteSpace_c_api.h":
     DiscreteSpaceHandle DiscreteSpace_from_json_string(StringHandle json)
     DiscreteSpaceHandle DiscreteSpace_create(UnitSpaceHandle space, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing)
     DiscreteSpaceHandle DiscreteSpace_create_cartesian_discrete_space(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, DomainHandle domain)
@@ -2238,7 +2238,7 @@ cdef extern from "falcon_core/math/discrete_spaces/DiscreteSpace_c_api.h":
     AxesLabelledControlArrayHandle DiscreteSpace_get_projection(DiscreteSpaceHandle handle, AxesInstrumentPortHandle projection)
 
 # ListPortTransform
-cdef extern from "falcon_core/generic/ListPortTransform_c_api.h":
+cdef extern from "falcon-core/generic/ListPortTransform_c_api.h":
     ListPortTransformHandle ListPortTransform_create_empty()
     ListPortTransformHandle ListPortTransform_create(PortTransformHandle* data, size_t count)
     ListPortTransformHandle ListPortTransform_from_json_string(StringHandle json)
@@ -2260,7 +2260,7 @@ cdef extern from "falcon_core/generic/ListPortTransform_c_api.h":
     StringHandle ListPortTransform_to_json_string(ListPortTransformHandle handle)
 
 # Waveform
-cdef extern from "falcon_core/instrument_interfaces/Waveform_c_api.h":
+cdef extern from "falcon-core/instrument_interfaces/Waveform_c_api.h":
     WaveformHandle Waveform_from_json_string(StringHandle json)
     WaveformHandle Waveform_create(DiscreteSpaceHandle space, ListPortTransformHandle transforms)
     WaveformHandle Waveform_create_cartesian_waveform(AxesIntHandle divisions, AxesCoupledLabelledDomainHandle axes, AxesMapStringBoolHandle increasing, ListPortTransformHandle transforms, DomainHandle domain)
@@ -2288,7 +2288,7 @@ cdef extern from "falcon_core/instrument_interfaces/Waveform_c_api.h":
     WaveformHandle Waveform_intersection(WaveformHandle handle, WaveformHandle other)
 
 # ListWaveform
-cdef extern from "falcon_core/generic/ListWaveform_c_api.h":
+cdef extern from "falcon-core/generic/ListWaveform_c_api.h":
     ListWaveformHandle ListWaveform_create_empty()
     ListWaveformHandle ListWaveform_create(WaveformHandle* data, size_t count)
     ListWaveformHandle ListWaveform_from_json_string(StringHandle json)
@@ -2310,7 +2310,7 @@ cdef extern from "falcon_core/generic/ListWaveform_c_api.h":
     StringHandle ListWaveform_to_json_string(ListWaveformHandle handle)
 
 # PairInstrumentPortPortTransform
-cdef extern from "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h":
+cdef extern from "falcon-core/generic/PairInstrumentPortPortTransform_c_api.h":
     PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_create(InstrumentPortHandle first, PortTransformHandle second)
     PairInstrumentPortPortTransformHandle PairInstrumentPortPortTransform_from_json_string(StringHandle json)
     void PairInstrumentPortPortTransform_destroy(PairInstrumentPortPortTransformHandle handle)
@@ -2322,7 +2322,7 @@ cdef extern from "falcon_core/generic/PairInstrumentPortPortTransform_c_api.h":
     StringHandle PairInstrumentPortPortTransform_to_json_string(PairInstrumentPortPortTransformHandle handle)
 
 # ListPairInstrumentPortPortTransform
-cdef extern from "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.h":
+cdef extern from "falcon-core/generic/ListPairInstrumentPortPortTransform_c_api.h":
     ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_create_empty()
     ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_create(PairInstrumentPortPortTransformHandle* data, size_t count)
     ListPairInstrumentPortPortTransformHandle ListPairInstrumentPortPortTransform_from_json_string(StringHandle json)
@@ -2344,7 +2344,7 @@ cdef extern from "falcon_core/generic/ListPairInstrumentPortPortTransform_c_api.
     StringHandle ListPairInstrumentPortPortTransform_to_json_string(ListPairInstrumentPortPortTransformHandle handle)
 
 # MapInstrumentPortPortTransform
-cdef extern from "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h":
+cdef extern from "falcon-core/generic/MapInstrumentPortPortTransform_c_api.h":
     MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create_empty()
     MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_create(PairInstrumentPortPortTransformHandle* data, size_t count)
     MapInstrumentPortPortTransformHandle MapInstrumentPortPortTransform_from_json_string(StringHandle json)
@@ -2366,7 +2366,7 @@ cdef extern from "falcon_core/generic/MapInstrumentPortPortTransform_c_api.h":
     StringHandle MapInstrumentPortPortTransform_to_json_string(MapInstrumentPortPortTransformHandle handle)
 
 # MeasurementRequest
-cdef extern from "falcon_core/communications/messages/MeasurementRequest_c_api.h":
+cdef extern from "falcon-core/communications/messages/MeasurementRequest_c_api.h":
     MeasurementRequestHandle MeasurementRequest_from_json_string(StringHandle json)
     MeasurementRequestHandle MeasurementRequest_create(StringHandle message, StringHandle measurement_name, ListWaveformHandle waveforms, PortsHandle getters, MapInstrumentPortPortTransformHandle meter_transforms, LabelledDomainHandle time_domain)
     void MeasurementRequest_destroy(MeasurementRequestHandle handle)
@@ -2382,7 +2382,7 @@ cdef extern from "falcon_core/communications/messages/MeasurementRequest_c_api.h
     StringHandle MeasurementRequest_message(MeasurementRequestHandle handle)
 
 # PairMeasurementResponseMeasurementRequest
-cdef extern from "falcon_core/generic/PairMeasurementResponseMeasurementRequest_c_api.h":
+cdef extern from "falcon-core/generic/PairMeasurementResponseMeasurementRequest_c_api.h":
     PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_create(MeasurementResponseHandle first, MeasurementRequestHandle second)
     PairMeasurementResponseMeasurementRequestHandle PairMeasurementResponseMeasurementRequest_from_json_string(StringHandle json)
     void PairMeasurementResponseMeasurementRequest_destroy(PairMeasurementResponseMeasurementRequestHandle handle)
@@ -2394,7 +2394,7 @@ cdef extern from "falcon_core/generic/PairMeasurementResponseMeasurementRequest_
     StringHandle PairMeasurementResponseMeasurementRequest_to_json_string(PairMeasurementResponseMeasurementRequestHandle handle)
 
 # PairStringString
-cdef extern from "falcon_core/generic/PairStringString_c_api.h":
+cdef extern from "falcon-core/generic/PairStringString_c_api.h":
     PairStringStringHandle PairStringString_create(StringHandle first, StringHandle second)
     PairStringStringHandle PairStringString_from_json_string(StringHandle json)
     void PairStringString_destroy(PairStringStringHandle handle)
@@ -2406,7 +2406,7 @@ cdef extern from "falcon_core/generic/PairStringString_c_api.h":
     StringHandle PairStringString_to_json_string(PairStringStringHandle handle)
 
 # ListPairStringString
-cdef extern from "falcon_core/generic/ListPairStringString_c_api.h":
+cdef extern from "falcon-core/generic/ListPairStringString_c_api.h":
     ListPairStringStringHandle ListPairStringString_create_empty()
     ListPairStringStringHandle ListPairStringString_create(PairStringStringHandle* data, size_t count)
     ListPairStringStringHandle ListPairStringString_from_json_string(StringHandle json)
@@ -2428,7 +2428,7 @@ cdef extern from "falcon_core/generic/ListPairStringString_c_api.h":
     StringHandle ListPairStringString_to_json_string(ListPairStringStringHandle handle)
 
 # MapStringString
-cdef extern from "falcon_core/generic/MapStringString_c_api.h":
+cdef extern from "falcon-core/generic/MapStringString_c_api.h":
     MapStringStringHandle MapStringString_create_empty()
     MapStringStringHandle MapStringString_create(PairStringStringHandle* data, size_t count)
     MapStringStringHandle MapStringString_from_json_string(StringHandle json)
@@ -2450,7 +2450,7 @@ cdef extern from "falcon_core/generic/MapStringString_c_api.h":
     StringHandle MapStringString_to_json_string(MapStringStringHandle handle)
 
 # HDF5Data
-cdef extern from "falcon_core/communications/HDF5Data_c_api.h":
+cdef extern from "falcon-core/communications/HDF5Data_c_api.h":
     HDF5DataHandle HDF5Data_from_json_string(StringHandle json)
     HDF5DataHandle HDF5Data_create(AxesIntHandle shape, AxesControlArrayHandle unit_domain, AxesCoupledLabelledDomainHandle domain_labels, LabelledArraysLabelledMeasuredArrayHandle ranges, MapStringStringHandle metadata, StringHandle measurement_title, int unique_id, int timestamp)
     HDF5DataHandle HDF5Data_create_from_file(StringHandle path)
@@ -2472,7 +2472,7 @@ cdef extern from "falcon_core/communications/HDF5Data_c_api.h":
     int HDF5Data_timestamp(HDF5DataHandle handle)
 
 # Time
-cdef extern from "falcon_core/communications/Time_c_api.h":
+cdef extern from "falcon-core/communications/Time_c_api.h":
     TimeHandle Time_from_json_string(StringHandle json)
     TimeHandle Time_create_now()
     TimeHandle Time_create_at(long long micro_seconds_since_epoch)
@@ -2486,7 +2486,7 @@ cdef extern from "falcon_core/communications/Time_c_api.h":
     StringHandle Time_to_string(TimeHandle handle)
 
 # StandardRequest
-cdef extern from "falcon_core/communications/messages/StandardRequest_c_api.h":
+cdef extern from "falcon-core/communications/messages/StandardRequest_c_api.h":
     StandardRequestHandle StandardRequest_from_json_string(StringHandle json)
     StandardRequestHandle StandardRequest_create(StringHandle message)
     void StandardRequest_destroy(StandardRequestHandle handle)
@@ -2497,7 +2497,7 @@ cdef extern from "falcon_core/communications/messages/StandardRequest_c_api.h":
     StringHandle StandardRequest_message(StandardRequestHandle handle)
 
 # StandardResponse
-cdef extern from "falcon_core/communications/messages/StandardResponse_c_api.h":
+cdef extern from "falcon-core/communications/messages/StandardResponse_c_api.h":
     StandardResponseHandle StandardResponse_from_json_string(StringHandle json)
     StandardResponseHandle StandardResponse_create(StringHandle message)
     void StandardResponse_destroy(StandardResponseHandle handle)
@@ -2508,7 +2508,7 @@ cdef extern from "falcon_core/communications/messages/StandardResponse_c_api.h":
     StringHandle StandardResponse_message(StandardResponseHandle handle)
 
 # VoltageStatesResponse
-cdef extern from "falcon_core/communications/messages/VoltageStatesResponse_c_api.h":
+cdef extern from "falcon-core/communications/messages/VoltageStatesResponse_c_api.h":
     VoltageStatesResponseHandle VoltageStatesResponse_from_json_string(StringHandle json)
     VoltageStatesResponseHandle VoltageStatesResponse_create(StringHandle message, DeviceVoltageStatesHandle states)
     void VoltageStatesResponse_destroy(VoltageStatesResponseHandle handle)
@@ -2520,7 +2520,7 @@ cdef extern from "falcon_core/communications/messages/VoltageStatesResponse_c_ap
     DeviceVoltageStatesHandle VoltageStatesResponse_states(VoltageStatesResponseHandle handle)
 
 # PairSizeTSizeT
-cdef extern from "falcon_core/generic/PairSizeTSizeT_c_api.h":
+cdef extern from "falcon-core/generic/PairSizeTSizeT_c_api.h":
     PairSizeTSizeTHandle PairSizeTSizeT_create(size_t first, size_t second)
     PairSizeTSizeTHandle PairSizeTSizeT_from_json_string(StringHandle json)
     void PairSizeTSizeT_destroy(PairSizeTSizeTHandle handle)
@@ -2532,7 +2532,7 @@ cdef extern from "falcon_core/generic/PairSizeTSizeT_c_api.h":
     StringHandle PairSizeTSizeT_to_json_string(PairSizeTSizeTHandle handle)
 
 # ListPairSizeTSizeT
-cdef extern from "falcon_core/generic/ListPairSizeTSizeT_c_api.h":
+cdef extern from "falcon-core/generic/ListPairSizeTSizeT_c_api.h":
     ListPairSizeTSizeTHandle ListPairSizeTSizeT_create_empty()
     ListPairSizeTSizeTHandle ListPairSizeTSizeT_create(PairSizeTSizeTHandle* data, size_t count)
     ListPairSizeTSizeTHandle ListPairSizeTSizeT_from_json_string(StringHandle json)
@@ -2554,7 +2554,7 @@ cdef extern from "falcon_core/generic/ListPairSizeTSizeT_c_api.h":
     StringHandle ListPairSizeTSizeT_to_json_string(ListPairSizeTSizeTHandle handle)
 
 # ListFArrayDouble
-cdef extern from "falcon_core/generic/ListFArrayDouble_c_api.h":
+cdef extern from "falcon-core/generic/ListFArrayDouble_c_api.h":
     ListFArrayDoubleHandle ListFArrayDouble_create_empty()
     ListFArrayDoubleHandle ListFArrayDouble_create(FArrayDoubleHandle* data, size_t count)
     ListFArrayDoubleHandle ListFArrayDouble_from_json_string(StringHandle json)
@@ -2576,7 +2576,7 @@ cdef extern from "falcon_core/generic/ListFArrayDouble_c_api.h":
     StringHandle ListFArrayDouble_to_json_string(ListFArrayDoubleHandle handle)
 
 # FArrayInt
-cdef extern from "falcon_core/generic/FArrayInt_c_api.h":
+cdef extern from "falcon-core/generic/FArrayInt_c_api.h":
     FArrayIntHandle FArrayInt_create_empty(size_t* shape, size_t ndim)
     FArrayIntHandle FArrayInt_create_zeros(size_t* shape, size_t ndim)
     FArrayIntHandle FArrayInt_from_json_string(StringHandle json)
@@ -2639,7 +2639,7 @@ cdef extern from "falcon_core/generic/FArrayInt_c_api.h":
     StringHandle FArrayInt_to_json_string(FArrayIntHandle handle)
 
 # ListFloat
-cdef extern from "falcon_core/generic/ListFloat_c_api.h":
+cdef extern from "falcon-core/generic/ListFloat_c_api.h":
     ListFloatHandle ListFloat_create_empty()
     ListFloatHandle ListFloat_create(float* data, size_t count)
     ListFloatHandle ListFloat_from_json_string(StringHandle json)
@@ -2662,7 +2662,7 @@ cdef extern from "falcon_core/generic/ListFloat_c_api.h":
     StringHandle ListFloat_to_json_string(ListFloatHandle handle)
 
 # PairIntInt
-cdef extern from "falcon_core/generic/PairIntInt_c_api.h":
+cdef extern from "falcon-core/generic/PairIntInt_c_api.h":
     PairIntIntHandle PairIntInt_create(int first, int second)
     PairIntIntHandle PairIntInt_from_json_string(StringHandle json)
     void PairIntInt_destroy(PairIntIntHandle handle)
@@ -2674,7 +2674,7 @@ cdef extern from "falcon_core/generic/PairIntInt_c_api.h":
     StringHandle PairIntInt_to_json_string(PairIntIntHandle handle)
 
 # PairFloatFloat
-cdef extern from "falcon_core/generic/PairFloatFloat_c_api.h":
+cdef extern from "falcon-core/generic/PairFloatFloat_c_api.h":
     PairFloatFloatHandle PairFloatFloat_create(float first, float second)
     PairFloatFloatHandle PairFloatFloat_from_json_string(StringHandle json)
     void PairFloatFloat_destroy(PairFloatFloatHandle handle)
@@ -2686,7 +2686,7 @@ cdef extern from "falcon_core/generic/PairFloatFloat_c_api.h":
     StringHandle PairFloatFloat_to_json_string(PairFloatFloatHandle handle)
 
 # PairDoubleDouble
-cdef extern from "falcon_core/generic/PairDoubleDouble_c_api.h":
+cdef extern from "falcon-core/generic/PairDoubleDouble_c_api.h":
     PairDoubleDoubleHandle PairDoubleDouble_create(double first, double second)
     PairDoubleDoubleHandle PairDoubleDouble_from_json_string(StringHandle json)
     void PairDoubleDouble_destroy(PairDoubleDoubleHandle handle)
@@ -2698,7 +2698,7 @@ cdef extern from "falcon_core/generic/PairDoubleDouble_c_api.h":
     StringHandle PairDoubleDouble_to_json_string(PairDoubleDoubleHandle handle)
 
 # PairIntFloat
-cdef extern from "falcon_core/generic/PairIntFloat_c_api.h":
+cdef extern from "falcon-core/generic/PairIntFloat_c_api.h":
     PairIntFloatHandle PairIntFloat_create(int first, float second)
     PairIntFloatHandle PairIntFloat_from_json_string(StringHandle json)
     void PairIntFloat_destroy(PairIntFloatHandle handle)
@@ -2710,7 +2710,7 @@ cdef extern from "falcon_core/generic/PairIntFloat_c_api.h":
     StringHandle PairIntFloat_to_json_string(PairIntFloatHandle handle)
 
 # PairQuantityQuantity
-cdef extern from "falcon_core/generic/PairQuantityQuantity_c_api.h":
+cdef extern from "falcon-core/generic/PairQuantityQuantity_c_api.h":
     PairQuantityQuantityHandle PairQuantityQuantity_create(QuantityHandle first, QuantityHandle second)
     PairQuantityQuantityHandle PairQuantityQuantity_from_json_string(StringHandle json)
     void PairQuantityQuantity_destroy(PairQuantityQuantityHandle handle)
@@ -2722,7 +2722,7 @@ cdef extern from "falcon_core/generic/PairQuantityQuantity_c_api.h":
     StringHandle PairQuantityQuantity_to_json_string(PairQuantityQuantityHandle handle)
 
 # ListPairQuantityQuantity
-cdef extern from "falcon_core/generic/ListPairQuantityQuantity_c_api.h":
+cdef extern from "falcon-core/generic/ListPairQuantityQuantity_c_api.h":
     ListPairQuantityQuantityHandle ListPairQuantityQuantity_create_empty()
     ListPairQuantityQuantityHandle ListPairQuantityQuantity_create(PairQuantityQuantityHandle* data, size_t count)
     ListPairQuantityQuantityHandle ListPairQuantityQuantity_from_json_string(StringHandle json)
@@ -2744,7 +2744,7 @@ cdef extern from "falcon_core/generic/ListPairQuantityQuantity_c_api.h":
     StringHandle ListPairQuantityQuantity_to_json_string(ListPairQuantityQuantityHandle handle)
 
 # PairConnectionFloat
-cdef extern from "falcon_core/generic/PairConnectionFloat_c_api.h":
+cdef extern from "falcon-core/generic/PairConnectionFloat_c_api.h":
     PairConnectionFloatHandle PairConnectionFloat_create(ConnectionHandle first, float second)
     PairConnectionFloatHandle PairConnectionFloat_from_json_string(StringHandle json)
     void PairConnectionFloat_destroy(PairConnectionFloatHandle handle)
@@ -2756,7 +2756,7 @@ cdef extern from "falcon_core/generic/PairConnectionFloat_c_api.h":
     StringHandle PairConnectionFloat_to_json_string(PairConnectionFloatHandle handle)
 
 # PairConnectionConnection
-cdef extern from "falcon_core/generic/PairConnectionConnection_c_api.h":
+cdef extern from "falcon-core/generic/PairConnectionConnection_c_api.h":
     PairConnectionConnectionHandle PairConnectionConnection_create(ConnectionHandle first, ConnectionHandle second)
     PairConnectionConnectionHandle PairConnectionConnection_from_json_string(StringHandle json)
     void PairConnectionConnection_destroy(PairConnectionConnectionHandle handle)
@@ -2768,7 +2768,7 @@ cdef extern from "falcon_core/generic/PairConnectionConnection_c_api.h":
     StringHandle PairConnectionConnection_to_json_string(PairConnectionConnectionHandle handle)
 
 # ListConnections
-cdef extern from "falcon_core/generic/ListConnections_c_api.h":
+cdef extern from "falcon-core/generic/ListConnections_c_api.h":
     ListConnectionsHandle ListConnections_create_empty()
     ListConnectionsHandle ListConnections_create(ConnectionsHandle* data, size_t count)
     ListConnectionsHandle ListConnections_from_json_string(StringHandle json)
@@ -2790,7 +2790,7 @@ cdef extern from "falcon_core/generic/ListConnections_c_api.h":
     StringHandle ListConnections_to_json_string(ListConnectionsHandle handle)
 
 # Impedance
-cdef extern from "falcon_core/physics/device_structures/Impedance_c_api.h":
+cdef extern from "falcon-core/physics/device_structures/Impedance_c_api.h":
     ImpedanceHandle Impedance_from_json_string(StringHandle json)
     ImpedanceHandle Impedance_create(ConnectionHandle connection, double resistance, double capacitance)
     void Impedance_destroy(ImpedanceHandle handle)
@@ -2803,7 +2803,7 @@ cdef extern from "falcon_core/physics/device_structures/Impedance_c_api.h":
     double Impedance_capacitance(ImpedanceHandle handle)
 
 # ListImpedance
-cdef extern from "falcon_core/generic/ListImpedance_c_api.h":
+cdef extern from "falcon-core/generic/ListImpedance_c_api.h":
     ListImpedanceHandle ListImpedance_create_empty()
     ListImpedanceHandle ListImpedance_create(ImpedanceHandle* data, size_t count)
     ListImpedanceHandle ListImpedance_from_json_string(StringHandle json)
@@ -2825,7 +2825,7 @@ cdef extern from "falcon_core/generic/ListImpedance_c_api.h":
     StringHandle ListImpedance_to_json_string(ListImpedanceHandle handle)
 
 # PairConnectionConnections
-cdef extern from "falcon_core/generic/PairConnectionConnections_c_api.h":
+cdef extern from "falcon-core/generic/PairConnectionConnections_c_api.h":
     PairConnectionConnectionsHandle PairConnectionConnections_create(ConnectionHandle first, ConnectionsHandle second)
     PairConnectionConnectionsHandle PairConnectionConnections_from_json_string(StringHandle json)
     void PairConnectionConnections_destroy(PairConnectionConnectionsHandle handle)
@@ -2837,7 +2837,7 @@ cdef extern from "falcon_core/generic/PairConnectionConnections_c_api.h":
     StringHandle PairConnectionConnections_to_json_string(PairConnectionConnectionsHandle handle)
 
 # ListPairIntInt
-cdef extern from "falcon_core/generic/ListPairIntInt_c_api.h":
+cdef extern from "falcon-core/generic/ListPairIntInt_c_api.h":
     ListPairIntIntHandle ListPairIntInt_create_empty()
     ListPairIntIntHandle ListPairIntInt_create(PairIntIntHandle* data, size_t count)
     ListPairIntIntHandle ListPairIntInt_from_json_string(StringHandle json)
@@ -2859,7 +2859,7 @@ cdef extern from "falcon_core/generic/ListPairIntInt_c_api.h":
     StringHandle ListPairIntInt_to_json_string(ListPairIntIntHandle handle)
 
 # ListPairFloatFloat
-cdef extern from "falcon_core/generic/ListPairFloatFloat_c_api.h":
+cdef extern from "falcon-core/generic/ListPairFloatFloat_c_api.h":
     ListPairFloatFloatHandle ListPairFloatFloat_create_empty()
     ListPairFloatFloatHandle ListPairFloatFloat_create(PairFloatFloatHandle* data, size_t count)
     ListPairFloatFloatHandle ListPairFloatFloat_from_json_string(StringHandle json)
@@ -2881,7 +2881,7 @@ cdef extern from "falcon_core/generic/ListPairFloatFloat_c_api.h":
     StringHandle ListPairFloatFloat_to_json_string(ListPairFloatFloatHandle handle)
 
 # ListPairIntFloat
-cdef extern from "falcon_core/generic/ListPairIntFloat_c_api.h":
+cdef extern from "falcon-core/generic/ListPairIntFloat_c_api.h":
     ListPairIntFloatHandle ListPairIntFloat_create_empty()
     ListPairIntFloatHandle ListPairIntFloat_create(PairIntFloatHandle* data, size_t count)
     ListPairIntFloatHandle ListPairIntFloat_from_json_string(StringHandle json)
@@ -2903,7 +2903,7 @@ cdef extern from "falcon_core/generic/ListPairIntFloat_c_api.h":
     StringHandle ListPairIntFloat_to_json_string(ListPairIntFloatHandle handle)
 
 # ListPairConnectionFloat
-cdef extern from "falcon_core/generic/ListPairConnectionFloat_c_api.h":
+cdef extern from "falcon-core/generic/ListPairConnectionFloat_c_api.h":
     ListPairConnectionFloatHandle ListPairConnectionFloat_create_empty()
     ListPairConnectionFloatHandle ListPairConnectionFloat_create(PairConnectionFloatHandle* data, size_t count)
     ListPairConnectionFloatHandle ListPairConnectionFloat_from_json_string(StringHandle json)
@@ -2925,7 +2925,7 @@ cdef extern from "falcon_core/generic/ListPairConnectionFloat_c_api.h":
     StringHandle ListPairConnectionFloat_to_json_string(ListPairConnectionFloatHandle handle)
 
 # ListPairConnectionConnections
-cdef extern from "falcon_core/generic/ListPairConnectionConnections_c_api.h":
+cdef extern from "falcon-core/generic/ListPairConnectionConnections_c_api.h":
     ListPairConnectionConnectionsHandle ListPairConnectionConnections_create_empty()
     ListPairConnectionConnectionsHandle ListPairConnectionConnections_create(PairConnectionConnectionsHandle* data, size_t count)
     ListPairConnectionConnectionsHandle ListPairConnectionConnections_from_json_string(StringHandle json)
@@ -2947,7 +2947,7 @@ cdef extern from "falcon_core/generic/ListPairConnectionConnections_c_api.h":
     StringHandle ListPairConnectionConnections_to_json_string(ListPairConnectionConnectionsHandle handle)
 
 # MapIntInt
-cdef extern from "falcon_core/generic/MapIntInt_c_api.h":
+cdef extern from "falcon-core/generic/MapIntInt_c_api.h":
     MapIntIntHandle MapIntInt_create_empty()
     MapIntIntHandle MapIntInt_create(PairIntIntHandle* data, size_t count)
     MapIntIntHandle MapIntInt_from_json_string(StringHandle json)
@@ -2969,7 +2969,7 @@ cdef extern from "falcon_core/generic/MapIntInt_c_api.h":
     StringHandle MapIntInt_to_json_string(MapIntIntHandle handle)
 
 # MapFloatFloat
-cdef extern from "falcon_core/generic/MapFloatFloat_c_api.h":
+cdef extern from "falcon-core/generic/MapFloatFloat_c_api.h":
     MapFloatFloatHandle MapFloatFloat_create_empty()
     MapFloatFloatHandle MapFloatFloat_create(PairFloatFloatHandle* data, size_t count)
     MapFloatFloatHandle MapFloatFloat_from_json_string(StringHandle json)
@@ -2991,7 +2991,7 @@ cdef extern from "falcon_core/generic/MapFloatFloat_c_api.h":
     StringHandle MapFloatFloat_to_json_string(MapFloatFloatHandle handle)
 
 # MapConnectionFloat
-cdef extern from "falcon_core/generic/MapConnectionFloat_c_api.h":
+cdef extern from "falcon-core/generic/MapConnectionFloat_c_api.h":
     MapConnectionFloatHandle MapConnectionFloat_create_empty()
     MapConnectionFloatHandle MapConnectionFloat_create(PairConnectionFloatHandle* data, size_t count)
     MapConnectionFloatHandle MapConnectionFloat_from_json_string(StringHandle json)
@@ -3013,7 +3013,7 @@ cdef extern from "falcon_core/generic/MapConnectionFloat_c_api.h":
     StringHandle MapConnectionFloat_to_json_string(MapConnectionFloatHandle handle)
 
 # PairConnectionPairQuantityQuantity
-cdef extern from "falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h":
+cdef extern from "falcon-core/generic/PairConnectionPairQuantityQuantity_c_api.h":
     PairConnectionPairQuantityQuantityHandle PairConnectionPairQuantityQuantity_create(ConnectionHandle first, PairQuantityQuantityHandle second)
     PairConnectionPairQuantityQuantityHandle PairConnectionPairQuantityQuantity_from_json_string(StringHandle json)
     void PairConnectionPairQuantityQuantity_destroy(PairConnectionPairQuantityQuantityHandle handle)
@@ -3025,7 +3025,7 @@ cdef extern from "falcon_core/generic/PairConnectionPairQuantityQuantity_c_api.h
     StringHandle PairConnectionPairQuantityQuantity_to_json_string(PairConnectionPairQuantityQuantityHandle handle)
 
 # ListPairConnectionPairQuantityQuantity
-cdef extern from "falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_api.h":
+cdef extern from "falcon-core/generic/ListPairConnectionPairQuantityQuantity_c_api.h":
     ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_create_empty()
     ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_create(PairConnectionPairQuantityQuantityHandle* data, size_t count)
     ListPairConnectionPairQuantityQuantityHandle ListPairConnectionPairQuantityQuantity_from_json_string(StringHandle json)
@@ -3047,7 +3047,7 @@ cdef extern from "falcon_core/generic/ListPairConnectionPairQuantityQuantity_c_a
     StringHandle ListPairConnectionPairQuantityQuantity_to_json_string(ListPairConnectionPairQuantityQuantityHandle handle)
 
 # ControlArray1D
-cdef extern from "falcon_core/math/arrays/ControlArray1D_c_api.h":
+cdef extern from "falcon-core/math/arrays/ControlArray1D_c_api.h":
     ControlArray1DHandle ControlArray1D_from_json_string(StringHandle json)
     void ControlArray1D_destroy(ControlArray1DHandle handle)
     ControlArray1DHandle ControlArray1D_copy(ControlArray1DHandle handle)
@@ -3117,7 +3117,7 @@ cdef extern from "falcon_core/math/arrays/ControlArray1D_c_api.h":
     double ControlArray1D_get_summed_diff_array_of_squares(ControlArray1DHandle handle, ControlArray1DHandle other)
 
 # ListControlArray1D
-cdef extern from "falcon_core/generic/ListControlArray1D_c_api.h":
+cdef extern from "falcon-core/generic/ListControlArray1D_c_api.h":
     ListControlArray1DHandle ListControlArray1D_create_empty()
     ListControlArray1DHandle ListControlArray1D_create(ControlArray1DHandle* data, size_t count)
     ListControlArray1DHandle ListControlArray1D_from_json_string(StringHandle json)
@@ -3139,7 +3139,7 @@ cdef extern from "falcon_core/generic/ListControlArray1D_c_api.h":
     StringHandle ListControlArray1D_to_json_string(ListControlArray1DHandle handle)
 
 # DotGateWithNeighbors
-cdef extern from "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_api.h":
+cdef extern from "falcon-core/physics/config/geometries/DotGateWithNeighbors_c_api.h":
     DotGateWithNeighborsHandle DotGateWithNeighbors_from_json_string(StringHandle json)
     DotGateWithNeighborsHandle DotGateWithNeighbors_create_plunger_gate_with_neighbors(StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle right_neighbor)
     DotGateWithNeighborsHandle DotGateWithNeighbors_create_barrier_gate_with_neighbors(StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle right_neighbor)
@@ -3156,7 +3156,7 @@ cdef extern from "falcon_core/physics/config/geometries/DotGateWithNeighbors_c_a
     bint DotGateWithNeighbors_is_plunger_gate(DotGateWithNeighborsHandle handle)
 
 # ListDotGateWithNeighbors
-cdef extern from "falcon_core/generic/ListDotGateWithNeighbors_c_api.h":
+cdef extern from "falcon-core/generic/ListDotGateWithNeighbors_c_api.h":
     ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create_empty()
     ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_create(DotGateWithNeighborsHandle* data, size_t count)
     ListDotGateWithNeighborsHandle ListDotGateWithNeighbors_from_json_string(StringHandle json)
@@ -3178,7 +3178,7 @@ cdef extern from "falcon_core/generic/ListDotGateWithNeighbors_c_api.h":
     StringHandle ListDotGateWithNeighbors_to_json_string(ListDotGateWithNeighborsHandle handle)
 
 # RightReservoirWithImplantedOhmic
-cdef extern from "falcon_core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h":
+cdef extern from "falcon-core/physics/config/geometries/RightReservoirWithImplantedOhmic_c_api.h":
     RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_from_json_string(StringHandle json)
     RightReservoirWithImplantedOhmicHandle RightReservoirWithImplantedOhmic_create(StringHandle name, ConnectionHandle left_neighbor, ConnectionHandle ohmic)
     void RightReservoirWithImplantedOhmic_destroy(RightReservoirWithImplantedOhmicHandle handle)
@@ -3192,7 +3192,7 @@ cdef extern from "falcon_core/physics/config/geometries/RightReservoirWithImplan
     ConnectionHandle RightReservoirWithImplantedOhmic_left_neighbor(RightReservoirWithImplantedOhmicHandle handle)
 
 # LeftReservoirWithImplantedOhmic
-cdef extern from "falcon_core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h":
+cdef extern from "falcon-core/physics/config/geometries/LeftReservoirWithImplantedOhmic_c_api.h":
     LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_from_json_string(StringHandle json)
     LeftReservoirWithImplantedOhmicHandle LeftReservoirWithImplantedOhmic_create(StringHandle name, ConnectionHandle right_neighbor, ConnectionHandle ohmic)
     void LeftReservoirWithImplantedOhmic_destroy(LeftReservoirWithImplantedOhmicHandle handle)
@@ -3206,7 +3206,7 @@ cdef extern from "falcon_core/physics/config/geometries/LeftReservoirWithImplant
     ConnectionHandle LeftReservoirWithImplantedOhmic_right_neighbor(LeftReservoirWithImplantedOhmicHandle handle)
 
 # DotGatesWithNeighbors
-cdef extern from "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_api.h":
+cdef extern from "falcon-core/physics/config/geometries/DotGatesWithNeighbors_c_api.h":
     DotGatesWithNeighborsHandle DotGatesWithNeighbors_from_json_string(StringHandle json)
     DotGatesWithNeighborsHandle DotGatesWithNeighbors_create_empty()
     DotGatesWithNeighborsHandle DotGatesWithNeighbors_create(ListDotGateWithNeighborsHandle items)
@@ -3229,7 +3229,7 @@ cdef extern from "falcon_core/physics/config/geometries/DotGatesWithNeighbors_c_
     size_t DotGatesWithNeighbors_index(DotGatesWithNeighborsHandle handle, DotGateWithNeighborsHandle value)
 
 # GateGeometryArray1D
-cdef extern from "falcon_core/physics/config/geometries/GateGeometryArray1D_c_api.h":
+cdef extern from "falcon-core/physics/config/geometries/GateGeometryArray1D_c_api.h":
     GateGeometryArray1DHandle GateGeometryArray1D_from_json_string(StringHandle json)
     GateGeometryArray1DHandle GateGeometryArray1D_create(ConnectionsHandle lineararray, ConnectionsHandle screening_gates)
     void GateGeometryArray1D_destroy(GateGeometryArray1DHandle handle)
@@ -3251,7 +3251,7 @@ cdef extern from "falcon_core/physics/config/geometries/GateGeometryArray1D_c_ap
     ConnectionsHandle GateGeometryArray1D_ohmics(GateGeometryArray1DHandle handle)
 
 # Group
-cdef extern from "falcon_core/physics/config/core/Group_c_api.h":
+cdef extern from "falcon-core/physics/config/core/Group_c_api.h":
     GroupHandle Group_from_json_string(StringHandle json)
     GroupHandle Group_create(ChannelHandle name, int num_dots, ConnectionsHandle screening_gates, ConnectionsHandle reservoir_gates, ConnectionsHandle plunger_gates, ConnectionsHandle barrier_gates, ConnectionsHandle order)
     void Group_destroy(GroupHandle handle)
@@ -3288,7 +3288,7 @@ cdef extern from "falcon_core/physics/config/core/Group_c_api.h":
     bint Group_has_screening_gate(GroupHandle handle, ConnectionHandle screening_gate)
 
 # ListGroup
-cdef extern from "falcon_core/generic/ListGroup_c_api.h":
+cdef extern from "falcon-core/generic/ListGroup_c_api.h":
     ListGroupHandle ListGroup_create_empty()
     ListGroupHandle ListGroup_create(GroupHandle* data, size_t count)
     ListGroupHandle ListGroup_from_json_string(StringHandle json)
@@ -3310,7 +3310,7 @@ cdef extern from "falcon_core/generic/ListGroup_c_api.h":
     StringHandle ListGroup_to_json_string(ListGroupHandle handle)
 
 # ListGname
-cdef extern from "falcon_core/generic/ListGname_c_api.h":
+cdef extern from "falcon-core/generic/ListGname_c_api.h":
     ListGnameHandle ListGname_create_empty()
     ListGnameHandle ListGname_create(GnameHandle* data, size_t count)
     ListGnameHandle ListGname_from_json_string(StringHandle json)
@@ -3332,7 +3332,7 @@ cdef extern from "falcon_core/generic/ListGname_c_api.h":
     StringHandle ListGname_to_json_string(ListGnameHandle handle)
 
 # PairChannelConnections
-cdef extern from "falcon_core/generic/PairChannelConnections_c_api.h":
+cdef extern from "falcon-core/generic/PairChannelConnections_c_api.h":
     PairChannelConnectionsHandle PairChannelConnections_create(ChannelHandle first, ConnectionsHandle second)
     PairChannelConnectionsHandle PairChannelConnections_from_json_string(StringHandle json)
     void PairChannelConnections_destroy(PairChannelConnectionsHandle handle)
@@ -3344,7 +3344,7 @@ cdef extern from "falcon_core/generic/PairChannelConnections_c_api.h":
     StringHandle PairChannelConnections_to_json_string(PairChannelConnectionsHandle handle)
 
 # ListPairChannelConnections
-cdef extern from "falcon_core/generic/ListPairChannelConnections_c_api.h":
+cdef extern from "falcon-core/generic/ListPairChannelConnections_c_api.h":
     ListPairChannelConnectionsHandle ListPairChannelConnections_create_empty()
     ListPairChannelConnectionsHandle ListPairChannelConnections_create(PairChannelConnectionsHandle* data, size_t count)
     ListPairChannelConnectionsHandle ListPairChannelConnections_from_json_string(StringHandle json)
@@ -3366,7 +3366,7 @@ cdef extern from "falcon_core/generic/ListPairChannelConnections_c_api.h":
     StringHandle ListPairChannelConnections_to_json_string(ListPairChannelConnectionsHandle handle)
 
 # MapChannelConnections
-cdef extern from "falcon_core/generic/MapChannelConnections_c_api.h":
+cdef extern from "falcon-core/generic/MapChannelConnections_c_api.h":
     MapChannelConnectionsHandle MapChannelConnections_create_empty()
     MapChannelConnectionsHandle MapChannelConnections_create(PairChannelConnectionsHandle* data, size_t count)
     MapChannelConnectionsHandle MapChannelConnections_from_json_string(StringHandle json)
@@ -3388,7 +3388,7 @@ cdef extern from "falcon_core/generic/MapChannelConnections_c_api.h":
     StringHandle MapChannelConnections_to_json_string(MapChannelConnectionsHandle handle)
 
 # PairGnameGroup
-cdef extern from "falcon_core/generic/PairGnameGroup_c_api.h":
+cdef extern from "falcon-core/generic/PairGnameGroup_c_api.h":
     PairGnameGroupHandle PairGnameGroup_create(GnameHandle first, GroupHandle second)
     PairGnameGroupHandle PairGnameGroup_from_json_string(StringHandle json)
     void PairGnameGroup_destroy(PairGnameGroupHandle handle)
@@ -3400,7 +3400,7 @@ cdef extern from "falcon_core/generic/PairGnameGroup_c_api.h":
     StringHandle PairGnameGroup_to_json_string(PairGnameGroupHandle handle)
 
 # ListPairGnameGroup
-cdef extern from "falcon_core/generic/ListPairGnameGroup_c_api.h":
+cdef extern from "falcon-core/generic/ListPairGnameGroup_c_api.h":
     ListPairGnameGroupHandle ListPairGnameGroup_create_empty()
     ListPairGnameGroupHandle ListPairGnameGroup_create(PairGnameGroupHandle* data, size_t count)
     ListPairGnameGroupHandle ListPairGnameGroup_from_json_string(StringHandle json)
@@ -3422,7 +3422,7 @@ cdef extern from "falcon_core/generic/ListPairGnameGroup_c_api.h":
     StringHandle ListPairGnameGroup_to_json_string(ListPairGnameGroupHandle handle)
 
 # MapGnameGroup
-cdef extern from "falcon_core/generic/MapGnameGroup_c_api.h":
+cdef extern from "falcon-core/generic/MapGnameGroup_c_api.h":
     MapGnameGroupHandle MapGnameGroup_create_empty()
     MapGnameGroupHandle MapGnameGroup_create(PairGnameGroupHandle* data, size_t count)
     MapGnameGroupHandle MapGnameGroup_from_json_string(StringHandle json)
@@ -3444,7 +3444,7 @@ cdef extern from "falcon_core/generic/MapGnameGroup_c_api.h":
     StringHandle MapGnameGroup_to_json_string(MapGnameGroupHandle handle)
 
 # LabelledControlArray1D
-cdef extern from "falcon_core/math/arrays/LabelledControlArray1D_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledControlArray1D_c_api.h":
     LabelledControlArray1DHandle LabelledControlArray1D_from_json_string(StringHandle json)
     void LabelledControlArray1D_destroy(LabelledControlArray1DHandle handle)
     LabelledControlArray1DHandle LabelledControlArray1D_copy(LabelledControlArray1DHandle handle)
@@ -3518,7 +3518,7 @@ cdef extern from "falcon_core/math/arrays/LabelledControlArray1D_c_api.h":
     double LabelledControlArray1D_get_summed_diff_array_of_squares(LabelledControlArray1DHandle handle, LabelledControlArray1DHandle other)
 
 # ListLabelledControlArray1D
-cdef extern from "falcon_core/generic/ListLabelledControlArray1D_c_api.h":
+cdef extern from "falcon-core/generic/ListLabelledControlArray1D_c_api.h":
     ListLabelledControlArray1DHandle ListLabelledControlArray1D_create_empty()
     ListLabelledControlArray1DHandle ListLabelledControlArray1D_create(LabelledControlArray1DHandle* data, size_t count)
     ListLabelledControlArray1DHandle ListLabelledControlArray1D_from_json_string(StringHandle json)
@@ -3540,7 +3540,7 @@ cdef extern from "falcon_core/generic/ListLabelledControlArray1D_c_api.h":
     StringHandle ListLabelledControlArray1D_to_json_string(ListLabelledControlArray1DHandle handle)
 
 # LabelledMeasuredArray1D
-cdef extern from "falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledMeasuredArray1D_c_api.h":
     LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_from_json_string(StringHandle json)
     void LabelledMeasuredArray1D_destroy(LabelledMeasuredArray1DHandle handle)
     LabelledMeasuredArray1DHandle LabelledMeasuredArray1D_copy(LabelledMeasuredArray1DHandle handle)
@@ -3624,7 +3624,7 @@ cdef extern from "falcon_core/math/arrays/LabelledMeasuredArray1D_c_api.h":
     double LabelledMeasuredArray1D_get_summed_diff_array_of_squares(LabelledMeasuredArray1DHandle handle, LabelledMeasuredArray1DHandle other)
 
 # ListLabelledMeasuredArray1D
-cdef extern from "falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h":
+cdef extern from "falcon-core/generic/ListLabelledMeasuredArray1D_c_api.h":
     ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create_empty()
     ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_create(LabelledMeasuredArray1DHandle* data, size_t count)
     ListLabelledMeasuredArray1DHandle ListLabelledMeasuredArray1D_from_json_string(StringHandle json)
@@ -3646,7 +3646,7 @@ cdef extern from "falcon_core/generic/ListLabelledMeasuredArray1D_c_api.h":
     StringHandle ListLabelledMeasuredArray1D_to_json_string(ListLabelledMeasuredArray1DHandle handle)
 
 # PortTransforms
-cdef extern from "falcon_core/instrument_interfaces/port_transforms/PortTransforms_c_api.h":
+cdef extern from "falcon-core/instrument_interfaces/port_transforms/PortTransforms_c_api.h":
     PortTransformsHandle PortTransforms_from_json_string(StringHandle json)
     PortTransformsHandle PortTransforms_create_empty()
     PortTransformHandle PortTransforms_create(ListPortTransformHandle handle)
@@ -3668,7 +3668,7 @@ cdef extern from "falcon_core/instrument_interfaces/port_transforms/PortTransfor
     PortTransformsHandle PortTransforms_intersection(PortTransformsHandle handle, PortTransformsHandle other)
 
 # Vector
-cdef extern from "falcon_core/math/Vector_c_api.h":
+cdef extern from "falcon-core/math/Vector_c_api.h":
     VectorHandle Vector_from_json_string(StringHandle json)
     VectorHandle Vector_create(PointHandle start, PointHandle end)
     VectorHandle Vector_create_from_end(PointHandle end)
@@ -3725,7 +3725,7 @@ cdef extern from "falcon_core/math/Vector_c_api.h":
     void Vector_update_unit(VectorHandle handle, SymbolUnitHandle unit)
 
 # AxesControlArray1D
-cdef extern from "falcon_core/math/AxesControlArray1D_c_api.h":
+cdef extern from "falcon-core/math/AxesControlArray1D_c_api.h":
     AxesControlArray1DHandle AxesControlArray1D_create_empty()
     AxesControlArray1DHandle AxesControlArray1D_create(ListControlArray1DHandle data)
     AxesControlArray1DHandle AxesControlArray1D_from_json_string(StringHandle json)
@@ -3746,7 +3746,7 @@ cdef extern from "falcon_core/math/AxesControlArray1D_c_api.h":
     StringHandle AxesControlArray1D_to_json_string(AxesControlArray1DHandle handle)
 
 # AxesLabelledControlArray1D
-cdef extern from "falcon_core/math/AxesLabelledControlArray1D_c_api.h":
+cdef extern from "falcon-core/math/AxesLabelledControlArray1D_c_api.h":
     AxesLabelledControlArray1DHandle AxesLabelledControlArray1D_create_empty()
     AxesLabelledControlArray1DHandle AxesLabelledControlArray1D_create(ListLabelledControlArray1DHandle data)
     AxesLabelledControlArray1DHandle AxesLabelledControlArray1D_from_json_string(StringHandle json)
@@ -3767,7 +3767,7 @@ cdef extern from "falcon_core/math/AxesLabelledControlArray1D_c_api.h":
     StringHandle AxesLabelledControlArray1D_to_json_string(AxesLabelledControlArray1DHandle handle)
 
 # AxesLabelledMeasuredArray
-cdef extern from "falcon_core/math/AxesLabelledMeasuredArray_c_api.h":
+cdef extern from "falcon-core/math/AxesLabelledMeasuredArray_c_api.h":
     AxesLabelledMeasuredArrayHandle AxesLabelledMeasuredArray_create_empty()
     AxesLabelledMeasuredArrayHandle AxesLabelledMeasuredArray_create(ListLabelledMeasuredArrayHandle data)
     AxesLabelledMeasuredArrayHandle AxesLabelledMeasuredArray_from_json_string(StringHandle json)
@@ -3788,7 +3788,7 @@ cdef extern from "falcon_core/math/AxesLabelledMeasuredArray_c_api.h":
     StringHandle AxesLabelledMeasuredArray_to_json_string(AxesLabelledMeasuredArrayHandle handle)
 
 # AxesLabelledMeasuredArray1D
-cdef extern from "falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h":
+cdef extern from "falcon-core/math/AxesLabelledMeasuredArray1D_c_api.h":
     AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create_empty()
     AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_create(ListLabelledMeasuredArray1DHandle data)
     AxesLabelledMeasuredArray1DHandle AxesLabelledMeasuredArray1D_from_json_string(StringHandle json)
@@ -3809,7 +3809,7 @@ cdef extern from "falcon_core/math/AxesLabelledMeasuredArray1D_c_api.h":
     StringHandle AxesLabelledMeasuredArray1D_to_json_string(AxesLabelledMeasuredArray1DHandle handle)
 
 # IncreasingAlignment
-cdef extern from "falcon_core/math/arrays/IncreasingAlignment_c_api.h":
+cdef extern from "falcon-core/math/arrays/IncreasingAlignment_c_api.h":
     IncreasingAlignmentHandle IncreasingAlignment_from_json_string(StringHandle json)
     IncreasingAlignmentHandle IncreasingAlignment_create_empty()
     IncreasingAlignmentHandle IncreasingAlignment_create(bint alignment)
@@ -3821,7 +3821,7 @@ cdef extern from "falcon_core/math/arrays/IncreasingAlignment_c_api.h":
     int IncreasingAlignment_alignment(IncreasingAlignmentHandle handle)
 
 # MeasuredArray1D
-cdef extern from "falcon_core/math/arrays/MeasuredArray1D_c_api.h":
+cdef extern from "falcon-core/math/arrays/MeasuredArray1D_c_api.h":
     MeasuredArray1DHandle MeasuredArray1D_from_json_string(StringHandle json)
     void MeasuredArray1D_destroy(MeasuredArray1DHandle handle)
     MeasuredArray1DHandle MeasuredArray1D_copy(MeasuredArray1DHandle handle)
@@ -3899,7 +3899,7 @@ cdef extern from "falcon_core/math/arrays/MeasuredArray1D_c_api.h":
     double MeasuredArray1D_get_summed_diff_array_of_squares(MeasuredArray1DHandle handle, MeasuredArray1DHandle other)
 
 # LabelledArraysLabelledControlArray
-cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledArraysLabelledControlArray_c_api.h":
     LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_create(ListLabelledControlArrayHandle arrays)
     LabelledArraysLabelledControlArrayHandle LabelledArraysLabelledControlArray_from_json_string(StringHandle json)
     void LabelledArraysLabelledControlArray_destroy(LabelledArraysLabelledControlArrayHandle handle)
@@ -3922,7 +3922,7 @@ cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledControlArray_c_a
     StringHandle LabelledArraysLabelledControlArray_to_json_string(LabelledArraysLabelledControlArrayHandle handle)
 
 # LabelledArraysLabelledControlArray1D
-cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledArraysLabelledControlArray1D_c_api.h":
     LabelledArraysLabelledControlArray1DHandle LabelledArraysLabelledControlArray1D_create(ListLabelledControlArray1DHandle arrays)
     LabelledArraysLabelledControlArray1DHandle LabelledArraysLabelledControlArray1D_from_json_string(StringHandle json)
     void LabelledArraysLabelledControlArray1D_destroy(LabelledArraysLabelledControlArray1DHandle handle)
@@ -3945,7 +3945,7 @@ cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledControlArray1D_c
     StringHandle LabelledArraysLabelledControlArray1D_to_json_string(LabelledArraysLabelledControlArray1DHandle handle)
 
 # LabelledArraysLabelledMeasuredArray1D
-cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h":
+cdef extern from "falcon-core/math/arrays/LabelledArraysLabelledMeasuredArray1D_c_api.h":
     LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_create(ListLabelledMeasuredArray1DHandle arrays)
     LabelledArraysLabelledMeasuredArray1DHandle LabelledArraysLabelledMeasuredArray1D_from_json_string(StringHandle json)
     void LabelledArraysLabelledMeasuredArray1D_destroy(LabelledArraysLabelledMeasuredArray1DHandle handle)
@@ -3968,7 +3968,7 @@ cdef extern from "falcon_core/math/arrays/LabelledArraysLabelledMeasuredArray1D_
     StringHandle LabelledArraysLabelledMeasuredArray1D_to_json_string(LabelledArraysLabelledMeasuredArray1DHandle handle)
 
 # GateRelations
-cdef extern from "falcon_core/physics/device_structures/GateRelations_c_api.h":
+cdef extern from "falcon-core/physics/device_structures/GateRelations_c_api.h":
     GateRelationsHandle GateRelations_from_json_string(StringHandle json)
     GateRelationsHandle GateRelations_create_empty()
     GateRelationsHandle GateRelations_create(ListPairConnectionConnectionsHandle items)
@@ -3990,7 +3990,7 @@ cdef extern from "falcon_core/physics/device_structures/GateRelations_c_api.h":
     ListPairConnectionConnectionsHandle GateRelations_items(GateRelationsHandle handle)
 
 # Impedances
-cdef extern from "falcon_core/physics/device_structures/Impedances_c_api.h":
+cdef extern from "falcon-core/physics/device_structures/Impedances_c_api.h":
     ImpedancesHandle Impedances_from_json_string(StringHandle json)
     ImpedancesHandle Impedances_create_empty()
     ImpedancesHandle Impedances_create(ListImpedanceHandle items)
@@ -4011,7 +4011,7 @@ cdef extern from "falcon_core/physics/device_structures/Impedances_c_api.h":
     size_t Impedances_index(ImpedancesHandle handle, ImpedanceHandle value)
 
 # Adjacency
-cdef extern from "falcon_core/physics/config/core/Adjacency_c_api.h":
+cdef extern from "falcon-core/physics/config/core/Adjacency_c_api.h":
     AdjacencyHandle Adjacency_from_json_string(StringHandle json)
     AdjacencyHandle Adjacency_create(int* data, size_t* shape, size_t ndim, ConnectionsHandle indexes)
     void Adjacency_destroy(AdjacencyHandle handle)
@@ -4033,7 +4033,7 @@ cdef extern from "falcon_core/physics/config/core/Adjacency_c_api.h":
     AdjacencyHandle Adjacency_flip(AdjacencyHandle handle, size_t axis)
 
 # VoltageConstraints
-cdef extern from "falcon_core/physics/config/core/VoltageConstraints_c_api.h":
+cdef extern from "falcon-core/physics/config/core/VoltageConstraints_c_api.h":
     VoltageConstraintsHandle VoltageConstraints_from_json_string(StringHandle json)
     VoltageConstraintsHandle VoltageConstraints_create(AdjacencyHandle adjacency, double max_safe_diff, PairDoubleDoubleHandle bounds)
     void VoltageConstraints_destroy(VoltageConstraintsHandle handle)
@@ -4046,7 +4046,7 @@ cdef extern from "falcon_core/physics/config/core/VoltageConstraints_c_api.h":
     FArrayDoubleHandle VoltageConstraints_limits(VoltageConstraintsHandle handle)
 
 # Config
-cdef extern from "falcon_core/physics/config/core/Config_c_api.h":
+cdef extern from "falcon-core/physics/config/core/Config_c_api.h":
     ConfigHandle Config_from_json_string(StringHandle json)
     ConfigHandle Config_create(ConnectionsHandle screening_gates, ConnectionsHandle plunger_gates, ConnectionsHandle ohmics, ConnectionsHandle barrier_gates, ConnectionsHandle reservoir_gates, MapGnameGroupHandle groups, ImpedancesHandle wiring_DC, VoltageConstraintsHandle constraints)
     void Config_destroy(ConfigHandle handle)
@@ -4150,7 +4150,7 @@ cdef extern from "falcon_core/physics/config/core/Config_c_api.h":
     bint Config_has_screening_gate(ConfigHandle handle, ConnectionHandle screening_gate)
 
 # Loader
-cdef extern from "falcon_core/physics/config/Loader_c_api.h":
+cdef extern from "falcon-core/physics/config/Loader_c_api.h":
     LoaderHandle Loader_create(StringHandle config_path)
     void Loader_destroy(LoaderHandle handle)
     ConfigHandle Loader_config(LoaderHandle handle)

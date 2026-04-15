@@ -119,7 +119,7 @@ end
 -- Auto-generated wrapper for {type_name}
 -- Generated from {type_name}_c_api.h
 
-local cdef = require("falcon_core.ffi.cdef")
+local cdef = require("falcon-core.ffi.cdef")
 
 local {type_name} = {{}}
 
@@ -150,7 +150,7 @@ def generate_test(type_name: str, analysis: Dict) -> str:
     test_code = f"""-- test_{type_name.lower()}.lua
 -- Auto-generated tests for {type_name}
 
-local {type_name} = require("falcon_core.TODO.{type_name.lower()}")
+local {type_name} = require("falcon-core.TODO.{type_name.lower()}")
 
 local function describe(name, fn) print("\\n" .. name); fn() end
 local function it(name, fn) 
@@ -192,8 +192,8 @@ print("\\n✓ " .. "{type_name} tests complete")
 
 def main():
     # Paths
-    c_api_include = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core/c-api/include/falcon_core")
-    output_dir = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core")
+    c_api_include = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core/c-api/include/falcon-core")
+    output_dir = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon-core")
     test_dir = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/tests/generated")
     
     # Priority types to generate first

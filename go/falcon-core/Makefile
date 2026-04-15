@@ -1,6 +1,3 @@
-export CC=clang
-export CXX=clang++
-
 TESTDIR ?= ./physics/deviceStructures/connection
 TESTNAME ?= TestConnection_ErrorOnClosed
 

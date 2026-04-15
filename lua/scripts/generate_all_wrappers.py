@@ -9,8 +9,8 @@ from generate_wrappers import *
 
 def main():
     # Paths
-    c_api_include = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core/c-api/include/falcon_core")
-    output_dir = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon_core")
+    c_api_include = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core/c-api/include/falcon-core")
+    output_dir = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/falcon-core")
     test_dir = Path("/home/daniel/work/wisc/playground/python-port-playground/falcon-core-libs/lua/tests/generated")
     
     test_dir.mkdir(parents=True, exist_ok=True)

@@ -72,10 +72,10 @@ def generate_ffi(include_path):
     return "\n".join(result)
 
 if __name__ == "__main__":
-    include_dir = "/home/daniel/work/wisc/playground/python-port-playground/falcon-core/c-api/include/falcon_core"
+    include_dir = "/home/daniel/work/wisc/playground/python-port-playground/falcon-core/c-api/include/falcon-core"
     defs = generate_ffi(include_dir)
     
-    with open("falcon_core/ffi/cdef.lua", "w") as f:
+    with open("falcon-core/ffi/cdef.lua", "w") as f:
         f.write("-- Auto-generated FFI definitions for falcon-core\n")
         f.write("local ffi = require('ffi')\n\n")
         f.write("ffi.cdef[[\n")
@@ -84,6 +84,6 @@ if __name__ == "__main__":
         f.write("\n")
         f.write("-- Export library and utilities\n")
         f.write("return {\n")
-        f.write("    lib = ffi.load('/usr/local/lib/libfalcon_core_c_api.so'),\n")
+        f.write("    lib = ffi.load('/usr/local/lib/libfalcon-core_c_api.so'),\n")
         f.write("    ffi = ffi\n")
         f.write("}\n")

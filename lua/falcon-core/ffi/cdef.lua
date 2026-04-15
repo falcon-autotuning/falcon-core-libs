@@ -3830,7 +3830,24 @@ bool SymbolUnit_is_compatible_with(SymbolUnitHandle handle, SymbolUnitHandle oth
 ]])
 
 -- Export library and utilities
+local function get_lib_path()
+	local handle = io.popen("pkg-config --variable=libdir falcon-core-c-api")
+	local libdir = handle:read("*a")
+	handle:close()
+	libdir = libdir and libdir:gsub("%s+$", "")
+	if not libdir or libdir == "" then
+		error("Could not determine library directory from pkg-config")
+	end
+	local libname = "libfalcon-core-c-api.so"
+	local path = libdir
+	if not path:match("/$") then
+		path = path .. "/"
+	end
+	path = path .. libname
+	return path
+end
+
 return {
-	lib = ffi.load("/usr/local/falcon/lib/libfalcon_core_c_api.so"),
+	lib = ffi.load(get_lib_path()),
 	ffi = ffi,
 }

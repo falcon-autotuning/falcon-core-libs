@@ -1,11 +1,11 @@
 -- tests/test_centralization.lua
 -- Verify that centralized Song registration works correctly
 
-local falcon_core = require("falcon_core")
-local Quantity = falcon_core.math.Quantity
-local Connections = falcon_core.instrument_interfaces.Connections
-local Point = falcon_core.math.Point
-local Vector = falcon_core.math.Vector
+local falcon-core = require("falcon-core.init")
+local Quantity = falcon-core.math.Quantity
+local Connections = falcon-core.instrument_interfaces.Connections
+local Point = falcon-core.math.Point
+local Vector = falcon-core.math.Vector
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 

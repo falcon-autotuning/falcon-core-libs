@@ -15,7 +15,7 @@ This is a comprehensive Lua port of the `falcon-core` C++ library, built using L
 
 ### Dependencies
 - LuaJIT 2.0+
-- falcon-core C-API library (`libfalcon_core_c_api.so`)
+- falcon-core C-API library (`libfalcon-core_c_api.so`)
 
 ### Via LuaRocks
 
@@ -39,7 +39,7 @@ make install
 ## Quick Start
 
 ```lua
-local falcon = require("falcon_core")
+local falcon = require("falcon-core")
 
 -- Create a Quantity with units
 local q = falcon.math.Quantity.new(10.5, "mV")
@@ -57,7 +57,7 @@ local json = arr:to_json()
 
 ```
 lua/
-├── falcon_core/        # Library modules
+├── falcon-core/        # Library modules
 │   ├── ffi/           # Low-level FFI bindings
 │   ├── generic/       # FArray, List, Map dispatchers
 │   ├── math/          # Quantity, Vector, Point

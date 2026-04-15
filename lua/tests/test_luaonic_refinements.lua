@@ -1,10 +1,10 @@
 -- tests/test_luaonic_refinements.lua
 -- Verification script for new Lua-onic features
 
-local falcon_core = require("falcon_core")
-local Quantity = falcon_core.math.Quantity
-local Connections = falcon_core.instrument_interfaces.Connections
-local MeasuredArray = falcon_core.math.arrays.MeasuredArray
+local falcon-core = require("falcon-core.init")
+local Quantity = falcon-core.math.Quantity
+local Connections = falcon-core.instrument_interfaces.Connections
+local MeasuredArray = falcon-core.math.arrays.MeasuredArray
 
 local function describe(name, fn) print("\n" .. name); fn() end
 local function it(name, fn) 
