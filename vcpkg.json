@@ -1,0 +1,10 @@
+{
+  "name": "falcon-core-libs",
+  "dependencies": [
+    {
+      "name": "falcon-core",
+      "version>=": "1.2.3"
+    }
+  ],
+  "builtin-baseline": "e5a1490e1409d175932ef6014519e9ae149ddb7c"
+}
