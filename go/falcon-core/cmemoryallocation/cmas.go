@@ -77,7 +77,10 @@ func FromCAPI[T any, PT interface {
 	// NOTE: The following AddCleanup/finalizer is not covered by tests because
 	// Go's garbage collector does not guarantee finalizer execution during tests.
 	// This is a known limitation of Go's coverage tooling and is safe to ignore.
-	runtime.AddCleanup(obj, func(_ any) { CloseAllocation(obj, deallocMem) }, true)
+	handle := obj.CAPIHandle()
+	runtime.AddCleanup(obj, func(_ any) {
+		deallocMem(handle)
+	}, true)
 	return obj, nil
 }
 
@@ -113,7 +116,10 @@ func NewAllocation[T any, PT interface {
 	// NOTE: The following AddCleanup/finalizer is not covered by tests because
 	// Go's garbage collector does not guarantee finalizer execution during tests.
 	// This is a known limitation of Go's coverage tooling and is safe to ignore.
-	runtime.AddCleanup(obj, func(_ any) { CloseAllocation(obj, deallocMem) }, true)
+	handle := obj.CAPIHandle()
+	runtime.AddCleanup(obj, func(_ any) {
+		deallocMem(handle)
+	}, true)
 	return obj, nil
 }
 
