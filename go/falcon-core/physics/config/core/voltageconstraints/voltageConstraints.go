@@ -12,10 +12,13 @@ import (
 	"unsafe"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/communications/voltage-states/devicevoltagestates"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairdoubledouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/ports"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/coupledlabelleddomain"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/point"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/adjacency"
 )
 
@@ -101,21 +104,35 @@ func New(adjacency *adjacency.Handle, max_safe_diff float64, bounds *pairdoubled
 		)
 	})
 }
-func (h *Handle) Matrix() (*farraydouble.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
-
-		return farraydouble.FromCAPI(unsafe.Pointer(C.VoltageConstraints_matrix(C.VoltageConstraintsHandle(h.CAPIHandle()))))
-	})
-}
 func (h *Handle) Adjacency() (*adjacency.Handle, error) {
 	return cmemoryallocation.Read(h, func() (*adjacency.Handle, error) {
 
 		return adjacency.FromCAPI(unsafe.Pointer(C.VoltageConstraints_adjacency(C.VoltageConstraintsHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) Limits() (*farraydouble.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*farraydouble.Handle, error) {
+func (h *Handle) MaxSafeDiff() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.VoltageConstraints_max_safe_diff(C.VoltageConstraintsHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) MinBound() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.VoltageConstraints_min_bound(C.VoltageConstraintsHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) MaxBound() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.VoltageConstraints_max_bound(C.VoltageConstraintsHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ComputeMaximalDomain(search_domain *ports.Handle, current_state *devicevoltagestates.Handle) (*coupledlabelleddomain.Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, search_domain, current_state}, func() (*coupledlabelleddomain.Handle, error) {
 
-		return farraydouble.FromCAPI(unsafe.Pointer(C.VoltageConstraints_limits(C.VoltageConstraintsHandle(h.CAPIHandle()))))
+		return coupledlabelleddomain.FromCAPI(unsafe.Pointer(C.VoltageConstraints_compute_maximal_domain(C.VoltageConstraintsHandle(h.CAPIHandle()), C.PortsHandle(search_domain.CAPIHandle()), C.DeviceVoltageStatesHandle(current_state.CAPIHandle()))))
+	})
+}
+func (h *Handle) ValidateVoltageState(voltage_state *point.Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, voltage_state}, func() (bool, error) {
+		return bool(C.VoltageConstraints_validate_voltage_state(C.VoltageConstraintsHandle(h.CAPIHandle()), C.PointHandle(voltage_state.CAPIHandle()))), nil
 	})
 }

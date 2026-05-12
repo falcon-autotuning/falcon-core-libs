@@ -1,4 +1,6 @@
-
+vcpkg/
+vcpkg_installed/
+my-vcpkg-triplets/
 # ignore release outputs
 out/
 

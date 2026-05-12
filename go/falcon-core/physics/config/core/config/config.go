@@ -22,8 +22,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapgnamegroup"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairconnectionconnection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/adjacency"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/group"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/voltageconstraints"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/gaterelations"
@@ -101,12 +101,12 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
-func New(screening_gates *connections.Handle, plunger_gates *connections.Handle, ohmics *connections.Handle, barrier_gates *connections.Handle, reservoir_gates *connections.Handle, groups *mapgnamegroup.Handle, wiring_DC *impedances.Handle, constraints *voltageconstraints.Handle) (*Handle, error) {
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{screening_gates, plunger_gates, ohmics, barrier_gates, reservoir_gates, groups, wiring_DC, constraints}, func() (*Handle, error) {
+func New(screening_gates *connections.Handle, plunger_gates *connections.Handle, ohmics *connections.Handle, barrier_gates *connections.Handle, reservoir_gates *connections.Handle, groups *mapgnamegroup.Handle, wiring_DC *impedances.Handle, adjacency *adjacency.Handle, max_safe_diff float64, min_bound float64, max_bound float64) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{screening_gates, plunger_gates, ohmics, barrier_gates, reservoir_gates, groups, wiring_DC, adjacency}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.Config_create(C.ConnectionsHandle(screening_gates.CAPIHandle()), C.ConnectionsHandle(plunger_gates.CAPIHandle()), C.ConnectionsHandle(ohmics.CAPIHandle()), C.ConnectionsHandle(barrier_gates.CAPIHandle()), C.ConnectionsHandle(reservoir_gates.CAPIHandle()), C.MapGnameGroupHandle(groups.CAPIHandle()), C.ImpedancesHandle(wiring_DC.CAPIHandle()), C.VoltageConstraintsHandle(constraints.CAPIHandle()))), nil
+				return unsafe.Pointer(C.Config_create(C.ConnectionsHandle(screening_gates.CAPIHandle()), C.ConnectionsHandle(plunger_gates.CAPIHandle()), C.ConnectionsHandle(ohmics.CAPIHandle()), C.ConnectionsHandle(barrier_gates.CAPIHandle()), C.ConnectionsHandle(reservoir_gates.CAPIHandle()), C.MapGnameGroupHandle(groups.CAPIHandle()), C.ImpedancesHandle(wiring_DC.CAPIHandle()), C.AdjacencyHandle(adjacency.CAPIHandle()), C.double(max_safe_diff), C.double(min_bound), C.double(max_bound))), nil
 			},
 			construct,
 			destroy,
@@ -118,10 +118,25 @@ func (h *Handle) NumUniqueChannels() (int32, error) {
 		return int32(C.Config_num_unique_channels(C.ConfigHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) VoltageConstraints() (*voltageconstraints.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*voltageconstraints.Handle, error) {
+func (h *Handle) Adjacency() (*adjacency.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*adjacency.Handle, error) {
 
-		return voltageconstraints.FromCAPI(unsafe.Pointer(C.Config_voltage_constraints(C.ConfigHandle(h.CAPIHandle()))))
+		return adjacency.FromCAPI(unsafe.Pointer(C.Config_adjacency(C.ConfigHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) MaxSafeDiff() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.Config_max_safe_diff(C.ConfigHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) MinBound() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.Config_min_bound(C.ConfigHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) MaxBound() (float64, error) {
+	return cmemoryallocation.Read(h, func() (float64, error) {
+		return float64(C.Config_max_bound(C.ConfigHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Groups() (*mapgnamegroup.Handle, error) {

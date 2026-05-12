@@ -37,7 +37,7 @@ func makeTestAdjacency(t *testing.T) *adjacency.Handle {
 }
 
 func makeTestPairDoubleDouble(t *testing.T) *pairdoubledouble.Handle {
-	pair, err := pairdoubledouble.New(0.0, 1.0)
+	pair, err := pairdoubledouble.New(-1.0, 1.0)
 	if err != nil {
 		t.Fatalf("pairdoubledouble.New error: %v", err)
 	}
@@ -70,14 +70,36 @@ func TestVoltageConstraints_NewAndClose(t *testing.T) {
 	}
 }
 
-func TestVoltageConstraints_Matrix(t *testing.T) {
+func TestVoltageConstraints_MaxSafeDiff(t *testing.T) {
 	vc, _, _ := makeTestVoltageConstraints(t)
-	mat, err := vc.Matrix()
+	mat, err := vc.MaxSafeDiff()
 	if err != nil {
-		t.Fatalf("Matrix error: %v", err)
+		t.Fatalf("MaxSafeDiff error: %v", err)
 	}
-	if mat == nil {
-		t.Error("Matrix returned nil")
+	if mat == 0.0 {
+		t.Error("MaxSafeDiff returned 0.0")
+	}
+}
+
+func TestVoltageConstraints_MinBound(t *testing.T) {
+	vc, _, _ := makeTestVoltageConstraints(t)
+	mat, err := vc.MinBound()
+	if err != nil {
+		t.Fatalf("MinBound error: %v", err)
+	}
+	if mat == 0.0 {
+		t.Error("MinBound returned 0.0")
+	}
+}
+
+func TestVoltageConstraints_MaxBound(t *testing.T) {
+	vc, _, _ := makeTestVoltageConstraints(t)
+	mat, err := vc.MaxBound()
+	if err != nil {
+		t.Fatalf("MaxBound error: %v", err)
+	}
+	if mat == 0.0 {
+		t.Error("MaxBound returned 0.0")
 	}
 }
 
@@ -89,17 +111,6 @@ func TestVoltageConstraints_Adjacency(t *testing.T) {
 	}
 	if a == nil {
 		t.Error("Adjacency returned nil")
-	}
-}
-
-func TestVoltageConstraints_Limits(t *testing.T) {
-	vc, _, _ := makeTestVoltageConstraints(t)
-	lim, err := vc.Limits()
-	if err != nil {
-		t.Fatalf("Limits error: %v", err)
-	}
-	if lim == nil {
-		t.Error("Limits returned nil")
 	}
 }
 
@@ -137,14 +148,17 @@ func TestVoltageConstraints_ClosedErrors(t *testing.T) {
 	vc.Close()
 	adj.Close()
 	bounds.Close()
-	if _, err := vc.Matrix(); err == nil {
-		t.Error("Matrix() on closed: expected error")
+	if _, err := vc.MaxSafeDiff(); err == nil {
+		t.Error("MaxSafeDiff() on closed: expected error")
+	}
+	if _, err := vc.MaxBound(); err == nil {
+		t.Error("MaxBound() on closed: expected error")
+	}
+	if _, err := vc.MinBound(); err == nil {
+		t.Error("MinBound() on closed: expected error")
 	}
 	if _, err := vc.Adjacency(); err == nil {
 		t.Error("Adjacency() on closed: expected error")
-	}
-	if _, err := vc.Limits(); err == nil {
-		t.Error("Limits() on closed: expected error")
 	}
 	if _, err := vc.Equal(vc); err == nil {
 		t.Error("Equal() on closed: expected error")

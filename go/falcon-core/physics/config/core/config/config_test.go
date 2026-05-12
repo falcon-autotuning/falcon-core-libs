@@ -6,10 +6,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/names/channel"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/names/gname"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapgnamegroup"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairdoubledouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/adjacency"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/group"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/config/core/voltageconstraints"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connections"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/impedance"
@@ -58,7 +56,7 @@ func makeFixtureImpedances(t *testing.T) *impedances.Handle {
 	return imp
 }
 
-func makeFixtureVoltageConstraints(t *testing.T) *voltageconstraints.Handle {
+func makeFixtureAdjacency(t *testing.T) *adjacency.Handle {
 	adjIndexes, err := connections.NewEmpty()
 	if err != nil {
 		t.Fatalf("connections.NewEmpty for adjacency indexes: %v", err)
@@ -88,15 +86,7 @@ func makeFixtureVoltageConstraints(t *testing.T) *voltageconstraints.Handle {
 	if err != nil {
 		t.Fatalf("adjacency.New: %v", err)
 	}
-	bounds, err := pairdoubledouble.New(-1.0, 1.0)
-	if err != nil {
-		t.Fatalf("pairdoubledouble.New: %v", err)
-	}
-	vc, err := voltageconstraints.New(adj, 1.0, bounds)
-	if err != nil {
-		t.Fatalf("voltageconstraints.New: %v", err)
-	}
-	return vc
+	return adj
 }
 
 func makeFixtureConfig(t *testing.T) *Handle {
@@ -304,9 +294,9 @@ func makeFixtureConfig(t *testing.T) *Handle {
 
 	// Impedances
 	imp := makeFixtureImpedances(t)
-	vc := makeFixtureVoltageConstraints(t)
+	adj := makeFixtureAdjacency(t)
 
-	cfg, err := New(screening, plunger, ohmics, barrier, reservoir, groups, imp, vc)
+	cfg, err := New(screening, plunger, ohmics, barrier, reservoir, groups, imp, adj, 1.0, -1.0, 1.0)
 	if err != nil {
 		t.Fatalf("Config.New failed: %v", err)
 	}
@@ -347,8 +337,14 @@ func TestConfig_AllMethods(t *testing.T) {
 	}
 
 	// Accessors and outputs
-	if _, err := cfg.VoltageConstraints(); err != nil {
-		t.Errorf("VoltageConstraints() failed: %v", err)
+	if _, err := cfg.MaxSafeDiff(); err != nil {
+		t.Errorf("MaxSafeDiff() failed: %v", err)
+	}
+	if _, err := cfg.MinBound(); err != nil {
+		t.Errorf("MinBound() failed: %v", err)
+	}
+	if _, err := cfg.MaxBound(); err != nil {
+		t.Errorf("MaxBound() failed: %v", err)
 	}
 	if _, err := cfg.Groups(); err != nil {
 		t.Errorf("Groups() failed: %v", err)
@@ -626,7 +622,9 @@ func TestConfig_ErrorBranches(t *testing.T) {
 		name string
 		test func() error
 	}{
-		{"VoltageConstraints", func() error { _, err := cfg.VoltageConstraints(); return err }},
+		{"MaxSafeDiff", func() error { _, err := cfg.MaxSafeDiff(); return err }},
+		{"MinBound", func() error { _, err := cfg.MinBound(); return err }},
+		{"MaxBound", func() error { _, err := cfg.MaxBound(); return err }},
 		{"Groups", func() error { _, err := cfg.Groups(); return err }},
 		{"WiringDc", func() error { _, err := cfg.WiringDc(); return err }},
 		{"Channels", func() error { _, err := cfg.Channels(); return err }},
