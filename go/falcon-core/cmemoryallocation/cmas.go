@@ -16,11 +16,54 @@ package cmemoryallocation
 
 import (
 	"errors"
-	"runtime"
+	"sync"
 	"unsafe"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/errorhandling"
 )
+
+var (
+	freedHandlesMu sync.Mutex
+	freedHandles   = map[uintptr]struct{}{}
+)
+
+// registerHandle marks a pointer as active (not yet freed) in the tracking map.
+func registerHandle(ptr unsafe.Pointer) {
+	if ptr == nil {
+		return
+	}
+	freedHandlesMu.Lock()
+	delete(freedHandles, uintptr(ptr))
+	freedHandlesMu.Unlock()
+}
+
+// markHandleFreed marks ptr as freed and returns true only the first time.
+func markHandleFreed(ptr unsafe.Pointer) bool {
+	if ptr == nil {
+		return false
+	}
+	key := uintptr(ptr)
+	freedHandlesMu.Lock()
+	defer freedHandlesMu.Unlock()
+	if _, exists := freedHandles[key]; exists {
+		return false
+	}
+	freedHandles[key] = struct{}{}
+	return true
+}
+
+// destroyOnce calls deallocMem(ptr) exactly once. Subsequent calls are no-ops.
+func destroyOnce(ptr unsafe.Pointer, deallocMem func(unsafe.Pointer)) error {
+	if !markHandleFreed(ptr) {
+		return nil
+	}
+	deallocMem(ptr)
+	err := errorhandling.ErrorHandler.CheckCapiError()
+	if err != nil {
+		return errors.Join(errors.New(`could not destroy after memory was deallocated`), err)
+	}
+	return nil
+}
 
 type HasCAPIHandle interface {
 	CAPIHandle() unsafe.Pointer // a method to get the C-API handle
@@ -74,13 +117,10 @@ func FromCAPI[T any, PT interface {
 		return zero, errors.New(`FromCAPI: the pointer is null`)
 	}
 	obj := constructHandle(p)
-	// NOTE: The following AddCleanup/finalizer is not covered by tests because
-	// Go's garbage collector does not guarantee finalizer execution during tests.
-	// This is a known limitation of Go's coverage tooling and is safe to ignore.
-	handle := obj.CAPIHandle()
-	runtime.AddCleanup(obj, func(_ any) {
-		deallocMem(handle)
-	}, true)
+	// NOTE: We intentionally do not register runtime cleanup for FromCAPI.
+	// Many C-API getters return borrowed handles whose ownership stays in C++.
+	// Auto-destroying those pointers causes invalid free crashes.
+	registerHandle(p)
 	return obj, nil
 }
 
@@ -113,13 +153,7 @@ func NewAllocation[T any, PT interface {
 		return zero, errors.Join(errors.New(`could not allocate memory from C-API`), err)
 	}
 	obj := constructHandle(mem)
-	// NOTE: The following AddCleanup/finalizer is not covered by tests because
-	// Go's garbage collector does not guarantee finalizer execution during tests.
-	// This is a known limitation of Go's coverage tooling and is safe to ignore.
-	handle := obj.CAPIHandle()
-	runtime.AddCleanup(obj, func(_ any) {
-		deallocMem(handle)
-	}, true)
+	registerHandle(mem)
 	return obj, nil
 }
 
@@ -140,10 +174,8 @@ func CloseAllocation(
 	if err := checkHandleValid(obj, "CloseAllocation"); err != nil {
 		return err
 	}
-	deallocMem(obj.CAPIHandle())
-	err := errorhandling.ErrorHandler.CheckCapiError()
-	if err != nil {
-		return errors.Join(errors.New(`could not destroy after memory was deallocated`), err)
+	if err := destroyOnce(obj.CAPIHandle(), deallocMem); err != nil {
+		return err
 	}
 	obj.ResetHandle()
 	return nil
