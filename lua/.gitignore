@@ -1,7 +1,0 @@
-luacov.*
-.luacov
-*.report.out
-/luarocks
-/lua
-/lua_modules
-/.luarocks

@@ -1,7 +1,0 @@
-(executable
- (name coverage_test)
- (libraries falcon_core))
-
-(rule
- (alias runtest)
- (action (run %{exe:coverage_test.exe})))
