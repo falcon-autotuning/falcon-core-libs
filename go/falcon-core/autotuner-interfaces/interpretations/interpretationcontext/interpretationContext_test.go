@@ -5,7 +5,7 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/measurementcontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listmeasurementcontext"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axesmeasurementcontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -21,7 +21,7 @@ func makeTestSymbolUnit(t *testing.T) *symbolunit.Handle {
 
 func makeTestMeasurementContext(t *testing.T, name string) *measurementcontext.Handle {
 	conn, _ := connection.NewBarrierGate(name)
-	m, err := measurementcontext.New(conn, instrumenttypes.VoltageSource())
+	m, err := measurementcontext.New(conn, instrument.VoltageSource)
 	if err != nil {
 		t.Fatalf("measurementcontext.New(%q) error: %v", name, err)
 	}

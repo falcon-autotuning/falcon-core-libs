@@ -7,8 +7,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/liststring"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringbool"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairstringbool"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/analyticfunction"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axescoupledlabelleddomain"
@@ -39,7 +39,7 @@ func makeTestInstrumentPort(t *testing.T, name string) *instrumentport.Handle {
 	if err != nil {
 		t.Fatalf("connection.NewBarrierGate error: %v", err)
 	}
-	p, err := instrumentport.NewKnob(name, c, instrumenttypes.Voltmeter(), v, "")
+	p, err := instrumentport.NewKnob(name, "inst", c, instrument.Voltmeter, v, "")
 	if err != nil {
 		t.Fatalf("instrumentport.NewKnob error: %v", err)
 	}

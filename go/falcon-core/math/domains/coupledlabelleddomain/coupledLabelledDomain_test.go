@@ -3,8 +3,8 @@ package coupledlabelleddomain
 import (
 	"testing"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -20,7 +20,7 @@ func makeTestInstrumentPort(t *testing.T) *instrumentport.Handle {
 		t.Fatalf("Invalid conn: %v", err)
 	}
 
-	ip, err := instrumentport.NewKnob("knob", conn, instrumenttypes.VoltageSource(), v, "desc")
+	ip, err := instrumentport.NewKnob("knob", "inst", conn, instrument.VoltageSource, v, "desc")
 	if err != nil {
 		t.Fatalf("instrumentport.NewKnob failed: %v", err)
 	}
@@ -76,7 +76,7 @@ func TestCoupledLabelledDomain_ContentsAndAccessors(t *testing.T) {
 	if err != nil {
 		t.Fatalf("InstrumentPort.InstrumentType failed: %v", err)
 	}
-	if itype != instrumenttypes.VoltageSource() {
+	if itype != instrument.VoltageSource {
 		t.Errorf("Expected InstrumentPort type 'type', got %q", itype)
 	}
 	desc, err := port.Description()

@@ -1,0 +1,114 @@
+package pairinstrumentportquantity
+
+/*
+#cgo pkg-config: falcon-core-c-api
+#include <falcon-core/generic/PairInstrumentPortQuantity_c_api.h>
+#include <falcon-core/generic/String_c_api.h>
+#include <stdlib.h>
+*/
+import "C"
+import (
+	"errors"
+	"unsafe"
+
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/quantity"
+)
+
+type Handle struct {
+	falconcorehandle.FalconCoreHandle
+}
+
+var (
+	construct = func(ptr unsafe.Pointer) *Handle {
+		return &Handle{FalconCoreHandle: falconcorehandle.Construct(ptr)}
+	}
+	destroy = func(ptr unsafe.Pointer) {
+		C.PairInstrumentPortQuantity_destroy(C.PairInstrumentPortQuantityHandle(ptr))
+	}
+)
+
+func (h *Handle) IsNil() bool { return h == nil }
+func FromCAPI(p unsafe.Pointer) (*Handle, error) {
+	return cmemoryallocation.FromCAPI(
+		p,
+		construct,
+		destroy,
+	)
+}
+func New(first *instrumentport.Handle, second *quantity.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{first, second}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInstrumentPortQuantity_create(C.InstrumentPortHandle(first.CAPIHandle()), C.QuantityHandle(second.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func Copy(handle *Handle) (*Handle, error) {
+	return cmemoryallocation.Read(handle, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInstrumentPortQuantity_copy(C.PairInstrumentPortQuantityHandle(handle.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+
+func (h *Handle) Close() error {
+	return cmemoryallocation.CloseAllocation(h, destroy)
+}
+func (h *Handle) First() (*instrumentport.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*instrumentport.Handle, error) {
+
+		return instrumentport.FromCAPI(unsafe.Pointer(C.PairInstrumentPortQuantity_first(C.PairInstrumentPortQuantityHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Second() (*quantity.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*quantity.Handle, error) {
+
+		return quantity.FromCAPI(unsafe.Pointer(C.PairInstrumentPortQuantity_second(C.PairInstrumentPortQuantityHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) Equal(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInstrumentPortQuantity_equal(C.PairInstrumentPortQuantityHandle(h.CAPIHandle()), C.PairInstrumentPortQuantityHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) NotEqual(other *Handle) (bool, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, other}, func() (bool, error) {
+		return bool(C.PairInstrumentPortQuantity_not_equal(C.PairInstrumentPortQuantityHandle(h.CAPIHandle()), C.PairInstrumentPortQuantityHandle(other.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) ToJSON() (string, error) {
+	return cmemoryallocation.Read(h, func() (string, error) {
+
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.PairInstrumentPortQuantity_to_json_string(C.PairInstrumentPortQuantityHandle(h.CAPIHandle()))))
+		if err != nil {
+			return "", errors.New("ToJSON:" + err.Error())
+		}
+		return strObj.ToGoString()
+	})
+}
+func FromJSON(json string) (*Handle, error) {
+	realjson := str.New(json)
+	return cmemoryallocation.Read(realjson, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.PairInstrumentPortQuantity_from_json_string(C.StringHandle(realjson.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}

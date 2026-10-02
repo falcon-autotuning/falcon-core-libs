@@ -3,8 +3,8 @@ package measurementcontext
 import (
 	"testing"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
@@ -26,7 +26,7 @@ func mustInstrumentPort() *instrumentport.Handle {
 	if err != nil {
 		panic(err)
 	}
-	h, err := instrumentport.NewKnob("port_id", conn, instrumenttypes.VoltageSource(), v, "A test port")
+	h, err := instrumentport.NewKnob("port_id", "instrument1", conn, instrument.VoltageSource, v, "A test port")
 	if err != nil {
 		panic(err)
 	}
@@ -36,7 +36,7 @@ func mustInstrumentPort() *instrumentport.Handle {
 func TestMeasurementContext_FullCoverage(t *testing.T) {
 	conn := mustConnection()
 	defer conn.Close()
-	instrType := "test_type"
+	instrType := instrument.Clock
 
 	// Test New
 	mc, err := New(conn, instrType)

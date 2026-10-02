@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/acquisitioncontext"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
@@ -34,8 +34,8 @@ func mustBarrierGate(name string) *connection.Handle {
 	return h
 }
 
-func mustInstrumentPort(name string, conn *connection.Handle, insttype string, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
-	h, err := instrumentport.NewKnob(name, conn, insttype, unit, desc)
+func mustInstrumentPort(name string, conn *connection.Handle, insttype instrument.Instrument, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
+	h, err := instrumentport.NewKnob(name, "inst", conn, insttype, unit, desc)
 	if err != nil {
 		panic(fmt.Errorf("failed to create Knob: %v", err))
 	}
@@ -44,10 +44,10 @@ func mustInstrumentPort(name string, conn *connection.Handle, insttype string, u
 
 var (
 	defaultListData = []*acquisitioncontext.Handle{
-		mustAcquisitionContext(mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), "")),
-		mustAcquisitionContext(mustInstrumentPort("B2", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), "")),
+		mustAcquisitionContext(mustInstrumentPort("B1", mustBarrierGate("B1"), instrument.VoltageSource, mustVolt(), "")),
+		mustAcquisitionContext(mustInstrumentPort("B2", mustBarrierGate("B2"), instrument.VoltageSource, mustVolt(), "")),
 	}
 	otherListData = []*acquisitioncontext.Handle{
-		mustAcquisitionContext(mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), "")),
+		mustAcquisitionContext(mustInstrumentPort("B3", mustBarrierGate("B3"), instrument.VoltageSource, mustVolt(), "")),
 	}
 )

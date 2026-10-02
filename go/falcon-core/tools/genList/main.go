@@ -379,6 +379,14 @@ func main() {
 			CElemTypeConstructor: "pairinstrumentportporttransform.FromCAPI",
 		},
 		{
+			Type:                 "ListPairInstrumentPortQuantity",
+			ElemType:             "*pairinstrumentportquantity.Handle",
+			CType:                "PairInstrumentPortQuantityHandle",
+			OptionalImport:       `"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairinstrumentportquantity"`,
+			PrimitiveType:        false,
+			CElemTypeConstructor: "pairinstrumentportquantity.FromCAPI",
+		},
+		{
 			Type:                 "ListAcquisitionContext",
 			ElemType:             "*acquisitioncontext.Handle",
 			CType:                "AcquisitionContextHandle",

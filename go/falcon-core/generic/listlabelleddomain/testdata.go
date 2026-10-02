@@ -3,8 +3,8 @@ package listlabelleddomain
 import (
 	"fmt"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -26,8 +26,8 @@ func mustBarrierGate(name string) *connection.Handle {
 	return h
 }
 
-func mustInstrumentPort(name string, conn *connection.Handle, insttype string, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
-	h, err := instrumentport.NewKnob(name, conn, insttype, unit, desc)
+func mustInstrumentPort(name string, conn *connection.Handle, insttype instrument.Instrument, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
+	h, err := instrumentport.NewKnob(name, "inst", conn, insttype, unit, desc)
 	if err != nil {
 		panic(fmt.Errorf("failed to create Knob: %v", err))
 	}
@@ -46,10 +46,10 @@ func mustVolt() *symbolunit.Handle {
 
 var (
 	defaultListData = []*labelleddomain.Handle{
-		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
-		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
+		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("B1", mustBarrierGate("B1"), instrument.VoltageSource, mustVolt(), ""), true, true),
+		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("B3", mustBarrierGate("B3"), instrument.VoltageSource, mustVolt(), ""), true, true),
 	}
 	otherListData = []*labelleddomain.Handle{
-		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("P2", mustBarrierGate("P2"), instrumenttypes.VoltageSource(), mustVolt(), ""), true, true),
+		mustLabelledDomain(0.0, 1.0, mustInstrumentPort("P2", mustBarrierGate("P2"), instrument.VoltageSource, mustVolt(), ""), true, true),
 	}
 )

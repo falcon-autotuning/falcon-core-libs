@@ -14,6 +14,11 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/access"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentcharacteristic"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/porttype"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/scope"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
@@ -88,45 +93,60 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
-func NewPort(default_name string, psuedo_name *connection.Handle, instrument_type string, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewPort(default_name string, instrument_name string, scope scope.Scope, access access.Access, characteristic instrumentcharacteristic.InstrumentCharacteristic, type_ porttype.PortType, pseudo_name *connection.Handle, instrument_type instrument.Instrument, units *symbolunit.Handle, description string) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, pseudo_name, units, realdescription}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.InstrumentPort_create_port(C.StringHandle(realdefault_name.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.InstrumentPort_create_port(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.Scope(scope), C.Access(access), C.InstrumentCharacteristic(characteristic), C.PortType(type_), C.ConnectionHandle(pseudo_name.CAPIHandle()), C.Instrument(instrument_type), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewKnob(default_name string, psuedo_name *connection.Handle, instrument_type string, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewSetting(default_name string, instrument_name string, scope scope.Scope, access access.Access, characteristic instrumentcharacteristic.InstrumentCharacteristic, pseudo_name *connection.Handle, instrument_type instrument.Instrument, units *symbolunit.Handle, description string) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, pseudo_name, units, realdescription}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.InstrumentPort_create_knob(C.StringHandle(realdefault_name.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.InstrumentPort_create_setting(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.Scope(scope), C.Access(access), C.InstrumentCharacteristic(characteristic), C.ConnectionHandle(pseudo_name.CAPIHandle()), C.Instrument(instrument_type), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewMeter(default_name string, psuedo_name *connection.Handle, instrument_type string, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewKnob(default_name string, instrument_name string, pseudo_name *connection.Handle, instrument_type instrument.Instrument, units *symbolunit.Handle, description string) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, pseudo_name, units, realdescription}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.InstrumentPort_create_meter(C.StringHandle(realdefault_name.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.InstrumentPort_create_knob(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.ConnectionHandle(pseudo_name.CAPIHandle()), C.Instrument(instrument_type), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+			},
+			construct,
+			destroy,
+		)
+	})
+}
+func NewMeter(default_name string, instrument_name string, pseudo_name *connection.Handle, instrument_type instrument.Instrument, units *symbolunit.Handle, description string) (*Handle, error) {
+	realdefault_name := str.New(default_name)
+	realinstrument_name := str.New(instrument_name)
+	realdescription := str.New(description)
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, pseudo_name, units, realdescription}, func() (*Handle, error) {
+
+		return cmemoryallocation.NewAllocation(
+			func() (unsafe.Pointer, error) {
+				return unsafe.Pointer(C.InstrumentPort_create_meter(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.ConnectionHandle(pseudo_name.CAPIHandle()), C.Instrument(instrument_type), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -163,20 +183,40 @@ func (h *Handle) DefaultName() (string, error) {
 		return strObj.ToGoString()
 	})
 }
-func (h *Handle) PsuedoName() (*connection.Handle, error) {
-	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
-
-		return connection.FromCAPI(unsafe.Pointer(C.InstrumentPort_psuedo_name(C.InstrumentPortHandle(h.CAPIHandle()))))
-	})
-}
-func (h *Handle) InstrumentType() (string, error) {
+func (h *Handle) InstrumentName() (string, error) {
 	return cmemoryallocation.Read(h, func() (string, error) {
 
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.InstrumentPort_instrument_type(C.InstrumentPortHandle(h.CAPIHandle()))))
+		strObj, err := str.FromCAPI(unsafe.Pointer(C.InstrumentPort_instrument_name(C.InstrumentPortHandle(h.CAPIHandle()))))
 		if err != nil {
-			return "", errors.New("InstrumentType:" + err.Error())
+			return "", errors.New("InstrumentName:" + err.Error())
 		}
 		return strObj.ToGoString()
+	})
+}
+func (h *Handle) PseudoName() (*connection.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*connection.Handle, error) {
+
+		return connection.FromCAPI(unsafe.Pointer(C.InstrumentPort_pseudo_name(C.InstrumentPortHandle(h.CAPIHandle()))))
+	})
+}
+func (h *Handle) InstrumentType() (instrument.Instrument, error) {
+	return cmemoryallocation.Read(h, func() (instrument.Instrument, error) {
+		return instrument.Instrument(C.InstrumentPort_instrument_type(C.InstrumentPortHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) Scope() (scope.Scope, error) {
+	return cmemoryallocation.Read(h, func() (scope.Scope, error) {
+		return scope.Scope(C.InstrumentPort_scope(C.InstrumentPortHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) Access() (access.Access, error) {
+	return cmemoryallocation.Read(h, func() (access.Access, error) {
+		return access.Access(C.InstrumentPort_access(C.InstrumentPortHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) Characteristic() (instrumentcharacteristic.InstrumentCharacteristic, error) {
+	return cmemoryallocation.Read(h, func() (instrumentcharacteristic.InstrumentCharacteristic, error) {
+		return instrumentcharacteristic.InstrumentCharacteristic(C.InstrumentPort_characteristic(C.InstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Units() (*symbolunit.Handle, error) {
@@ -205,6 +245,11 @@ func (h *Handle) InstrumentFacingName() (string, error) {
 		return strObj.ToGoString()
 	})
 }
+func (h *Handle) Type() (porttype.PortType, error) {
+	return cmemoryallocation.Read(h, func() (porttype.PortType, error) {
+		return porttype.PortType(C.InstrumentPort_type(C.InstrumentPortHandle(h.CAPIHandle()))), nil
+	})
+}
 func (h *Handle) IsKnob() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
 		return bool(C.InstrumentPort_is_knob(C.InstrumentPortHandle(h.CAPIHandle()))), nil
@@ -215,8 +260,8 @@ func (h *Handle) IsMeter() (bool, error) {
 		return bool(C.InstrumentPort_is_meter(C.InstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) IsPort() (bool, error) {
+func (h *Handle) IsSetting() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
-		return bool(C.InstrumentPort_is_port(C.InstrumentPortHandle(h.CAPIHandle()))), nil
+		return bool(C.InstrumentPort_is_setting(C.InstrumentPortHandle(h.CAPIHandle()))), nil
 	})
 }

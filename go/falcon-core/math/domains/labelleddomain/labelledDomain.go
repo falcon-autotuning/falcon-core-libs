@@ -14,7 +14,12 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/access"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentcharacteristic"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/porttype"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/scope"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -90,45 +95,45 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
-func NewPrimitiveKnob(default_name string, min_val float64, max_val float64, psuedo_name *connection.Handle, instrument_type string, lesser_bound_contained bool, greater_bound_contained bool, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewPrimitiveKnob(default_name string, instrument_name string, min_val float64, max_val float64, units *symbolunit.Handle, description string, psuedo_name *connection.Handle, instrument_type instrument.Instrument, lesser_bound_contained bool, greater_bound_contained bool) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, units, realdescription, psuedo_name}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LabelledDomain_create_primitive_knob(C.StringHandle(realdefault_name.CAPIHandle()), C.double(min_val), C.double(max_val), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.bool(lesser_bound_contained), C.bool(greater_bound_contained), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.LabelledDomain_create_primitive_knob(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.double(min_val), C.double(max_val), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.Instrument(instrument_type), C.bool(lesser_bound_contained), C.bool(greater_bound_contained))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewPrimitiveMeter(default_name string, min_val float64, max_val float64, psuedo_name *connection.Handle, instrument_type string, lesser_bound_contained bool, greater_bound_contained bool, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewPrimitiveMeter(default_name string, instrument_name string, min_val float64, max_val float64, units *symbolunit.Handle, description string, psuedo_name *connection.Handle, instrument_type instrument.Instrument, lesser_bound_contained bool, greater_bound_contained bool) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, units, realdescription, psuedo_name}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LabelledDomain_create_primitive_meter(C.StringHandle(realdefault_name.CAPIHandle()), C.double(min_val), C.double(max_val), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.bool(lesser_bound_contained), C.bool(greater_bound_contained), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.LabelledDomain_create_primitive_meter(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.double(min_val), C.double(max_val), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.Instrument(instrument_type), C.bool(lesser_bound_contained), C.bool(greater_bound_contained))), nil
 			},
 			construct,
 			destroy,
 		)
 	})
 }
-func NewPrimitivePort(default_name string, min_val float64, max_val float64, psuedo_name *connection.Handle, instrument_type string, lesser_bound_contained bool, greater_bound_contained bool, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewPrimitiveSetting(default_name string, instrument_name string, scope scope.Scope, access access.Access, characteristic instrumentcharacteristic.InstrumentCharacteristic, min_val float64, max_val float64, units *symbolunit.Handle, description string, psuedo_name *connection.Handle, instrument_type instrument.Instrument, lesser_bound_contained bool, greater_bound_contained bool) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realdefault_name, realinstrument_name, units, realdescription, psuedo_name}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LabelledDomain_create_primitive_port(C.StringHandle(realdefault_name.CAPIHandle()), C.double(min_val), C.double(max_val), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.bool(lesser_bound_contained), C.bool(greater_bound_contained), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.LabelledDomain_create_primitive_setting(C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.Scope(scope), C.Access(access), C.InstrumentCharacteristic(characteristic), C.double(min_val), C.double(max_val), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.Instrument(instrument_type), C.bool(lesser_bound_contained), C.bool(greater_bound_contained))), nil
 			},
 			construct,
 			destroy,
@@ -159,15 +164,15 @@ func NewFromPortAndDomain(port *instrumentport.Handle, domain *domain.Handle) (*
 		)
 	})
 }
-func NewFromDomain(domain *domain.Handle, default_name string, psuedo_name *connection.Handle, instrument_type string, units *symbolunit.Handle, description string) (*Handle, error) {
+func NewFromDomain(domain *domain.Handle, default_name string, instrument_name string, scope scope.Scope, access access.Access, characteristic instrumentcharacteristic.InstrumentCharacteristic, type_ porttype.PortType, units *symbolunit.Handle, description string, psuedo_name *connection.Handle, instrument_type instrument.Instrument) (*Handle, error) {
 	realdefault_name := str.New(default_name)
-	realinstrument_type := str.New(instrument_type)
+	realinstrument_name := str.New(instrument_name)
 	realdescription := str.New(description)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{domain, realdefault_name, psuedo_name, realinstrument_type, units, realdescription}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{domain, realdefault_name, realinstrument_name, units, realdescription, psuedo_name}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.LabelledDomain_create_from_domain(C.DomainHandle(domain.CAPIHandle()), C.StringHandle(realdefault_name.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()))), nil
+				return unsafe.Pointer(C.LabelledDomain_create_from_domain(C.DomainHandle(domain.CAPIHandle()), C.StringHandle(realdefault_name.CAPIHandle()), C.StringHandle(realinstrument_name.CAPIHandle()), C.Scope(scope), C.Access(access), C.InstrumentCharacteristic(characteristic), C.PortType(type_), C.SymbolUnitHandle(units.CAPIHandle()), C.StringHandle(realdescription.CAPIHandle()), C.ConnectionHandle(psuedo_name.CAPIHandle()), C.Instrument(instrument_type))), nil
 			},
 			construct,
 			destroy,

@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringdouble"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/analyticfunction"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
@@ -19,7 +20,7 @@ func makeTestPort(t *testing.T) *instrumentport.Handle {
 	if err != nil {
 		t.Fatalf("symbolunit.New error: %v", err)
 	}
-	p, err := instrumentport.NewKnob("P1", conn, "label", unit, "desc")
+	p, err := instrumentport.NewKnob("P1", "inst", conn, instrument.Thermometer, unit, "desc")
 	if err != nil {
 		t.Fatalf("instrumentport.NewKnob error: %v", err)
 	}

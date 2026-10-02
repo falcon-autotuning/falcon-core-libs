@@ -10,8 +10,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapinstrumentportporttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringbool"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairstringbool"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/ports"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/waveform"
@@ -29,7 +29,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
 
-func mustMeasurementRequest(msg, name string) *Handle {
+func mustMeasurementRequest(msg string) *Handle {
 	// --- Setup a minimal but real MeasurementRequest ---
 	// Waveform
 	wf := mustWaveform("A")
@@ -54,7 +54,7 @@ func mustMeasurementRequest(msg, name string) *Handle {
 	clock, _ := instrumentport.NewExecutionClock()
 	timeDomain := mustLabelledDomain(0, 1.0, clock, true, true)
 	// Construct
-	h, err := New(msg, name, wflist, getter, meterTransforms, timeDomain)
+	h, err := New(msg, wflist, getter, meterTransforms, timeDomain)
 	if err != nil {
 		panic("failed to create MeasurementRequest: " + err.Error())
 	}
@@ -75,7 +75,7 @@ func mustWaveform(name string) *waveform.Handle {
 	if err != nil {
 		panic(fmt.Errorf("connection.NewBarrierGate error: %v", err))
 	}
-	p, err := instrumentport.NewKnob(name, c, instrumenttypes.Voltmeter(), v, "")
+	p, err := instrumentport.NewKnob(name, "instrument1", c, instrument.Voltmeter, v, "")
 	if err != nil {
 		panic(fmt.Errorf("instrumentport.NewKnob error: %v", err))
 	}
@@ -170,7 +170,7 @@ func mustInstrumentPort(name string) *instrumentport.Handle {
 	if err != nil {
 		panic(err)
 	}
-	h, err := instrumentport.NewKnob(name, conn, instrumenttypes.VoltageSource(), v, "A test port")
+	h, err := instrumentport.NewKnob(name, "instrument1", conn, instrument.VoltageSource, v, "A test port")
 	if err != nil {
 		panic(err)
 	}
@@ -186,25 +186,21 @@ func mustLabelledDomain(minVal, maxVal float64, port *instrumentport.Handle, les
 }
 
 func TestMeasurementRequest_CreateDestroy(t *testing.T) {
-	_ = mustMeasurementRequest("msg", "measurement")
+	_ = mustMeasurementRequest("msg")
 	// Test error branches for nils
-	_, err := New("", "measurement", nil, nil, nil, nil)
+	_, err := New("", nil, nil, nil, nil)
 	if err == nil {
 		t.Errorf("Expected error for nil arguments")
 	}
 }
 
 func TestMeasurementRequest_Accessors(t *testing.T) {
-	req := mustMeasurementRequest("msg", "measurement")
+	req := mustMeasurementRequest("msg")
 	defer req.Close()
 
 	msg, err := req.Message()
 	if err != nil || msg != "msg" {
 		t.Errorf("Message error: %v %v", err, msg)
-	}
-	name, err := req.MeasurementName()
-	if err != nil || name != "measurement" {
-		t.Errorf("MeasurementName error: %v %v", err, name)
 	}
 	waves, err := req.Waveforms()
 	if err != nil {
@@ -232,9 +228,6 @@ func TestMeasurementRequest_Accessors(t *testing.T) {
 	if _, err := req.Message(); err == nil {
 		t.Errorf("Message on closed should error")
 	}
-	if _, err := req.MeasurementName(); err == nil {
-		t.Errorf("MeasurementName on closed should error")
-	}
 	if _, err := req.Waveforms(); err == nil {
 		t.Errorf("Waveforms on closed should error")
 	}
@@ -250,9 +243,9 @@ func TestMeasurementRequest_Accessors(t *testing.T) {
 }
 
 func TestMeasurementRequest_Equality(t *testing.T) {
-	req1 := mustMeasurementRequest("msg", "measurement")
+	req1 := mustMeasurementRequest("msg")
 	defer req1.Close()
-	req2 := mustMeasurementRequest("other", "measurement")
+	req2 := mustMeasurementRequest("other")
 	defer req2.Close()
 
 	_, err := req1.Equal(req2)
@@ -292,7 +285,7 @@ func TestMeasurementRequest_Equality(t *testing.T) {
 }
 
 func TestMeasurementRequest_ToJSONFromJSON(t *testing.T) {
-	req := mustMeasurementRequest("msg", "measurement")
+	req := mustMeasurementRequest("msg")
 	defer req.Close()
 	jsonStr, err := req.ToJSON()
 	if err != nil {

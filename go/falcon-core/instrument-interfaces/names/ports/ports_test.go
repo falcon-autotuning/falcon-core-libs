@@ -3,8 +3,8 @@ package ports
 import (
 	"testing"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
@@ -23,12 +23,12 @@ func TestPorts_FullCoverage(t *testing.T) {
 	if err != nil {
 		t.Fatalf("the volt did not get created: %v", err)
 	}
-	ip1, err := instrumentport.NewKnob("port1", conn, instrumenttypes.VoltageSource(), sym, "")
+	ip1, err := instrumentport.NewKnob("port1", "inst", conn, instrument.VoltageSource, sym, "")
 	if err != nil {
 		t.Fatalf("instrumentport.New failed: %v", err)
 	}
 	defer ip1.Close()
-	ip2, err := instrumentport.NewKnob("port2", conn2, instrumenttypes.VoltageSource(), sym, "")
+	ip2, err := instrumentport.NewKnob("port2", "inst", conn2, instrument.VoltageSource, sym, "")
 	if err != nil {
 		t.Fatalf("instrumentport.New failed: %v", err)
 	}
@@ -113,7 +113,7 @@ func TestPorts_FullCoverage(t *testing.T) {
 	}
 
 	// GetInstrumentTypeMatchingPort
-	itmp, err := portsHandle.GetInstrumentTypeMatchingPort(instrumenttypes.VoltageSource())
+	itmp, err := portsHandle.GetInstrumentTypeMatchingPort(instrument.VoltageSource)
 	if err != nil {
 		t.Errorf("GetInstrumentTypeMatchingPort failed: %v", err)
 	}
@@ -307,7 +307,7 @@ func TestPorts_FullCoverage(t *testing.T) {
 	if err == nil {
 		t.Errorf("GetPsuedonameMatchingPort on closed should error")
 	}
-	_, err = portsHandle.GetInstrumentTypeMatchingPort("type1")
+	_, err = portsHandle.GetInstrumentTypeMatchingPort(instrument.Clock)
 	if err == nil {
 		t.Errorf("GetInstrumentTypeMatchingPort on closed should error")
 	}

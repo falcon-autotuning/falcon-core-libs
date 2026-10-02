@@ -3,8 +3,8 @@ package mapinstrumentportporttransform
 import (
 	"fmt"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -18,8 +18,8 @@ func mustBarrierGate(name string) *connection.Handle {
 	return h
 }
 
-func mustInstrumentPort(name string, conn *connection.Handle, insttype string, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
-	h, err := instrumentport.NewKnob(name, conn, insttype, unit, desc)
+func mustInstrumentPort(name string, conn *connection.Handle, insttype instrument.Instrument, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
+	h, err := instrumentport.NewKnob(name, "inst", conn, insttype, unit, desc)
 	if err != nil {
 		panic(fmt.Errorf("failed to create Knob: %v", err))
 	}
@@ -43,10 +43,12 @@ func mustPortTransform(port *instrumentport.Handle, val float64) *porttransform.
 }
 
 var (
-	firstInstrumentPort = mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), "")
+	firstInstrumentPort = mustInstrumentPort("B1", mustBarrierGate("B1"), instrument.VoltageSource, mustVolt(), "")
 	firstPortTransform  = mustPortTransform(
-		mustInstrumentPort("P2", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.0)
-	secondInstrumentPort = mustInstrumentPort("B3", mustBarrierGate("B3"), instrumenttypes.VoltageSource(), mustVolt(), "")
+		mustInstrumentPort("P2", mustBarrierGate("B2"), instrument.VoltageSource, mustVolt(), ""), 1.0,
+	)
+	secondInstrumentPort = mustInstrumentPort("B3", mustBarrierGate("B3"), instrument.VoltageSource, mustVolt(), "")
 	secondPortTransform  = mustPortTransform(
-		mustInstrumentPort("P4", mustBarrierGate("B2"), instrumenttypes.VoltageSource(), mustVolt(), ""), 1.2)
+		mustInstrumentPort("P4", mustBarrierGate("B2"), instrument.VoltageSource, mustVolt(), ""), 1.2,
+	)
 )

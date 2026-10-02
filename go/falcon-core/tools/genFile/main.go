@@ -5,13 +5,263 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )
 
+type CTypeKind int
+
+const (
+	TypePrimitive CTypeKind = iota
+	TypeHandle
+	TypeEnum
+)
+
+type CTypeInfo struct {
+	Name       string
+	Kind       CTypeKind
+	HeaderPath string
+	EnumValues []string
+}
+
+type CTypeTable struct {
+	Types map[string]CTypeInfo
+}
+
+func BuildTypeTable(rootHeader string) (*CTypeTable, error) {
+	table := &CTypeTable{
+		Types: make(map[string]CTypeInfo),
+	}
+
+	visited := map[string]bool{}
+
+	if err := scanHeader(rootHeader, table, visited); err != nil {
+		return nil, err
+	}
+
+	return table, nil
+}
+
+func scanHeader(
+	headerPath string,
+	table *CTypeTable,
+	visited map[string]bool,
+) error {
+	if visited[headerPath] {
+		return nil
+	}
+
+	visited[headerPath] = true
+
+	f, err := os.Open(headerPath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	scanner := bufio.NewScanner(f)
+
+	insideEnum := false
+	var enumLines []string
+
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+
+		parseHandle(line, table, headerPath)
+
+		if strings.Contains(line, "typedef enum") {
+
+			enumLines = []string{line}
+
+			if strings.Contains(line, "}") {
+				parseEnum(line, table, headerPath)
+				continue
+			}
+
+			insideEnum = true
+			continue
+
+		} else if insideEnum {
+
+			enumLines = append(enumLines, line)
+
+			if strings.Contains(line, "}") {
+				parseEnum(
+					strings.Join(enumLines, "\n"),
+					table,
+					headerPath,
+				)
+
+				insideEnum = false
+				enumLines = nil
+			}
+
+			continue
+		}
+
+		if include := extractInclude(line); include != "" {
+			next := resolveInclude(headerPath, include)
+
+			if err := scanHeader(next, table, visited); err != nil {
+				continue
+			}
+		}
+	}
+
+	return nil
+}
+
+var handleRegex = regexp.MustCompile(
+	`typedef\s+void\s*\*\s*([A-Za-z0-9_]+)\s*;`,
+)
+
+func parseHandle(
+	line string,
+	table *CTypeTable,
+	header string,
+) {
+	match := handleRegex.FindStringSubmatch(line)
+
+	if len(match) != 2 {
+		return
+	}
+
+	table.Types[match[1]] = CTypeInfo{
+		Name:       match[1],
+		Kind:       TypeHandle,
+		HeaderPath: header,
+	}
+}
+
+func extractInclude(line string) string {
+	match := regexp.MustCompile(`^#include\s+"([^"]+)"`).
+		FindStringSubmatch(line)
+
+	if len(match) != 2 {
+		return ""
+	}
+
+	return match[1]
+}
+
+func resolveInclude(
+	currentHeader string,
+	include string,
+) string {
+	idx := strings.Index(
+		currentHeader,
+		"falcon-core/",
+	)
+
+	if idx == -1 {
+		return include
+	}
+
+	prefix := currentHeader[:idx]
+
+	return filepath.Join(prefix, include)
+}
+
+var enumRegex = regexp.MustCompile(
+	`}\s*([A-Za-z0-9_]+)\s*;`,
+)
+
+func parseEnum(
+	enumText string,
+	table *CTypeTable,
+	header string,
+) {
+	match := enumRegex.FindStringSubmatch(enumText)
+
+	if len(match) != 2 {
+		return
+	}
+
+	enumName := match[1]
+
+	bodyStart := strings.Index(enumText, "{")
+	bodyEnd := strings.LastIndex(enumText, "}")
+
+	var values []string
+
+	if bodyStart >= 0 && bodyEnd > bodyStart {
+		body := enumText[bodyStart+1 : bodyEnd]
+
+		for _, part := range strings.Split(body, ",") {
+			value := strings.TrimSpace(part)
+
+			if value != "" {
+				values = append(values, value)
+			}
+		}
+	}
+
+	table.Types[enumName] = CTypeInfo{
+		Name:       enumName,
+		Kind:       TypeEnum,
+		HeaderPath: header,
+		EnumValues: values,
+	}
+}
+
+func lookupType(
+	ctype string,
+	table *CTypeTable,
+) (CTypeInfo, bool) {
+	ctype = strings.TrimSpace(ctype)
+	ctype = strings.TrimSuffix(ctype, "*")
+
+	info, ok := table.Types[ctype]
+
+	return info, ok
+}
+
 const watermark = "---------INSERT-IMPORTS---------"
+
+func findGoImportFromTypeInfo(
+	info CTypeInfo,
+) string {
+	parts := strings.Split(
+		info.HeaderPath,
+		"falcon-core/",
+	)
+
+	relPath := parts[1]
+
+	relPath = strings.Replace(
+		relPath,
+		"_c_api.h",
+		"",
+		1,
+	)
+
+	segments := strings.Split(
+		relPath,
+		"/",
+	)
+
+	if info.Kind == TypeEnum {
+		segments[len(segments)-1] = strings.ToLower(info.Name)
+	} else {
+		segments[len(segments)-1] = strings.ToLower(
+			segments[len(segments)-1],
+		)
+	}
+
+	for i, seg := range segments {
+		segments[i] = strings.ReplaceAll(
+			seg,
+			"_",
+			"-",
+		)
+	}
+
+	return "github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/" +
+		strings.Join(segments, "/")
+}
 
 // Finds the Go import path for a given extraImport by scanning the header file
 func findGoImport(headerPath string, extraImport string) (string, error) {
@@ -91,15 +341,24 @@ func insertImports(goFilePath string, imports []string) error {
 		}
 		// Do NOT append the watermark line itself
 	}
-	return os.WriteFile(goFilePath, []byte(strings.Join(out, "\n")), 0644)
+	return os.WriteFile(goFilePath, []byte(strings.Join(out, "\n")), 0o644)
 }
 
 func IsNonPrimitive(gotype string) bool {
-	return !IsPrimitive(gotype) && gotype != ""
+	return !IsPrimitive(gotype) &&
+		!IsEnumGoType(gotype) &&
+		gotype != ""
 }
 
 func IsExtraImport(gotype string) bool {
-	return IsNonPrimitive(gotype) && !IsString(gotype) && gotype != "*Handle" && gotype != "*string.Handle"
+	if IsEnumGoType(gotype) {
+		return true
+	}
+
+	return IsNonPrimitive(gotype) &&
+		!IsString(gotype) &&
+		gotype != "*Handle" &&
+		gotype != "*string.Handle"
 }
 
 func uniqueStrings(input []string) []string {
@@ -114,7 +373,11 @@ func uniqueStrings(input []string) []string {
 	return result
 }
 
-func CtoGType(ctype, packagetype string) string {
+func CtoGType(
+	ctype string,
+	packagetype string,
+	table *CTypeTable,
+) string {
 	switch ctype {
 	case "void":
 		return ""
@@ -147,10 +410,34 @@ func CtoGType(ctype, packagetype string) string {
 	case "size_t*":
 		return "*uint64"
 	}
+	if info, ok := lookupType(ctype, table); ok {
+		switch info.Kind {
+
+		case TypeHandle:
+
+			packageType := strings.ToLower(
+				extractCPrefix(ctype),
+			)
+
+			if packageType == packagetype {
+				return "*Handle"
+			}
+
+			return "*" + packageType + ".Handle"
+
+		case TypeEnum:
+
+			packageType := strings.ToLower(info.Name)
+
+			return packageType + "." + info.Name
+		}
+	}
 	packageType := strings.ToLower(extractCPrefix(ctype))
+
 	if packagetype == packageType {
 		return "*Handle"
 	}
+
 	return "*" + packageType + ".Handle"
 }
 
@@ -219,7 +506,53 @@ func NewCParameterPair(paramStr string) *CParameterPair {
 	if start != -1 && end != -1 && end > start {
 		splits[1] = splits[1][:start] + splits[1][end+1:]
 	}
-	return &CParameterPair{Ctype: strings.TrimSpace(splits[0]), Name: strings.TrimSpace(splits[1])}
+	ctype := strings.TrimSpace(splits[0])
+	name := strings.TrimSpace(splits[1])
+
+	for strings.HasPrefix(name, "*") {
+		ctype += "*"
+		name = strings.TrimPrefix(name, "*")
+	}
+
+	return &CParameterPair{
+		Ctype: ctype,
+		Name:  name,
+	}
+}
+
+var goKeywords = map[string]struct{}{
+	"break":       {},
+	"default":     {},
+	"func":        {},
+	"interface":   {},
+	"select":      {},
+	"case":        {},
+	"defer":       {},
+	"go":          {},
+	"map":         {},
+	"struct":      {},
+	"chan":        {},
+	"else":        {},
+	"goto":        {},
+	"package":     {},
+	"switch":      {},
+	"const":       {},
+	"fallthrough": {},
+	"if":          {},
+	"range":       {},
+	"type":        {},
+	"continue":    {},
+	"for":         {},
+	"import":      {},
+	"return":      {},
+	"var":         {},
+}
+
+func sanitizeGoIdentifier(name string) string {
+	if _, ok := goKeywords[name]; ok {
+		return name + "_"
+	}
+	return name
 }
 
 type GoParameterPair struct {
@@ -232,8 +565,15 @@ func (g *GoParameterPair) updateName(name string) {
 	g.Name = name
 }
 
-func NewGoParameterPair(pair *CParameterPair, packagetype string) *GoParameterPair {
-	return &GoParameterPair{Gotype: CtoGType(pair.Ctype, packagetype), Name: pair.Name}
+func NewGoParameterPair(
+	pair *CParameterPair,
+	packagetype string,
+	table *CTypeTable,
+) *GoParameterPair {
+	return &GoParameterPair{
+		Gotype: CtoGType(pair.Ctype, packagetype, table),
+		Name:   sanitizeGoIdentifier(pair.Name),
+	}
 }
 
 // flattens an array of go paramters into a single string
@@ -400,15 +740,27 @@ func MakeGoArgNames(goparams []*GoParameterPair) string {
 	return strings.Join(names, ",")
 }
 
+func IsEnumGoType(gotype string) bool {
+	return strings.Contains(gotype, ".") &&
+		!strings.HasSuffix(gotype, ".Handle")
+}
+
 func MakeCArgs(goparams []*GoParameterPair, cparams []*CParameterPair) string {
 	cargs := make([]string, len(goparams))
 	for i, pair := range goparams {
 		var goParamHandle string
 		ctype := cparams[i].Ctype
-		if IsPrimitive(pair.Gotype) {
+		switch {
+
+		case IsPrimitive(pair.Gotype):
 			goParamHandle = pair.Name
-		} else {
-			goParamHandle = pair.Name + ".CAPIHandle()"
+
+		case IsEnumGoType(pair.Gotype):
+			goParamHandle = pair.Name
+
+		default:
+			goParamHandle =
+				pair.Name + ".CAPIHandle()"
 		}
 		ctype = strings.ReplaceAll(ctype, " ", "")
 		ctype = strings.ReplaceAll(ctype, "*", "")
@@ -418,11 +770,24 @@ func MakeCArgs(goparams []*GoParameterPair, cparams []*CParameterPair) string {
 }
 
 // Converts a sequence of Cparams to Gparams
-func toGoParams(params []*CParameterPair, packagetype string) []*GoParameterPair {
+func toGoParams(
+	params []*CParameterPair,
+	packagetype string,
+	table *CTypeTable,
+) []*GoParameterPair {
 	out := make([]*GoParameterPair, 0, len(params))
+
 	for _, pair := range params {
-		out = append(out, NewGoParameterPair(pair, packagetype))
+		out = append(
+			out,
+			NewGoParameterPair(
+				pair,
+				packagetype,
+				table,
+			),
+		)
 	}
+
 	return out
 }
 
@@ -464,6 +829,152 @@ func stripBlockComment(line string, inBlockComment bool) (string, bool) {
 	return trimmed, inBlockComment
 }
 
+func enumPackageName(enumName string) string {
+	return strings.ToLower(enumName)
+}
+
+func enumIncludePath(headerPath string) string {
+	parts := strings.Split(headerPath, "falcon-core/")
+	if len(parts) < 2 {
+		return ""
+	}
+
+	return "falcon-core/" + parts[1]
+}
+
+func enumValueGoName(
+	enumName string,
+	value string,
+) string {
+	prefix := strings.ToUpper(enumName) + "_"
+
+	value = strings.TrimPrefix(value, prefix)
+
+	parts := strings.Split(
+		strings.ToLower(value),
+		"_",
+	)
+
+	caser := cases.Title(language.English)
+
+	for i := range parts {
+		parts[i] = caser.String(parts[i])
+	}
+
+	return strings.Join(parts, "")
+}
+
+func generateEnum(
+	info CTypeInfo,
+	rootDir string,
+) error {
+	if info.Kind != TypeEnum {
+		return nil
+	}
+
+	packageName := strings.ToLower(info.Name)
+
+	packageDir := filepath.Join(
+		rootDir,
+		packageName,
+	)
+
+	if err := os.MkdirAll(
+		packageDir,
+		0o755,
+	); err != nil {
+		return err
+	}
+
+	enumFile := filepath.Join(
+		packageDir,
+		packageName+".go",
+	)
+
+	out, err := os.Create(enumFile)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	includePath := enumIncludePath(info.HeaderPath)
+
+	fmt.Fprintf(
+		out,
+		`package %s
+
+/*
+#cgo pkg-config: falcon-core-c-api
+#include <%s>
+*/
+import "C"
+
+type %s int32
+
+const (
+`,
+		packageName,
+		includePath,
+		info.Name,
+	)
+	for _, value := range info.EnumValues {
+
+		name := enumValueGoName(
+			info.Name,
+			value,
+		)
+
+		fmt.Fprintf(
+			out,
+			"\t%s %s = %s(C.%s)\n",
+			name,
+			info.Name,
+			info.Name,
+			value,
+		)
+	}
+
+	fmt.Fprintln(out, ")")
+
+	fmt.Fprintf(
+		out,
+		"\nfunc (v %s) String() string {\n",
+		info.Name,
+	)
+
+	fmt.Fprintln(out, "switch v {")
+
+	for _, value := range info.EnumValues {
+
+		name := enumValueGoName(
+			info.Name,
+			value,
+		)
+
+		fmt.Fprintf(
+			out,
+			"case %s:\n",
+			name,
+		)
+
+		fmt.Fprintf(
+			out,
+			`return "%s"`+"\n",
+			name,
+		)
+	}
+
+	fmt.Fprintln(out, `
+default:
+    return "Unknown"
+}
+}`)
+
+	return nil
+}
+
+var generatedEnums = map[string]bool{}
+
 func main() {
 	currentCategory := ""
 	var funcLines []string
@@ -479,12 +990,30 @@ func main() {
 		panic(err)
 	}
 	defer f.Close()
-	manifest, err := os.OpenFile("manifest.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	manifest, err := os.OpenFile("manifest.txt", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0o644)
 	if err != nil {
 		panic(err)
 	}
 	defer manifest.Close()
 	fmt.Fprintln(manifest, "Generating", headerPath)
+
+	table, err := BuildTypeTable(headerPath)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Fprintln(manifest, "=== TYPE TABLE ===")
+	for _, info := range table.Types {
+		fmt.Fprintf(
+			manifest,
+			"%s kind=%v values=%v header=%s\n",
+			info.Name,
+			info.Kind,
+			info.EnumValues,
+			info.HeaderPath,
+		)
+	}
+	fmt.Fprintln(manifest, "==================")
 
 	parts := strings.Split(headerPath, "falcon-core/")
 	includePath := "falcon-core/" + parts[1]
@@ -493,8 +1022,45 @@ func main() {
 	packageName := strings.ToLower(objectName)
 	dir := filepath.Dir(parts[1])
 	dir = strings.ReplaceAll(dir, "_", "-")
+	for _, info := range table.Types {
+
+		if info.Kind != TypeEnum {
+			continue
+		}
+
+		if info.HeaderPath != headerPath {
+			continue
+		}
+
+		if generatedEnums[info.Name] {
+			continue
+		}
+
+		generatedEnums[info.Name] = true
+
+		parts := strings.Split(
+			info.HeaderPath,
+			"falcon-core/",
+		)
+
+		relDir := filepath.Dir(parts[1])
+
+		relDir = strings.ReplaceAll(
+			relDir,
+			"_",
+			"-",
+		)
+
+		if err := generateEnum(
+			info,
+			relDir,
+		); err != nil {
+			panic(err)
+		}
+	}
 	goFileName := strings.ReplaceAll(
-		strings.ToLower(objectName[:1])+objectName[1:], "_", "-") + ".go"
+		strings.ToLower(objectName[:1])+objectName[1:], "_", "-",
+	) + ".go"
 	goFilePath := filepath.Join(dir, packageName, goFileName)
 	outFile, err := os.Create(goFilePath)
 	if err != nil {
@@ -569,7 +1135,7 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		funcLines = nil
 		resultCType := extractResultType(fullSig)
 		fmt.Fprintln(manifest, "result c type:", resultCType)
-		resultGoType := CtoGType(resultCType, packageName)
+		resultGoType := CtoGType(resultCType, packageName, table)
 		fmt.Fprintln(manifest, "result go type:", resultGoType)
 		methodName := extractMethodName(fullSig, objectName)
 		fmt.Fprintln(manifest, "method name:", methodName)
@@ -579,7 +1145,7 @@ func FromCAPI(p unsafe.Pointer) (*Handle, error) {
 		for _, param := range Cparams {
 			fmt.Fprintln(manifest, "C param:", param.Ctype, param.Name)
 		}
-		Goparams := toGoParams(Cparams, packageName)
+		Goparams := toGoParams(Cparams, packageName, table)
 		NumNonPrimitiveParams := CountNonPrimitiveParams(Goparams)
 		for i, param := range Goparams {
 			if IsExtraImport(param.Gotype) {
@@ -701,7 +1267,7 @@ func (h *Handle) Close() error {
 				dotIdx := strings.Index(methodArguments, ".")
 				typeName := methodArguments[starIdx+1 : dotIdx]
 				itemPackageName := strings.TrimPrefix(typeName, "list") // if primitive a C type
-				goItemType = CtoGType(itemPackageName, itemPackageName)
+				goItemType = CtoGType(itemPackageName, itemPackageName, table)
 				if goItemType == "*Handle" {
 					goItemType = "*" + itemPackageName + ".Handle"
 				}
@@ -770,7 +1336,21 @@ func (h *Handle) Close() error {
 `, goName, Goparams[1].Name, Goparams[1].Name, Goparams[1].Name, methodName, Cparams[0].Ctype, Goparams[1].Name)
 				continue
 			}
-			if !strings.Contains(methodArguments, "out_buffer") {
+			hasOutBuffer := false
+			fmt.Fprintf(
+				manifest,
+				"DEBUG %s Cparams=%+v\n",
+				methodName,
+				Cparams,
+			)
+			for _, param := range Cparams {
+				if param.Name == "out_buffer" {
+					hasOutBuffer = true
+					break
+				}
+			}
+
+			if !hasOutBuffer {
 				fmt.Fprintf(outFile, "func (h *Handle) %s(%s) (%s, error) { \n", goName, methodArguments, resultGoType)
 				writeStringConversion(Goparams, outFile)
 				carguments := MakeCArgs(Goparams, Cparams)
@@ -797,6 +1377,13 @@ func (h *Handle) Close() error {
 					fmt.Fprintf(outFile, `
 		return FromCAPI(unsafe.Pointer(%s))
 `, cfunction)
+				} else if IsEnumGoType(resultGoType) {
+					fmt.Fprintf(
+						outFile,
+						`return %s(%s), nil`,
+						resultGoType,
+						cfunction,
+					)
 				} else {
 					resultPackage := extractGoPrefix(resultGoType)
 					fmt.Fprintf(outFile, `
@@ -815,8 +1402,14 @@ func (h *Handle) Close() error {
 					bufferParam = param
 					break
 				}
-				bufferCType := bufferParam.Ctype[:len(bufferParam.Ctype)-1] // remove the *
-				bufferGoType := CtoGType(bufferCType, packageName)
+				if bufferParam == nil {
+					panic(fmt.Sprintf(
+						"%s: expected out_buffer parameter but none was found",
+						methodName,
+					))
+				}
+				bufferCType := bufferParam.Ctype[:len(bufferParam.Ctype)-1]
+				bufferGoType := CtoGType(bufferCType, packageName, table)
 				if IsNonPrimitive(bufferGoType) && !IsString(bufferGoType) {
 					bufferpackage := extractGoPrefix(bufferGoType)
 					if bufferpackage != "Handle" {
@@ -895,11 +1488,29 @@ func (h *Handle) Close() error {
 	// Finally reinject imports at the watermark
 	var goImportPaths []string
 	for _, extraImport := range extraImports {
-		importPath, err := findGoImport(headerPath, extraImport)
+
+		if info, ok := table.Types[extraImport]; ok {
+
+			goImportPaths = append(
+				goImportPaths,
+				findGoImportFromTypeInfo(info),
+			)
+
+			continue
+		}
+
+		importPath, err := findGoImport(
+			headerPath,
+			extraImport,
+		)
 		if err != nil {
 			panic(err)
 		}
-		goImportPaths = append(goImportPaths, importPath)
+
+		goImportPaths = append(
+			goImportPaths,
+			importPath,
+		)
 	}
 
 	if err := insertImports(goFilePath, goImportPaths); err != nil {

@@ -5,8 +5,8 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/acquisitioncontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledmeasuredarray"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -36,8 +36,8 @@ func mustBarrierGate(name string) *connection.Handle {
 	return h
 }
 
-func mustInstrumentPort(name string, conn *connection.Handle, insttype string, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
-	h, err := instrumentport.NewKnob(name, conn, insttype, unit, desc)
+func mustInstrumentPort(name string, conn *connection.Handle, insttype instrument.Instrument, unit *symbolunit.Handle, desc string) *instrumentport.Handle {
+	h, err := instrumentport.NewKnob(name, "inst", conn, insttype, unit, desc)
 	if err != nil {
 		panic(fmt.Errorf("failed to create Knob: %v", err))
 	}
@@ -49,7 +49,7 @@ func mustmeasuredArray(data []float64, shape []uint64) *labelledmeasuredarray.Ha
 	if err != nil {
 		panic(err)
 	}
-	ac := mustAcquisitionContext(mustInstrumentPort("B1", mustBarrierGate("B1"), instrumenttypes.VoltageSource(), mustVolt(), ""))
+	ac := mustAcquisitionContext(mustInstrumentPort("B1", mustBarrierGate("B1"), instrument.VoltageSource, mustVolt(), ""))
 	h, err := labelledmeasuredarray.FromFArray(f, ac)
 	if err != nil {
 		panic(err)

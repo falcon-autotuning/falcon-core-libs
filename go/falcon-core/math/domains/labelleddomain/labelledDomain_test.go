@@ -3,8 +3,12 @@ package labelleddomain
 import (
 	"testing"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/access"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentcharacteristic"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/porttype"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/scope"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/domain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -27,7 +31,7 @@ func mustInstrumentPort() *instrumentport.Handle {
 	if err != nil {
 		panic(err)
 	}
-	h, err := instrumentport.NewKnob("port_id", conn, instrumenttypes.VoltageSource(), v, "A test port")
+	h, err := instrumentport.NewKnob("port_id", "inst", conn, instrument.VoltageSource, v, "A test port")
 	if err != nil {
 		panic(err)
 	}
@@ -61,21 +65,21 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 	defer units.Close()
 
 	// NewPrimitiveKnob
-	ld, err := NewPrimitiveKnob("knob", 0, 10, conn, "type", true, true, units, "desc")
+	ld, err := NewPrimitiveKnob("knob", "inst", 0, 10, units, "desc", conn, instrument.Amnmeter, true, true)
 	if err != nil {
 		t.Fatalf("NewPrimitiveKnob failed: %v", err)
 	}
 	defer ld.Close()
 
 	// NewPrimitiveMeter
-	ld2, err := NewPrimitiveMeter("meter", 0, 10, conn, "type", true, true, units, "desc")
+	ld2, err := NewPrimitiveMeter("meter", "inst", 0, 10, units, "desc", conn, instrument.DcCurrentSource, true, true)
 	if err != nil {
 		t.Fatalf("NewPrimitiveMeter failed: %v", err)
 	}
 	defer ld2.Close()
 
 	// NewPrimitivePort
-	ld3, err := NewPrimitivePort("port", 0, 10, conn, "type", true, true, units, "desc")
+	ld3, err := NewPrimitiveSetting("port", "inst", scope.Local, access.Read, instrumentcharacteristic.InstrumentCharacteristicAppliedVoltage, 0, 10, units, "desc", conn, instrument.Amnmeter, true, true)
 	if err != nil {
 		t.Fatalf("NewPrimitivePort failed: %v", err)
 	}
@@ -96,7 +100,7 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 	defer ld5.Close()
 
 	// NewFromDomain
-	ld6, err := NewFromDomain(dom, "name", conn, "type", units, "desc")
+	ld6, err := NewFromDomain(dom, "name", "inst", scope.Local, access.Read, instrumentcharacteristic.InstrumentCharacteristicAppliedVoltage, porttype.PortTypeKnob, units, "desc", conn, instrument.Amnmeter)
 	if err != nil {
 		t.Fatalf("NewFromDomain failed: %v", err)
 	}

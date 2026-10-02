@@ -5,8 +5,8 @@ import (
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringbool"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairstringbool"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axescoupledlabelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axesdiscretizer"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/axesinstrumentport"
@@ -70,9 +70,18 @@ func makePlungerGate(t *testing.T) *connection.Handle {
 	return h
 }
 
-func makeLabelledDomain(t *testing.T) *labelleddomain.Handle {
+func makeInstrumentPort(t *testing.T) *instrumentport.Handle {
 	v, _ := symbolunit.NewVolt()
-	h, err := labelleddomain.NewFromDomain(makeTestDomain(t), "P1", makePlungerGate(t), instrumenttypes.VoltageSource(), v, "")
+	ip, err := instrumentport.NewKnob("P1", "inst", makePlungerGate(t), instrument.VoltageSource, v, "")
+	if err != nil {
+		t.Fatalf("could not set up instrumentport axes")
+	}
+	return ip
+}
+
+func makeLabelledDomain(t *testing.T) *labelleddomain.Handle {
+	p := makeInstrumentPort(t)
+	h, err := labelleddomain.NewFromPortAndDomain(p, makeTestDomain(t))
 	if err != nil {
 		t.Fatalf("failed to make a labelleddomain: %v", err)
 	}
@@ -80,8 +89,7 @@ func makeLabelledDomain(t *testing.T) *labelleddomain.Handle {
 }
 
 func makeAxesInstrumentPort(t *testing.T) *axesinstrumentport.Handle {
-	v, _ := symbolunit.NewVolt()
-	ip, _ := instrumentport.NewKnob("P1", makePlungerGate(t), instrumenttypes.VoltageSource(), v, "")
+	ip := makeInstrumentPort(t)
 	h, err := axesinstrumentport.New([]*instrumentport.Handle{ip})
 	if err != nil {
 		t.Fatalf("could not set up instrumentport axes")

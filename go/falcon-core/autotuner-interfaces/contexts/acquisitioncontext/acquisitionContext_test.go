@@ -3,8 +3,8 @@ package acquisitioncontext
 import (
 	"testing"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
 )
@@ -26,7 +26,7 @@ func mustInstrumentPort() *instrumentport.Handle {
 	if err != nil {
 		panic(err)
 	}
-	h, err := instrumentport.NewKnob("port_id", conn, instrumenttypes.VoltageSource(), v, "A test port")
+	h, err := instrumentport.NewKnob("port_id", "inst1", conn, instrument.VoltageSource, v, "A test port")
 	if err != nil {
 		panic(err)
 	}
@@ -50,7 +50,7 @@ func TestAcquisitionContext_FullCoverage(t *testing.T) {
 	defer port.Close()
 
 	// New
-	ac, err := New(conn, "type", units)
+	ac, err := New(conn, instrument.Clock, units)
 	if err != nil {
 		t.Fatalf("New failed: %v", err)
 	}
@@ -83,7 +83,7 @@ func TestAcquisitionContext_FullCoverage(t *testing.T) {
 	if err != nil {
 		t.Errorf("InstrumentType failed: %v", err)
 	}
-	if gotType != "type" {
+	if gotType != instrument.Clock {
 		t.Errorf("InstrumentType got %q, want %q", gotType, "type")
 	}
 
@@ -122,7 +122,7 @@ func TestAcquisitionContext_FullCoverage(t *testing.T) {
 	_ = ok
 
 	// MatchInstrumentType
-	ok, err = ac.MatchInstrumentType("type")
+	ok, err = ac.MatchInstrumentType(instrument.Clock)
 	if err != nil {
 		t.Errorf("MatchInstrumentType failed: %v", err)
 	}
@@ -185,7 +185,7 @@ func TestAcquisitionContext_FullCoverage(t *testing.T) {
 	if err == nil {
 		t.Errorf("MatchConnection on closed should error")
 	}
-	_, err = ac.MatchInstrumentType("type")
+	_, err = ac.MatchInstrumentType(instrument.Clock)
 	if err == nil {
 		t.Errorf("MatchInstrumentType on closed should error")
 	}

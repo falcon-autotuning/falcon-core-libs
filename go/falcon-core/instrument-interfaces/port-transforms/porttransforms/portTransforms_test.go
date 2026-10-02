@@ -3,8 +3,8 @@ package porttransforms
 import (
 	"testing"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/analyticfunction"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
@@ -17,7 +17,7 @@ func makeTestPortTransforms(t *testing.T) []*porttransform.Handle {
 	for _, n := range names {
 		conn, _ := connection.NewBarrierGate(n)
 		v, _ := symbolunit.NewVolt()
-		port, _ := instrumentport.NewKnob(n, conn, instrumenttypes.VoltageSource(), v, "")
+		port, _ := instrumentport.NewKnob(n, "inst", conn, instrument.VoltageSource, v, "")
 		af, _ := analyticfunction.NewIdentity()
 		p, err := porttransform.New(port, af)
 		if err != nil {
@@ -102,7 +102,7 @@ func TestPortTransforms_PushBack(t *testing.T) {
 		n := "D"
 		conn, _ := connection.NewBarrierGate(n)
 		v, _ := symbolunit.NewVolt()
-		port, _ := instrumentport.NewKnob(n, conn, instrumenttypes.VoltageSource(), v, "")
+		port, _ := instrumentport.NewKnob(n, "inst", conn, instrument.VoltageSource, v, "")
 		af, _ := analyticfunction.NewIdentity()
 		newPT, err := porttransform.New(port, af)
 		if err != nil {

@@ -7,8 +7,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/liststring"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringbool"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairstringbool"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/waveform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/analyticfunction"
@@ -37,7 +37,7 @@ func mustWaveform(name string) *waveform.Handle {
 	if err != nil {
 		panic(fmt.Errorf("connection.NewBarrierGate error: %v", err))
 	}
-	p, err := instrumentport.NewKnob(name, c, instrumenttypes.Voltmeter(), v, "")
+	p, err := instrumentport.NewKnob(name, "inst", c, instrument.Voltmeter, v, "")
 	if err != nil {
 		panic(fmt.Errorf("instrumentport.NewKnob error: %v", err))
 	}

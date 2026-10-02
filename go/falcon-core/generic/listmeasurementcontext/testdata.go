@@ -4,11 +4,11 @@ import (
 	"fmt"
 
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/measurementcontext"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
 
-func mustMeasurementContext(conn *connection.Handle, instrumentType string) *measurementcontext.Handle {
+func mustMeasurementContext(conn *connection.Handle, instrumentType instrument.Instrument) *measurementcontext.Handle {
 	h, err := measurementcontext.New(conn, instrumentType)
 	if err != nil {
 		panic(fmt.Errorf("failed to create a measurement context: %v", err))
@@ -26,10 +26,10 @@ func mustBarrierGate(name string) *connection.Handle {
 
 var (
 	defaultListData = []*measurementcontext.Handle{
-		mustMeasurementContext(mustBarrierGate("B1"), instrumenttypes.VoltageSource()),
-		mustMeasurementContext(mustBarrierGate("B2"), instrumenttypes.VoltageSource()),
+		mustMeasurementContext(mustBarrierGate("B1"), instrument.VoltageSource),
+		mustMeasurementContext(mustBarrierGate("B2"), instrument.VoltageSource),
 	}
 	otherListData = []*measurementcontext.Handle{
-		mustMeasurementContext(mustBarrierGate("B3"), instrumenttypes.VoltageSource()),
+		mustMeasurementContext(mustBarrierGate("B3"), instrument.VoltageSource),
 	}
 )

@@ -3,8 +3,8 @@ package listcoupledlabelleddomain
 import (
 	"fmt"
 
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/coupledlabelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/domains/labelleddomain"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
@@ -21,7 +21,7 @@ func mustTestInstrumentPort(name string) *instrumentport.Handle {
 		panic(fmt.Errorf("Invalid conn: %v", err))
 	}
 
-	ip, err := instrumentport.NewKnob(name, conn, instrumenttypes.VoltageSource(), v, "desc")
+	ip, err := instrumentport.NewKnob(name, "inst", conn, instrument.VoltageSource, v, "desc")
 	if err != nil {
 		panic(fmt.Errorf("instrumentport.NewKnob failed: %v", err))
 	}

@@ -14,6 +14,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/cmemoryallocation"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/falconcorehandle"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -89,13 +90,12 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
-func New(connection *connection.Handle, instrument_type string, units *symbolunit.Handle) (*Handle, error) {
-	realinstrument_type := str.New(instrument_type)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{connection, realinstrument_type, units}, func() (*Handle, error) {
+func New(connection *connection.Handle, instrument_type instrument.Instrument, units *symbolunit.Handle) (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{connection, units}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.AcquisitionContext_create(C.ConnectionHandle(connection.CAPIHandle()), C.StringHandle(realinstrument_type.CAPIHandle()), C.SymbolUnitHandle(units.CAPIHandle()))), nil
+				return unsafe.Pointer(C.AcquisitionContext_create(C.ConnectionHandle(connection.CAPIHandle()), C.Instrument(instrument_type), C.SymbolUnitHandle(units.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
@@ -120,14 +120,9 @@ func (h *Handle) Connection() (*connection.Handle, error) {
 		return connection.FromCAPI(unsafe.Pointer(C.AcquisitionContext_connection(C.AcquisitionContextHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) InstrumentType() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.AcquisitionContext_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("InstrumentType:" + err.Error())
-		}
-		return strObj.ToGoString()
+func (h *Handle) InstrumentType() (instrument.Instrument, error) {
+	return cmemoryallocation.Read(h, func() (instrument.Instrument, error) {
+		return instrument.Instrument(C.AcquisitionContext_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Units() (*symbolunit.Handle, error) {
@@ -153,9 +148,8 @@ func (h *Handle) MatchConnection(other *connection.Handle) (bool, error) {
 		return bool(C.AcquisitionContext_match_connection(C.AcquisitionContextHandle(h.CAPIHandle()), C.ConnectionHandle(other.CAPIHandle()))), nil
 	})
 }
-func (h *Handle) MatchInstrumentType(other string) (bool, error) {
-	realother := str.New(other)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, realother}, func() (bool, error) {
-		return bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()), C.StringHandle(realother.CAPIHandle()))), nil
+func (h *Handle) MatchInstrumentType(other instrument.Instrument) (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		return bool(C.AcquisitionContext_match_instrument_type(C.AcquisitionContextHandle(h.CAPIHandle()), C.Instrument(other))), nil
 	})
 }

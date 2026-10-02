@@ -17,6 +17,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listinstrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/liststring"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 )
@@ -158,11 +159,10 @@ func (h *Handle) GetPsuedonameMatchingPort(name *connection.Handle) (*instrument
 		return instrumentport.FromCAPI(unsafe.Pointer(C.Ports__get_psuedoname_matching_port(C.PortsHandle(h.CAPIHandle()), C.ConnectionHandle(name.CAPIHandle()))))
 	})
 }
-func (h *Handle) GetInstrumentTypeMatchingPort(insttype string) (*instrumentport.Handle, error) {
-	realinsttype := str.New(insttype)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{h, realinsttype}, func() (*instrumentport.Handle, error) {
+func (h *Handle) GetInstrumentTypeMatchingPort(insttype instrument.Instrument) (*instrumentport.Handle, error) {
+	return cmemoryallocation.Read(h, func() (*instrumentport.Handle, error) {
 
-		return instrumentport.FromCAPI(unsafe.Pointer(C.Ports__get_instrument_type_matching_port(C.PortsHandle(h.CAPIHandle()), C.StringHandle(realinsttype.CAPIHandle()))))
+		return instrumentport.FromCAPI(unsafe.Pointer(C.Ports__get_instrument_type_matching_port(C.PortsHandle(h.CAPIHandle()), C.Instrument(insttype))))
 	})
 }
 func (h *Handle) IsKnobs() (bool, error) {
@@ -173,6 +173,11 @@ func (h *Handle) IsKnobs() (bool, error) {
 func (h *Handle) IsMeters() (bool, error) {
 	return cmemoryallocation.Read(h, func() (bool, error) {
 		return bool(C.Ports_is_meters(C.PortsHandle(h.CAPIHandle()))), nil
+	})
+}
+func (h *Handle) IsSettings() (bool, error) {
+	return cmemoryallocation.Read(h, func() (bool, error) {
+		return bool(C.Ports_is_settings(C.PortsHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Intersection(other *Handle) (*Handle, error) {

@@ -14,8 +14,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapinstrumentportporttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/mapstringbool"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/pairstringbool"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/ports"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/port-transforms/porttransform"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/waveform"
@@ -44,7 +44,7 @@ func mustLabelledMeasuredArray(name string) *labelledmeasuredarray.Handle {
 	defer fa.Close()
 	conn, _ := connection.NewPlungerGate(name)
 	v, _ := symbolunit.NewVolt()
-	is, _ := instrumentport.NewKnob(name, conn, instrumenttypes.DCVoltageSource(), v, "")
+	is, _ := instrumentport.NewKnob(name, "inst", conn, instrument.DcVoltageSource, v, "")
 	ac, err := acquisitioncontext.NewFromPort(is)
 	if err != nil {
 		panic("failed to create acquisitioncontext: " + err.Error())
@@ -110,10 +110,10 @@ func mustMeasurementRequest(msg, name string) *measurementrequest.Handle {
 	_ = meterTransforms.Insert(port, pt)
 	// Time domain
 	clock, _ := instrumentport.NewExecutionClock()
-	timeDomain := mustLabelledDomain(0, 1.0, instrumenttypes.Clock(), clock, true, true)
+	timeDomain := mustLabelledDomain(0, 1.0, instrument.Clock, clock, true, true)
 	defer timeDomain.Close()
 	// Construct
-	h, err := measurementrequest.New(msg, name, wflist, getter, meterTransforms, timeDomain)
+	h, err := measurementrequest.New(msg, wflist, getter, meterTransforms, timeDomain)
 	if err != nil {
 		panic("failed to create MeasurementRequest: " + err.Error())
 	}
@@ -132,7 +132,7 @@ func mustWaveform(name string) *waveform.Handle {
 	if err != nil {
 		panic(fmt.Errorf("connection.NewBarrierGate error: %v", err))
 	}
-	p, err := instrumentport.NewKnob(name, c, instrumenttypes.Voltmeter(), v, "")
+	p, err := instrumentport.NewKnob(name, "inst", c, instrument.Voltmeter, v, "")
 	if err != nil {
 		panic(fmt.Errorf("instrumentport.NewKnob error: %v", err))
 	}
@@ -227,14 +227,14 @@ func mustInstrumentPort(name string) *instrumentport.Handle {
 	if err != nil {
 		panic(err)
 	}
-	h, err := instrumentport.NewKnob(name, conn, instrumenttypes.VoltageSource(), v, "A test port")
+	h, err := instrumentport.NewKnob(name, "inst", conn, instrument.VoltageSource, v, "A test port")
 	if err != nil {
 		panic(err)
 	}
 	return h
 }
 
-func mustLabelledDomain(minVal, maxVal float64, instrumentType string, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
+func mustLabelledDomain(minVal, maxVal float64, instrumentType instrument.Instrument, port *instrumentport.Handle, lesserBoundContained, greaterBoundContained bool) *labelleddomain.Handle {
 	h, err := labelleddomain.NewFromPort(minVal, maxVal, port, lesserBoundContained, greaterBoundContained)
 	if err != nil {
 		panic(fmt.Errorf("failed to craete a lablled domain: %v", err))

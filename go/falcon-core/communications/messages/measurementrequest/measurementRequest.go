@@ -90,28 +90,17 @@ func FromJSON(json string) (*Handle, error) {
 		)
 	})
 }
-func New(message string, measurement_name string, waveforms *listwaveform.Handle, getters *ports.Handle, meter_transforms *mapinstrumentportporttransform.Handle, time_domain *labelleddomain.Handle) (*Handle, error) {
+func New(message string, waveforms *listwaveform.Handle, getters *ports.Handle, meter_transforms *mapinstrumentportporttransform.Handle, time_domain *labelleddomain.Handle) (*Handle, error) {
 	realmessage := str.New(message)
-	realmeasurement_name := str.New(measurement_name)
-	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realmessage, realmeasurement_name, waveforms, getters, meter_transforms, time_domain}, func() (*Handle, error) {
+	return cmemoryallocation.MultiRead([]cmemoryallocation.HasCAPIHandle{realmessage, waveforms, getters, meter_transforms, time_domain}, func() (*Handle, error) {
 
 		return cmemoryallocation.NewAllocation(
 			func() (unsafe.Pointer, error) {
-				return unsafe.Pointer(C.MeasurementRequest_create(C.StringHandle(realmessage.CAPIHandle()), C.StringHandle(realmeasurement_name.CAPIHandle()), C.ListWaveformHandle(waveforms.CAPIHandle()), C.PortsHandle(getters.CAPIHandle()), C.MapInstrumentPortPortTransformHandle(meter_transforms.CAPIHandle()), C.LabelledDomainHandle(time_domain.CAPIHandle()))), nil
+				return unsafe.Pointer(C.MeasurementRequest_create(C.StringHandle(realmessage.CAPIHandle()), C.ListWaveformHandle(waveforms.CAPIHandle()), C.PortsHandle(getters.CAPIHandle()), C.MapInstrumentPortPortTransformHandle(meter_transforms.CAPIHandle()), C.LabelledDomainHandle(time_domain.CAPIHandle()))), nil
 			},
 			construct,
 			destroy,
 		)
-	})
-}
-func (h *Handle) MeasurementName() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.MeasurementRequest_measurement_name(C.MeasurementRequestHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("MeasurementName:" + err.Error())
-		}
-		return strObj.ToGoString()
 	})
 }
 func (h *Handle) Getters() (*ports.Handle, error) {

@@ -18,6 +18,7 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listfarraydouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listlistsizet"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/str"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/controlarray"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/units/symbolunit"
@@ -192,14 +193,9 @@ func (h *Handle) Connection() (*connection.Handle, error) {
 		return connection.FromCAPI(unsafe.Pointer(C.LabelledControlArray1D_connection(C.LabelledControlArray1DHandle(h.CAPIHandle()))))
 	})
 }
-func (h *Handle) InstrumentType() (string, error) {
-	return cmemoryallocation.Read(h, func() (string, error) {
-
-		strObj, err := str.FromCAPI(unsafe.Pointer(C.LabelledControlArray1D_instrument_type(C.LabelledControlArray1DHandle(h.CAPIHandle()))))
-		if err != nil {
-			return "", errors.New("InstrumentType:" + err.Error())
-		}
-		return strObj.ToGoString()
+func (h *Handle) InstrumentType() (instrument.Instrument, error) {
+	return cmemoryallocation.Read(h, func() (instrument.Instrument, error) {
+		return instrument.Instrument(C.LabelledControlArray1D_instrument_type(C.LabelledControlArray1DHandle(h.CAPIHandle()))), nil
 	})
 }
 func (h *Handle) Units() (*symbolunit.Handle, error) {

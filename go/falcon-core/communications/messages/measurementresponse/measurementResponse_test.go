@@ -6,8 +6,8 @@ import (
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/autotuner-interfaces/contexts/acquisitioncontext"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/farraydouble"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/generic/listlabelledmeasuredarray"
+	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrument"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumentport"
-	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/instrument-interfaces/names/instrumenttypes"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledarrayslabelledmeasuredarray"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/math/arrays/labelledmeasuredarray"
 	"github.com/falcon-autotuning/falcon-core-libs/go/falcon-core/physics/device-structures/connection"
@@ -23,7 +23,7 @@ func mustLabelledMeasuredArray() *labelledmeasuredarray.Handle {
 	defer fa.Close()
 	conn, _ := connection.NewPlungerGate("P1")
 	v, _ := symbolunit.NewVolt()
-	is, _ := instrumentport.NewKnob("P1", conn, instrumenttypes.DCVoltageSource(), v, "")
+	is, _ := instrumentport.NewKnob("P1", "inst1", conn, instrument.DcVoltageSource, v, "")
 	ac, err := acquisitioncontext.NewFromPort(is)
 	if err != nil {
 		panic("failed to create acquisitioncontext: " + err.Error())
