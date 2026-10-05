@@ -79,7 +79,7 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 	defer ld2.Close()
 
 	// NewPrimitivePort
-	ld3, err := NewPrimitiveSetting("port", "inst", scope.Local, access.Read, instrumentcharacteristic.InstrumentCharacteristicAppliedVoltage, 0, 10, units, "desc", conn, instrument.Amnmeter, true, true)
+	ld3, err := NewPrimitiveSetting("port", "inst", scope.Local, access.Read, instrumentcharacteristic.InstrumentCharacteristicSourceVoltage, 0, 10, units, "desc", conn, instrument.Amnmeter, true, true)
 	if err != nil {
 		t.Fatalf("NewPrimitivePort failed: %v", err)
 	}
@@ -100,7 +100,7 @@ func TestLabelledDomain_FullCoverage(t *testing.T) {
 	defer ld5.Close()
 
 	// NewFromDomain
-	ld6, err := NewFromDomain(dom, "name", "inst", scope.Local, access.Read, instrumentcharacteristic.InstrumentCharacteristicAppliedVoltage, porttype.PortTypeKnob, units, "desc", conn, instrument.Amnmeter)
+	ld6, err := NewFromDomain(dom, "name", "inst", scope.Local, access.Read, instrumentcharacteristic.InstrumentCharacteristicSourceVoltage, porttype.PortTypeKnob, units, "desc", conn, instrument.Amnmeter)
 	if err != nil {
 		t.Fatalf("NewFromDomain failed: %v", err)
 	}
