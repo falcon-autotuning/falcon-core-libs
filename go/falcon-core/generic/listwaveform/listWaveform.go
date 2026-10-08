@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*waveform.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*waveform.Handle{}, nil
+	}
+
 	out := make([]C.WaveformHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListWaveform_items(C.ListWaveformHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListWaveform_items(
+			C.ListWaveformHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

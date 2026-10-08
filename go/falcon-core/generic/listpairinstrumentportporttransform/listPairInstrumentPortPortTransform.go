@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*pairinstrumentportporttransform.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*pairinstrumentportporttransform.Handle{}, nil
+	}
+
 	out := make([]C.PairInstrumentPortPortTransformHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListPairInstrumentPortPortTransform_items(C.ListPairInstrumentPortPortTransformHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListPairInstrumentPortPortTransform_items(
+			C.ListPairInstrumentPortPortTransformHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

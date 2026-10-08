@@ -154,9 +154,19 @@ func (h *Handle) Items() ([]bool, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []bool{}, nil
+	}
+
 	out := make([]C.bool, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListBool_items(C.ListBoolHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListBool_items(
+			C.ListBoolHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

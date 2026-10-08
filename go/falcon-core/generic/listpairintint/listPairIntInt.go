@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*pairintint.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*pairintint.Handle{}, nil
+	}
+
 	out := make([]C.PairIntIntHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListPairIntInt_items(C.ListPairIntIntHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListPairIntInt_items(
+			C.ListPairIntIntHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

@@ -127,9 +127,19 @@ func (h *Handle) Items() ([]*measurementcontext.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*measurementcontext.Handle{}, nil
+	}
+
 	out := make([]C.MeasurementContextHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.AxesMeasurementContext_items(C.AxesMeasurementContextHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.AxesMeasurementContext_items(
+			C.AxesMeasurementContextHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

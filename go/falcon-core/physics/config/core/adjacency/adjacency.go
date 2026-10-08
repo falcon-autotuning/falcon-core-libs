@@ -169,9 +169,19 @@ func (h *Handle) Shape() ([]uint64, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Shape: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []uint64{}, nil
+	}
+
 	out := make([]C.size_t, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.Adjacency_shape(C.AdjacencyHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.Adjacency_shape(
+			C.AdjacencyHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {
@@ -191,9 +201,19 @@ func (h *Handle) Data() ([]int32, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Data: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []int32{}, nil
+	}
+
 	out := make([]C.int, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.Adjacency_data(C.AdjacencyHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.Adjacency_data(
+			C.AdjacencyHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

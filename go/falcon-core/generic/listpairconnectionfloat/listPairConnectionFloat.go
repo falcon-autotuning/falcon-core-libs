@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*pairconnectionfloat.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*pairconnectionfloat.Handle{}, nil
+	}
+
 	out := make([]C.PairConnectionFloatHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListPairConnectionFloat_items(C.ListPairConnectionFloatHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListPairConnectionFloat_items(
+			C.ListPairConnectionFloatHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

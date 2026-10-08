@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*impedance.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*impedance.Handle{}, nil
+	}
+
 	out := make([]C.ImpedanceHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListImpedance_items(C.ListImpedanceHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListImpedance_items(
+			C.ListImpedanceHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

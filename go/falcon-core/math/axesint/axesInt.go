@@ -125,9 +125,19 @@ func (h *Handle) Items() ([]int32, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []int32{}, nil
+	}
+
 	out := make([]C.int, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.AxesInt_items(C.AxesIntHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.AxesInt_items(
+			C.AxesIntHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

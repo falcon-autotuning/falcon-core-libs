@@ -167,9 +167,19 @@ func (h *Handle) Shape() ([]uint64, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Shape: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []uint64{}, nil
+	}
+
 	out := make([]C.size_t, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.MeasuredArray_shape(C.MeasuredArrayHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.MeasuredArray_shape(
+			C.MeasuredArrayHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {
@@ -189,9 +199,19 @@ func (h *Handle) Data() ([]float64, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Data: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []float64{}, nil
+	}
+
 	out := make([]C.double, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.MeasuredArray_data(C.MeasuredArrayHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.MeasuredArray_data(
+			C.MeasuredArrayHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {
@@ -491,9 +511,19 @@ func (h *Handle) FullGradient() ([]*Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("FullGradient: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*Handle{}, nil
+	}
+
 	out := make([]C.MeasuredArrayHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.MeasuredArray_full_gradient(C.MeasuredArrayHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.MeasuredArray_full_gradient(
+			C.MeasuredArrayHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

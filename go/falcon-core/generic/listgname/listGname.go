@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*gname.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*gname.Handle{}, nil
+	}
+
 	out := make([]C.GnameHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListGname_items(C.ListGnameHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListGname_items(
+			C.ListGnameHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

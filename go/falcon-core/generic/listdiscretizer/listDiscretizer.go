@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*discretizer.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*discretizer.Handle{}, nil
+	}
+
 	out := make([]C.DiscretizerHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListDiscretizer_items(C.ListDiscretizerHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListDiscretizer_items(
+			C.ListDiscretizerHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*pairstringdouble.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*pairstringdouble.Handle{}, nil
+	}
+
 	out := make([]C.PairStringDoubleHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListPairStringDouble_items(C.ListPairStringDoubleHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListPairStringDouble_items(
+			C.ListPairStringDoubleHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

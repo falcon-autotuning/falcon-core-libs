@@ -1447,9 +1447,19 @@ func (h *Handle) Close() error {
 	if err != nil {
 		return nil, errors.Join(errors.New("%s: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []%s{}, nil
+	}
+
 	out := make([]C.%s, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.%s(C.%sHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.%s(
+			C.%sHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {
@@ -1461,7 +1471,7 @@ func (h *Handle) Close() error {
 	}
 	return realout, nil
 }
-	`, goName, bufferGoType, size, objectName, goName, bufferCType, methodName, objectName, bufferGoType, reconstruction)
+	`, goName, bufferGoType, size, objectName, goName, bufferGoType, bufferCType, methodName, objectName, bufferGoType, reconstruction)
 				continue
 			}
 		}

@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*dotgatewithneighbors.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*dotgatewithneighbors.Handle{}, nil
+	}
+
 	out := make([]C.DotGateWithNeighborsHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListDotGateWithNeighbors_items(C.ListDotGateWithNeighborsHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListDotGateWithNeighbors_items(
+			C.ListDotGateWithNeighborsHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

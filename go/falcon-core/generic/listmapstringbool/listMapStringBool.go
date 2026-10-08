@@ -146,9 +146,19 @@ func (h *Handle) Items() ([]*mapstringbool.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*mapstringbool.Handle{}, nil
+	}
+
 	out := make([]C.MapStringBoolHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.ListMapStringBool_items(C.ListMapStringBoolHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.ListMapStringBool_items(
+			C.ListMapStringBoolHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {

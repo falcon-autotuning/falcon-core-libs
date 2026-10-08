@@ -127,9 +127,19 @@ func (h *Handle) Items() ([]*labelledmeasuredarray1d.Handle, error) {
 	if err != nil {
 		return nil, errors.Join(errors.New("Items: size errored"), err)
 	}
+
+	if dim == 0 {
+		return []*labelledmeasuredarray1d.Handle{}, nil
+	}
+
 	out := make([]C.LabelledMeasuredArray1DHandle, dim)
+
 	_, err = cmemoryallocation.Read(h, func() (bool, error) {
-		C.AxesLabelledMeasuredArray1D_items(C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()), &out[0], C.size_t(dim))
+		C.AxesLabelledMeasuredArray1D_items(
+			C.AxesLabelledMeasuredArray1DHandle(h.CAPIHandle()),
+			&out[0],
+			C.size_t(dim),
+		)
 		return true, nil
 	})
 	if err != nil {
