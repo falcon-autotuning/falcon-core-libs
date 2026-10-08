@@ -309,12 +309,22 @@ func (h *Handle) Items() ([]{{.ElemType}}, error) {
 	if h.closed || h.chandle == utils.NilHandle[chandle]() {
 		return nil, errors.New(`Items The list is closed`)
 	}
-	size, err := h.Size()
-	if err != nil {
-		return nil, errors.New(`Could not measured the size`)
-	}
-	cHandles := make([]C.{{.CType}}, size)
-	C.{{.Type}}_items(C.{{.Type}}Handle(h.chandle), &cHandles[0], C.size_t(size))
+  size, err := h.Size()
+  if err != nil {
+    return nil, errors.New(`Could not measured the size`)
+  }
+
+  if size == 0 {
+    return []{{.ElemType}}{}, nil
+  }
+
+  cHandles := make([]C.{{.CType}}, size)
+
+  C.{{.Type}}_items(
+    C.{{.Type}}Handle(h.chandle),
+    &cHandles[0],
+    C.size_t(size),
+  )
 	capiErr := h.errorHandler.CheckCapiError()
 	if capiErr != nil {
 		return nil, errors.Join(errors.New(`could not access capi for list`), capiErr)
